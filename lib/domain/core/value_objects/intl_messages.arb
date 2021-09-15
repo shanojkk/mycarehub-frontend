@@ -1,0 +1,305 @@
+{
+  "@@last_modified": "2021-03-19T14:04:45.827075",
+  "landingPageTitleText": "Access Healthcare",
+  "@landingPageTitleText": {
+    "description": "The title for the landing page",
+    "type": "text",
+    "placeholders": {}
+  },
+  "landingPageSubtitleText": "Access care easily at the palm of your hand",
+  "@landingPageSubtitleText": {
+    "description": "the subtitle for the landing page",
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginText": "Login",
+  "@loginText": {
+    "description": "Login text, used in buttons",
+    "type": "text",
+    "placeholders": {}
+  },
+  "createAccountText": "Create account",
+  "@createAccountText": {
+    "description": "text to tell user to create account, used in buttons",
+    "type": "text",
+    "placeholders": {}
+  },
+  "basicDetailsText": "Basic details",
+  "@basicDetailsText": {
+    "description": "basic details",
+    "type": "text",
+    "placeholders": {}
+  },
+  "requestBasicDetailsText": "Kindly provide the details below",
+  "@requestBasicDetailsText": {
+    "description": "Tell user to provide their basic details",
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterFirstNameText": "Enter first name",
+  "@enterFirstNameText": {
+    "description": "enter persons first name",
+    "type": "text",
+    "placeholders": {}
+  },
+  "firstNameText": "First name",
+  "@firstNameText": {
+    "description": "persons first name",
+    "type": "text",
+    "placeholders": {}
+  },
+  "firstNameRequiredText": "First name is required",
+  "@firstNameRequiredText": {
+    "description": "user should enter persons first name to proceed",
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterLastNameText": "Enter last name",
+  "@enterLastNameText": {
+    "description": "persons last name",
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastNameText": "Last name",
+  "@lastNameText": {
+    "description": "persons last name",
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastNameRequiredText": " Last name is required",
+  "@lastNameRequiredText": {
+    "description": "user to enter a persons last name to proceed",
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectGenderText": "Select gender",
+  "@selectGenderText": {
+    "description": "persons gender",
+    "type": "text",
+    "placeholders": {}
+  },
+  "genderRequiredText": "Gender is required",
+  "@genderRequiredText": {
+    "description": "select persons gender to proceed",
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateOfBirthText": "Date of birth",
+  "@dateOfBirthText": {
+    "description": "calendar date",
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateOfBirthRequiredText": "Date of birth is required",
+  "@dateOfBirthRequiredText": {
+    "description": "persons date of birth is required",
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectDateOfBirthText": "Tap to select a date",
+  "@selectDateOfBirthText": {
+    "description": "user selects a date from a calender",
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveContinueText": "Save & Continue",
+  "@saveContinueText": {
+    "description": "Save the to the phone and proceed to next screen",
+    "type": "text",
+    "placeholders": {}
+  },
+  "previousText": "Previous",
+  "@previousText": {
+    "description": "Text used in buttons to show an action takes user to a previous screen",
+    "type": "text",
+    "placeholders": {}
+  },
+  "requestPinResetText": "Request PIN reset",
+  "@requestPinResetText": {
+    "description": "Tell user to input their PIN",
+    "type": "text",
+    "placeholders": {}
+  },
+  "usePhoneToRequestText": "Use your phone number to request",
+  "@usePhoneToRequestText": {
+    "description": "user to input their phone number to receive a text through it",
+    "type": "text",
+    "placeholders": {}
+  },
+  "greetUser": "Hey, {name}",
+  "@greetUser": {
+    "description": "greet user with their name",
+    "type": "text",
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "enterPinToContinueText": "Enter your PIN to continue",
+  "@enterPinToContinueText": {
+    "description": "user to enter their PIN to proceed",
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterPinText": "Enter your PIN",
+  "@enterPinText": {
+    "description": "user to enter their PIN",
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmPinText": "Confirm your PIN",
+  "@confirmPinText": {
+    "description": "user to enter their PIN again",
+    "type": "text",
+    "placeholders": {}
+  },
+  "continueText": "Continue",
+  "@continueText": {
+    "description": "used in button text for actions that take user to another screen",
+    "type": "text",
+    "placeholders": {}
+  },
+  "backText": "Back",
+  "@backText": {
+    "description": "used in buttons for an action that takes user to previous screen",
+    "type": "text",
+    "placeholders": {}
+  },
+  "createPinText": "Create PIN",
+  "@createPinText": {
+    "description": "create PIN",
+    "type": "text",
+    "placeholders": {}
+  },
+  "secureAccountText": "Secure your account with a PIN",
+  "@secureAccountText": {
+    "description": "user to secure their account",
+    "type": "text",
+    "placeholders": {}
+  },
+  "gladToMeetYouText": "Glad to meet you",
+  "@gladToMeetYouText": {
+    "description": "Welcome user",
+    "type": "text",
+    "placeholders": {}
+  },
+  "createAccountWithPhoneText": "Use your phone number to create an account",
+  "@createAccountWithPhoneText": {
+    "description": "user to use their phone number to create an account",
+    "type": "text",
+    "placeholders": {}
+  },
+  "genderText": "Gender",
+  "@genderText": {
+    "description": "persons gender, e.g male, female",
+    "type": "text",
+    "placeholders": {}
+  },
+  "phoneNumberText": "Phone number",
+  "@phoneNumberText": {
+    "description": "phone number",
+    "type": "text",
+    "placeholders": {}
+  },
+  "doneText": "Done",
+  "@doneText": {
+    "description": "indicatr something is complete",
+    "type": "text",
+    "placeholders": {}
+  },
+  "forgotPINText": "Forgot PIN?",
+  "@forgotPINText": {
+    "description": "ask user if they can rember their PIN",
+    "type": "text",
+    "placeholders": {}
+  },
+  "signInText": "Sign in",
+  "@signInText": {
+    "description": "Sign in to the app",
+    "type": "text",
+    "placeholders": {}
+  },
+  "wrongPinEntered": "Sorry, you entered the wrong PIN. Please try again",
+  "@wrongPinEntered": {
+    "description": "user entered wrong PIN",
+    "type": "text",
+    "placeholders": {}
+  },
+  "noAccountWithPhoneNumber": "No account with that phone number",
+  "@noAccountWithPhoneNumber": {
+    "description": "user provided a phone number that is not registerd on any account",
+    "type": "text",
+    "placeholders": {}
+  },
+  "requestText": "Request",
+  "@requestText": {
+    "description": "an action to request, used in buttons",
+    "type": "text",
+    "placeholders": {}
+  },
+  "haveAnAccountText": "Already have an account?  ",
+  "@haveAnAccountText": {
+    "description": "ask user if they have an existing account",
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterEmailText": "Enter your email",
+  "@enterEmailText": {
+    "description": "user to enter their email address",
+    "type": "text",
+    "placeholders": {}
+  },
+  "emailText": "Email",
+  "@emailText": {
+    "description": "email",
+    "type": "text",
+    "placeholders": {}
+  },
+  "allowPhoneNumberUsageText": "Allow My Afya Hub to use your phone number for communications",
+  "@allowPhoneNumberUsageText": {
+    "description": "allow My Afya Hub to use your phone number for communication",
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyEmailText": "Verify Email",
+  "@verifyEmailText": {
+    "description": "user to verify their email address",
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyPhoneNumberText": "Verify Phone Number",
+  "@verifyPhoneNumberText": {
+    "description": "user to verify their phone number",
+    "type": "text",
+    "placeholders": {}
+  },
+  "codeSentText": "A 6 digit code has been sent to",
+  "@codeSentText": {
+    "description": "an OTP code sent to a phone number",
+    "type": "text",
+    "placeholders": {}
+  },
+  "phoneNumberExistsText": "Sorry, a user with that phone number exists",
+  "@phoneNumberExistsText": {
+    "description": "phone number already registered an account",
+    "type": "text",
+    "placeholders": {}
+  },
+  "getStartedText": "Get started",
+  "@getStartedText": {
+    "description": "get started",
+    "type": "text",
+    "placeholders": {}
+  },
+  "nextText": "Next",
+  "@nextText": {
+    "description": "next",
+    "type": "text",
+    "placeholders": {}
+  },
+  "skipText": "skip",
+  "@skipText": {
+    "description": "skip",
+    "type": "text",
+    "placeholders": {}
+  }
+}

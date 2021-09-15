@@ -1,0 +1,95 @@
+name: myafyahub
+description: A new Flutter project.
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  app_wrapper: ^0.1.23
+  async_redux: ^12.0.0
+  cached_network_image: ^3.0.0
+  camera: ^0.8.1+3
+  connectivity: ^3.0.6
+  cupertino_icons: ^1.0.3
+  dart_fcm: ^0.0.23
+  debug_logger: ^0.0.23
+  device_info: ^2.0.2
+  domain_objects: ^0.0.27-nullsafety
+  dotted_border: ^2.0.0
+  double_back_to_close_app: ^2.0.1
+  facebook_app_events: ^0.12.0
+  file_picker: ^3.0.2+2
+  firebase_analytics: ^8.2.0
+  firebase_core: ^1.4.0
+  firebase_crashlytics: ^2.1.1
+  firebase_remote_config: ^0.10.0+3
+  fl_chart: ^0.36.1
+  flutter:
+    sdk: flutter
+  flutter_graphql_client: ^0.1.23
+  flutter_html: ^2.0.0
+  flutter_image_compress: ^1.0.0
+  flutter_localizations:
+    sdk: flutter
+  flutter_svg: ^0.22.0
+  fluttertoast: ^8.0.1-nullsafety.0
+  freezed: ^0.14.2
+  freezed_annotation: ^0.14.2
+  google_fonts: ^2.1.0
+  google_maps_flutter: ^2.0.6
+  http: ^0.13.3
+  image_picker: ^0.8.0+1
+  intl: ^0.17.0
+  introduction_screen: ^2.1.0
+  json_annotation: ^4.0.1
+  json_serializable: ^4.1.3
+  launch_review: ^3.0.1
+  localstorage: ^4.0.0+1
+  location: ^4.2.3
+  misc_utilities: ^0.1.27-nullsafety
+  rxdart: ^0.27.1
+  sentry_flutter: ^5.1.0
+  shared_preferences: ^2.0.6
+  shared_themes: ^0.1.0
+  shared_ui_components: ^0.1.37-nullsafety
+  shimmer: ^2.0.0
+  smooth_page_indicator: ^0.3.0-nullsafety.0
+  sms_autofill: ^2.0.1
+  sqflite: ^2.0.0+3
+  transparent_image: ^2.0.0
+  unicons: ^2.0.1
+  upgrader: ^3.4.1
+  url_launcher: ^6.0.6
+  user_feed: ^0.1.41-nullsafety
+  user_profile: ^0.1.21-nullsafety
+
+dev_dependencies:
+  build_runner: ^2.0.4
+  device_preview: ^0.7.4
+  flutter_gen: ^3.1.1
+  flutter_test:
+    sdk: flutter
+  lint: ^1.3.0
+  mockito: ^5.0.7
+  mocktail_image_network: ^0.1.0
+  pedantic: ^1.11.0
+  test: ^1.16.5
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/
+    - packages/user_feed/assets/hide.svg
+    - packages/user_feed/assets/pin.svg
+    - packages/user_feed/assets/resolve.svg
+    - packages/user_feed/assets/white_logo.png
+    - packages/user_feed/assets/white_logo.svg
+    - packages/user_feed/assets/transparent_logo.svg
+    - packages/user_feed/assets/zero-state.png
+    - packages/user_feed/assets/swipe.png
+    - packages/shared_ui_components/assets/test-development.png
+    - packages/user_feed/assets/cover_action.svg

@@ -1,9 +1,5 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:user_profile/term_and_conditions.dart' as webview;
-
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/library/library_content_item.dart';
@@ -20,7 +16,6 @@ import 'package:myafyahub/presentation/medications/medications_landing_page.dart
 import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
 import 'package:myafyahub/presentation/notifications/notifications_page.dart';
 import 'package:myafyahub/presentation/onboarding/introduction/introduction_page.dart';
-import 'package:myafyahub/presentation/onboarding/landing_page/landing_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/basic_details_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/phone_number_login_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/request_pin_reset_page.dart';
@@ -39,6 +34,8 @@ import 'package:myafyahub/presentation/profile/pages/personal_information_page.d
 import 'package:myafyahub/presentation/profile/pages/saved_posts.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+// Package imports:
+import 'package:user_profile/term_and_conditions.dart' as webview;
 
 /// The router generator for the app. The arrangement in this config must match that
 /// in the routes.dart file
@@ -69,8 +66,8 @@ class RouteGenerator {
         );
 
       case BWRoutes.landing:
-        return MaterialPageRoute<LandingPage>(
-          builder: (_) => LandingPage(),
+        return MaterialPageRoute<CommunityChatScreenPage>(
+          builder: (_) => const CommunityChatScreenPage(),
         );
 
       case BWRoutes.phoneLogin:

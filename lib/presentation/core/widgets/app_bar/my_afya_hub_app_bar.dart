@@ -53,8 +53,9 @@ class MyAfyaHubAppBar extends StatelessWidget implements PreferredSizeWidget {
               leadingWidget ?? const MyAfyaHubAppbarUser(),
               Text(
                 title ?? '',
-                style: TextThemes.boldSize16Text()
-                    .copyWith(color: AppColors.secondaryColor),
+                style: TextThemes.boldSize16Text().copyWith(
+                    color: AppColors.secondaryColor,
+                    fontFamily: AppFonts.latoFont),
               ),
               trailingWidget ?? mediumHorizontalSizedBox,
             ],

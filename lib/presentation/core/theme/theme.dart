@@ -1,8 +1,7 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
+import 'package:flutter/material.dart';
 
 class AppTheme {
   static ThemeData getAppTheme(List<AppContext> contexts) {
@@ -35,12 +34,16 @@ class AppTheme {
 class AppColors {
   static const Color accentColor = Color.fromARGB(255, 188, 197, 50);
   static const Color blackColor = Color(0xFF000000);
+  static const Color blueChillColor = Color(0xFF119496);
+  static const Color brightTurquoiseColor = Color(0xFF11DDDF);
   static const Color cyanColor = Color(0xFF98DDE7);
   static const Color darkGreenColor = Color(0xFF388E3C);
   static const Color darkGreyColor = Color(0xFF9B9B9B);
   static const Color darkOrangeColor = Color(0xFFFFA000);
+  static const Color deepCoveColor = Color(0xFF06103B);
   static const Color greenColor = Color(0xFF50C878);
   static const Color greyColor = Color(0x28FF8282);
+  static const Color goldSandColor = Color(0xFFE2C688);
   static const Color greyTextColor = Color(0xFF707070);
   static const Color greySeparatorColor = Color(0xfff3f5f9);
   static const Color inputFieldColor = Color(0xFFF0F3FE);
@@ -51,6 +54,7 @@ class AppColors {
   static const Color lightPurpleTextColor = Color(0xFF596D8A);
   static const Color lightRed = Color(0xFFFFE6E6);
   static const Color lightSkyBlueColor = Color(0xFFF6F7FB);
+  static const Color orangeColor = Color(0xFFFF642A);
   static const Color primaryColor = Color.fromARGB(255, 0, 163, 167);
   static const Color secondaryColor = Color.fromARGB(255, 22, 20, 74);
   static const Color primaryColorLite = Color(0xFFF2E8FF);
@@ -64,6 +68,7 @@ class AppColors {
   );
   static const Color superLightGreyColor = Color(0xFFF2F2F2);
   static const Color whiteColor = Color(0xFFFFFFFF);
+  static const Color wildSandColor = Color(0xFFF6F6F6);
   static const Color darkGreyTextColor = Color(0xFF797979);
   static const Color lightPurpleBackgroundColor = Color(0xffE2E0F6);
 
@@ -94,4 +99,9 @@ class ThemeColors {
     this.backgroundColor,
     this.textSelectionColor,
   );
+}
+
+class AppFonts {
+  static const String latoFont = 'Lato';
+  static const String robotoFont = 'Roboto';
 }

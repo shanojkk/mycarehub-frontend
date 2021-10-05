@@ -1,14 +1,13 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:misc_utilities/number_constants.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports:
 import 'package:myafyahub/presentation/community/chat_screen/widgets/awaiting_moderation_widget.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
+
 import 'quoted_message_widget.dart';
 
 /// [SentMessageItem] used within the community chat screen to show sent messages.
@@ -58,8 +57,9 @@ class SentMessageItem extends StatelessWidget {
                     alignment: Alignment.bottomLeft,
                     child: Text(
                       message,
-                      style: TextThemes.normalSize12Text()
-                          .copyWith(color: AppColors.whiteColor),
+                      style: TextThemes.normalSize12Text().copyWith(
+                          color: AppColors.whiteColor,
+                          fontFamily: AppFonts.latoFont),
                     ),
                   ),
                   highlightedMessage ?? smallVerticalSizedBox,
@@ -67,8 +67,9 @@ class SentMessageItem extends StatelessWidget {
                     alignment: Alignment.bottomRight,
                     child: Text(
                       time,
-                      style: TextThemes.normalSize10Text()
-                          .copyWith(color: AppColors.userInitialsColor),
+                      style: TextThemes.normalSize10Text().copyWith(
+                          color: AppColors.userInitialsColor,
+                          fontFamily: AppFonts.latoFont),
                     ),
                   ),
                 ],

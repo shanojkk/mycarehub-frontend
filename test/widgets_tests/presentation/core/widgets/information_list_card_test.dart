@@ -13,7 +13,7 @@ import 'package:myafyahub/presentation/core/widgets/information_list_card.dart';
 import '../../../../test_helpers.dart';
 
 void main() {
-  group('TermsAndConditionsPage', () {
+  group('InformationListCard', () {
     late Store<AppState> store;
 
     setUp(() {

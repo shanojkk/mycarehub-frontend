@@ -59,7 +59,8 @@ class MyHealthPage extends StatelessWidget {
                   ),
                   body: Text(
                     myHealthPagePatient,
-                    style: TextThemes.normalSize14Text(AppColors.secondaryColor),
+                    style:
+                        TextThemes.normalSize14Text(AppColors.secondaryColor),
                   ),
                 ),
               ),
@@ -113,7 +114,6 @@ class MyHealthPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    
                   ),
                   smallHorizontalSizedBox,
                   Expanded(

@@ -524,7 +524,7 @@ void main() {
         // expect a default error msg because context was not passed in
         expect(actualResponse.message, userWithThatPhoneExists);
 
-        expect(store.state.miscState!.phoneSignUp!.accountExists, true);
+        expect(store.state.miscState!.phoneLogin!.invalidCredentials, true);
       });
 
       testWidgets(
@@ -1410,7 +1410,7 @@ void main() {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
 
-      const String refreshToken = 'hjshdkjf8knmskdj-sujhjhs89j';
+      const String refreshToken = 'sample-refresh-token';
 
       // mocked response
       final http.Response response = http.Response(
@@ -1481,7 +1481,7 @@ void main() {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
 
-      const String refreshToken = 'hjshdkjf8knmskdj-sujhjhs89j';
+      const String refreshToken = 'sample-refresh-token';
 
       await tester.runAsync(() async {
         await buildTestWidget(
@@ -1518,7 +1518,7 @@ void main() {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
 
-      const String refreshToken = 'hjshdkjf8knmskdj-sujhjhs89j';
+      const String refreshToken = 'sample-refresh-token';
 
       await tester.runAsync(() async {
         await buildTestWidget(

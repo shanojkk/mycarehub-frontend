@@ -5,12 +5,10 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 
-class BeWellScaffold extends StatelessWidget {
-  const BeWellScaffold({
-    Key? key,
-    required this.child,
-    required this.gradient,
-  }) : super(key: key);
+class MyAfyaHubScaffold extends StatelessWidget {
+  const MyAfyaHubScaffold(
+      {Key? key, required this.child, required this.gradient})
+      : super(key: key);
 
   final Widget child;
   final LinearGradient gradient;

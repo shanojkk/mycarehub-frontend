@@ -13,7 +13,6 @@ import 'package:mockito/mockito.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
-import 'package:myafyahub/application/redux/actions/phone_signup_state_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
 import 'package:myafyahub/domain/core/entities/core/endpoint_context_subject.dart';
@@ -22,8 +21,7 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:afya_moja_core/custom_text_field.dart';
 import 'package:afya_moja_core/buttons.dart';
-import 'package:myafyahub/presentation/onboarding/login/widgets/error_alert_box.dart';
-import 'package:myafyahub/presentation/onboarding/login/widgets/my_afya_hub_phone_login_page.dart';
+import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 import '../../../../../mock_utils.dart';
@@ -65,7 +63,7 @@ void main() {
                 appName: 'test',
                 appContexts: testAppContexts,
                 graphQLClient: mockShortGraphQlClient,
-                child: MyAfyaHubPhoneLoginPage(),
+                child: LoginPage(),
               ),
             );
           },
@@ -82,49 +80,6 @@ void main() {
       // check that the error box is shown
       expect(find.byKey(errorAlertBoxKey), findsNothing);
     });
-
-    testWidgets(
-      'form displays invalid credentials banner if invalidCredentials is true',
-      (WidgetTester tester) async {
-        EndPointsContextSubject().contexts.add(testAppContexts);
-
-        await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              store.dispatch(
-                PhoneSignUpStateAction(
-                  invalidCredentials: true,
-                ),
-              );
-
-              return MyAfyaHubPhoneLoginPage();
-            },
-          ),
-        );
-
-        await tester.pump();
-
-        final Finder phoneInput = find.byType(MyAfyaHubPhoneInput);
-        final Finder pinInput = find
-            .byWidgetPredicate((Widget widget) => widget.key == pinInputKey);
-
-        expect(find.byType(Form), findsOneWidget);
-        expect(phoneInput, findsOneWidget);
-        expect(pinInput, findsOneWidget);
-
-        await tester.tap(phoneInput);
-        await tester.enterText(phoneInput, testPhoneNumber);
-
-        await tester.tap(pinInput);
-        await tester.enterText(pinInput, '123');
-
-        expect(store.state.miscState!.phoneSignUp!.invalidCredentials, true);
-        expect(find.byType(ErrorAlertBox), findsOneWidget);
-      },
-    );
 
     testWidgets(
       'form can be filled and submitted correctly',
@@ -163,13 +118,12 @@ void main() {
           tester: tester,
           store: store,
           client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              EndPointsContextSubject().contexts.add(testAppContexts);
-              return MyAfyaHubPhoneLoginPage();
-            },
-          ),
+          widget: Builder(builder: (BuildContext context) {
+            EndPointsContextSubject().contexts.add(testAppContexts);
+            return LoginPage();
+          }),
         );
+
         await tester.pumpAndSettle();
 
         final Finder phoneInput = find.byType(MyAfyaHubPhoneInput);
@@ -192,6 +146,7 @@ void main() {
       },
     );
   });
+
   group('Phone Login', () {
     // initial set up
     setupFirebaseAuthMocks();
@@ -206,85 +161,6 @@ void main() {
       store = Store<AppState>(initialState: AppState.initial());
     });
 
-    testWidgets(
-      'should login user',
-      (WidgetTester tester) async {
-        tester.binding.window.devicePixelRatioTestValue = 1.0;
-        tester.binding.window.physicalSizeTestValue = tabletLandscape;
-        final http.Response response = http.Response(
-          json.encode(createUserMock()),
-          200,
-        );
-        when(
-          baseGraphQlClientMock.callRESTAPI(
-            endpoint:
-                'https://onboarding-testing.savannahghi.org/login_by_phone',
-            variables: <String, dynamic>{
-              'phoneNumber': '+254710000000',
-              'pin': '1234',
-              'flavour': 'CONSUMER',
-              'appVersion': APPVERSION,
-            },
-            method: 'POST',
-          ),
-        ).thenAnswer(
-          (_) => Future<http.Response>.value(response),
-        );
-
-        when(baseGraphQlClientMock.toMap(any)).thenReturn(
-          <String, dynamic>{
-            'data': <String, dynamic>{
-              'phoneNumber': '+254710000000',
-              'pin': '1234',
-              'flavour': 'CONSUMER'
-            }
-          },
-        );
-
-        await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              EndPointsContextSubject().contexts.add(testAppContexts);
-
-              return MyAfyaHubPhoneLoginPage();
-            },
-          ),
-        );
-
-        await tester.pump();
-
-        expect(find.byType(MyAfyaHubPhoneInput), findsOneWidget);
-        await tester.tap(find.byType(MyAfyaHubPhoneInput));
-        await tester.enterText(
-          find.byType(MyAfyaHubPhoneInput),
-          testPhoneNumber,
-        );
-
-        final Finder finder = find
-            .byWidgetPredicate((Widget widget) => widget.key == pinInputKey);
-        expect(finder, findsOneWidget);
-        await tester.tap(finder);
-        await tester.enterText(finder, testPin);
-
-        final Finder completeButton = find.byType(MyAfyaHubPrimaryButton);
-
-        expect(completeButton, findsOneWidget);
-        await tester.ensureVisible(completeButton);
-        await tester.tap(completeButton);
-
-        await tester.pump(const Duration(minutes: 35));
-
-        // verify(mockObserver.didPush(sampleRoute, any));
-        addTearDown(() {
-          tester.binding.window.clearPhysicalSizeTestValue();
-          tester.binding.window.clearDevicePixelRatioTestValue();
-        });
-      },
-    );
-
     testWidgets('should show no internet snackbar',
         (WidgetTester tester) async {
       InternetConnectivitySubject().connectivitySubject.add(false);
@@ -296,7 +172,7 @@ void main() {
           builder: (BuildContext context) {
             EndPointsContextSubject().contexts.add(testAppContexts);
 
-            return MyAfyaHubPhoneLoginPage();
+            return LoginPage();
           },
         ),
       );
@@ -315,22 +191,21 @@ void main() {
       'should  update invalid credentials state',
       (WidgetTester tester) async {
         await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              EndPointsContextSubject().contexts.add(testAppContexts);
+            tester: tester,
+            store: store,
+            client: baseGraphQlClientMock,
+            widget: Builder(
+              builder: (BuildContext context) {
+                EndPointsContextSubject().contexts.add(testAppContexts);
 
-              StoreProvider.dispatch(
-                context,
-                PhoneLoginStateAction(invalidCredentials: true),
-              );
+                StoreProvider.dispatch(
+                  context,
+                  PhoneLoginStateAction(invalidCredentials: true),
+                );
 
-              return MyAfyaHubPhoneLoginPage();
-            },
-          ),
-        );
+                return LoginPage();
+              },
+            ));
 
         await tester.pump();
 
@@ -360,7 +235,7 @@ void main() {
 
               EndPointsContextSubject().contexts.add(testAppContexts);
 
-              return MyAfyaHubPhoneLoginPage();
+              return LoginPage();
             },
           ),
         );

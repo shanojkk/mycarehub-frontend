@@ -28,7 +28,7 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/number_constants.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/onboarding/widgets/bewell_scaffold.dart';
+import 'package:myafyahub/presentation/onboarding/widgets/my_afya_hub_scaffold.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
 class RequestPinReset extends StatefulWidget {
@@ -91,7 +91,7 @@ class _RequestPinResetState extends State<RequestPinReset> {
 
     final OnboardingStrings onboardingStrings = OnboardingStrings.of(context)!;
 
-    return BeWellScaffold(
+    return MyAfyaHubScaffold(
       gradient: defaultGradient(Theme.of(context).primaryColor),
       child: StoreConnector<AppState, AppStateViewModel>(
         converter: (Store<AppState> store) =>

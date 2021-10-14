@@ -7,6 +7,7 @@ import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:shared_ui_components/buttons.dart';
 import 'package:shared_ui_components/inputs.dart';
 import 'package:shared_ui_components/platform_loader.dart';
@@ -216,19 +217,15 @@ void main() {
         ),
       );
 
-      const String flag = 'forgot_pin_otp_widget';
-
       await buildTestWidget(
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
         widget: Builder(
           builder: (BuildContext context) {
-            toggleLoadingIndicator(context: context, flag: flag);
-            StoreProvider.dispatch(
-              context,
-              UpdatePinStatusAction(invalidPin: false, recoveryOtp: testOTP),
-            );
+            toggleLoadingIndicator(context: context, flag: forgotPinOtpFlag);
+            StoreProvider.dispatch(context,
+                UpdatePinStatusAction(invalidPin: false, recoveryOtp: testOTP));
             EndPointsContextSubject().contexts.add(testAppContexts);
 
             return ForgotPinOtpWidget();

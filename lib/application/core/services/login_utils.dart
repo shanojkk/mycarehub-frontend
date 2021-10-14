@@ -29,7 +29,8 @@ Future<void> signInUser({
     );
     return;
   }
-  // this is the Redux Action that store the phone number and PIN user enters
+
+  // this is the Redux Action that store the phone number and PIN to state
   StoreProvider.dispatch(
     context,
     PhoneLoginStateAction(

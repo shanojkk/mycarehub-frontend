@@ -6,6 +6,7 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_utils.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/buttons.dart';
@@ -28,7 +29,6 @@ class ForgotPinOtpWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final OnboardingStrings onboardingStrings = OnboardingStrings.of(context)!;
-    const String flag = 'forgot_pin_otp_widget';
 
     return Scaffold(
       body: StoreConnector<AppState, AppStateViewModel>(
@@ -114,7 +114,8 @@ class ForgotPinOtpWidget extends StatelessWidget {
                       child: ErrorAlertBox(message: enteredWrongPINString),
                     )
                   ],
-                  if (vm.appState.wait!.isWaitingFor(flag) == true) ...<Widget>[
+                  if (vm.appState.wait!.isWaitingFor(forgotPinOtpFlag) ==
+                      true) ...<Widget>[
                     largeVerticalSizedBox,
                     const Center(child: SILPlatformLoader())
                   ],

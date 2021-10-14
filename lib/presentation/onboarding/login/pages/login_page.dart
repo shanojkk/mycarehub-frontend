@@ -30,41 +30,24 @@ import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
-/// [MyAfyaHubPhoneLoginPage] is parsed in [PhoneNumberLoginPage]
+/// [LoginPage] is parsed in [PhoneNumberLoginPage]
 ///
 /// It consists of [MyAfyaHubPhoneInput] used to user input PhoneNumber,
 ///  [CustomTextField] to input PIN and [MyAfyaHubPrimaryButton] as submit button
-class MyAfyaHubPhoneLoginPage extends StatefulWidget {
+class LoginPage extends StatefulWidget {
   @override
-  _MyAfyaHubPhoneLoginPageState createState() =>
-      _MyAfyaHubPhoneLoginPageState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _MyAfyaHubPhoneLoginPageState extends State<MyAfyaHubPhoneLoginPage> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
+class _LoginPageState extends State<LoginPage> {
+  String? phoneNumber;
   final TextEditingController phoneNumberInputController =
       TextEditingController();
 
-  TextEditingController pinController = TextEditingController();
-  String? phoneNumber;
   String? pin;
+  TextEditingController pinController = TextEditingController();
 
-  @override
-  void initState() {
-    super.initState();
-    MyAfyaHubFacebookEvents().logger.logEvent(name: 'view_login_page');
-
-    /// clear any active flags
-    clearAllFlags(context);
-  }
-
-  @override
-  void dispose() {
-    pinController.dispose();
-    phoneNumberInputController.dispose();
-    super.dispose();
-  }
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   void didChangeDependencies() {
@@ -76,78 +59,19 @@ class _MyAfyaHubPhoneLoginPageState extends State<MyAfyaHubPhoneLoginPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return OnboardingScaffold(
-      title: loginPageTitleString,
-      description: loginPageSubTitleString,
-      child: StoreConnector<AppState, AppStateViewModel>(
-        converter: (Store<AppState> store) =>
-            AppStateViewModel.fromStore(store),
-        builder: (BuildContext context, AppStateViewModel vm) {
-          return SizedBox(
-            height: MediaQuery.of(context).size.height / 1.6,
-            child: Form(
-              key: _formKey,
-              child: Stack(
-                children: <Widget>[
-                  logInColumn(vm),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushReplacementNamed(
-                        context,
-                        BWRoutes.verifySignUpOTP,
-                        arguments: <String, int>{
-                          'OTP': 1234,
-                        },
-                      );
-                    },
-                    child: const Text(
-                      ' ',
-                      key: verifyOTPGestureKey,
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: SizedBox(
-                      width: double.infinity,
-                      height: 52,
-                      child: MyAfyaHubPrimaryButton(
-                        buttonKey: phoneLoginContinueButtonKey,
-                        onPressed: () async {
-                          if (!InternetConnectivitySubject()
-                              .connectivitySubject
-                              .valueOrNull!) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text(noInternetConnection),
-                              ),
-                            );
-                            return;
-                          }
-                          if (_formKey.currentState!.validate()) {
-                            if (pin != null && phoneNumber != null) {
-                              await signInUser(
-                                context: context,
-                                pin: pin!,
-                                phoneNumber: phoneNumber!,
-                              );
-                            }
-                            return;
-                          }
-                        },
-                        buttonColor: AppColors.secondaryColor,
-                        borderColor: Colors.transparent,
-                        text: continueString,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
-      ),
-    );
+  void dispose() {
+    pinController.dispose();
+    phoneNumberInputController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    MyAfyaHubFacebookEvents().logger.logEvent(name: 'view_login_page');
+
+    /// clear any active flags
+    clearAllFlags(context);
   }
 
   Widget logInColumn(AppStateViewModel vm) {
@@ -166,7 +90,7 @@ class _MyAfyaHubPhoneLoginPageState extends State<MyAfyaHubPhoneLoginPage> {
           inputController: phoneNumberInputController,
           labelText: enterPhoneNumberString,
           onChanged: (String? val) {
-            if (vm.appState.miscState!.phoneSignUp!.invalidCredentials) {
+            if (vm.appState.miscState!.phoneLogin!.invalidCredentials) {
               StoreProvider.dispatch(
                 context,
                 PhoneLoginStateAction(),
@@ -201,6 +125,7 @@ class _MyAfyaHubPhoneLoginPageState extends State<MyAfyaHubPhoneLoginPage> {
           maxLength: 4,
           maxLines: 1,
           keyboardType: TextInputType.number,
+          autovalidateMode: AutovalidateMode.disabled,
           obscureText: true,
           labelText: enterYourString,
           validator: userPinValidator,
@@ -208,7 +133,7 @@ class _MyAfyaHubPhoneLoginPageState extends State<MyAfyaHubPhoneLoginPage> {
             FilteringTextInputFormatter.digitsOnly
           ],
           onChanged: (String val) {
-            if (vm.appState.miscState!.phoneSignUp!.invalidCredentials) {
+            if (vm.appState.miscState!.phoneLogin!.invalidCredentials) {
               StoreProvider.dispatch(
                 context,
                 PhoneLoginStateAction(),
@@ -219,7 +144,7 @@ class _MyAfyaHubPhoneLoginPageState extends State<MyAfyaHubPhoneLoginPage> {
             });
           },
         ),
-        if (vm.appState.miscState?.phoneSignUp?.invalidCredentials ??
+        if (vm.appState.miscState?.phoneLogin?.invalidCredentials ??
             false) ...<Widget>[
           const ErrorAlertBox(message: invalidCredentialsErrorMsg),
         ],
@@ -231,6 +156,77 @@ class _MyAfyaHubPhoneLoginPageState extends State<MyAfyaHubPhoneLoginPage> {
           ),
         ],
       ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return OnboardingScaffold(
+      title: loginPageTitleString,
+      description: loginPageSubTitleString,
+      child: StoreConnector<AppState, AppStateViewModel>(
+        converter: (Store<AppState> store) =>
+            AppStateViewModel.fromStore(store),
+        builder: (BuildContext context, AppStateViewModel vm) {
+          return SizedBox(
+            height: MediaQuery.of(context).size.height / 1.6,
+            child: Form(
+              key: _formKey,
+              child: Stack(
+                children: <Widget>[
+                  logInColumn(vm),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacementNamed(
+                          context, BWRoutes.verifySignUpOTP,
+                          arguments: <String, int>{
+                            'OTP': 1234,
+                          });
+                    },
+                    child: const Text(
+                      ' ',
+                      key: verifyOTPGestureKey,
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: SizedBox(
+                      width: double.infinity,
+                      height: 52,
+                      child: MyAfyaHubPrimaryButton(
+                        buttonKey: phoneLoginContinueButtonKey,
+                        onPressed: () async {
+                          if (!InternetConnectivitySubject()
+                              .connectivitySubject
+                              .valueOrNull!) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text(noInternetConnection)));
+                            return;
+                          }
+                          if (_formKey.currentState!.validate()) {
+                            if (pin != null && phoneNumber != null) {
+                              await signInUser(
+                                context: context,
+                                pin: pin!,
+                                phoneNumber: phoneNumber!,
+                              );
+                            }
+                            return;
+                          }
+                        },
+                        buttonColor: AppColors.secondaryColor,
+                        borderColor: Colors.transparent,
+                        text: continueString,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }

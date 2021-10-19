@@ -594,15 +594,15 @@ Object actionWrapError({
 /// Since the working is the same,makes sense to have only one point to preprocess the response.
 /// The only difference is in the final step where for [login] the user is navigated to a suitable page
 /// depending on their onboarding path while for [createAccount] the used to navigated direct to basic details page.
-Future<dynamic> afterLoginOrCreateAccount({
-  required ProcessedResponse processedResponse,
-  required Store<AppState> store,
-  required BuildContext context,
-  required OnboardActionType onboardActionType,
-  required DateTimeParser dateTimeParser,
-  required RefreshTokenManger refreshTokenManger,
-  required IGraphQlClient graphQlClient,
-}) async {
+///
+Future<dynamic> afterLoginOrCreateAccount(
+    {required ProcessedResponse processedResponse,
+    required Store<AppState> store,
+    required BuildContext context,
+    required OnboardActionType onboardActionType,
+    required DateTimeParser dateTimeParser,
+    required RefreshTokenManger refreshTokenManger,
+    required IGraphQlClient graphQlClient}) async {
   try {
     final http.Response jsonResponse = processedResponse.response;
     final Map<String, dynamic> response =

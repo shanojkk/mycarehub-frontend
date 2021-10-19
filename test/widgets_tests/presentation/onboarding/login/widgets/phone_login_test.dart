@@ -30,8 +30,8 @@ import '../../../../../test_helpers.dart';
 import '../../../../../test_utils.dart';
 
 void main() {
-  group('Phone Login Page', () {
-    // initial set up
+  group('Login page', () {
+    // initial set up for Firebase Auth Mocks
     setupFirebaseAuthMocks();
 
     setUpAll(() async {
@@ -39,15 +39,17 @@ void main() {
     });
 
     late Store<AppState> store;
+
     final MockShortGraphQlClient mockShortGraphQlClient =
         MockShortGraphQlClient();
+
     setUpAll(() {
       store = Store<AppState>(initialState: AppState.initial());
     });
 
     testWidgets(
-        'should not show an error alert box since state is reset upon mounting PhoneLogin',
-        (WidgetTester tester) async {
+        'should not show an error alert box since state is reset upon'
+        ' mounting PhoneLogin', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
         store: store,
@@ -114,6 +116,7 @@ void main() {
             }
           },
         );
+
         await buildTestWidget(
           tester: tester,
           store: store,
@@ -145,21 +148,80 @@ void main() {
         await tester.pumpAndSettle();
       },
     );
-  });
 
-  group('Phone Login', () {
-    // initial set up
-    setupFirebaseAuthMocks();
+    testWidgets(
+      'should login user',
+      (WidgetTester tester) async {
+        tester.binding.window.devicePixelRatioTestValue = 1.0;
+        tester.binding.window.physicalSizeTestValue = tabletLandscape;
+        final http.Response response = http.Response(
+          json.encode(createUserMock()),
+          200,
+        );
+        when(baseGraphQlClientMock.callRESTAPI(
+                endpoint:
+                    'https://onboarding-testing.savannahghi.org/login_by_phone',
+                variables: <String, dynamic>{
+                  'phoneNumber': '+254710000000',
+                  'pin': '1234',
+                  'flavour': 'CONSUMER',
+                  'appVersion': APPVERSION,
+                },
+                method: 'POST'))
+            .thenAnswer(
+          (_) => Future<http.Response>.value(response),
+        );
 
-    setUpAll(() async {
-      await Firebase.initializeApp();
-    });
+        when(baseGraphQlClientMock.toMap(any)).thenReturn(
+          <String, dynamic>{
+            'data': <String, dynamic>{
+              'phoneNumber': '+254710000000',
+              'pin': '1234',
+              'flavour': 'CONSUMER'
+            }
+          },
+        );
 
-    late Store<AppState> store;
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: baseGraphQlClientMock,
+          widget: Builder(
+            builder: (BuildContext context) {
+              EndPointsContextSubject().contexts.add(testAppContexts);
 
-    setUpAll(() {
-      store = Store<AppState>(initialState: AppState.initial());
-    });
+              return LoginPage();
+            },
+          ),
+        );
+
+        await tester.pump();
+
+        expect(find.byType(MyAfyaHubPhoneInput), findsOneWidget);
+        await tester.tap(find.byType(MyAfyaHubPhoneInput));
+        await tester.enterText(
+            find.byType(MyAfyaHubPhoneInput), testPhoneNumber);
+
+        final Finder finder = find
+            .byWidgetPredicate((Widget widget) => widget.key == pinInputKey);
+        expect(finder, findsOneWidget);
+        await tester.tap(finder);
+        await tester.enterText(finder, testPin);
+
+        final Finder completeButton = find.byType(MyAfyaHubPrimaryButton);
+
+        expect(completeButton, findsOneWidget);
+        await tester.ensureVisible(completeButton);
+        await tester.tap(completeButton);
+
+        await tester.pump(const Duration(minutes: 35));
+
+        addTearDown(() {
+          tester.binding.window.clearPhysicalSizeTestValue();
+          tester.binding.window.clearDevicePixelRatioTestValue();
+        });
+      },
+    );
 
     testWidgets('should show no internet snackbar',
         (WidgetTester tester) async {
@@ -243,6 +305,58 @@ void main() {
         await tester.pump();
 
         expect(find.byType(SILPlatformLoader), findsNothing);
+      },
+    );
+
+    testWidgets(
+      'should clear error indicators in inputs when they are interacted with',
+      (WidgetTester tester) async {
+        tester.binding.window.devicePixelRatioTestValue = 1.0;
+        tester.binding.window.physicalSizeTestValue = tabletLandscape;
+
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: baseGraphQlClientMock,
+          widget: Builder(
+            builder: (BuildContext context) {
+              EndPointsContextSubject().contexts.add(testAppContexts);
+
+              return LoginPage();
+            },
+          ),
+        );
+
+        await tester.pump();
+        expect(find.byType(MyAfyaHubPhoneInput), findsOneWidget);
+
+        store.dispatch(PhoneLoginStateAction(invalidCredentials: true));
+        await tester.pump();
+
+        // finds and fills in the phone number input
+        expect(find.byType(MyAfyaHubPhoneInput), findsOneWidget);
+        await tester.tap(find.byType(MyAfyaHubPhoneInput));
+        await tester.enterText(
+            find.byType(MyAfyaHubPhoneInput), testPhoneNumber);
+
+        expect(store.state.miscState!.phoneLogin!.invalidCredentials, false);
+
+        store.dispatch(PhoneLoginStateAction(invalidCredentials: true));
+        await tester.pump();
+
+        // finds and fills in the PIN input
+        final Finder finder = find
+            .byWidgetPredicate((Widget widget) => widget.key == pinInputKey);
+        expect(finder, findsOneWidget);
+        await tester.tap(finder);
+        await tester.enterText(finder, testPin);
+
+        expect(store.state.miscState!.phoneLogin!.invalidCredentials, false);
+
+        addTearDown(() {
+          tester.binding.window.clearPhysicalSizeTestValue();
+          tester.binding.window.clearDevicePixelRatioTestValue();
+        });
       },
     );
   });

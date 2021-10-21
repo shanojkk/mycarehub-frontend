@@ -25,7 +25,6 @@ class UserProfilePage extends StatelessWidget {
   /// [userProfileItems] is a list of the UserProfilePage ListTile items
 
   final String userInitials = 'WJ';
-  final String name = 'Wanyonje Joseph';
   // Client's Comprehensive Care Centre Number
   final String userCCCNumber = '12345678';
   final String age = '18';
@@ -48,7 +47,6 @@ class UserProfilePage extends StatelessWidget {
                   largeVerticalSizedBox,
                   UserDetailsCard(
                     userInitials: userInitials,
-                    name: name,
                     cccNumber: userCCCNumber,
                     age: age,
                     phoneNumber: phoneNumber,

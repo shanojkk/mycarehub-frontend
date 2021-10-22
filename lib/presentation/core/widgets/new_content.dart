@@ -8,7 +8,7 @@ import 'package:shared_themes/text_themes.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/feed/feed_details.dart';
+import 'package:myafyahub/domain/core/entities/feed/feed_details.dart';
 import 'package:myafyahub/presentation/feed/feed_item_widget.dart';
 
 class NewContent extends StatelessWidget {

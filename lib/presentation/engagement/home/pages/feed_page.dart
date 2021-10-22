@@ -13,7 +13,7 @@ import 'package:myafyahub/presentation/core/widgets/my_afya_hub_mood_selection.d
 import 'package:myafyahub/presentation/core/widgets/new_content.dart';
 import 'package:myafyahub/presentation/core/widgets/suggested_groups_section_widget.dart';
 import 'package:myafyahub/presentation/engagement/home/widgets/bewell_upgrader.dart';
-import 'package:myafyahub/presentation/feed/feed_details.dart';
+import 'package:myafyahub/domain/core/entities/feed/feed_details.dart';
 
 class FeedPage extends StatefulWidget {
   const FeedPage({Key? key}) : super(key: key);

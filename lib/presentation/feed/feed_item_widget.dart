@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/domain/core/entities/feed/feed_details.dart';
 
 // Package imports:
 import 'package:shared_themes/spaces.dart';
@@ -15,14 +16,7 @@ import 'package:myafyahub/presentation/feed/feed_item_bottom_row.dart';
 /// [FeedItem] Displays the feed
 /// [isNew] renders the new tag
 class FeedItem extends StatelessWidget {
-  final String coverImagePath;
-  final String contentHeader;
-  final String date;
-  final String? readTime;
-  final String authorName;
-  final String bodyContent;
-  final String? authorDisplayPic;
-  final bool isNew;
+  final FeedDetails feedItemDetails;
 
   const FeedItem({
     required this.coverImagePath,

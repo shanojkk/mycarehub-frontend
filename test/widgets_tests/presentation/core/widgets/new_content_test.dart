@@ -9,7 +9,7 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 
 // Project imports:
 import 'package:myafyahub/presentation/core/widgets/new_content.dart';
-import 'package:myafyahub/presentation/feed/feed_details.dart';
+import 'package:myafyahub/domain/core/entities/feed/feed_details.dart';
 import 'package:myafyahub/presentation/feed/feed_item_widget.dart';
 import '../../../../mock_image_http_client.dart';
 import '../../../../mocks.dart';

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:myafyahub/presentation/feed/feed_item_widget.dart';
-import 'feed_details.dart';
+import '../../domain/core/entities/feed/feed_details.dart';
 
 class FeedList extends StatelessWidget {
   final List<FeedDetails> feedItems;

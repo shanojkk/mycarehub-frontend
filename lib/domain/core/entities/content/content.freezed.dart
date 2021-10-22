@@ -21,16 +21,17 @@ class _$ContentTearOff {
   const _$ContentTearOff();
 
   _Content call(
-      {@JsonKey(name: 'title') required String? title,
-      @JsonKey(name: 'body') required String? body,
-      @JsonKey(name: 'author') required String? author,
-      @JsonKey(name: 'author_avatar') required String? authorAvatar,
-      @JsonKey(name: 'hero_image') required String? heroImage,
+      {@JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'body') String? body,
+      @JsonKey(name: 'author') String? author,
+      @JsonKey(name: 'author_avatar') String? authorAvatar,
+      @JsonKey(name: 'hero_image') String? heroImage,
       @JsonKey(name: 'content_type') String? contentType,
-      @JsonKey(name: 'public_link') bool? publicLink,
-      @JsonKey(name: 'created_at') bool? createdAt,
-      @JsonKey(name: 'updated_at') bool? updatedAt,
+      @JsonKey(name: 'public_link') String? publicLink,
+      @JsonKey(name: 'created_at') String? createdAt,
+      @JsonKey(name: 'updated_at') String? updatedAt,
       @JsonKey(name: 'active', defaultValue: true) bool? active,
+      @JsonKey(name: 'is_new', defaultValue: true) bool? isNew,
       @JsonKey(name: 'estimate') int? estimate,
       @JsonKey(name: 'tags') List<String>? tags,
       @JsonKey(name: 'like_count') int? likes,
@@ -48,6 +49,7 @@ class _$ContentTearOff {
       createdAt: createdAt,
       updatedAt: updatedAt,
       active: active,
+      isNew: isNew,
       estimate: estimate,
       tags: tags,
       likes: likes,
@@ -84,13 +86,16 @@ mixin _$Content {
   String? get contentType =>
       throw _privateConstructorUsedError; // A link that is safe for sharing
   @JsonKey(name: 'public_link')
-  bool? get publicLink => throw _privateConstructorUsedError;
+  String? get publicLink => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
-  bool? get createdAt => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'updated_at')
-  bool? get updatedAt => throw _privateConstructorUsedError;
+  String? get updatedAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'active', defaultValue: true)
   bool? get active =>
+      throw _privateConstructorUsedError; // Whether this piece of content is marked as new content
+  @JsonKey(name: 'is_new', defaultValue: true)
+  bool? get isNew =>
       throw _privateConstructorUsedError; // estimated time to read an article or video/audio length
   @JsonKey(name: 'estimate')
   int? get estimate => throw _privateConstructorUsedError;
@@ -122,10 +127,11 @@ abstract class $ContentCopyWith<$Res> {
       @JsonKey(name: 'author_avatar') String? authorAvatar,
       @JsonKey(name: 'hero_image') String? heroImage,
       @JsonKey(name: 'content_type') String? contentType,
-      @JsonKey(name: 'public_link') bool? publicLink,
-      @JsonKey(name: 'created_at') bool? createdAt,
-      @JsonKey(name: 'updated_at') bool? updatedAt,
+      @JsonKey(name: 'public_link') String? publicLink,
+      @JsonKey(name: 'created_at') String? createdAt,
+      @JsonKey(name: 'updated_at') String? updatedAt,
       @JsonKey(name: 'active', defaultValue: true) bool? active,
+      @JsonKey(name: 'is_new', defaultValue: true) bool? isNew,
       @JsonKey(name: 'estimate') int? estimate,
       @JsonKey(name: 'tags') List<String>? tags,
       @JsonKey(name: 'like_count') int? likes,
@@ -154,6 +160,7 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
     Object? active = freezed,
+    Object? isNew = freezed,
     Object? estimate = freezed,
     Object? tags = freezed,
     Object? likes = freezed,
@@ -189,18 +196,22 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
       publicLink: publicLink == freezed
           ? _value.publicLink
           : publicLink // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as String?,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as String?,
       updatedAt: updatedAt == freezed
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as String?,
       active: active == freezed
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isNew: isNew == freezed
+          ? _value.isNew
+          : isNew // ignore: cast_nullable_to_non_nullable
               as bool?,
       estimate: estimate == freezed
           ? _value.estimate
@@ -242,10 +253,11 @@ abstract class _$ContentCopyWith<$Res> implements $ContentCopyWith<$Res> {
       @JsonKey(name: 'author_avatar') String? authorAvatar,
       @JsonKey(name: 'hero_image') String? heroImage,
       @JsonKey(name: 'content_type') String? contentType,
-      @JsonKey(name: 'public_link') bool? publicLink,
-      @JsonKey(name: 'created_at') bool? createdAt,
-      @JsonKey(name: 'updated_at') bool? updatedAt,
+      @JsonKey(name: 'public_link') String? publicLink,
+      @JsonKey(name: 'created_at') String? createdAt,
+      @JsonKey(name: 'updated_at') String? updatedAt,
       @JsonKey(name: 'active', defaultValue: true) bool? active,
+      @JsonKey(name: 'is_new', defaultValue: true) bool? isNew,
       @JsonKey(name: 'estimate') int? estimate,
       @JsonKey(name: 'tags') List<String>? tags,
       @JsonKey(name: 'like_count') int? likes,
@@ -275,6 +287,7 @@ class __$ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
     Object? active = freezed,
+    Object? isNew = freezed,
     Object? estimate = freezed,
     Object? tags = freezed,
     Object? likes = freezed,
@@ -310,18 +323,22 @@ class __$ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
       publicLink: publicLink == freezed
           ? _value.publicLink
           : publicLink // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as String?,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as String?,
       updatedAt: updatedAt == freezed
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as String?,
       active: active == freezed
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isNew: isNew == freezed
+          ? _value.isNew
+          : isNew // ignore: cast_nullable_to_non_nullable
               as bool?,
       estimate: estimate == freezed
           ? _value.estimate
@@ -355,16 +372,17 @@ class __$ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Content implements _Content {
   _$_Content(
-      {@JsonKey(name: 'title') required this.title,
-      @JsonKey(name: 'body') required this.body,
-      @JsonKey(name: 'author') required this.author,
-      @JsonKey(name: 'author_avatar') required this.authorAvatar,
-      @JsonKey(name: 'hero_image') required this.heroImage,
+      {@JsonKey(name: 'title') this.title,
+      @JsonKey(name: 'body') this.body,
+      @JsonKey(name: 'author') this.author,
+      @JsonKey(name: 'author_avatar') this.authorAvatar,
+      @JsonKey(name: 'hero_image') this.heroImage,
       @JsonKey(name: 'content_type') this.contentType,
       @JsonKey(name: 'public_link') this.publicLink,
       @JsonKey(name: 'created_at') this.createdAt,
       @JsonKey(name: 'updated_at') this.updatedAt,
       @JsonKey(name: 'active', defaultValue: true) this.active,
+      @JsonKey(name: 'is_new', defaultValue: true) this.isNew,
       @JsonKey(name: 'estimate') this.estimate,
       @JsonKey(name: 'tags') this.tags,
       @JsonKey(name: 'like_count') this.likes,
@@ -395,16 +413,19 @@ class _$_Content implements _Content {
   final String? contentType;
   @override // A link that is safe for sharing
   @JsonKey(name: 'public_link')
-  final bool? publicLink;
+  final String? publicLink;
   @override
   @JsonKey(name: 'created_at')
-  final bool? createdAt;
+  final String? createdAt;
   @override
   @JsonKey(name: 'updated_at')
-  final bool? updatedAt;
+  final String? updatedAt;
   @override
   @JsonKey(name: 'active', defaultValue: true)
   final bool? active;
+  @override // Whether this piece of content is marked as new content
+  @JsonKey(name: 'is_new', defaultValue: true)
+  final bool? isNew;
   @override // estimated time to read an article or video/audio length
   @JsonKey(name: 'estimate')
   final int? estimate;
@@ -426,7 +447,7 @@ class _$_Content implements _Content {
 
   @override
   String toString() {
-    return 'Content(title: $title, body: $body, author: $author, authorAvatar: $authorAvatar, heroImage: $heroImage, contentType: $contentType, publicLink: $publicLink, createdAt: $createdAt, updatedAt: $updatedAt, active: $active, estimate: $estimate, tags: $tags, likes: $likes, bookmarks: $bookmarks, shares: $shares, views: $views)';
+    return 'Content(title: $title, body: $body, author: $author, authorAvatar: $authorAvatar, heroImage: $heroImage, contentType: $contentType, publicLink: $publicLink, createdAt: $createdAt, updatedAt: $updatedAt, active: $active, isNew: $isNew, estimate: $estimate, tags: $tags, likes: $likes, bookmarks: $bookmarks, shares: $shares, views: $views)';
   }
 
   @override
@@ -459,6 +480,8 @@ class _$_Content implements _Content {
                     .equals(other.updatedAt, updatedAt)) &&
             (identical(other.active, active) ||
                 const DeepCollectionEquality().equals(other.active, active)) &&
+            (identical(other.isNew, isNew) ||
+                const DeepCollectionEquality().equals(other.isNew, isNew)) &&
             (identical(other.estimate, estimate) ||
                 const DeepCollectionEquality()
                     .equals(other.estimate, estimate)) &&
@@ -488,6 +511,7 @@ class _$_Content implements _Content {
       const DeepCollectionEquality().hash(createdAt) ^
       const DeepCollectionEquality().hash(updatedAt) ^
       const DeepCollectionEquality().hash(active) ^
+      const DeepCollectionEquality().hash(isNew) ^
       const DeepCollectionEquality().hash(estimate) ^
       const DeepCollectionEquality().hash(tags) ^
       const DeepCollectionEquality().hash(likes) ^
@@ -508,16 +532,17 @@ class _$_Content implements _Content {
 
 abstract class _Content implements Content {
   factory _Content(
-      {@JsonKey(name: 'title') required String? title,
-      @JsonKey(name: 'body') required String? body,
-      @JsonKey(name: 'author') required String? author,
-      @JsonKey(name: 'author_avatar') required String? authorAvatar,
-      @JsonKey(name: 'hero_image') required String? heroImage,
+      {@JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'body') String? body,
+      @JsonKey(name: 'author') String? author,
+      @JsonKey(name: 'author_avatar') String? authorAvatar,
+      @JsonKey(name: 'hero_image') String? heroImage,
       @JsonKey(name: 'content_type') String? contentType,
-      @JsonKey(name: 'public_link') bool? publicLink,
-      @JsonKey(name: 'created_at') bool? createdAt,
-      @JsonKey(name: 'updated_at') bool? updatedAt,
+      @JsonKey(name: 'public_link') String? publicLink,
+      @JsonKey(name: 'created_at') String? createdAt,
+      @JsonKey(name: 'updated_at') String? updatedAt,
       @JsonKey(name: 'active', defaultValue: true) bool? active,
+      @JsonKey(name: 'is_new', defaultValue: true) bool? isNew,
       @JsonKey(name: 'estimate') int? estimate,
       @JsonKey(name: 'tags') List<String>? tags,
       @JsonKey(name: 'like_count') int? likes,
@@ -547,16 +572,19 @@ abstract class _Content implements Content {
   String? get contentType => throw _privateConstructorUsedError;
   @override // A link that is safe for sharing
   @JsonKey(name: 'public_link')
-  bool? get publicLink => throw _privateConstructorUsedError;
+  String? get publicLink => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'created_at')
-  bool? get createdAt => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'updated_at')
-  bool? get updatedAt => throw _privateConstructorUsedError;
+  String? get updatedAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'active', defaultValue: true)
   bool? get active => throw _privateConstructorUsedError;
+  @override // Whether this piece of content is marked as new content
+  @JsonKey(name: 'is_new', defaultValue: true)
+  bool? get isNew => throw _privateConstructorUsedError;
   @override // estimated time to read an article or video/audio length
   @JsonKey(name: 'estimate')
   int? get estimate => throw _privateConstructorUsedError;

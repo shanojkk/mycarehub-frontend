@@ -12,12 +12,12 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'feed_item_reaction_icon.dart';
 
-/// [FeedItemBottomRow] Displays the bottom row on feed
-class FeedItemBottomRow extends StatelessWidget {
+/// [ContentItemFooter] Displays the bottom row on a content item
+class ContentItemFooter extends StatelessWidget {
   final String feedDate;
-  final String? readTime;
+  final int? readTime;
 
-  const FeedItemBottomRow({
+  const ContentItemFooter({
     required this.feedDate,
     this.readTime,
   });

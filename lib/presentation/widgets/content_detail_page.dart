@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myafyahub/domain/core/entities/content/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
@@ -7,14 +8,16 @@ import 'package:myafyahub/presentation/feed/feed_item_reaction_icon.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
-class ArticleDetailsPage extends StatelessWidget {
-  /// [ArticleDetailsPage] is used to display the article details
+class ContentDetailPage extends StatelessWidget {
+  /// [ContentDetailPage] is used to display the article details
   ///
   /// It takes in a required [payload] parameter which is a map of the
   /// the information to be displayed on this screen
   ///
-  const ArticleDetailsPage({required this.payload});
-  final Map<String, dynamic> payload;
+  const ContentDetailPage({required this.content, this.payload});
+
+  final Content content;
+  final Map<String, dynamic>? payload;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +35,7 @@ class ArticleDetailsPage extends StatelessWidget {
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: AssetImage(payload['coverImagePath'].toString()),
+                      image: AssetImage(payload!['coverImagePath'].toString()),
                     ),
                   ),
                 ),
@@ -62,7 +65,7 @@ class ArticleDetailsPage extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   Text(
-                    payload['titleText'].toString(),
+                    payload!['titleText'].toString(),
                     style: TextThemes.veryHeavySize20Text(
                       Colors.black,
                     ),
@@ -79,9 +82,9 @@ class ArticleDetailsPage extends StatelessWidget {
                             shape: BoxShape.circle,
                             image: DecorationImage(
                               fit: BoxFit.fill,
-                              image: payload['authorDisplayPic'] == null
+                              image: payload!['authorDisplayPic'] == null
                                   ? const AssetImage(profileImage)
-                                  : NetworkImage(payload['authorDisplayPic']
+                                  : NetworkImage(payload!['authorDisplayPic']
                                       .toString()) as ImageProvider,
                             ),
                           ),
@@ -92,13 +95,13 @@ class ArticleDetailsPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text(
-                              payload['authorName'].toString(),
+                              payload!['authorName'].toString(),
                               style: TextThemes.veryBoldSize15Text(
                                 AppColors.secondaryColor,
                               ),
                             ),
                             Text(
-                              '$datePublishedString${payload['date'].toString()}',
+                              '$datePublishedString${payload!['date'].toString()}',
                               style: TextThemes.lightSize16Text(
                                 AppColors.greyTextColor,
                               ).copyWith(fontSize: 12),
@@ -138,7 +141,7 @@ class ArticleDetailsPage extends StatelessWidget {
                   right: 30.0,
                 ),
                 child: Text(
-                  payload['bodyText'].toString(),
+                  payload!['bodyText'].toString(),
                   style: TextThemes.lightSize16Text(AppColors.greyTextColor),
                 ),
               ),

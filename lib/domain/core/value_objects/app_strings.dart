@@ -476,7 +476,7 @@ const String feedHeader =
     'Tips on how to keep yourself properly hydrated while exercising';
 const String feedDate = 'July 12 2021';
 const String feedReadTime = '5 minutes';
-String contentReadDuration(String duration) => '$duration read';
+String contentReadDuration(int duration) => '$duration minute read';
 const String newString = 'New';
 
 //My Health Page

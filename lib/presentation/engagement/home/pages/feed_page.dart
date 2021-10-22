@@ -6,14 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/misc_state.dart';
+import 'package:myafyahub/domain/core/entities/content/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/my_afya_hub_mood_selection.dart';
 import 'package:myafyahub/presentation/core/widgets/new_content.dart';
 import 'package:myafyahub/presentation/core/widgets/suggested_groups_section_widget.dart';
 import 'package:myafyahub/presentation/engagement/home/widgets/bewell_upgrader.dart';
-import 'package:myafyahub/domain/core/entities/feed/feed_details.dart';
 
 class FeedPage extends StatefulWidget {
   const FeedPage({Key? key}) : super(key: key);
@@ -57,23 +56,25 @@ class _FeedPageState extends State<FeedPage> {
 
   @override
   Widget build(BuildContext context) {
-    final List<FeedDetails> feedItems = <FeedDetails>[
-      FeedDetails(
-        coverImageUrl: feedImage1,
-        header: feedHeaderListSavedVideo,
-        date: '21 Oct 2021',
-        authorName: 'Ken Doe',
-        bodyContent: defactoZeroStateString(),
-        authorDisplayPic:
-            'https://cloudcannon.com/blog/uploads/george-photo.jpg',
+    final List<Content> feedItems = <Content>[
+      Content(
+        title: feedHeaderListSavedVideo,
+        body: defactoZeroStateString(),
+        author: 'John Doe',
+        authorAvatar: 'https://cloudcannon.com/blog/uploads/george-photo.jpg',
+        heroImage: 'https://unsplash.com/photos/9OflqNWhcrE',
+        createdAt: feedDate,
+        isNew: true,
       ),
-      FeedDetails(
-        coverImageUrl: feedImage2,
-        header: feedHeaderListSavedVideo,
-        date: '21 Oct 2021',
-        authorName: 'Ken Doe',
-        bodyContent: defactoZeroStateString(),
-      )
+      Content(
+        title: feedHeaderListSavedVideo,
+        body: defactoZeroStateString(),
+        author: 'John Doe',
+        authorAvatar: 'https://cloudcannon.com/blog/uploads/george-photo.jpg',
+        heroImage: 'https://unsplash.com/photos/9OflqNWhcrE',
+        createdAt: feedDate,
+        isNew: true,
+      ),
     ];
 
     // this is dummy data. it should be removed once the backend is integrated

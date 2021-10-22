@@ -3,6 +3,7 @@ import 'package:afya_moja_core/community_list_item.dart';
 import 'package:flutter/material.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/domain/core/entities/content/content.dart';
 import 'package:myafyahub/domain/core/entities/faqs/faq_content.dart';
 import 'package:myafyahub/domain/core/entities/library/library_content_item.dart';
 import 'package:myafyahub/presentation/community/chat_screen/pages/community_chat_screen_page.dart';
@@ -38,7 +39,7 @@ import 'package:myafyahub/presentation/profile/pages/personal_information_page.d
 import 'package:myafyahub/presentation/profile/pages/profile_faqs/profile_faqs_page.dart';
 import 'package:myafyahub/presentation/profile/pages/settings_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
-import 'package:myafyahub/presentation/widgets/article_details_page.dart';
+import 'package:myafyahub/presentation/widgets/content_detail_page.dart';
 // Package imports:
 import 'package:user_profile/term_and_conditions.dart' as webview;
 
@@ -224,9 +225,8 @@ class RouteGenerator {
         );
 
       case BWRoutes.articleDetailsPage:
-        return MaterialPageRoute<ArticleDetailsPage>(
-          builder: (_) =>
-              ArticleDetailsPage(payload: args as Map<String, dynamic>),
+        return MaterialPageRoute<ContentDetailPage>(
+          builder: (_) => ContentDetailPage(content: args as Content),
         );
 
       case BWRoutes.faqDetailViewPage:

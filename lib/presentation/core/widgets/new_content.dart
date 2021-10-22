@@ -1,6 +1,8 @@
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/domain/core/entities/content/content.dart';
 
 // Package imports:
 import 'package:shared_themes/text_themes.dart';
@@ -8,11 +10,10 @@ import 'package:shared_themes/text_themes.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/domain/core/entities/feed/feed_details.dart';
-import 'package:myafyahub/presentation/feed/feed_item_widget.dart';
+import 'package:myafyahub/presentation/feed/content_item_widget.dart';
 
 class NewContent extends StatelessWidget {
-  final List<FeedDetails> feedItems;
+  final List<Content> feedItems;
 
   const NewContent({required this.feedItems});
   @override
@@ -53,30 +54,12 @@ class NewContent extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: feedItems.length,
               itemBuilder: (BuildContext context, int index) {
-                final String header = feedItems.elementAt(index).header;
-                final String date = feedItems.elementAt(index).date;
-                final String coverImageUrl =
-                    feedItems.elementAt(index).coverImageUrl;
-                final String? readTime = feedItems.elementAt(index).readTime;
-                final bool? isNew = feedItems.elementAt(index).isNew;
-                final String authorName = feedItems.elementAt(index).authorName;
-                final String? authorDisplayPic =
-                    feedItems.elementAt(index).authorDisplayPic;
-                final String bodyContent =
-                    feedItems.elementAt(index).bodyContent;
+                final Content currentContentItem =
+                    feedContentItems.elementAt(index);
 
                 return Padding(
                   padding: EdgeInsets.only(left: index == 0 ? 15 : 7.5),
-                  child: FeedItem(
-                    coverImagePath: coverImageUrl,
-                    contentHeader: header,
-                    date: date,
-                    readTime: readTime,
-                    isNew: isNew,
-                    authorName: authorName,
-                    bodyContent: bodyContent,
-                    authorDisplayPic: authorDisplayPic,
-                  ),
+                  child: ContentItem(contentItem: currentContentItem),
                 );
               },
             ),

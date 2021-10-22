@@ -27,6 +27,7 @@ import 'package:myafyahub/application/redux/actions/logout_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/user_profile_state.dart';
+import 'package:myafyahub/domain/core/entities/content/content.dart';
 import 'package:myafyahub/domain/core/entities/core/icon_details.dart';
 import 'package:myafyahub/domain/core/entities/library/library_content_item.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
@@ -37,7 +38,6 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/circular_background_icons.dart';
-import 'package:myafyahub/domain/core/entities/feed/feed_details.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_themes/spaces.dart';
@@ -1014,57 +1014,32 @@ List<NotificationDetails> pastAppointments = <NotificationDetails>[
   ...upcomingAppointments
 ];
 
-void navigateToArticleDetailsPage(
-  BuildContext context, {
-  required String coverImagePath,
-  required String authorName,
-  required String date,
-  required String titleText,
-  required String bodyText,
-  String? authorDisplayPic,
-}) {
-  final Map<String, dynamic> payLoad = <String, dynamic>{
-    'authorName': authorName,
-    'coverImagePath': coverImagePath,
-    'date': date,
-    'titleText': titleText,
-    'bodyText': bodyText,
-    'authorDisplayPic': authorDisplayPic,
-  };
-  Navigator.of(context)
-      .pushNamed(BWRoutes.articleDetailsPage, arguments: payLoad);
-}
-
-final List<FeedDetails> feedItems = <FeedDetails>[
-  FeedDetails(
-    coverImageUrl: feedImage3,
-    header: feedHeader,
-    date: feedDate,
+final List<Content> feedContentItems = <Content>[
+  Content(
+    title: feedHeader,
+    body: defactoZeroStateString(),
+    author: 'John Doe',
+    authorAvatar: 'https://cloudcannon.com/blog/uploads/george-photo.jpg',
+    heroImage: 'https://unsplash.com/photos/9OflqNWhcrE',
+    createdAt: feedDate,
     isNew: true,
-    authorName: 'Ken Doe',
-    bodyContent: defactoZeroStateString(),
-    authorDisplayPic: 'https://cloudcannon.com/blog/uploads/george-photo.jpg',
   ),
-  FeedDetails(
-    coverImageUrl: feedImage2,
-    header: feedHeader,
-    date: feedDate,
+  Content(
+    title: feedHeader,
+    body: defactoZeroStateString(),
+    author: 'John Doe',
+    authorAvatar: 'https://cloudcannon.com/blog/uploads/george-photo.jpg',
+    heroImage: 'https://unsplash.com/photos/9OflqNWhcrE',
+    createdAt: feedDate,
     isNew: true,
-    authorName: 'Ken Doe',
-    bodyContent: defactoZeroStateString(),
   ),
-  FeedDetails(
-    coverImageUrl: feedImage1,
-    header: feedHeader,
-    date: feedDate,
-    authorName: 'Ken Doe',
-    bodyContent: defactoZeroStateString(),
-  ),
-  FeedDetails(
-    coverImageUrl: feedImage3,
-    header: feedHeader,
-    date: feedDate,
-    authorName: 'Ken Doe',
-    bodyContent: defactoZeroStateString(),
-  ),
+  Content(
+    title: feedHeader,
+    body: defactoZeroStateString(),
+    author: 'John Doe',
+    authorAvatar: 'https://cloudcannon.com/blog/uploads/george-photo.jpg',
+    heroImage: 'https://unsplash.com/photos/9OflqNWhcrE',
+    createdAt: feedDate,
+    isNew: true,
+  )
 ];

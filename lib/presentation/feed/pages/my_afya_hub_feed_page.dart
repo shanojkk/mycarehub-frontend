@@ -5,12 +5,13 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:misc_utilities/misc.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/domain/core/entities/content/content.dart';
 
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/filters/feed_item_filter.dart';
-import '../feed_item_widget.dart';
+import '../content_item_widget.dart';
 
 class MyAfyaHubFeedPage extends StatelessWidget {
   const MyAfyaHubFeedPage();
@@ -80,34 +81,14 @@ class MyAfyaHubFeedPage extends StatelessWidget {
             Expanded(
               child: ListView.builder(
                   shrinkWrap: true,
-                  itemCount: feedItems.length,
+                  itemCount: feedContentItems.length,
                   itemBuilder: (BuildContext context, int index) {
-                    final String header = feedItems.elementAt(index).header;
-                    final String date = feedItems.elementAt(index).date;
-                    final String coverImageUrl =
-                        feedItems.elementAt(index).coverImageUrl;
-                    final String? readTime =
-                        feedItems.elementAt(index).readTime;
-                    final bool? isNew = feedItems.elementAt(index).isNew;
-                    final String authorName =
-                        feedItems.elementAt(index).authorName;
-                    final String? authorDisplayPic =
-                        feedItems.elementAt(index).authorDisplayPic;
-                    final String bodyContent =
-                        feedItems.elementAt(index).bodyContent;
+                    final Content currentContentItem =
+                        feedContentItems.elementAt(index);
 
                     return Padding(
                       padding: EdgeInsets.only(top: index == 0 ? 15 : 7.5),
-                      child: FeedItem(
-                        coverImagePath: coverImageUrl,
-                        contentHeader: header,
-                        date: date,
-                        readTime: readTime,
-                        isNew: isNew,
-                        authorName: authorName,
-                        bodyContent: bodyContent,
-                        authorDisplayPic: authorDisplayPic,
-                      ),
+                      child: ContentItem(contentItem: currentContentItem),
                     );
                   }),
             ),

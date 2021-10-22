@@ -1,8 +1,9 @@
 // Flutter imports:
+import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/domain/core/entities/feed/feed_details.dart';
+import 'package:myafyahub/domain/core/entities/content/content.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 
 // Package imports:
 import 'package:shared_themes/spaces.dart';
@@ -13,24 +14,21 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/feed/feed_item_bottom_row.dart';
 
-/// [FeedItem] Displays the feed
+/// [ContentItem] Displays the feed
 /// [isNew] renders the new tag
-class FeedItem extends StatelessWidget {
-  final FeedDetails feedItemDetails;
+class ContentItem extends StatelessWidget {
+  final Content? contentItem;
 
-  const FeedItem({
-    required this.coverImagePath,
-    required this.contentHeader,
-    required this.date,
-    bool? isNew,
-    this.readTime,
-    required this.authorName,
-    required this.bodyContent,
-    this.authorDisplayPic,
-  }) : this.isNew = isNew ?? false;
+  const ContentItem({required this.contentItem});
 
   @override
   Widget build(BuildContext context) {
+    final String title = contentItem?.title ?? '';
+    final String? heroImage = contentItem?.heroImage;
+    final String createdAt = contentItem?.createdAt ?? UNKNOWN;
+    final bool isNew = contentItem?.isNew ?? false;
+    final int? readTime = contentItem?.estimate;
+
     return GestureDetector(
       child: Container(
         width: 370,
@@ -45,23 +43,25 @@ class FeedItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(7.0),
               child: Column(children: <Widget>[
-                Container(
-                  height: 170.0,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage(coverImagePath),
+                if (heroImage == null || heroImage.isEmpty)
+                  Container(
+                    height: 170.0,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage(heroImage!),
+                      ),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(7.0)),
                     ),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(7.0),
-                    ),
-                  ),
-                ),
+                  )
+                else
+                  const SizedBox(),
                 smallVerticalSizedBox,
                 Align(
                   alignment: Alignment.topLeft,
                   child: Text(
-                    contentHeader,
+                    title,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style:
@@ -69,8 +69,8 @@ class FeedItem extends StatelessWidget {
                   ),
                 ),
                 smallVerticalSizedBox,
-                FeedItemBottomRow(
-                  feedDate: date,
+                ContentItemFooter(
+                  feedDate: createdAt,
                   readTime: readTime,
                 )
               ]),
@@ -101,15 +101,8 @@ class FeedItem extends StatelessWidget {
           ],
         ),
       ),
-      onTap: () => navigateToArticleDetailsPage(
-        context,
-        authorName: authorName,
-        bodyText: bodyContent,
-        coverImagePath: coverImagePath,
-        date: date,
-        titleText: contentHeader,
-        authorDisplayPic: authorDisplayPic,
-      ),
+      onTap: () => Navigator.of(context)
+          .pushNamed(BWRoutes.articleDetailsPage, arguments: contentItem),
     );
   }
 }

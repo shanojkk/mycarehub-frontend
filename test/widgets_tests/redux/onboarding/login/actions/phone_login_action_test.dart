@@ -19,7 +19,7 @@ import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_action.dart';
-import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
+import 'package:myafyahub/application/redux/actions/login_page_state_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/endpoint_context_subject.dart';
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
@@ -127,7 +127,7 @@ void main() {
                 EndPointsContextSubject().contexts.add(testAppContexts);
                 await StoreProvider.dispatch(
                   context,
-                  PhoneLoginStateAction(
+                  LoginPageStateAction(
                     pinCode: '1234',
                     phoneNumber: '+254728101710',
                   ),
@@ -195,7 +195,7 @@ void main() {
                 EndPointsContextSubject().contexts.add(testAppContexts);
                 await StoreProvider.dispatch(
                   context,
-                  PhoneLoginStateAction(
+                  LoginPageStateAction(
                     pinCode: '1234',
                     phoneNumber: '+254728101710',
                   ),
@@ -308,7 +308,7 @@ void main() {
                   EndPointsContextSubject().contexts.add(testAppContexts);
                   await StoreProvider.dispatch(
                     context,
-                    PhoneLoginStateAction(
+                    LoginPageStateAction(
                       pinCode: '1234',
                       phoneNumber: '+254728101710',
                     ),

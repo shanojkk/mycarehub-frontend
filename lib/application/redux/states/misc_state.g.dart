@@ -8,9 +8,6 @@ part of 'misc_state.dart';
 
 _$_MiscState _$_$_MiscStateFromJson(Map<String, dynamic> json) {
   return _$_MiscState(
-    phoneLogin: json['phoneLogin'] == null
-        ? null
-        : PhoneLogin.fromJson(json['phoneLogin'] as Map<String, dynamic>),
     changePIN: json['changePIN'] == null
         ? null
         : ChangePIN.fromJson(json['changePIN'] as Map<String, dynamic>),
@@ -32,7 +29,6 @@ _$_MiscState _$_$_MiscStateFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$_$_MiscStateToJson(_$_MiscState instance) =>
     <String, dynamic>{
-      'phoneLogin': instance.phoneLogin,
       'changePIN': instance.changePIN,
       'userPin': instance.userPin,
       'appErrorState': instance.appErrorState?.toList(),

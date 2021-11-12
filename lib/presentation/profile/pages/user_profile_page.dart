@@ -19,7 +19,7 @@ import 'package:shared_themes/text_themes.dart';
 class UserProfilePage extends StatelessWidget {
   /// [UserProfilePage] is used to display the user information
   ///
-  /// It takes in required [userInitials], [name], [userCCCNumber], [age], [phoneNumber],
+  /// It takes in required [userInitials], [name], [userCCCNumber], [age], [phoneNumberText],
   ///  [home] and [userProfileItems] parameters
   ///
   /// [userProfileItems] is a list of the UserProfilePage ListTile items

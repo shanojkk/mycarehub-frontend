@@ -37,8 +37,6 @@ class RequestPinReset extends StatefulWidget {
 }
 
 class _RequestPinResetState extends State<RequestPinReset> {
-  final TextEditingController phoneNumberInputController =
-      TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String? phoneNumber;
 

@@ -68,7 +68,7 @@ class PersonalInformationPage extends StatelessWidget {
               ),
               verySmallVerticalSizedBox,
               const PersonalInformationSecondaryWidget(
-                fieldName: phoneNumber,
+                fieldName: phoneNumberText,
                 fieldValue: hotlineNumberString,
               ),
               verySmallVerticalSizedBox,

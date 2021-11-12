@@ -1,6 +1,7 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:myafyahub/application/redux/states/onboarding/login_page_state.dart';
 import 'package:user_feed/user_feed.dart';
 
 // Project imports:
@@ -17,6 +18,7 @@ part 'app_state.g.dart';
 @freezed
 class AppState with _$AppState {
   factory AppState({
+    LoginPageState? loginPageState,
     UserProfileState? userProfileState,
     ConnectivityState? connectivityState,
     FeedResponsePayload? userFeedState,
@@ -28,12 +30,14 @@ class AppState with _$AppState {
       _$AppStateFromJson(json);
 
   factory AppState.initial({
+    LoginPageState? loginPageState,
     UserProfileState? userProfileState,
     ConnectivityState? connectivityState,
     FeedResponsePayload? feedResponsePayload,
     MiscState? miscState,
   }) =>
       AppState(
+        loginPageState: loginPageState ?? LoginPageState.initial(),
         userProfileState: userProfileState ?? UserProfileState.initial(),
         connectivityState: connectivityState ?? ConnectivityState.initial(),
         userFeedState: feedResponsePayload ?? FeedResponsePayloadEx.initial(),

@@ -21,12 +21,14 @@ class _$AppStateTearOff {
   const _$AppStateTearOff();
 
   _AppState call(
-      {UserProfileState? userProfileState,
+      {LoginPageState? loginPageState,
+      UserProfileState? userProfileState,
       ConnectivityState? connectivityState,
       FeedResponsePayload? userFeedState,
       MiscState? miscState,
       @JsonKey(ignore: true) Wait? wait}) {
     return _AppState(
+      loginPageState: loginPageState,
       userProfileState: userProfileState,
       connectivityState: connectivityState,
       userFeedState: userFeedState,
@@ -45,6 +47,7 @@ const $AppState = _$AppStateTearOff();
 
 /// @nodoc
 mixin _$AppState {
+  LoginPageState? get loginPageState => throw _privateConstructorUsedError;
   UserProfileState? get userProfileState => throw _privateConstructorUsedError;
   ConnectivityState? get connectivityState =>
       throw _privateConstructorUsedError;
@@ -64,12 +67,14 @@ abstract class $AppStateCopyWith<$Res> {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
       _$AppStateCopyWithImpl<$Res>;
   $Res call(
-      {UserProfileState? userProfileState,
+      {LoginPageState? loginPageState,
+      UserProfileState? userProfileState,
       ConnectivityState? connectivityState,
       FeedResponsePayload? userFeedState,
       MiscState? miscState,
       @JsonKey(ignore: true) Wait? wait});
 
+  $LoginPageStateCopyWith<$Res>? get loginPageState;
   $UserProfileStateCopyWith<$Res>? get userProfileState;
   $ConnectivityStateCopyWith<$Res>? get connectivityState;
   $FeedResponsePayloadCopyWith<$Res>? get userFeedState;
@@ -86,6 +91,7 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? loginPageState = freezed,
     Object? userProfileState = freezed,
     Object? connectivityState = freezed,
     Object? userFeedState = freezed,
@@ -93,6 +99,10 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
     Object? wait = freezed,
   }) {
     return _then(_value.copyWith(
+      loginPageState: loginPageState == freezed
+          ? _value.loginPageState
+          : loginPageState // ignore: cast_nullable_to_non_nullable
+              as LoginPageState?,
       userProfileState: userProfileState == freezed
           ? _value.userProfileState
           : userProfileState // ignore: cast_nullable_to_non_nullable
@@ -114,6 +124,17 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
           : wait // ignore: cast_nullable_to_non_nullable
               as Wait?,
     ));
+  }
+
+  @override
+  $LoginPageStateCopyWith<$Res>? get loginPageState {
+    if (_value.loginPageState == null) {
+      return null;
+    }
+
+    return $LoginPageStateCopyWith<$Res>(_value.loginPageState!, (value) {
+      return _then(_value.copyWith(loginPageState: value));
+    });
   }
 
   @override
@@ -167,12 +188,15 @@ abstract class _$AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
       __$AppStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {UserProfileState? userProfileState,
+      {LoginPageState? loginPageState,
+      UserProfileState? userProfileState,
       ConnectivityState? connectivityState,
       FeedResponsePayload? userFeedState,
       MiscState? miscState,
       @JsonKey(ignore: true) Wait? wait});
 
+  @override
+  $LoginPageStateCopyWith<$Res>? get loginPageState;
   @override
   $UserProfileStateCopyWith<$Res>? get userProfileState;
   @override
@@ -194,6 +218,7 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? loginPageState = freezed,
     Object? userProfileState = freezed,
     Object? connectivityState = freezed,
     Object? userFeedState = freezed,
@@ -201,6 +226,10 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
     Object? wait = freezed,
   }) {
     return _then(_AppState(
+      loginPageState: loginPageState == freezed
+          ? _value.loginPageState
+          : loginPageState // ignore: cast_nullable_to_non_nullable
+              as LoginPageState?,
       userProfileState: userProfileState == freezed
           ? _value.userProfileState
           : userProfileState // ignore: cast_nullable_to_non_nullable
@@ -229,7 +258,8 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_AppState implements _AppState {
   _$_AppState(
-      {this.userProfileState,
+      {this.loginPageState,
+      this.userProfileState,
       this.connectivityState,
       this.userFeedState,
       this.miscState,
@@ -238,6 +268,8 @@ class _$_AppState implements _AppState {
   factory _$_AppState.fromJson(Map<String, dynamic> json) =>
       _$_$_AppStateFromJson(json);
 
+  @override
+  final LoginPageState? loginPageState;
   @override
   final UserProfileState? userProfileState;
   @override
@@ -252,13 +284,16 @@ class _$_AppState implements _AppState {
 
   @override
   String toString() {
-    return 'AppState(userProfileState: $userProfileState, connectivityState: $connectivityState, userFeedState: $userFeedState, miscState: $miscState, wait: $wait)';
+    return 'AppState(loginPageState: $loginPageState, userProfileState: $userProfileState, connectivityState: $connectivityState, userFeedState: $userFeedState, miscState: $miscState, wait: $wait)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _AppState &&
+            (identical(other.loginPageState, loginPageState) ||
+                const DeepCollectionEquality()
+                    .equals(other.loginPageState, loginPageState)) &&
             (identical(other.userProfileState, userProfileState) ||
                 const DeepCollectionEquality()
                     .equals(other.userProfileState, userProfileState)) &&
@@ -278,6 +313,7 @@ class _$_AppState implements _AppState {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(loginPageState) ^
       const DeepCollectionEquality().hash(userProfileState) ^
       const DeepCollectionEquality().hash(connectivityState) ^
       const DeepCollectionEquality().hash(userFeedState) ^
@@ -297,7 +333,8 @@ class _$_AppState implements _AppState {
 
 abstract class _AppState implements AppState {
   factory _AppState(
-      {UserProfileState? userProfileState,
+      {LoginPageState? loginPageState,
+      UserProfileState? userProfileState,
       ConnectivityState? connectivityState,
       FeedResponsePayload? userFeedState,
       MiscState? miscState,
@@ -305,6 +342,8 @@ abstract class _AppState implements AppState {
 
   factory _AppState.fromJson(Map<String, dynamic> json) = _$_AppState.fromJson;
 
+  @override
+  LoginPageState? get loginPageState => throw _privateConstructorUsedError;
   @override
   UserProfileState? get userProfileState => throw _privateConstructorUsedError;
   @override

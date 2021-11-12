@@ -25,7 +25,7 @@ import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
 import 'package:myafyahub/application/redux/actions/manage_token_action.dart';
-import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
+import 'package:myafyahub/application/redux/actions/login_page_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/user_profile_state.dart';
@@ -396,7 +396,7 @@ ProcessedResponse processHttpResponse(
     if (body['code'] == 8 && context != null) {
       StoreProvider.dispatch(
         context,
-        PhoneLoginStateAction(invalidCredentials: true),
+        LoginPageStateAction(invalidCredentials: true),
       );
     }
 

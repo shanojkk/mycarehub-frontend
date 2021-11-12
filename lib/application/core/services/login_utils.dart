@@ -10,7 +10,7 @@ import 'package:misc_utilities/refresh_token_manager.dart';
 import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_action.dart';
-import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
+import 'package:myafyahub/application/redux/actions/login_page_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -32,7 +32,7 @@ Future<void> signInUser({
   // this is the Redux Action that store the phone number and PIN user enters
   StoreProvider.dispatch(
     context,
-    PhoneLoginStateAction(
+    LoginPageStateAction(
       phoneNumber: phoneNumber,
       pinCode: pin,
     ),

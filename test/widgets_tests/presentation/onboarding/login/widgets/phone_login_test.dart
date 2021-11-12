@@ -13,7 +13,7 @@ import 'package:mockito/mockito.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
-import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
+import 'package:myafyahub/application/redux/actions/login_page_state_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
 import 'package:myafyahub/domain/core/entities/core/endpoint_context_subject.dart';
@@ -58,7 +58,7 @@ void main() {
           builder: (BuildContext context) {
             StoreProvider.dispatch(
               context,
-              PhoneLoginStateAction(),
+              LoginPageStateAction(),
             );
             return Scaffold(
               body: AppWrapper(
@@ -105,7 +105,7 @@ void main() {
         expect(phoneInput, findsOneWidget);
         expect(pinInput, findsOneWidget);
 
-        store.dispatch(PhoneLoginStateAction(invalidCredentials: true));
+        store.dispatch(LoginPageStateAction(invalidCredentials: true));
         await tester.pump();
 
         await tester.tap(phoneInput);
@@ -114,7 +114,7 @@ void main() {
 
         expect(store.state.miscState!.phoneLogin!.invalidCredentials, false);
 
-        store.dispatch(PhoneLoginStateAction(invalidCredentials: true));
+        store.dispatch(LoginPageStateAction(invalidCredentials: true));
         await tester.pump();
 
         await tester.tap(pinInput);
@@ -123,7 +123,7 @@ void main() {
 
         expect(store.state.miscState!.phoneLogin!.invalidCredentials, false);
 
-        store.dispatch(PhoneLoginStateAction(invalidCredentials: true));
+        store.dispatch(LoginPageStateAction(invalidCredentials: true));
         await tester.pump();
 
         expect(find.byType(ErrorAlertBox), findsOneWidget);
@@ -329,7 +329,7 @@ void main() {
 
               StoreProvider.dispatch(
                 context,
-                PhoneLoginStateAction(invalidCredentials: true),
+                LoginPageStateAction(invalidCredentials: true),
               );
 
               return LoginPage();

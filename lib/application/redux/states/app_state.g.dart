@@ -8,6 +8,10 @@ part of 'app_state.dart';
 
 _$_AppState _$_$_AppStateFromJson(Map<String, dynamic> json) {
   return _$_AppState(
+    loginPageState: json['loginPageState'] == null
+        ? null
+        : LoginPageState.fromJson(
+            json['loginPageState'] as Map<String, dynamic>),
     userProfileState: json['userProfileState'] == null
         ? null
         : UserProfileState.fromJson(
@@ -28,6 +32,7 @@ _$_AppState _$_$_AppStateFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$_$_AppStateToJson(_$_AppState instance) =>
     <String, dynamic>{
+      'loginPageState': instance.loginPageState,
       'userProfileState': instance.userProfileState,
       'connectivityState': instance.connectivityState,
       'userFeedState': instance.userFeedState,

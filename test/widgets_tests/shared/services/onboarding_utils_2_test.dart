@@ -81,6 +81,107 @@ void main() {
       );
     });
 
+    testWidgets('afterLoginOrCreateAccount should pass with a deep link',
+        (WidgetTester tester) async {
+      mockNetworkImages(() async {
+        deepLink.hasLink.add(true);
+        deepLink.link.add('home');
+        final Store<AppState> store =
+            Store<AppState>(initialState: AppState.initial());
+        final http.Response response = http.Response(
+          json.encode(loginResponse),
+          201,
+        );
+
+        final Map<String, dynamic> responseData =
+            mockFeedResponse(hasItems: false);
+        // mocked response
+        final http.Response _response = http.Response(
+          json.encode(responseData),
+          200,
+        );
+
+        loginResponse.remove('auth');
+
+        final UserResponse userResp = UserResponse.fromJson(loginResponse);
+        final UserProfile? userProfile = userResp.profile;
+
+        queryWhenThenAnswer(
+          queryString: fetchContentQuery,
+          variables: <String, dynamic>{
+            'flavour': Flavour.CONSUMER.name,
+            'persistent': 'BOTH',
+            'visibility': 'SHOW',
+            'isAnonymous': false,
+            'status': null,
+          },
+          response: _response,
+        );
+
+        queryWhenThenAnswer(
+          queryString: registerDeviceTokenQuery,
+          variables: <String, dynamic>{'token': 'sampleToken'},
+          response: _response,
+        );
+
+        when(baseGraphQlClientMock.toMap(_response))
+            .thenReturn(json.decode(_response.body) as Map<String, dynamic>);
+
+        when(baseGraphQlClientMock.parseError(responseData)).thenReturn(null);
+
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: baseGraphQlClientMock,
+          widget: Builder(
+            builder: (BuildContext context) {
+              return SILPrimaryButton(
+                onPressed: () async {
+                  StoreProvider.dispatch(
+                    context,
+                    AuthStatusAction(
+                      signedIn: true,
+                      idToken: 'some-test-token',
+                      refreshToken: 'some-test-token',
+                      expiresAt: DateTime.now()
+                          .add(const Duration(seconds: 5))
+                          .toIso8601String(),
+                    ),
+                  );
+
+                  StoreProvider.dispatch(
+                    context,
+                    UpdateUserProfileAction(
+                      profile: userProfile,
+                      userBioData: userProfile?.userBioData,
+                    ),
+                  );
+
+                  // call our check token status function
+                  await processSignIn(
+                    context: context,
+                    dateTimeParser: dateTimeParser!,
+                    processedResponse: processHttpResponse(response),
+                    store: store,
+                    refreshTokenManger: refreshTimer!,
+                    graphQlClient: AppWrapperBase.of(context)!.graphQLClient,
+                  );
+                },
+                text: 'Test',
+              );
+            },
+          ),
+        );
+
+        await tester.pumpAndSettle();
+
+        await tester.tap(find.byType(SILPrimaryButton));
+        await tester.pumpAndSettle();
+
+        expect(find.byType(HomePage), findsOneWidget);
+      });
+    });
+
     testWidgets('for a token whose expiry is less than 5 minutes',
         (WidgetTester tester) async {
       // setup
@@ -399,6 +500,137 @@ void main() {
         () async => registerDeviceToken(client: baseGraphQlClientMock),
         returnsNormally,
       );
+    });
+
+    testWidgets('should show bottom sheet when afterLoginOrCreateAccount',
+        (WidgetTester tester) async {
+      final Store<AppState> store =
+          Store<AppState>(initialState: AppState.initial());
+      final http.Response response = http.Response(
+        json.encode(null),
+        201,
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
+                // call our check token status function
+                await processSignIn(
+                  context: context,
+                  dateTimeParser: dateTimeParser!,
+                  processedResponse: processHttpResponse(response),
+                  store: store,
+                  refreshTokenManger: refreshTimer!,
+                  graphQlClient: AppWrapperBase.of(context)!.graphQLClient,
+                );
+              },
+              text: 'Test',
+            );
+          },
+        ),
+      );
+
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byType(SILPrimaryButton));
+      await tester.pumpAndSettle();
+
+      expect(find.byKey(feedbackBottomSheet), findsOneWidget);
+    });
+
+    testWidgets('afterLoginOrCreateAccount should pass 1',
+        (WidgetTester tester) async {
+      final Store<AppState> store =
+          Store<AppState>(initialState: AppState.initial());
+      final http.Response response = http.Response(
+        json.encode(loginResponse),
+        201,
+      );
+
+      final Map<String, dynamic> responseData =
+          mockFeedResponse(hasItems: false);
+      // mocked response
+      final http.Response _response = http.Response(
+        json.encode(responseData),
+        200,
+      );
+
+      loginResponse.remove('auth');
+
+      final UserResponse userResp = UserResponse.fromJson(loginResponse);
+      final UserProfile? userProfile = userResp.profile;
+
+      queryWhenThenAnswer(
+        queryString: fetchContentQuery,
+        variables: <String, dynamic>{
+          'flavour': Flavour.CONSUMER.name,
+          'persistent': 'BOTH',
+          'visibility': 'SHOW',
+          'isAnonymous': false,
+          'status': null,
+        },
+        response: _response,
+      );
+
+      when(baseGraphQlClientMock.toMap(_response))
+          .thenReturn(json.decode(_response.body) as Map<String, dynamic>);
+
+      when(baseGraphQlClientMock.parseError(responseData)).thenReturn(null);
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
+                StoreProvider.dispatch(
+                  context,
+                  AuthStatusAction(
+                    signedIn: true,
+                    idToken: 'some-test-token',
+                    refreshToken: 'some-test-token',
+                    expiresAt: DateTime.now()
+                        .add(const Duration(seconds: 5))
+                        .toIso8601String(),
+                  ),
+                );
+
+                StoreProvider.dispatch(
+                  context,
+                  UpdateUserProfileAction(
+                    profile: userProfile,
+                    userBioData: userProfile?.userBioData,
+                  ),
+                );
+                // call our check token status function
+                await processSignIn(
+                  context: context,
+                  dateTimeParser: dateTimeParser!,
+                  processedResponse: processHttpResponse(response),
+                  store: store,
+                  refreshTokenManger: refreshTimer!,
+                  graphQlClient: AppWrapperBase.of(context)!.graphQLClient,
+                );
+              },
+              text: 'Test',
+            );
+          },
+        ),
+      );
+
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byType(SILPrimaryButton));
+      await tester.pumpAndSettle();
+
+      expect(find.byKey(feedbackBottomSheet), findsOneWidget);
     });
   });
 }

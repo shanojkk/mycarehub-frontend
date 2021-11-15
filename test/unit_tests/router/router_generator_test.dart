@@ -10,6 +10,7 @@ import 'package:myafyahub/presentation/community/chat_screen/pages/community_cha
 import 'package:myafyahub/presentation/community/community_list_page.dart';
 import 'package:myafyahub/presentation/core/widgets/mood_selection/mood_feedback_page.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
+import 'package:myafyahub/presentation/feed/content_details_page.dart';
 import 'package:myafyahub/presentation/feed/pages/feed_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_diary_page.dart';
@@ -39,7 +40,6 @@ import 'package:myafyahub/presentation/profile/pages/settings_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:myafyahub/presentation/widgets/article_details_page.dart';
 import 'package:user_profile/term_and_conditions.dart' as webview;
 
 import '../../mocks.dart';
@@ -404,10 +404,10 @@ void main() {
       name: BWRoutes.articleDetailsPage,
       arguments: <String, dynamic>{'test': 'value'},
     );
-    final MaterialPageRoute<ArticleDetailsPage> route =
-        routeGenerator(settings) as MaterialPageRoute<ArticleDetailsPage>;
-    expect(route, isA<MaterialPageRoute<ArticleDetailsPage>>());
-    expect(route.builder(context), isA<ArticleDetailsPage>());
+    final MaterialPageRoute<ContentDetailPage> route =
+        routeGenerator(settings) as MaterialPageRoute<ContentDetailPage>;
+    expect(route, isA<MaterialPageRoute<ContentDetailPage>>());
+    expect(route.builder(context), isA<ContentDetailPage>());
   });
 
   test('Test router returns ForgotPINPage', () {

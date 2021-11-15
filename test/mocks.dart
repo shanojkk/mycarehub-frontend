@@ -19,6 +19,7 @@ import 'package:myafyahub/application/core/graphql/mutations.dart';
 // Project imports:
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/domain/core/entities/core/connectivity_interface.dart';
+import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/entities/health_diary/health_diary_details_item_obj.dart';
 import 'package:myafyahub/domain/core/entities/health_diary/health_diary_item_obj.dart';
 import 'package:myafyahub/domain/core/entities/health_diary/health_diary_month_obj.dart';
@@ -1104,7 +1105,7 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       );
     }
 
-    if (queryString.contains(getFeedQuery)) {
+    if (queryString.contains(fetchContentQuery)) {
       /// return fake data here
       return Future<http.Response>.value(
         http.Response(
@@ -3206,3 +3207,17 @@ final Map<String, dynamic> mockLoginResponse = <String, dynamic>{
     }
   }
 };
+
+final Content mockContent = Content(
+  author: 'test',
+  contentID: 'test',
+  title: 'test',
+  body: 'test',
+  authorAvatar: 'test',
+  createdAt: DateTime.now().toString(),
+  tags: <String>['test', 'test'],
+  estimate: 'test',
+  heroImage: 'test',
+  publicLink: 'test',
+  isNew: true,
+);

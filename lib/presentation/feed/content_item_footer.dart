@@ -3,44 +3,39 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:flutter_svg/svg.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'feed_item_reaction_icon.dart';
+import 'content_item_reaction_icon.dart';
 
-/// [FeedItemBottomRow] Displays the bottom row on feed
-class FeedItemBottomRow extends StatelessWidget {
+/// [ContentItemFooter] Displays the bottom row on feed
+class ContentItemFooter extends StatelessWidget {
   final String feedDate;
   final String? readTime;
 
-  const FeedItemBottomRow({
+  const ContentItemFooter({
     required this.feedDate,
     this.readTime,
   });
 
   @override
   Widget build(BuildContext context) {
+    final Widget formattedDate = sortDate(
+      dateTextStyle: TextThemes.normalSize15Text(Colors.grey),
+      context: context,
+      loadedDate: feedDate,
+    );
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Row(
           children: <Widget>[
-            Text(
-              feedDate,
-              style: TextThemes.normalSize15Text(Colors.grey),
-            ),
-            mediumHorizontalSizedBox,
-            if (readTime != null)
-              SvgPicture.asset(
-                clockIconUrl,
-                width: 15,
-                height: 15,
-                color: Colors.grey,
-              ),
+            formattedDate,
             if (readTime != null)
               Padding(
                 padding: const EdgeInsets.only(left: 2.5),
@@ -53,17 +48,11 @@ class FeedItemBottomRow extends StatelessWidget {
         ),
         Row(
           children: <Widget>[
-            const FeedItemReactionIcon(
-              svgPath: heartIconUrl,
-            ),
+            const ContentItemReactionIcon(svgPath: heartIconUrl),
             verySmallHorizontalSizedBox,
-            const FeedItemReactionIcon(
-              svgPath: shareIconUrl,
-            ),
+            const ContentItemReactionIcon(svgPath: shareIconUrl),
             verySmallHorizontalSizedBox,
-            const FeedItemReactionIcon(
-              svgPath: saveIconUrl,
-            )
+            const ContentItemReactionIcon(svgPath: saveIconUrl)
           ],
         )
       ],

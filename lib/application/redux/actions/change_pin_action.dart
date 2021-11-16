@@ -53,8 +53,10 @@ class ChangePinAction extends ReduxAction<AppState> {
   @override
   Future<AppState> reduce() async {
     final String phoneNumber = store
-        .state.userProfileState!.userProfile!.primaryPhoneNumber!
+        .state.clientProfileState!.myAfyaUserProfile!.primaryPhoneNumber!
         .getValue();
+
+    // store.state.clientProfileState!.myAfyaUserProfile;
 
     final String? newChangedPin = store.state.miscState!.createPIN!.newPIN;
 

@@ -11,6 +11,7 @@ import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
+import 'package:myafyahub/application/redux/states/my_afya_user_profile.dart';
 import 'package:shared_ui_components/buttons.dart';
 import 'package:shared_ui_components/inputs.dart';
 import 'package:shared_ui_components/platform_loader.dart';
@@ -210,7 +211,7 @@ void main() {
                     lastName: Name.withValue('Coverage'),
                     gender: Gender.male,
                   ),
-                  profile: UserProfile(
+                  profile: MyAfyaUserProfile(
                     primaryPhoneNumber: PhoneNumber.withValue(testPhoneNumber),
                   ),
                 ),
@@ -268,7 +269,7 @@ void main() {
             StoreProvider.dispatch<AppState>(
               context,
               UpdateUserProfileAction(
-                profile: UserProfile(
+                profile: MyAfyaUserProfile(
                   primaryPhoneNumber: PhoneNumber.withValue(testPhoneNumber),
                 ),
               ),

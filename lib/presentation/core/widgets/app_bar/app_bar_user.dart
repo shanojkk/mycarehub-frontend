@@ -10,7 +10,7 @@ import 'package:shared_themes/text_themes.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/states/user_profile_state.dart';
+import 'package:myafyahub/application/redux/states/client_profile_state.dart';
 import 'package:myafyahub/application/redux/view_models/user_profile_view_model.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
@@ -35,13 +35,12 @@ class AppbarUser extends StatelessWidget {
           converter: (Store<AppState> store) =>
               UserProfileViewModel.fromStore(store),
           builder: (BuildContext context, UserProfileViewModel vm) {
-            final UserProfileState userProfileState = vm.userProfileState;
-            final String? photoUrl =
-                userProfileState.userProfile!.photoUploadID;
+            final ClientProfileState clientProfileState = vm.clientProfileState;
+            const String photoUrl = UNKNOWN;
 
             // a sanity check for the photo url
             final bool isUploadUrlInvalid =
-                photoUrl!.isEmpty || photoUrl == UNKNOWN;
+                photoUrl.isEmpty || photoUrl == UNKNOWN;
 
             return Container(
               padding: EdgeInsets.all(isUploadUrlInvalid ? 2 : 0),
@@ -60,13 +59,15 @@ class AppbarUser extends StatelessWidget {
                   child: isUploadUrlInvalid
                       ? Text(
                           extractNamesInitials(
-                            name: getDisplayName(userProfileState),
+                            name: getDisplayName(clientProfileState),
                           ),
                           style: TextThemes.boldSize14Text(
                             AppColors.secondaryColor,
                           ),
                         )
-                      : CircleAvatar(backgroundImage: AssetImage(photoUrl)),
+                      : const CircleAvatar(
+                          backgroundImage: AssetImage(photoUrl),
+                        ),
                 ),
               ),
             );

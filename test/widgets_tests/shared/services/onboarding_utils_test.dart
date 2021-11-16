@@ -16,8 +16,13 @@ import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
-import 'package:myafyahub/application/redux/states/user_profile_state.dart';
+import 'package:myafyahub/application/redux/states/client_profile_state.dart';
+import 'package:myafyahub/application/redux/states/my_afya_user_profile.dart';
+import 'package:myafyahub/domain/core/entities/core/contact.dart';
+import 'package:myafyahub/domain/core/entities/core/contact_type.dart';
 import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart';
+import 'package:myafyahub/domain/core/entities/core/user.dart';
+import 'package:myafyahub/domain/core/entities/login/phone_login_response.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/congratulations_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:shared_themes/constants.dart';
@@ -385,9 +390,9 @@ void main() {
           (WidgetTester tester) async {
         store = Store<AppState>(
           initialState: AppState.initial(
-            userProfileState: UserProfileState(
+            clientProfileState: ClientProfileState(
               isSignedIn: true,
-              userProfile: UserProfile(
+              myAfyaUserProfile: MyAfyaUserProfile(
                 primaryPhoneNumber: PhoneNumber.withValue('+254123456789'),
               ),
             ),
@@ -838,7 +843,7 @@ void main() {
           http.Response(
             json.encode(<String, dynamic>{
               'data': <String, dynamic>{
-                'updateUserProfile': <String, dynamic>{
+                'updateMyAfyaUserProfile': <String, dynamic>{
                   'userBioData': variables
                 },
               }
@@ -850,14 +855,18 @@ void main() {
 
       when(baseGraphQlClientMock.toMap(any)).thenReturn(<String, dynamic>{
         'data': <String, dynamic>{
-          'updateUserProfile': <String, dynamic>{'userBioData': variables},
+          'updateMyAfyaUserProfile': <String, dynamic>{
+            'userBioData': variables
+          },
         }
       });
 
       when(
         baseGraphQlClientMock.parseError(<String, dynamic>{
           'data': <String, dynamic>{
-            'updateUserProfile': <String, dynamic>{'userBioData': variables},
+            'updateMyAfyaUserProfile': <String, dynamic>{
+              'userBioData': variables
+            },
           }
         }),
       ).thenReturn(null);
@@ -887,7 +896,7 @@ void main() {
 
       // verify(mockNavigatorObserver.didPush(sampleRoute, any));
       final BioData bioData =
-          store.state.userProfileState!.userProfile!.userBioData!;
+          store.state.clientProfileState!.myAfyaUserProfile!.userBioData!;
       expect(bioData.gender, Gender.male);
       expect(bioData.firstName!.getValue(), testFirstName);
       expect(bioData.lastName!.getValue(), testLastName);
@@ -963,8 +972,7 @@ void main() {
         baseGraphQlClientMock.query(
           updateUserProfileMutation,
           <String, dynamic>{
-            // ignore: always_specify_types
-            'input': {
+            'input': <String, String>{
               'firstName': 'Test',
               'lastName': 'Name',
               'gender': 'Male'
@@ -1018,7 +1026,7 @@ void main() {
 
       // verify(mockNavigatorObserver.didPush(sampleRoute, any));
       final BioData bioData =
-          store.state.userProfileState!.userProfile!.userBioData!;
+          store.state.clientProfileState!.myAfyaUserProfile!.userBioData!;
       expect(bioData.gender, Gender.unknown);
       expect(bioData.firstName!.getValue(), UNKNOWN);
       expect(bioData.lastName!.getValue(), UNKNOWN);
@@ -1305,8 +1313,22 @@ void main() {
 
       loginResponse.remove('auth');
 
-      final UserResponse userResp = UserResponse.fromJson(loginResponse);
-      final UserProfile? userProfile = userResp.profile;
+      final PhoneLoginResponse phoneLoginResponse =
+          PhoneLoginResponse.fromJson(mockLoginResponse);
+
+      final User? user = phoneLoginResponse
+          .phoneLoginData?.loginData?.credentials?.clientProfile?.user;
+
+      final Contact? primaryContact = user?.contacts
+          ?.where(
+            (Contact contact) => contact.contactType == ContactType.PRIMARY,
+          )
+          .first;
+
+      final MyAfyaUserProfile myAfyaUserProfile = MyAfyaUserProfile(
+        id: user?.userId,
+        primaryPhoneNumber: primaryContact?.contact,
+      );
 
       await tester.runAsync(() async {
         await buildTestWidget(
@@ -1318,8 +1340,8 @@ void main() {
               StoreProvider.dispatch(
                 context,
                 UpdateUserProfileAction(
-                  profile: userProfile,
-                  userBioData: userProfile?.userBioData,
+                  profile: myAfyaUserProfile,
+                  userBioData: myAfyaUserProfile.userBioData,
                 ),
               );
 
@@ -1343,7 +1365,7 @@ void main() {
         await tester.tap(find.byType(SILPrimaryButton));
         await tester.pumpAndSettle();
         expect(
-          store.state.userProfileState!.auth!.refreshToken,
+          store.state.clientProfileState!.auth!.refreshToken,
           testRefreshToken,
         );
       });
@@ -1382,7 +1404,7 @@ void main() {
 
         await tester.tap(find.byType(SILPrimaryButton));
         await tester.pumpAndSettle();
-        expect(store.state.userProfileState!.auth!.refreshToken, UNKNOWN);
+        expect(store.state.clientProfileState!.auth!.refreshToken, UNKNOWN);
       });
     });
 
@@ -1419,7 +1441,7 @@ void main() {
 
         await tester.tap(find.byType(SILPrimaryButton));
         await tester.pumpAndSettle();
-        expect(store.state.userProfileState!.auth!.refreshToken, UNKNOWN);
+        expect(store.state.clientProfileState!.auth!.refreshToken, UNKNOWN);
       });
     });
 

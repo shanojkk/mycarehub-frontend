@@ -10,7 +10,7 @@ import 'package:user_feed/user_feed.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/connectivity_state.dart';
 import 'package:myafyahub/application/redux/states/misc_state.dart';
-import 'package:myafyahub/application/redux/states/user_profile_state.dart';
+import 'package:myafyahub/application/redux/states/client_profile_state.dart';
 import 'package:myafyahub/infrastructure/repository/database_base.dart';
 import 'package:myafyahub/infrastructure/repository/database_mobile.dart';
 import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
@@ -47,7 +47,7 @@ class BeWellStateDatabase implements PersistorPrinterDecorator<AppState> {
     await Future<dynamic>.delayed(saveDuration);
 
     if (lastPersistedState == null ||
-        lastPersistedState.userProfileState != newState.userProfileState ||
+        lastPersistedState.clientProfileState != newState.clientProfileState ||
         lastPersistedState.connectivityState != newState.connectivityState ||
         lastPersistedState.userFeedState != newState.userFeedState ||
         lastPersistedState.miscState != newState.miscState) {
@@ -102,8 +102,8 @@ class BeWellStateDatabase implements PersistorPrinterDecorator<AppState> {
   ) async {
     // save user state
     await database.saveState(
-      data: newState.userProfileState!.toJson(),
-      table: Tables.userProfileState,
+      data: newState.clientProfileState!.toJson(),
+      table: Tables.clientProfileState,
     );
 
     // save connectivity state
@@ -130,8 +130,8 @@ class BeWellStateDatabase implements PersistorPrinterDecorator<AppState> {
   Future<AppState> retrieveState(BeWellDatabaseBase<dynamic> database) async {
     return AppState().copyWith(
       // retrieve user state
-      userProfileState: UserProfileState.fromJson(
-        await database.retrieveState(Tables.userProfileState),
+      clientProfileState: ClientProfileState.fromJson(
+        await database.retrieveState(Tables.clientProfileState),
       ),
 
       // retrieve connectivity state

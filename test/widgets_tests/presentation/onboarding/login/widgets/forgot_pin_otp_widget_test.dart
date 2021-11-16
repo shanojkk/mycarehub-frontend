@@ -7,6 +7,7 @@ import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:myafyahub/application/redux/states/my_afya_user_profile.dart';
 import 'package:shared_ui_components/buttons.dart';
 import 'package:shared_ui_components/inputs.dart';
 import 'package:shared_ui_components/platform_loader.dart';
@@ -35,7 +36,7 @@ void main() {
             firstName: Name.withValue('Test'),
             lastName: Name.withValue('Name'),
           ),
-          profile: UserProfile(
+          profile: MyAfyaUserProfile(
             primaryPhoneNumber: PhoneNumber.withValue('+254728101710'),
             primaryEmailAddress: EmailAddress.withValue('s@g.com'),
           ),
@@ -76,7 +77,7 @@ void main() {
             firstName: Name.withValue(testFirstName),
             lastName: Name.withValue(testLastName),
           ),
-          profile: UserProfile(
+          profile: MyAfyaUserProfile(
             primaryPhoneNumber: PhoneNumber.withValue(testPhoneNumber),
             primaryEmailAddress: EmailAddress.withValue(testEmail),
           ),
@@ -127,7 +128,7 @@ void main() {
             firstName: Name.withValue(testFirstName),
             lastName: Name.withValue(testLastName),
           ),
-          profile: UserProfile(
+          profile: MyAfyaUserProfile(
             primaryPhoneNumber: PhoneNumber.withValue(testPhoneNumber),
             primaryEmailAddress: EmailAddress.withValue(testEmail),
           ),
@@ -170,7 +171,7 @@ void main() {
             firstName: Name.withValue(testFirstName),
             lastName: Name.withValue(testLastName),
           ),
-          profile: UserProfile(
+          profile: MyAfyaUserProfile(
             primaryPhoneNumber: PhoneNumber.withValue(testPhoneNumber),
             primaryEmailAddress: EmailAddress.withValue(testEmail),
           ),
@@ -209,7 +210,7 @@ void main() {
             firstName: Name.withValue(testFirstName),
             lastName: Name.withValue(testLastName),
           ),
-          profile: UserProfile(
+          profile: MyAfyaUserProfile(
             primaryPhoneNumber: PhoneNumber.withValue(testPhoneNumber),
             primaryEmailAddress: EmailAddress.withValue(testEmail),
           ),

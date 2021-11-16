@@ -20,9 +20,9 @@ class UserProfilePage extends StatelessWidget {
   /// [UserProfilePage] is used to display the user information
   ///
   /// It takes in required [userInitials], [name], [userCCCNumber], [age], [phoneNumber],
-  ///  [home] and [userProfileItems] parameters
+  ///  [home] and [MyAfyaUserProfileItems] parameters
   ///
-  /// [userProfileItems] is a list of the UserProfilePage ListTile items
+  /// [MyAfyaUserProfileItems] is a list of the MyAfyaUserProfilePage ListTile items
 
   // Client's Comprehensive Care Centre Number
   final String userCCCNumber = '12345678';
@@ -49,14 +49,14 @@ class UserProfilePage extends StatelessWidget {
                     home: home,
                   ),
                   largeVerticalSizedBox,
-                  ...List<Widget>.generate(userProfileItems.length,
+                  ...List<Widget>.generate(MyAfyaUserProfileItems.length,
                       (int index) {
                     final String iconPath =
-                        userProfileItems.elementAt(index).iconAssetPath;
+                        MyAfyaUserProfileItems.elementAt(index).iconAssetPath;
                     final String title =
-                        userProfileItems.elementAt(index).title;
+                        MyAfyaUserProfileItems.elementAt(index).title;
                     final String routeName =
-                        userProfileItems.elementAt(index).route;
+                        MyAfyaUserProfileItems.elementAt(index).route;
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 4),
                       child: GestureDetector(

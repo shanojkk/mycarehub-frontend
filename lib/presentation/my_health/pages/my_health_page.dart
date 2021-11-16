@@ -8,7 +8,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:misc_utilities/misc.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/states/user_profile_state.dart';
+import 'package:myafyahub/application/redux/states/client_profile_state.dart';
 import 'package:myafyahub/application/redux/view_models/user_profile_view_model.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -36,8 +36,10 @@ class MyHealthPage extends StatelessWidget {
           child: Column(
             children: <Widget>[
               GestureDetector(
-                onTap: () =>
-                    Navigator.pushNamed(context, BWRoutes.userProfilePage),
+                onTap: () => Navigator.pushNamed(
+                  context,
+                  BWRoutes.userProfilePage,
+                ),
                 child: InformationListCard(
                   title: Text(
                     myHealthPageProfile,
@@ -53,13 +55,15 @@ class MyHealthPage extends StatelessWidget {
                       child: StoreConnector<AppState, UserProfileViewModel>(
                         converter: (Store<AppState> store) =>
                             UserProfileViewModel.fromStore(store),
-                        builder:
-                            (BuildContext context, UserProfileViewModel vm) {
-                          final UserProfileState userProfileState =
-                              vm.userProfileState;
+                        builder: (
+                          BuildContext context,
+                          UserProfileViewModel vm,
+                        ) {
+                          final ClientProfileState clientProfileState =
+                              vm.clientProfileState;
                           return Text(
                             extractNamesInitials(
-                              name: getDisplayName(userProfileState),
+                              name: getDisplayName(clientProfileState),
                             ),
                             style: TextThemes.boldSize20Text(
                               AppColors.secondaryColor,

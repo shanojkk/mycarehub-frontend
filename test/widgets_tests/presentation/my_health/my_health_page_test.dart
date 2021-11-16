@@ -6,7 +6,7 @@ import 'package:myafyahub/application/redux/actions/update_user_profile_action.d
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:domain_objects/entities.dart' as domain;
+import 'package:myafyahub/application/redux/states/my_afya_user_profile.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_diary_page.dart';
@@ -34,10 +34,11 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.byType(MyHealthDiaryPage), findsOneWidget);
     });
-    testWidgets('navigates to UserProfilePage ', (WidgetTester tester) async {
+    testWidgets('navigates to MyAfyaUserProfilePage ',
+        (WidgetTester tester) async {
       store.dispatch(
         UpdateUserProfileAction(
-          profile: domain.UserProfile(
+          profile: MyAfyaUserProfile(
             primaryPhoneNumber: PhoneNumber.withValue('+254728101710'),
             primaryEmailAddress: EmailAddress.withValue('s@g.com'),
           ),

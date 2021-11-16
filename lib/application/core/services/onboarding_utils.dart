@@ -30,7 +30,7 @@ import 'package:myafyahub/application/redux/actions/phone_login_state_action.dar
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/states/user_profile_state.dart';
+import 'package:myafyahub/application/redux/states/client_profile_state.dart';
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
 import 'package:myafyahub/domain/core/entities/core/event_obj.dart';
 import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart';
@@ -139,13 +139,16 @@ Future<bool> updateStateAuth({
     publishEvent(
       hasSuccessfulRefreshTokenEvent(appContext),
       EventObject(
-        firstName: state!.userProfileState!.userProfile!.userBioData!.firstName!
+        firstName: state!
+            .clientProfileState!.myAfyaUserProfile!.userBioData!.firstName!
             .getValue(),
-        lastName: state.userProfileState!.userProfile!.userBioData!.lastName!
+        lastName: state
+            .clientProfileState!.myAfyaUserProfile!.userBioData!.lastName!
             .getValue(),
-        primaryPhoneNumber:
-            state.userProfileState!.userProfile!.primaryPhoneNumber!.getValue(),
-        uid: state.userProfileState!.auth!.uid,
+        primaryPhoneNumber: state
+            .clientProfileState!.myAfyaUserProfile!.primaryPhoneNumber!
+            .getValue(),
+        uid: state.clientProfileState!.auth!.uid,
         flavour: Flavour.CONSUMER.name,
         timestamp: DateTime.now(),
         appVersion: APPVERSION,
@@ -176,13 +179,16 @@ Future<bool> updateStateAuth({
     publishEvent(
       hasFailedToRefreshTokenEvent(appContext),
       EventObject(
-        firstName: state!.userProfileState!.userProfile!.userBioData!.firstName!
+        firstName: state!
+            .clientProfileState!.myAfyaUserProfile!.userBioData!.firstName!
             .getValue(),
-        lastName: state.userProfileState!.userProfile!.userBioData!.lastName!
+        lastName: state
+            .clientProfileState!.myAfyaUserProfile!.userBioData!.lastName!
             .getValue(),
-        primaryPhoneNumber:
-            state.userProfileState!.userProfile!.primaryPhoneNumber!.getValue(),
-        uid: state.userProfileState!.auth!.uid,
+        primaryPhoneNumber: state
+            .clientProfileState!.myAfyaUserProfile!.primaryPhoneNumber!
+            .getValue(),
+        uid: state.clientProfileState!.auth!.uid,
         flavour: Flavour.CONSUMER.name,
         timestamp: DateTime.now(),
         appVersion: APPVERSION,
@@ -208,7 +214,7 @@ Future<bool> updateStateAuth({
 
 Future<AuthTokenStatus> checkTokenStatus({
   required BuildContext context,
-  required UserProfileState profileState,
+  required ClientProfileState profileState,
   required List<AppContext> thisAppContexts,
 }) async {
   final DateTime now = DateTime.now();
@@ -318,10 +324,10 @@ Future<String> getInitialRoute(
   AppState appState,
   List<AppContext> thisAppContexts,
 ) async {
-  if (appState.userProfileState!.isSignedIn!) {
+  if (appState.clientProfileState!.isSignedIn!) {
     final AuthTokenStatus checkTokenStatusResult = await checkTokenStatus(
       context: context,
-      profileState: appState.userProfileState!,
+      profileState: appState.clientProfileState!,
       thisAppContexts: thisAppContexts,
     );
     switch (checkTokenStatusResult) {
@@ -339,13 +345,13 @@ Future<String> getInitialRoute(
     }
 
     final String parsedExpiresAt =
-        DateTime.parse(appState.userProfileState!.auth!.expiresIn!)
+        DateTime.parse(appState.clientProfileState!.auth!.expiresIn!)
             .toIso8601String();
 
     RefreshTokenManger().updateExpireTime(parsedExpiresAt).reset();
     return Future<String>.value(pathConfig.route);
   } else {
-    if (appState.userProfileState!.isFirstLaunch ?? false) {
+    if (appState.clientProfileState!.isFirstLaunch ?? false) {
       StoreProvider.dispatch<AppState>(
         context,
         UpdateUserProfileAction(
@@ -491,8 +497,10 @@ Future<void> saveProfileDetails({
   }
 
   final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
-  final http.Response result = await _client
-      .query(updateUserProfileMutation, <String, dynamic>{'input': variables});
+  final http.Response result = await _client.query(
+    updateUserProfileMutation,
+    <String, dynamic>{'input': variables},
+  );
 
   final Map<String, dynamic> body = _client.toMap(result);
   hideProgressDialog(context);

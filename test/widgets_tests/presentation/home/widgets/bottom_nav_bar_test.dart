@@ -15,7 +15,8 @@ import 'package:myafyahub/application/redux/actions/health_page_pin_input_action
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/states/user_profile_state.dart';
+import 'package:myafyahub/application/redux/states/client_profile_state.dart';
+import 'package:myafyahub/application/redux/states/my_afya_user_profile.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/engagement/home/widgets/bottom_nav_bar.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
@@ -27,11 +28,11 @@ void main() {
     final MockGraphQlClient GraphQlClient = MockGraphQlClient();
     final Store<AppState> store = Store<AppState>(
       initialState: AppState.initial().copyWith(
-        userProfileState: UserProfileState(
+        clientProfileState: ClientProfileState(
           auth: AuthCredentialResponse.fromJson(
             <String, dynamic>{'uid': 'some-uid'},
           ),
-          userProfile: UserProfile.initial().copyWith(
+          myAfyaUserProfile: MyAfyaUserProfile.initial().copyWith(
             primaryPhoneNumber: PhoneNumber.withValue('0715710345'),
             userBioData: BioData.initial().copyWith(
               firstName: Name.withValue('name'),

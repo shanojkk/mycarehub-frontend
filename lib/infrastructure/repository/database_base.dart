@@ -25,7 +25,7 @@ abstract class BeWellDatabaseBase<T> {
 
 /// [Tables] definitions
 enum Tables {
-  userProfileState,
+  clientProfileState,
   connectivityState,
   userFeedState,
   miscState,
@@ -37,8 +37,8 @@ enum Tables {
 extension TablesEx on Tables {
   String get name {
     switch (this) {
-      case Tables.userProfileState:
-        return 'userProfileState';
+      case Tables.clientProfileState:
+        return 'clientProfileState';
       case Tables.connectivityState:
         return 'connectivityState';
       case Tables.userFeedState:

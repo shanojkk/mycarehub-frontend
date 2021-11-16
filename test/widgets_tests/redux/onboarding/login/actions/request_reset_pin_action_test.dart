@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
+import 'package:myafyahub/application/redux/states/my_afya_user_profile.dart';
 import 'package:shared_ui_components/buttons.dart';
 
 // Project imports:
@@ -84,7 +84,7 @@ void main() {
 
       store.dispatch(
         UpdateUserProfileAction(
-          profile: UserProfile(
+          profile: MyAfyaUserProfile(
             primaryPhoneNumber: PhoneNumber.withValue('+254728101710'),
           ),
         ),
@@ -140,7 +140,7 @@ void main() {
 
       store.dispatch(
         UpdateUserProfileAction(
-          profile: UserProfile(
+          profile: MyAfyaUserProfile(
             primaryPhoneNumber: PhoneNumber.withValue('+254728101710'),
           ),
         ),
@@ -196,7 +196,7 @@ void main() {
 
       store.dispatch(
         UpdateUserProfileAction(
-          profile: UserProfile(
+          profile: MyAfyaUserProfile(
             primaryPhoneNumber: PhoneNumber.withValue('+254728101710'),
           ),
         ),

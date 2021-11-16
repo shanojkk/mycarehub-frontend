@@ -4,10 +4,11 @@ import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/value_objects.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/application/redux/states/my_afya_user_profile.dart';
 import 'package:myafyahub/domain/core/entities/security_questions/security_question.dart';
 import 'package:myafyahub/domain/core/entities/security_questions/security_question_response.dart';
 
-/// - [userProfile]
+/// - [MyAfyaUserProfile]
 /// - [profileSetupComplete]
 /// - [unmaskedPhoneNumbers]
 /// - [maskedPhoneNumber]
@@ -29,7 +30,7 @@ class UpdateUserProfileAction extends ReduxAction<AppState> {
     this.securityQuestionsResponses,
   });
 
-  final UserProfile? profile;
+  final MyAfyaUserProfile? profile;
   final CommunicationSettings? communicationSettings;
   final BioData? userBioData;
   final Customer? customerProfile;
@@ -43,38 +44,31 @@ class UpdateUserProfileAction extends ReduxAction<AppState> {
 
   @override
   AppState reduce() {
-    final UserProfile userProfile = state.userProfileState!.userProfile!;
+    final MyAfyaUserProfile myAfyaUserProfile =
+        state.clientProfileState!.myAfyaUserProfile!;
 
-    final BioData? bio = state.userProfileState!.userProfile!.userBioData;
+    final BioData? bio =
+        state.clientProfileState!.myAfyaUserProfile!.userBioData;
 
     final CommunicationSettings settings =
-        state.userProfileState!.communicationSettings!;
+        state.clientProfileState!.communicationSettings!;
 
     final List<SecurityQuestion>? securityQuestions =
-        state.userProfileState?.securityQuestions;
+        state.clientProfileState?.securityQuestions;
 
     final Map<String, SecurityQuestionResponse>? questionsResponses =
-        state.userProfileState?.securityQuestionsResponses;
+        state.clientProfileState?.securityQuestionsResponses;
 
-    final AppState newState = state.copyWith.userProfileState!.call(
-      userProfile: UserProfile(
-        id: this.profile?.id ?? userProfile.id,
-        username: this.profile?.username ?? userProfile.username,
-        primaryPhoneNumber:
-            this.profile?.primaryPhoneNumber ?? userProfile.primaryPhoneNumber,
+    final AppState newState = state.copyWith.clientProfileState!.call(
+      myAfyaUserProfile: MyAfyaUserProfile(
+        id: this.profile?.id ?? myAfyaUserProfile.id,
+        username: this.profile?.username ?? myAfyaUserProfile.username,
+        primaryPhoneNumber: this.profile?.primaryPhoneNumber ??
+            myAfyaUserProfile.primaryPhoneNumber,
         primaryEmailAddress: this.profile?.primaryEmailAddress ??
-            userProfile.primaryEmailAddress,
-
-        /// [secondaryPhoneNumbers] and [secondaryEmailAddresses] are overwrite to avoid complex checking of occurrences
-        secondaryPhoneNumbers: this.profile?.secondaryPhoneNumbers ??
-            userProfile.secondaryPhoneNumbers,
-        secondaryEmailAddresses: this.profile?.secondaryEmailAddresses ??
-            userProfile.secondaryEmailAddresses,
-
-        termsAccepted: this.profile?.termsAccepted ?? userProfile.termsAccepted,
-        suspended: this.profile?.suspended ?? userProfile.suspended,
-        photoUploadID: this.profile?.photoUploadID ?? userProfile.photoUploadID,
-
+            myAfyaUserProfile.primaryEmailAddress,
+        termsAccepted:
+            this.profile?.termsAccepted ?? myAfyaUserProfile.termsAccepted,
         userBioData: BioData(
           firstName: this.userBioData?.firstName ?? bio?.firstName,
           lastName: this.userBioData?.lastName ?? bio?.lastName,
@@ -90,18 +84,6 @@ class UpdateUserProfileAction extends ReduxAction<AppState> {
         allowWhatsApp:
             this.communicationSettings?.allowWhatsApp ?? settings.allowWhatsApp,
       ),
-      // required for transactions
-      customerProfile:
-          this.customerProfile ?? state.userProfileState!.customerProfile,
-      // overwrite
-      onboardingTourComplete: this.onboardingTourComplete ??
-          state.userProfileState!.onboardingTourComplete,
-      profileSetupComplete: this.profileSetupComplete ??
-          state.userProfileState!.onboardingTourComplete,
-      maskedPhoneNumbers:
-          this.maskedPhoneNumbers ?? state.userProfileState!.maskedPhoneNumbers,
-      unmaskedPhoneNumbers: this.unmaskedPhoneNumbers ??
-          state.userProfileState!.unmaskedPhoneNumbers,
       isFirstLaunch: this.isFirstLaunch,
       securityQuestions: this.securityQuestions ?? securityQuestions,
       securityQuestionsResponses:

@@ -51,8 +51,8 @@ class _EditProfileFormState extends State<EditProfileForm> {
   void didChangeDependencies() {
     if (!launched) {
       final BioData bioData = StoreProvider.state<AppState>(context)!
-          .userProfileState!
-          .userProfile!
+          .clientProfileState!
+          .myAfyaUserProfile!
           .userBioData!;
 
       firstNameFromState = bioData.firstName!.getValue();

@@ -2,19 +2,19 @@
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:myafyahub/application/redux/states/user_profile_state.dart';
+import 'package:myafyahub/application/redux/states/client_profile_state.dart';
 
 void main() {
   test('should convert to and from json', () {
-    final UserProfileState state = UserProfileState.initial();
+    final ClientProfileState state = ClientProfileState.initial();
     final Map<String, dynamic> result = state.toJson();
     expect(result, isA<Map<String, dynamic>>());
     expect(result['userProfile'], isNotNull);
     expect(result['auth'], isNotNull);
     expect(result['communicationSettings'], isNotNull);
 
-    final UserProfileState result2 =
-        UserProfileState.fromJson(<String, dynamic>{
+    final ClientProfileState result2 =
+        ClientProfileState.fromJson(<String, dynamic>{
       'userProfile': <String, dynamic>{
         'id': 'ff83b587-d78a-498f-b0df-4d8cc9d4eb04',
         'primaryEmailAddress': null,
@@ -44,8 +44,8 @@ void main() {
       }
     });
 
-    expect(result2, isA<UserProfileState>());
-    expect(result2.userProfile, isNotNull);
+    expect(result2, isA<ClientProfileState>());
+    expect(result2.myAfyaUserProfile, isNotNull);
     expect(result2.auth, isNull);
   });
 }

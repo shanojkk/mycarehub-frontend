@@ -2,51 +2,41 @@
 import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:myafyahub/application/redux/states/my_afya_user_profile.dart';
 import 'package:myafyahub/domain/core/entities/security_questions/security_question.dart';
 import 'package:myafyahub/domain/core/entities/security_questions/security_question_response.dart';
 
-part 'user_profile_state.freezed.dart';
-part 'user_profile_state.g.dart';
+part 'client_profile_state.freezed.dart';
+part 'client_profile_state.g.dart';
 
 @freezed
-class UserProfileState with _$UserProfileState {
-  factory UserProfileState({
-    // sourced from the response for login
-    UserProfile? userProfile,
-    Customer? customerProfile,
+class ClientProfileState with _$ClientProfileState {
+  factory ClientProfileState({
+    MyAfyaUserProfile? myAfyaUserProfile,
     CommunicationSettings? communicationSettings,
     AuthCredentialResponse? auth,
-
-    // generate from the app
-    bool? onboardingTourComplete,
-    bool? profileSetupComplete,
-    List<PhoneNumber>? unmaskedPhoneNumbers,
-    List<PhoneNumber>? maskedPhoneNumbers,
     bool? isSignedIn,
     String? inActivitySetInTime,
     String? signedInTime,
     bool? isFirstLaunch,
     List<SecurityQuestion>? securityQuestions,
     Map<String, SecurityQuestionResponse>? securityQuestionsResponses,
-  }) = _UserProfileState;
+    bool? active,
+  }) = _ClientProfileState;
 
-  factory UserProfileState.fromJson(Map<String, dynamic> json) =>
-      _$UserProfileStateFromJson(json);
+  factory ClientProfileState.fromJson(Map<String, dynamic> json) =>
+      _$ClientProfileStateFromJson(json);
 
-  factory UserProfileState.initial() => UserProfileState(
+  factory ClientProfileState.initial() => ClientProfileState(
         isSignedIn: false,
         inActivitySetInTime: UNKNOWN,
         signedInTime: UNKNOWN,
-        userProfile: UserProfile(
+        myAfyaUserProfile: MyAfyaUserProfile(
           id: UNKNOWN,
           username: Name.withValue(UNKNOWN),
           primaryPhoneNumber: PhoneNumber.withValue(UNKNOWN),
           primaryEmailAddress: EmailAddress.withValue(UNKNOWNEMAIL),
-          secondaryPhoneNumbers: <PhoneNumber>[],
-          secondaryEmailAddresses: <EmailAddress>[],
           termsAccepted: false,
-          suspended: false,
-          photoUploadID: UNKNOWN,
           userBioData: BioData(
             firstName: Name.withValue(UNKNOWN),
             lastName: Name.withValue(UNKNOWN),
@@ -71,8 +61,6 @@ class UserProfileState with _$UserProfileState {
           allowText: false,
           allowWhatsApp: false,
         ),
-        onboardingTourComplete: false,
-        profileSetupComplete: false,
         isFirstLaunch: true,
         securityQuestions: <SecurityQuestion>[],
         securityQuestionsResponses: <String, SecurityQuestionResponse>{},

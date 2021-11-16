@@ -17,7 +17,7 @@ class UpdateTermsAndConditionsAction extends ReduxAction<AppState> {
   @override
   AppState reduce() {
     final bool termsAccepted =
-        state.userProfileState!.userProfile!.termsAccepted!;
+        state.clientProfileState!.myAfyaUserProfile!.termsAccepted!;
     final TermsAndConditions termsAndConditions =
         state.miscState!.termsAndConditions!;
 
@@ -28,8 +28,9 @@ class UpdateTermsAndConditionsAction extends ReduxAction<AppState> {
           text: termsString ?? termsAndConditions.text,
         ),
       ),
-      userProfileState: state.userProfileState!.copyWith.call(
-        userProfile: state.userProfileState!.userProfile!.copyWith.call(
+      clientProfileState: state.clientProfileState!.copyWith.call(
+        myAfyaUserProfile:
+            state.clientProfileState!.myAfyaUserProfile!.copyWith.call(
           termsAccepted: isAccepted ?? termsAccepted,
         ),
       ),

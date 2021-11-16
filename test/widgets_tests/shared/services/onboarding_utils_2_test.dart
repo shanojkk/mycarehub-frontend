@@ -10,13 +10,17 @@ import 'package:flutter/services.dart';
 import 'package:app_wrapper/app_wrapper.dart' show AppContext;
 import 'package:async_redux/async_redux.dart';
 import 'package:dart_fcm/dart_fcm.dart';
-import 'package:domain_objects/entities.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:misc_utilities/refresh_token_manager.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:myafyahub/application/redux/states/my_afya_user_profile.dart';
+import 'package:myafyahub/domain/core/entities/core/contact.dart';
+import 'package:myafyahub/domain/core/entities/core/contact_type.dart';
+import 'package:myafyahub/domain/core/entities/core/user.dart';
+import 'package:myafyahub/domain/core/entities/login/phone_login_response.dart';
 import 'package:shared_ui_components/buttons.dart';
 
 // Project imports:
@@ -26,7 +30,7 @@ import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/states/user_profile_state.dart';
+import 'package:myafyahub/application/redux/states/client_profile_state.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
@@ -115,7 +119,7 @@ void main() {
                 // call our check token status function
                 actualTokenStatus = await checkTokenStatus(
                   context: context,
-                  profileState: store.state.userProfileState!,
+                  profileState: store.state.clientProfileState!,
                   thisAppContexts: <AppContext>[
                     AppContext.BewellCONSUMER,
                     AppContext.AppTest
@@ -129,7 +133,7 @@ void main() {
       );
 
       await tester.pumpAndSettle();
-      final UserProfileState state = store.state.userProfileState!;
+      final ClientProfileState state = store.state.clientProfileState!;
       // verify current state
       expect(state.isSignedIn, true);
       expect(state.auth!.refreshToken, oldRefreshToken);
@@ -161,8 +165,22 @@ void main() {
         201,
       );
 
-      final UserResponse userResp = UserResponse.fromJson(loginResponse);
-      final UserProfile? userProfile = userResp.profile;
+      final PhoneLoginResponse phoneLoginResponse =
+          PhoneLoginResponse.fromJson(mockLoginResponse);
+
+      final User? user = phoneLoginResponse
+          .phoneLoginData?.loginData?.credentials?.clientProfile?.user;
+
+      final Contact? primaryContact = user?.contacts
+          ?.where(
+            (Contact contact) => contact.contactType == ContactType.PRIMARY,
+          )
+          .first;
+
+      final MyAfyaUserProfile myAfyaUserProfile = MyAfyaUserProfile(
+        id: user?.userId,
+        primaryPhoneNumber: primaryContact?.contact,
+      );
 
       // implementation/call the function
       await buildTestWidget(
@@ -174,8 +192,8 @@ void main() {
             StoreProvider.dispatch(
               context,
               UpdateUserProfileAction(
-                profile: userProfile,
-                userBioData: userProfile?.userBioData,
+                profile: myAfyaUserProfile,
+                userBioData: myAfyaUserProfile.userBioData,
               ),
             );
 
@@ -195,11 +213,20 @@ void main() {
       );
 
       await tester.pumpAndSettle();
-      final UserProfileState state = store.state.userProfileState!;
+      final ClientProfileState state = store.state.clientProfileState!;
       // verify current state
-      expect(state.userProfile!.primaryPhoneNumber!.getValue(), isNotNull);
-      expect(state.userProfile!.userBioData!.firstName!.getValue(), isNotNull);
-      expect(state.userProfile!.userBioData!.lastName!.getValue(), isNotNull);
+      expect(
+        state.myAfyaUserProfile!.primaryPhoneNumber!.getValue(),
+        isNotNull,
+      );
+      expect(
+        state.myAfyaUserProfile!.userBioData!.firstName!.getValue(),
+        isNotNull,
+      );
+      expect(
+        state.myAfyaUserProfile!.userBioData!.lastName!.getValue(),
+        isNotNull,
+      );
 
       await tester.tap(find.byType(SILPrimaryButton));
       await tester.pumpAndSettle();
@@ -243,7 +270,7 @@ void main() {
                 // call our check token status function
                 actualTokenStatus = await checkTokenStatus(
                   context: context,
-                  profileState: store.state.userProfileState!,
+                  profileState: store.state.clientProfileState!,
                   thisAppContexts: <AppContext>[
                     AppContext.BewellCONSUMER,
                     AppContext.AppTest
@@ -257,7 +284,7 @@ void main() {
       );
 
       await tester.pumpAndSettle();
-      final UserProfileState state = store.state.userProfileState!;
+      final ClientProfileState state = store.state.clientProfileState!;
       // verify current state
       expect(state.isSignedIn, true);
       expect(state.auth!.refreshToken, oldRefreshToken);
@@ -285,8 +312,22 @@ void main() {
 
         loginResponse.remove('auth');
 
-        final UserResponse userResp = UserResponse.fromJson(loginResponse);
-        final UserProfile? userProfile = userResp.profile;
+        final PhoneLoginResponse phoneLoginResponse =
+            PhoneLoginResponse.fromJson(mockLoginResponse);
+
+        final User? user = phoneLoginResponse
+            .phoneLoginData?.loginData?.credentials?.clientProfile?.user;
+
+        final Contact? primaryContact = user?.contacts
+            ?.where(
+              (Contact contact) => contact.contactType == ContactType.PRIMARY,
+            )
+            .first;
+
+        final MyAfyaUserProfile myAfyaUserProfile = MyAfyaUserProfile(
+          id: user?.userId,
+          primaryPhoneNumber: primaryContact?.contact,
+        );
 
         final http.Response response = http.Response(
           json.encode(<String, dynamic>{
@@ -335,8 +376,8 @@ void main() {
               StoreProvider.dispatch(
                 context,
                 UpdateUserProfileAction(
-                  profile: userProfile,
-                  userBioData: userProfile?.userBioData,
+                  profile: myAfyaUserProfile,
+                  userBioData: myAfyaUserProfile.userBioData,
                 ),
               );
 
@@ -345,7 +386,7 @@ void main() {
                   // call our check token status function
                   actualTokenStatus = await checkTokenStatus(
                     context: context,
-                    profileState: store.state.userProfileState!,
+                    profileState: store.state.clientProfileState!,
                     thisAppContexts: <AppContext>[
                       AppContext.BewellCONSUMER,
                       AppContext.AppTest
@@ -359,7 +400,7 @@ void main() {
         );
 
         await tester.pumpAndSettle();
-        final UserProfileState state = store.state.userProfileState!;
+        final ClientProfileState state = store.state.clientProfileState!;
         // verify current state
         expect(state.isSignedIn, true);
         expect(state.auth!.refreshToken, 'oldRefreshToken');
@@ -368,13 +409,13 @@ void main() {
         await tester.tap(find.byType(SILPrimaryButton));
         await tester.pumpAndSettle();
 
-        expect(store.state.userProfileState!.isSignedIn, true);
+        expect(store.state.clientProfileState!.isSignedIn, true);
         expect(
-          store.state.userProfileState!.auth!.refreshToken,
+          store.state.clientProfileState!.auth!.refreshToken,
           'Some-refresh-token',
         );
         expect(
-          store.state.userProfileState!.auth!.idToken,
+          store.state.clientProfileState!.auth!.idToken,
           'some-id-token',
         );
         expect(actualTokenStatus, AuthTokenStatus.requiresPin);

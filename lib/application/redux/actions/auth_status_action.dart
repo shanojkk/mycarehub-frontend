@@ -30,10 +30,11 @@ class AuthStatusAction extends ReduxAction<AppState> {
 
   @override
   AppState reduce() {
-    final AuthCredentialResponse authFromState = state.userProfileState!.auth!;
-    final AppState newState = state.copyWith.userProfileState!.call(
-      isSignedIn: this.signedIn ?? state.userProfileState!.isSignedIn,
-      signedInTime: this.signedInTime ?? state.userProfileState!.signedInTime,
+    final AuthCredentialResponse authFromState =
+        state.clientProfileState!.auth!;
+    final AppState newState = state.copyWith.clientProfileState!.call(
+      isSignedIn: this.signedIn ?? state.clientProfileState!.isSignedIn,
+      signedInTime: this.signedInTime ?? state.clientProfileState!.signedInTime,
       auth: AuthCredentialResponse(
         idToken: idToken ?? authFromState.idToken,
         expiresIn: expiresAt ?? authFromState.expiresIn,

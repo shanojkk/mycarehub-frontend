@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:misc_utilities/misc.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/states/user_profile_state.dart';
+import 'package:myafyahub/application/redux/states/client_profile_state.dart';
 import 'package:myafyahub/application/redux/view_models/user_profile_view_model.dart';
 import 'package:shared_themes/spaces.dart';
 
@@ -38,17 +38,21 @@ class UserDetailsCard extends StatelessWidget {
       converter: (Store<AppState> store) =>
           UserProfileViewModel.fromStore(store),
       builder: (BuildContext context, UserProfileViewModel vm) {
-        final UserProfileState userProfile = vm.userProfileState;
+        final ClientProfileState myAfyaUserProfile = vm.clientProfileState;
 
-        final String firstName =
-            userProfile.userProfile?.userBioData?.firstName?.getValue() ??
-                UNKNOWN;
-        final String lastName =
-            userProfile.userProfile?.userBioData?.lastName?.getValue() ??
-                UNKNOWN;
+        final String firstName = myAfyaUserProfile
+                .myAfyaUserProfile?.userBioData?.firstName
+                ?.getValue() ??
+            UNKNOWN;
+        final String lastName = myAfyaUserProfile
+                .myAfyaUserProfile?.userBioData?.lastName
+                ?.getValue() ??
+            UNKNOWN;
 
-        final String phone =
-            userProfile.userProfile?.primaryPhoneNumber?.getValue() ?? '';
+        final String phone = myAfyaUserProfile
+                .myAfyaUserProfile?.primaryPhoneNumber
+                ?.getValue() ??
+            '';
 
         final String name = '$firstName $lastName';
 

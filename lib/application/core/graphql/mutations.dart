@@ -52,6 +52,7 @@ mutation setUserPin($input: PINInput!){
  ''';
 
 Map<String, dynamic> setUserPINMutationVariables(
-    Map<String, dynamic> setUserPINVariables,) {
+  Map<String, dynamic> setUserPINVariables,
+) {
   return <String, dynamic>{'input': setUserPINVariables};
 }

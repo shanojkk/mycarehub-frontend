@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/application/redux/states/my_afya_user_profile.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
@@ -163,7 +164,7 @@ void main() {
                       lastName: Name.withValue('Coverage'),
                       gender: Gender.male,
                     ),
-                    profile: UserProfile(
+                    profile: MyAfyaUserProfile(
                       id: 'some-user-id',
                       primaryPhoneNumber: PhoneNumber.withValue('0700111222'),
                     ),

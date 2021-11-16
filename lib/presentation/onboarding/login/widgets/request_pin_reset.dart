@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:misc_utilities/misc.dart';
 import 'package:misc_utilities/number_constants.dart';
+import 'package:myafyahub/application/redux/states/my_afya_user_profile.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/buttons.dart';
@@ -65,7 +65,7 @@ class _RequestPinResetState extends State<RequestPinReset> {
       StoreProvider.dispatch(
         context,
         UpdateUserProfileAction(
-          profile: UserProfile(
+          profile: MyAfyaUserProfile(
             primaryPhoneNumber: PhoneNumber.withValue(phoneNumber),
           ),
         ),

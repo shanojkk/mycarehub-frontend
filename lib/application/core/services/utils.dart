@@ -22,7 +22,7 @@ import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/redux/actions/health_page_pin_input_action.dart';
 import 'package:myafyahub/application/redux/actions/logout_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/states/user_profile_state.dart';
+import 'package:myafyahub/application/redux/states/client_profile_state.dart';
 import 'package:myafyahub/domain/core/entities/core/icon_details.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_actions.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_details.dart';
@@ -89,13 +89,13 @@ Function() logoutUser({required BuildContext context}) {
   };
 }
 
-String getDisplayName(UserProfileState state) {
+String getDisplayName(ClientProfileState state) {
   final String firstName =
-      state.userProfile?.userBioData?.firstName?.getValue() ?? UNKNOWN;
+      state.myAfyaUserProfile?.userBioData?.firstName?.getValue() ?? UNKNOWN;
   final String formattedFirstName = firstName.replaceAll(' ', '');
 
   final String lastName =
-      state.userProfile?.userBioData?.lastName?.getValue() ?? UNKNOWN;
+      state.myAfyaUserProfile?.userBioData?.lastName?.getValue() ?? UNKNOWN;
   final String formattedLastName = lastName.replaceAll(' ', '');
 
   return '$formattedFirstName $formattedLastName';
@@ -420,11 +420,11 @@ dynamic reportErrorToSentry(
   if (context != null) {
     try {
       final AppState state = StoreProvider.state<AppState>(context)!;
-      if (state.userProfileState?.isSignedIn != null &&
-          state.userProfileState!.isSignedIn!) {
+      if (state.clientProfileState?.isSignedIn != null &&
+          state.clientProfileState!.isSignedIn!) {
         errorTrace = <String, dynamic>{
           'phoneNumber': state
-              .userProfileState!.userProfile!.primaryPhoneNumber!
+              .clientProfileState!.myAfyaUserProfile!.primaryPhoneNumber!
               .getValue(),
           'error': errorTrace,
         };
@@ -443,7 +443,7 @@ bool confirmPinValidator(String pin, String confirmPin) {
   return true;
 }
 
-final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[
+final List<UserProfileItemObj> MyAfyaUserProfileItems = <UserProfileItemObj>[
   UserProfileItemObj(
     iconAssetPath: profileIcon,
     route: BWRoutes.personalInfo,
@@ -558,7 +558,20 @@ final Map<String, Map<String, dynamic>?> loginResponse =
         'timeStamp': '2021-02-19T10:04:39.795501Z',
       }
     ],
+  }
+};
+
+final Map<String, dynamic> mockMyAfyaUserProfile = <String, dynamic>{
+  'primaryEmailAddress': null,
+  'primaryPhone': '+254712654897',
+  'termsAccepted': true,
+  'userBioData': <String, dynamic>{
+    'dateOfBirth': '1996-02-07',
+    'firstName': 'John',
+    'gender': 'unknown',
+    'lastName': 'Doe'
   },
+  'userName': '@suspicious_ishizaka8254254',
 };
 
 List<NotificationDetails> upcomingAppointments = <NotificationDetails>[
@@ -599,7 +612,7 @@ List<NotificationDetails> pastAppointments = <NotificationDetails>[
 
 bool shouldInputPIN(BuildContext context) {
   final DateTime signedInTime = DateTime.parse(
-    StoreProvider.state<AppState>(context)!.userProfileState!.signedInTime!,
+    StoreProvider.state<AppState>(context)!.clientProfileState!.signedInTime!,
   );
 
   final String lastPINInputTime = StoreProvider.state<AppState>(context)!

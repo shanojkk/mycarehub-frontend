@@ -14,6 +14,16 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/src/response.dart';
 import 'package:misc_utilities/refresh_token_manager.dart';
 import 'package:myafyahub/application/core/graphql/queries.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
+import 'package:myafyahub/application/redux/actions/manage_token_action.dart';
+import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
+import 'package:myafyahub/application/redux/states/my_afya_user_profile.dart';
+import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
+import 'package:myafyahub/domain/core/entities/core/contact.dart';
+import 'package:myafyahub/domain/core/entities/core/contact_type.dart';
+import 'package:myafyahub/domain/core/entities/core/user.dart';
+import 'package:myafyahub/domain/core/entities/login/login_data.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_response.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/auth.dart';
@@ -24,7 +34,6 @@ import 'package:user_feed/user_feed.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
-import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
@@ -96,13 +105,62 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         final PhoneLoginResponse response = PhoneLoginResponse.fromJson(parsed);
 
         // TODO: update user profile after testing
-        response.toJson();
-        // await store.dispatch(UpdateUserProfileAction())
+        final LoginData? loginData = response.phoneLoginData?.loginData;
 
-        Navigator.of(context).pushReplacementNamed(BWRoutes.home);
+        final AuthCredentials? authCredentials =
+            loginData?.credentials?.authCredentials;
+
+        await store.dispatch(
+          ManageTokenAction(
+            context: context,
+            refreshToken: authCredentials?.refreshToken ?? UNKNOWN,
+            idToken: authCredentials?.idToken ?? UNKNOWN,
+            parsedExpiresAt: dateTimeParser.parsedExpireAt(
+              int.parse(authCredentials?.refreshToken ?? UNKNOWN),
+            ),
+            refreshTokenManger: this.tokenManger,
+          ),
+        );
+
+        final User? user = loginData?.credentials?.clientProfile?.user;
+        final Contact? primary = user?.contacts
+            ?.where(
+              (Contact contact) => contact.contactType == ContactType.PRIMARY,
+            )
+            .first;
+
+        final MyAfyaUserProfile? myAfyaUserProfile =
+            store.state.clientProfileState?.myAfyaUserProfile?.copyWith(
+          id: user?.userId,
+          username: Name.withValue(user?.username ?? UNKNOWN),
+          primaryPhoneNumber: primary?.contact,
+          termsAccepted: user?.termsAccepted,
+        );
+
+        // dispatch an action to update the user profile
+        await store.dispatch(
+          UpdateUserProfileAction(
+            profile: myAfyaUserProfile,
+            userBioData: myAfyaUserProfile?.userBioData,
+          ),
+        );
+
+        await store.dispatch(
+          AuthStatusAction(
+            signedIn: true,
+            signedInTime: DateTime.now().toIso8601String(),
+            // isChangePin: ,
+          ),
+        );
+
+        Navigator.of(context).pushNamedAndRemoveUntil(
+          BWRoutes.home,
+          (Route<dynamic> route) => false,
+        );
         return state;
       } else {
-        // exception thrown if the backend could not match the provided credentials with those stored in the backend
+        // exception thrown if the backend could not match the provided
+        //credentials with those stored in the backend
         showFeedbackBottomSheet(
           context: context,
           modalContent: processedResponse.message ?? UNKNOWN, // safety-net

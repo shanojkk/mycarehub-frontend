@@ -41,7 +41,7 @@ class RequestResetPinAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState> reduce() async {
-    if (state.userProfileState!.userProfile!.primaryPhoneNumber ==
+    if (state.clientProfileState!.myAfyaUserProfile!.primaryPhoneNumber ==
         PhoneNumber.withValue(UNKNOWN)) {
       throw SILException(
         cause: 'no_phone_number',
@@ -57,7 +57,7 @@ class RequestResetPinAction extends ReduxAction<AppState> {
     // create the payload
     final Map<String, dynamic> _variables = <String, String>{
       'phoneNumber': store
-          .state.userProfileState!.userProfile!.primaryPhoneNumber!
+          .state.clientProfileState!.myAfyaUserProfile!.primaryPhoneNumber!
           .getValue()
     };
     final IGraphQlClient _httpClient =

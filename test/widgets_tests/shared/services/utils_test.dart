@@ -98,7 +98,7 @@ void main() {
               buttonKey: const Key('get_first_name_Key'),
               onPressed: () {
                 actualNameFromState =
-                    getDisplayName(store.state.userProfileState!);
+                    getDisplayName(store.state.clientProfileState!);
               },
             );
           },
@@ -131,7 +131,7 @@ void main() {
                     buttonKey: const Key('get_first_name_Key'),
                     onPressed: () {
                       actualNameFromState =
-                          getDisplayName(store.state.userProfileState!);
+                          getDisplayName(store.state.clientProfileState!);
                     },
                   );
                 },

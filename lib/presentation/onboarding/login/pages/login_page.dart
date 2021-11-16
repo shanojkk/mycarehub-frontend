@@ -164,10 +164,10 @@ class _LoginPageState extends State<LoginPage> {
                         BWRoutes.verifySignUpOTP,
                         arguments: <String, dynamic>{
                           'OTP': 1234,
-                          'userID':
-                              vm.appState.userProfileState!.userProfile!.id,
-                          'phoneNumber': vm.appState.userProfileState!
-                              .userProfile!.primaryPhoneNumber!
+                          'userID': vm.appState.clientProfileState!
+                              .myAfyaUserProfile!.id,
+                          'phoneNumber': vm.appState.clientProfileState!
+                              .myAfyaUserProfile!.primaryPhoneNumber!
                               .getValue(),
                         },
                       );

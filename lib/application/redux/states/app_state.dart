@@ -6,7 +6,7 @@ import 'package:user_feed/user_feed.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/states/connectivity_state.dart';
 import 'package:myafyahub/application/redux/states/misc_state.dart';
-import 'package:myafyahub/application/redux/states/user_profile_state.dart';
+import 'package:myafyahub/application/redux/states/client_profile_state.dart';
 import 'package:myafyahub/domain/core/value_objects/extensions.dart';
 
 part 'app_state.freezed.dart';
@@ -18,7 +18,7 @@ part 'app_state.g.dart';
 @freezed
 class AppState with _$AppState {
   factory AppState({
-    UserProfileState? userProfileState,
+    ClientProfileState? clientProfileState,
     ConnectivityState? connectivityState,
     FeedResponsePayload? userFeedState,
     MiscState? miscState,
@@ -29,13 +29,13 @@ class AppState with _$AppState {
       _$AppStateFromJson(json);
 
   factory AppState.initial({
-    UserProfileState? userProfileState,
+    ClientProfileState? clientProfileState,
     ConnectivityState? connectivityState,
     FeedResponsePayload? feedResponsePayload,
     MiscState? miscState,
   }) =>
       AppState(
-        userProfileState: userProfileState ?? UserProfileState.initial(),
+        clientProfileState: clientProfileState ?? ClientProfileState.initial(),
         connectivityState: connectivityState ?? ConnectivityState.initial(),
         userFeedState: feedResponsePayload ?? FeedResponsePayloadEx.initial(),
         miscState: miscState ?? MiscState.initial(),

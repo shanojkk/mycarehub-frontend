@@ -22,10 +22,12 @@ class _$CredentialsTearOff {
 
   _Credentials call(
       {@JsonKey(name: 'clientProfile') ClientProfile? clientProfile,
-      @JsonKey(name: 'authCredentials') AuthCredentials? authCredentials}) {
+      @JsonKey(name: 'authCredentials') AuthCredentials? authCredentials,
+      @JsonKey(name: 'pinChangeRequired') bool? pinChangeRequired}) {
     return _Credentials(
       clientProfile: clientProfile,
       authCredentials: authCredentials,
+      pinChangeRequired: pinChangeRequired,
     );
   }
 
@@ -43,6 +45,8 @@ mixin _$Credentials {
   ClientProfile? get clientProfile => throw _privateConstructorUsedError;
   @JsonKey(name: 'authCredentials')
   AuthCredentials? get authCredentials => throw _privateConstructorUsedError;
+  @JsonKey(name: 'pinChangeRequired')
+  bool? get pinChangeRequired => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -57,7 +61,8 @@ abstract class $CredentialsCopyWith<$Res> {
       _$CredentialsCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'clientProfile') ClientProfile? clientProfile,
-      @JsonKey(name: 'authCredentials') AuthCredentials? authCredentials});
+      @JsonKey(name: 'authCredentials') AuthCredentials? authCredentials,
+      @JsonKey(name: 'pinChangeRequired') bool? pinChangeRequired});
 
   $ClientProfileCopyWith<$Res>? get clientProfile;
   $AuthCredentialsCopyWith<$Res>? get authCredentials;
@@ -75,6 +80,7 @@ class _$CredentialsCopyWithImpl<$Res> implements $CredentialsCopyWith<$Res> {
   $Res call({
     Object? clientProfile = freezed,
     Object? authCredentials = freezed,
+    Object? pinChangeRequired = freezed,
   }) {
     return _then(_value.copyWith(
       clientProfile: clientProfile == freezed
@@ -85,6 +91,10 @@ class _$CredentialsCopyWithImpl<$Res> implements $CredentialsCopyWith<$Res> {
           ? _value.authCredentials
           : authCredentials // ignore: cast_nullable_to_non_nullable
               as AuthCredentials?,
+      pinChangeRequired: pinChangeRequired == freezed
+          ? _value.pinChangeRequired
+          : pinChangeRequired // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 
@@ -120,7 +130,8 @@ abstract class _$CredentialsCopyWith<$Res>
   @override
   $Res call(
       {@JsonKey(name: 'clientProfile') ClientProfile? clientProfile,
-      @JsonKey(name: 'authCredentials') AuthCredentials? authCredentials});
+      @JsonKey(name: 'authCredentials') AuthCredentials? authCredentials,
+      @JsonKey(name: 'pinChangeRequired') bool? pinChangeRequired});
 
   @override
   $ClientProfileCopyWith<$Res>? get clientProfile;
@@ -142,6 +153,7 @@ class __$CredentialsCopyWithImpl<$Res> extends _$CredentialsCopyWithImpl<$Res>
   $Res call({
     Object? clientProfile = freezed,
     Object? authCredentials = freezed,
+    Object? pinChangeRequired = freezed,
   }) {
     return _then(_Credentials(
       clientProfile: clientProfile == freezed
@@ -152,6 +164,10 @@ class __$CredentialsCopyWithImpl<$Res> extends _$CredentialsCopyWithImpl<$Res>
           ? _value.authCredentials
           : authCredentials // ignore: cast_nullable_to_non_nullable
               as AuthCredentials?,
+      pinChangeRequired: pinChangeRequired == freezed
+          ? _value.pinChangeRequired
+          : pinChangeRequired // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -161,7 +177,8 @@ class __$CredentialsCopyWithImpl<$Res> extends _$CredentialsCopyWithImpl<$Res>
 class _$_Credentials implements _Credentials {
   _$_Credentials(
       {@JsonKey(name: 'clientProfile') this.clientProfile,
-      @JsonKey(name: 'authCredentials') this.authCredentials});
+      @JsonKey(name: 'authCredentials') this.authCredentials,
+      @JsonKey(name: 'pinChangeRequired') this.pinChangeRequired});
 
   factory _$_Credentials.fromJson(Map<String, dynamic> json) =>
       _$_$_CredentialsFromJson(json);
@@ -172,10 +189,13 @@ class _$_Credentials implements _Credentials {
   @override
   @JsonKey(name: 'authCredentials')
   final AuthCredentials? authCredentials;
+  @override
+  @JsonKey(name: 'pinChangeRequired')
+  final bool? pinChangeRequired;
 
   @override
   String toString() {
-    return 'Credentials(clientProfile: $clientProfile, authCredentials: $authCredentials)';
+    return 'Credentials(clientProfile: $clientProfile, authCredentials: $authCredentials, pinChangeRequired: $pinChangeRequired)';
   }
 
   @override
@@ -187,14 +207,18 @@ class _$_Credentials implements _Credentials {
                     .equals(other.clientProfile, clientProfile)) &&
             (identical(other.authCredentials, authCredentials) ||
                 const DeepCollectionEquality()
-                    .equals(other.authCredentials, authCredentials)));
+                    .equals(other.authCredentials, authCredentials)) &&
+            (identical(other.pinChangeRequired, pinChangeRequired) ||
+                const DeepCollectionEquality()
+                    .equals(other.pinChangeRequired, pinChangeRequired)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(clientProfile) ^
-      const DeepCollectionEquality().hash(authCredentials);
+      const DeepCollectionEquality().hash(authCredentials) ^
+      const DeepCollectionEquality().hash(pinChangeRequired);
 
   @JsonKey(ignore: true)
   @override
@@ -210,7 +234,8 @@ class _$_Credentials implements _Credentials {
 abstract class _Credentials implements Credentials {
   factory _Credentials(
           {@JsonKey(name: 'clientProfile') ClientProfile? clientProfile,
-          @JsonKey(name: 'authCredentials') AuthCredentials? authCredentials}) =
+          @JsonKey(name: 'authCredentials') AuthCredentials? authCredentials,
+          @JsonKey(name: 'pinChangeRequired') bool? pinChangeRequired}) =
       _$_Credentials;
 
   factory _Credentials.fromJson(Map<String, dynamic> json) =
@@ -222,6 +247,9 @@ abstract class _Credentials implements Credentials {
   @override
   @JsonKey(name: 'authCredentials')
   AuthCredentials? get authCredentials => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'pinChangeRequired')
+  bool? get pinChangeRequired => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$CredentialsCopyWith<_Credentials> get copyWith =>

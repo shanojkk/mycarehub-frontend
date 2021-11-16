@@ -15,6 +15,7 @@ _$_Credentials _$_$_CredentialsFromJson(Map<String, dynamic> json) {
         ? null
         : AuthCredentials.fromJson(
             json['authCredentials'] as Map<String, dynamic>),
+    pinChangeRequired: json['pinChangeRequired'] as bool?,
   );
 }
 
@@ -22,4 +23,5 @@ Map<String, dynamic> _$_$_CredentialsToJson(_$_Credentials instance) =>
     <String, dynamic>{
       'clientProfile': instance.clientProfile,
       'authCredentials': instance.authCredentials,
+      'pinChangeRequired': instance.pinChangeRequired,
     };

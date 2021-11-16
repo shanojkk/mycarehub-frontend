@@ -91,7 +91,7 @@ class _PreLoadAppState extends State<PreLoadApp> {
       linkStreamListener(
         mounted: mounted,
         nav: widget.appNavigatorKey,
-        signedIn: widget.appState.userProfileState!.isSignedIn!,
+        signedIn: widget.appState.clientProfileState!.isSignedIn!,
       ) as void Function(Uri?)?,
     );
   }
@@ -115,7 +115,7 @@ class _PreLoadAppState extends State<PreLoadApp> {
         isInitialUri: true,
         uri: _uri,
         navigatorKey: widget.appNavigatorKey,
-        signedIn: widget.appState.userProfileState!.isSignedIn!,
+        signedIn: widget.appState.clientProfileState!.isSignedIn!,
       );
     }
   }
@@ -139,9 +139,9 @@ class _PreLoadAppState extends State<PreLoadApp> {
                   value: value as bool,
                   context: context,
                   appContexts: widget.thisAppContexts,
-                  signedIn: widget.appState.userProfileState!.isSignedIn!,
+                  signedIn: widget.appState.clientProfileState!.isSignedIn!,
                   refreshToken:
-                      widget.appState.userProfileState!.auth!.refreshToken!,
+                      widget.appState.clientProfileState!.auth!.refreshToken!,
                 );
               });
 

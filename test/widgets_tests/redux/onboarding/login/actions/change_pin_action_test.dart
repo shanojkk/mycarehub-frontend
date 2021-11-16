@@ -12,6 +12,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 import 'package:myafyahub/application/redux/actions/create_pin_state_action.dart';
+import 'package:myafyahub/application/redux/states/my_afya_user_profile.dart';
 import 'package:shared_ui_components/buttons.dart';
 
 // Project imports:
@@ -71,7 +72,7 @@ void main() {
                 StoreProvider.dispatch(
                   context,
                   UpdateUserProfileAction(
-                    profile: UserProfile(
+                    profile: MyAfyaUserProfile(
                       primaryPhoneNumber:
                           PhoneNumber.withValue(testPhoneNumber),
                       userBioData: BioData(
@@ -147,7 +148,7 @@ void main() {
                 StoreProvider.dispatch(
                   context,
                   UpdateUserProfileAction(
-                    profile: UserProfile(
+                    profile: MyAfyaUserProfile(
                       primaryPhoneNumber:
                           PhoneNumber.withValue(testPhoneNumber),
                       userBioData: BioData(
@@ -225,7 +226,7 @@ void main() {
                 StoreProvider.dispatch(
                   context,
                   UpdateUserProfileAction(
-                    profile: UserProfile(
+                    profile: MyAfyaUserProfile(
                       primaryPhoneNumber:
                           PhoneNumber.withValue(testPhoneNumber),
                       userBioData: BioData(

@@ -10,6 +10,7 @@ class Credentials with _$Credentials {
   factory Credentials({
     @JsonKey(name: 'clientProfile') ClientProfile? clientProfile,
     @JsonKey(name: 'authCredentials') AuthCredentials? authCredentials,
+    @JsonKey(name: 'pinChangeRequired') bool? pinChangeRequired,
   }) = _Credentials;
 
   factory Credentials.fromJson(Map<String, dynamic> json) =>

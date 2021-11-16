@@ -13,7 +13,7 @@ import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CallContactActionWidget extends StatelessWidget {
-  /// [CallContactActionWidget] is a shared widget used in [ClinicInformationPage] and [UserProfilePage]
+  /// [CallContactActionWidget] is a shared widget used in [ClinicInformationPage] and [userProfilePage]
   ///
   /// It takes in required [phoneNumber] parameter
   ///

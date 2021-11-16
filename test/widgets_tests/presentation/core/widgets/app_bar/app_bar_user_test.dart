@@ -13,6 +13,7 @@ import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/application/redux/states/my_afya_user_profile.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/app_bar_user.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 
@@ -25,16 +26,8 @@ void main() {
     late Store<AppState> store;
 
     setUp(() {
-      final String dir = Directory.current.path;
       store = Store<AppState>(initialState: AppState.initial());
       HttpOverrides.global = TestHttpOverrides();
-      store.dispatch(
-        UpdateUserProfileAction(
-          profile: UserProfile(
-            photoUploadID: '$dir/test/tests_resources/test_file.png',
-          ),
-        ),
-      );
 
       store.dispatch(
         UpdateUserProfileAction(
@@ -42,7 +35,7 @@ void main() {
             firstName: Name.withValue('Test'),
             lastName: Name.withValue('Name'),
           ),
-          profile: UserProfile(
+          profile: MyAfyaUserProfile(
             primaryPhoneNumber: PhoneNumber.withValue('+254728101710'),
             primaryEmailAddress: EmailAddress.withValue('s@g.com'),
           ),

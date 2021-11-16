@@ -10,7 +10,7 @@ import 'package:shared_ui_components/profile_banner.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/states/user_profile_state.dart';
+import 'package:myafyahub/application/redux/states/client_profile_state.dart';
 import 'package:myafyahub/application/redux/view_models/user_profile_view_model.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/profile/widgets/edit_profile_form.dart';
@@ -27,12 +27,15 @@ class EditProfilePage extends StatelessWidget {
               converter: (Store<AppState> store) =>
                   UserProfileViewModel.fromStore(store),
               builder: (BuildContext context, UserProfileViewModel vm) {
-                final UserProfileState userProfile = vm.userProfileState;
-                final String firstName =
-                    userProfile.userProfile!.userBioData!.firstName!.getValue();
+                final ClientProfileState myAfyaUserProfile =
+                    vm.clientProfileState;
+                final String firstName = myAfyaUserProfile
+                    .myAfyaUserProfile!.userBioData!.firstName!
+                    .getValue();
 
-                final String lastName =
-                    userProfile.userProfile!.userBioData!.lastName!.getValue();
+                final String lastName = myAfyaUserProfile
+                    .myAfyaUserProfile!.userBioData!.lastName!
+                    .getValue();
 
                 return Hero(
                   tag: 'profile_banner',
@@ -40,13 +43,13 @@ class EditProfilePage extends StatelessWidget {
                     child: SILProfileBanner(
                       height: 160,
                       backgroundImagePath: wellnessUmbrellaImgUrl,
-                      userPhotoUrl:
-                          userProfile.userProfile?.photoUploadID ?? UNKNOWN,
+                      userPhotoUrl: UNKNOWN,
                       userName: sentenceCaseUserName(
                         firstName: firstName,
                         lastName: lastName,
                       ),
-                      primaryPhone: userProfile.userProfile?.primaryPhoneNumber!
+                      primaryPhone: myAfyaUserProfile
+                              .myAfyaUserProfile?.primaryPhoneNumber!
                               .getValue() ??
                           'No phone number',
                       profileRoute: BWRoutes.userProfile,

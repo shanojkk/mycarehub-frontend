@@ -25,8 +25,8 @@ class SecurityQuestionsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final AppState appState = StoreProvider.state<AppState>(context)!;
     final Map<String, SecurityQuestionResponse> securityQuestionsResponses =
-        appState.userProfileState!.securityQuestionsResponses!;
-    final String userId = appState.userProfileState!.userProfile!.id!;
+        appState.clientProfileState!.securityQuestionsResponses!;
+    final String userId = appState.clientProfileState!.myAfyaUserProfile!.id!;
 
     final List<SecurityQuestion> securityQuestions = <SecurityQuestion>[
       SecurityQuestion(

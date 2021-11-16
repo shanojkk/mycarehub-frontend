@@ -334,7 +334,7 @@ void main() {
     expect(route, isA<MaterialPageRoute<MyHealthDiaryPage>>());
     expect(route.builder(context), isA<MyHealthDiaryPage>());
   });
-  test('Test router returns UserProfilePage', () {
+  test('Test router returns MyAfyaUserProfilePage', () {
     const RouteSettings settings =
         RouteSettings(name: BWRoutes.userProfilePage);
     final MaterialPageRoute<UserProfilePage> route =

@@ -24,7 +24,7 @@ void main() {
         client: baseGraphQlClientMock,
         widget: SavedPostPage(),
       );
-
+  
       expect(find.text(savedVideoText), findsOneWidget);
       expect(find.text(savedArticleText), findsOneWidget);
       expect(find.byType(FeedList), findsWidgets);

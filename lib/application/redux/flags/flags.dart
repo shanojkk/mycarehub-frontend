@@ -12,6 +12,9 @@ const String fetchUserFeedFlag = 'fetch_user_feed';
 const String getTermsFlag = 'get_terms';
 const String acceptTermsFlag = 'accept_terms';
 
+//nickName
+const String nickNameFlag = 'set_nickname';
+
 // basic details
 const String updateBasicDetailsFlag = 'update_basic_details';
 

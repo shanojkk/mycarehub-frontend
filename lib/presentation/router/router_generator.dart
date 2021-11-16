@@ -230,7 +230,7 @@ class RouteGenerator {
           builder: (_) => PINInputPage(),
         );
 
-      case BWRoutes.articleDetailsPage:
+      case BWRoutes.contentDetailPage:
         return MaterialPageRoute<ContentDetailPage>(
           builder: (_) => ContentDetailPage(articleDetails: args as Content),
         );

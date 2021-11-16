@@ -32,6 +32,7 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/auth.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
+import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -548,9 +549,9 @@ final Map<String, Map<String, dynamic>?> loginResponse =
     'terms_accepted': true,
     'userBioData': <String, dynamic>{
       'dateOfBirth': '1996-02-07',
-      'firstName': 'John',
+      'firstName': 'Abiud',
       'gender': 'unknown',
-      'lastName': 'Doe'
+      'lastName': 'Orina'
     },
     'userName': '@suspicious_ishizaka8254254',
     'verifiedIdentifiers': <Map<String, dynamic>>[

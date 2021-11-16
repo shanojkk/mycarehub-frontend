@@ -81,7 +81,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           AppWrapperBase.of(context)!.graphQLClient;
 
       httpClient.idToken = dGraphToken;
-      httpClient.endpoint = dgraphApiEndpoint;
+      httpClient.endpoint = dGraphEndpoint;
 
       final Response httpResponse =
           await httpClient.query(loginQuery, variables);

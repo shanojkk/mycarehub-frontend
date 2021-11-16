@@ -21,6 +21,7 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/auth.dart';
 import 'package:myafyahub/domain/core/value_objects/exception_tag.dart';
+import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';

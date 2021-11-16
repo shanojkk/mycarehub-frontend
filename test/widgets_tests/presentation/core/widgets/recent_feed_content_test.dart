@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:async_redux/async_redux.dart';
@@ -12,9 +13,10 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 // Project imports:
 import 'package:myafyahub/presentation/feed/recent_feed_content.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
-import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/presentation/feed/content_item.dart';
 import 'package:myafyahub/presentation/feed/content_details_page.dart';
+import 'package:http/http.dart' as http;
+
 import '../../../../mock_image_http_client.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
@@ -28,19 +30,28 @@ void main() {
       HttpOverrides.global = TestHttpOverrides();
     });
     testWidgets('should render feed items', (WidgetTester tester) async {
-      final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
-      final List<Content> mockListFeed = <Content>[];
-
-      for (final Map<String, dynamic> element in mockFeed) {
-        mockListFeed.add(Content.fromJson(element));
-      }
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'fetchRecentContent': contentMock,
+            }
+          }),
+          201,
+        ),
+      );
 
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: mockGraphQlClient,
+        client: mockShortSILGraphQlClient,
         widget: const RecentFeedContent(),
       );
+
+      await tester.pumpAndSettle();
 
       // feed items renders correctly
       final Finder feedItem = find.byType(ContentItem);
@@ -53,15 +64,29 @@ void main() {
     });
     testWidgets('View All should navigate to FeedPage',
         (WidgetTester tester) async {
-      final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'fetchRecentContent': contentMock,
+              'fetchSuggestedGroups': mockSuggestions
+            }
+          }),
+          201,
+        ),
+      );
 
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: mockGraphQlClient,
+        client: mockShortSILGraphQlClient,
         widget: const HomePage(),
       );
 
+      await tester.pumpAndSettle();
       final Finder viewAllButton = find.byKey(viewAllButtonKey);
 
       await tester.ensureVisible(viewAllButton);
@@ -73,19 +98,27 @@ void main() {
 
     testWidgets('navigates to feed page when view all is clicked',
         (WidgetTester tester) async {
-      final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
-      final List<Content> mockListFeed = <Content>[];
-
-      for (final Map<String, dynamic> element in mockFeed) {
-        mockListFeed.add(Content.fromJson(element));
-      }
-
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'fetchRecentContent': contentMock,
+            }
+          }),
+          201,
+        ),
+      );
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: mockGraphQlClient,
+        client: mockShortSILGraphQlClient,
         widget: const RecentFeedContent(),
       );
+
+      await tester.pumpAndSettle();
 
       // click view all
       await tester.tap(find.text(viewAllText));

@@ -52,6 +52,12 @@ class _RecentFeedContentState extends State<RecentFeedContent> {
   }
 
   @override
+  void dispose() {
+    _streamController.close();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return StreamBuilder<Object>(
       stream: _stream,

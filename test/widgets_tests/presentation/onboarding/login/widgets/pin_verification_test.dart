@@ -39,7 +39,6 @@ void main() {
     setUpAll(() {
       store = Store<AppState>(initialState: AppState.initial());
     });
-    final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
 
     testWidgets('should render ErrorAlertBox on invalid PIN',
         (WidgetTester tester) async {
@@ -180,11 +179,25 @@ void main() {
     });
 
     testWidgets('should resume with pin', (WidgetTester tester) async {
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'fetchRecentContent': contentMock,
+              'fetchSuggestedGroups': mockSuggestions
+            }
+          }),
+          201,
+        ),
+      );
       mockNetworkImages(() async {
         await buildTestWidget(
           tester: tester,
           store: store,
-          client: mockGraphQlClient,
+          client: mockShortSILGraphQlClient,
           widget: Builder(
             builder: (BuildContext context) {
               StoreProvider.dispatch<AppState>(
@@ -205,8 +218,6 @@ void main() {
             },
           ),
         );
-
-        await tester.pump();
 
         await tester.pumpAndSettle();
         expect(find.byType(TextFormField), findsOneWidget);

@@ -15,9 +15,9 @@ import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart'
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/suggested_group_card_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:myafyahub/presentation/widgets/text_loading_shimmer.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
+import 'package:shared_ui_components/platform_loader.dart';
 
 /// [SuggestedGroupsSection] is a widget used in the Feed Page
 ///
@@ -62,8 +62,9 @@ class _SuggestedGroupsSectionState extends State<SuggestedGroupsSection> {
             snapshot.data['loading'] != null &&
             snapshot.data['loading'] == true) {
           return Container(
-            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-            child: TextLoadingShimmer(),
+            height: 200,
+            padding: const EdgeInsets.all(20),
+            child: const SILPlatformLoader(),
           );
         }
 

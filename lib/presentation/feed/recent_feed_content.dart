@@ -12,7 +12,6 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:myafyahub/presentation/widgets/text_loading_shimmer.dart';
 import 'package:shared_themes/spaces.dart';
 
 // Package imports:
@@ -23,6 +22,7 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/presentation/feed/content_item.dart';
+import 'package:shared_ui_components/platform_loader.dart';
 
 class RecentFeedContent extends StatefulWidget {
   const RecentFeedContent();
@@ -62,8 +62,9 @@ class _RecentFeedContentState extends State<RecentFeedContent> {
             snapshot.data['loading'] != null &&
             snapshot.data['loading'] == true) {
           return Container(
-            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-            child: TextLoadingShimmer(),
+            height: 200,
+            padding: const EdgeInsets.all(20),
+            child: const SILPlatformLoader(),
           );
         }
 

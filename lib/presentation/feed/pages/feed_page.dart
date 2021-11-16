@@ -19,8 +19,8 @@ import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart'
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/feed/content_item.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:myafyahub/presentation/widgets/text_loading_shimmer.dart';
 import 'package:shared_themes/text_themes.dart';
+import 'package:shared_ui_components/platform_loader.dart';
 
 class FeedPage extends StatefulWidget {
   const FeedPage();
@@ -75,8 +75,9 @@ class _FeedPageState extends State<FeedPage> {
                     snapshot.data['loading'] != null &&
                     snapshot.data['loading'] == true) {
                   return Container(
-                    padding: const EdgeInsets.symmetric(vertical: 20),
-                    child: TextLoadingShimmer(),
+                    height: 300,
+                    padding: const EdgeInsets.all(20),
+                    child: const SILPlatformLoader(),
                   );
                 }
 

@@ -16,6 +16,7 @@ import 'package:misc_utilities/refresh_token_manager.dart';
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_response.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
+import 'package:myafyahub/domain/core/value_objects/auth.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:user_feed/user_feed.dart';

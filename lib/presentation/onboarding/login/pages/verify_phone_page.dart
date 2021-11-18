@@ -43,11 +43,11 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
     final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
     final http.Response result = await _client.query(
       sendOTPQuery,
-      sendOTPQueryVariables(
-        userID,
-        phoneNumber,
-        Flavour.CONSUMER,
-      ),
+      <String, dynamic>{
+        'userID': userID,
+        'phoneNumber': phoneNumber,
+        'flavour': Flavour.CONSUMER.name,
+      },
     );
 
     final Map<String, dynamic> data = _client.toMap(result);
@@ -95,7 +95,7 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
   Widget build(BuildContext context) {
     return OnboardingScaffold(
       title: verifyPhoneNumberTitle,
-      description: verifyPhoneNumberDescription,
+      description: verifyPhoneNumberDescription(widget.phoneNumber),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

@@ -1,5 +1,3 @@
-import 'package:user_feed/user_feed.dart';
-
 const String loginQuery = r'''
 query login($phoneNumber: String!, $pin: String!, $flavour: Flavour!) {
   login(flavour: $flavour, phoneNumber: $phoneNumber, pin: $pin) {
@@ -68,35 +66,11 @@ query sendOTP( $userID: String!, $phoneNumber: String!, $flavour: Flavour!) {
 }
 ''';
 
-Map<String, dynamic> sendOTPQueryVariables(
-  String userID,
-  String phoneNumber,
-  Flavour flavour,
-) {
-  return <String, dynamic>{
-    'userID': userID,
-    'phoneNumber': phoneNumber,
-    'flavour': flavour.name,
-  };
-}
-
 const String resendOTPQuery = r'''
 query resendOTP( $userID: String!, $phoneNumber: String!, $flavour: Flavour!) {
   resendOTP(userID: $userID, phoneNumber: $phoneNumber, flavour: $flavour)
 }
 ''';
-
-Map<String, dynamic> resendOTPQueryVariables(
-  String userID,
-  String phoneNumber,
-  Flavour flavour,
-) {
-  return <String, dynamic>{
-    'userID': userID,
-    'phoneNumber': phoneNumber,
-    'flavour': flavour.name,
-  };
-}
 
 const String getSecurityQuestionsQuery = r'''
 query getSecurityQuestions($flavour: Flavour!) {

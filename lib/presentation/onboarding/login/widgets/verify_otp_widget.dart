@@ -11,7 +11,6 @@ import 'package:myafyahub/presentation/core/widgets/pin_input_field_widget.dart'
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_ui_components/src/animated_count.dart';
-import 'package:shared_ui_components/src/constants.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 import 'package:user_feed/user_feed.dart';
 
@@ -127,11 +126,11 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
   }) async {
     final http.Response result = await widget.client.query(
       resendOTPQuery,
-      resendOTPQueryVariables(
-        userID,
-        phoneNumber,
-        Flavour.CONSUMER,
-      ),
+      <String, dynamic>{
+        'userID': userID,
+        'phoneNumber': phoneNumber,
+        'flavour': Flavour.CONSUMER.name,
+      },
     );
 
     final Map<String, dynamic> data = widget.client.toMap(result);
@@ -170,7 +169,7 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
       children: <Widget>[
         smallVerticalSizedBox,
         PINInputField(
-          maxLength: 4,
+          maxLength: 6,
           onDone: (String v) async {
             if (v == otp) {
               toggleLoading();
@@ -180,7 +179,7 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
             }
           },
           onTextChanged: (String v) async {
-            if (v.length == 4) {
+            if (v.length == 6) {
               if (v == otp) {
                 toggleLoading();
                 Future<void>.delayed(const Duration(seconds: 3), () {
@@ -204,10 +203,7 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
           if (!canResend)
             Column(
               children: <Widget>[
-                Text(
-                  anOtpHasBeenSentText(widget.phoneNo),
-                ),
-                smallVerticalSizedBox,
+                Text(dintReceiveAcodeText),
                 AnimatedCount(
                   count: resendTimeout,
                   duration: Duration.zero,
@@ -218,7 +214,7 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
             MyAfyaHubPrimaryButton(
               buttonKey: resendOtpButtonKey,
               customRadius: 4,
-              text: sendCodeAgain,
+              text: resendCodeString,
               textColor: AppColors.whiteColor,
               buttonColor: AppColors.secondaryColor,
               borderColor: Theme.of(context).primaryColor,

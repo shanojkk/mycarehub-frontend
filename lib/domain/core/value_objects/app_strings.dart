@@ -360,14 +360,16 @@ const String imageFileString = 'Image file';
 
 //Verify phone number page
 const String verifyPhoneNumberTitle = 'Verify phone number';
-const String verifyPhoneNumberDescription =
-    'A one time password has been sent to your phone';
+String verifyPhoneNumberDescription(String phoneNumber) {
+  return 'A one time pin has been sent to $phoneNumber';
+}
+
+const String resendCodeString = 'Resend code';
+
 const String enterOTPString = 'Enter OTP to proceed';
 const String confirmOTPButtonString = 'Confirm OTP';
 const String invalidOTPString = 'Invalid OTP *';
-String anOtpHasBeenSentText(String phoneNumber) {
-  return 'An OTP has been sent to $phoneNumber';
-}
+String dintReceiveAcodeText = 'Din\'t receive a code ? ';
 
 const String verifyOTPState = 'verifyOTPState';
 

@@ -1,7 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-
 // Package imports:
 import 'package:pin_code_text_field/pin_code_text_field.dart';
 
@@ -17,8 +16,8 @@ class PINInputField extends StatelessWidget {
     this.onTextChanged,
     this.autoFocus = false,
     this.wrapAlignment = WrapAlignment.spaceBetween,
-    this.pinBoxHeight = 50.0,
-    this.pinBoxWidth = 50.0,
+    this.pinBoxHeight = 45.0,
+    this.pinBoxWidth = 40.0,
     this.controller,
     this.keyboardType = TextInputType.number,
     this.focusNode,

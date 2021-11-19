@@ -17,7 +17,6 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:misc_utilities/misc.dart';
-import 'package:misc_utilities/number_constants.dart';
 import 'package:misc_utilities/refresh_token_manager.dart';
 
 // Project imports:
@@ -56,17 +55,6 @@ import 'package:user_feed/user_feed.dart';
 
 Future<bool> onWillPopCallback() {
   return Future<bool>.value(false);
-}
-
-Gender genderFromString(String g) {
-  if (g.toLowerCase() == Gender.male.name.toLowerCase()) {
-    return Gender.male;
-  }
-  if (g.toLowerCase() == Gender.female.name.toLowerCase()) {
-    return Gender.female;
-  }
-
-  return Gender.unknown;
 }
 
 AppSetupData getAppSetupData(AppContext context) {
@@ -259,27 +247,6 @@ void genericBottomSheet({
       );
     },
   );
-}
-
-/// [preferredPaddingOnStretchedScreens] function is used to calculate give a
-/// constant size in width of the items to be displayed on the screen
-/// First it gets the width of the device
-/// Subtracts `420` which is a one size fit all constant for widgets on a
-///  stretched view/display
-/// The difference is then divided by `2` to get the size that will be feed to
-/// our padding so that the widgets take up a width of `420`
-double preferredPaddingOnStretchedScreens({required BuildContext context}) {
-  final double deviceWidth = MediaQuery.of(context).size.width;
-  if (deviceWidth >= number420) {
-    final double paddingSize = (deviceWidth - number420) / number2;
-
-    if (paddingSize <= number15) {
-      return number15;
-    }
-    return paddingSize;
-  } else {
-    return number15;
-  }
 }
 
 String sentenceCaseUserName({
@@ -761,31 +728,6 @@ Future<void> customFetchData({
       ? streamController.add(payLoad['data'])
       : streamController.add(null);
 }
-
-Future<ProcessedResponse> requestForANewToken({
-  required List<AppContext> thisAppContexts,
-  required String refreshToken,
-  required BuildContext context,
-}) async {
-  final IGraphQlClient _httpClient = AppWrapperBase.of(context)!.graphQLClient;
-  final String refreshTokenEndpoint =
-      AppWrapperBase.of(context)!.customContext!.refreshTokenEndpoint;
-
-  final Map<String, dynamic> refreshTokenVariables = <String, dynamic>{
-    'refreshToken': refreshToken,
-    'appVersion': APPVERSION,
-  };
-
-  return processHttpResponse(
-    await _httpClient.callRESTAPI(
-      endpoint: refreshTokenEndpoint,
-      method: 'POST',
-      variables: refreshTokenVariables,
-    ),
-    context,
-  );
-}
-
 void refreshTokenAndUpdateState({
   required bool value,
   required bool signedIn,

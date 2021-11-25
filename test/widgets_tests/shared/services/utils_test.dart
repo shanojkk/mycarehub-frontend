@@ -25,7 +25,6 @@ import 'package:myafyahub/application/redux/actions/update_user_profile_action.d
 import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
 
-import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
@@ -835,79 +834,80 @@ void main() {
     });
   });
 
-  testWidgets('refreshTokenAndUpdateState should not get a new token',
-      (WidgetTester tester) async {
-    final Store<AppState> store =
-        Store<AppState>(initialState: AppState.initial());
+  // testWidgets('refreshTokenAndUpdateState should not get a new token',
+  //     (WidgetTester tester) async {
+  //   final Store<AppState> store =
+  //       Store<AppState>(initialState: AppState.initial());
 
-    const String refreshToken = 'hjshdkjf8knmskdj-sujhjhs89j';
+  //   const String refreshToken = 'hjshdkjf8knmskdj-sujhjhs89j';
 
-    await tester.runAsync(() async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: baseGraphQlClientMock,
-        widget: Builder(
-          builder: (BuildContext context) {
-            return SILPrimaryButton(
-              onPressed: () async {
-                refreshTokenAndUpdateState(
-                  context: context,
-                  signedIn: true,
-                  value: false,
-                  refreshToken: refreshToken,
-                  appContexts: testAppContexts,
-                );
-              },
-            );
-          },
-        ),
-      );
+  //   await tester.runAsync(() async {
+  //     await buildTestWidget(
+  //       tester: tester,
+  //       store: store,
+  //       client: baseGraphQlClientMock,
+  //       widget: Builder(
+  //         builder: (BuildContext context) {
+  //           return SILPrimaryButton(
+  //             onPressed: () async {
+  //               refreshTokenAndUpdateState(
+  //                 context: context,
+  //                 signedIn: true,
+  //                 value: false,
+  //                 refreshToken: refreshToken,
+  //                 appContexts: testAppContexts,
+  //               );
+  //             },
+  //           );
+  //         },
+  //       ),
+  //     );
 
-      await tester.pump();
+  //     await tester.pump();
 
-      await tester.tap(find.byType(SILPrimaryButton));
-      await tester.pumpAndSettle();
-      expect(store.state.credentials!.refreshToken, UNKNOWN);
-    });
-  });
+  //     await tester.tap(find.byType(SILPrimaryButton));
+  //     await tester.pumpAndSettle();
+  //     expect(store.state.credentials!.refreshToken, UNKNOWN);
+  //   });
+  // });
 
-  testWidgets('refreshTokenAndUpdateState should fail to get a new token',
-      (WidgetTester tester) async {
-    final Store<AppState> store =
-        Store<AppState>(initialState: AppState.initial());
+  // testWidgets('refreshTokenAndUpdateState should fail to get a new token',
+  //     (WidgetTester tester) async {
+  //   final Store<AppState> store =
+  //       Store<AppState>(initialState: AppState.initial());
 
-    const String refreshToken = 'hjshdkjf8knmskdj-sujhjhs89j';
+  //   const String refreshToken = 'hjshdkjf8knmskdj-sujhjhs89j';
 
-    await tester.runAsync(() async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: baseGraphQlClientMock,
-        widget: Builder(
-          builder: (BuildContext context) {
-            return SILPrimaryButton(
-              onPressed: () async {
-                refreshTokenAndUpdateState(
-                  context: context,
-                  signedIn: false,
-                  value: true,
-                  refreshToken: refreshToken,
-                  appContexts: testAppContexts,
-                );
-              },
-            );
-          },
-        ),
-      );
+  //   await tester.runAsync(() async {
+  //     await buildTestWidget(
+  //       tester: tester,
+  //       store: store,
+  //       client: baseGraphQlClientMock,
+  //       widget: Builder(
+  //         builder: (BuildContext context) {
+  //           return SILPrimaryButton(
+  //             onPressed: () async {
+  //               refreshTokenAndUpdateState(
+  //                 context: context,
+  //                 signedIn: false,
+  //                 value: true,
+  //                 refreshToken: refreshToken,
+  //                 appContexts: testAppContexts,
+  //               );
+  //             },
+  //           );
+  //         },
+  //       ),
+  //     );
 
-      await tester.pump();
+  //     await tester.pump();
 
-      await tester.tap(find.byType(SILPrimaryButton));
-      await tester.pumpAndSettle();
-      expect(store.state.credentials!.refreshToken, UNKNOWN);
-    });
-  });
+  //     await tester.tap(find.byType(SILPrimaryButton));
+  //     await tester.pumpAndSettle();
+  //     expect(store.state.credentials!.refreshToken, UNKNOWN);
+  //   });
+  // });
+
   testWidgets('congratulationsPageTitle should return the correct message',
       (WidgetTester tester) async {
     final Store<AppState> store =

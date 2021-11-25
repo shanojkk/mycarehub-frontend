@@ -51,7 +51,7 @@ class _FeedPageState extends State<FeedPage> {
         logTitle: 'Fetch content',
         queryString: getContentQuery,
         variables: <String, dynamic>{
-          'categoryID': 1,
+          // 'categoryID': 1,
           'Limit': '10',
         },
       );
@@ -117,7 +117,7 @@ class _FeedPageState extends State<FeedPage> {
                         logTitle: 'Fetch recent content',
                         queryString: getContentQuery,
                         variables: <String, dynamic>{
-                          'categoryID': 1,
+                          // 'categoryID': 1,
                           'Limit': '10',
                         },
                       );
@@ -210,10 +210,7 @@ class _FeedPageState extends State<FeedPage> {
                     context: context,
                     logTitle: 'Fetch recent content',
                     queryString: getContentQuery,
-                    variables: <String, dynamic>{
-                      'categoryID': 1,
-                      'Limit': '10',
-                    },
+                    variables: <String, dynamic>{'Limit': '10'},
                   );
                 });
               },

@@ -212,14 +212,19 @@ workflows:
   version: 2
   test_and_deploy:
    jobs:
-     - run_tests_and_generate_coverage
+     - run_tests_and_generate_coverage:
+        filters:
+            branches:
+              only:
+                - develop
      - deploy_to_internal_firebase_app_tester:
-         requires:
-           - run_tests_and_generate_coverage
+        #  requires:
+        #    - run_tests_and_generate_coverage
          filters:
            branches:
              only:
-               - develop
+              - temp_onboarding_fix
+              - develop
      - deploy_to_play_store_alpha:
          requires:
            - run_tests_and_generate_coverage

@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:misc_utilities/refresh_token_manager.dart';
 import 'package:myafyahub/application/redux/actions/check_connectivity_action.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
@@ -53,33 +52,33 @@ class PreLoadApp extends StatefulWidget with WidgetsBindingObserver {
 class _PreLoadAppState extends State<PreLoadApp> {
   BehaviorSubject<String> appInitialRoute = BehaviorSubject<String>();
 
-  StreamSubscription<bool>? _connectivitySub;
+  // StreamSubscription<bool>? _connectivitySub;
 
   @override
   void initState() {
     super.initState();
-    _connectivitySub = widget.connectivityStatus
-        .checkConnection()
-        .asStream()
-        .mergeWith(
-          <Stream<bool>>[widget.connectivityStatus.onConnectivityChanged],
-        )
-        .distinct()
-        .listen((bool hasConnection) {
-          connectivityChanged(hasConnection: hasConnection);
-        });
+    // _connectivitySub = widget.connectivityStatus
+    //     .checkConnection()
+    //     .asStream()
+    //     .mergeWith(
+    //       <Stream<bool>>[widget.connectivityStatus.onConnectivityChanged],
+    //     )
+    //     .distinct()
+    //     .listen((bool hasConnection) {
+    //       connectivityChanged(hasConnection: hasConnection);
+    //     });
   }
 
-  void connectivityChanged({required bool hasConnection}) {
-    StoreProvider.dispatch<AppState>(
-      context,
-      UpdateConnectivityAction(hasConnection: hasConnection),
-    );
+  // void connectivityChanged({required bool hasConnection}) {
+  //   StoreProvider.dispatch<AppState>(
+  //     context,
+  //     UpdateConnectivityAction(hasConnection: hasConnection),
+  //   );
 
-    if (!hasConnection) {
-      showToast(connectionLostText);
-    }
-  }
+  //   if (!hasConnection) {
+  //     showToast(connectionLostText);
+  //   }
+  // }
 
   @override
   void didChangeDependencies() {
@@ -97,7 +96,7 @@ class _PreLoadAppState extends State<PreLoadApp> {
 
   @override
   void dispose() {
-    _connectivitySub?.cancel();
+    // _connectivitySub?.cancel();
     super.dispose();
   }
 
@@ -114,16 +113,15 @@ class _PreLoadAppState extends State<PreLoadApp> {
           return StreamBuilder<String>(
             stream: appInitialRoute.stream,
             builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-              // listen for token expiry here
-              RefreshTokenManger().listen.listen((dynamic value) {
-                refreshTokenAndUpdateState(
-                  value: value as bool,
-                  context: context,
-                  appContexts: widget.thisAppContexts,
-                  signedIn: widget.appState.credentials!.isSignedIn!,
-                  refreshToken: widget.appState.credentials!.refreshToken!,
-                );
-              });
+              // TODO: should fix this functionality
+              // RefreshTokenManger().listen.listen((dynamic value) {});
+              // refreshTokenAndUpdateState(
+              //     value: value as bool,
+              //     context: context,
+              //     appContexts: widget.thisAppContexts,
+              //     signedIn: widget.appState.credentials!.isSignedIn!,
+              //     refreshToken: widget.appState.credentials!.refreshToken!,
+              //   );
 
               if (snapshot.data == null) {
                 return MaterialApp(

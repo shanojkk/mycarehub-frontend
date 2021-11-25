@@ -6,7 +6,7 @@ enum AppErrorType { UserFeedError }
 
 enum UserType { normal, anonymous }
 
-enum AuthTokenStatus { okay, requiresLogin, requiresPin }
+enum AuthTokenStatus { okay, requiresLogin }
 
 /// [BorderRadiusSides] helps determine the exact side the border radius
 /// for widgets should be set

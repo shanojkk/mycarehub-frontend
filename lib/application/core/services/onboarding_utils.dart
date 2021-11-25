@@ -15,7 +15,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:misc_utilities/misc.dart';
-import 'package:misc_utilities/refresh_token_manager.dart';
 import 'package:misc_utilities/string_constant.dart';
 import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/core/services/datatime_parser.dart';
@@ -25,7 +24,6 @@ import 'package:myafyahub/application/redux/actions/create_pin_action.dart';
 import 'package:myafyahub/application/redux/actions/create_pin_state_action.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
 import 'package:myafyahub/application/redux/actions/set_nickname_action.dart';
-import 'package:myafyahub/application/redux/actions/update_credentials_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -361,7 +359,9 @@ OnboardingPathConfig onboardingPath({
   } else if (!termsAccepted) {
     return OnboardingPathConfig(BWRoutes.termsAndConditions);
   } else if (!hasSetSecurityQuestions) {
-    return OnboardingPathConfig(BWRoutes.securityQuestionsPage);
+    return OnboardingPathConfig(BWRoutes.createPin);
+    // TODO (john): temporarily skip security questions until fixed
+    // return OnboardingPathConfig(BWRoutes.securityQuestionsPage);
   } else if (!isPINSet) {
     return OnboardingPathConfig(BWRoutes.createPin);
   } else if (!hasSetNickName) {
@@ -421,38 +421,41 @@ Future<String> getInitialRoute(
   List<AppContext> thisAppContexts,
 ) async {
   if (appState.credentials!.isSignedIn!) {
-    final AuthTokenStatus checkTokenStatusResult = await checkTokenStatus(
-      context: context,
-      credentials: appState.credentials,
-      thisAppContexts: thisAppContexts,
-    );
+    // TODO: investigate why this is not working
 
-    if (checkTokenStatusResult == AuthTokenStatus.requiresLogin ||
-        checkTokenStatusResult == AuthTokenStatus.requiresPin) {
-      StoreProvider.dispatch(
-        context,
-        UpdateCredentialsAction(isSignedIn: false),
-      );
+    // final AuthTokenStatus checkTokenStatusResult = await checkTokenStatus(
+    //   context: context,
+    //   credentials: appState.credentials,
+    //   thisAppContexts: thisAppContexts,
+    // );
 
-      return BWRoutes.phoneLogin;
-    }
+    // if (checkTokenStatusResult == AuthTokenStatus.requiresLogin) {
+    //   StoreProvider.dispatch(
+    //     context,
+    //     UpdateCredentialsAction(isSignedIn: false),
+    //   );
 
-    final OnboardingPathConfig pathConfig = onboardingPath(
-      appState: appState,
-      calledOnResume: true,
-    );
+    //   return BWRoutes.phoneLogin;
+    // }
 
-    final DateTimeParser dateTimeParser = DateTimeParser();
-    final int expiresIn = int.parse(appState.credentials?.expiresIn ?? '0');
-    final String tokenExpiryDateString =
-        dateTimeParser.parsedExpireAt(expiresIn);
+    // final OnboardingPathConfig pathConfig = onboardingPath(
+    //   appState: appState,
+    //   calledOnResume: true,
+    // );
 
-    final String parsedExpiresAt =
-        DateTime.parse(tokenExpiryDateString).toIso8601String();
+    // final DateTimeParser dateTimeParser = DateTimeParser();
+    // final int expiresIn = int.parse(appState.credentials?.expiresIn ?? '0');
+    // final String tokenExpiryDateString =
+    //     dateTimeParser.parsedExpireAt(expiresIn);
 
-    RefreshTokenManger().updateExpireTime(parsedExpiresAt).reset();
+    // final String parsedExpiresAt =
+    //     DateTime.parse(tokenExpiryDateString).toIso8601String();
 
-    return pathConfig.route;
+    // RefreshTokenManger().updateExpireTime(parsedExpiresAt).reset();
+
+    // return pathConfig.route;
+
+    return BWRoutes.home;
   }
 
   return BWRoutes.phoneLogin;

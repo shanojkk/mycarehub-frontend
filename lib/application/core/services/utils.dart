@@ -20,7 +20,6 @@ import 'package:misc_utilities/misc.dart';
 import 'package:misc_utilities/refresh_token_manager.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
-import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/health_page_pin_input_action.dart';
 import 'package:myafyahub/application/redux/actions/logout_action.dart';
 import 'package:myafyahub/application/redux/actions/manage_token_action.dart';
@@ -759,31 +758,31 @@ Future<void> customFetchData({
       : streamController.add(null);
 }
 
-void refreshTokenAndUpdateState({
-  required bool value,
-  required bool signedIn,
-  required BuildContext context,
-  required List<AppContext> appContexts,
-  required String refreshToken,
-}) {
-  if (value) {
-    // check if user is logged in
-    if (signedIn) {
-      // request for a new token
-      requestForANewToken(
-        context: context,
-        thisAppContexts: appContexts,
-        refreshToken: refreshToken,
-      ).then((ProcessedResponse response) {
-        //check if the request was successful
-        if (response.ok) {
-          // update state with the new token
-          updateStateAuth(context: context, processedResponse: response);
-        }
-      });
-    }
-  }
-}
+// void refreshTokenAndUpdateState({
+//   required bool value,
+//   required bool signedIn,
+//   required BuildContext context,
+//   required List<AppContext> appContexts,
+//   required String refreshToken,
+// }) {
+//   if (value) {
+//     // check if user is logged in
+//     if (signedIn) {
+//       // request for a new token
+//       requestForANewToken(
+//         context: context,
+//         thisAppContexts: appContexts,
+//         refreshToken: refreshToken,
+//       ).then((ProcessedResponse response) {
+//         //check if the request was successful
+//         if (response.ok) {
+//           // update state with the new token
+//           updateStateAuth(context: context, processedResponse: response);
+//         }
+//       });
+//     }
+//   }
+// }
 
 bool updateStateAuth({
   required ProcessedResponse processedResponse,

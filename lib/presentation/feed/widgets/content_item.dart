@@ -51,14 +51,14 @@ class ContentItem extends StatelessWidget {
                         children: <Widget>[
                           Container(
                             height: 170.0,
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                               image: DecorationImage(
                                 fit: BoxFit.cover,
-                                //TODO:(eugene) revert after urls are updated
-                                // image: NetworkImage(contentDetails.heroImage!.url!),
-                                image: AssetImage(feedImage3),
+                                image: NetworkImage(
+                                  contentDetails.heroImage!.url!,
+                                ),
                               ),
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 topRight: Radius.circular(7.0),
                                 topLeft: Radius.circular(7.0),
                               ),

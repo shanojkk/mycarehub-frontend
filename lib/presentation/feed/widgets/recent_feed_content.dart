@@ -49,7 +49,7 @@ class _RecentFeedContentState extends State<RecentFeedContent> {
         logTitle: 'Fetch content',
         queryString: getContentQuery,
         variables: <String, dynamic>{
-          'categoryID': 1,
+          'categoryID': 2,
           'Limit': '5',
         },
       );
@@ -111,7 +111,7 @@ class _RecentFeedContentState extends State<RecentFeedContent> {
                 logTitle: 'Fetch content',
                 queryString: getContentQuery,
                 variables: <String, dynamic>{
-                  'categoryID': 1,
+                  'categoryID': 2,
                   'Limit': '10',
                 },
               );
@@ -168,7 +168,7 @@ class _RecentFeedContentState extends State<RecentFeedContent> {
                     ),
                     SizedBox(
                       width: double.infinity,
-                      height: MediaQuery.of(context).size.height / 3,
+                      height: 280,
                       child: ListView.builder(
                         physics: const BouncingScrollPhysics(),
                         shrinkWrap: true,

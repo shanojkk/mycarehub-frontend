@@ -528,7 +528,7 @@ void main() {
 
       await tester.pump();
       expect(find.byType(Row), findsOneWidget);
-      expect(find.text('27 February 2012'), findsOneWidget);
+      expect(find.text('27 Feb 2012'), findsOneWidget);
       expect(find.text('at '), findsOneWidget);
       expect(find.text('1:27 PM'), findsOneWidget);
     });
@@ -552,7 +552,7 @@ void main() {
 
       await tester.pump();
       expect(find.byType(Row), findsOneWidget);
-      expect(find.text('27 February 2012'), findsOneWidget);
+      expect(find.text('27 Feb 2012'), findsOneWidget);
       expect(find.text('at '), findsNothing);
       expect(find.byType(SizedBox), findsWidgets);
     });

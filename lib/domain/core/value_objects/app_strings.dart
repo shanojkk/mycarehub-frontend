@@ -518,7 +518,8 @@ const String myHealthDiaryString = 'My Health Diary';
 const String nickNameString = 'Nickname';
 const String editString = 'Edit';
 const String settingsPageTitle = 'Settings';
-const String saveString = 'save';
+const String saveString = 'Save';
+const String savedString = 'Saved';
 
 //Feedback Page
 const String feedbackString = 'Feedback';

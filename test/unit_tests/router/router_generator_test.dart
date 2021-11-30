@@ -231,7 +231,7 @@ void main() {
   });
 
   test('Test router returns  FeedPage', () {
-    const RouteSettings settings = RouteSettings(name: BWRoutes.feedPage);
+    const RouteSettings settings = RouteSettings(name: BWRoutes.contentPage);
 
     final MaterialPageRoute<FeedPage> route =
         routeGenerator(settings) as MaterialPageRoute<FeedPage>;

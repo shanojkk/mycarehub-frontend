@@ -153,7 +153,7 @@ class _RecentContentWidgetState extends State<RecentContentWidget> {
                             onTap: () {
                               navigateToNewPage(
                                 context: context,
-                                route: BWRoutes.feedPage,
+                                route: BWRoutes.contentPage,
                                 bottomNavIndex: 1,
                               );
                             },

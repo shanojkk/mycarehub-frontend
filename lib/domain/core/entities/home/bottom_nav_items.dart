@@ -30,7 +30,7 @@ List<BottomNavItem> bottomNavItems = <BottomNavItem>[
   BottomNavItem(
     iconUrl: feedIconSvgPath,
     text: 'Feed',
-    onTapRoute: BWRoutes.feedPage,
+    onTapRoute: BWRoutes.contentPage,
     index: BottomNavIndex.feed.index,
   ),
   BottomNavItem(

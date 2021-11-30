@@ -160,7 +160,7 @@ class RouteGenerator {
           builder: (_) => SavedPostPage(),
         );
 
-      case BWRoutes.feedPage:
+      case BWRoutes.contentPage:
         return MaterialPageRoute<FeedPage>(
           builder: (_) => const FeedPage(),
         );

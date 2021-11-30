@@ -78,8 +78,8 @@ void main() {
               'data': <String, dynamic>{
                 'getContent': <String, dynamic>{
                   'items': <dynamic>[
-                    mockContent,
-                    mockContent,
+                    contentMock[0],
+                    contentMock[0],
                   ]
                 },
                 'fetchSuggestedGroups': <dynamic>[mockGroup]
@@ -95,12 +95,14 @@ void main() {
                 DateTime.now().subtract(const Duration(minutes: 30)).toString(),
           ),
         );
+
         store.dispatch(
           HealthPagePINInputAction(
             lastPINInputTime:
                 DateTime.now().subtract(const Duration(minutes: 30)).toString(),
           ),
         );
+
         await buildTestWidget(
           tester: tester,
           store: store,

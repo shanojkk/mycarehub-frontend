@@ -15,7 +15,7 @@ import 'package:myafyahub/presentation/content/widgets/save_feed_item_widget.dar
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
-// Project imports:
+// Project imports
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';

@@ -20,8 +20,10 @@ HomeState _$HomeStateFromJson(Map<String, dynamic> json) {
 class _$HomeStateTearOff {
   const _$HomeStateTearOff();
 
-  _HomeState call() {
-    return _HomeState();
+  _HomeState call({bool? canRecordMood}) {
+    return _HomeState(
+      canRecordMood: canRecordMood,
+    );
   }
 
   HomeState fromJson(Map<String, Object> json) {
@@ -34,13 +36,19 @@ const $HomeState = _$HomeStateTearOff();
 
 /// @nodoc
 mixin _$HomeState {
+  bool? get canRecordMood => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $HomeStateCopyWith<HomeState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res>;
+  $Res call({bool? canRecordMood});
 }
 
 /// @nodoc
@@ -50,13 +58,27 @@ class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
   final HomeState _value;
   // ignore: unused_field
   final $Res Function(HomeState) _then;
+
+  @override
+  $Res call({
+    Object? canRecordMood = freezed,
+  }) {
+    return _then(_value.copyWith(
+      canRecordMood: canRecordMood == freezed
+          ? _value.canRecordMood
+          : canRecordMood // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
 }
 
 /// @nodoc
-abstract class _$HomeStateCopyWith<$Res> {
+abstract class _$HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
   factory _$HomeStateCopyWith(
           _HomeState value, $Res Function(_HomeState) then) =
       __$HomeStateCopyWithImpl<$Res>;
+  @override
+  $Res call({bool? canRecordMood});
 }
 
 /// @nodoc
@@ -67,28 +89,53 @@ class __$HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
 
   @override
   _HomeState get _value => super._value as _HomeState;
+
+  @override
+  $Res call({
+    Object? canRecordMood = freezed,
+  }) {
+    return _then(_HomeState(
+      canRecordMood: canRecordMood == freezed
+          ? _value.canRecordMood
+          : canRecordMood // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$_HomeState implements _HomeState {
-  _$_HomeState();
+  _$_HomeState({this.canRecordMood});
 
   factory _$_HomeState.fromJson(Map<String, dynamic> json) =>
       _$_$_HomeStateFromJson(json);
 
   @override
+  final bool? canRecordMood;
+
+  @override
   String toString() {
-    return 'HomeState()';
+    return 'HomeState(canRecordMood: $canRecordMood)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _HomeState);
+    return identical(this, other) ||
+        (other is _HomeState &&
+            (identical(other.canRecordMood, canRecordMood) ||
+                const DeepCollectionEquality()
+                    .equals(other.canRecordMood, canRecordMood)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(canRecordMood);
+
+  @JsonKey(ignore: true)
+  @override
+  _$HomeStateCopyWith<_HomeState> get copyWith =>
+      __$HomeStateCopyWithImpl<_HomeState>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -97,8 +144,15 @@ class _$_HomeState implements _HomeState {
 }
 
 abstract class _HomeState implements HomeState {
-  factory _HomeState() = _$_HomeState;
+  factory _HomeState({bool? canRecordMood}) = _$_HomeState;
 
   factory _HomeState.fromJson(Map<String, dynamic> json) =
       _$_HomeState.fromJson;
+
+  @override
+  bool? get canRecordMood => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$HomeStateCopyWith<_HomeState> get copyWith =>
+      throw _privateConstructorUsedError;
 }

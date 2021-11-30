@@ -6,14 +6,17 @@ part 'home_state.g.dart';
 
 @freezed
 class HomeState with _$HomeState {
-  factory HomeState() = _HomeState;
+  factory HomeState({
+    bool? canRecordMood,
+  }) = _HomeState;
 
   factory HomeState.fromJson(Map<String, dynamic> json) =>
       _$HomeStateFromJson(json);
 
   factory HomeState.initial() => HomeState(
+        canRecordMood: false,
 
-      ///   - RecentContentState
-      ///   - SuggestedGroupsState
+        ///   - RecentContentState
+        ///   - SuggestedGroupsState
       );
 }

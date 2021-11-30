@@ -12,6 +12,9 @@ const String fetchUserFeedFlag = 'fetch_user_feed_flag';
 const String getTermsFlag = 'get_terms_flag';
 const String acceptTermsFlag = 'accept_terms_flag';
 
+// Home page
+const String canRecordMoodFlag = 'can_record_mood_flag';
+
 //Security Questions
 const String getSecurityQuestionsFlag = 'get_security_questions';
 const String recordSecurityQuestionsFlag = 'record_security_questions_flag';

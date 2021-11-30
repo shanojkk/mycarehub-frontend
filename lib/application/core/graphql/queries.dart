@@ -10,6 +10,12 @@ query listContentCategories{
 }
 ''';
 
+const String canRecordMoodQuery = r'''
+query canrecordmood($clientID: String!){
+  canRecordMood(clientID:$clientID )
+}
+''';
+
 const String resumeWithPinQuery = r'''
 query resumeWithPhoneAndPin($pin: String!) {
    resumeWithPIN(pin: $pin)

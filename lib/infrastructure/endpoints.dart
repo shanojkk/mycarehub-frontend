@@ -3,6 +3,8 @@ const String kTestGraphqlEndpoint =
     'https://gateway.test.savannahghi.org/graphql';
 const String kTestLoginByPhoneEndpoint =
     'https://mycarehub-testing.savannahghi.org/login_by_phone';
+const String kTestResetPinEndpoint =
+    'https://mycarehub-testing.savannahghi.org/reset_pin';
 const String kTestPinResetEndpoint =
     'https://mycarehub-testing.savannahghi.org/request_pin_reset';
 const String kTestUpdateUserPinEndpoint =
@@ -36,6 +38,8 @@ const String dGraphEndpoint =
 const String kProdGraphqlEndpoint = 'https://gateway.savannahghi.org/graphql';
 const String kProdLoginByPhoneEndpoint =
     'https://mycarehub-prod.savannahghi.org/login_by_phone';
+const String kProdResetPinEndpoint =
+    'https://mycarehub-testing.savannahghi.org/reset_pin';
 const String kProdPinResetEndpoint =
     'https://mycarehub-prod.savannahghi.org/request_pin_reset';
 const String kProdUpdateUserPinEndpoint =

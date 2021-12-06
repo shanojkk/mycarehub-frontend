@@ -1,18 +1,15 @@
 // Dart imports:
 import 'dart:convert';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/failures.dart';
 import 'package:domain_objects/value_objects.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
-import 'package:user_feed/user_feed.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
@@ -22,6 +19,7 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:user_feed/user_feed.dart';
 
 class SendOTPAction extends ReduxAction<AppState> {
   SendOTPAction({
@@ -59,14 +57,9 @@ class SendOTPAction extends ReduxAction<AppState> {
     final String phoneNumber =
         state.clientState!.user!.primaryContact!.value ?? UNKNOWN;
 
+    final bool isResetPin = state.onboardingState?.isResetPin ?? false;
+
     if (phoneNumber != UNKNOWN) {
-      final String sendOTPEndpoint = AppWrapperBase.of(context)!
-          .customContext!
-          .sendRecoverAccountOtpEndpoint;
-
-      final String reSendOTPEndpoint =
-          AppWrapperBase.of(context)!.customContext!.retryResendOtpEndpoint;
-
       final Map<String, dynamic> variables = <String, dynamic>{
         'phoneNumber': phoneNumber,
         'flavour': Flavour.CONSUMER.name,
@@ -79,7 +72,11 @@ class SendOTPAction extends ReduxAction<AppState> {
       dispatch(UpdateOnboardingStateAction(failedToSendOTP: false));
 
       final Response httpResponse = await httpClient.callRESTAPI(
-        endpoint: isResend ? reSendOTPEndpoint : sendOTPEndpoint,
+        endpoint: requestOTP(
+          context: context,
+          isResend: isResend,
+          isResetPin: isResetPin,
+        ),
         method: httpPOST,
         variables: variables,
       );

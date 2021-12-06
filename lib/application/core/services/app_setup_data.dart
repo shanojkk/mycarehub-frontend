@@ -1,14 +1,12 @@
 // Flutter imports:
-import 'package:flutter/foundation.dart';
-
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart' show AppContext, BaseContext;
+import 'package:flutter/foundation.dart';
 import 'package:flutter_config/flutter_config.dart';
-import 'package:quiver/core.dart';
-
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
+import 'package:quiver/core.dart';
 
 class AppSetupData {
   final List<AppContext> appContexts;
@@ -47,6 +45,7 @@ final AppSetupData devAppSetupData = AppSetupData(
     sendContactVerificationOTPEndpoint: '',
     sendRecoverAccountOtpEndpoint: kTestSendRecoverAccountOtpEndpoint,
     loginByPhoneEndpoint: kTestLoginByPhoneEndpoint,
+    resetPinEndpoint: kTestResetPinEndpoint,
     updateUserPinEndpoint: kTestUpdateUserPinEndpoint,
     uploadFileEndPoint: kTestUploadFileEndPoint,
     createUserByPhoneEndpoint: kTestCreateUserByPhoneEndpoint,
@@ -70,6 +69,7 @@ final AppSetupData prodAppSetupData = AppSetupData(
     sendContactVerificationOTPEndpoint: '',
     sendRecoverAccountOtpEndpoint: kProdSendRecoverAccountOtpEndpoint,
     loginByPhoneEndpoint: kProdLoginByPhoneEndpoint,
+    resetPinEndpoint: kProdResetPinEndpoint,
     updateUserPinEndpoint: kProdUpdateUserPinEndpoint,
     uploadFileEndPoint: kProdUploadFileEndPoint,
     createUserByPhoneEndpoint: kProdCreateUserByPhoneEndpoint,

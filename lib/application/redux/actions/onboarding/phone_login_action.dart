@@ -23,6 +23,7 @@ import 'package:myafyahub/application/redux/actions/update_onboarding_state_acti
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
+import 'package:myafyahub/domain/core/entities/core/contact.dart';
 import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/entities/home/bottom_nav_items.dart';
@@ -80,6 +81,14 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         'pin': pin,
         'flavour': Flavour.CONSUMER.name,
       };
+
+      dispatch(
+        UpdateUserAction(
+          user: User.initial().copyWith(
+            primaryContact: Contact.initial().copyWith(value: phoneNumber),
+          ),
+        ),
+      );
 
       final IGraphQlClient httpClient =
           AppWrapperBase.of(context)!.graphQLClient;

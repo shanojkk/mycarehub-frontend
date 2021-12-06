@@ -746,6 +746,22 @@ String genderToJson(Gender? gender) {
   return gender?.name ?? Gender.unknown.name;
 }
 
+String requestOTP({
+  required BuildContext context,
+  required bool isResend,
+  required bool isResetPin,
+}) {
+  if (isResetPin) {
+    return AppWrapperBase.of(context)!.customContext!.pinResetEndpoint;
+  } else {
+    return isResend
+        ? AppWrapperBase.of(context)!.customContext!.retryResendOtpEndpoint
+        : AppWrapperBase.of(context)!
+            .customContext!
+            .sendRecoverAccountOtpEndpoint;
+  }
+}
+
 void navigateToNewPage({
   required BuildContext context,
   required String route,

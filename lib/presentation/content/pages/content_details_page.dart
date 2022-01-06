@@ -181,7 +181,6 @@ class ContentDetailPage extends StatelessWidget {
                       children: <Widget>[
                         LikeContentWidget(
                           contentID: payload.content.contentID ?? 0,
-                          likeCount: payload.content.likeCount ?? 0,
                           key: likeButtonKey,
                         ),
                         ShareContentWidget(

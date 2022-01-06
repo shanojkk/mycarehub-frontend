@@ -116,4 +116,8 @@ void main() {
     expect(getHasLiked(feedItems: <Content>[mockContent], contentID: 0), false);
     expect(getHasSaved(feedItems: <Content>[mockContent], contentID: 0), false);
   });
+  test('getLikeCount should return zero if id is not found',
+      () {
+    expect(getLikeCount(feedItems: <Content>[mockContent], contentID: 0), 0);
+  });
 }

@@ -26,10 +26,8 @@ import 'package:myafyahub/presentation/core/theme/theme.dart';
 class LikeContentWidget extends StatefulWidget {
   const LikeContentWidget({
     Key? key,
-    required this.likeCount,
     required this.contentID,
   }) : super(key: key);
-  final int likeCount;
   final int contentID;
 
   @override
@@ -37,8 +35,6 @@ class LikeContentWidget extends StatefulWidget {
 }
 
 class _LikeContentWidgetState extends State<LikeContentWidget> {
-  late int count = widget.likeCount;
-
   @override
   void initState() {
     super.initState();
@@ -66,6 +62,10 @@ class _LikeContentWidgetState extends State<LikeContentWidget> {
           feedItems: vm.feedItems ?? <Content>[],
           contentID: widget.contentID,
         );
+        late int count = getLikeCount(
+          feedItems: vm.feedItems ?? <Content>[],
+          contentID: widget.contentID,
+        );
 
         return GestureDetector(
           onTap: () async {
@@ -76,6 +76,7 @@ class _LikeContentWidgetState extends State<LikeContentWidget> {
               contentID: widget.contentID,
               context: context,
               isLiked: hasLiked,
+              updateLikeCount: true,
             );
           },
           child: Container(

@@ -1,5 +1,6 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -11,11 +12,13 @@ class UpdateReactionStatusAction extends ReduxAction<AppState> {
     required this.contentID,
     this.hasLiked,
     this.hasSaved,
+    this.updateLikeCount = false,
   });
 
   final int contentID;
   final bool? hasLiked;
   final bool? hasSaved;
+  final bool updateLikeCount;
 
   @override
   Future<AppState> reduce() async {
@@ -39,6 +42,12 @@ class UpdateReactionStatusAction extends ReduxAction<AppState> {
           contentItems![i] = contentItems[i]?.copyWith.call(
                 hasLiked: hasLiked ?? contentItems[i]?.hasLiked,
                 hasSaved: hasSaved ?? contentItems[i]?.hasSaved,
+                likeCount: updateLikeCount
+                    ? getNewLikeCount(
+                        hasLiked: hasLiked,
+                        likeCount: contentItems[i]?.likeCount ?? 0,
+                      )
+                    : contentItems[i]?.likeCount ?? 0,
               );
           break;
         }

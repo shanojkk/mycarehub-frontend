@@ -12,6 +12,7 @@ class FeedContentViewModel extends Vm {
     this.errorFetchingContent,
     this.timeoutFetchingContent,
     this.feedItems,
+    this.recentContentItems,
     this.selectedCategory,
   }) : super(
           equals: <Object?>[
@@ -19,6 +20,7 @@ class FeedContentViewModel extends Vm {
             errorFetchingContent,
             timeoutFetchingContent,
             feedItems,
+            recentContentItems,
             selectedCategory
           ],
         );
@@ -26,17 +28,21 @@ class FeedContentViewModel extends Vm {
   factory FeedContentViewModel.fromStore(AppState state) {
     return FeedContentViewModel(
       wait: state.wait,
-      errorFetchingContent: state.contentState?.feedContentState?.errorFetchingContent,
-      timeoutFetchingContent: state.contentState?.feedContentState?.timeoutFetchingContent,
+      errorFetchingContent:
+          state.contentState?.feedContentState?.errorFetchingContent,
+      timeoutFetchingContent:
+          state.contentState?.feedContentState?.timeoutFetchingContent,
       feedItems: state.contentState?.feedContentState?.contentItems,
+      recentContentItems: state.contentState?.recentContentState?.contentItems,
       selectedCategory:
-          state.contentState!.feedContentState!.selectedCategory ?? ContentCategory.initial(),
+          state.contentState?.feedContentState?.selectedCategory,
     );
   }
 
   final bool? errorFetchingContent;
   final bool? timeoutFetchingContent;
   final List<Content?>? feedItems;
+  final List<Content?>? recentContentItems;
   final Wait? wait;
   final ContentCategory? selectedCategory;
 }

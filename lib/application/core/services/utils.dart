@@ -807,10 +807,11 @@ Future<void> updateLikeStatus({
   required BuildContext context,
   required int contentID,
   required bool isLiked,
+  bool updateLikeCount = false,
 }) async {
   StoreProvider.dispatch(
     context,
-    UpdateReactionStatusAction(contentID: contentID, hasLiked: !isLiked),
+    UpdateReactionStatusAction(contentID: contentID, hasLiked: !isLiked, updateLikeCount: updateLikeCount),
   );
 
   await StoreProvider.dispatch(
@@ -907,6 +908,18 @@ bool getHasLiked({required List<Content?> feedItems, required int contentID}) {
   return false;
 }
 
+int getLikeCount({required List<Content?> feedItems, required int contentID}) {
+  if (feedItems.isNotEmpty) {
+    return feedItems
+        .firstWhere(
+          (Content? element) => element?.contentID == contentID,
+          orElse: () => Content.initial(),
+        )!
+        .likeCount ?? 0;
+  }
+  return 0;
+}
+
 bool getHasSaved({required List<Content?> feedItems, required int contentID}) {
   if (feedItems.isNotEmpty) {
     return feedItems
@@ -934,4 +947,14 @@ String getInitialRoute({
     default:
       return BWRoutes.home;
   }
+}
+
+int getNewLikeCount({
+  required bool? hasLiked,
+  required int likeCount,
+}) {
+  if (hasLiked != null) {
+    return hasLiked ? likeCount + 1 : likeCount - 1;
+  }
+  return likeCount;
 }

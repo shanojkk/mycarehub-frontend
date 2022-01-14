@@ -1,22 +1,20 @@
 // Flutter imports:
 
-// Flutter imports:
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:afya_moja_core/buttons.dart';
 import 'package:afya_moja_core/onboarding_scaffold.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:misc_utilities/number_constants.dart';
 import 'package:misc_utilities/responsive_widget.dart';
-import 'package:shared_ui_components/platform_loader.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/security_questions/get_security_questions_action.dart';
 import 'package:myafyahub/application/redux/actions/security_questions/record_security_question_responses_action.dart';
+import 'package:myafyahub/application/redux/actions/security_questions/verify_security_questions_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -27,9 +25,14 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/onboarding/set_security_questions/security_question_widget.dart';
+import 'package:shared_ui_components/platform_loader.dart';
 
 class SecurityQuestionsPage extends StatefulWidget {
-  const SecurityQuestionsPage();
+  const SecurityQuestionsPage({
+    required this.phoneNumber,
+  });
+
+  final String phoneNumber;
 
   @override
   _SecurityQuestionsPageState createState() => _SecurityQuestionsPageState();
@@ -47,6 +50,7 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
         // retrieve the security questions
         GetSecurityQuestionsAction(
           context: context,
+          phoneNumber: widget.phoneNumber,
         ),
       ),
     );
@@ -70,6 +74,8 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
                 <SecurityQuestionResponse>[];
 
         final String userId = vm.appState.clientState!.user!.userId!;
+        final bool isResetPin =
+            vm.appState.onboardingState?.isResetPin ?? false;
 
         return Form(
           key: _formKey,
@@ -178,12 +184,22 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
                               );
 
                               if (emptyResponses.isEmpty) {
-                                StoreProvider.dispatch<AppState>(
-                                  context,
-                                  RecordSecurityQuestionResponsesAction(
-                                    context: context,
-                                  ),
-                                );
+                                if (isResetPin) {
+                                  StoreProvider.dispatch<AppState>(
+                                    context,
+                                    VerifySecurityQuestionAction(
+                                      context: context,
+                                      phoneNumber: widget.phoneNumber,
+                                    ),
+                                  );
+                                } else {
+                                  StoreProvider.dispatch<AppState>(
+                                    context,
+                                    RecordSecurityQuestionResponsesAction(
+                                      context: context,
+                                    ),
+                                  );
+                                }
                               } else {
                                 ScaffoldMessenger.of(context)
                                   ..hideCurrentSnackBar()

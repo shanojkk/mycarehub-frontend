@@ -8,7 +8,7 @@ environment:
 
 dependencies:
   afya_moja_core: ^0.0.34
-  app_wrapper: ^0.1.32
+  app_wrapper: ^0.1.33
   async_redux: ^12.0.0
   cached_network_image: ^3.0.0
   chewie: ^1.2.2

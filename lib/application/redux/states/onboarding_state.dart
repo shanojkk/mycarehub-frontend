@@ -28,6 +28,8 @@ class OnboardingState with _$OnboardingState {
     bool? isResetPin,
     // If the user has set their security questions
     bool? hasSetSecurityQuestions,
+    // If the user has successfuly verified their security questions if pin is expired
+    bool? hasVerifiedSecurityQuestions,
     // If the user has set their nickname
     bool? hasSetNickName,
   }) = _OnboardingState;
@@ -46,6 +48,7 @@ class OnboardingState with _$OnboardingState {
         isPINSet: false,
         isResetPin: false,
         hasSetSecurityQuestions: false,
+        hasVerifiedSecurityQuestions: false,
         hasSetNickName: false,
       );
 }

@@ -80,7 +80,83 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: const SecurityQuestionsPage(),
+        widget: const SecurityQuestionsPage(
+          phoneNumber: '+254711222333',
+        ),
+      );
+
+      await tester.pumpAndSettle();
+
+      expect(find.text(securityQuestionsDescriptionString), findsOneWidget);
+      expect(find.text(setSecurityQuestionsString), findsOneWidget);
+      expect(find.byType(ExpandableQuestion), findsWidgets);
+      expect(find.byType(MyAfyaHubPrimaryButton), findsOneWidget);
+
+      await tester.tap(find.text(firstQuestion));
+      await tester.pumpAndSettle();
+
+      final Finder textFormField = find.byType(TextFormField);
+      expect(textFormField, findsOneWidget);
+      await tester.showKeyboard(textFormField);
+      await tester.enterText(textFormField, 'text');
+      await tester.pumpAndSettle();
+
+      expect(find.byType(ScaffoldMessenger), findsOneWidget);
+      addTearDown(() {
+        tester.binding.window.clearPhysicalSizeTestValue();
+        tester.binding.window.clearDevicePixelRatioTestValue();
+      });
+    });
+
+    testWidgets('renders correctly if reset pin is true',
+        (WidgetTester tester) async {
+      tester.binding.window.devicePixelRatioTestValue = 1.0;
+      tester.binding.window.physicalSizeTestValue =
+          typicalLargePhoneScreenSizePortrait;
+      TestWidgetsFlutterBinding.ensureInitialized();
+
+      final Store<AppState> customStore =
+          Store<AppState>(initialState: AppState.initial());
+
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'getUserRespondedSecurityQuestions': securityQuestionsMock,
+              'recordSecurityQuestionResponses':
+                  mockRecordSecurityQuestionResponseData,
+            },
+          }),
+          201,
+        ),
+      );
+
+      customStore.dispatch(
+        UpdateOnboardingStateAction(
+          isResetPin: true,
+          securityQuestions: <SecurityQuestion>[
+            SecurityQuestion.initial(),
+            SecurityQuestion.initial(),
+            SecurityQuestion.initial(),
+          ],
+          securityQuestionsResponses: <SecurityQuestionResponse>[
+            SecurityQuestionResponse.initial(),
+            SecurityQuestionResponse.initial().copyWith(response: ''),
+            SecurityQuestionResponse.initial(),
+          ],
+        ),
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        store: customStore,
+        client: mockShortSILGraphQlClient,
+        widget: const SecurityQuestionsPage(
+          phoneNumber: '+254711222333',
+        ),
       );
 
       await tester.pumpAndSettle();
@@ -138,7 +214,9 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: const SecurityQuestionsPage(),
+        widget: const SecurityQuestionsPage(
+          phoneNumber: '+254711222333',
+        ),
       );
 
       await tester.pumpAndSettle();
@@ -216,7 +294,75 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: const SecurityQuestionsPage(),
+        widget: const SecurityQuestionsPage(
+          phoneNumber: '+254711222333',
+        ),
+      );
+
+      await tester.ensureVisible(find.byType(MyAfyaHubPrimaryButton));
+
+      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(CreateNewPINPage), findsOneWidget);
+    });
+
+    testWidgets('Navigates to Create New Pin page if pin reset is true',
+        (WidgetTester tester) async {
+      final Store<AppState> customStore =
+          Store<AppState>(initialState: AppState.initial());
+
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'getUserRespondedSecurityQuestions': securityQuestionsMock,
+              'recordSecurityQuestionResponses':
+                  mockRecordSecurityQuestionResponseData,
+              'verifySecurityQuestionResponses': true,
+            },
+          }),
+          201,
+        ),
+      );
+
+      customStore.dispatch(
+        UpdateUserProfileAction(
+          pinChangeRequired: true,
+          termsAccepted: true,
+          isPhoneVerified: true,
+        ),
+      );
+
+      customStore.dispatch(UpdateCredentialsAction(isSignedIn: true));
+
+      customStore.dispatch(
+        UpdateOnboardingStateAction(
+          isResetPin: true,
+          isPhoneVerified: true,
+          hasSetSecurityQuestions: true,
+          securityQuestions: <SecurityQuestion>[
+            SecurityQuestion.initial(),
+            SecurityQuestion.initial(),
+            SecurityQuestion.initial(),
+          ],
+          securityQuestionsResponses: <SecurityQuestionResponse>[
+            SecurityQuestionResponse.initial().copyWith(response: testResponse),
+            SecurityQuestionResponse.initial().copyWith(response: testResponse),
+            SecurityQuestionResponse.initial().copyWith(response: testResponse),
+          ],
+        ),
+      );
+      await buildTestWidget(
+        tester: tester,
+        store: customStore,
+        client: mockShortSILGraphQlClient,
+        widget: const SecurityQuestionsPage(
+          phoneNumber: '+254711222333',
+        ),
       );
 
       await tester.ensureVisible(find.byType(MyAfyaHubPrimaryButton));
@@ -247,7 +393,9 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: const SecurityQuestionsPage(),
+        widget: const SecurityQuestionsPage(
+          phoneNumber: '+254711222333',
+        ),
       );
 
       await tester.pumpAndSettle();
@@ -284,7 +432,9 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: const SecurityQuestionsPage(),
+        widget: const SecurityQuestionsPage(
+          phoneNumber: '+254711222333',
+        ),
       );
 
       await tester.ensureVisible(find.byType(MyAfyaHubPrimaryButton));
@@ -307,7 +457,9 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: const SecurityQuestionsPage(),
+        widget: const SecurityQuestionsPage(
+          phoneNumber: '+254711222333',
+        ),
       );
 
       expect(find.byType(SILPlatformLoader), findsOneWidget);

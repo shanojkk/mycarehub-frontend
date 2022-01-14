@@ -31,6 +31,7 @@ class _$OnboardingStateTearOff {
       bool? isPINSet,
       bool? isResetPin,
       bool? hasSetSecurityQuestions,
+      bool? hasVerifiedSecurityQuestions,
       bool? hasSetNickName}) {
     return _OnboardingState(
       createPINState: createPINState,
@@ -43,6 +44,7 @@ class _$OnboardingStateTearOff {
       isPINSet: isPINSet,
       isResetPin: isResetPin,
       hasSetSecurityQuestions: hasSetSecurityQuestions,
+      hasVerifiedSecurityQuestions: hasVerifiedSecurityQuestions,
       hasSetNickName: hasSetNickName,
     );
   }
@@ -74,6 +76,8 @@ mixin _$OnboardingState {
   bool? get isResetPin =>
       throw _privateConstructorUsedError; // If the user has set their security questions
   bool? get hasSetSecurityQuestions =>
+      throw _privateConstructorUsedError; // If the user has successfuly verified their security questions if pin is expired
+  bool? get hasVerifiedSecurityQuestions =>
       throw _privateConstructorUsedError; // If the user has set their nickname
   bool? get hasSetNickName => throw _privateConstructorUsedError;
 
@@ -99,6 +103,7 @@ abstract class $OnboardingStateCopyWith<$Res> {
       bool? isPINSet,
       bool? isResetPin,
       bool? hasSetSecurityQuestions,
+      bool? hasVerifiedSecurityQuestions,
       bool? hasSetNickName});
 
   $CreatePINStateCopyWith<$Res>? get createPINState;
@@ -128,6 +133,7 @@ class _$OnboardingStateCopyWithImpl<$Res>
     Object? isPINSet = freezed,
     Object? isResetPin = freezed,
     Object? hasSetSecurityQuestions = freezed,
+    Object? hasVerifiedSecurityQuestions = freezed,
     Object? hasSetNickName = freezed,
   }) {
     return _then(_value.copyWith(
@@ -170,6 +176,10 @@ class _$OnboardingStateCopyWithImpl<$Res>
       hasSetSecurityQuestions: hasSetSecurityQuestions == freezed
           ? _value.hasSetSecurityQuestions
           : hasSetSecurityQuestions // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      hasVerifiedSecurityQuestions: hasVerifiedSecurityQuestions == freezed
+          ? _value.hasVerifiedSecurityQuestions
+          : hasVerifiedSecurityQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
       hasSetNickName: hasSetNickName == freezed
           ? _value.hasSetNickName
@@ -242,6 +252,7 @@ abstract class _$OnboardingStateCopyWith<$Res>
       bool? isPINSet,
       bool? isResetPin,
       bool? hasSetSecurityQuestions,
+      bool? hasVerifiedSecurityQuestions,
       bool? hasSetNickName});
 
   @override
@@ -277,6 +288,7 @@ class __$OnboardingStateCopyWithImpl<$Res>
     Object? isPINSet = freezed,
     Object? isResetPin = freezed,
     Object? hasSetSecurityQuestions = freezed,
+    Object? hasVerifiedSecurityQuestions = freezed,
     Object? hasSetNickName = freezed,
   }) {
     return _then(_OnboardingState(
@@ -320,6 +332,10 @@ class __$OnboardingStateCopyWithImpl<$Res>
           ? _value.hasSetSecurityQuestions
           : hasSetSecurityQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
+      hasVerifiedSecurityQuestions: hasVerifiedSecurityQuestions == freezed
+          ? _value.hasVerifiedSecurityQuestions
+          : hasVerifiedSecurityQuestions // ignore: cast_nullable_to_non_nullable
+              as bool?,
       hasSetNickName: hasSetNickName == freezed
           ? _value.hasSetNickName
           : hasSetNickName // ignore: cast_nullable_to_non_nullable
@@ -342,6 +358,7 @@ class _$_OnboardingState implements _OnboardingState {
       this.isPINSet,
       this.isResetPin,
       this.hasSetSecurityQuestions,
+      this.hasVerifiedSecurityQuestions,
       this.hasSetNickName});
 
   factory _$_OnboardingState.fromJson(Map<String, dynamic> json) =>
@@ -367,12 +384,14 @@ class _$_OnboardingState implements _OnboardingState {
   final bool? isResetPin;
   @override // If the user has set their security questions
   final bool? hasSetSecurityQuestions;
+  @override // If the user has successfuly verified their security questions if pin is expired
+  final bool? hasVerifiedSecurityQuestions;
   @override // If the user has set their nickname
   final bool? hasSetNickName;
 
   @override
   String toString() {
-    return 'OnboardingState(createPINState: $createPINState, termsAndConditions: $termsAndConditions, securityQuestions: $securityQuestions, securityQuestionResponses: $securityQuestionResponses, phoneLogin: $phoneLogin, verifyPhoneState: $verifyPhoneState, isPhoneVerified: $isPhoneVerified, isPINSet: $isPINSet, isResetPin: $isResetPin, hasSetSecurityQuestions: $hasSetSecurityQuestions, hasSetNickName: $hasSetNickName)';
+    return 'OnboardingState(createPINState: $createPINState, termsAndConditions: $termsAndConditions, securityQuestions: $securityQuestions, securityQuestionResponses: $securityQuestionResponses, phoneLogin: $phoneLogin, verifyPhoneState: $verifyPhoneState, isPhoneVerified: $isPhoneVerified, isPINSet: $isPINSet, isResetPin: $isResetPin, hasSetSecurityQuestions: $hasSetSecurityQuestions, hasVerifiedSecurityQuestions: $hasVerifiedSecurityQuestions, hasSetNickName: $hasSetNickName)';
   }
 
   @override
@@ -408,10 +427,14 @@ class _$_OnboardingState implements _OnboardingState {
             (identical(other.isResetPin, isResetPin) ||
                 const DeepCollectionEquality()
                     .equals(other.isResetPin, isResetPin)) &&
-            (identical(
-                    other.hasSetSecurityQuestions, hasSetSecurityQuestions) ||
+            (identical(other.hasSetSecurityQuestions, hasSetSecurityQuestions) ||
                 const DeepCollectionEquality().equals(
                     other.hasSetSecurityQuestions, hasSetSecurityQuestions)) &&
+            (identical(other.hasVerifiedSecurityQuestions,
+                    hasVerifiedSecurityQuestions) ||
+                const DeepCollectionEquality().equals(
+                    other.hasVerifiedSecurityQuestions,
+                    hasVerifiedSecurityQuestions)) &&
             (identical(other.hasSetNickName, hasSetNickName) ||
                 const DeepCollectionEquality()
                     .equals(other.hasSetNickName, hasSetNickName)));
@@ -430,6 +453,7 @@ class _$_OnboardingState implements _OnboardingState {
       const DeepCollectionEquality().hash(isPINSet) ^
       const DeepCollectionEquality().hash(isResetPin) ^
       const DeepCollectionEquality().hash(hasSetSecurityQuestions) ^
+      const DeepCollectionEquality().hash(hasVerifiedSecurityQuestions) ^
       const DeepCollectionEquality().hash(hasSetNickName);
 
   @JsonKey(ignore: true)
@@ -455,6 +479,7 @@ abstract class _OnboardingState implements OnboardingState {
       bool? isPINSet,
       bool? isResetPin,
       bool? hasSetSecurityQuestions,
+      bool? hasVerifiedSecurityQuestions,
       bool? hasSetNickName}) = _$_OnboardingState;
 
   factory _OnboardingState.fromJson(Map<String, dynamic> json) =
@@ -483,6 +508,8 @@ abstract class _OnboardingState implements OnboardingState {
   bool? get isResetPin => throw _privateConstructorUsedError;
   @override // If the user has set their security questions
   bool? get hasSetSecurityQuestions => throw _privateConstructorUsedError;
+  @override // If the user has successfuly verified their security questions if pin is expired
+  bool? get hasVerifiedSecurityQuestions => throw _privateConstructorUsedError;
   @override // If the user has set their nickname
   bool? get hasSetNickName => throw _privateConstructorUsedError;
   @override

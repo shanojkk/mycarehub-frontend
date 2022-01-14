@@ -2,36 +2,37 @@
 import 'dart:async';
 import 'dart:convert';
 
-// Flutter imports:
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/failures.dart';
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:misc_utilities/misc.dart';
-import 'package:shared_themes/colors.dart';
-import 'package:shared_themes/constants.dart';
-import 'package:user_feed/user_feed.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/entities/security_questions/questions/responded_security_questions_data.dart';
 import 'package:myafyahub/domain/core/entities/security_questions/questions/security_questions_data.dart';
 import 'package:myafyahub/domain/core/entities/security_questions/responses/security_question_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:shared_themes/colors.dart';
+import 'package:shared_themes/constants.dart';
+import 'package:user_feed/user_feed.dart';
 
 class GetSecurityQuestionsAction extends ReduxAction<AppState> {
   GetSecurityQuestionsAction({
     required this.context,
+    required this.phoneNumber,
   });
 
   final BuildContext context;
+  final String phoneNumber;
 
   @override
   void after() {
@@ -47,16 +48,31 @@ class GetSecurityQuestionsAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState> reduce() async {
+    final bool isResetPin = state.onboardingState?.isResetPin ?? false;
+    final String? otp = state.onboardingState?.verifyPhoneState?.otp;
+
     final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
+    final String getRecordedSecurityQuestions = AppWrapperBase.of(context)!
+        .customContext!
+        .respondedSecurityQuestionsEndpoint!;
 
-    final http.Response result =
-        await _client.query(getSecurityQuestionsQuery, <String, dynamic>{
+    final Map<String, dynamic> getRecordedQuestionsVariables =
+        <String, dynamic>{
+      'phoneNumber': phoneNumber,
       'flavour': Flavour.CONSUMER.name,
-    });
+      'otp': otp,
+    };
 
+    final http.Response result = isResetPin
+        ? await _client.callRESTAPI(
+            endpoint: getRecordedSecurityQuestions,
+            method: httpPOST,
+            variables: getRecordedQuestionsVariables,
+          )
+        : await _client.query(getSecurityQuestionsQuery, <String, dynamic>{
+            'flavour': Flavour.CONSUMER.name,
+          });
     final Map<String, dynamic> body = _client.toMap(result);
-
-    _client.close();
 
     final Map<String, dynamic> responseMap =
         json.decode(result.body) as Map<String, dynamic>;
@@ -68,23 +84,43 @@ class GetSecurityQuestionsAction extends ReduxAction<AppState> {
       );
     }
 
-    final SecurityQuestionsData securityQuestionsData =
-        SecurityQuestionsData.fromJson(
-      responseMap['data'] as Map<String, dynamic>,
-    );
+    if (isResetPin) {
+      final RespondedSecurityQuestionsData responseData =
+          RespondedSecurityQuestionsData.fromJson(
+        responseMap['data'] as Map<String, dynamic>,
+      );
 
-    final List<SecurityQuestionResponse> responses =
-        <SecurityQuestionResponse>[];
-    for (int i = 0; i < securityQuestionsData.securityQuestions.length; i++) {
-      responses.add(SecurityQuestionResponse.initial());
+      final List<SecurityQuestionResponse> responses =
+          <SecurityQuestionResponse>[];
+      for (int i = 0; i < responseData.securityQuestions.length; i++) {
+        responses.add(SecurityQuestionResponse.initial());
+      }
+
+      dispatch(
+        UpdateOnboardingStateAction(
+          securityQuestions: responseData.securityQuestions,
+          securityQuestionsResponses: responses,
+        ),
+      );
+    } else {
+      final SecurityQuestionsData securityQuestionsData =
+          SecurityQuestionsData.fromJson(
+        responseMap['data'] as Map<String, dynamic>,
+      );
+
+      final List<SecurityQuestionResponse> responses =
+          <SecurityQuestionResponse>[];
+      for (int i = 0; i < securityQuestionsData.securityQuestions.length; i++) {
+        responses.add(SecurityQuestionResponse.initial());
+      }
+
+      dispatch(
+        UpdateOnboardingStateAction(
+          securityQuestions: securityQuestionsData.securityQuestions,
+          securityQuestionsResponses: responses,
+        ),
+      );
     }
-
-    dispatch(
-      UpdateOnboardingStateAction(
-        securityQuestions: securityQuestionsData.securityQuestions,
-        securityQuestionsResponses: responses,
-      ),
-    );
 
     return state;
   }

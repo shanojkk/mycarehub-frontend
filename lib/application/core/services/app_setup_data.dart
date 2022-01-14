@@ -39,6 +39,9 @@ final AppSetupData devAppSetupData = AppSetupData(
     refreshTokenEndpoint: kTestRefreshTokenEndpoint,
     retryResendOtpEndpoint: kTestRetryResendOtpEndpoint,
     requestPinResetEndpoint: kTestRequestPinResetEndpoint,
+    respondedSecurityQuestionsEndpoint:
+        kTestGetRecordedSecurityQuestionsEndpoint,
+    verifySecurityQuestionsEndpoint: kTestVerifySecurityQuestionsEndpoint,
     pinResetEndpoint: '',
     userRecoveryPhoneNumbersEndpoint: kTestUserRecoveryPhoneNumbersEndpoint,
     verifyContactOTPEndpoint: kTestVerifyContactOTPEndpoint,
@@ -50,8 +53,6 @@ final AppSetupData devAppSetupData = AppSetupData(
     uploadFileEndPoint: kTestUploadFileEndPoint,
     createUserByPhoneEndpoint: kTestCreateUserByPhoneEndpoint,
     switchFlaggedFeaturesEndpoint: '',
-    respondedSecurityQuestionsEndpoint: '',
-    verifySecurityQuestionsEndpoint: '',
   ),
 );
 
@@ -65,6 +66,9 @@ final AppSetupData demoAppSetupData = AppSetupData(
     refreshTokenEndpoint: kDemoRefreshTokenEndpoint,
     retryResendOtpEndpoint: kDemoRetryResendOtpEndpoint,
     requestPinResetEndpoint: kDemoRequestPinResetEndpoint,
+    respondedSecurityQuestionsEndpoint:
+        kDemoGetRecordedSecurityQuestionsEndpoint,
+    verifySecurityQuestionsEndpoint: kDemoVerifySecurityQuestionsEndpoint,
     pinResetEndpoint: '',
     userRecoveryPhoneNumbersEndpoint: kDemoUserRecoveryPhoneNumbersEndpoint,
     verifyContactOTPEndpoint: kDemoVerifyContactOTPEndpoint,
@@ -76,8 +80,6 @@ final AppSetupData demoAppSetupData = AppSetupData(
     uploadFileEndPoint: kDemoUploadFileEndPoint,
     createUserByPhoneEndpoint: kDemoCreateUserByPhoneEndpoint,
     switchFlaggedFeaturesEndpoint: '',
-    respondedSecurityQuestionsEndpoint: '',
-    verifySecurityQuestionsEndpoint: '',
   ),
 );
 
@@ -91,6 +93,9 @@ final AppSetupData prodAppSetupData = AppSetupData(
     refreshTokenEndpoint: kProdRefreshTokenEndpoint,
     retryResendOtpEndpoint: kProdRetryResendOtpEndpoint,
     requestPinResetEndpoint: kProdRequestPinResetEndpoint,
+    respondedSecurityQuestionsEndpoint:
+        kProdGetRecordedSecurityQuestionsEndpoint,
+    verifySecurityQuestionsEndpoint: kProdVerifySecurityQuestionsEndpoint,
     pinResetEndpoint: '',
     userRecoveryPhoneNumbersEndpoint: kProdUserRecoveryPhoneNumbersEndpoint,
     verifyContactOTPEndpoint: kProdVerifyContactOTPEndpoint,
@@ -102,7 +107,5 @@ final AppSetupData prodAppSetupData = AppSetupData(
     uploadFileEndPoint: kProdUploadFileEndPoint,
     createUserByPhoneEndpoint: kProdCreateUserByPhoneEndpoint,
     switchFlaggedFeaturesEndpoint: '',
-    respondedSecurityQuestionsEndpoint: '',
-    verifySecurityQuestionsEndpoint: '',
   ),
 );

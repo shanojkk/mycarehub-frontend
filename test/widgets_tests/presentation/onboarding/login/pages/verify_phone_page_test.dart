@@ -15,7 +15,7 @@ import 'package:myafyahub/domain/core/entities/core/contact.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/widgets/pin_input_field_widget.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_card_widget.dart';
-import 'package:myafyahub/presentation/onboarding/set_new_pin/pages/create_new_pin_page.dart';
+import 'package:myafyahub/presentation/onboarding/set_security_questions/security_questions_page.dart';
 import 'package:myafyahub/presentation/onboarding/terms/terms_and_conditions_page.dart';
 import 'package:myafyahub/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 import 'package:myafyahub/presentation/onboarding/verify_phone/widgets/verify_otp_widget.dart';
@@ -256,8 +256,8 @@ void main() {
     });
 
     testWidgets(
-        'should verify an OTP correctly and navigate to create new pin page' +
-            'if reset pin is true', (WidgetTester tester) async {
+        'should verify an OTP correctly and navigate to create new pin page if reset pin is true',
+        (WidgetTester tester) async {
       final MockShortSILGraphQlClient mockShortSILGraphQlClient =
           MockShortSILGraphQlClient.withResponse(
         'idToken',
@@ -265,7 +265,11 @@ void main() {
         http.Response(
           json.encode(<String, dynamic>{
             'otp': '123456',
-            'data': <String, dynamic>{'sendOTP': '123456', 'verifyOTP': true}
+            'data': <String, dynamic>{
+              'sendOTP': '123456',
+              'verifyOTP': true,
+              'getSecurityQuestions': securityQuestionsMock,
+            }
           }),
           201,
         ),
@@ -292,9 +296,14 @@ void main() {
 
       await tester.showKeyboard(find.byType(PINInputField));
       await tester.enterText(find.byType(PINInputField), '123456');
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          isResetPin: false,
+        ),
+      );
       await tester.pumpAndSettle();
 
-      expect(find.byType(CreateNewPINPage), findsWidgets);
+      expect(find.byType(SecurityQuestionsPage), findsWidgets);
     });
   });
 }

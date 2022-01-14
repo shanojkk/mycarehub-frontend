@@ -1066,6 +1066,10 @@ Map<String, dynamic> mockSecurityQuestionsData = <String, dynamic>{
   'getSecurityQuestions': securityQuestionsMock
 };
 
+Map<String, dynamic> mockRespondedSecurityQuestionsData = <String, dynamic>{
+  'getUserRespondedSecurityQuestions': securityQuestionsMock
+};
+
 final List<dynamic> recordSecurityQuestionReponseMock = <dynamic>[
   <String, dynamic>{
     'securityQuestionID': 'id1',

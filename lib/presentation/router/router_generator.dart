@@ -147,7 +147,9 @@ class RouteGenerator {
 
       case AppRoutes.securityQuestionsPage:
         return MaterialPageRoute<SecurityQuestionsPage>(
-          builder: (_) => const SecurityQuestionsPage(),
+          builder: (_) => SecurityQuestionsPage(
+            phoneNumber: args as String,
+          ),
         );
 
       case AppRoutes.answerSecurityQuestionPage:

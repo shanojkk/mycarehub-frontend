@@ -35,6 +35,7 @@ _$_OnboardingState _$_$_OnboardingStateFromJson(Map<String, dynamic> json) {
     isPINSet: json['isPINSet'] as bool?,
     isResetPin: json['isResetPin'] as bool?,
     hasSetSecurityQuestions: json['hasSetSecurityQuestions'] as bool?,
+    hasVerifiedSecurityQuestions: json['hasVerifiedSecurityQuestions'] as bool?,
     hasSetNickName: json['hasSetNickName'] as bool?,
   );
 }
@@ -51,5 +52,6 @@ Map<String, dynamic> _$_$_OnboardingStateToJson(_$_OnboardingState instance) =>
       'isPINSet': instance.isPINSet,
       'isResetPin': instance.isResetPin,
       'hasSetSecurityQuestions': instance.hasSetSecurityQuestions,
+      'hasVerifiedSecurityQuestions': instance.hasVerifiedSecurityQuestions,
       'hasSetNickName': instance.hasSetNickName,
     };

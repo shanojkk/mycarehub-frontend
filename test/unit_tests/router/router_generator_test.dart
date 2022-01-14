@@ -194,8 +194,10 @@ void main() {
   });
 
   test('Test router returns security questions page', () {
-    const RouteSettings settings =
-        RouteSettings(name: AppRoutes.securityQuestionsPage);
+    const RouteSettings settings = RouteSettings(
+      name: AppRoutes.securityQuestionsPage,
+      arguments: '0700111222',
+    );
     final MaterialPageRoute<SecurityQuestionsPage> route =
         routeGenerator(settings) as MaterialPageRoute<SecurityQuestionsPage>;
     expect(route, isA<MaterialPageRoute<SecurityQuestionsPage>>());

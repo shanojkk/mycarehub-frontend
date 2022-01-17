@@ -1,17 +1,15 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports:
 import 'package:myafyahub/domain/core/entities/profile/timeline_item.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
 
 class CustomTimelineListItem extends StatelessWidget {
   const CustomTimelineListItem({
@@ -52,14 +50,16 @@ class CustomTimelineListItem extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                   color: item.isDiary
-                      ? AppColors.diaryListCardColor
+                      ? AppColors.primaryColor
                       : AppColors.listCardColor,
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 padding: const EdgeInsets.all(12),
                 child: SvgPicture.asset(
                   'assets/icons/${item.leadingIcon}.svg',
-                  color: AppColors.timelineDotColor,
+                  color: item.isDiary
+                      ? AppColors.whiteColor
+                      : AppColors.timelineDotColor,
                 ),
               ),
               const SizedBox(width: 12),

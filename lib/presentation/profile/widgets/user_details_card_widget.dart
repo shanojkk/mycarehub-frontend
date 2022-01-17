@@ -1,14 +1,10 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:misc_utilities/misc.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -18,6 +14,8 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
 
 class UserDetailsCard extends StatelessWidget {
   /// [UserDetailsCard] is a shared widget used in [UserProfilePage]
@@ -52,7 +50,14 @@ class UserDetailsCard extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.0),
-            color: AppColors.userDetailsCardBackgroundColor,
+            color: AppColors.extraLightGray,
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                blurRadius: 5,
+                // spreadRadius: 1,
+                color: Colors.grey.withOpacity(0.2),
+              )
+            ],
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,13 +66,13 @@ class UserDetailsCard extends StatelessWidget {
                 padding: const EdgeInsets.all(10.0),
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
-                  color: AppColors.userInitialsColor,
+                  color: AppColors.primaryColor,
                 ),
                 child: Text(
                   extractNamesInitials(name: name),
                   style: const TextStyle(
                     fontSize: 22,
-                    color: AppColors.secondaryColor,
+                    color: AppColors.whiteColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -79,7 +84,7 @@ class UserDetailsCard extends StatelessWidget {
                   Text(
                     name,
                     style: const TextStyle(
-                      color: Colors.white,
+                      color: AppColors.secondaryColor,
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                     ),
@@ -88,7 +93,7 @@ class UserDetailsCard extends StatelessWidget {
                   Text(
                     'CCC No: $cccNumber',
                     style: const TextStyle(
-                      color: Colors.white,
+                      color: AppColors.secondaryColor,
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
                     ),
@@ -97,7 +102,7 @@ class UserDetailsCard extends StatelessWidget {
                   Text(
                     'Age: $age yrs',
                     style: const TextStyle(
-                      color: Colors.white,
+                      color: AppColors.secondaryColor,
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                     ),
@@ -107,7 +112,7 @@ class UserDetailsCard extends StatelessWidget {
                     children: <Widget>[
                       SvgPicture.asset(
                         phoneCallIcon,
-                        color: AppColors.whiteColor,
+                        color: AppColors.secondaryColor,
                         width: 14,
                         height: 18,
                       ),
@@ -115,7 +120,7 @@ class UserDetailsCard extends StatelessWidget {
                       Text(
                         phone,
                         style: const TextStyle(
-                          color: Colors.white,
+                          color: AppColors.secondaryColor,
                           fontSize: 13,
                           fontWeight: FontWeight.w400,
                         ),
@@ -127,7 +132,7 @@ class UserDetailsCard extends StatelessWidget {
                     children: <Widget>[
                       SvgPicture.asset(
                         homeLocationIcon,
-                        color: AppColors.whiteColor,
+                        color: AppColors.secondaryColor,
                         width: 15,
                         height: 15,
                       ),
@@ -135,7 +140,7 @@ class UserDetailsCard extends StatelessWidget {
                       Text(
                         home,
                         style: const TextStyle(
-                          color: Colors.white,
+                          color: AppColors.secondaryColor,
                           fontSize: 13,
                           fontWeight: FontWeight.w400,
                         ),
@@ -163,7 +168,7 @@ class UserDetailsCard extends StatelessWidget {
                       child: Text(
                         requestCorrectionString,
                         style: TextThemes.boldSize13Text(
-                          Colors.white,
+                          AppColors.secondaryColor,
                         ),
                       ),
                     ),

@@ -33,7 +33,7 @@ class AppTheme {
 }
 
 class AppColors {
-  static const Color accentColor = Color.fromARGB(255, 188, 197, 50);
+  static const Color accentColor = Color(0xFFF79E25);
   static const Color blackColor = Color(0xFF000000);
   static const Color cyanColor = Color(0xFF98DDE7);
   static const Color darkGreenColor = Color(0xFF388E3C);
@@ -51,7 +51,7 @@ class AppColors {
   static const Color lightPurpleTextColor = Color(0xFF596D8A);
   static const Color lightRed = Color(0xFFFFE6E6);
   static const Color lightSkyBlueColor = Color(0xFFF6F7FB);
-  static const Color primaryColor = Color.fromARGB(255, 0, 163, 167);
+  static const Color primaryColor = Color(0xFF9269AD);
   static const Color secondaryColor = Color.fromARGB(255, 22, 20, 74);
   static const Color primaryColorLite = Color(0xFFF2E8FF);
   static const Color redColor = Color(0xFFE41518);
@@ -83,7 +83,7 @@ class AppColors {
   static const Color greenHappyColor = Color(0xFF00BE33);
   static const Color mehMoodColor = Color(0xFF857C00);
   static const Color timelineDotColor = Color(0xFF06103B);
-  static const Color selectedBottomNavColor = Color(0xffb9b81d);
+  static const Color selectedBottomNavColor = Color(0xFFF79E25);
   static const Color readTimeBackgroundColor = Color(0xff4c4c4c);
   static const Color unSelectedReactionBackgroundColor = Color(0xffeaebf4);
   static const Color unSelectedReactionIconColor = Color(0xff697489);
@@ -91,6 +91,7 @@ class AppColors {
   static const Color reactionIconRedColor = Color(0xfff75b60);
   static const Color inputGreyColor = Color(0xfff4f4f4);
   static const Color verySadColor = Color(0xffFF642A);
+  static const Color extraLightGray = Color(0xffF2F2F2);
 }
 
 class ThemeColors {

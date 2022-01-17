@@ -43,7 +43,7 @@ class _ConsentPageState extends State<ConsentPage> {
                   leadingIcon: const Icon(
                     UniconsLine.file_lock_alt,
                     size: 32,
-                    color: AppColors.secondaryColor,
+                    color: AppColors.primaryColor,
                   ),
                   title: Text(
                     portalTermsText,
@@ -64,7 +64,7 @@ class _ConsentPageState extends State<ConsentPage> {
                 leadingIcon: const Icon(
                   UniconsLine.file_lock_alt,
                   size: 32,
-                  color: AppColors.secondaryColor,
+                  color: AppColors.primaryColor,
                 ),
                 title: Text(
                   groupsText,
@@ -84,7 +84,7 @@ class _ConsentPageState extends State<ConsentPage> {
                     Flexible(
                       flex: 2,
                       child: Switch(
-                        activeColor: AppColors.accentColor,
+                        activeColor: AppColors.primaryColor,
                         value: groupsSwitchValue,
                         onChanged: (bool value) {
                           setState(() {

@@ -50,6 +50,7 @@ Future<void> buildTestWidget({
   FlutterConfig.loadValueForTesting(<String, String>{
     'DEV_SENTRY_DNS': 'test_dev_sentry_dns',
     'PROD_SENTRY_DNS': 'test_prod_sentry_dns',
+    'STREAM_API_KEY': 'some-api-key',
   });
 
   NavigateAction.setNavigatorKey(appGlobalNavigatorKey);

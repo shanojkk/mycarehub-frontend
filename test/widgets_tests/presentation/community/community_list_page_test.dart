@@ -8,17 +8,26 @@ import 'package:mockito/mockito.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/presentation/communities/community_list_page.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
-import '../../../mocks.dart';
 import '../../../test_helpers.dart';
-
 import 'community_list_page_test.mocks.dart';
 
-@GenerateMocks(<Type>[stream.StreamChatClient])
+@GenerateMocks(<Type>[
+  stream.StreamChatClient,
+  stream.ClientState,
+  stream.Logger,
+  stream.Channel,
+  stream.ChannelState,
+  stream.ChannelClientState,
+])
 void main() {
   group('CommunityListItem', () {
     late Store<AppState> store;
 
     late MockStreamChatClient client;
+    late MockClientState clientState;
+    late MockLogger logger;
+    late MockChannel channel;
+    late MockChannelClientState? channelClientState;
 
     setUp(() {
       store = Store<AppState>(initialState: AppState.initial());
@@ -28,29 +37,40 @@ void main() {
         (_) => Future<stream.OwnUser>.value(stream.OwnUser(id: '')),
       );
 
-      final MockClientState clientState = MockClientState();
-      final MockLogger logger = MockLogger();
+      clientState = MockClientState();
+      logger = MockLogger();
+      channel = MockChannel();
+      channelClientState = MockChannelClientState();
+
+      final stream.OwnUser user = stream.OwnUser(id: 'user-id');
 
       when(client.state).thenReturn(clientState);
+      when(clientState.currentUser).thenReturn(user);
+      when(channel.initialized).thenAnswer((_) => Future<bool>.value(true));
+      when(channel.state).thenReturn(channelClientState);
       when(client.logger).thenReturn(logger);
+      when(client.on(any, any, any, any))
+          .thenAnswer((_) => const Stream<stream.Event>.empty());
       when(client.wsConnectionStatus)
           .thenReturn(stream.ConnectionStatus.connected);
+      when(client.wsConnectionStatusStream).thenAnswer(
+        (_) => Stream<stream.ConnectionStatus>.value(
+          stream.ConnectionStatus.connected,
+        ),
+      );
     });
 
     testWidgets('renders correctly', (WidgetTester tester) async {
-      when(client.on(any, any, any, any))
-          .thenAnswer((_) => const Stream<stream.Event>.empty());
-
       await buildTestWidget(
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
         widget: stream.StreamChat(
           client: client,
-          connectivityStream: Stream<stream.ConnectivityResult>.value(
-            stream.ConnectivityResult.none,
+          child: stream.StreamChannel(
+            channel: channel,
+            child: const CommunityListViewPage(),
           ),
-          child: const CommunityListViewPage(),
         ),
       );
 

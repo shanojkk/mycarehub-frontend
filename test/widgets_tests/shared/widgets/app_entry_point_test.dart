@@ -18,14 +18,21 @@ import 'package:myafyahub/infrastructure/connectivity/connectivity_interface.dar
 import 'package:myafyahub/infrastructure/connectivity/mobile_connectivity_status.dart';
 import 'package:myafyahub/presentation/core/widgets/app_entry_point.dart';
 import 'package:myafyahub/presentation/core/widgets/preload_app.dart';
-import 'package:stream_chat_flutter/stream_chat_flutter.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 
 import '../../../mock_utils.dart';
 import '../../../mocks.dart';
 
 import 'app_entry_point_test.mocks.dart';
 
-@GenerateMocks(<Type>[StreamChatClient])
+@GenerateMocks(<Type>[
+  stream.StreamChatClient,
+  stream.ClientState,
+  stream.Logger,
+  stream.Channel,
+  stream.ChannelState,
+  stream.ChannelClientState,
+])
 void main() {
   FlutterConfig.loadValueForTesting(<String, String>{
     'DEV_SENTRY_DNS': '',
@@ -35,16 +42,40 @@ void main() {
   setupFirebaseAuthMocks();
 
   late MockStreamChatClient client;
+  late MockClientState clientState;
+  late MockLogger logger;
+  late MockChannel channel;
+  late MockChannelClientState? channelClientState;
 
   setUpAll(() async {
     await Firebase.initializeApp();
 
     client = MockStreamChatClient();
-    when(client.connectUser(any, any))
-        .thenAnswer((_) => Future<OwnUser>.value(OwnUser(id: '')));
-    final MockClientState clientState = MockClientState();
+    when(client.connectUser(any, any)).thenAnswer(
+      (_) => Future<stream.OwnUser>.value(stream.OwnUser(id: '')),
+    );
+
+    clientState = MockClientState();
+    logger = MockLogger();
+    channel = MockChannel();
+    channelClientState = MockChannelClientState();
+
+    final stream.OwnUser user = stream.OwnUser(id: 'user-id');
 
     when(client.state).thenReturn(clientState);
+    when(clientState.currentUser).thenReturn(user);
+    when(channel.initialized).thenAnswer((_) => Future<bool>.value(true));
+    when(channel.state).thenReturn(channelClientState);
+    when(client.logger).thenReturn(logger);
+    when(client.on(any, any, any, any))
+        .thenAnswer((_) => const Stream<stream.Event>.empty());
+    when(client.wsConnectionStatus)
+        .thenReturn(stream.ConnectionStatus.connected);
+    when(client.wsConnectionStatusStream).thenAnswer(
+      (_) => Stream<stream.ConnectionStatus>.value(
+        stream.ConnectionStatus.connected,
+      ),
+    );
   });
 
   testWidgets(

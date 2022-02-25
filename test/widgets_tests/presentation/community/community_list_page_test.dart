@@ -33,6 +33,8 @@ void main() {
 
       when(client.state).thenReturn(clientState);
       when(client.logger).thenReturn(logger);
+      when(client.wsConnectionStatus)
+          .thenReturn(stream.ConnectionStatus.connected);
     });
 
     testWidgets('renders correctly', (WidgetTester tester) async {
@@ -45,10 +47,14 @@ void main() {
         client: baseGraphQlClientMock,
         widget: stream.StreamChat(
           client: client,
+          connectivityStream: Stream<stream.ConnectivityResult>.value(
+            stream.ConnectivityResult.none,
+          ),
           child: const CommunityListViewPage(),
         ),
       );
 
+      await tester.pumpAndSettle();
       expect(find.byType(stream.ChannelListView), findsOneWidget);
     });
   });

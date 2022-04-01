@@ -334,6 +334,7 @@ query listAppointments(
     filters: $filters
   ) {
     appointments {
+      ID
       type
       reason
       status

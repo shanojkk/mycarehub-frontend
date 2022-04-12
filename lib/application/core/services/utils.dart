@@ -21,6 +21,7 @@ import 'package:myafyahub/application/redux/actions/content/update_reactions_sta
 import 'package:myafyahub/application/redux/actions/update_content_like_status_action.dart';
 import 'package:myafyahub/application/redux/actions/update_pin_input_details_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/application/redux/view_models/client_profile_view_model.dart';
 import 'package:myafyahub/application/redux/view_models/content/content_view_model.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
 import 'package:myafyahub/domain/core/entities/core/screening_question.dart';
@@ -396,28 +397,47 @@ final EditInformationInputItem relationInputItem = EditInformationInputItem(
   apiFieldValue: 'caregiverType',
 );
 
-final EditInformationItem careGiverEditInfo = EditInformationItem(
-  title: myProfileCaregiverText,
-  description: myProfileCaregiverDescriptionText,
-  editInformationInputItem: <EditInformationInputItem>[
-    EditInformationInputItem(
-      fieldName: firstName,
-      hintText: janeDoe,
-      inputType: EditInformationInputType.Text,
-      inputController: TextEditingController(),
-      apiFieldValue: 'firstName',
-    ),
-    EditInformationInputItem(
-      fieldName: lastName,
-      hintText: janeDoe,
-      inputType: EditInformationInputType.Text,
-      inputController: TextEditingController(),
-      apiFieldValue: 'lastName',
-    ),
-    phoneInputItem,
-    relationInputItem,
-  ],
-);
+EditInformationItem careGiverEditInfo({
+  required ClientProfileViewModel vm,
+}) =>
+    EditInformationItem(
+      title: myProfileCaregiverText,
+      description: myProfileCaregiverDescriptionText,
+      editInformationInputItem: <EditInformationInputItem>[
+        EditInformationInputItem(
+          fieldName: firstName,
+          hintText: vm.clientState?.careGiverInformation?.firstName ?? janeDoe,
+          inputType: EditInformationInputType.Text,
+          inputController: TextEditingController(),
+          apiFieldValue: 'firstName',
+        ),
+        EditInformationInputItem(
+          fieldName: lastName,
+          hintText: vm.clientState?.careGiverInformation?.lastName ?? janeDoe,
+          inputType: EditInformationInputType.Text,
+          inputController: TextEditingController(),
+          apiFieldValue: 'lastName',
+        ),
+        EditInformationInputItem(
+          fieldName: phoneNumber,
+          hintText: vm.clientState?.careGiverInformation?.phoneNumber ??
+              hotlineNumberString,
+          inputType: EditInformationInputType.Text,
+          inputController: TextEditingController(),
+          apiFieldValue: 'phoneNumber',
+        ),
+        EditInformationInputItem(
+          fieldName: relationText,
+          hintText: relationText,
+          inputType: EditInformationInputType.DropDown,
+          inputController: TextEditingController(),
+          dropDownOptionList: CaregiverType.values
+              .map<String>((CaregiverType type) => type.name)
+              .toList(),
+          apiFieldValue: 'caregiverType',
+        ),
+      ],
+    );
 
 EditInformationInputItem nickNameInputItem(String userNickName) =>
     EditInformationInputItem(
@@ -460,7 +480,8 @@ CaregiverType caregiverTypeFromJson(String? caregiverTypeString) {
 }
 
 String caregiverTypeToJson(CaregiverType? caregiverType) {
-  return caregiverType?.name ?? CaregiverType.Sibling.name;
+  return caregiverType?.name.toUpperCase() ??
+      CaregiverType.Sibling.name.toUpperCase();
 }
 
 ObservationStatus observationStatusFromJson(String? observationStatusString) {

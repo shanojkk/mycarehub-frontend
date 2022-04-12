@@ -11,6 +11,7 @@ import 'package:myafyahub/domain/core/entities/core/related_person.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/entities/medical_data/medical_data_state.dart';
 import 'package:myafyahub/domain/core/entities/viral_load/viral_load_edges.dart';
+import 'package:myafyahub/domain/core/entities/profile/caregiver_information.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 import 'health_timeline_state.dart';
@@ -42,6 +43,7 @@ class ClientState with _$ClientState {
     @JsonKey(name: 'chvUserName') String? chvUserName,
     @JsonKey(name: 'CCCNumber') String? cccNumber,
     @JsonKey(name: 'fhirPatientID') String? fhirPatientID,
+    @JsonKey(name: 'caregiverInput') CaregiverInformation? careGiverInformation,
 
     /// The client's health diary state
     HealthDiaryState? healthDiaryState,
@@ -94,5 +96,6 @@ class ClientState with _$ClientState {
         healthTimelineState: HealthTimelineState.initial(),
         medicalDataState: MedicalDataState.initial(),
         viralLoadData: ViralLoadEdges.initial(),
+        careGiverInformation: CaregiverInformation.initial(),
       );
 }

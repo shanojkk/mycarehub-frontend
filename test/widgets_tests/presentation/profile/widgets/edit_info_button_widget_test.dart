@@ -9,6 +9,7 @@ import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/application/redux/view_models/client_profile_view_model.dart';
 import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/profile/pages/edit_information_page.dart';
@@ -30,7 +31,9 @@ void main() {
         store: store,
         client: baseGraphQlClientMock,
         widget: EditInformationButtonWidget(
-          editInformationItem: careGiverEditInfo,
+          editInformationItem: careGiverEditInfo(
+            vm: ClientProfileViewModel(clientState: store.state.clientState),
+          ),
         ),
       );
 
@@ -47,7 +50,9 @@ void main() {
         store: store,
         client: baseGraphQlClientMock,
         widget: EditInformationButtonWidget(
-          editInformationItem: careGiverEditInfo,
+          editInformationItem: careGiverEditInfo(
+            vm: ClientProfileViewModel(clientState: store.state.clientState),
+          ),
         ),
       );
 
@@ -68,7 +73,9 @@ void main() {
         store: store,
         client: baseGraphQlClientMock,
         widget: EditInformationButtonWidget(
-          editInformationItem: careGiverEditInfo,
+          editInformationItem: careGiverEditInfo(
+            vm: ClientProfileViewModel(clientState: store.state.clientState),
+          ),
         ),
       );
 

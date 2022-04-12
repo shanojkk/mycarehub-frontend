@@ -2,6 +2,7 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:myafyahub/application/redux/view_models/client_profile_view_model.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -14,11 +15,13 @@ class EditInformationButtonWidget extends StatelessWidget {
     required this.editInformationItem,
     this.submitFunction,
     this.editBtnKey,
+    this.vm,
   });
 
-  final EditInformationItem editInformationItem;
   final void Function(EditInformationItem editInformationItem)? submitFunction;
   final Key? editBtnKey;
+  final EditInformationItem editInformationItem;
+  final ClientProfileViewModel? vm;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +32,8 @@ class EditInformationButtonWidget extends StatelessWidget {
           AppRoutes.editInformationPage,
           arguments: <String, dynamic>{
             'editInformationItem': editInformationItem,
-            'onSubmit': submitFunction
+            'onSubmit': submitFunction,
+            'vm': vm
           },
         );
       },

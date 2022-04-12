@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
+import 'package:myafyahub/application/redux/view_models/client_profile_view_model.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -23,9 +24,11 @@ class EditInformationPage extends StatefulWidget {
   const EditInformationPage({
     required this.editInformationItem,
     required this.onSubmit,
+    required this.vm,
   });
 
   final EditInformationItem editInformationItem;
+  final ClientProfileViewModel vm;
   final void Function(EditInformationItem editInformationItem) onSubmit;
 
   @override
@@ -35,7 +38,22 @@ class EditInformationPage extends StatefulWidget {
 class _EditInformationPageState extends State<EditInformationPage> {
   bool formIsEdited = false;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String dropdownValue = father;
+  String dropdownValue = '';
+
+  @override
+  void initState() {
+    dropdownValue = widget.editInformationItem.editInformationInputItem.last
+            .dropDownOptionList
+            ?.firstWhere(
+          (String val) =>
+              val.toLowerCase() ==
+              (widget.vm.clientState?.careGiverInformation?.caregiverType?.name
+                      .toLowerCase() ??
+                  false),
+        ) ??
+        father;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -189,12 +207,9 @@ class _EditInformationPageState extends State<EditInformationPage> {
                                     widget.onSubmit(widget.editInformationItem);
                                   }
                                 : null,
-                            buttonColor: formIsEdited
-                                ? null
-                                : Colors.grey,
-                            borderColor: formIsEdited
-                                ? null
-                                : Colors.transparent,
+                            buttonColor: formIsEdited ? null : Colors.grey,
+                            borderColor:
+                                formIsEdited ? null : Colors.transparent,
                             text: toBeginningOfSentenceCase(saveString),
                           ),
                   ),

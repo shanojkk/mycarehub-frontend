@@ -111,3 +111,6 @@ const String fetchViralLoadDataFlag = 'fetch_viral_load_data';
 
 //share diary entry
 const String shareDiaryEntryFlag = 'share_diary_entry_flag';
+
+//personal information page
+const String fetchCaregiverInformationFlag = 'fetch_caregiver_information_flag';

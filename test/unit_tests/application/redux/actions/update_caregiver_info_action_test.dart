@@ -25,7 +25,7 @@ void main() {
 
     storeTester.dispatch(
       UpdateCaregiverInfoAction(
-        caregiverInformation: CaregiverInformation(),
+        caregiverInformation: CaregiverInformation.initial(),
         graphQlClient: client,
       ),
     );
@@ -52,7 +52,7 @@ void main() {
 
     storeTester.dispatch(
       UpdateCaregiverInfoAction(
-        caregiverInformation: CaregiverInformation(),
+        caregiverInformation: CaregiverInformation.initial(),
         graphQlClient: client,
       ),
     );

@@ -40,9 +40,9 @@ class ScreeningToolsViewModel extends Vm {
   }
 
   final AlcoholSubstanceUseState? alcoholSubstanceUseState;
+  final AvailableScreeningTools? availableScreeningTools;
   final ContraceptiveState? contraceptiveState;
   final TBState? tBState;
   final ViolenceState? violenceState;
-  final AvailableScreeningTools? availableScreeningTools;
   final Wait? wait;
 }

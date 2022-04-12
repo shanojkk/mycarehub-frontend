@@ -443,3 +443,14 @@ query getAvailableScreeningToolQuestions($clientID: String!){
   }
 }
 ''';
+
+const String getClientCareGiverQuery = r'''
+query getClientCaregiver($clientID: String!){
+  getClientCaregiver(clientID: $clientID){
+    firstName,
+    lastName,
+    phoneNumber,
+    caregiverType
+  }  
+}
+''';

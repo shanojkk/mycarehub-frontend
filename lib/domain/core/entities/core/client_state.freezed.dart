@@ -59,6 +59,8 @@ class _$ClientStateTearOff {
           String? cccNumber,
       @JsonKey(name: 'fhirPatientID')
           String? fhirPatientID,
+      @JsonKey(name: 'caregiverInput')
+          CaregiverInformation? careGiverInformation,
       HealthDiaryState? healthDiaryState,
       CommunitiesState? communitiesState,
       List<Appointment>? pastAppointments,
@@ -85,6 +87,7 @@ class _$ClientStateTearOff {
       chvUserName: chvUserName,
       cccNumber: cccNumber,
       fhirPatientID: fhirPatientID,
+      careGiverInformation: careGiverInformation,
       healthDiaryState: healthDiaryState,
       communitiesState: communitiesState,
       pastAppointments: pastAppointments,
@@ -143,6 +146,9 @@ mixin _$ClientState {
   String? get cccNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'fhirPatientID')
   String? get fhirPatientID => throw _privateConstructorUsedError;
+  @JsonKey(name: 'caregiverInput')
+  CaregiverInformation? get careGiverInformation =>
+      throw _privateConstructorUsedError;
 
   /// The client's health diary state
   HealthDiaryState? get healthDiaryState =>
@@ -207,6 +213,8 @@ abstract class $ClientStateCopyWith<$Res> {
           String? cccNumber,
       @JsonKey(name: 'fhirPatientID')
           String? fhirPatientID,
+      @JsonKey(name: 'caregiverInput')
+          CaregiverInformation? careGiverInformation,
       HealthDiaryState? healthDiaryState,
       CommunitiesState? communitiesState,
       List<Appointment>? pastAppointments,
@@ -216,6 +224,7 @@ abstract class $ClientStateCopyWith<$Res> {
       ViralLoadEdges? viralLoadData});
 
   $UserCopyWith<$Res>? get user;
+  $CaregiverInformationCopyWith<$Res>? get careGiverInformation;
   $HealthDiaryStateCopyWith<$Res>? get healthDiaryState;
   $CommunitiesStateCopyWith<$Res>? get communitiesState;
   $HealthTimelineStateCopyWith<$Res>? get healthTimelineState;
@@ -251,6 +260,7 @@ class _$ClientStateCopyWithImpl<$Res> implements $ClientStateCopyWith<$Res> {
     Object? chvUserName = freezed,
     Object? cccNumber = freezed,
     Object? fhirPatientID = freezed,
+    Object? careGiverInformation = freezed,
     Object? healthDiaryState = freezed,
     Object? communitiesState = freezed,
     Object? pastAppointments = freezed,
@@ -332,6 +342,10 @@ class _$ClientStateCopyWithImpl<$Res> implements $ClientStateCopyWith<$Res> {
           ? _value.fhirPatientID
           : fhirPatientID // ignore: cast_nullable_to_non_nullable
               as String?,
+      careGiverInformation: careGiverInformation == freezed
+          ? _value.careGiverInformation
+          : careGiverInformation // ignore: cast_nullable_to_non_nullable
+              as CaregiverInformation?,
       healthDiaryState: healthDiaryState == freezed
           ? _value.healthDiaryState
           : healthDiaryState // ignore: cast_nullable_to_non_nullable
@@ -371,6 +385,18 @@ class _$ClientStateCopyWithImpl<$Res> implements $ClientStateCopyWith<$Res> {
 
     return $UserCopyWith<$Res>(_value.user!, (value) {
       return _then(_value.copyWith(user: value));
+    });
+  }
+
+  @override
+  $CaregiverInformationCopyWith<$Res>? get careGiverInformation {
+    if (_value.careGiverInformation == null) {
+      return null;
+    }
+
+    return $CaregiverInformationCopyWith<$Res>(_value.careGiverInformation!,
+        (value) {
+      return _then(_value.copyWith(careGiverInformation: value));
     });
   }
 
@@ -475,6 +501,8 @@ abstract class _$ClientStateCopyWith<$Res>
           String? cccNumber,
       @JsonKey(name: 'fhirPatientID')
           String? fhirPatientID,
+      @JsonKey(name: 'caregiverInput')
+          CaregiverInformation? careGiverInformation,
       HealthDiaryState? healthDiaryState,
       CommunitiesState? communitiesState,
       List<Appointment>? pastAppointments,
@@ -485,6 +513,8 @@ abstract class _$ClientStateCopyWith<$Res>
 
   @override
   $UserCopyWith<$Res>? get user;
+  @override
+  $CaregiverInformationCopyWith<$Res>? get careGiverInformation;
   @override
   $HealthDiaryStateCopyWith<$Res>? get healthDiaryState;
   @override
@@ -527,6 +557,7 @@ class __$ClientStateCopyWithImpl<$Res> extends _$ClientStateCopyWithImpl<$Res>
     Object? chvUserName = freezed,
     Object? cccNumber = freezed,
     Object? fhirPatientID = freezed,
+    Object? careGiverInformation = freezed,
     Object? healthDiaryState = freezed,
     Object? communitiesState = freezed,
     Object? pastAppointments = freezed,
@@ -608,6 +639,10 @@ class __$ClientStateCopyWithImpl<$Res> extends _$ClientStateCopyWithImpl<$Res>
           ? _value.fhirPatientID
           : fhirPatientID // ignore: cast_nullable_to_non_nullable
               as String?,
+      careGiverInformation: careGiverInformation == freezed
+          ? _value.careGiverInformation
+          : careGiverInformation // ignore: cast_nullable_to_non_nullable
+              as CaregiverInformation?,
       healthDiaryState: healthDiaryState == freezed
           ? _value.healthDiaryState
           : healthDiaryState // ignore: cast_nullable_to_non_nullable
@@ -680,6 +715,8 @@ class _$_ClientState implements _ClientState {
           this.cccNumber,
       @JsonKey(name: 'fhirPatientID')
           this.fhirPatientID,
+      @JsonKey(name: 'caregiverInput')
+          this.careGiverInformation,
       this.healthDiaryState,
       this.communitiesState,
       this.pastAppointments,
@@ -748,6 +785,9 @@ class _$_ClientState implements _ClientState {
   @JsonKey(name: 'fhirPatientID')
   final String? fhirPatientID;
   @override
+  @JsonKey(name: 'caregiverInput')
+  final CaregiverInformation? careGiverInformation;
+  @override
 
   /// The client's health diary state
   final HealthDiaryState? healthDiaryState;
@@ -766,7 +806,7 @@ class _$_ClientState implements _ClientState {
 
   @override
   String toString() {
-    return 'ClientState(id: $id, active: $active, addresses: $addresses, counselled: $counselled, clientType: $clientType, facilityID: $facilityID, relatedPersons: $relatedPersons, treatmentBuddy: $treatmentBuddy, treatmentEnrollmentDate: $treatmentEnrollmentDate, user: $user, lastMoodRecordedDate: $lastMoodRecordedDate, isSignedIn: $isSignedIn, facilityName: $facilityName, facilityPhoneNumber: $facilityPhoneNumber, chvUserID: $chvUserID, chvUserName: $chvUserName, cccNumber: $cccNumber, fhirPatientID: $fhirPatientID, healthDiaryState: $healthDiaryState, communitiesState: $communitiesState, pastAppointments: $pastAppointments, upcomingAppointments: $upcomingAppointments, healthTimelineState: $healthTimelineState, medicalDataState: $medicalDataState, viralLoadData: $viralLoadData)';
+    return 'ClientState(id: $id, active: $active, addresses: $addresses, counselled: $counselled, clientType: $clientType, facilityID: $facilityID, relatedPersons: $relatedPersons, treatmentBuddy: $treatmentBuddy, treatmentEnrollmentDate: $treatmentEnrollmentDate, user: $user, lastMoodRecordedDate: $lastMoodRecordedDate, isSignedIn: $isSignedIn, facilityName: $facilityName, facilityPhoneNumber: $facilityPhoneNumber, chvUserID: $chvUserID, chvUserName: $chvUserName, cccNumber: $cccNumber, fhirPatientID: $fhirPatientID, careGiverInformation: $careGiverInformation, healthDiaryState: $healthDiaryState, communitiesState: $communitiesState, pastAppointments: $pastAppointments, upcomingAppointments: $upcomingAppointments, healthTimelineState: $healthTimelineState, medicalDataState: $medicalDataState, viralLoadData: $viralLoadData)';
   }
 
   @override
@@ -805,6 +845,8 @@ class _$_ClientState implements _ClientState {
             const DeepCollectionEquality()
                 .equals(other.fhirPatientID, fhirPatientID) &&
             const DeepCollectionEquality()
+                .equals(other.careGiverInformation, careGiverInformation) &&
+            const DeepCollectionEquality()
                 .equals(other.healthDiaryState, healthDiaryState) &&
             const DeepCollectionEquality()
                 .equals(other.communitiesState, communitiesState) &&
@@ -841,6 +883,7 @@ class _$_ClientState implements _ClientState {
         const DeepCollectionEquality().hash(chvUserName),
         const DeepCollectionEquality().hash(cccNumber),
         const DeepCollectionEquality().hash(fhirPatientID),
+        const DeepCollectionEquality().hash(careGiverInformation),
         const DeepCollectionEquality().hash(healthDiaryState),
         const DeepCollectionEquality().hash(communitiesState),
         const DeepCollectionEquality().hash(pastAppointments),
@@ -899,6 +942,8 @@ abstract class _ClientState implements ClientState {
           String? cccNumber,
       @JsonKey(name: 'fhirPatientID')
           String? fhirPatientID,
+      @JsonKey(name: 'caregiverInput')
+          CaregiverInformation? careGiverInformation,
       HealthDiaryState? healthDiaryState,
       CommunitiesState? communitiesState,
       List<Appointment>? pastAppointments,
@@ -966,6 +1011,9 @@ abstract class _ClientState implements ClientState {
   @override
   @JsonKey(name: 'fhirPatientID')
   String? get fhirPatientID;
+  @override
+  @JsonKey(name: 'caregiverInput')
+  CaregiverInformation? get careGiverInformation;
   @override
 
   /// The client's health diary state

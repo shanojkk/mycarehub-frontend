@@ -5,11 +5,13 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/client_state.dart';
 
 class ClientProfileViewModel extends Vm {
-  final Wait? wait;
-  final ClientState? clientState;
+  ClientProfileViewModel({
+    required this.clientState,
+    this.wait,
+  }) : super(equals: <Object?>[clientState, wait]);
 
-  ClientProfileViewModel({required this.wait, required this.clientState})
-      : super(equals: <Object?>[wait, clientState]);
+  final ClientState? clientState;
+  final Wait? wait;
 
   static ClientProfileViewModel fromStore(Store<AppState> store) {
     return ClientProfileViewModel(

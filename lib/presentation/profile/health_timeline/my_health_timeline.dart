@@ -20,6 +20,7 @@ import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/profile/health_timeline/timeline_indicator.dart';
 import 'package:myafyahub/presentation/profile/widgets/custom_timeline_list_item.dart';
+import 'package:myafyahub/presentation/profile/widgets/dashed_line.dart';
 
 class MyHealthTimeline extends StatefulWidget {
   const MyHealthTimeline({
@@ -207,7 +208,6 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
                   // }
 
                   return ListView.builder(
-                    key: const Key('list_key'),
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) {
@@ -216,6 +216,23 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
 
                       final List<FhirResource> fhirResources =
                           vm.healthTimelineItems![key]!;
+
+                      final UniqueKey uniqueKey = UniqueKey();
+                      keys[key] = uniqueKey;
+                      heights[key] = 1;
+
+                      // WidgetsBinding.instance?.addPostFrameCallback((_) {
+                      //   setState(() {
+                      //     final BuildContext? keyContext =
+                      //         globalKey.currentContext;
+
+                      //     if (keyContext != null) {
+                      //       final RenderBox? box =
+                      //           keyContext.findRenderObject() as RenderBox?;
+                      //       heights[key] = box?.size.height ?? 1.0;
+                      //     }
+                      //   });
+                      // });
 
                       return Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -232,17 +249,17 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
                           ),
                           // TODO: return once problem figured out
                           // if (hasDoneCalculation) ...<Widget>[
-                          //   CustomPaint(
-                          //     size: Size(1, height),
-                          //     painter: DashedLine(
-                          //       dashOffset: index == 0 ? 30 : 0,
-                          //       dotOffset: 30,
-                          //       dashSize: 5,
-                          //       gapSize: 2,
-                          //       color: AppColors.timelineDotColor,
-                          //     ),
+                          // CustomPaint(
+                          //   size: Size(1, heights[key] ?? 1),
+                          //   painter: DashedLine(
+                          //     dashOffset: index == 0 ? 30 : 0,
+                          //     dotOffset: 30,
+                          //     dashSize: 5,
+                          //     gapSize: 2,
+                          //     color: AppColors.timelineDotColor,
                           //   ),
-                          //   const SizedBox(width: 12),
+                          // ),
+                          // const SizedBox(width: 12),
                           // ],
                           Flexible(
                             flex: 8,

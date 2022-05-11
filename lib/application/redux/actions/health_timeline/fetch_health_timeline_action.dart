@@ -34,7 +34,7 @@ class FetchHealthTimelineAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final int? offset = state.clientState?.healthTimelineState?.offset;
+    final int offset = state.clientState?.healthTimelineState?.offset ?? 0;
     final Map<String, dynamic> variables = <String, dynamic>{
       'input': <String, dynamic>{
         'patientID': state.clientState?.fhirPatientID,
@@ -95,6 +95,14 @@ class FetchHealthTimelineAction extends ReduxAction<AppState> {
 
       return appState;
     } else {
+      Sentry.captureException(
+        MyAfyaException(cause: 'patient timeline', message: 'unknown error'),
+        hint: <String, dynamic>{
+          'query': patientTimelineQuery,
+          'variables': variables,
+          'response': response.body,
+        },
+      );
       throw UserException(getErrorMessage());
     }
   }

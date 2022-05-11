@@ -4,6 +4,7 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/notifications/fetch_notifications_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -15,8 +16,6 @@ import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
-import 'package:myafyahub/presentation/notifications/notification_list_item.dart'
-    as consumer;
 
 // Package imports:
 
@@ -83,8 +82,16 @@ class NotificationsPage extends StatelessWidget {
                       final NotificationDetails? currentNotificationDetails =
                           notifications.elementAt(index);
 
-                      return consumer.NotificationListItem(
+                      final NotificationType notificationType =
+                          currentNotificationDetails?.type ??
+                              NotificationType.UNKNOWN;
+
+                      final NotificationActionInfo notificationInfo =
+                          getNotificationInfo(notificationType);
+
+                      return NotificationListItem(
                         notificationDetails: currentNotificationDetails,
+                        notificationInfo: notificationInfo,
                       );
                     },
                   ),

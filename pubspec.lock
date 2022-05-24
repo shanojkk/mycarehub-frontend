@@ -14,7 +14,7 @@ packages:
       name: afya_moja_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.103"
+    version: "0.0.101"
   analyzer:
     dependency: transitive
     description:
@@ -1287,7 +1287,7 @@ packages:
     source: sdk
     version: "0.0.99"
   sms_autofill:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: sms_autofill
       url: "https://pub.dartlang.org"

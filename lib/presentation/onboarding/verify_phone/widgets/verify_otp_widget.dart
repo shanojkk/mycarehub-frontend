@@ -1,17 +1,14 @@
-// Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
-// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:myafyahub/application/redux/flags/flags.dart';
-// Project imports:
+import 'package:shared_themes/spaces.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 
+import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/view_models/verify_phone_view_model.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/animated_count.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:sms_autofill/sms_autofill.dart';
 
 class VerifyOtpWidget extends StatefulWidget {
   const VerifyOtpWidget({
@@ -37,8 +34,8 @@ class VerifyOtpWidget extends StatefulWidget {
 class VerifyOtpWidgetState extends State<VerifyOtpWidget>
     with SingleTickerProviderStateMixin, CodeAutoFill {
   Animation<double>? animation;
+  String? appSignature;
   int resendTimeout = 60;
-  String testCode = '1234';
   TextEditingController textEditingController = TextEditingController();
 
   late AnimationController _controller;
@@ -46,21 +43,32 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
   @override
   void codeUpdated() {
     setState(() {
-      // update the controller with the detected code
-      textEditingController.text = code ?? testCode;
+      textEditingController.text = code.toString();
+      widget.onDone.call(code.toString());
     });
   }
 
   @override
   void dispose() {
+    cancel();
     _controller.dispose();
+
     super.dispose();
+  }
+
+  void getAppSignature() {
+    SmsAutoFill().getAppSignature.then((String signature) {
+      setState(() {
+        appSignature = signature;
+      });
+    });
   }
 
   @override
   void initState() {
     // listen for otp code sent via sms
     listenForCode();
+    getAppSignature();
     _controller =
         AnimationController(duration: const Duration(seconds: 60), vsync: this);
     animation = Tween<double>(begin: resendTimeout.toDouble(), end: 0)
@@ -111,7 +119,7 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
                 anOtpHasBeenSentText(widget.vm.phoneNumber ?? ''),
                 style: normalSize14Text(AppColors.secondaryColor),
               ),
-              smallVerticalSizedBox,
+              verySmallVerticalSizedBox,
               AnimatedCount(count: resendTimeout, duration: Duration.zero),
             ],
           ),

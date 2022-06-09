@@ -734,7 +734,7 @@ NotificationActionInfo getNotificationInfo(NotificationType notificationType) {
   switch (notificationType) {
     case NotificationType.COMMUNITIES:
       return NotificationActionInfo(
-        actionTitle: 'View Communities',
+        actionTitle: 'View Conversations',
         route: AppRoutes.communityListPage,
       );
     case NotificationType.APPOINTMENT:

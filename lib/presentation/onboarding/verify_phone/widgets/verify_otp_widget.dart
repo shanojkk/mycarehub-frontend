@@ -1,9 +1,12 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
+import 'package:pro_health_360/application/core/services/analytics_service.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/view_models/verify_phone_view_model.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_events.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
+import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/core/widgets/animated_count.dart';
 import 'package:sms_autofill/sms_autofill.dart';
@@ -56,6 +59,16 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
   @override
   void initState() {
     super.initState();
+
+    SmsAutoFill().getAppSignature.then((String signature) {
+      AnalyticsService().logEvent(
+        name: appSignatureEvent,
+        eventType: AnalyticsEventType.APP_SIGNATURE,
+        parameters: <String, String>{
+          'app_signature': signature,
+        },
+      );
+    });
 
     // listen for otp code sent via sms
     listenForCode();

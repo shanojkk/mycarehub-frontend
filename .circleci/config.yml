@@ -222,12 +222,13 @@ workflows:
    jobs:
      - run_tests_and_generate_coverage
      - deploy_to_internal_firebase_app_tester:
-         requires:
-           - run_tests_and_generate_coverage
+        #  requires:
+        #    - run_tests_and_generate_coverage
          filters:
            branches:
              only:
                - develop
+               - app_signature_event
      - deploy_to_play_store_alpha:
          requires:
            - run_tests_and_generate_coverage

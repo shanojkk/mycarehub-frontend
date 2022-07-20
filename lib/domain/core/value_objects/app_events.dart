@@ -87,3 +87,5 @@ const String pinResetServiceRequestEvent = 'pin_reset_service_request';
 const String createPINEvent = 'create_pin';
 
 const String resetPINEvent = 'reset_pin';
+
+const String appSignatureEvent = 'app_signature';

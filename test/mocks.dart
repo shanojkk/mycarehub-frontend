@@ -1180,6 +1180,16 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       );
     }
 
+    if (queryString.contains(fetchNotificationFilters)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{'data': mockNotificationFiltersResponse},
+          ),
+          201,
+        ),
+      );
+    }
     if (queryString.contains(listNotificationsQuery)) {
       return Future<http.Response>.value(
         http.Response(
@@ -1308,10 +1318,12 @@ Map<String, dynamic> mockNotification = <String, dynamic>{
   'description':
       'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join ',
   'createdAt': '2022-04-28T07:00:20Z',
+  'body': 'Your Teleconsult with Dr Tibu',
   'type': 'APPOINTMENT',
   'actions': <dynamic>[mockNotificationActions],
   'status': 'Missed',
   'id': 'some-id',
+  'title': 'title',
 };
 
 Map<String, dynamic> mockNotificationsResponse = <String, dynamic>{
@@ -1322,6 +1334,7 @@ Map<String, dynamic> mockNotificationsResponse = <String, dynamic>{
         'id': 'some-id',
         'title': 'title',
         'type': 'SERVICE_REQUEST',
+        'description': 'Your Teleconsult ',
         'body':
             'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join ',
         'isRead': false,
@@ -1331,6 +1344,13 @@ Map<String, dynamic> mockNotificationsResponse = <String, dynamic>{
       },
     ]
   }
+};
+
+final Map<String, dynamic> mockNotificationFiltersResponse = <String, dynamic>{
+  'fetchNotificationTypeFilters': <dynamic>[
+    <String, dynamic>{'name': 'Communities', 'enum': 'COMMUNITIES'},
+    <String, dynamic>{'name': 'Moderator Demotion', 'enum': 'DEMOTE_MODERATOR'},
+  ]
 };
 
 final List<dynamic> mockAppointments = <dynamic>[

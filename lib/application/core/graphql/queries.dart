@@ -445,11 +445,13 @@ query listNotifications(
   $flavour: Flavour!
   $userID: ID!
   $paginationInput: PaginationsInput!
+   $filters: NotificationFilters
 ) {
   fetchNotifications(
     flavour: $flavour
     userID: $userID
     paginationInput: $paginationInput
+    filters: $filters
   ) {
     notifications {
       id
@@ -561,6 +563,15 @@ query getFAQs($flavour: Flavour!){
         }
       }
     }
+  }
+}
+''';
+
+const String fetchNotificationFilters = r'''
+query fetchNotificationTypeFilters($flavour: Flavour!) {
+  fetchNotificationTypeFilters(flavour: $flavour) {
+  name,
+  enum  
   }
 }
 ''';

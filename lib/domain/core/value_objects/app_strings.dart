@@ -999,3 +999,5 @@ const String recheckAvailableSurveys =
     'Tap the button below to check if there are any new surveys available';
 
 const String cccNumberHint = 'Enter your CCC number...';
+const String all = 'All';
+const String unread = 'Unread';

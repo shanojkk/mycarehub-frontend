@@ -1,6 +1,5 @@
 // Package imports:
 import 'dart:convert';
-
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
+import 'package:pro_health_360/presentation/health_diary/widgets/mood_selection/mood_symptom_widget.dart';
 import 'package:pro_health_360/presentation/notifications/notification_list_item.dart'
     as consumer;
 import 'package:pro_health_360/presentation/notifications/notifications_page.dart';
@@ -36,6 +36,28 @@ void main() {
 
       expect(find.byType(consumer.NotificationListItem), findsNWidgets(2));
     });
+
+    testWidgets('should render notification filters as a list',
+        (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: MockGraphQlClient(),
+        widget: const NotificationsPage(bottomNavIndex: 0),
+      );
+
+      await tester.pumpAndSettle();
+
+      expect(
+        find.byType(CustomChipWidget, skipOffstage: false),
+        findsNWidgets(4),
+      );
+
+      await tester.tap(find.byType(CustomChipWidget).at(3));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(consumer.NotificationListItem), findsNWidgets(2));
+    });
     testWidgets('should refresh notifications correctly',
         (WidgetTester tester) async {
       tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
@@ -53,9 +75,10 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(notificationListItem, findsNWidgets(2));
+      await tester.ensureVisible(notificationListItem.first);
 
       await tester.fling(
-        notificationListItem.first,
+        find.byKey(notificationsListViewKey),
         const Offset(0.0, 300.0),
         1000.0,
       );

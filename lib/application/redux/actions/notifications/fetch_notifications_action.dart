@@ -13,23 +13,29 @@ import 'package:pro_health_360/domain/core/entities/notification/notifications_r
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class FetchNotificationsAction extends ReduxAction<AppState> {
-  final IGraphQlClient client;
-
   FetchNotificationsAction({
     required this.client,
+    this.filters,
+    this.isRead = true,
   });
+
+  final IGraphQlClient client;
+  // any filters that may be needed to be applied
+  final String? filters;
+  // if to only fetch Read notifications and defaults to false
+  final bool? isRead;
+
+  @override
+  void after() {
+    dispatch(WaitAction<AppState>.remove(fetchNotificationsFlag));
+    super.after();
+  }
 
   @override
   void before() {
     super.before();
     dispatch(UpdateClientProfileAction(notifications: <NotificationDetails>[]));
     dispatch(WaitAction<AppState>.add(fetchNotificationsFlag));
-  }
-
-  @override
-  void after() {
-    dispatch(WaitAction<AppState>.remove(fetchNotificationsFlag));
-    super.after();
   }
 
   @override
@@ -42,6 +48,10 @@ class FetchNotificationsAction extends ReduxAction<AppState> {
       'paginationInput': <String, dynamic>{
         'Limit': 20,
         'CurrentPage': 1,
+      },
+      'filters': <String, dynamic>{
+        'notificationTypes': filters,
+        'isRead': isRead,
       }
     };
 

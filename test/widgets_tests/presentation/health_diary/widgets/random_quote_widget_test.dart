@@ -42,10 +42,6 @@ void main() {
                     'quote': 'Health is good',
                     'author': 'myAfyaHub'
                   },
-                  <String, dynamic>{
-                    'quote': 'Health at home',
-                    'author': 'myAfyaHub'
-                  },
                 ]
               }
             }),

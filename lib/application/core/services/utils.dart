@@ -842,3 +842,12 @@ bool shouldResumeWithPIN(AppState? appState) {
       !(userState?.pinChangeRequired ?? false) &&
       !(userState?.pinUpdateRequired ?? false);
 }
+
+final List<String> quoteSliderBackgroundImages = <String>[
+  moodSelectionBackgroundUrl,
+  carrousel1BackgroundUrl,
+  carrousel2BackgroundUrl,
+  carrousel3BackgroundUrl,
+  carrousel4BackgroundUrl,
+  carrousel5BackgroundUrl
+];

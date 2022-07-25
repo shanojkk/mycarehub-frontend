@@ -3,9 +3,11 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import 'dart:math';
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
 // Project imports:
 import 'package:pro_health_360/application/redux/actions/fetch_health_diary_quote_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
@@ -15,7 +17,6 @@ import 'package:pro_health_360/domain/core/entities/health_diary/quote.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
-import 'package:pro_health_360/presentation/core/widgets/carousel_slider.dart';
 
 class RandomQuoteWidget extends StatefulWidget {
   const RandomQuoteWidget({Key? key}) : super(key: key);
@@ -56,6 +57,9 @@ class _RandomQuoteWidgetState extends State<RandomQuoteWidget> {
         if (vm.wait?.isWaitingFor(fetchHealthDiaryQuoteFlag) ?? false) {
           return const PlatformLoader();
         } else if (quotes.isNotEmpty) {
+          final Random random = Random();
+          quotes.shuffle();
+
           return CarouselSlider(
             children: quotes.map((Quote quote) {
               return Builder(
@@ -69,7 +73,10 @@ class _RandomQuoteWidgetState extends State<RandomQuoteWidget> {
                           BlendMode.srcOver,
                         ),
                         fit: BoxFit.cover,
-                        image: const AssetImage(moodSelectionBackgroundUrl),
+                        image: AssetImage(
+                          quoteSliderBackgroundImages[random
+                              .nextInt(quoteSliderBackgroundImages.length)],
+                        ),
                       ),
                     ),
                     padding: const EdgeInsets.symmetric(

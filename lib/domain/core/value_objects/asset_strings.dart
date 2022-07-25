@@ -128,8 +128,15 @@ const String mehIconSvgPath = 'assets/icons/meh.svg';
 const String sadIconSvgPath = 'assets/icons/sad.svg';
 const String verySadIconSvgPath = 'assets/icons/very_sad.svg';
 
+
+// Quotes slider background images
 const String moodSelectionBackgroundUrl =
     'assets/images/mood_selection_background.png';
+const String carrousel1BackgroundUrl = 'assets/images/carrousel_bg_1.png';
+const String carrousel2BackgroundUrl = 'assets/images/carrousel_bg_2.png';
+const String carrousel3BackgroundUrl = 'assets/images/carrousel_bg_3.png';
+const String carrousel4BackgroundUrl = 'assets/images/carrousel_bg_4.png';
+const String carrousel5BackgroundUrl = 'assets/images/carrousel_bg_5.png';
 
 const String attachmentIconSvg = 'assets/icons/attachment.svg';
 

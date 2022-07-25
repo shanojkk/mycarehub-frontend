@@ -84,7 +84,7 @@ class __$$_QuoteRelayCopyWithImpl<$Res> extends _$QuoteRelayCopyWithImpl<$Res>
   }) {
     return _then(_$_QuoteRelay(
       quotes: quotes == freezed
-          ? _value._quotes
+          ? _value.quotes
           : quotes // ignore: cast_nullable_to_non_nullable
               as List<Quote>?,
     ));
@@ -94,22 +94,14 @@ class __$$_QuoteRelayCopyWithImpl<$Res> extends _$QuoteRelayCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_QuoteRelay implements _QuoteRelay {
-  _$_QuoteRelay(
-      {@JsonKey(name: 'getHealthDiaryQuote') final List<Quote>? quotes})
-      : _quotes = quotes;
+  _$_QuoteRelay({@JsonKey(name: 'getHealthDiaryQuote') this.quotes});
 
   factory _$_QuoteRelay.fromJson(Map<String, dynamic> json) =>
       _$$_QuoteRelayFromJson(json);
 
-  final List<Quote>? _quotes;
   @override
   @JsonKey(name: 'getHealthDiaryQuote')
-  List<Quote>? get quotes {
-    final value = _quotes;
-    if (value == null) return null;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
+  final List<Quote>? quotes;
 
   @override
   String toString() {
@@ -121,13 +113,13 @@ class _$_QuoteRelay implements _QuoteRelay {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_QuoteRelay &&
-            const DeepCollectionEquality().equals(other._quotes, _quotes));
+            const DeepCollectionEquality().equals(other.quotes, quotes));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_quotes));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(quotes));
 
   @JsonKey(ignore: true)
   @override

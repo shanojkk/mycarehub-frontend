@@ -6,7 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'quote.freezed.dart';
 part 'quote.g.dart';
 
-@freezed
+@Freezed(makeCollectionsUnmodifiable: false)
 class QuoteRelay with _$QuoteRelay {
   factory QuoteRelay({
     @JsonKey(name: 'getHealthDiaryQuote') List <Quote>? quotes,

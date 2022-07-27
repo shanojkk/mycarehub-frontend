@@ -851,3 +851,7 @@ final List<String> quoteSliderBackgroundImages = <String>[
   carrousel4BackgroundUrl,
   carrousel5BackgroundUrl
 ];
+
+/// Sets Duration taken by each slide to 5 minutes when
+/// [autoPlay] is set to true.
+const int quoteSliderAutoPlayInterval = 300; //300 seconds == 5 minutes

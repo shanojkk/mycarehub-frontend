@@ -61,6 +61,7 @@ class _RandomQuoteWidgetState extends State<RandomQuoteWidget> {
           quotes.shuffle();
 
           return CarouselSlider(
+            autoPlayInterval: quoteSliderAutoPlayInterval,
             children: quotes.map((Quote quote) {
               return Builder(
                 builder: (BuildContext context) {

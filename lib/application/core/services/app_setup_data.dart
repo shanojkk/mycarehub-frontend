@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_config/flutter_config.dart';
 // Project imports:
 import 'package:pro_health_360/domain/core/value_objects/app_context_constants.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_name_constants.dart';
 import 'package:pro_health_360/infrastructure/endpoints.dart';
 import 'package:quiver/core.dart';
 
@@ -15,6 +16,7 @@ class AppSetupData {
   final BaseContext? customContext;
   final String clinicalEndpoint;
   final String environment;
+  final String appName;
 
   AppSetupData({
     required this.appContexts,
@@ -22,6 +24,7 @@ class AppSetupData {
     required this.streamAPIKey,
     required this.clinicalEndpoint,
     required this.environment,
+    required this.appName,
     this.customContext,
   });
 
@@ -40,6 +43,7 @@ final AppSetupData devAppSetupData = AppSetupData(
   environment: 'DEV',
   sentryDsn: FlutterConfig.get('DEV_SENTRY_DNS') as String,
   streamAPIKey: FlutterConfig.get('DEV_STREAM_API_KEY') as String,
+  appName: '$appName Test',
   customContext: const BaseContext(
     anonymousLoginEndpoint: kTestAnonymousLoginEndpoint,
     graphqlEndpoint: kTestGraphqlEndpoint,
@@ -73,6 +77,7 @@ final AppSetupData demoAppSetupData = AppSetupData(
   environment: 'DEMO',
   sentryDsn: FlutterConfig.get('DEMO_SENTRY_DNS') as String,
   streamAPIKey: FlutterConfig.get('DEMO_STREAM_API_KEY') as String,
+  appName: appName,
   customContext: const BaseContext(
     anonymousLoginEndpoint: kDemoAnonymousLoginEndpoint,
     graphqlEndpoint: kDemoGraphqlEndpoint,
@@ -106,6 +111,7 @@ final AppSetupData prodAppSetupData = AppSetupData(
   environment: 'PROD',
   sentryDsn: FlutterConfig.get('PROD_SENTRY_DNS') as String,
   streamAPIKey: FlutterConfig.get('PROD_STREAM_API_KEY') as String,
+  appName: appName,
   customContext: const BaseContext(
     anonymousLoginEndpoint: kProdAnonymousLoginEndpoint,
     graphqlEndpoint: kProdGraphqlEndpoint,
@@ -135,9 +141,11 @@ final AppSetupData prodAppSetupData = AppSetupData(
 );
 
 final AppSetupData externalAppSetupData = AppSetupData(
-  appContexts: testAppContexts,
-  sentryDsn: FlutterConfig.get('DEMO_SENTRY_DNS') as String,
-  streamAPIKey: FlutterConfig.get('DEMO_STREAM_API_KEY') as String,
+  appContexts: externalAppContexts,
+  sentryDsn: FlutterConfig.get('EXTERNAL_SENTRY_DNS') as String,
+  environment: 'EXTERNAL',
+  streamAPIKey: FlutterConfig.get('EXTERNAL_STREAM_API_KEY') as String,
+  appName: externalAppName,
   customContext: const BaseContext(
     anonymousLoginEndpoint: kExternalAnonymousLoginEndpoint,
     graphqlEndpoint: kExternalGraphqlEndpoint,

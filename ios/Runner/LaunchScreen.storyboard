@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,34 +16,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="6dU-Tu-TWy">
-                                <rect key="frame" x="74" y="323" width="280" height="280"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="3Nf-8U-fdP"/>
-                                    <constraint firstAttribute="height" constant="280" id="EIz-v2-iPx"/>
-                                </constraints>
-                            </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="cLZ-1i-OtZ">
-                                <rect key="frame" x="30" y="884.33333333333337" width="368" height="21.666666666666629"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Powered by myCareHub™" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z8q-hm-4m3">
-                                        <rect key="frame" x="0.0" y="0.0" width="368" height="21.666666666666668"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="cLZ-1i-OtZ">
+                                <rect key="frame" x="30" y="884.33333333333348" width="368" height="21.666666666666629"/>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" red="0.91372549530000002" green="0.63529413940000001" blue="0.270588249" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="6dU-Tu-TWy" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="AFC-ev-4kh"/>
                             <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="cLZ-1i-OtZ" secondAttribute="trailing" constant="30" id="Nxa-fl-kI5"/>
                             <constraint firstAttribute="bottom" secondItem="cLZ-1i-OtZ" secondAttribute="bottom" constant="20" id="PzE-jq-udE"/>
                             <constraint firstItem="cLZ-1i-OtZ" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="30" id="XM7-fN-f5m"/>
-                            <constraint firstItem="6dU-Tu-TWy" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="jWx-h7-WF6"/>
                         </constraints>
                         <edgeInsets key="layoutMargins" top="0.0" left="20" bottom="0.0" right="20"/>
                     </view>
@@ -53,8 +36,4 @@
             <point key="canvasLocation" x="51.86915887850467" y="374.51403887688986"/>
         </scene>
     </scenes>
-    <color key="tintColor" red="0.91856199500000002" green="0.63667100669999999" blue="0.2665473223" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-    <resources>
-        <image name="LaunchImage" width="341.33334350585938" height="341.33334350585938"/>
-    </resources>
 </document>

@@ -7,4 +7,5 @@ const List<AppContext> demoAppContexts = <AppContext>[AppContext.AppDemo];
 
 const List<AppContext> prodAppContexts = <AppContext>[AppContext.AppProd];
 
-const List<AppContext> e2eAppContexts = <AppContext>[AppContext.AppE2E];
+// TODO(abiud): this is temporary> Use AppContext.AppExternal from app_wrapper
+const List<AppContext> externalAppContexts = <AppContext>[AppContext.AppE2E];

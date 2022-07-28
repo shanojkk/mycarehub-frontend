@@ -13,6 +13,7 @@ import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/view_models/login_page_view_model.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_events.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_name_constants.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
@@ -62,6 +63,9 @@ class _LoginPageState extends State<LoginPage> {
       },
       builder: (BuildContext context, LoginPageViewModel vm) {
         final TargetPlatform platform = Theme.of(context).platform;
+        final String appNameString =
+            AppWrapperBase.of(context)?.appName ?? appName;
+
         return Scaffold(
           backgroundColor: Theme.of(context).backgroundColor,
           body: SafeArea(
@@ -82,8 +86,8 @@ class _LoginPageState extends State<LoginPage> {
                       child: ListView(
                         children: <Widget>[
                           SizedBox(height: sizedBoxHeight),
-                          const OnboardingScaffoldHeader(
-                            title: loginPageTitleString,
+                          OnboardingScaffoldHeader(
+                            title: '$loginPageTitleString $appNameString',
                             description: loginPageSubTitleString,
                           ),
                           smallVerticalSizedBox,
@@ -196,23 +200,6 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ],
                           largeVerticalSizedBox,
-                          Center(
-                            child: Text(
-                              copyrightString,
-                              style: normalSize10Text(Colors.grey),
-                            ),
-                          ),
-                          smallVerticalSizedBox,
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 30.0),
-                            child: Text(
-                              poweredByMyCareHubString,
-                              style: normalSize10Text(Colors.grey),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          smallVerticalSizedBox,
                           if (platform != TargetPlatform.iOS)
                             Padding(
                               padding: const EdgeInsets.only(bottom: 8.0),

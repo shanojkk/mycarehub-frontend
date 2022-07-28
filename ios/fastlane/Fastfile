@@ -20,13 +20,13 @@ APPLE_ISSUER_ID = ENV["APPLE_ISSUER_ID"]
 APPLE_API_KEY_CONTENT = ENV["APPLE_API_KEY_CONTENT"]
 
 XCODE_PROJECT = "Runner.xcodeproj"
-APP_IDENTIFIER = "com.mycarehub.prohealth360"
+APP_IDENTIFIER = "com.mycarehub.mycarehubdemo"
 MATCH_TYPE = "appstore"
 DEV_SCHEME = "dev"
 DEMO_SCHEME = "demo"
 PROD_SCHEME = "prod"
 
-CHANGE_LOG = "Welcome to UoNAfyaApp360. We update the app as often as possible to make it faster and more reliable for you. This update includes bug fixes and improvements."
+CHANGE_LOG = "Welcome to myCareHub. We update the app as often as possible to make it faster and more reliable for you. This update includes bug fixes and improvements."
 
 APPLE_APP_ID = "1631670426"
 

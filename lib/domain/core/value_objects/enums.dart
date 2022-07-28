@@ -154,7 +154,7 @@ extension MedicalDataTypeEX on MedicalDataType {
 // can either be created successfully or shared successfully
 enum DiaryEntrySuccessType { shared, created }
 
-/// The types of events that we will collect on UoNAfyaApp360
+/// The types of events that we will collect on the app
 enum AnalyticsEventType {
   // Navigation events
   NAVIGATION,

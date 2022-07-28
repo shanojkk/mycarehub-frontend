@@ -149,6 +149,7 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
             appSetupData: appSetupData,
             fcmToken: fcmToken,
             analyticsObserver: AnalyticsService().getAnalyticsObserver(),
+            appName: appSetupData.appName,
           ),
         ),
       );

@@ -1,5 +1,9 @@
-const String prodAppName = 'UoNAfyaApp360';
-const String demoAppName = 'UoNAfyaApp360 Demo';
-const String testAppName = 'UoNAfyaApp360 Test';
+const String prodAppName = 'myCareHub';
+const String demoAppName = 'myCareHub Demo';
+const String testAppName = 'myCareHub Test';
+
+const String appName = 'myCareHub';
+
+const String externalAppName = 'myCareHub';
 
 const String appProgramName = 'myCareHub';

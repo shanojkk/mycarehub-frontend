@@ -73,9 +73,11 @@ void main() {
         'DEV_SENTRY_DNS': 'test_dev_sentry_dns',
         'DEMO_SENTRY_DNS': 'test_demo_sentry_dns',
         'PROD_SENTRY_DNS': 'test_prod_sentry_dns',
+        'EXTERNAL_SENTRY_DNS': 'external_prod_sentry_dns',
         'DEV_STREAM_API_KEY': 'dev_stream_api_key',
         'DEMO_STREAM_API_KEY': 'demo_stream_api_key',
         'PROD_STREAM_API_KEY': 'prod_stream_api_key',
+        'EXTERNAL_STREAM_API_KEY': 'external_stream_api_key'
       });
 
       test('should return the correct instance of AppSetupData', () async {
@@ -85,7 +87,7 @@ void main() {
 
         expect(getAppSetupData(prodAppContexts.last), prodAppSetupData);
 
-        expect(getAppSetupData(e2eAppContexts.last), devAppSetupData);
+        expect(getAppSetupData(externalAppContexts.last), externalAppSetupData);
 
         expect(getAppSetupData(AppContext.BewellCONSUMER), devAppSetupData);
       });

@@ -5,32 +5,32 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000216">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000206">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: setup_travis" time="0.000265">
+      <testcase classname="fastlane.lanes" name="1: setup_travis" time="0.000286">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: match" time="3.406006">
+      <testcase classname="fastlane.lanes" name="2: match" time="3.706872">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: app_store_connect_api_key" time="0.002934">
+      <testcase classname="fastlane.lanes" name="3: app_store_connect_api_key" time="0.002691">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: latest_testflight_build_number" time="4.137354">
+      <testcase classname="fastlane.lanes" name="4: latest_testflight_build_number" time="3.517475">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="5: increment_build_number" time="0.550453">
+      <testcase classname="fastlane.lanes" name="5: increment_build_number" time="0.426478">
         
       </testcase>
     
@@ -40,17 +40,17 @@
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="7: is_ci" time="9.4e-05">
+      <testcase classname="fastlane.lanes" name="7: is_ci" time="0.000154">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="8: build_app" time="195.411516">
+      <testcase classname="fastlane.lanes" name="8: build_app" time="215.751389">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="9: upload_to_testflight" time="604.135095">
+      <testcase classname="fastlane.lanes" name="9: upload_to_testflight" time="304.868756">
         
       </testcase>
     

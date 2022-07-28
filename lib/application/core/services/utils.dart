@@ -47,7 +47,7 @@ AppSetupData getAppSetupData(AppContext context) {
     case AppContext.AppProd:
       return prodAppSetupData;
     case AppContext.AppE2E:
-      return devAppSetupData;
+      return externalAppSetupData;
     default:
       return devAppSetupData;
   }
@@ -469,11 +469,6 @@ void navigateToNewPage({
     context,
     route,
   );
-}
-
-String returnCurrentYear() {
-  final DateTime now = DateTime.now();
-  return DateFormat('y').format(now);
 }
 
 Future<void> updateLikeStatus({

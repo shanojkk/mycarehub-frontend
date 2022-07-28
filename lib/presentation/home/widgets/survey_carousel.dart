@@ -27,7 +27,7 @@ class SurveyCarousel extends StatelessWidget {
       converter: (Store<AppState> store) {
         return AppStateViewModel.fromStore(store);
       },
-      onInit: (Store<AppState> store) {
+      onInit: (Store<AppState> store) async {
         store.dispatch(
           FetchAvailableSurveysAction(
             client: AppWrapperBase.of(context)!.graphQLClient,

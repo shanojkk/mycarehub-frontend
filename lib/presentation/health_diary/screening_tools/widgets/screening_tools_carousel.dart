@@ -63,7 +63,7 @@ class ScreeningToolsCarousel extends StatelessWidget {
       converter: (Store<AppState> store) {
         return ScreeningToolsViewModel.fromStore(store);
       },
-      onInit: (Store<AppState> store) {
+      onInit: (Store<AppState> store) async {
         store.dispatch(
           FetchAvailableScreeningToolsAction(
             client: AppWrapperBase.of(context)!.graphQLClient,

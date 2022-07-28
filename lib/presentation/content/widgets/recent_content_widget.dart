@@ -28,7 +28,7 @@ class RecentContentWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, ContentViewModel>(
-      onInit: (Store<AppState> store) {
+      onInit: (Store<AppState> store) async {
         final bool isSignedIn = store.state.credentials?.isSignedIn ?? false;
         final ContentState? contentState = store.state.contentState;
 

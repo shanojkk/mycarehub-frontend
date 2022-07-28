@@ -26,7 +26,7 @@ class SuggestedGroupsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, GroupsViewModel>(
       converter: (Store<AppState> store) => GroupsViewModel.fromStore(store),
-      onInit: (Store<AppState> store) {
+      onInit: (Store<AppState> store) async {
         final String clientID = store.state.clientState?.id ?? '';
         final bool isSignedIn = store.state.credentials?.isSignedIn ?? false;
 
@@ -60,9 +60,7 @@ class SuggestedGroupsSection extends StatelessWidget {
                           child: Text(
                             suggestedGroupsString,
                             overflow: TextOverflow.ellipsis,
-                            style: veryBoldSize20Text(
-                              AppColors.secondaryColor,
-                            ),
+                            style: veryBoldSize16Text(AppColors.secondaryColor),
                           ),
                         ),
                         verySmallVerticalSizedBox,

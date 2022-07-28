@@ -1,10 +1,10 @@
-# UoNAfyaApp360
+# myCareHub Demo
 
 ## Project setup
 
 ### Project prerequisites
 
-1. The **UoNAfyaApp360** app runs on Flutter version 3.0.4. To check the flutter version and channel installed in your machine run `flutter --version`.
+1. The **myCareHub Demo** app runs on Flutter version 3.0.4. To check the flutter version and channel installed in your machine run `flutter --version`.
 
 2. To switch from another channel of Flutter to the stable channel run `flutter channel stable`.
 
@@ -21,7 +21,7 @@ To dig into the data. go to [Stat Counter](https://gs.statcounter.com/screen-res
 
 Examples of apps serving the Kenyan market and doing well with portrait lock are Mpesa and Bolt.
 
-### How to setup and run UoNAfyaApp360
+### How to setup and run myCareHub Demo
 
 1. Use `git clone git@github.com:savannahghi/pro_health_360.git` to clone this project.
 

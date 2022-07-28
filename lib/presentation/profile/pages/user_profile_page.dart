@@ -87,31 +87,13 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     child: LogoutButton(),
                   ),
                   const SizedBox(height: 20),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Center(
-                        child: Text(
-                          copyrightString,
-                          style: normalSize10Text(Colors.grey),
-                        ),
+                  if (platform != TargetPlatform.iOS)
+                    Center(
+                      child: Text(
+                        '$appVersionString $APPVERSION',
+                        style: normalSize9Text(Colors.grey),
                       ),
-                      smallVerticalSizedBox,
-                      Text(
-                        poweredByMyCareHubString,
-                        style: normalSize10Text(Colors.grey),
-                        textAlign: TextAlign.center,
-                      ),
-                      smallVerticalSizedBox,
-                      if (platform != TargetPlatform.iOS)
-                        Center(
-                          child: Text(
-                            '$appVersionString $APPVERSION',
-                            style: normalSize9Text(Colors.grey),
-                          ),
-                        ),
-                    ],
-                  ),
+                    ),
                   const SizedBox(height: 50),
                 ],
               ),

@@ -83,7 +83,6 @@ class ConnectGetStreamUserAction extends ReduxAction<AppState> {
       }
     } catch (e) {
       Sentry.captureException(e);
-      throw UserException(getErrorMessage());
     }
 
     return null;

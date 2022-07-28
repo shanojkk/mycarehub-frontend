@@ -43,7 +43,7 @@ Future<void> buildTestWidget({
     StoreProvider<AppState>(
       store: store,
       child: AppWrapper(
-        appName: testAppName,
+        appName: appName,
         appContexts: testAppContexts,
         graphQLClient: client,
         baseContext: devAppSetupData.customContext,

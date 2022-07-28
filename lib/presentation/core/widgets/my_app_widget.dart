@@ -9,7 +9,6 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 // Project imports:
 import 'package:pro_health_360/domain/core/value_objects/app_setup_data.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
-import 'package:pro_health_360/domain/core/value_objects/app_name_constants.dart';
 import 'package:pro_health_360/presentation/core/widgets/app_entry_point.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 
@@ -22,6 +21,7 @@ class MyAppWidget extends StatelessWidget {
     required this.appSetupData,
     required this.streamClient,
     required this.analyticsObserver,
+    required this.appName,
     this.fcmToken,
   });
 
@@ -32,6 +32,7 @@ class MyAppWidget extends StatelessWidget {
   final AppSetupData appSetupData;
   final stream.StreamChatClient streamClient;
   final String? fcmToken;
+  final String appName;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,7 @@ class MyAppWidget extends StatelessWidget {
       streamClient: streamClient,
       appSetupData: appSetupData,
       appStore: store,
-      appName: testAppName,
+      appName: appName,
       appNavigatorKey: navigatorKey,
       fcmToken: fcmToken,
       appNavigatorObservers: <NavigatorObserver>[

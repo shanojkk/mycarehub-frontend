@@ -46,7 +46,7 @@ AppSetupData getAppSetupData(AppContext context) {
     case AppContext.AppProd:
       return prodAppSetupData;
     case AppContext.AppE2E:
-      return devAppSetupData;
+      return externalAppSetupData;
     default:
       return devAppSetupData;
   }
@@ -187,7 +187,7 @@ Future<dynamic> showFeedbackBottomSheet({
 /// ```
 Map<String, String> extractNextRefillDate(String loadedDate) {
   final DateTime parsedDate =
-      DateTime?.tryParse(loadedDate)?.toLocal() ?? DateTime.now();
+      DateTime.tryParse(loadedDate)?.toLocal() ?? DateTime.now();
   final String postDay = DateFormat.d().format(parsedDate);
   final String postMonth = DateFormat.MMM().format(parsedDate);
 
@@ -362,12 +362,6 @@ void navigateToNewPage({
     );
   }
   Navigator.pushReplacementNamed(context, route);
-}
-
-/// Returns the current year
-String getCurrentYear() {
-  final DateTime now = DateTime.now();
-  return DateFormat('y').format(now);
 }
 
 /// Updates the status of the like of a content item

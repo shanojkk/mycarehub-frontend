@@ -85,7 +85,7 @@ void main() {
 
         expect(getAppSetupData(prodAppContexts.last), prodAppSetupData);
 
-        expect(getAppSetupData(e2eAppContexts.last), devAppSetupData);
+        expect(getAppSetupData(externalAppContexts.last), devAppSetupData);
 
         expect(getAppSetupData(AppContext.BewellCONSUMER), devAppSetupData);
       });

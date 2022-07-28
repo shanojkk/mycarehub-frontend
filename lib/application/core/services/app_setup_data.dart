@@ -133,3 +133,35 @@ final AppSetupData prodAppSetupData = AppSetupData(
   ),
   clinicalEndpoint: kProdClinicalEndpoint,
 );
+
+final AppSetupData externalAppSetupData = AppSetupData(
+  appContexts: testAppContexts,
+  sentryDsn: FlutterConfig.get('DEMO_SENTRY_DNS') as String,
+  streamAPIKey: FlutterConfig.get('DEMO_STREAM_API_KEY') as String,
+  customContext: const BaseContext(
+    anonymousLoginEndpoint: kExternalAnonymousLoginEndpoint,
+    graphqlEndpoint: kExternalGraphqlEndpoint,
+    setPrimaryPhoneNumberEndpoint: kExternalSetPrimaryPhoneNumberEndpoint,
+    refreshTokenEndpoint: kExternalRefreshTokenEndpoint,
+    retryResendOtpEndpoint: kExternalRetryResendOtpEndpoint,
+    requestPinResetEndpoint: kExternalRequestPinResetEndpoint,
+    pinResetEndpoint: '',
+    userRecoveryPhoneNumbersEndpoint: kExternalUserRecoveryPhoneNumbersEndpoint,
+    verifyContactOTPEndpoint: kExternalVerifyContactOTPEndpoint,
+    verifyPhoneEndpoint: kExternalVerifyPhoneEndpoint,
+    sendContactVerificationOTPEndpoint: '',
+    sendRecoverAccountOtpEndpoint: kExternalSendRecoverAccountOtpEndpoint,
+    loginByPhoneEndpoint: kExternalLoginByPhoneEndpoint,
+    updateUserPinEndpoint: kExternalUpdateUserPinEndpoint,
+    uploadFileEndPoint: kExternalUploadFileEndPoint,
+    createUserByPhoneEndpoint: kExternalCreateUserByPhoneEndpoint,
+    switchFlaggedFeaturesEndpoint: '',
+    respondedSecurityQuestionsEndpoint:
+        kExternalGetRecordedSecurityQuestionsEndpoint,
+    verifySecurityQuestionsEndpoint: kExternalVerifySecurityQuestionsEndpoint,
+    refreshStreamTokenEndpoint: kExternalRefreshStreamTokenEndpoint,
+    pinResetServiceRequestEndpoint: kExternalPINResetServiceRequestEndpoint,
+    optInClientEndpoint: '',
+  ),
+  clinicalEndpoint: kExternalClinicalEndpoint,
+);

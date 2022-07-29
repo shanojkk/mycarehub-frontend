@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 // Project imports:
 import 'package:pro_health_360/domain/core/entities/health_diary/health_diary_entry.dart';
 import 'package:pro_health_360/domain/core/entities/health_diary/quote.dart';
+import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 
 part 'health_diary_state.freezed.dart';
 part 'health_diary_state.g.dart';
@@ -18,6 +19,7 @@ class HealthDiaryState with _$HealthDiaryState {
     bool? timeoutFetchingDiaryEntries,
     bool? shouldShareHealthRecord,
     bool? shouldNotShareHealthRecord,
+    MoodType? selectedFilter,
   }) = _HealthDiaryState;
 
   factory HealthDiaryState.fromJson(Map<String, dynamic> json) =>

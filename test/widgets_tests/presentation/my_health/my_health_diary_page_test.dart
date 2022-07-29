@@ -22,6 +22,7 @@ import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.
 import 'package:pro_health_360/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:pro_health_360/presentation/health_diary/pages/empty_health_diary.dart';
 import 'package:pro_health_360/presentation/health_diary/pages/my_health_diary_page.dart';
+import 'package:pro_health_360/presentation/health_diary/widgets/mood_selection/mood_symptom_widget.dart';
 import 'package:pro_health_360/presentation/home/pages/home_page.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
@@ -52,6 +53,9 @@ void main() {
       expect(find.byType(CustomAppBar), findsOneWidget);
       expect(find.byType(HealthDiaryEntryWidget), findsNWidgets(3));
       expect(find.text('I am healthy'), findsOneWidget);
+
+      await tester.tap(find.byType(CustomChipWidget).first);
+      expect(find.byType(HealthDiaryEntryWidget), findsNWidgets(3));
     });
     testWidgets('should display 1 shared diary entry correctly',
         (WidgetTester tester) async {

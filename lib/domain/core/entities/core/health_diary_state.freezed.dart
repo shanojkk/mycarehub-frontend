@@ -27,6 +27,7 @@ mixin _$HealthDiaryState {
   bool? get timeoutFetchingDiaryEntries => throw _privateConstructorUsedError;
   bool? get shouldShareHealthRecord => throw _privateConstructorUsedError;
   bool? get shouldNotShareHealthRecord => throw _privateConstructorUsedError;
+  MoodType? get selectedFilter => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,7 +47,8 @@ abstract class $HealthDiaryStateCopyWith<$Res> {
       bool? errorFetchingDiaryEntries,
       bool? timeoutFetchingDiaryEntries,
       bool? shouldShareHealthRecord,
-      bool? shouldNotShareHealthRecord});
+      bool? shouldNotShareHealthRecord,
+      MoodType? selectedFilter});
 
   $QuoteRelayCopyWith<$Res>? get quoteState;
 }
@@ -68,6 +70,7 @@ class _$HealthDiaryStateCopyWithImpl<$Res>
     Object? timeoutFetchingDiaryEntries = freezed,
     Object? shouldShareHealthRecord = freezed,
     Object? shouldNotShareHealthRecord = freezed,
+    Object? selectedFilter = freezed,
   }) {
     return _then(_value.copyWith(
       entries: entries == freezed
@@ -94,6 +97,10 @@ class _$HealthDiaryStateCopyWithImpl<$Res>
           ? _value.shouldNotShareHealthRecord
           : shouldNotShareHealthRecord // ignore: cast_nullable_to_non_nullable
               as bool?,
+      selectedFilter: selectedFilter == freezed
+          ? _value.selectedFilter
+          : selectedFilter // ignore: cast_nullable_to_non_nullable
+              as MoodType?,
     ));
   }
 
@@ -123,7 +130,8 @@ abstract class _$$_HealthDiaryStateCopyWith<$Res>
       bool? errorFetchingDiaryEntries,
       bool? timeoutFetchingDiaryEntries,
       bool? shouldShareHealthRecord,
-      bool? shouldNotShareHealthRecord});
+      bool? shouldNotShareHealthRecord,
+      MoodType? selectedFilter});
 
   @override
   $QuoteRelayCopyWith<$Res>? get quoteState;
@@ -148,6 +156,7 @@ class __$$_HealthDiaryStateCopyWithImpl<$Res>
     Object? timeoutFetchingDiaryEntries = freezed,
     Object? shouldShareHealthRecord = freezed,
     Object? shouldNotShareHealthRecord = freezed,
+    Object? selectedFilter = freezed,
   }) {
     return _then(_$_HealthDiaryState(
       entries: entries == freezed
@@ -174,6 +183,10 @@ class __$$_HealthDiaryStateCopyWithImpl<$Res>
           ? _value.shouldNotShareHealthRecord
           : shouldNotShareHealthRecord // ignore: cast_nullable_to_non_nullable
               as bool?,
+      selectedFilter: selectedFilter == freezed
+          ? _value.selectedFilter
+          : selectedFilter // ignore: cast_nullable_to_non_nullable
+              as MoodType?,
     ));
   }
 }
@@ -188,7 +201,8 @@ class _$_HealthDiaryState implements _HealthDiaryState {
       this.errorFetchingDiaryEntries,
       this.timeoutFetchingDiaryEntries,
       this.shouldShareHealthRecord,
-      this.shouldNotShareHealthRecord})
+      this.shouldNotShareHealthRecord,
+      this.selectedFilter})
       : _entries = entries;
 
   factory _$_HealthDiaryState.fromJson(Map<String, dynamic> json) =>
@@ -214,10 +228,12 @@ class _$_HealthDiaryState implements _HealthDiaryState {
   final bool? shouldShareHealthRecord;
   @override
   final bool? shouldNotShareHealthRecord;
+  @override
+  final MoodType? selectedFilter;
 
   @override
   String toString() {
-    return 'HealthDiaryState(entries: $entries, quoteState: $quoteState, errorFetchingDiaryEntries: $errorFetchingDiaryEntries, timeoutFetchingDiaryEntries: $timeoutFetchingDiaryEntries, shouldShareHealthRecord: $shouldShareHealthRecord, shouldNotShareHealthRecord: $shouldNotShareHealthRecord)';
+    return 'HealthDiaryState(entries: $entries, quoteState: $quoteState, errorFetchingDiaryEntries: $errorFetchingDiaryEntries, timeoutFetchingDiaryEntries: $timeoutFetchingDiaryEntries, shouldShareHealthRecord: $shouldShareHealthRecord, shouldNotShareHealthRecord: $shouldNotShareHealthRecord, selectedFilter: $selectedFilter)';
   }
 
   @override
@@ -236,7 +252,9 @@ class _$_HealthDiaryState implements _HealthDiaryState {
             const DeepCollectionEquality().equals(
                 other.shouldShareHealthRecord, shouldShareHealthRecord) &&
             const DeepCollectionEquality().equals(
-                other.shouldNotShareHealthRecord, shouldNotShareHealthRecord));
+                other.shouldNotShareHealthRecord, shouldNotShareHealthRecord) &&
+            const DeepCollectionEquality()
+                .equals(other.selectedFilter, selectedFilter));
   }
 
   @JsonKey(ignore: true)
@@ -248,7 +266,8 @@ class _$_HealthDiaryState implements _HealthDiaryState {
       const DeepCollectionEquality().hash(errorFetchingDiaryEntries),
       const DeepCollectionEquality().hash(timeoutFetchingDiaryEntries),
       const DeepCollectionEquality().hash(shouldShareHealthRecord),
-      const DeepCollectionEquality().hash(shouldNotShareHealthRecord));
+      const DeepCollectionEquality().hash(shouldNotShareHealthRecord),
+      const DeepCollectionEquality().hash(selectedFilter));
 
   @JsonKey(ignore: true)
   @override
@@ -269,7 +288,8 @@ abstract class _HealthDiaryState implements HealthDiaryState {
       final bool? errorFetchingDiaryEntries,
       final bool? timeoutFetchingDiaryEntries,
       final bool? shouldShareHealthRecord,
-      final bool? shouldNotShareHealthRecord}) = _$_HealthDiaryState;
+      final bool? shouldNotShareHealthRecord,
+      final MoodType? selectedFilter}) = _$_HealthDiaryState;
 
   factory _HealthDiaryState.fromJson(Map<String, dynamic> json) =
       _$_HealthDiaryState.fromJson;
@@ -287,6 +307,8 @@ abstract class _HealthDiaryState implements HealthDiaryState {
   bool? get shouldShareHealthRecord;
   @override
   bool? get shouldNotShareHealthRecord;
+  @override
+  MoodType? get selectedFilter;
   @override
   @JsonKey(ignore: true)
   _$$_HealthDiaryStateCopyWith<_$_HealthDiaryState> get copyWith =>

@@ -10,9 +10,16 @@ import 'package:pro_health_360/domain/core/entities/health_diary/health_diary_en
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class FetchHealthDiaryAction extends ReduxAction<AppState> {
-  FetchHealthDiaryAction({required this.client});
+  FetchHealthDiaryAction({
+    required this.client,
+    this.filter,
+    this.shared,
+  });
 
   final IGraphQlClient client;
+  final String? filter;
+  // if required to only fetch shared diary entries
+  final bool? shared;
 
   @override
   void after() {
@@ -37,7 +44,9 @@ class FetchHealthDiaryAction extends ReduxAction<AppState> {
     final String? clientID = state.clientState!.id;
 
     final Map<String, dynamic> variables = <String, dynamic>{
-      'clientID': clientID
+      'clientID': clientID,
+      'moodType': filter,
+      'shared': shared
     };
 
     /// fetch the data from the api

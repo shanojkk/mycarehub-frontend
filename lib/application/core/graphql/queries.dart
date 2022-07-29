@@ -133,8 +133,8 @@ query getHealthDiaryQuote($limit: Int!){
 ''';
 
 const String getHealthDiaryEntriesQuery = r'''
-query getHealthDiaryEntries($clientID: String!){
-  getClientHealthDiaryEntries(clientID: $clientID){
+query getHealthDiaryEntries($clientID: String!, $moodType: Mood,$shared: Boolean ){
+  getClientHealthDiaryEntries(clientID: $clientID, moodType: $moodType, shared: $shared){
     id
     active
     mood

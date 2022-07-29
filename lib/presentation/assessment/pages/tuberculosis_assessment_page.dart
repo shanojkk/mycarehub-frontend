@@ -60,7 +60,6 @@ class _TuberculosisAssessmentPageState
         return ScreeningToolsViewModel.fromStore(store);
       },
       builder: (BuildContext context, ScreeningToolsViewModel vm) {
-        final double appBarHeight = AppBar().preferredSize.height;
         return Scaffold(
           appBar: CustomAppBar(
             title: tuberculosisAssessmentTitle,
@@ -77,7 +76,6 @@ class _TuberculosisAssessmentPageState
                   )
                 : SingleChildScrollView(
                     child: Container(
-                      height: MediaQuery.of(context).size.height - appBarHeight,
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

@@ -763,23 +763,23 @@ Future<void> handleNotification(
   stream.StreamChatClient chatClient,
 ) async {
   final Map<String, dynamic> data = message.data;
+  final local_notifications.FlutterLocalNotificationsPlugin
+      flutterLocalNotificationsPlugin = await setupLocalNotifications();
+  const local_notifications.NotificationDetails notificationDetails =
+      local_notifications.NotificationDetails(
+    android: local_notifications.AndroidNotificationDetails(
+      'new_message',
+      'New message notifications channel',
+    ),
+  );
 
   if (data['type'] == 'message.new') {
-    final local_notifications.FlutterLocalNotificationsPlugin
-        flutterLocalNotificationsPlugin = await setupLocalNotifications();
     final String messageId = data['id'] as String;
     final stream.GetMessageResponse response =
         await chatClient.getMessage(messageId);
 
     final String? channelName = response.channel?.extraData['Name'] as String?;
 
-    const local_notifications.NotificationDetails notificationDetails =
-        local_notifications.NotificationDetails(
-      android: local_notifications.AndroidNotificationDetails(
-        'new_message',
-        'New message notifications channel',
-      ),
-    );
     flutterLocalNotificationsPlugin.show(
       1,
       newChatMessageTitle(
@@ -788,6 +788,13 @@ Future<void> handleNotification(
       ),
       response.message.text,
       notificationDetails,
+    );
+    headsUpNotification(
+      newChatMessageTitle(
+        response.message.user?.name,
+        channelName,
+      ),
+      response.message.text,
     );
   }
 }

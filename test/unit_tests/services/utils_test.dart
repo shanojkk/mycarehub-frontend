@@ -1,6 +1,7 @@
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_local_notifications_platform_interface/flutter_local_notifications_platform_interface.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:pro_health_360/application/core/services/app_setup_data.dart';
 import 'package:pro_health_360/application/core/services/notifications_utils.dart';
 import 'package:pro_health_360/application/core/services/utils.dart';
@@ -176,7 +178,7 @@ void main() {
   });
 
   group('handleNotifications', () {
-    test('works correctly', () async {
+    testWidgets('works correctly', (WidgetTester tester) async {
       debugDefaultTargetPlatformOverride = TargetPlatform.android;
 
       const MethodChannel('dexterous.com/flutter/local_notifications')
@@ -210,13 +212,37 @@ void main() {
           }),
         ),
       );
-
-      await handleNotification(
-        RemoteMessage.fromMap(<String, dynamic>{
-          'data': <String, dynamic>{'id': 'test', 'type': 'message.new'}
-        }),
-        mockStreamChatClient,
+      await tester.pumpWidget(
+        OverlaySupport(
+          child: MaterialApp(
+            home: Scaffold(
+              body: Builder(
+                builder: (BuildContext context) {
+                  return Center(
+                    child: MaterialButton(
+                      onPressed: () => handleNotification(
+                        RemoteMessage.fromMap(<String, dynamic>{
+                          'data': <String, dynamic>{
+                            'id': 'test',
+                            'type': 'message.new'
+                          }
+                        }),
+                        mockStreamChatClient,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        ),
       );
+
+      await tester.pumpAndSettle();
+
+      final Finder button = find.byType(MaterialButton);
+      await tester.tap(button);
+      await tester.pump(const Duration(seconds: 4));
 
       verify(mockStreamChatClient.getMessage('test')).called(1);
 
@@ -227,7 +253,7 @@ void main() {
   group('backgroundMessageHandler', () {
     setupFirebaseMessagingMocks();
 
-    test('works correctly', () async {
+    testWidgets('works correctly', (WidgetTester tester) async {
       final Map<String, Object> values = <String, Object>{
         'streamToken': 'test-stream-token',
         'clientId': 'test-client-id',
@@ -269,12 +295,36 @@ void main() {
         ),
       );
 
-      await backgroundMessageHandler(
-        RemoteMessage.fromMap(<String, dynamic>{
-          'data': <String, dynamic>{'id': 'test', 'type': 'message.new'}
-        }),
-        testChatClient: mockStreamChatClient,
+      await tester.pumpWidget(
+        OverlaySupport(
+          child: MaterialApp(
+            home: Scaffold(
+              body: Builder(
+                builder: (BuildContext context) {
+                  return Center(
+                    child: MaterialButton(
+                      onPressed: () => backgroundMessageHandler(
+                        RemoteMessage.fromMap(<String, dynamic>{
+                          'data': <String, dynamic>{
+                            'id': 'test',
+                            'type': 'message.new'
+                          }
+                        }),
+                        testChatClient: mockStreamChatClient,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        ),
       );
+      await tester.pumpAndSettle();
+
+      final Finder button = find.byType(MaterialButton);
+      await tester.tap(button);
+      await tester.pump(const Duration(seconds: 4));
 
       verify(
         mockStreamChatClient.connectUser(

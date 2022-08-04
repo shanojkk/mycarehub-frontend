@@ -269,7 +269,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                             ),
                           ],
                         ),
-                        size70VerticalSizedBox,
+                        size100VerticalSizedBox,
                       ],
                     ),
                   ),

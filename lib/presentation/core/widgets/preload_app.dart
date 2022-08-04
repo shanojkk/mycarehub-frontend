@@ -5,6 +5,7 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:pro_health_360/application/redux/actions/update_misc_state_action.dart';
 import 'package:pro_health_360/domain/core/entities/core/client_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/global_keys.dart';
@@ -192,54 +193,60 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
         final String initialRoute = vm.initialRoute ?? AppRoutes.phoneLogin;
 
         if (initialRoute == UNKNOWN) {
-          return MaterialApp(
-            theme: AppTheme.getAppTheme(),
-            home: const Scaffold(
-              body: Center(child: PlatformLoader()),
+          return OverlaySupport(
+            child: MaterialApp(
+              theme: AppTheme.getAppTheme(),
+              home: const Scaffold(
+                body: Center(child: PlatformLoader()),
+              ),
+              localizationsDelegates: localizationDelegates,
+              supportedLocales: locales,
             ),
-            localizationsDelegates: localizationDelegates,
-            supportedLocales: locales,
           );
         }
 
-        return MaterialApp(
-          theme: AppTheme.getAppTheme(),
-          debugShowCheckedModeBanner: widget.appName == testAppName,
-          onGenerateRoute: RouteGenerator.generateRoute,
-          initialRoute: initialRoute,
-          navigatorKey: widget.appNavigatorKey,
-          navigatorObservers: widget.appNavigatorObservers,
-          localizationsDelegates: localizationDelegates,
-          supportedLocales: locales,
-          builder: (BuildContext context, Widget? childWidget) {
-            connectivityCheckerSubscription = connectivityChecker
-                .checkConnection()
-                .asStream()
-                .mergeWith(
-                  <Stream<bool>>[connectivityChecker.onConnectivityChanged],
-                )
-                .distinct()
-                .listen((bool hasConnection) {
-                  final bool hasConn = StoreProvider.state<AppState>(context)
-                          ?.connectivityState
-                          ?.isConnected ??
-                      false;
+        return OverlaySupport(
+          child: MaterialApp(
+            theme: AppTheme.getAppTheme(),
+            debugShowCheckedModeBanner: widget.appName == testAppName,
+            onGenerateRoute: RouteGenerator.generateRoute,
+            initialRoute: initialRoute,
+            navigatorKey: widget.appNavigatorKey,
+            navigatorObservers: widget.appNavigatorObservers,
+            localizationsDelegates: localizationDelegates,
+            supportedLocales: locales,
+            builder: (BuildContext context, Widget? childWidget) {
+              connectivityCheckerSubscription = connectivityChecker
+                  .checkConnection()
+                  .asStream()
+                  .mergeWith(
+                    <Stream<bool>>[connectivityChecker.onConnectivityChanged],
+                  )
+                  .distinct()
+                  .listen((bool hasConnection) {
+                    final bool hasConn = StoreProvider.state<AppState>(context)
+                            ?.connectivityState
+                            ?.isConnected ??
+                        false;
 
-                  if (!hasConnection && hasConn) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text(connectionLostText)),
+                    if (!hasConnection && hasConn) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text(connectionLostText)),
+                      );
+                    }
+                    StoreProvider.dispatch(
+                      context,
+                      UpdateConnectivityAction(hasConnection: hasConnection),
                     );
-                  }
-                  StoreProvider.dispatch(
-                    context,
-                    UpdateConnectivityAction(hasConnection: hasConnection),
-                  );
-                });
-            return UserExceptionDialog<AppState>(
-              child:
-                  stream.StreamChat(client: widget.client, child: childWidget),
-            );
-          },
+                  });
+              return UserExceptionDialog<AppState>(
+                child: stream.StreamChat(
+                  client: widget.client,
+                  child: childWidget,
+                ),
+              );
+            },
+          ),
         );
       },
     );

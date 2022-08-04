@@ -4,20 +4,18 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:pro_health_360/application/redux/actions/notifications/fetch_notification_filters_action.dart';
 import 'package:pro_health_360/application/redux/actions/notifications/fetch_notifications_action.dart';
-import 'package:pro_health_360/application/redux/actions/update_notification_filter_state.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/view_models/notifications/notifications_view_model.dart';
-import 'package:afya_moja_core/src/domain/core/entities/notifications/notification_filter.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:pro_health_360/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
-import 'package:pro_health_360/presentation/health_diary/widgets/mood_selection/mood_symptom_widget.dart';
 import 'package:pro_health_360/presentation/notifications/notification_list_item.dart'
     as consumer;
+import 'package:pro_health_360/presentation/notifications/widgets/notifications_filter_widget.dart';
 
 class NotificationsPage extends StatelessWidget {
   const NotificationsPage({required this.bottomNavIndex});
@@ -49,120 +47,103 @@ class NotificationsPage extends StatelessWidget {
         converter: (Store<AppState> store) =>
             NotificationsViewModel.fromStore(store),
         builder: (BuildContext context, NotificationsViewModel vm) {
-          if (vm.wait.isWaitingFor(fetchNotificationsFlag)) {
-            return Container(
-              height: 300,
-              padding: const EdgeInsets.all(20),
-              child: const PlatformLoader(),
-            );
-          }
           final List<NotificationDetails?> notifications = vm.notifications;
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: SingleChildScrollView(
-              physics: const NeverScrollableScrollPhysics(),
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    margin: const EdgeInsets.only(top: 12),
-                    height: 50,
-                    child: ListView.builder(
-                      key: notificationFiltersKey,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: vm
-                          .notificationFilterState?.notificationFilters?.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        final List<NotificationFilter?>? filterList =
-                            vm.notificationFilterState?.notificationFilters;
-
-                        final bool isSelected = filterList?[index] ==
-                            vm.notificationFilterState?.selectedFilter;
-
-                        bool isRead = false;
-                        if (filterList?[index]?.name?.compareTo(unread) != 0) {
-                          isRead = true;
-                        }
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 6,
-                            horizontal: 12,
-                          ),
-                          child: CustomChipWidget(
-                            title: filterList?[index]?.name ?? '',
-                            gestureKey: Key(index.toString()),
-                            isSelected: isSelected,
-                            onTap: () {
-                              StoreProvider.dispatch(
-                                context,
-                                UpdateNotificationFilterStateAction(
-                                  selectedFilter: filterList?[index],
-                                ),
-                              );
-                              StoreProvider.dispatch(
-                                context,
-                                FetchNotificationsAction(
-                                  client:
-                                      AppWrapperBase.of(context)!.graphQLClient,
-                                  filters: filterList?[index]?.type?.name,
-                                  isRead: isRead,
-                                ),
-                              );
-                            },
-                          ),
-                        );
-                      },
+          final List<Widget> notificationsWidgetList = <Widget>[];
+          if (notifications.isNotEmpty) {
+            notifications
+                .map(
+                  (NotificationDetails? notification) =>
+                      notificationsWidgetList.add(
+                    consumer.NotificationListItem(
+                      notificationDetails: notification,
                     ),
                   ),
-                  if (notifications.isEmpty)
-                    GenericErrorWidget(
-                      actionKey: helpNoDataWidgetKey,
-                      recoverCallback: () async {
-                        StoreProvider.dispatch<AppState>(
-                          context,
-                          FetchNotificationsAction(
-                            client: AppWrapperBase.of(context)!.graphQLClient,
-                          ),
-                        );
-                      },
-                      headerIconSvgUrl: noNotificationsImageSvgPath,
-                      messageTitle: noNotificationsTitle,
-                      messageBody: <TextSpan>[
-                        TextSpan(
-                          text: noNotificationsDescription,
-                          style: normalSize16Text(
-                            AppColors.greyTextColor,
-                          ),
-                        ),
-                      ],
-                    )
-                  else
-                    RefreshIndicator(
-                      child: ListView.builder(
-                        key: notificationsListViewKey,
-                        shrinkWrap: true,
-                        itemCount: notifications.length,
-                        physics: const AlwaysScrollableScrollPhysics(),
-                        itemBuilder: (BuildContext context, int index) {
-                          final NotificationDetails?
-                              currentNotificationDetails =
-                              notifications.elementAt(index);
-
-                          return consumer.NotificationListItem(
-                            notificationDetails: currentNotificationDetails,
-                          );
-                        },
+                )
+                .toList();
+          }
+          return SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              children: <Widget>[
+                NotificationsFilterWidget(vm: vm),
+                Flexible(
+                  child: RefreshIndicator(
+                    child: SingleChildScrollView(
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      key: notificationsListViewKey,
+                      child: Column(
+                        children: <Widget>[
+                          if (vm.wait.isWaitingFor(fetchNotificationsFlag))
+                            Container(
+                              height: 300,
+                              padding: const EdgeInsets.all(20),
+                              child: const PlatformLoader(),
+                            )
+                          else if (notifications.isEmpty)
+                            GenericErrorWidget(
+                              actionKey: helpNoDataWidgetKey,
+                              recoverCallback: () async {
+                                // check the active filter first and apply it as a param to
+                                // the fetch action
+                                final NotificationFilter? selectedFilter =
+                                    vm.notificationFilterState?.selectedFilter;
+                                bool isRead = false;
+                                if ((vm.notificationFilterState?.selectedFilter
+                                                ?.type?.name ??
+                                            '')
+                                        .compareTo(unread) !=
+                                    0) {
+                                  isRead = true;
+                                }
+                                StoreProvider.dispatch<AppState>(
+                                  context,
+                                  FetchNotificationsAction(
+                                    filters: selectedFilter?.type?.name,
+                                    isRead: isRead,
+                                    client: AppWrapperBase.of(context)!
+                                        .graphQLClient,
+                                  ),
+                                );
+                              },
+                              headerIconSvgUrl: noNotificationsImageSvgPath,
+                              messageTitle: noNotificationsTitle,
+                              messageBody: <TextSpan>[
+                                TextSpan(
+                                  text: noNotificationsDescription,
+                                  style: normalSize16Text(
+                                    AppColors.greyTextColor,
+                                  ),
+                                ),
+                              ],
+                            )
+                          else
+                            ...notificationsWidgetList
+                        ],
                       ),
-                      onRefresh: () async {
-                        StoreProvider.dispatch(
-                          context,
-                          FetchNotificationsAction(
-                            client: AppWrapperBase.of(context)!.graphQLClient,
-                          ),
-                        );
-                      },
                     ),
-                ],
-              ),
+                    onRefresh: () async {
+                      final NotificationFilter? selectedFilter =
+                          vm.notificationFilterState?.selectedFilter;
+                      bool isRead = false;
+                      if ((vm.notificationFilterState?.selectedFilter?.type
+                                      ?.name ??
+                                  '')
+                              .compareTo(unread) !=
+                          0) {
+                        isRead = true;
+                      }
+                      StoreProvider.dispatch<AppState>(
+                        context,
+                        FetchNotificationsAction(
+                          filters: selectedFilter?.type?.name,
+                          isRead: isRead,
+                          client: AppWrapperBase.of(context)!.graphQLClient,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
           );
         },

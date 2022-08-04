@@ -14,7 +14,7 @@ packages:
       name: afya_moja_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.10"
+    version: "0.2.11"
   analyzer:
     dependency: transitive
     description:
@@ -70,7 +70,7 @@ packages:
       name: audio_session
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.8"
+    version: "0.1.10"
   boolean_selector:
     dependency: transitive
     description:
@@ -783,7 +783,7 @@ packages:
       name: just_audio
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.27"
+    version: "0.9.28"
   just_audio_platform_interface:
     dependency: transitive
     description:

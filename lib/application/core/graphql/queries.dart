@@ -567,7 +567,7 @@ query getFAQs($flavour: Flavour!){
 }
 ''';
 
-const String fetchNotificationFilters = r'''
+const String fetchNotificationFiltersQuery = r'''
 query fetchNotificationTypeFilters($flavour: Flavour!) {
   fetchNotificationTypeFilters(flavour: $flavour) {
   name,

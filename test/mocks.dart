@@ -1180,7 +1180,7 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       );
     }
 
-    if (queryString.contains(fetchNotificationFilters)) {
+    if (queryString.contains(fetchNotificationFiltersQuery)) {
       return Future<http.Response>.value(
         http.Response(
           json.encode(

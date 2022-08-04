@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:afya_moja_core/src/domain/core/entities/notifications/notification_filter.dart';
 
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
@@ -44,7 +43,7 @@ class FetchNotificationFiltersAction extends ReduxAction<AppState> {
     };
 
     final Response response =
-        await client.query(fetchNotificationFilters, variables);
+        await client.query(fetchNotificationFiltersQuery, variables);
 
     final ProcessedResponse processedResponse = processHttpResponse(response);
 

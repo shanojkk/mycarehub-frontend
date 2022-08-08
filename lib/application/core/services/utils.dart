@@ -796,6 +796,20 @@ Future<void> handleNotification(
       ),
       response.message.text,
     );
+  } else {
+    final RemoteNotification? notification = message.notification;
+    if (notification != null) {
+      flutterLocalNotificationsPlugin.show(
+        notification.hashCode,
+        notification.title,
+        notification.body,
+        notificationDetails,
+      );
+      headsUpNotification(
+        notification.title,
+        notification.body,
+      );
+    }
   }
 }
 

@@ -248,6 +248,79 @@ void main() {
 
       debugDefaultTargetPlatformOverride = null;
     });
+    testWidgets('works correctly for other notifications',
+        (WidgetTester tester) async {
+      debugDefaultTargetPlatformOverride = TargetPlatform.android;
+
+      const MethodChannel('dexterous.com/flutter/local_notifications')
+          .setMockMethodCallHandler((MethodCall call) {
+        if (call.method == 'initialize') {
+          return Future<bool>.value(true);
+        }
+
+        return null;
+      });
+
+      final MockFlutterLocalNotificationsPlugin mock =
+          MockFlutterLocalNotificationsPlugin();
+
+      FlutterLocalNotificationsPlatform.instance = mock;
+
+      final MockStreamChatClient mockStreamChatClient = MockStreamChatClient();
+      when(mockStreamChatClient.getMessage(any)).thenAnswer(
+        (_) => Future<stream.GetMessageResponse>.value(
+          stream.GetMessageResponse.fromJson(<String, dynamic>{
+            'channel': <String, dynamic>{
+              'id': 'channel_id',
+            },
+            'message': <String, dynamic>{
+              'id': 'test',
+              'text': 'test',
+              'user': <String, dynamic>{'id': 'test', 'name': 'test user'}
+            }
+          }),
+        ),
+      );
+      await tester.pumpWidget(
+        OverlaySupport(
+          child: MaterialApp(
+            home: Scaffold(
+              body: Builder(
+                builder: (BuildContext context) {
+                  return Center(
+                    child: MaterialButton(
+                      onPressed: () => handleNotification(
+                        RemoteMessage.fromMap(<String, dynamic>{
+                          'data': <String, dynamic>{
+                            'id': 'test',
+                            'type': '',
+                          },
+                          'notification': <String, dynamic>{
+                            'title': 'testTitle',
+                            'body': 'testBody',
+                          }
+                        }),
+                        mockStreamChatClient,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+
+      final Finder button = find.byType(MaterialButton);
+      await tester.tap(button);
+      await tester.pump(const Duration(seconds: 4));
+
+      expect(find.text('testTitle'), findsOneWidget);
+
+      debugDefaultTargetPlatformOverride = null;
+    });
   });
 
   group('backgroundMessageHandler', () {

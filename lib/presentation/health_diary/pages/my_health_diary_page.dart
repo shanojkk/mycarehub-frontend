@@ -5,8 +5,8 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-// Project imports:
 import 'package:pro_health_360/application/core/services/utils.dart';
+// Project imports:
 import 'package:pro_health_360/application/redux/actions/fetch_health_diary_action.dart';
 import 'package:pro_health_360/application/redux/actions/update_health_diary_state.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
@@ -24,6 +24,7 @@ import 'package:pro_health_360/presentation/core/widgets/custom_scaffold/app_sca
 import 'package:pro_health_360/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:pro_health_360/presentation/health_diary/pages/empty_health_diary.dart';
 import 'package:pro_health_360/presentation/health_diary/widgets/health_diary_entry_widget.dart';
+import 'package:pro_health_360/presentation/health_diary/widgets/health_diary_filter_widget.dart';
 import 'package:pro_health_360/presentation/health_diary/widgets/mood_selection/mood_symptom_widget.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 
@@ -60,76 +61,108 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
         ),
         bottomNavIndex: 3,
       ),
-      body: ListView(
-        children: <Widget>[
-          smallVerticalSizedBox,
-          StoreConnector<AppState, HealthDiaryViewModel>(
-            converter: (Store<AppState> store) =>
-                HealthDiaryViewModel.fromStore(store.state),
-            builder: (BuildContext context, HealthDiaryViewModel vm) {
-              final List<Widget> filters = <Widget>[];
-              for (final MoodType mood in MoodType.values) {
-                final bool isSelected = vm.selectedFilter == mood;
-                filters.add(
-                  Row(
-                    children: <Widget>[
-                      CustomChipWidget(
-                        title: mood.name,
-                        gestureKey: Key(mood.name),
-                        isSelected: isSelected,
-                        onTap: () {
-                          StoreProvider.dispatch(
-                            context,
-                            FetchHealthDiaryAction(
-                              client: AppWrapperBase.of(context)!.graphQLClient,
-                              filter: mood.value,
-                            ),
-                          );
-                          StoreProvider.dispatch(
-                            context,
-                            UpdateHealthDiaryStateActon(
-                              selectedFilter: mood,
-                            ),
-                          );
-                        },
-                      ),
-                      const SizedBox(width: 20)
-                    ],
-                  ),
-                );
-              }
-              if (vm.wait!.isWaitingFor(fetchHealthDiaryFlag)) {
-                return Container(
-                  height: 300,
-                  padding: const EdgeInsets.all(20),
-                  child: const PlatformLoader(),
-                );
-              } else if (vm.timeoutFetchingContent ?? false) {
-                return const GenericTimeoutWidget(
-                  route: AppRoutes.home,
-                  action: 'fetching your diary',
-                );
-              } else if (vm.errorFetchingContent ?? false) {
-                return GenericErrorWidget(
-                  actionKey: helpNoDataWidgetKey,
-                  recoverCallback: () async {
-                    StoreProvider.dispatch<AppState>(
-                      context,
-                      FetchHealthDiaryAction(
-                        client: AppWrapperBase.of(context)!.graphQLClient,
-                      ),
-                    );
-                  },
-                  messageBody: const <TextSpan>[
-                    TextSpan(text: healthDiaryErrorDetail)
-                  ],
-                );
-              } else {
-                final List<HealthDiaryEntry?>? entries = vm.diaryEntries;
+      body: StoreConnector<AppState, HealthDiaryViewModel>(
+        converter: (Store<AppState> store) =>
+            HealthDiaryViewModel.fromStore(store.state),
+        builder: (BuildContext context, HealthDiaryViewModel vm) {
+          final List<Widget> filters = <Widget>[];
+          final List<Widget> diaryEntries = <Widget>[];
+          final List<HealthDiaryEntry?>? entries = vm.diaryEntries;
 
-                if (entries != null && entries.isNotEmpty) {
-                  // return entries UI here
-                  return RefreshIndicator(
+          for (final MoodType mood in MoodType.values) {
+            final bool isSelected = vm.selectedFilter == mood;
+            filters.add(
+              Row(
+                children: <Widget>[
+                  CustomChipWidget(
+                    title: mood.name,
+                    gestureKey: Key(mood.name),
+                    isSelected: isSelected,
+                    onTap: () {
+                      StoreProvider.dispatch(
+                        context,
+                        FetchHealthDiaryAction(
+                          client: AppWrapperBase.of(context)!.graphQLClient,
+                          filter: mood.value,
+                        ),
+                      );
+                      StoreProvider.dispatch(
+                        context,
+                        UpdateHealthDiaryStateActon(
+                          selectedFilter: mood,
+                        ),
+                      );
+                    },
+                  ),
+                  const SizedBox(width: 10)
+                ],
+              ),
+            );
+          }
+
+          if (entries?.isNotEmpty ?? false) {
+            for (int i = 0; i < entries!.length; i++) {
+              diaryEntries.add(
+                HealthDiaryEntryWidget(
+                  diaryEntry: entries[i]!,
+                  index: i,
+                ),
+              );
+            }
+          }
+
+          return SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              children: <Widget>[
+                HealthDiaryFiltersWidget(filters: filters),
+                Flexible(
+                  child: RefreshIndicator(
+                    child: SingleChildScrollView(
+                      key: healthDiaryListKey,
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      child: Column(
+                        children: <Widget>[
+                          if (vm.wait!.isWaitingFor(fetchHealthDiaryFlag))
+                            Container(
+                              height: 300,
+                              padding: const EdgeInsets.all(20),
+                              child: const PlatformLoader(),
+                            )
+                          else if (vm.timeoutFetchingContent ?? false)
+                            const GenericTimeoutWidget(
+                              route: AppRoutes.home,
+                              action: 'fetching your diary',
+                            )
+                          else if (vm.errorFetchingContent ?? false)
+                            GenericErrorWidget(
+                              actionKey: helpNoDataWidgetKey,
+                              recoverCallback: () async {
+                                StoreProvider.dispatch<AppState>(
+                                  context,
+                                  FetchHealthDiaryAction(
+                                    client: AppWrapperBase.of(context)!
+                                        .graphQLClient,
+                                  ),
+                                );
+                              },
+                              messageBody: const <TextSpan>[
+                                TextSpan(text: healthDiaryErrorDetail)
+                              ],
+                            )
+                          else if (vm.diaryEntries?.isEmpty ?? true)
+                            EmptyHealthDiary(
+                              refreshCallback: () => navigateToNewPage(
+                                route: AppRoutes.home,
+                                context: context,
+                                bottomNavIndex: BottomNavIndex.home.index,
+                              ),
+                            )
+                          else
+                            ...diaryEntries
+                        ],
+                      ),
+                    ),
                     onRefresh: () async {
                       StoreProvider.dispatch<AppState>(
                         context,
@@ -138,47 +171,12 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
                         ),
                       );
                     },
-                    child: Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(children: filters),
-                          ),
-                        ),
-                        ListView.builder(
-                          itemCount: entries.length,
-                          shrinkWrap: true,
-                          itemBuilder: (BuildContext context, int index) {
-                            final HealthDiaryEntry? currentEntry =
-                                entries.elementAt(index);
-                            if (currentEntry != null) {
-                              return HealthDiaryEntryWidget(
-                                diaryEntry: currentEntry,
-                                index: index,
-                              );
-                            } else {
-                              return const SizedBox();
-                            }
-                          },
-                        ),
-                      ],
-                    ),
-                  );
-                } else {
-                  return EmptyHealthDiary(
-                    refreshCallback: () => navigateToNewPage(
-                      route: AppRoutes.home,
-                      context: context,
-                      bottomNavIndex: BottomNavIndex.home.index,
-                    ),
-                  );
-                }
-              }
-            },
-          ),
-        ],
+                  ),
+                )
+              ],
+            ),
+          );
+        },
       ),
     );
   }

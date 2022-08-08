@@ -283,3 +283,4 @@ const Key okThanksButtonKey = Key('ok_thanks_button_key');
 const Key carouselItemKey = Key('carousel_item_key');
 const Key notificationFiltersKey = Key('notification_filters_key');
 const Key notificationsListViewKey = Key('notifications_list_view_key');
+const Key healthDiaryListKey = Key('health_diary_list_key');

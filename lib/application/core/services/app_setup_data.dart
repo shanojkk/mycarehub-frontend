@@ -14,12 +14,14 @@ class AppSetupData {
   final String streamAPIKey;
   final BaseContext? customContext;
   final String clinicalEndpoint;
+  final String environment;
 
   AppSetupData({
     required this.appContexts,
     required this.sentryDsn,
     required this.streamAPIKey,
     required this.clinicalEndpoint,
+    required this.environment,
     this.customContext,
   });
 
@@ -35,6 +37,7 @@ class AppSetupData {
 
 final AppSetupData devAppSetupData = AppSetupData(
   appContexts: testAppContexts,
+  environment: 'DEV',
   sentryDsn: FlutterConfig.get('DEV_SENTRY_DNS') as String,
   streamAPIKey: FlutterConfig.get('DEV_STREAM_API_KEY') as String,
   customContext: const BaseContext(
@@ -67,6 +70,7 @@ final AppSetupData devAppSetupData = AppSetupData(
 
 final AppSetupData demoAppSetupData = AppSetupData(
   appContexts: demoAppContexts,
+  environment: 'DEMO',
   sentryDsn: FlutterConfig.get('DEMO_SENTRY_DNS') as String,
   streamAPIKey: FlutterConfig.get('DEMO_STREAM_API_KEY') as String,
   customContext: const BaseContext(
@@ -99,6 +103,7 @@ final AppSetupData demoAppSetupData = AppSetupData(
 
 final AppSetupData prodAppSetupData = AppSetupData(
   appContexts: prodAppContexts,
+  environment: 'PROD',
   sentryDsn: FlutterConfig.get('PROD_SENTRY_DNS') as String,
   streamAPIKey: FlutterConfig.get('PROD_STREAM_API_KEY') as String,
   customContext: const BaseContext(

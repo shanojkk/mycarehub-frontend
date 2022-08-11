@@ -12,6 +12,7 @@ void main() {
       sentryDsn: 'some sentryDNS',
       streamAPIKey: 'some-stream-api-key',
       clinicalEndpoint: '',
+      environment: '',
     );
 
     expect(appSetup.sentryDsn, 'some sentryDNS');
@@ -22,6 +23,7 @@ void main() {
       sentryDsn: 'some sentryDNS',
       streamAPIKey: 'some-stream-api-key',
       clinicalEndpoint: '',
+      environment: '',
     );
 
     expect(appSetup, sameSetup);

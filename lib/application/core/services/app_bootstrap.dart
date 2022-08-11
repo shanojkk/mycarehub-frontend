@@ -137,6 +137,7 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
         (SentryFlutterOptions options) {
           options
             ..dsn = appSetupData.sentryDsn
+            ..environment = appSetupData.environment
             ..diagnosticLevel = SentryLevel.error;
         },
         appRunner: () => runApp(

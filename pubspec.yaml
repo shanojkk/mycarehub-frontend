@@ -45,7 +45,7 @@ dependencies:
   plugin_platform_interface: ^2.0.2
   quiver: ^3.0.1+1
   rxdart: ^0.27.4
-  sentry_flutter: ^6.6.2
+  sentry_flutter: ^6.9.0
   share_plus: ^4.0.10
   shared_preferences: ^2.0.15
   shared_themes: ^0.1.4

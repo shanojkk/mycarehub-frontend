@@ -1001,3 +1001,6 @@ const String recheckAvailableSurveys =
 const String cccNumberHint = 'Enter your CCC number...';
 const String all = 'All';
 const String unread = 'Unread';
+
+const String newNotificationMessageString = 'Please check your notification inbox';
+const String newNotificationTitleString = 'You have a new notification';

@@ -801,13 +801,13 @@ Future<void> handleNotification(
     if (notification != null) {
       flutterLocalNotificationsPlugin.show(
         notification.hashCode,
-        notification.title,
-        notification.body,
+        notification.title ?? newNotificationTitleString,
+        notification.body ?? newNotificationMessageString,
         notificationDetails,
       );
       headsUpNotification(
-        notification.title,
-        notification.body,
+        notification.title ?? newNotificationTitleString,
+        notification.body ?? newNotificationMessageString,
       );
     }
   }

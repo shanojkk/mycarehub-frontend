@@ -5,12 +5,8 @@ import 'dart:async';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart'
-    as local_notifications;
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:http/http.dart' as http;
@@ -40,7 +36,6 @@ import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 
 AppSetupData getAppSetupData(AppContext context) {
   switch (context) {
@@ -756,82 +751,6 @@ NotificationActionInfo getNotificationInfo(NotificationType notificationType) {
     default:
       return NotificationActionInfo(actionTitle: null, route: null);
   }
-}
-
-Future<void> handleNotification(
-  RemoteMessage message,
-  stream.StreamChatClient chatClient,
-) async {
-  final Map<String, dynamic> data = message.data;
-  final local_notifications.FlutterLocalNotificationsPlugin
-      flutterLocalNotificationsPlugin = await setupLocalNotifications();
-  const local_notifications.NotificationDetails notificationDetails =
-      local_notifications.NotificationDetails(
-    android: local_notifications.AndroidNotificationDetails(
-      'new_message',
-      'New message notifications channel',
-    ),
-  );
-
-  if (data['type'] == 'message.new') {
-    final String messageId = data['id'] as String;
-    final stream.GetMessageResponse response =
-        await chatClient.getMessage(messageId);
-
-    final String? channelName = response.channel?.extraData['Name'] as String?;
-
-    flutterLocalNotificationsPlugin.show(
-      1,
-      newChatMessageTitle(
-        response.message.user?.name,
-        channelName,
-      ),
-      response.message.text,
-      notificationDetails,
-    );
-    headsUpNotification(
-      newChatMessageTitle(
-        response.message.user?.name,
-        channelName,
-      ),
-      response.message.text,
-    );
-  } else {
-    final RemoteNotification? notification = message.notification;
-    if (notification != null) {
-      flutterLocalNotificationsPlugin.show(
-        notification.hashCode,
-        notification.title ?? newNotificationTitleString,
-        notification.body ?? newNotificationMessageString,
-        notificationDetails,
-      );
-      headsUpNotification(
-        notification.title ?? newNotificationTitleString,
-        notification.body ?? newNotificationMessageString,
-      );
-    }
-  }
-}
-
-Future<FlutterLocalNotificationsPlugin> setupLocalNotifications() async {
-  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
-
-  const IOSInitializationSettings initializationSettingsIOS =
-      IOSInitializationSettings();
-
-  const AndroidInitializationSettings initializationSettingsAndroid =
-      AndroidInitializationSettings('app_icon');
-
-  const InitializationSettings initializationSettings = InitializationSettings(
-    android: initializationSettingsAndroid,
-    iOS: initializationSettingsIOS,
-  );
-  await flutterLocalNotificationsPlugin.initialize(
-    initializationSettings,
-  );
-
-  return flutterLocalNotificationsPlugin;
 }
 
 /// calculates someone's age from the date of birth

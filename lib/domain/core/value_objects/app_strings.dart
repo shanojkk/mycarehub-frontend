@@ -946,19 +946,6 @@ const String platformSurveyDescription = 'A survey about your platform use';
 const String respondString = 'Respond';
 
 // FAQs
-String newChatMessageTitle(String? username, String? channelName) {
-  String baseMessage = 'New message';
-
-  if (username != null) {
-    baseMessage = '$baseMessage from $username';
-  }
-
-  if (channelName != null) {
-    baseMessage = '$baseMessage in $channelName';
-  }
-
-  return baseMessage;
-}
 
 const String noFAQsTitle = 'No FAQs available';
 const String noFAQsDescription =
@@ -1001,6 +988,3 @@ const String recheckAvailableSurveys =
 const String cccNumberHint = 'Enter your CCC number...';
 const String all = 'All';
 const String unread = 'Unread';
-
-const String newNotificationMessageString = 'Please check your notification inbox';
-const String newNotificationTitleString = 'You have a new notification';

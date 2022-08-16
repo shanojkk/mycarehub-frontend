@@ -67,14 +67,13 @@ class _VerifySecurityQuestionsHelpPageState
                   formFieldKey: cccInputKey,
                   hintText: cccNumberHint,
                   customFillColor: AppColors.greyTextColor.withOpacity(0.08),
-                  keyboardType: TextInputType.number,
+                  keyboardType: TextInputType.text,
                   borderColor: Colors.transparent,
                   validator: cccNumberValidator,
                   focusedBorderColor: Colors.transparent,
                   autovalidateMode: AutovalidateMode.disabled,
                   inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.digitsOnly,
-                    LengthLimitingTextInputFormatter(10)
+                    LengthLimitingTextInputFormatter(15)
                   ],
                   onChanged: (String val) {
                     setState(() {

@@ -48,5 +48,5 @@ class HealthDiaryViewModel extends Vm {
   final List<Quote> quotes;
   final bool? timeoutFetchingContent;
   final Wait? wait;
-  final MoodType? selectedFilter;
+  final MoodTypeFilter? selectedFilter;
 }

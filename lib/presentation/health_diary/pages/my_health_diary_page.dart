@@ -1,12 +1,9 @@
-// Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
-// Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pro_health_360/application/core/services/utils.dart';
-// Project imports:
 import 'package:pro_health_360/application/redux/actions/fetch_health_diary_action.dart';
 import 'package:pro_health_360/application/redux/actions/update_health_diary_state.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
@@ -41,6 +38,12 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
     WidgetsBinding.instance.addPostFrameCallback((Duration timeStamp) async {
       StoreProvider.dispatch<AppState>(
         context,
+        UpdateHealthDiaryStateActon(
+          selectedFilter: MoodTypeFilter.ALL,
+        ),
+      );
+      StoreProvider.dispatch<AppState>(
+        context,
         FetchHealthDiaryAction(
           client: AppWrapperBase.of(context)!.graphQLClient,
         ),
@@ -68,34 +71,35 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
           final List<Widget> filters = <Widget>[];
           final List<Widget> diaryEntries = <Widget>[];
           final List<HealthDiaryEntry?>? entries = vm.diaryEntries;
+          final MoodTypeFilter selectedMood = vm.selectedFilter!;
 
-          for (final MoodType mood in MoodType.values) {
+          for (final MoodTypeFilter mood in MoodTypeFilter.values) {
             final bool isSelected = vm.selectedFilter == mood;
             filters.add(
-              Row(
-                children: <Widget>[
-                  CustomChipWidget(
-                    title: mood.name,
-                    gestureKey: Key(mood.name),
-                    isSelected: isSelected,
-                    onTap: () {
-                      StoreProvider.dispatch(
-                        context,
-                        FetchHealthDiaryAction(
-                          client: AppWrapperBase.of(context)!.graphQLClient,
-                          filter: mood.value,
-                        ),
-                      );
-                      StoreProvider.dispatch(
-                        context,
-                        UpdateHealthDiaryStateActon(
-                          selectedFilter: mood,
-                        ),
-                      );
-                    },
-                  ),
-                  const SizedBox(width: 10)
-                ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: CustomChipWidget(
+                  title: mood.name,
+                  gestureKey: Key(mood.name),
+                  isSelected: isSelected,
+                  onTap: () async {
+                    await StoreProvider.dispatch(
+                      context,
+                      UpdateHealthDiaryStateActon(
+                        selectedFilter: mood,
+                      ),
+                    );
+                    StoreProvider.dispatch(
+                      context,
+                      FetchHealthDiaryAction(
+                        client: AppWrapperBase.of(context)!.graphQLClient,
+                        filter: (mood.value == MoodTypeFilter.ALL.value)
+                            ? null
+                            : mood.value,
+                      ),
+                    );
+                  },
+                ),
               ),
             );
           }
@@ -164,10 +168,14 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
                       ),
                     ),
                     onRefresh: () async {
-                      StoreProvider.dispatch<AppState>(
+                      StoreProvider.dispatch(
                         context,
                         FetchHealthDiaryAction(
                           client: AppWrapperBase.of(context)!.graphQLClient,
+                          filter:
+                              (selectedMood.value == MoodTypeFilter.ALL.value)
+                                  ? null
+                                  : selectedMood.value,
                         ),
                       );
                     },

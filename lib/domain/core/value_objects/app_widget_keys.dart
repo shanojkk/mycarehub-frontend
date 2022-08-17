@@ -284,3 +284,4 @@ const Key carouselItemKey = Key('carousel_item_key');
 const Key notificationFiltersKey = Key('notification_filters_key');
 const Key notificationsListViewKey = Key('notifications_list_view_key');
 const Key healthDiaryListKey = Key('health_diary_list_key');
+const Key allHealthDiariesKey = Key('all_health_diaries_key');

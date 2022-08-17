@@ -1,18 +1,11 @@
-// Dart imports:
 import 'dart:convert';
-
-// Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:pro_health_360/presentation/health_diary/widgets/health_diary_entry_widget.dart';
-
-// Project imports:
 import 'package:pro_health_360/application/redux/actions/update_content_state_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
@@ -48,13 +41,13 @@ void main() {
         widget: const MyHealthDiaryPage(),
       );
 
-      await tester.pumpAndSettle();
+      await tester.pump();
 
       expect(find.byType(CustomAppBar), findsOneWidget);
       expect(find.byType(HealthDiaryEntryWidget), findsNWidgets(3));
       expect(find.text('I am healthy'), findsOneWidget);
 
-      await tester.tap(find.byType(CustomChipWidget).first);
+      await tester.tap(find.byType(CustomChipWidget).at(1));
       expect(find.byType(HealthDiaryEntryWidget), findsNWidgets(3));
     });
     testWidgets('should display 1 shared diary entry correctly',
@@ -122,6 +115,9 @@ void main() {
         widget: const MyHealthDiaryPage(),
       );
 
+      await tester.pumpAndSettle();
+      expect(find.byType(CustomChipWidget), findsNWidgets(6));
+      await tester.tap(find.byType(CustomChipWidget).at(1));
       await tester.pumpAndSettle();
 
       expect(find.byType(CustomAppBar), findsOneWidget);

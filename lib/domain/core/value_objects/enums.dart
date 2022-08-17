@@ -176,3 +176,40 @@ enum AnalyticsEventType {
 }
 
 enum HomePageCarouselItemType { SCREENING_TOOL, SURVEY }
+
+enum MoodTypeFilter {
+  ALL,
+  VERY_HAPPY,
+  HAPPY,
+  NEUTRAL,
+  SAD,
+  VERY_SAD,
+}
+
+extension MoodTypeFilterEx on MoodTypeFilter {
+  String get name {
+    switch (this) {
+      case MoodTypeFilter.ALL:
+        return all;
+
+      case MoodTypeFilter.VERY_HAPPY:
+        return veryHappyString;
+
+      case MoodTypeFilter.HAPPY:
+        return happyString;
+
+      case MoodTypeFilter.NEUTRAL:
+        return neutralString;
+
+      case MoodTypeFilter.SAD:
+        return sadString;
+
+      case MoodTypeFilter.VERY_SAD:
+        return verySadString;
+    }
+  }
+
+  String get value {
+    return describeEnum(this).toUpperCase();
+  }
+}

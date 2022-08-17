@@ -27,7 +27,7 @@ mixin _$HealthDiaryState {
   bool? get timeoutFetchingDiaryEntries => throw _privateConstructorUsedError;
   bool? get shouldShareHealthRecord => throw _privateConstructorUsedError;
   bool? get shouldNotShareHealthRecord => throw _privateConstructorUsedError;
-  MoodType? get selectedFilter => throw _privateConstructorUsedError;
+  MoodTypeFilter? get selectedFilter => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,7 +48,7 @@ abstract class $HealthDiaryStateCopyWith<$Res> {
       bool? timeoutFetchingDiaryEntries,
       bool? shouldShareHealthRecord,
       bool? shouldNotShareHealthRecord,
-      MoodType? selectedFilter});
+      MoodTypeFilter? selectedFilter});
 
   $QuoteRelayCopyWith<$Res>? get quoteState;
 }
@@ -100,7 +100,7 @@ class _$HealthDiaryStateCopyWithImpl<$Res>
       selectedFilter: selectedFilter == freezed
           ? _value.selectedFilter
           : selectedFilter // ignore: cast_nullable_to_non_nullable
-              as MoodType?,
+              as MoodTypeFilter?,
     ));
   }
 
@@ -131,7 +131,7 @@ abstract class _$$_HealthDiaryStateCopyWith<$Res>
       bool? timeoutFetchingDiaryEntries,
       bool? shouldShareHealthRecord,
       bool? shouldNotShareHealthRecord,
-      MoodType? selectedFilter});
+      MoodTypeFilter? selectedFilter});
 
   @override
   $QuoteRelayCopyWith<$Res>? get quoteState;
@@ -186,7 +186,7 @@ class __$$_HealthDiaryStateCopyWithImpl<$Res>
       selectedFilter: selectedFilter == freezed
           ? _value.selectedFilter
           : selectedFilter // ignore: cast_nullable_to_non_nullable
-              as MoodType?,
+              as MoodTypeFilter?,
     ));
   }
 }
@@ -229,7 +229,7 @@ class _$_HealthDiaryState implements _HealthDiaryState {
   @override
   final bool? shouldNotShareHealthRecord;
   @override
-  final MoodType? selectedFilter;
+  final MoodTypeFilter? selectedFilter;
 
   @override
   String toString() {
@@ -289,7 +289,7 @@ abstract class _HealthDiaryState implements HealthDiaryState {
       final bool? timeoutFetchingDiaryEntries,
       final bool? shouldShareHealthRecord,
       final bool? shouldNotShareHealthRecord,
-      final MoodType? selectedFilter}) = _$_HealthDiaryState;
+      final MoodTypeFilter? selectedFilter}) = _$_HealthDiaryState;
 
   factory _HealthDiaryState.fromJson(Map<String, dynamic> json) =
       _$_HealthDiaryState.fromJson;
@@ -308,7 +308,7 @@ abstract class _HealthDiaryState implements HealthDiaryState {
   @override
   bool? get shouldNotShareHealthRecord;
   @override
-  MoodType? get selectedFilter;
+  MoodTypeFilter? get selectedFilter;
   @override
   @JsonKey(ignore: true)
   _$$_HealthDiaryStateCopyWith<_$_HealthDiaryState> get copyWith =>

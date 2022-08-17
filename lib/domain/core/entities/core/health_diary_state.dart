@@ -19,7 +19,7 @@ class HealthDiaryState with _$HealthDiaryState {
     bool? timeoutFetchingDiaryEntries,
     bool? shouldShareHealthRecord,
     bool? shouldNotShareHealthRecord,
-    MoodType? selectedFilter,
+    MoodTypeFilter? selectedFilter,
   }) = _HealthDiaryState;
 
   factory HealthDiaryState.fromJson(Map<String, dynamic> json) =>
@@ -32,5 +32,6 @@ class HealthDiaryState with _$HealthDiaryState {
         timeoutFetchingDiaryEntries: false,
         shouldShareHealthRecord: false,
         shouldNotShareHealthRecord: true,
+        selectedFilter: MoodTypeFilter.ALL,
       );
 }

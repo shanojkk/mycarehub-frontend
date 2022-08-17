@@ -27,7 +27,7 @@ class UpdateHealthDiaryStateActon extends ReduxAction<AppState> {
   final bool? timeoutFetchingEntries;
   final bool? shouldShareHealthRecord;
   final bool? shouldNotShareHealthRecord;
-  final MoodType? selectedFilter;
+  final MoodTypeFilter? selectedFilter;
 
   @override
   Future<AppState> reduce() async {

@@ -40,7 +40,7 @@ class NotificationsFilterWidget extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.symmetric(
               vertical: 6,
-              horizontal: 12,
+              horizontal: 6,
             ),
             child: CustomChipWidget(
               title: filterList?[index]?.name ?? '',

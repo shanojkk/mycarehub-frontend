@@ -21,7 +21,7 @@ _$_HealthDiaryState _$$_HealthDiaryStateFromJson(Map<String, dynamic> json) =>
       shouldShareHealthRecord: json['shouldShareHealthRecord'] as bool?,
       shouldNotShareHealthRecord: json['shouldNotShareHealthRecord'] as bool?,
       selectedFilter:
-          $enumDecodeNullable(_$MoodTypeEnumMap, json['selectedFilter']),
+          $enumDecodeNullable(_$MoodTypeFilterEnumMap, json['selectedFilter']),
     );
 
 Map<String, dynamic> _$$_HealthDiaryStateToJson(_$_HealthDiaryState instance) =>
@@ -32,13 +32,14 @@ Map<String, dynamic> _$$_HealthDiaryStateToJson(_$_HealthDiaryState instance) =>
       'timeoutFetchingDiaryEntries': instance.timeoutFetchingDiaryEntries,
       'shouldShareHealthRecord': instance.shouldShareHealthRecord,
       'shouldNotShareHealthRecord': instance.shouldNotShareHealthRecord,
-      'selectedFilter': _$MoodTypeEnumMap[instance.selectedFilter],
+      'selectedFilter': _$MoodTypeFilterEnumMap[instance.selectedFilter],
     };
 
-const _$MoodTypeEnumMap = {
-  MoodType.VERY_HAPPY: 'VERY_HAPPY',
-  MoodType.HAPPY: 'HAPPY',
-  MoodType.NEUTRAL: 'NEUTRAL',
-  MoodType.SAD: 'SAD',
-  MoodType.VERY_SAD: 'VERY_SAD',
+const _$MoodTypeFilterEnumMap = {
+  MoodTypeFilter.ALL: 'ALL',
+  MoodTypeFilter.VERY_HAPPY: 'VERY_HAPPY',
+  MoodTypeFilter.HAPPY: 'HAPPY',
+  MoodTypeFilter.NEUTRAL: 'NEUTRAL',
+  MoodTypeFilter.SAD: 'SAD',
+  MoodTypeFilter.VERY_SAD: 'VERY_SAD',
 };

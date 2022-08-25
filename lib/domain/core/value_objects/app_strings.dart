@@ -1,6 +1,3 @@
-// Flutter imports:
-// Flutter imports:
-// Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +34,7 @@ const String pinMismatchException =
     'You entered an incorrect PIN, please try again';
 const String enterPINText = 'Enter your PIN to continue';
 const String fourDigitPin = 'Please enter a 4 digit PIN';
-const String landingPageTitle = 'Welcome to ProHealth360';
+const String landingPageTitle = 'Welcome to UONAfyaApp360';
 const String logoutButtonText = 'Logout';
 const String phoneNumberSignInSubtitle = 'Use your phone number and PIN';
 const String pinUpdateSuccess = 'Your PIN was updated successfully';
@@ -76,7 +73,7 @@ const String faqTextSubtitle =
     'We are here to help, browse through our frequently asked questions';
 const String faqSubtitle =
     'Quickly get help from our team or go through our FAQs';
-const String faqPageTitle = 'ProHealth360 Support Center';
+const String faqPageTitle = 'UONAfyaApp360 Support Center';
 const String silPhoneNumber = 'tel:+254790360360';
 const String callText = 'Call support';
 const String whatsAppText = 'WhatsApp';
@@ -209,11 +206,11 @@ const String fetchingYourLibraryText = 'Fetching your library';
 
 const String personalDetails = 'Personal details';
 const String personalDetailsDesc =
-    'Tell us more about you. We use the information below to enhance your ProHealth360 experience.';
+    'Tell us more about you. We use the information below to enhance your UONAfyaApp360 experience.';
 final String copyrightString =
     'Content © University of Nairobi ${returnCurrentYear()}';
 const String copyrightDescriptionString =
-    'ProHealth360™ is a platform developed by Johnson & Johnson Global public Health, used under license';
+    'UONAfyaApp360™ is a platform developed by Johnson & Johnson Global public Health, used under license';
 const String poweredByMyCareHubString = 'Powered by myCareHub™';
 
 // this is the version of the currently running app.
@@ -305,7 +302,7 @@ const String saveAndContinueButtonText = 'Save & Continue';
 const String doneText = 'Done';
 const String phoneNumberRequiredText = 'A phone number is required';
 const String validPhoneNumberText = 'Please enter a valid phone number';
-const String loginPageTitleString = 'Welcome to ProHealth360';
+const String loginPageTitleString = 'Welcome to UONAfyaApp360';
 const String loginPageSubTitleString =
     'Please enter your phone number and PIN to continue.';
 const String phoneNumberString = 'Phone Number';
@@ -550,7 +547,8 @@ const String yesString = 'Yes';
 const String noString = 'No';
 const String submitFeedbackString = 'Submit feedback';
 const String cancelString = 'Cancel';
-const String helpUsImprove = 'Please tell us what you think about ProHealth360';
+const String helpUsImprove =
+    'Please tell us what you think about UONAfyaApp360';
 const String selectOneOption =
     'Please select one of the feedback options below and give your thoughts on the same';
 const String feedbackType = 'Feedback type';
@@ -738,7 +736,7 @@ const String feedbackSubmissionErrorText =
 // clinic information
 const String keyProvider = 'Clinic Name';
 
-const String defaultStreamUserID = 'ProHealth360';
+const String defaultStreamUserID = 'UONAfyaApp360';
 const String kindlyLogOutText = 'Kindly log out and back in to continue';
 
 // communities
@@ -839,34 +837,34 @@ const String tryAgainString = 'Try Again';
 
 // consent confirmation page
 const String optOut = 'Opt out';
-const String optOutOfMyCareHubString = 'Opt out of ProHealth360';
-const String optOutOfMyCareHubTitleString = 'Opt out of ProHealth360?';
+const String optOutOfMyCareHubString = 'Opt out of UONAfyaApp360';
+const String optOutOfMyCareHubTitleString = 'Opt out of UONAfyaApp360?';
 const String youAreChoosingToOptOut =
-    'You are choosing to opt out of ProHealth360. The following will happen to your account:';
+    'You are choosing to opt out of UONAfyaApp360. The following will happen to your account:';
 const String yourProfileWillBeDeleted =
     '1. Your profile will be deleted. This action is cannot be undone.';
 const String youWillNotLogin =
-    '2. You will not be able to continue to benefit from all the services on ProHealth360.';
+    '2. You will not be able to continue to benefit from all the services on UONAfyaApp360.';
 const String youWillNeedToRegisterString =
-    '3. You will need to be registered again to access ProHealth360 services.';
+    '3. You will need to be registered again to access UONAfyaApp360 services.';
 
 const String yourHealthRecordWillBeAnonymizedString =
-    '4. Your health record will be anonymized. If you wish to delete your data from ProHealth360, kindly contact the admin on ';
+    '4. Your health record will be anonymized. If you wish to delete your data from UONAfyaApp360, kindly contact the admin on ';
 const String areYouStillSureString =
-    'Are you still sure that you want to opt out of ProHealth360?';
+    'Are you still sure that you want to opt out of UONAfyaApp360?';
 
 const String noGoBack = 'No, go back';
 const String yesContinue = 'Yes, continue';
 const String yesIam = 'Yes, I am';
 const String areYouReallySureTitle = 'Are you really sure?';
 const String optOutMessage =
-    'Are you really sure that you want to opt out of ProHealth360?\n\nOur healthcare team would be sad to see you go';
+    'Are you really sure that you want to opt out of UONAfyaApp360?\n\nOur healthcare team would be sad to see you go';
 const String cccNumberString = 'CCC number';
 
 // PIN expired page strings
 const String pinExpiredTitle = 'Your PIN has expired';
 const String pinExpiredDescription =
-    'It seems that your PIN has expired. No worries though. We expire PINs so as to enhance security of your data on ProHealth360.\n\nTap the button below to change your PIN';
+    'It seems that your PIN has expired. No worries though. We expire PINs so as to enhance security of your data on UONAfyaApp360.\n\nTap the button below to change your PIN';
 
 const String changePinCTA = 'Change my PIN';
 const String sendingPINResetRequestSting = 'sending your pin reset request';
@@ -954,7 +952,7 @@ const String fetchingFAQsString = 'fetching FAQs';
 
 const String kindlyCheckItOutString = 'Kindly check it out';
 const String shareContentSubjectString =
-    'Hello, here is an exciting content from ProHealth360';
+    'Hello, here is an exciting content from UONAfyaApp360';
 
 const String tooManyAttemptsString = 'Too many login attempts';
 const String tooManyAttemptsMessageString =

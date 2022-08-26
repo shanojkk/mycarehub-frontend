@@ -1,26 +1,24 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 // Package imports:
-import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 // Project imports:
 import 'package:pro_health_360/application/core/graphql/queries.dart';
-import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/actions/update_recent_content_state_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 class FetchRecentContentAction extends ReduxAction<AppState> {
   FetchRecentContentAction({
-    required this.context,
+    required this.client,
     this.limit = 5,
   });
 
-  final BuildContext context;
   final int limit;
+  final IGraphQlClient client;
 
   @override
   void after() {
@@ -40,31 +38,25 @@ class FetchRecentContentAction extends ReduxAction<AppState> {
       'Limit': limit.toString()
     };
 
-    final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
-
     /// fetch the data from the api
-    final Response response = await _client.query(
+    final Response response = await client.query(
       getContentQuery,
       variables,
     );
 
-    final Map<String, dynamic> payLoad = _client.toMap(response);
+    final Map<String, dynamic> payLoad = client.toMap(response);
     final String? error = parseError(payLoad);
 
     if (error != null) {
-      reportErrorToSentry(
-        context,
-        error,
-        hint: 'Error while fetching your recent content',
-      );
+      Sentry.captureException(UserException(error));
 
       if (error == 'timeout') {
         dispatch(UpdateRecentContentStateAction(timeoutFetchingContent: true));
-        return null;
+        throw UserException(getErrorMessage('fetching recent content'));
       }
 
       dispatch(UpdateRecentContentStateAction(errorFetchingContent: true));
-      return null;
+      throw UserException(getErrorMessage('fetching recent content'));
     }
 
     final FeedContent recentFeedContent = FeedContent.fromJson(

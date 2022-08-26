@@ -216,8 +216,8 @@ void main() {
       expect(failureReason, 'Your phone number or PIN do not match.');
     });
 
-    test('show update state correctly if response is ok', () async {
-      storeTester.dispatch(
+    test('should update state correctly if response is ok', () async {
+      await storeTester.dispatch(
         PhoneLoginAction(
           httpClient: MockGraphQlClient(),
           endpoint: kTestLoginByPhoneEndpoint,

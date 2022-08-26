@@ -1,5 +1,6 @@
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:pro_health_360/application/core/services/analytics_service.dart';
@@ -18,7 +19,6 @@ import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/presentation/content/widgets/feed_page_content_item.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
-import 'package:pro_health_360/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:pro_health_360/presentation/core/widgets/generic_zero_state_widget.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 
@@ -39,7 +39,11 @@ class RecentContentWidget extends StatelessWidget {
               contentState?.feedContentState?.contentItems?.isEmpty ?? true;
 
           if (isRecentContentEmpty) {
-            store.dispatch(FetchRecentContentAction(context: context));
+            store.dispatch(
+              FetchRecentContentAction(
+                client: AppWrapperBase.of(context)!.graphQLClient,
+              ),
+            );
           }
 
           if (isFeedEmpty) {
@@ -56,24 +60,9 @@ class RecentContentWidget extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             child: const PlatformLoader(),
           );
-        } else if (vm.recentContentState?.timeoutFetchingContent ?? false) {
-          return const GenericTimeoutWidget(
-            route: AppRoutes.home,
-            action: 'fetching your recent content',
-          );
-        } else if (vm.recentContentState?.errorFetchingContent ?? false) {
-          return GenericErrorWidget(
-            actionKey: helpNoDataWidgetKey,
-            recoverCallback: () async {
-              StoreProvider.dispatch<AppState>(
-                context,
-                FetchRecentContentAction(context: context),
-              );
-            },
-            messageBody: const <TextSpan>[
-              TextSpan(text: messageBodyGenericErrorWidget)
-            ],
-          );
+        } else if ((vm.recentContentState?.timeoutFetchingContent ?? false) ||
+            (vm.recentContentState?.errorFetchingContent ?? false)) {
+          return const SizedBox();
         } else {
           final List<Content?>? recentContent =
               vm.recentContentState?.contentItems;
@@ -168,7 +157,9 @@ class RecentContentWidget extends StatelessWidget {
                 callBackFunction: () {
                   StoreProvider.dispatch<AppState>(
                     context,
-                    FetchRecentContentAction(context: context),
+                    FetchRecentContentAction(
+                      client: AppWrapperBase.of(context)!.graphQLClient,
+                    ),
                   );
                 },
                 iconUrl: contentZeroStateImageUrl,

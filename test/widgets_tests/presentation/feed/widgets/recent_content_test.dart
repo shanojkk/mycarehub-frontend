@@ -25,7 +25,6 @@ import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/presentation/content/pages/content_details_page.dart';
 import 'package:pro_health_360/presentation/content/pages/feed_page.dart';
 import 'package:pro_health_360/presentation/content/widgets/recent_content_widget.dart';
-import 'package:pro_health_360/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:pro_health_360/presentation/core/widgets/generic_zero_state_widget.dart';
 import '../../../../mock_image_http_client.dart';
 import '../../../../mocks.dart';
@@ -159,42 +158,6 @@ void main() {
     });
 
     testWidgets(
-        'shows a generic no data widget while fetching the feed '
-        'and refresh the feed when prompted', (WidgetTester tester) async {
-      store.dispatch(AuthStatusAction(isSignedIn: true));
-
-      tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
-      tester.binding.window.devicePixelRatioTestValue = 1;
-
-      mockNetworkImages(() async {
-        final MockShortGraphQlClient client =
-            MockShortGraphQlClient.withResponse(
-          'idToken',
-          'endpoint',
-          Response(
-            json.encode(<String, dynamic>{'error': 'no data'}),
-            201,
-          ),
-        );
-
-        await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: client,
-          widget: const RecentContentWidget(),
-        );
-
-        await tester.pumpAndSettle();
-
-        await tester.ensureVisible(find.byKey(helpNoDataWidgetKey));
-        await tester.tap(find.byKey(helpNoDataWidgetKey));
-        await tester.pumpAndSettle();
-
-        expect(find.byType(GenericErrorWidget), findsOneWidget);
-      });
-    });
-
-    testWidgets(
         'should display ContentZeroStateWidget when content list is empty',
         (WidgetTester tester) async {
       tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
@@ -230,39 +193,6 @@ void main() {
         await tester.tap(find.byType(MyAfyaHubPrimaryButton));
 
         expect(find.byType(GenericZeroStateWidget), findsWidgets);
-      });
-    });
-
-    testWidgets(
-        'shows a generic timeout widget while fetching suggested groups',
-        (WidgetTester tester) async {
-      store.dispatch(AuthStatusAction(isSignedIn: true));
-
-      mockNetworkImages(() async {
-        final MockShortGraphQlClient client =
-            MockShortGraphQlClient.withResponse(
-          'idToken',
-          'endpoint',
-          Response(
-            json.encode(<String, dynamic>{'error': 'timeout'}),
-            201,
-          ),
-        );
-
-        await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: client,
-          widget: const RecentContentWidget(),
-        );
-
-        await tester.pumpAndSettle();
-
-        expect(find.byType(GenericTimeoutWidget), findsOneWidget);
-        addTearDown(() {
-          tester.binding.window.clearPhysicalSizeTestValue();
-          tester.binding.window.clearDevicePixelRatioTestValue();
-        });
       });
     });
 

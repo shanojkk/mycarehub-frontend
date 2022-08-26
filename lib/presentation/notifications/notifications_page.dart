@@ -89,7 +89,7 @@ class NotificationsPage extends StatelessWidget {
                                     vm.notificationFilterState?.selectedFilter;
                                 bool isRead = false;
                                 if ((vm.notificationFilterState?.selectedFilter
-                                                ?.type?.name ??
+                                                ?.name ??
                                             '')
                                         .compareTo(unread) !=
                                     0) {
@@ -124,9 +124,9 @@ class NotificationsPage extends StatelessWidget {
                     onRefresh: () async {
                       final NotificationFilter? selectedFilter =
                           vm.notificationFilterState?.selectedFilter;
+
                       bool isRead = false;
-                      if ((vm.notificationFilterState?.selectedFilter?.type
-                                      ?.name ??
+                      if ((vm.notificationFilterState?.selectedFilter?.name ??
                                   '')
                               .compareTo(unread) !=
                           0) {

@@ -7,6 +7,7 @@ import 'package:pro_health_360/application/redux/actions/update_health_diary_sta
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/entities/health_diary/health_diary_entry.dart';
+import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class FetchHealthDiaryAction extends ReduxAction<AppState> {
@@ -42,10 +43,12 @@ class FetchHealthDiaryAction extends ReduxAction<AppState> {
   @override
   Future<AppState?> reduce() async {
     final String? clientID = state.clientState!.id;
+    final String? moodType =
+        (filter == MoodTypeFilter.ALL.value) ? null : filter;
 
     final Map<String, dynamic> variables = <String, dynamic>{
       'clientID': clientID,
-      'moodType': filter,
+      'moodType': moodType,
       'shared': shared
     };
 

@@ -36,13 +36,13 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((Duration timeStamp) async {
-      StoreProvider.dispatch<AppState>(
+      await StoreProvider.dispatch<AppState>(
         context,
         UpdateHealthDiaryStateActon(
           selectedFilter: MoodTypeFilter.ALL,
         ),
       );
-      StoreProvider.dispatch<AppState>(
+      await StoreProvider.dispatch<AppState>(
         context,
         FetchHealthDiaryAction(
           client: AppWrapperBase.of(context)!.graphQLClient,
@@ -71,7 +71,7 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
           final List<Widget> filters = <Widget>[];
           final List<Widget> diaryEntries = <Widget>[];
           final List<HealthDiaryEntry?>? entries = vm.diaryEntries;
-          final MoodTypeFilter selectedMood = vm.selectedFilter!;
+          final MoodTypeFilter? selectedMood = vm.selectedFilter;
 
           for (final MoodTypeFilter mood in MoodTypeFilter.values) {
             final bool isSelected = vm.selectedFilter == mood;
@@ -172,10 +172,7 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
                         context,
                         FetchHealthDiaryAction(
                           client: AppWrapperBase.of(context)!.graphQLClient,
-                          filter:
-                              (selectedMood.value == MoodTypeFilter.ALL.value)
-                                  ? null
-                                  : selectedMood.value,
+                          filter: selectedMood?.value,
                         ),
                       );
                     },

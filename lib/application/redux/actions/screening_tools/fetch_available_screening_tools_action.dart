@@ -82,7 +82,7 @@ class FetchAvailableScreeningToolsAction extends ReduxAction<AppState> {
           );
         }
 
-        dispatch(
+        await dispatch(
           UpdateScreeningToolsState(
             availableScreeningTools: AvailableScreeningTools(
               availableScreeningTools: screeningToolsList,

@@ -64,7 +64,7 @@ class ScreeningToolsCarousel extends StatelessWidget {
         return ScreeningToolsViewModel.fromStore(store);
       },
       onInit: (Store<AppState> store) async {
-        store.dispatch(
+        await store.dispatch(
           FetchAvailableScreeningToolsAction(
             client: AppWrapperBase.of(context)!.graphQLClient,
           ),
@@ -73,10 +73,15 @@ class ScreeningToolsCarousel extends StatelessWidget {
       builder: (BuildContext context, ScreeningToolsViewModel vm) {
         final int itemCount =
             vm.availableScreeningTools?.availableScreeningTools?.length ?? 0;
+        final bool screeningToolsListIsEmpty =
+            vm.availableScreeningTools?.availableScreeningTools?.isEmpty ??
+                true;
+        final bool errorOccurred =
+            vm.availableScreeningTools?.errorFetchingQuestions ?? false;
+        final bool timeOutOccurred =
+            vm.availableScreeningTools?.timeoutFetchingQuestions ?? false;
 
-        return (vm.availableScreeningTools?.errorFetchingQuestions ?? false) ||
-                (vm.availableScreeningTools?.timeoutFetchingQuestions ??
-                    false || itemCount <= 0)
+        return (errorOccurred || timeOutOccurred || screeningToolsListIsEmpty)
             ? const SizedBox()
             : Column(
                 mainAxisSize: MainAxisSize.min,

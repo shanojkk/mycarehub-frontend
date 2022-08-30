@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -16,9 +18,9 @@ import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 
 class FetchAvailableScreeningToolsAction extends ReduxAction<AppState> {
-  FetchAvailableScreeningToolsAction({required this.client});
+  FetchAvailableScreeningToolsAction({required this.context});
 
-  final IGraphQlClient client;
+  final BuildContext context;
 
   @override
   void after() {
@@ -37,6 +39,8 @@ class FetchAvailableScreeningToolsAction extends ReduxAction<AppState> {
     final Map<String, dynamic> variables = <String, dynamic>{
       'clientID': state.clientState!.id,
     };
+    final IGraphQlClient client = AppWrapperBase.of(context)!.graphQLClient;
+
     final Response response =
         await client.query(getAvailableScreeningToolQuery, variables);
 
@@ -148,5 +152,13 @@ class FetchAvailableScreeningToolsAction extends ReduxAction<AppState> {
       default:
         return ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT;
     }
+  }
+
+  @override
+  Object wrapError(dynamic error) async {
+    if (error.runtimeType == UserException) {
+      return error;
+    }
+    return error;
   }
 }

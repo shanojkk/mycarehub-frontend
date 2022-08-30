@@ -1,7 +1,9 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:app_wrapper/app_wrapper.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 // Project imports:
@@ -13,12 +15,12 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 
 class FetchRecentContentAction extends ReduxAction<AppState> {
   FetchRecentContentAction({
-    required this.client,
+    required this.context,
     this.limit = 5,
   });
 
   final int limit;
-  final IGraphQlClient client;
+  final BuildContext context;
 
   @override
   void after() {
@@ -37,6 +39,7 @@ class FetchRecentContentAction extends ReduxAction<AppState> {
     final Map<String, dynamic> variables = <String, dynamic>{
       'Limit': limit.toString()
     };
+    final IGraphQlClient client = AppWrapperBase.of(context)!.graphQLClient;
 
     /// fetch the data from the api
     final Response response = await client.query(
@@ -78,5 +81,13 @@ class FetchRecentContentAction extends ReduxAction<AppState> {
     }
 
     return state;
+  }
+
+  @override
+  Object wrapError(dynamic error) async {
+    if (error.runtimeType == UserException) {
+      return error;
+    }
+    return error;
   }
 }

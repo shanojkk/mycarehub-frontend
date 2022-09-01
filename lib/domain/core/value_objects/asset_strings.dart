@@ -128,7 +128,6 @@ const String mehIconSvgPath = 'assets/icons/meh.svg';
 const String sadIconSvgPath = 'assets/icons/sad.svg';
 const String verySadIconSvgPath = 'assets/icons/very_sad.svg';
 
-
 // Quotes slider background images
 const String moodSelectionBackgroundUrl =
     'assets/images/mood_selection_background.png';
@@ -208,3 +207,4 @@ const String noChatImage = 'assets/images/no_chat.svg';
 const String checkIcon = 'assets/icons/check_icon.svg';
 const String noConnectionImage = 'assets/images/no_connection.svg';
 const String surveyZeroStateImage = 'assets/images/survey_zero_state.svg';
+const String workStationChooserImage = 'assets/images/workstation_chooser.svg';

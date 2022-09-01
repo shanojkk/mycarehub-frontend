@@ -10,6 +10,7 @@ import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
+import 'package:pro_health_360/phase_2/work_station_chooser_page.dart';
 import 'package:pro_health_360/presentation/assessment/pages/contraceptive_assessment_page.dart';
 import 'package:pro_health_360/presentation/assessment/widgets/successful_assessment_submission_page.dart';
 import 'package:pro_health_360/presentation/communities/community_list_page.dart';
@@ -676,5 +677,16 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<HotlinesPage>>());
     expect(route?.builder(context), isA<HotlinesPage>());
+  });
+
+  test('Test router returns work station chooser page', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.workStationChooserPage);
+
+    final MaterialPageRoute<WorkStationChooserPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<WorkStationChooserPage>?;
+
+    expect(route, isA<MaterialPageRoute<WorkStationChooserPage>>());
+    expect(route?.builder(context), isA<WorkStationChooserPage>());
   });
 }

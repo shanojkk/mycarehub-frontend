@@ -987,3 +987,10 @@ const String recheckAvailableSurveys =
 const String cccNumberHint = 'Enter your CCC number...';
 const String all = 'All';
 const String unread = 'Unread';
+String workStationChooserDescription(String username) =>
+    'Welcome back $username! Please select who you would like to proceed as';
+const String proceedAsCaregiver = 'Proceed as caregiver';
+const String proceedAsClient = 'Proceed as client';
+const String caregiver = 'Caregiver';
+const String proceed = 'Proceed';
+const String client = 'Client';

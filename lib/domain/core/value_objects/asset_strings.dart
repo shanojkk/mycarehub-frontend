@@ -208,3 +208,7 @@ const String checkIcon = 'assets/icons/check_icon.svg';
 const String noConnectionImage = 'assets/images/no_connection.svg';
 const String surveyZeroStateImage = 'assets/images/survey_zero_state.svg';
 const String workStationChooserImage = 'assets/images/workstation_chooser.svg';
+
+const String messageIcon = 'assets/icons/message_icon.svg';
+const String surveyIcon = 'assets/icons/survey_icon.svg';
+const String pdfIcon = 'assets/icons/pdf_icon.svg';

@@ -994,3 +994,9 @@ const String proceedAsClient = 'Proceed as client';
 const String caregiver = 'Caregiver';
 const String proceed = 'Proceed';
 const String client = 'Client';
+
+String welcomeFacilitySelectionDescription(String username) =>
+    'Welcome back $username! Choose your facility';
+
+String noOfFacilitiesDescription(String numberOfFacilities) =>
+    "We've noticed that you're part of $numberOfFacilities facilities. Choose which facility you would like to log into. Here are the details";

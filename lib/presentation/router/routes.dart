@@ -3,7 +3,8 @@
 /// file **MUST** follow the same, and must be replicated in
 /// the router generator file
 class AppRoutes {
-  static const String deepLink = '/app';
+  static const String deepLink = '/mycarehub';
+
   // onboarding routes
   static const String phoneLogin = '/phoneLogin';
   static const String verifyCode = '/verifyCode';

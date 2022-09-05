@@ -9,8 +9,8 @@ import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 import 'package:pro_health_360/phase_2/widgets/general_workstation_widget.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 
-class WorkStationChooserPage extends StatelessWidget {
-  const WorkStationChooserPage({Key? key}) : super(key: key);
+class ClientCaregiverSelectionPage extends StatelessWidget {
+  const ClientCaregiverSelectionPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

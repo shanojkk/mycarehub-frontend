@@ -136,7 +136,10 @@ class AppRoutes {
   static const String wrongResumeWithPINPage = '/wrongResumeWithPINPage';
 
   static const String hotlinesPage = '/hotlinesPage';
-  static const String workStationChooserPage = 'workStationChooserPage';
+  static const String clientCaregiverSelectionPageRoute =
+      '/clientCaregiverSelectionPageRoute';
+
+  static const String clientSelectionPageRoute = '/clientSelectionPageRoute';
 }
 
 List<String> unProtectedRoutes = <String>[AppRoutes.phoneLogin];

@@ -3,7 +3,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/phase_2/widgets/general_workstation_widget.dart';
-import 'package:pro_health_360/phase_2/work_station_chooser_page.dart';
+import 'package:pro_health_360/phase_2/client_caregiver_selection_page.dart';
 
 import '../../mocks.dart';
 import '../../test_helpers.dart';
@@ -20,7 +20,7 @@ void main() {
         tester: tester,
         store: store,
         client: MockGraphQlClient(),
-        widget: const WorkStationChooserPage(),
+        widget: const ClientCaregiverSelectionPage(),
       );
 
       await tester.pumpAndSettle();

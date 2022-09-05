@@ -1004,3 +1004,8 @@ String noOfFacilitiesDescription(String numberOfFacilities) =>
 String getConsentActionDescription(String name) {
   return '$name has been assigned to you by your medical practitioner. You are required to give consent Tap the options below to record your consent.\n\nTap the options below to record your consent';
 }
+
+String clientSelectionTitle(String username) =>
+    'Welcome back $username! Choose your client';
+String clientSelectionDescription(String numberOfClients) =>
+    "We've noticed that you're managing $numberOfClients clients. Choose which client you would like to manage";

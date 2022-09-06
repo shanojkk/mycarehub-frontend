@@ -61,7 +61,7 @@ void main() {
                   builder: (BuildContext context) {
                     return ShareDiaryEntryDialog(
                       diaryEntry: HealthDiaryEntry.initial(),
-                    );
+                    );          
                   },
                 );
               },

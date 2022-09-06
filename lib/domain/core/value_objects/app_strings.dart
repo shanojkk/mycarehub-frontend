@@ -1005,6 +1005,10 @@ String getConsentActionDescription(String name) {
   return '$name has been assigned to you by your medical practitioner. You are required to give consent Tap the options below to record your consent.\n\nTap the options below to record your consent';
 }
 
+String getConsentActionRemoveDescription(String name) {
+  return '$name is been assigned to you by your medical practitioner. They have access to your medical information and other information about you. They can also manage myCareHub on your behalf.\n\nTo revoke their access, tap the button below.';
+}
+
 String clientSelectionTitle(String username) =>
     'Welcome back $username! Choose your client';
 String clientSelectionDescription(String numberOfClients) =>
@@ -1012,6 +1016,10 @@ String clientSelectionDescription(String numberOfClients) =>
 String yourCurrentHospitalDescription(String hospitalName) =>
     'You are currently signed in at $hospitalName. Tap below to sign in to a different facility';
 const String changeMyFacility = 'Change my facility';
+const String removeString = 'REMOVE';
+const String removeCaregiverString = 'Remove Caregiver';
+const String acceptString = 'I Accept';
+const String doNotAcceptString = 'I DO NOT Accept';
 
 const String caregiverAssignedText =
     'Caregivers that have been assigned to you by your medical practitioner';

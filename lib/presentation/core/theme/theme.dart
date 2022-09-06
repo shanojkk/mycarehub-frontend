@@ -65,6 +65,7 @@ class AppColors {
   static const Color orangeColor = Color(0xFFF0997A);
   static const Color grey50 = Color(0xFF7A7B8E);
   static const Color authBackgroundColor = Color(0xffeff5ff);
+  static const Color malachiteColor = Color(0xff00BE33);
 
   static ThemeColors themeColors = ThemeColors(
     primaryColor,

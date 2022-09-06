@@ -213,3 +213,5 @@ const String consentImage = 'assets/images/concent_icon.svg';
 const String messageIcon = 'assets/icons/message_icon.svg';
 const String surveyIcon = 'assets/icons/survey_icon.svg';
 const String pdfIcon = 'assets/icons/pdf_icon.svg';
+
+const String caregiverConsentImage = 'assets/images/caregiver_consent_image.svg';

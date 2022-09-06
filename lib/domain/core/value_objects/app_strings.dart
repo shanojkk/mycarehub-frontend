@@ -1009,3 +1009,10 @@ String clientSelectionTitle(String username) =>
     'Welcome back $username! Choose your client';
 String clientSelectionDescription(String numberOfClients) =>
     "We've noticed that you're managing $numberOfClients clients. Choose which client you would like to manage";
+
+const String caregiverAssignedText =
+    'Caregivers that have been assigned to you by your medical practitioner';
+const String caregiverConsentText = 'Caregiver consent';
+const String caregiverConsentReviewText = 'Tap to review this request';
+
+const String consentRecordedString = 'Consent recorded';

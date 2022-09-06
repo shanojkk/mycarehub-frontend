@@ -1009,6 +1009,9 @@ String clientSelectionTitle(String username) =>
     'Welcome back $username! Choose your client';
 String clientSelectionDescription(String numberOfClients) =>
     "We've noticed that you're managing $numberOfClients clients. Choose which client you would like to manage";
+String yourCurrentHospitalDescription(String hospitalName) =>
+    'You are currently signed in at $hospitalName. Tap below to sign in to a different facility';
+const String changeMyFacility = 'Change my facility';
 
 const String caregiverAssignedText =
     'Caregivers that have been assigned to you by your medical practitioner';

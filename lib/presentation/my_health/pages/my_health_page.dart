@@ -1,4 +1,3 @@
-// Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
@@ -7,7 +6,6 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pro_health_360/application/core/services/app_setup_data.dart';
 import 'package:pro_health_360/application/core/services/custom_client.dart';
-// Project imports:
 import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/actions/medical_data/fetch_next_refill_data_action.dart';
 import 'package:pro_health_360/application/redux/actions/medical_data/fetch_viral_load_data_action.dart';
@@ -103,6 +101,13 @@ class _MyHealthPageState extends State<MyHealthPage> {
           final User? userProfileState = vm.clientState?.user;
           final String firstName = userProfileState?.firstName ?? '';
           final String lastName = userProfileState?.lastName ?? '';
+          //TODO(byron): Return this during phase 2 implementation
+          // final String userPhoneNumber =
+          //     userProfileState?.primaryContact?.value ?? '';
+          // final String hospitalName = StoreProvider.state<AppState>(context)
+          //         ?.clientState
+          //         ?.facilityName ??
+          //     '';
           final List<ViralLoadNode?> viralLoadData =
               vm.clientState?.viralLoadData?.edges ?? <ViralLoadNode>[];
 
@@ -128,7 +133,16 @@ class _MyHealthPageState extends State<MyHealthPage> {
                             AppRoutes.userProfilePage,
                           );
                         },
-                        child: InformationListCard(
+                        child:
+                            //TODO(byron): Return this during phase 2 implementation
+                            // HealthPageInformationWidget(
+                            //   user: userProfileState,
+                            //   firstName: firstName,
+                            //   lastName: lastName,
+                            //   userPhoneNumber: userPhoneNumber,
+                            //   hospitalName: hospitalName,
+                            // ),
+                            InformationListCard(
                           title: Text(
                             myHealthPageProfile,
                             style: boldSize16Text(AppColors.secondaryColor),

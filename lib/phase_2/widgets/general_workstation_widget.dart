@@ -9,9 +9,11 @@ class GeneralWorkstationWidget extends StatelessWidget {
     required this.bodyWidget,
     this.onButtonCallback,
     required this.buttonText,
+    this.subtitle,
   }) : super(key: key);
 
   final String title;
+  final String? subtitle;
   final String buttonText;
   final Widget bodyWidget;
   final VoidCallback? onButtonCallback;
@@ -38,6 +40,16 @@ class GeneralWorkstationWidget extends StatelessWidget {
             title,
             style: veryBoldSize17Text(AppColors.primaryColor),
           ),
+          if (subtitle != null)
+            Column(
+              children: <Widget>[
+                smallVerticalSizedBox,
+                Text(
+                  subtitle!,
+                  style: normalSize15Text(AppColors.primaryColor),
+                ),
+              ],
+            ),
           mediumVerticalSizedBox,
           bodyWidget,
           mediumVerticalSizedBox,

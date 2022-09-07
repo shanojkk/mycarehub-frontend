@@ -47,7 +47,8 @@ class ClientSelectionPage extends StatelessWidget {
                     ),
                     mediumVerticalSizedBox,
                     GeneralWorkstationWidget(
-                      title: 'Agha Khan',
+                      title: 'John Doe',
+                      subtitle: 'Nanyuki District Hospital',
                       bodyWidget: Wrap(
                         runSpacing: 12,
                         spacing: 8,
@@ -74,7 +75,8 @@ class ClientSelectionPage extends StatelessWidget {
                     ),
                     smallVerticalSizedBox,
                     GeneralWorkstationWidget(
-                      title: 'Nanyuki District Hospital',
+                      title: 'Jane Doe',
+                      subtitle: 'Nanyuki District Hospital',
                       bodyWidget: Wrap(
                         runSpacing: 12,
                         spacing: 8,

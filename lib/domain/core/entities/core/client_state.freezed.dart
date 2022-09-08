@@ -943,7 +943,9 @@ class _$_ClientState implements _ClientState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ClientStateToJson(this);
+    return _$$_ClientStateToJson(
+      this,
+    );
   }
 }
 

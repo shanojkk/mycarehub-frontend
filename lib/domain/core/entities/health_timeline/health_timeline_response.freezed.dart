@@ -166,7 +166,9 @@ class _$_HealthTimelineResponse implements _HealthTimelineResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_HealthTimelineResponseToJson(this);
+    return _$$_HealthTimelineResponseToJson(
+      this,
+    );
   }
 }
 

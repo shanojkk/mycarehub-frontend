@@ -8,8 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 class HelplineItemsWidget extends StatelessWidget {
   final List<Helpline> helplines;
 
-  const HelplineItemsWidget({Key? key, required this.helplines})
-      : super(key: key);
+  const HelplineItemsWidget({super.key, required this.helplines});
 
   @override
   Widget build(BuildContext context) {

@@ -141,7 +141,9 @@ class _$_ScreeningQuestionsList implements _ScreeningQuestionsList {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ScreeningQuestionsListToJson(this);
+    return _$$_ScreeningQuestionsListToJson(
+      this,
+    );
   }
 }
 

@@ -130,7 +130,9 @@ class _$_ConnectivityState implements _ConnectivityState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ConnectivityStateToJson(this);
+    return _$$_ConnectivityStateToJson(
+      this,
+    );
   }
 }
 

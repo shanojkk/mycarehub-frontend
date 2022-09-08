@@ -7,7 +7,9 @@ import 'package:pro_health_360/infrastructure/repository/sqlite.dart';
 abstract class MyAfyaHubStateDatabase extends Database {}
 
 class InitializeDB<T extends DatabaseExecutor> extends InitializeDBHelper<T> {
-  InitializeDB({required String dbName}) : super(dbName: dbName);
+  InitializeDB({
+    required super.dbName,
+  });
 }
 
 abstract class InitializeDBHelper<T extends DatabaseExecutor> {

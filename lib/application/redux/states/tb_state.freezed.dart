@@ -206,7 +206,9 @@ class _$_TBState implements _TBState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TBStateToJson(this);
+    return _$$_TBStateToJson(
+      this,
+    );
   }
 }
 

@@ -17,10 +17,10 @@ import 'package:pro_health_360/presentation/core/theme/theme.dart';
 /// [LikeContentWidget] Displays like status on the content details page
 class LikeContentWidget extends StatefulWidget {
   const LikeContentWidget({
-    Key? key,
+    super.key,
     required this.contentID,
     required this.contentDisplayedType,
-  }) : super(key: key);
+  });
   final int contentID;
   final ContentDisplayedType contentDisplayedType;
 

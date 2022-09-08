@@ -362,7 +362,9 @@ class _$_RelatedPerson implements _RelatedPerson {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_RelatedPersonToJson(this);
+    return _$$_RelatedPersonToJson(
+      this,
+    );
   }
 }
 

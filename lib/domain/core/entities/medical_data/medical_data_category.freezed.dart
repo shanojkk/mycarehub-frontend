@@ -131,7 +131,9 @@ class _$_MedicalDataCategory implements _MedicalDataCategory {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MedicalDataCategoryToJson(this);
+    return _$$_MedicalDataCategoryToJson(
+      this,
+    );
   }
 }
 

@@ -51,10 +51,10 @@ class VerifySecurityQuestionAction extends ReduxAction<AppState> {
     final List<SecurityQuestionResponse> securityQuestionsResponses =
         state.onboardingState!.securityQuestionResponses!;
 
-    final List<Map<String, dynamic>> _variables = <Map<String, dynamic>>[];
+    final List<Map<String, dynamic>> variables = <Map<String, dynamic>>[];
 
     for (int i = 0; i < securityQuestionsResponses.length; i++) {
-      _variables.add(<String, dynamic>{
+      variables.add(<String, dynamic>{
         'questionID':
             securityQuestionsResponses[i].securityQuestionID.toString(),
         'flavour': Flavour.consumer.name,
@@ -67,7 +67,7 @@ class VerifySecurityQuestionAction extends ReduxAction<AppState> {
       endpoint: verifySecurityQuestionsEndpoint,
       method: httpPOST,
       variables: <String, dynamic>{
-        'verifySecurityQuestionsInput': _variables,
+        'verifySecurityQuestionsInput': variables,
       },
     );
 

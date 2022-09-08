@@ -56,21 +56,21 @@ class CreateHealthDiaryAction extends ReduxAction<AppState> {
     final bool shouldShareHealthRecord =
         state.clientState?.healthDiaryState?.shouldShareHealthRecord ?? false;
 
-    final Map<String, dynamic> _variables = <String, dynamic>{
+    final Map<String, dynamic> variables = <String, dynamic>{
       'clientID': userID,
       'note': note,
       'mood': mood,
       'reportToStaff': shouldShareHealthRecord
     };
 
-    final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
+    final IGraphQlClient client = AppWrapperBase.of(context)!.graphQLClient;
 
-    final http.Response result = await _client.query(
+    final http.Response result = await client.query(
       createHealthDiaryEntryMutation,
-      _variables,
+      variables,
     );
 
-    final Map<String, dynamic> body = _client.toMap(result);
+    final Map<String, dynamic> body = client.toMap(result);
     final String? error = parseError(body);
 
     if (error != null) {

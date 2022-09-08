@@ -13,7 +13,7 @@ import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.
 import 'package:pro_health_360/presentation/onboarding/consent_confirmation/widgets/consent_confirmation_dialog.dart';
 
 class ConsentConfirmationPage extends StatelessWidget {
-  const ConsentConfirmationPage({Key? key}) : super(key: key);
+  const ConsentConfirmationPage({super.key});
 
   @override
   Widget build(BuildContext context) {

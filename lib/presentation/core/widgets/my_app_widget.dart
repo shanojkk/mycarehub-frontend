@@ -15,7 +15,7 @@ import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 
 class MyAppWidget extends StatelessWidget {
   const MyAppWidget({
-    Key? key,
+    super.key,
     required this.navigatorObserver,
     required this.store,
     required this.navigatorKey,
@@ -23,7 +23,7 @@ class MyAppWidget extends StatelessWidget {
     required this.streamClient,
     required this.analyticsObserver,
     this.fcmToken,
-  }) : super(key: key);
+  });
 
   final NavigatorObserver navigatorObserver;
   final FirebaseAnalyticsObserver analyticsObserver;

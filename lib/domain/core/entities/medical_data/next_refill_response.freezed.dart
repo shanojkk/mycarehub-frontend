@@ -147,7 +147,9 @@ class _$_NextRefillResponse implements _NextRefillResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_NextRefillResponseToJson(this);
+    return _$$_NextRefillResponseToJson(
+      this,
+    );
   }
 }
 

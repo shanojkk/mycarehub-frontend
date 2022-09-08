@@ -19,7 +19,7 @@ class UserProfilePage extends StatefulWidget {
 class _UserProfilePageState extends State<UserProfilePage> {
   @override
   Widget build(BuildContext context) {
-    final TargetPlatform _platform = Theme.of(context).platform;
+    final TargetPlatform platform = Theme.of(context).platform;
     return Scaffold(
       appBar: const CustomAppBar(title: myHealthPageProfile),
       body: Padding(
@@ -62,7 +62,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                             overflow: TextOverflow.ellipsis,
                           ),
                           iconBackgroundColor: AppColors.listCardColor,
-                          leadingIcon: Container(
+                          leadingIcon: DecoratedBox(
                             decoration: BoxDecoration(
                               color: AppColors.listCardColor,
                               borderRadius: BorderRadius.circular(8),
@@ -103,7 +103,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                         textAlign: TextAlign.center,
                       ),
                       smallVerticalSizedBox,
-                      if (_platform != TargetPlatform.iOS)
+                      if (platform != TargetPlatform.iOS)
                         Center(
                           child: Text(
                             '$appVersionString $APPVERSION',

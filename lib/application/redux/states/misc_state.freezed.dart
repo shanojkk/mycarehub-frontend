@@ -553,7 +553,9 @@ class _$_MiscState implements _MiscState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MiscStateToJson(this);
+    return _$$_MiscStateToJson(
+      this,
+    );
   }
 }
 

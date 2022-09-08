@@ -254,7 +254,9 @@ class _$_AuthCredentials implements _AuthCredentials {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AuthCredentialsToJson(this);
+    return _$$_AuthCredentialsToJson(
+      this,
+    );
   }
 }
 

@@ -7,13 +7,12 @@ import 'package:pro_health_360/presentation/core/theme/theme.dart';
 
 class HealthPageInformationWidget extends StatelessWidget {
   const HealthPageInformationWidget({
-    Key? key,
     required this.user,
     required this.firstName,
     required this.lastName,
     required this.userPhoneNumber,
     required this.hospitalName,
-  }) : super(key: key);
+  });
 
   final User? user;
   final String firstName;

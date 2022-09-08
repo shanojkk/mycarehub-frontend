@@ -44,17 +44,17 @@ class BookmarkContentAction extends ReduxAction<AppState> {
     final String? userID = state.clientState!.user!.userId;
 
     // initializing of the LikeContent mutation
-    final Map<String, dynamic> _variables = <String, dynamic>{
+    final Map<String, dynamic> variables = <String, dynamic>{
       'userID': userID,
       'contentItemID': contentID,
     };
-    final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
+    final IGraphQlClient client = AppWrapperBase.of(context)!.graphQLClient;
 
-    final http.Response response = await _client.query(
+    final http.Response response = await client.query(
       bookmarkContentMutation,
-      _variables,
+      variables,
     );
-    final Map<String, dynamic> responseMap = _client.toMap(response);
+    final Map<String, dynamic> responseMap = client.toMap(response);
     final String? error = parseError(responseMap);
 
     if (error != null) {

@@ -18,7 +18,7 @@ import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 
 class ForgotPINPage extends StatelessWidget {
-  const ForgotPINPage({Key? key}) : super(key: key);
+  const ForgotPINPage({super.key});
 
   @override
   Widget build(BuildContext context) {

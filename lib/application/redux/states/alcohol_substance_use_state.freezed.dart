@@ -216,7 +216,9 @@ class _$_AlcoholSubstanceUseState implements _AlcoholSubstanceUseState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AlcoholSubstanceUseStateToJson(this);
+    return _$$_AlcoholSubstanceUseStateToJson(
+      this,
+    );
   }
 }
 

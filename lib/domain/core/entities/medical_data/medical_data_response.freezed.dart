@@ -148,7 +148,9 @@ class _$_MedicalDataResponse implements _MedicalDataResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MedicalDataResponseToJson(this);
+    return _$$_MedicalDataResponseToJson(
+      this,
+    );
   }
 }
 

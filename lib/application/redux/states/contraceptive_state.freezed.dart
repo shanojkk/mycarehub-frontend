@@ -213,7 +213,9 @@ class _$_ContraceptiveState implements _ContraceptiveState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ContraceptiveStateToJson(this);
+    return _$$_ContraceptiveStateToJson(
+      this,
+    );
   }
 }
 

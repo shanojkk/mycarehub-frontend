@@ -318,7 +318,9 @@ class _$_Community implements _Community {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CommunityToJson(this);
+    return _$$_CommunityToJson(
+      this,
+    );
   }
 }
 

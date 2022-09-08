@@ -285,7 +285,9 @@ class _$_ContentState implements _ContentState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ContentStateToJson(this);
+    return _$$_ContentStateToJson(
+      this,
+    );
   }
 }
 

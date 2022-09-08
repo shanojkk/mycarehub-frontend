@@ -11,7 +11,7 @@ import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 
 class PinExpiredPage extends StatelessWidget {
-  const PinExpiredPage({Key? key}) : super(key: key);
+  const PinExpiredPage({super.key});
 
   @override
   Widget build(BuildContext context) {

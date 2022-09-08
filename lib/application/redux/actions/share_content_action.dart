@@ -42,26 +42,26 @@ class ShareContentAction extends ReduxAction<AppState> {
     final String? userID = state.clientState!.user!.userId;
 
     // initializing of the LikeContent mutation
-    final Map<String, dynamic> _variables = <String, dynamic>{
+    final Map<String, dynamic> variables = <String, dynamic>{
       'UserID': userID,
       'ContentID': contentID,
       'Channel': 'SMS',
     };
-    final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
+    final IGraphQlClient client = AppWrapperBase.of(context)!.graphQLClient;
 
-    final http.Response result = await _client.query(
+    final http.Response result = await client.query(
       shareContentMutation,
-      shareContentMutationVariables(_variables),
+      shareContentMutationVariables(variables),
     );
 
-    final Map<String, dynamic> body = _client.toMap(result);
+    final Map<String, dynamic> body = client.toMap(result);
 
-    _client.close();
+    client.close();
 
     final Map<String, dynamic> responseMap =
         json.decode(result.body) as Map<String, dynamic>;
 
-    if (_client.parseError(body) != null || responseMap['errors'] != null) {
+    if (client.parseError(body) != null || responseMap['errors'] != null) {
       throw MyAfyaException(
         cause: shareContentFlag,
         message: somethingWentWrongText,

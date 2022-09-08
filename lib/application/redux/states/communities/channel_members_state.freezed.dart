@@ -135,7 +135,9 @@ class _$_ChannelMembersState implements _ChannelMembersState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ChannelMembersStateToJson(this);
+    return _$$_ChannelMembersStateToJson(
+      this,
+    );
   }
 }
 

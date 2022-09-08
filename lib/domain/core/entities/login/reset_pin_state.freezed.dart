@@ -146,7 +146,9 @@ class _$_ResetPINState implements _ResetPINState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ResetPINStateToJson(this);
+    return _$$_ResetPINStateToJson(
+      this,
+    );
   }
 }
 

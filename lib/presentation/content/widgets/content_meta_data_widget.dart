@@ -5,9 +5,9 @@ import 'package:pro_health_360/presentation/core/theme/theme.dart';
 
 class ContentMetaDataWidget extends StatelessWidget {
   const ContentMetaDataWidget({
-    Key? key,
+    super.key,
     required this.contentDetails,
-  }) : super(key: key);
+  });
 
   final Content contentDetails;
 

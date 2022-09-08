@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 
 class MedicalDataItemTitle extends StatelessWidget {
-  const MedicalDataItemTitle({Key? key, required this.title}) : super(key: key);
+  const MedicalDataItemTitle({super.key, required this.title});
 
   final String title;
 

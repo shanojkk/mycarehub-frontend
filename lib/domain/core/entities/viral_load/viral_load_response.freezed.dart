@@ -147,7 +147,9 @@ class _$_ViralLoadResponse implements _ViralLoadResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ViralLoadResponseToJson(this);
+    return _$$_ViralLoadResponseToJson(
+      this,
+    );
   }
 }
 

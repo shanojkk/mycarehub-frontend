@@ -176,7 +176,9 @@ class _$_ListGroupInfoResponse implements _ListGroupInfoResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ListGroupInfoResponseToJson(this);
+    return _$$_ListGroupInfoResponseToJson(
+      this,
+    );
   }
 }
 

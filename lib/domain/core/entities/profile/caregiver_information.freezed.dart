@@ -218,7 +218,9 @@ class _$_CaregiverInformation implements _CaregiverInformation {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CaregiverInformationToJson(this);
+    return _$$_CaregiverInformationToJson(
+      this,
+    );
   }
 }
 

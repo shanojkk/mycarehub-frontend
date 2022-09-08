@@ -158,7 +158,9 @@ class _$_ContentEngagementState implements _ContentEngagementState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ContentEngagementStateToJson(this);
+    return _$$_ContentEngagementStateToJson(
+      this,
+    );
   }
 }
 

@@ -213,7 +213,9 @@ class _$_ViralLoadNodeData implements _ViralLoadNodeData {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ViralLoadNodeDataToJson(this);
+    return _$$_ViralLoadNodeDataToJson(
+      this,
+    );
   }
 }
 

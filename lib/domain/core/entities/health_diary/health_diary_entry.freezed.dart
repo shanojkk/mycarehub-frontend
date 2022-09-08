@@ -143,7 +143,9 @@ class _$_HealthDiaryEdge implements _HealthDiaryEdge {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_HealthDiaryEdgeToJson(this);
+    return _$$_HealthDiaryEdgeToJson(
+      this,
+    );
   }
 }
 
@@ -449,7 +451,9 @@ class _$_HealthDiaryEntry implements _HealthDiaryEntry {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_HealthDiaryEntryToJson(this);
+    return _$$_HealthDiaryEntryToJson(
+      this,
+    );
   }
 }
 

@@ -81,7 +81,9 @@ class _$_FeedState implements _FeedState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_FeedStateToJson(this);
+    return _$$_FeedStateToJson(
+      this,
+    );
   }
 }
 

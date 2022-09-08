@@ -146,7 +146,9 @@ class _$_NotificationsResponse implements _NotificationsResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_NotificationsResponseToJson(this);
+    return _$$_NotificationsResponseToJson(
+      this,
+    );
   }
 }
 
@@ -297,7 +299,9 @@ class _$_NotificationsData implements _NotificationsData {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_NotificationsDataToJson(this);
+    return _$$_NotificationsDataToJson(
+      this,
+    );
   }
 }
 

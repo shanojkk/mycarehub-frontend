@@ -15,10 +15,10 @@ class MyHealthDiaryItemWidget extends StatelessWidget {
   /// It requires [detailsList] and [date] parameters
   ///
   const MyHealthDiaryItemWidget({
-    Key? key,
+    super.key,
     required this.detailsList,
     required this.date,
-  }) : super(key: key);
+  });
   final List<HealthDiaryDetailsItemObj> detailsList;
   final String date;
   @override

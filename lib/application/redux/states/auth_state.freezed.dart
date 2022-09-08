@@ -141,7 +141,9 @@ class _$_AuthState implements _AuthState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AuthStateToJson(this);
+    return _$$_AuthStateToJson(
+      this,
+    );
   }
 }
 

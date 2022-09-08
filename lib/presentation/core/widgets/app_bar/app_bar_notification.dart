@@ -9,8 +9,7 @@ import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 
 class AppBarNotification extends StatelessWidget {
-  const AppBarNotification({required this.bottomNavIndex, Key? key})
-      : super(key: key);
+  const AppBarNotification({required this.bottomNavIndex, super.key});
   final int bottomNavIndex;
 
   @override

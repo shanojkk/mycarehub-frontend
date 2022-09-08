@@ -10,7 +10,7 @@ import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:unicons/unicons.dart';
 
 class ConsentPage extends StatefulWidget {
-  const ConsentPage({Key? key, this.onChanged}) : super(key: key);
+  const ConsentPage({super.key, this.onChanged});
 
   final void Function(bool)? onChanged;
 

@@ -163,7 +163,9 @@ class _$_RecordSecurityQuestionResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_RecordSecurityQuestionResponseToJson(this);
+    return _$$_RecordSecurityQuestionResponseToJson(
+      this,
+    );
   }
 }
 

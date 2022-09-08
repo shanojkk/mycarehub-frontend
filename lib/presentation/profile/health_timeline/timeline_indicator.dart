@@ -4,9 +4,9 @@ import 'package:pro_health_360/presentation/core/theme/theme.dart';
 
 class TimelineIndicator extends StatelessWidget {
   const TimelineIndicator({
-    Key? key,
+    super.key,
     required this.date,
-  }) : super(key: key);
+  });
 
   final DateTime date;
 

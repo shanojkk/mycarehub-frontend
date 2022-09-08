@@ -152,7 +152,9 @@ class _$_AgeRange implements _AgeRange {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AgeRangeToJson(this);
+    return _$$_AgeRangeToJson(
+      this,
+    );
   }
 }
 

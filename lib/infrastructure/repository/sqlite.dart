@@ -7,10 +7,10 @@ import 'package:sqflite/sqflite.dart';
 import 'package:pro_health_360/infrastructure/repository/migrations.dart';
 
 Future<T> initDatabase<T extends DatabaseExecutor>(String dbName) async {
-  final String _dbPath = await getDatabasesPath();
-  final String _path = join(_dbPath, dbName);
+  final String dbPath = await getDatabasesPath();
+  final String path = join(dbPath, dbName);
   return await openDatabase(
-    _path,
+    path,
     version: migrations.length + 1,
     onCreate: onCreateCallback,
     onUpgrade: onUpgradeCallback,
@@ -40,7 +40,7 @@ Future<void> migrate(Database db, int oldVersion, int newVersion) async {
 }
 
 Future<void> clearDatabaseHelper(String dbName) async {
-  final String _dbPath = await getDatabasesPath();
-  final String _path = join(_dbPath, dbName);
-  deleteDatabase(_path);
+  final String dbPath = await getDatabasesPath();
+  final String path = join(dbPath, dbName);
+  deleteDatabase(path);
 }

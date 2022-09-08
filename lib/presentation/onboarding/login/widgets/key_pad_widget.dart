@@ -12,12 +12,12 @@ class KeyPadWidget extends StatefulWidget {
   ///
   /// It takes in required [pinController], [onChange] and [isCorrectPin] parameters
   const KeyPadWidget({
-    Key? key,
+    super.key,
     required this.pinController,
     required this.onChange,
     required this.isCorrectPin,
     required this.canEnterPin,
-  }) : super(key: key);
+  });
   final TextEditingController pinController;
   final void Function(String) onChange;
   final bool isCorrectPin;

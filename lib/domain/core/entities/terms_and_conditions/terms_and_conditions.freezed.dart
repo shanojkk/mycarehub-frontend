@@ -155,7 +155,9 @@ class _$_TermsAndConditions implements _TermsAndConditions {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TermsAndConditionsToJson(this);
+    return _$$_TermsAndConditionsToJson(
+      this,
+    );
   }
 }
 

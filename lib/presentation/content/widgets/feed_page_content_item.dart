@@ -14,11 +14,11 @@ import 'package:pro_health_360/presentation/router/routes.dart';
 
 class FeedPageContentItem extends StatelessWidget {
   const FeedPageContentItem({
-    Key? key,
+    super.key,
     required this.content,
     this.heroImage,
     this.isNew = false,
-  }) : super(key: key);
+  });
 
   final Content content;
   final Widget? heroImage;

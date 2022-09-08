@@ -132,7 +132,9 @@ class _$_BottomNavigationState implements _BottomNavigationState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_BottomNavigationStateToJson(this);
+    return _$$_BottomNavigationStateToJson(
+      this,
+    );
   }
 }
 

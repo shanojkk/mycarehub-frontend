@@ -34,7 +34,7 @@ import 'package:pro_health_360/presentation/router/routes.dart';
 
 class PreLoadApp extends StatefulWidget {
   const PreLoadApp({
-    Key? key,
+    super.key,
     required this.thisAppContexts,
     required this.appName,
     required this.appNavigatorKey,
@@ -43,7 +43,7 @@ class PreLoadApp extends StatefulWidget {
     required this.appStore,
     required this.client,
     this.fcmToken,
-  }) : super(key: key);
+  });
 
   final String appName;
   final GlobalKey<NavigatorState> appNavigatorKey;

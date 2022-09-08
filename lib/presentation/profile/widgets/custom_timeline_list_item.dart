@@ -7,9 +7,9 @@ import 'package:pro_health_360/presentation/core/theme/theme.dart';
 
 class CustomTimelineListItem extends StatelessWidget {
   const CustomTimelineListItem({
-    Key? key,
+    super.key,
     required this.item,
-  }) : super(key: key);
+  });
 
   final TimelineItem item;
 

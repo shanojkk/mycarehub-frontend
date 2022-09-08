@@ -9,7 +9,7 @@ import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.dart';
 
 class CaregiverConsentPage extends StatelessWidget {
-  const CaregiverConsentPage({Key? key}) : super(key: key);
+  const CaregiverConsentPage();
 
   @override
   Widget build(BuildContext context) {

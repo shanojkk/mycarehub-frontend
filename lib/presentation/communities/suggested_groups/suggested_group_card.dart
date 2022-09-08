@@ -21,8 +21,11 @@ import 'package:pro_health_360/presentation/core/theme/theme.dart';
 /// It takes in required [groupIconUrl], [groupTitle] and [groupTotalMembers] parameters
 
 class SuggestedGroupCard extends StatelessWidget {
-  const SuggestedGroupCard({Key? key, required this.group, required this.route})
-      : super(key: key);
+  const SuggestedGroupCard({
+    super.key,
+    required this.group,
+    required this.route,
+  });
 
   final Group group;
   final String route;
@@ -52,7 +55,7 @@ class SuggestedGroupCard extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                   )
-                : Container(
+                : DecoratedBox(
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       color: AppColors.whiteColor,

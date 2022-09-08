@@ -173,7 +173,9 @@ class _$_CodeableConcept implements _CodeableConcept {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CodeableConceptToJson(this);
+    return _$$_CodeableConceptToJson(
+      this,
+    );
   }
 }
 

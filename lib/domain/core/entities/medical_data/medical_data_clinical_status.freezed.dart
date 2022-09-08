@@ -130,7 +130,9 @@ class _$_MedicalDataCode implements _MedicalDataCode {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MedicalDataCodeToJson(this);
+    return _$$_MedicalDataCodeToJson(
+      this,
+    );
   }
 }
 

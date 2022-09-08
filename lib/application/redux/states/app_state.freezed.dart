@@ -397,7 +397,9 @@ class _$_AppState implements _AppState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AppStateToJson(this);
+    return _$$_AppStateToJson(
+      this,
+    );
   }
 }
 

@@ -22,14 +22,14 @@ class UpcomingAppointments extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ScrollController _listController = ScrollController();
+    final ScrollController listController = ScrollController();
     return StoreConnector<AppState, AppointmentsViewModel>(
       converter: (Store<AppState> store) =>
           AppointmentsViewModel.fromStore(store.state),
       onInit: (Store<AppState> store) async {
-        _listController.addListener(() {
-          final double maxScroll = _listController.position.maxScrollExtent;
-          final double currentScroll = _listController.position.pixels;
+        listController.addListener(() {
+          final double maxScroll = listController.position.maxScrollExtent;
+          final double currentScroll = listController.position.pixels;
           if (maxScroll < currentScroll &&
               !store.state.wait!.isWaitingFor(fetchAppointmentsFlag) &&
               store.state.miscState!.appointmentState!.hasNextPage!) {
@@ -90,7 +90,7 @@ class UpcomingAppointments extends StatelessWidget {
                   children: <Widget>[
                     Expanded(
                       child: ListView.builder(
-                        controller: _listController,
+                        controller: listController,
                         itemCount: appointments.length,
                         itemBuilder: (BuildContext context, int index) {
                           final Appointment currentAppointmentDetails =

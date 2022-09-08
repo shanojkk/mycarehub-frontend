@@ -13,7 +13,7 @@ import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 
 class AppbarUser extends StatelessWidget {
-  const AppbarUser({Key? key}) : super(key: key);
+  const AppbarUser({super.key});
 
   void editProfileNavigation(BuildContext context) {
     // navigate to the user profile here

@@ -13,11 +13,11 @@ import 'package:pro_health_360/presentation/core/theme/theme.dart';
 
 class SecurityQuestionWidget extends StatefulWidget {
   const SecurityQuestionWidget({
-    Key? key,
+    super.key,
     required this.securityQuestion,
     required this.response,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   final SecurityQuestion securityQuestion;
   final String? response;

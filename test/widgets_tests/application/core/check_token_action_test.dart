@@ -170,19 +170,13 @@ void main() {
 
 class MockCustomClient extends CustomClient {
   MockCustomClient(
-    String idToken,
-    String endpoint, {
-    required BuildContext context,
-    required String refreshTokenEndpoint,
-    required String userID,
+    super.idToken,
+    super.endpoint, {
+    required super.context,
+    required super.refreshTokenEndpoint,
+    required super.userID,
     this.authCredentials,
-  }) : super(
-          idToken,
-          endpoint,
-          context: context,
-          userID: userID,
-          refreshTokenEndpoint: refreshTokenEndpoint,
-        );
+  });
 
   final Map<String, dynamic>? authCredentials;
 

@@ -9,7 +9,7 @@ import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.
 import 'package:pro_health_360/presentation/profile/hotline/widgets/helpline_items_widget.dart';
 
 class HotlinesPage extends StatelessWidget {
-  const HotlinesPage({Key? key}) : super(key: key);
+  const HotlinesPage({super.key});
 
   @override
   Widget build(BuildContext context) {

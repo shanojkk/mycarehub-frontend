@@ -135,7 +135,9 @@ class _$_MedicationCodeableConcept implements _MedicationCodeableConcept {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MedicationCodeableConceptToJson(this);
+    return _$$_MedicationCodeableConceptToJson(
+      this,
+    );
   }
 }
 

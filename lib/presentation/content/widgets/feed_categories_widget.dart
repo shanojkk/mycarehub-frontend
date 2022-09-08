@@ -22,11 +22,11 @@ class FeedCategoriesWidget extends StatefulWidget {
   final ContentCategory? selectedCategory;
 
   const FeedCategoriesWidget({
-    Key? key,
+    super.key,
     required this.listContentCategory,
     required this.selectedCategory,
     this.wait,
-  }) : super(key: key);
+  });
   @override
   State<FeedCategoriesWidget> createState() => _FeedCategoriesWidgetState();
 }

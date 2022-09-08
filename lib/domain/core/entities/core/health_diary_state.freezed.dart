@@ -276,7 +276,9 @@ class _$_HealthDiaryState implements _HealthDiaryState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_HealthDiaryStateToJson(this);
+    return _$$_HealthDiaryStateToJson(
+      this,
+    );
   }
 }
 

@@ -236,7 +236,9 @@ class _$_GroupState implements _GroupState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GroupStateToJson(this);
+    return _$$_GroupStateToJson(
+      this,
+    );
   }
 }
 

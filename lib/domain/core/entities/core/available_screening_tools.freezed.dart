@@ -189,7 +189,9 @@ class _$_AvailableScreeningTools implements _AvailableScreeningTools {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AvailableScreeningToolsToJson(this);
+    return _$$_AvailableScreeningToolsToJson(
+      this,
+    );
   }
 }
 

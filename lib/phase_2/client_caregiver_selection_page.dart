@@ -10,7 +10,7 @@ import 'package:pro_health_360/phase_2/widgets/general_workstation_widget.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 
 class ClientCaregiverSelectionPage extends StatelessWidget {
-  const ClientCaregiverSelectionPage({Key? key}) : super(key: key);
+  const ClientCaregiverSelectionPage();
 
   @override
   Widget build(BuildContext context) {

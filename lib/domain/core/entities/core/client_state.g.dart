@@ -87,7 +87,7 @@ Map<String, dynamic> _$$_ClientStateToJson(_$_ClientState instance) =>
       'addresses': instance.addresses,
       'counselled': instance.counselled,
       'clientTypes':
-          instance.clientTypes?.map((e) => _$ClientTypeEnumMap[e]).toList(),
+          instance.clientTypes?.map((e) => _$ClientTypeEnumMap[e]!).toList(),
       'facilityID': instance.facilityID,
       'relatedPersons': instance.relatedPersons,
       'treatmentBuddy': instance.treatmentBuddy,

@@ -130,7 +130,9 @@ class _$_ViralLoadCode implements _ViralLoadCode {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ViralLoadCodeToJson(this);
+    return _$$_ViralLoadCodeToJson(
+      this,
+    );
   }
 }
 

@@ -46,22 +46,22 @@ class UpdateContentLikeStatusAction extends ReduxAction<AppState> {
     final String? userID = state.clientState?.user?.userId;
 
     // initializing of the UnlikeContent mutation
-    final Map<String, dynamic> _variables = <String, dynamic>{
+    final Map<String, dynamic> variables = <String, dynamic>{
       'userID': userID,
       'contentID': contentID,
     };
-    final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
+    final IGraphQlClient client = AppWrapperBase.of(context)!.graphQLClient;
 
-    final http.Response result = await _client.query(
+    final http.Response result = await client.query(
       isLiked ? unlikeContentMutation : likeContentMutation,
-      _variables,
+      variables,
     );
 
-    final Map<String, dynamic> body = _client.toMap(result);
+    final Map<String, dynamic> body = client.toMap(result);
 
-    _client.close();
+    client.close();
 
-    final String? errors = _client.parseError(body);
+    final String? errors = client.parseError(body);
     if (errors != null) {
       if (errors.contains('Network connection unreliable')) {
         throw MyAfyaException(

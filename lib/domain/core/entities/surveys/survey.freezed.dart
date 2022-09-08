@@ -248,7 +248,9 @@ class _$_Survey implements _Survey {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SurveyToJson(this);
+    return _$$_SurveyToJson(
+      this,
+    );
   }
 }
 

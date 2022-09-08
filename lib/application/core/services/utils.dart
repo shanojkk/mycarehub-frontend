@@ -95,10 +95,9 @@ String formatSecurityQuestionDate(
 }) {
   late String date;
   if (dateValue.toString().contains(' ')) {
-    final String _d = dateValue.toString();
-    date = DateFormat.yMMMMd('en_GB')
-        .parseLoose(_d.replaceAll(',', ''))
-        .toString();
+    final String d = dateValue.toString();
+    date =
+        DateFormat.yMMMMd('en_GB').parseLoose(d.replaceAll(',', '')).toString();
   } else {
     date = dateValue.toString();
   }

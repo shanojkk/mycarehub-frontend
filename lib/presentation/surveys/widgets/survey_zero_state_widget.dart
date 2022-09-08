@@ -9,7 +9,7 @@ import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 
 class SurveyZeroStateWidget extends StatelessWidget {
-  const SurveyZeroStateWidget({Key? key}) : super(key: key);
+  const SurveyZeroStateWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

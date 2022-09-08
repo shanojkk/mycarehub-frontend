@@ -6,8 +6,11 @@ import 'package:pro_health_360/presentation/content/widgets/reactions_widget.dar
 import 'package:pro_health_360/presentation/router/routes.dart';
 
 class ContentDetailPage extends StatelessWidget {
-  const ContentDetailPage({Key? key, required this.payload, this.showReactions})
-      : super(key: key);
+  const ContentDetailPage({
+    super.key,
+    required this.payload,
+    this.showReactions,
+  });
   final ContentDetails payload;
   final bool? showReactions;
 

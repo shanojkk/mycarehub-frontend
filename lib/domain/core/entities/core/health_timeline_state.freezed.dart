@@ -181,7 +181,9 @@ class _$_HealthTimelineState implements _HealthTimelineState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_HealthTimelineStateToJson(this);
+    return _$$_HealthTimelineStateToJson(
+      this,
+    );
   }
 }
 

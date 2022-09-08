@@ -23,12 +23,12 @@ import 'package:pro_health_360/presentation/profile/widgets/custom_timeline_list
 
 class MyHealthTimeline extends StatefulWidget {
   const MyHealthTimeline({
-    Key? key,
+    super.key,
     required this.graphQlClient,
     this.numberOfRecords = 10,
     this.showMore = false,
     this.showMoreCallback,
-  }) : super(key: key);
+  });
 
   final IGraphQlClient graphQlClient;
   final int numberOfRecords;

@@ -8,7 +8,7 @@ import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 
 class SuccessfulFeedbackSubmissionPage extends StatelessWidget {
-  const SuccessfulFeedbackSubmissionPage({Key? key}) : super(key: key);
+  const SuccessfulFeedbackSubmissionPage({super.key});
 
   @override
   Widget build(BuildContext context) {

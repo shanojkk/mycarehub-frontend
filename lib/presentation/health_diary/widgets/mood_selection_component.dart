@@ -15,7 +15,7 @@ import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:shared_themes/colors.dart';
 
 class MoodSelectionComponent extends StatelessWidget {
-  const MoodSelectionComponent({Key? key}) : super(key: key);
+  const MoodSelectionComponent({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -33,9 +33,9 @@ Map<String, dynamic> _$$_CommunityToJson(_$_Community instance) =>
       'description': instance.description,
       'createdBy': instance.createdBy,
       'ageRange': instance.ageRange,
-      'gender': instance.gender?.map((e) => _$GenderEnumMap[e]).toList(),
+      'gender': instance.gender?.map((e) => _$GenderEnumMap[e]!).toList(),
       'clientType':
-          instance.clientType?.map((e) => _$ClientTypeEnumMap[e]).toList(),
+          instance.clientType?.map((e) => _$ClientTypeEnumMap[e]!).toList(),
     };
 
 const _$GenderEnumMap = {

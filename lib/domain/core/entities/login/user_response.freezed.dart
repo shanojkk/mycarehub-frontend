@@ -206,7 +206,9 @@ class _$_UserResponse implements _UserResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserResponseToJson(this);
+    return _$$_UserResponseToJson(
+      this,
+    );
   }
 }
 

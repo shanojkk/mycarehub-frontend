@@ -14,8 +14,7 @@ import 'package:pro_health_360/presentation/profile/health_timeline/my_health_ti
 import 'package:pro_health_360/presentation/profile/health_timeline/timeline_pagination_controls.dart';
 
 class MyHealthTimelineContainer extends StatefulWidget {
-  const MyHealthTimelineContainer({Key? key, this.graphQlClient})
-      : super(key: key);
+  const MyHealthTimelineContainer({super.key, this.graphQlClient});
 
   final IGraphQlClient? graphQlClient;
 

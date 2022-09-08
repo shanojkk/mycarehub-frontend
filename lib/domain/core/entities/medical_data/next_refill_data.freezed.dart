@@ -131,7 +131,9 @@ class _$_NextRefillData implements _NextRefillData {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_NextRefillDataToJson(this);
+    return _$$_NextRefillDataToJson(
+      this,
+    );
   }
 }
 

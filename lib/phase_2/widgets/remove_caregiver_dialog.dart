@@ -6,9 +6,9 @@ import 'package:pro_health_360/presentation/core/theme/theme.dart';
 
 class RemoveCaregiverDialog extends StatelessWidget {
   RemoveCaregiverDialog({
-    Key? key,
+    super.key,
     required this.name,
-  }) : super(key: key);
+  });
 
   final String name;
 

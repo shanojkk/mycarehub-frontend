@@ -6,7 +6,7 @@ import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 
 class PendingPINRequestPage extends StatelessWidget {
-  const PendingPINRequestPage({Key? key}) : super(key: key);
+  const PendingPINRequestPage({super.key});
 
   @override
   Widget build(BuildContext context) {

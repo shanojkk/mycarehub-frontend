@@ -185,7 +185,9 @@ class _$_Coding implements _Coding {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CodingToJson(this);
+    return _$$_CodingToJson(
+      this,
+    );
   }
 }
 

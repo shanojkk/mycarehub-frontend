@@ -40,15 +40,15 @@ class FetchClinicInformationAction extends ReduxAction<AppState> {
       'active': active,
     };
 
-    final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
+    final IGraphQlClient client = AppWrapperBase.of(context)!.graphQLClient;
 
     /// fetch the data from the api
-    final Response response = await _client.query(
+    final Response response = await client.query(
       retrieveFacilityQuery,
       variables,
     );
 
-    final Map<String, dynamic> responseMap = _client.toMap(response);
+    final Map<String, dynamic> responseMap = client.toMap(response);
     final String? error = parseError(responseMap);
 
     if (error != null) {

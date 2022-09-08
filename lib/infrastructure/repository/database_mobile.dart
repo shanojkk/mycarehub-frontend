@@ -34,9 +34,9 @@ class MyAfyaHubDatabaseMobile<T extends DatabaseExecutor>
 
   @override
   Future<int> countTableRecords(String table) async {
-    final T _db = await this.database;
+    final T db = await this.database;
     final int? count = Sqflite.firstIntValue(
-      await _db.rawQuery('SELECT COUNT(*) FROM $table'),
+      await db.rawQuery('SELECT COUNT(*) FROM $table'),
     );
     return Future<int>.value(count);
   }
@@ -59,29 +59,29 @@ class MyAfyaHubDatabaseMobile<T extends DatabaseExecutor>
   }
 
   Future<Map<String, dynamic>> retrieveWorker(Tables table) async {
-    final T _db = await this.database;
-    final List<Map<dynamic, dynamic>> states = await _db
+    final T db = await this.database;
+    final List<Map<dynamic, dynamic>> states = await db
         .rawQuery('SELECT * FROM ${table.name} ORDER BY id DESC LIMIT 1');
-    final Map<String, dynamic> _state = Map<String, dynamic>.from(states.first);
+    final Map<String, dynamic> state = Map<String, dynamic>.from(states.first);
 
-    return _state;
+    return state;
   }
 
   /// [retrieveState] get the current states.
   @override
   Future<Map<String, dynamic>> retrieveState(Tables table) async {
-    final T _db = await this.database;
+    final T db = await this.database;
 
     if (table != Tables.unknown) {
-      final Map<String, dynamic> _state = await retrieveWorker(table);
+      final Map<String, dynamic> localState = await retrieveWorker(table);
 
-      final dynamic state = json.decode(_state[table.name] as String);
+      final dynamic state = json.decode(localState[table.name] as String);
 
       return state as Map<String, dynamic>;
     }
 
     // any other state object that does not need custom mapping
-    final List<Map<dynamic, dynamic>> states = await _db
+    final List<Map<dynamic, dynamic>> states = await db
         .rawQuery('SELECT * FROM ${table.name} ORDER BY id DESC LIMIT 1');
     return states.first as Map<String, dynamic>;
   }
@@ -93,10 +93,10 @@ class MyAfyaHubDatabaseMobile<T extends DatabaseExecutor>
     required Map<String, dynamic> data,
     required Tables table,
   }) async {
-    final T _db = await this.database;
+    final T db = await this.database;
     final String dataAsString = jsonEncode(data);
     final String tableName = table.name;
-    await _db.rawInsert(
+    await db.rawInsert(
       'INSERT INTO $tableName($tableName) VALUES(?)',
       <dynamic>[dataAsString],
     );

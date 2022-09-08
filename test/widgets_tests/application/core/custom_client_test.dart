@@ -314,16 +314,13 @@ void main() {
 
 class MockCustomClient extends CustomClient {
   MockCustomClient(
-    String idToken,
-    String endpoint, {
-    required BuildContext context,
+    super.idToken,
+    super.endpoint, {
+    required super.context,
     required this.customResponse,
   }) : super(
-          idToken,
-          endpoint,
           refreshTokenEndpoint: kTestRefreshTokenEndpoint,
           userID: '',
-          context: context,
         );
 
   final Map<String, dynamic> customResponse;

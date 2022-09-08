@@ -13,7 +13,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 
 class LogoutButton extends StatelessWidget {
-  const LogoutButton({Key? key, this.addBorder = false}) : super(key: key);
+  const LogoutButton({super.key, this.addBorder = false});
 
   final bool addBorder;
 

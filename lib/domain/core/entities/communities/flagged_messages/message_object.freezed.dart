@@ -130,7 +130,9 @@ class _$_MessageObject implements _MessageObject {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MessageObjectToJson(this);
+    return _$$_MessageObjectToJson(
+      this,
+    );
   }
 }
 

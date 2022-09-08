@@ -87,7 +87,7 @@ Map<String, dynamic> _$$AllergyIntoleranceToJson(
         _$AllergyIntolerance instance) =>
     <String, dynamic>{
       'category': instance.category
-          ?.map((e) => _$AllergyIntoleranceCategoryEnumMap[e])
+          ?.map((e) => _$AllergyIntoleranceCategoryEnumMap[e]!)
           .toList(),
       'clinicalStatus': instance.clinicalStatus,
       'code': instance.code,

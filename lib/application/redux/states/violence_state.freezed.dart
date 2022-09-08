@@ -212,7 +212,9 @@ class _$_ViolenceState implements _ViolenceState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ViolenceStateToJson(this);
+    return _$$_ViolenceStateToJson(
+      this,
+    );
   }
 }
 

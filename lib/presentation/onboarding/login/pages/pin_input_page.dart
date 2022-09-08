@@ -196,7 +196,7 @@ class _PINInputPageState extends State<PINInputPage> {
                           ),
                           child: Column(
                             children: <Widget>[
-                              Container(
+                              DecoratedBox(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
                                   color: Colors.white,

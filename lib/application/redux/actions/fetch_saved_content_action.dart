@@ -46,15 +46,15 @@ class FetchSavedContentAction extends ReduxAction<AppState> {
       'userID': userID,
     };
 
-    final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
+    final IGraphQlClient client = AppWrapperBase.of(context)!.graphQLClient;
 
     /// fetch the data from the api
-    final Response response = await _client.query(
+    final Response response = await client.query(
       getUserBookmarkedContentQuery,
       variables,
     );
 
-    final Map<String, dynamic> payLoad = _client.toMap(response);
+    final Map<String, dynamic> payLoad = client.toMap(response);
     final String? error = parseError(payLoad);
 
     if (error != null) {

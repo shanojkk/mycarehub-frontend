@@ -16,7 +16,7 @@ import 'package:pro_health_360/presentation/surveys/widgets/survey_item.dart';
 import 'package:pro_health_360/presentation/surveys/widgets/survey_zero_state_widget.dart';
 
 class SurveysPage extends StatelessWidget {
-  const SurveysPage({Key? key}) : super(key: key);
+  const SurveysPage({super.key});
 
   @override
   Widget build(BuildContext context) {

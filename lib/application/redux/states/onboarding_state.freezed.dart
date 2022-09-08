@@ -599,7 +599,9 @@ class _$_OnboardingState implements _OnboardingState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OnboardingStateToJson(this);
+    return _$$_OnboardingStateToJson(
+      this,
+    );
   }
 }
 

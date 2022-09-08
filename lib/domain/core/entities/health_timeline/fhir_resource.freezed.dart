@@ -749,7 +749,9 @@ class _$Observation with DiagnosticableTreeMixin implements Observation {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ObservationToJson(this);
+    return _$$ObservationToJson(
+      this,
+    );
   }
 }
 
@@ -1336,7 +1338,9 @@ class _$AllergyIntolerance
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$AllergyIntoleranceToJson(this);
+    return _$$AllergyIntoleranceToJson(
+      this,
+    );
   }
 }
 
@@ -1865,7 +1869,9 @@ class _$MedicationStatement
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$MedicationStatementToJson(this);
+    return _$$MedicationStatementToJson(
+      this,
+    );
   }
 }
 

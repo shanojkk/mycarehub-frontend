@@ -137,7 +137,9 @@ class _$_ViralLoadEdges implements _ViralLoadEdges {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ViralLoadEdgesToJson(this);
+    return _$$_ViralLoadEdgesToJson(
+      this,
+    );
   }
 }
 

@@ -84,7 +84,9 @@ class _$_NotificationState implements _NotificationState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_NotificationStateToJson(this);
+    return _$$_NotificationStateToJson(
+      this,
+    );
   }
 }
 

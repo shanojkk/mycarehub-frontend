@@ -56,19 +56,19 @@ class RecordSecurityQuestionResponsesAction extends ReduxAction<AppState> {
     }
 
     // initializing of the RecordSecurityQuestionResponses mutation
-    final Map<String, dynamic> _variables = <String, dynamic>{'input': vars};
-    final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
+    final Map<String, dynamic> variables = <String, dynamic>{'input': vars};
+    final IGraphQlClient client = AppWrapperBase.of(context)!.graphQLClient;
 
-    final http.Response result = await _client.query(
+    final http.Response result = await client.query(
       recordSecurityQuestionResponsesMutation,
-      _variables,
+      variables,
     );
 
-    final Map<String, dynamic> body = _client.toMap(result);
+    final Map<String, dynamic> body = client.toMap(result);
 
-    _client.close();
+    client.close();
 
-    if (_client.parseError(body) != null) {
+    if (client.parseError(body) != null) {
       throw MyAfyaException(
         cause: recordSecurityQuestionsFlag,
         message: somethingWentWrongText,

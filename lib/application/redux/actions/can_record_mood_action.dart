@@ -47,24 +47,24 @@ class CanRecordMoodAction extends ReduxAction<AppState> {
     final String? clientId = state.clientState!.id;
 
     // initializing of CanRecordMoodAction mutation
-    final Map<String, String> _variables = <String, String>{
+    final Map<String, String> variables = <String, String>{
       'clientID': clientId!,
     };
 
-    final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
-    final http.Response result = await _client.query(
+    final IGraphQlClient client = AppWrapperBase.of(context)!.graphQLClient;
+    final http.Response result = await client.query(
       canRecordMoodQuery,
-      _variables,
+      variables,
     );
 
-    final Map<String, dynamic> body = _client.toMap(result);
+    final Map<String, dynamic> body = client.toMap(result);
 
-    _client.close();
+    client.close();
 
     final Map<String, dynamic> responseMap =
         json.decode(result.body) as Map<String, dynamic>;
 
-    if (_client.parseError(body) != null || responseMap['errors'] != null) {
+    if (client.parseError(body) != null || responseMap['errors'] != null) {
       throw MyAfyaException(
         cause: canRecordMoodFlag,
         message: somethingWentWrongText,

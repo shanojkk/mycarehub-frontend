@@ -18,7 +18,7 @@ import 'package:pro_health_360/presentation/health_diary/widgets/mood_selection/
 class MoodFeedbackPage extends StatefulWidget {
   /// [MoodFeedbackPage] is used to get user feedback based on their current mood.
   ///
-  const MoodFeedbackPage({Key? key, required this.moodType}) : super(key: key);
+  const MoodFeedbackPage({super.key, required this.moodType});
 
   final MoodType moodType;
 

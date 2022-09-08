@@ -287,7 +287,9 @@ class _$_ScreeningToolsState implements _ScreeningToolsState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ScreeningToolsStateToJson(this);
+    return _$$_ScreeningToolsStateToJson(
+      this,
+    );
   }
 }
 

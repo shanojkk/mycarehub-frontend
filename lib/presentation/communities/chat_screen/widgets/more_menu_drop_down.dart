@@ -9,7 +9,7 @@ class MoreMenuDropDown extends StatelessWidget {
   ///
   /// [MoreMenuDropDown] used within the community chat screen to provide more options.
   ///
-  const MoreMenuDropDown({Key? key}) : super(key: key);
+  const MoreMenuDropDown({super.key});
 
   @override
   Widget build(BuildContext context) {

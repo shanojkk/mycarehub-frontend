@@ -174,7 +174,9 @@ class _$_SavedContentState implements _SavedContentState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SavedContentStateToJson(this);
+    return _$$_SavedContentStateToJson(
+      this,
+    );
   }
 }
 

@@ -46,7 +46,7 @@ class GetSecurityQuestionsAction extends ReduxAction<AppState> {
     final String? otp = state.onboardingState?.otp;
     final String? phone = state.onboardingState?.phoneNumber;
 
-    final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
+    final IGraphQlClient client = AppWrapperBase.of(context)!.graphQLClient;
     final String getRecordedSecurityQuestions = AppWrapperBase.of(context)!
         .customContext!
         .respondedSecurityQuestionsEndpoint!;
@@ -59,20 +59,20 @@ class GetSecurityQuestionsAction extends ReduxAction<AppState> {
     };
 
     final http.Response result = isResetPin
-        ? await _client.callRESTAPI(
+        ? await client.callRESTAPI(
             endpoint: getRecordedSecurityQuestions,
             method: httpPOST,
             variables: getRecordedQuestionsVariables,
           )
-        : await _client.query(getSecurityQuestionsQuery, <String, dynamic>{
+        : await client.query(getSecurityQuestionsQuery, <String, dynamic>{
             'flavour': Flavour.consumer.name,
           });
-    final Map<String, dynamic> body = _client.toMap(result);
+    final Map<String, dynamic> body = client.toMap(result);
 
     final Map<String, dynamic> responseMap =
         json.decode(result.body) as Map<String, dynamic>;
 
-    final String? errors = _client.parseError(body);
+    final String? errors = client.parseError(body);
     if (errors != null || responseMap.isEmpty) {
       throw MyAfyaException(
         cause: getSecurityQuestionsFlag,

@@ -192,7 +192,9 @@ class _$_PhoneLoginResponse implements _PhoneLoginResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PhoneLoginResponseToJson(this);
+    return _$$_PhoneLoginResponseToJson(
+      this,
+    );
   }
 }
 

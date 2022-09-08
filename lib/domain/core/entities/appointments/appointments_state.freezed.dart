@@ -200,7 +200,9 @@ class _$_AppointmentState implements _AppointmentState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AppointmentStateToJson(this);
+    return _$$_AppointmentStateToJson(
+      this,
+    );
   }
 }
 

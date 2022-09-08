@@ -11,9 +11,9 @@ import 'package:pro_health_360/presentation/health_diary/widgets/mood_selection/
 
 class NotificationsFilterWidget extends StatelessWidget {
   const NotificationsFilterWidget({
-    Key? key,
+    super.key,
     required this.vm,
-  }) : super(key: key);
+  });
 
   final NotificationsViewModel vm;
 

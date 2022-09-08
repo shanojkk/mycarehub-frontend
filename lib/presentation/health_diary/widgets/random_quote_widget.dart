@@ -19,7 +19,7 @@ import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 
 class RandomQuoteWidget extends StatefulWidget {
-  const RandomQuoteWidget({Key? key}) : super(key: key);
+  const RandomQuoteWidget({super.key});
 
   @override
   State<RandomQuoteWidget> createState() => _RandomQuoteWidgetState();

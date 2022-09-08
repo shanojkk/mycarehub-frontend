@@ -36,41 +36,41 @@ class OnboardingState with _$OnboardingState {
     bool? hasSetNickName,
 
     // Whether the user's PIN has been set
-    final bool? hasSetPin,
+    bool? hasSetPin,
 
     // Whether the user has accepted terms and conditions
-    final bool? hasAcceptedTerms,
+    bool? hasAcceptedTerms,
 
     ///------------WORKFLOW RELATED VALUES------------
     // The currently active user's phone number
-    final String? phoneNumber,
+    String? phoneNumber,
 
     // The PIN
-    final String? pin,
+    String? pin,
 
     // The confirm PIN
-    final String? confirmPIN,
+    String? confirmPIN,
 
     // The OTP used when confirming the phone number
-    final String? otp,
+    String? otp,
 
     ///------------LOGIN RELATED VALUES------------
     // The number of failed login attempts that this user has
-    final int? failedLoginCount,
+    int? failedLoginCount,
 
     // Whether the credentials this user entered are invalid
-    final bool? invalidCredentials,
+    bool? invalidCredentials,
 
     ///------------VERIFY PHONE RELATED VALUES------------
     // If the OTP entered is invalid
-    final bool? invalidOTP,
+    bool? invalidOTP,
 
     // Whether there was a failure while sending an OTP
-    final bool? failedToSendOTP,
+    bool? failedToSendOTP,
 
     //  Whether the user is allowed to resend their PIN
-    final bool? canResendOTP,
-    final String? nickName,
+    bool? canResendOTP,
+    String? nickName,
 
     ///------------ONBOARDING STATE BOOLEANS------------
   }) = _OnboardingState;

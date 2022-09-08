@@ -149,7 +149,9 @@ class _$_SavedContent implements _SavedContent {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SavedContentToJson(this);
+    return _$$_SavedContentToJson(
+      this,
+    );
   }
 }
 

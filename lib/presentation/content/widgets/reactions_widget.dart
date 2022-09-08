@@ -4,8 +4,7 @@ import 'package:pro_health_360/presentation/content/widgets/like_content_widget.
 import 'package:pro_health_360/presentation/content/widgets/save_content_widget.dart';
 
 class ReactionsWidget extends StatelessWidget {
-  const ReactionsWidget({Key? key, required this.contentDetails})
-      : super(key: key);
+  const ReactionsWidget({super.key, required this.contentDetails});
 
   final ContentDetails contentDetails;
 

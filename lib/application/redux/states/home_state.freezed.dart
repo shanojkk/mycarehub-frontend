@@ -142,7 +142,9 @@ class _$_HomeState implements _HomeState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_HomeStateToJson(this);
+    return _$$_HomeStateToJson(
+      this,
+    );
   }
 }
 

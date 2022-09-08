@@ -15,7 +15,7 @@ import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 
 class AppEntryPoint extends StatelessWidget {
   const AppEntryPoint({
-    Key? key,
+    super.key,
     required this.appStore,
     required this.appName,
     required this.appNavigatorKey,
@@ -23,7 +23,7 @@ class AppEntryPoint extends StatelessWidget {
     required this.appSetupData,
     required this.streamClient,
     this.fcmToken,
-  }) : super(key: key);
+  });
 
   final String appName;
   final GlobalKey<NavigatorState> appNavigatorKey;

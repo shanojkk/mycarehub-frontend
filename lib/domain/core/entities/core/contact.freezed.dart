@@ -189,7 +189,9 @@ class _$_Contact implements _Contact {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ContactToJson(this);
+    return _$$_ContactToJson(
+      this,
+    );
   }
 }
 

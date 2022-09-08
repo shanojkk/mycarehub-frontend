@@ -7,7 +7,7 @@ import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 
 class EmptyConversationsWidget extends StatelessWidget {
-  const EmptyConversationsWidget({Key? key}) : super(key: key);
+  const EmptyConversationsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

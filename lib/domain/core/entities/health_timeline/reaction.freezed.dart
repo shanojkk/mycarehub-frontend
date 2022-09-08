@@ -273,7 +273,9 @@ class _$_Reaction implements _Reaction {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ReactionToJson(this);
+    return _$$_ReactionToJson(
+      this,
+    );
   }
 }
 

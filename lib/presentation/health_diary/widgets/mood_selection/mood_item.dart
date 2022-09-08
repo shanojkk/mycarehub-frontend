@@ -8,11 +8,11 @@ import 'package:shared_themes/colors.dart';
 
 class MoodItem extends StatelessWidget {
   const MoodItem({
-    Key? key,
+    super.key,
     required this.moodIcon,
     required this.moodText,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   final String moodIcon;
   final String moodText;
@@ -20,7 +20,7 @@ class MoodItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width /5.8;
+    final double width = MediaQuery.of(context).size.width / 5.8;
     return SizedBox(
       width: width,
       child: GestureDetector(

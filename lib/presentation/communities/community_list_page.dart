@@ -25,7 +25,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 
 class CommunityListViewPage extends StatefulWidget {
-  const CommunityListViewPage({Key? key}) : super(key: key);
+  const CommunityListViewPage({super.key});
 
   @override
   State<CommunityListViewPage> createState() => _CommunityListViewPageState();

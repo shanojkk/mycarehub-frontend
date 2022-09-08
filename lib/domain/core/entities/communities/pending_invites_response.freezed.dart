@@ -142,7 +142,9 @@ class _$_PendingInvites implements _PendingInvites {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PendingInvitesToJson(this);
+    return _$$_PendingInvitesToJson(
+      this,
+    );
   }
 }
 

@@ -76,7 +76,7 @@ class CreatePINAction extends ReduxAction<AppState> {
     // check if the new PIN matches the confirmed PIN entered by the user
     if ((newPIN != UNKNOWN && confirmPIN != UNKNOWN) && newPIN == confirmPIN) {
       // initializing of the reset_pin mutation
-      final Map<String, String?> _resetPinVariables = <String, String?>{
+      final Map<String, String?> resetPinVariables = <String, String?>{
         'phonenumber': phone,
         'flavour': Flavour.consumer.name,
         'pin': newPIN,
@@ -84,36 +84,36 @@ class CreatePINAction extends ReduxAction<AppState> {
       };
 
       // initializing of the updateUserPin mutation
-      final Map<String, String?> _updateUserPinVariables = <String, String?>{
+      final Map<String, String?> updateUserPinVariables = <String, String?>{
         'userID': userID,
         'pin': newPIN,
         'confirmPIN': confirmPIN,
         'flavour': Flavour.consumer.name,
       };
 
-      final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
+      final IGraphQlClient client = AppWrapperBase.of(context)!.graphQLClient;
       final String resetPinEndpoint =
           AppWrapperBase.of(context)!.customContext!.updateUserPinEndpoint;
 
       final http.Response result = isResetOrChangePIN
-          ? await _client.callRESTAPI(
+          ? await client.callRESTAPI(
               endpoint: resetPinEndpoint,
               method: httpPOST,
-              variables: _resetPinVariables,
+              variables: resetPinVariables,
             )
-          : await _client.query(
+          : await client.query(
               setUserPINMutation,
-              setUserPINMutationVariables(_updateUserPinVariables),
+              setUserPINMutationVariables(updateUserPinVariables),
             );
 
-      final Map<String, dynamic> body = _client.toMap(result);
+      final Map<String, dynamic> body = client.toMap(result);
 
-      _client.close();
+      client.close();
 
       final Map<String, dynamic> responseMap =
           json.decode(result.body) as Map<String, dynamic>;
 
-      if (_client.parseError(body) != null || responseMap['errors'] != null) {
+      if (client.parseError(body) != null || responseMap['errors'] != null) {
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(

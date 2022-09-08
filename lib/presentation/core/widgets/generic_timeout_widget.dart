@@ -12,13 +12,13 @@ import 'package:pro_health_360/presentation/core/theme/theme.dart';
 /// API. It's purpose is to communicate a specific message, the server could not return a response in time
 class GenericTimeoutWidget extends StatelessWidget {
   const GenericTimeoutWidget({
-    Key? key,
+    super.key,
     this.route,
     this.payload,
     required this.action,
     this.recoverCallback,
     this.recoverActionText,
-  }) : super(key: key);
+  });
 
   final String action;
   final Map<String, dynamic>? payload;
@@ -34,7 +34,7 @@ class GenericTimeoutWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ColoredBox(
       color: AppColors.whiteColor,
       child: ListView(
         key: genericListViewKey,

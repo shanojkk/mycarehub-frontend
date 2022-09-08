@@ -6,12 +6,12 @@ import 'package:pro_health_360/presentation/home/widgets/bottom_nav_bar.dart';
 
 class AppScaffold extends StatelessWidget {
   const AppScaffold({
-    Key? key,
+    super.key,
     this.appBar = const CustomAppBar(),
     this.backgroundColor,
     required this.body,
     this.bottomNavIndex = 0,
-  }) : super(key: key);
+  });
 
   final Color? backgroundColor;
   final Widget appBar;

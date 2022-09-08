@@ -54,9 +54,7 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
         return Scaffold(
           floatingActionButtonLocation:
               FloatingActionButtonLocation.miniCenterFloat,
-          body: SizedBox(
-            width: double.infinity,
-            height: double.infinity,
+          body: SizedBox.expand(
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: SafeArea(

@@ -173,7 +173,9 @@ class _$_CommunitiesState implements _CommunitiesState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CommunitiesStateToJson(this);
+    return _$$_CommunitiesStateToJson(
+      this,
+    );
   }
 }
 

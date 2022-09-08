@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HealthDiaryFiltersWidget extends StatelessWidget {
-  const HealthDiaryFiltersWidget({Key? key, required this.filters})
-      : super(key: key);
+  const HealthDiaryFiltersWidget({super.key, required this.filters});
   final List<Widget> filters;
 
   @override

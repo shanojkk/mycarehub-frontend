@@ -208,7 +208,9 @@ class _$_FeedContentState implements _FeedContentState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_FeedContentStateToJson(this);
+    return _$$_FeedContentStateToJson(
+      this,
+    );
   }
 }
 

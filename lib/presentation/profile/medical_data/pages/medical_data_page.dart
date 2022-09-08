@@ -23,7 +23,7 @@ import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.
 import 'package:pro_health_360/presentation/profile/medical_data/widgets/medical_data_widget.dart';
 
 class MedicalDataPage extends StatefulWidget {
-  const MedicalDataPage({Key? key, this.graphQlClient}) : super(key: key);
+  const MedicalDataPage({super.key, this.graphQlClient});
 
   final IGraphQlClient? graphQlClient;
 

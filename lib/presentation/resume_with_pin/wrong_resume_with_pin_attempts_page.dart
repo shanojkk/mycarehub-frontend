@@ -5,7 +5,7 @@ import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 
 class WrongResumeWithPinPage extends StatelessWidget {
-  const WrongResumeWithPinPage({Key? key}) : super(key: key);
+  const WrongResumeWithPinPage({super.key});
 
   @override
   Widget build(BuildContext context) {

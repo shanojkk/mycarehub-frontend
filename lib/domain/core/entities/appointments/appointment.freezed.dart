@@ -205,7 +205,9 @@ class _$_Appointment implements _Appointment {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AppointmentToJson(this);
+    return _$$_AppointmentToJson(
+      this,
+    );
   }
 }
 

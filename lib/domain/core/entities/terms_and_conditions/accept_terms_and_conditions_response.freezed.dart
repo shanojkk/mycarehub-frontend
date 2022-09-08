@@ -141,7 +141,9 @@ class _$_AcceptTermsAndConditionsResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AcceptTermsAndConditionsResponseToJson(this);
+    return _$$_AcceptTermsAndConditionsResponseToJson(
+      this,
+    );
   }
 }
 

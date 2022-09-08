@@ -4,13 +4,12 @@ import 'package:pro_health_360/presentation/core/theme/theme.dart';
 
 class GeneralWorkstationWidget extends StatelessWidget {
   const GeneralWorkstationWidget({
-    Key? key,
     required this.title,
     required this.bodyWidget,
     this.onButtonCallback,
     required this.buttonText,
     this.subtitle,
-  }) : super(key: key);
+  });
 
   final String title;
   final String? subtitle;

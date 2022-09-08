@@ -40,10 +40,10 @@ void main() {
     final InitializeDB<MockStateDB> initDB =
         InitializeDB<MockStateDB>(dbName: 'test_db');
 
-    final MyAfyaHubDatabaseMobile<MockStateDB> _db =
+    final MyAfyaHubDatabaseMobile<MockStateDB> db =
         MyAfyaHubDatabaseMobile<MockStateDB>(initializeDB: initDB);
 
-    expect(_db.clearDatabase(), throwsException);
+    expect(db.clearDatabase(), throwsException);
   });
 
   test('should throw exception on real state db. Missing plugin', () {
@@ -56,10 +56,10 @@ void main() {
     final InitializeDB<MockStateDB> initDB =
         InitializeDB<MockStateDB>(dbName: 'test_db');
 
-    final MyAfyaHubDatabaseMobile<MockStateDB> _db =
+    final MyAfyaHubDatabaseMobile<MockStateDB> db =
         MyAfyaHubDatabaseMobile<MockStateDB>(initializeDB: initDB);
 
-    expect(_db.clearDatabase(), throwsException);
+    expect(db.clearDatabase(), throwsException);
   });
 
   test('countTableRecords should return 0 entries', () async {

@@ -181,7 +181,9 @@ class _$_NotificationFilterState implements _NotificationFilterState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_NotificationFilterStateToJson(this);
+    return _$$_NotificationFilterStateToJson(
+      this,
+    );
   }
 }
 

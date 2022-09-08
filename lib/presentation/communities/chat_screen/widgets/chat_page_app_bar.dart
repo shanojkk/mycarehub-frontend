@@ -5,7 +5,7 @@ import 'package:stream_chat_flutter/src/extension.dart';
 
 class ChatPageAppBar extends StatelessWidget implements PreferredSizeWidget {
   const ChatPageAppBar({
-    Key? key,
+    super.key,
     this.showBackButton = true,
     this.showConnectionStateTile = false,
     this.onImageTap,
@@ -15,7 +15,7 @@ class ChatPageAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.onBackPressed,
     this.actions,
     this.backgroundColor,
-  }) : super(key: key);
+  });
 
   /// True if this header shows the leading back button
   final bool showBackButton;

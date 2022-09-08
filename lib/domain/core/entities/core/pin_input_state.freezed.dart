@@ -190,7 +190,9 @@ class _$_PINInputState implements _PINInputState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PINInputStateToJson(this);
+    return _$$_PINInputStateToJson(
+      this,
+    );
   }
 }
 

@@ -137,7 +137,9 @@ class _$_VerifySecurityQuestionsState implements _VerifySecurityQuestionsState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_VerifySecurityQuestionsStateToJson(this);
+    return _$$_VerifySecurityQuestionsStateToJson(
+      this,
+    );
   }
 }
 

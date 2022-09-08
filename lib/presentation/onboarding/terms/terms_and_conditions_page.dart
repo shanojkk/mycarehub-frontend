@@ -20,7 +20,7 @@ import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.
 import 'package:unicons/unicons.dart';
 
 class TermsAndConditionsPage extends StatefulWidget {
-  const TermsAndConditionsPage({Key? key, this.shouldPop}) : super(key: key);
+  const TermsAndConditionsPage({super.key, this.shouldPop});
   final bool? shouldPop;
 
   @override
@@ -90,7 +90,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                         borderRadius: BorderRadius.circular(12.0),
                         child: SingleChildScrollView(
                           physics: const AlwaysScrollableScrollPhysics(),
-                          child: Container(
+                          child: DecoratedBox(
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(12),

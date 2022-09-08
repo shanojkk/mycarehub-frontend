@@ -175,7 +175,9 @@ class _$_ScreeningTool implements _ScreeningTool {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ScreeningToolToJson(this);
+    return _$$_ScreeningToolToJson(
+      this,
+    );
   }
 }
 

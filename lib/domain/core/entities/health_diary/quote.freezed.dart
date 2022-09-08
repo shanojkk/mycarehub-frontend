@@ -128,7 +128,9 @@ class _$_QuoteRelay implements _QuoteRelay {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_QuoteRelayToJson(this);
+    return _$$_QuoteRelayToJson(
+      this,
+    );
   }
 }
 
@@ -282,7 +284,9 @@ class _$_Quote implements _Quote {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_QuoteToJson(this);
+    return _$$_QuoteToJson(
+      this,
+    );
   }
 }
 

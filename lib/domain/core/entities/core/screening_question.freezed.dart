@@ -280,7 +280,9 @@ class _$_ScreeningQuestion implements _ScreeningQuestion {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ScreeningQuestionToJson(this);
+    return _$$_ScreeningQuestionToJson(
+      this,
+    );
   }
 }
 

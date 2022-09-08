@@ -145,7 +145,9 @@ class _$_FlaggedMessagesResponse implements _FlaggedMessagesResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_FlaggedMessagesResponseToJson(this);
+    return _$$_FlaggedMessagesResponseToJson(
+      this,
+    );
   }
 }
 

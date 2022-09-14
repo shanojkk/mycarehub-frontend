@@ -36,7 +36,7 @@ void main() {
       expect(find.byType(ExpandableQuestion), findsOneWidget);
       expect(find.byType(MyAfyaHubPrimaryButton), findsOneWidget);
 
-      await tester.tap(find.text(whereWereYouBornString));
+      await tester.tap(find.byKey(const Key('${whereWereYouBornString}_key')));
       await tester.pumpAndSettle();
 
       final Finder textFormField = find.byType(TextFormField);

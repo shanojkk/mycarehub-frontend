@@ -276,7 +276,7 @@ const String didNotReceiveOTP = 'Did not receive a verification code?';
 
 const String setSecurityQuestionsString = 'Set security questions';
 const String securityQuestionsDescriptionString =
-    'These questions will be used to reset your PIN. Make sure to remember the answers you provide';
+    'Please answer all the security questions below. Please make sure you remember the responses';
 
 const String answerSecurityQuestionString = 'Answer security question';
 const String answerCorrectlyToGainAccessString =
@@ -285,7 +285,7 @@ const String answerCorrectlyToGainAccessString =
 const String kindlyAnswerAllQuestionsString = 'Kindly answer all questions';
 const String verifySecurityQuestionsString = 'Verify your security questions';
 const String verifyQuestionsDescriptionString =
-    'Please answer the following security questions about yourself. You provided the answers to these questions when you first signed up.';
+    'Please answer all the following security questions about yourself. You provided the answers to these questions when you first signed up.';
 const String noQuestionsLoadedString = 'No questions loaded';
 const String noQuestionsLoadedDescription =
     'We were unable to load your security questions. Tap below load them again';

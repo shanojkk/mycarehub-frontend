@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -6,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 // Project imports:
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 
@@ -17,17 +19,17 @@ class NoSavedContentWidget extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
-        padding: const EdgeInsets.only(left: 30, right: 30, top: 28),
+        padding: const EdgeInsets.only(left: 30, right: 30, top: 10),
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              const SizedBox(height: 30),
+              mediumVerticalSizedBox,
               SvgPicture.asset(
                 contentZeroStateImageUrl,
                 height: 286.0,
                 width: 286.0,
               ),
-              const SizedBox(height: 20),
+              mediumVerticalSizedBox,
               const Text(
                 youHaveNoSaveItemsText,
                 textAlign: TextAlign.center,
@@ -37,7 +39,7 @@ class NoSavedContentWidget extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
-              const SizedBox(height: 10),
+              smallVerticalSizedBox,
               const Text(
                 pleaseBePatientWhileWePrepareYourSaveItemsText,
                 textAlign: TextAlign.center,
@@ -45,6 +47,21 @@ class NoSavedContentWidget extends StatelessWidget {
                   color: AppColors.greyTextColor,
                   fontWeight: FontWeight.normal,
                   fontSize: 15,
+                ),
+              ),
+              mediumVerticalSizedBox,
+              SizedBox(
+                height: 48,
+                width: double.infinity,
+                child: MyAfyaHubPrimaryButton(
+                  buttonKey: okThanksButtonKey,
+                  text: okThanksText,
+                  textColor: AppColors.whiteColor,
+                  onPressed: () {
+                    if (Navigator.of(context).canPop()) {
+                      Navigator.of(context).pop();
+                    }
+                  },
                 ),
               ),
             ],

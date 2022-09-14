@@ -23,6 +23,7 @@ import 'package:pro_health_360/presentation/content/widgets/like_content_widget.
 import 'package:pro_health_360/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:pro_health_360/presentation/profile/saved_posts/saved_posts_page.dart';
 import 'package:pro_health_360/presentation/profile/saved_posts/widgets/no_saved_content_widget.dart';
+import 'package:pro_health_360/presentation/router/routes.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 
@@ -91,12 +92,34 @@ void main() {
           tester: tester,
           store: store,
           client: mockShortSILGraphQlClient,
-          widget: const SavedPostPage(),
+          widget: Scaffold(
+            body: Builder(
+              builder: (BuildContext context) {
+                return MyAfyaHubPrimaryButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(AppRoutes.savedPosts);
+                  },
+                );
+              },
+            ),
+          ),
         );
 
         await tester.pumpAndSettle();
 
+        expect(find.byType(MyAfyaHubPrimaryButton), findsOneWidget);
+        await tester.tap(find.byType(MyAfyaHubPrimaryButton));
+        await tester.pumpAndSettle();
+
         expect(find.byType(NoSavedContentWidget), findsOneWidget);
+        await tester.pumpAndSettle();
+
+        final Finder okThanksButton = find.byKey(okThanksButtonKey);
+
+        expect(okThanksButton, findsOneWidget);
+        await tester.tap(okThanksButton);
+        await tester.pumpAndSettle();
+        expect(okThanksButton, findsNothing);
       });
     });
 

@@ -89,7 +89,8 @@ class PhoneLoginAction extends ReduxAction<AppState> {
 
       if (processedResponse.ok) {
         final Map<String, dynamic> parsed =
-            jsonDecode(processedResponse.response.body) as Map<String, dynamic>;
+            jsonDecode(utf8.decode(processedResponse.response.bodyBytes))
+                as Map<String, dynamic>;
 
         final PhoneLoginResponse loginResponse =
             PhoneLoginResponse.fromJson(parsed);

@@ -17,10 +17,12 @@ class SecurityQuestionWidget extends StatefulWidget {
     required this.securityQuestion,
     required this.response,
     required this.onChanged,
+    this.suffixIcon,
   });
 
   final SecurityQuestion securityQuestion;
   final String? response;
+  final Widget? suffixIcon;
   final ValueChanged<String?> onChanged;
 
   @override
@@ -46,6 +48,7 @@ class _SecurityQuestionWidgetState extends State<SecurityQuestionWidget> {
         hintText: answerHereString,
         validator: securityQuestionValidator,
         initialValue: initialResponse,
+        suffixIcon: widget.suffixIcon,
         questionTextStyle: const TextStyle(
           color: AppColors.greyTextColor,
           fontSize: 14.0,
@@ -58,6 +61,7 @@ class _SecurityQuestionWidgetState extends State<SecurityQuestionWidget> {
         onChanged: (String? value) {
           widget.onChanged(value);
         },
+        
       ),
     );
   }

@@ -91,7 +91,8 @@ void main() {
       expect(find.byType(MyAfyaHubPrimaryButton), findsOneWidget);
 
       await tester.tap(find.byKey(const Key('${firstQuestion}_key')));
-
+      await tester.pumpAndSettle();
+      await tester.tap(find.text(doneString));
       await tester.pumpAndSettle();
 
       final Finder textFormField = find.byType(TextFormField);
@@ -163,7 +164,9 @@ void main() {
       expect(find.byType(ExpandableQuestion), findsWidgets);
       expect(find.byType(MyAfyaHubPrimaryButton), findsOneWidget);
 
-         await tester.tap(find.byKey(const Key('${firstQuestion}_key')));
+      await tester.tap(find.byKey(const Key('${firstQuestion}_key')));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text(doneString));
       await tester.pumpAndSettle();
 
       final Finder textFormField = find.byType(TextFormField);
@@ -221,7 +224,7 @@ void main() {
       expect(find.byType(ExpandableQuestion), findsWidgets);
       expect(find.byType(MyAfyaHubPrimaryButton), findsOneWidget);
 
-           await tester.tap(find.byKey(const Key('${secondQuestion}_key')));
+      await tester.tap(find.byKey(const Key('${secondQuestion}_key')));
       await tester.pumpAndSettle();
 
       final Finder datePickerField = find.byType(DatePickerField);
@@ -391,6 +394,8 @@ void main() {
       await tester.pumpAndSettle();
 
       await tester.tap(find.byKey(const Key('${firstQuestion}_key')));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text(doneString));
       await tester.pumpAndSettle();
 
       await tester.ensureVisible(find.byType(MyAfyaHubPrimaryButton));

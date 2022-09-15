@@ -1027,3 +1027,4 @@ const String caregiverConsentText = 'Caregiver consent';
 const String caregiverConsentReviewText = 'Tap to review this request';
 
 const String consentRecordedString = 'Consent recorded';
+const String doneString = 'Done';

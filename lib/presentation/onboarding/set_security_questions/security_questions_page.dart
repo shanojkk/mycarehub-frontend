@@ -100,6 +100,15 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
                 ),
               );
             },
+            suffixIcon: GestureDetector(
+              onTap: () {
+                FocusScope.of(context).unfocus();
+              },
+              child: Text(
+                doneString,
+                style: boldSize14Text(Theme.of(context).primaryColor),
+              ),
+            ),
           );
         },
       );

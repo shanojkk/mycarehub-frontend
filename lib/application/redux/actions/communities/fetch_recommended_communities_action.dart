@@ -38,18 +38,21 @@ class FetchRecommendedGroupsAction extends ReduxAction<AppState> {
 
     final Map<String, dynamic> payLoad = client.toMap(response);
 
-    final GroupState groupState =
-        GroupState.fromJson(payLoad['data'] as Map<String, dynamic>);
-    final List<Group?>? recommendedGroups = groupState.recommendedGroups;
+    final Map<String, dynamic>? data = payLoad['data'] as Map<String, dynamic>?;
 
-    if (recommendedGroups != null && recommendedGroups.isNotEmpty) {
-      dispatch(
-        UpdateGroupStateAction(recommendedGroups: recommendedGroups),
-      );
-    } else {
-      dispatch(UpdateGroupStateAction(recommendedGroups: <Group>[]));
+    if (data != null) {
+      final GroupState groupState =
+          GroupState.fromJson(payLoad['data'] as Map<String, dynamic>);
+      final List<Group?>? recommendedGroups = groupState.recommendedGroups;
+
+      if (recommendedGroups?.isNotEmpty ?? false) {
+        dispatch(
+          UpdateGroupStateAction(recommendedGroups: recommendedGroups),
+        );
+      } else {
+        dispatch(UpdateGroupStateAction(recommendedGroups: <Group>[]));
+      }
     }
-
     return state;
   }
 }

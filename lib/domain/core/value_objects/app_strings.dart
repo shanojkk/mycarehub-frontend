@@ -987,44 +987,45 @@ const String recheckAvailableSurveys =
 const String cccNumberHint = 'Enter your CCC number...';
 const String all = 'All';
 const String unread = 'Unread';
-String workStationChooserDescription(String username) =>
-    'Welcome back $username! Please select who you would like to proceed as';
-const String proceedAsCaregiver = 'Proceed as caregiver';
-const String proceedAsClient = 'Proceed as client';
-const String caregiver = 'Caregiver';
-const String proceed = 'Proceed';
-const String client = 'Client';
 
-String welcomeFacilitySelectionDescription(String username) =>
-    'Welcome back $username! Choose your facility';
+// String workStationChooserDescription(String username) =>
+//     'Welcome back $username! Please select who you would like to proceed as';
+// const String proceedAsCaregiver = 'Proceed as caregiver';
+// const String proceedAsClient = 'Proceed as client';
+// const String caregiver = 'Caregiver';
+// const String proceed = 'Proceed';
+// const String client = 'Client';
 
-String noOfFacilitiesDescription(String numberOfFacilities) =>
-    "We've noticed that you're part of $numberOfFacilities facilities. Choose which facility you would like to log into. Here are the details";
+// String welcomeFacilitySelectionDescription(String username) =>
+//     'Welcome back $username! Choose your facility';
 
-String getConsentActionDescription(String name) {
-  return '$name has been assigned to you by your medical practitioner. You are required to give consent Tap the options below to record your consent.\n\nTap the options below to record your consent';
-}
+// String noOfFacilitiesDescription(String numberOfFacilities) =>
+//     "We've noticed that you're part of $numberOfFacilities facilities. Choose which facility you would like to log into. Here are the details";
 
-String getConsentActionRemoveDescription(String name) {
-  return '$name is been assigned to you by your medical practitioner. They have access to your medical information and other information about you. They can also manage myCareHub on your behalf.\n\nTo revoke their access, tap the button below.';
-}
+// String getConsentActionDescription(String name) {
+//   return '$name has been assigned to you by your medical practitioner. You are required to give consent Tap the options below to record your consent.\n\nTap the options below to record your consent';
+// }
 
-String clientSelectionTitle(String username) =>
-    'Welcome back $username! Choose your client';
-String clientSelectionDescription(String numberOfClients) =>
-    "We've noticed that you're managing $numberOfClients clients. Choose which client you would like to manage";
-String yourCurrentHospitalDescription(String hospitalName) =>
-    'You are currently signed in at $hospitalName. Tap below to sign in to a different facility';
-const String changeMyFacility = 'Change my facility';
-const String removeString = 'REMOVE';
-const String removeCaregiverString = 'Remove Caregiver';
-const String acceptString = 'I Accept';
-const String doNotAcceptString = 'I DO NOT Accept';
+// String getConsentActionRemoveDescription(String name) {
+//   return '$name is been assigned to you by your medical practitioner. They have access to your medical information and other information about you. They can also manage myCareHub on your behalf.\n\nTo revoke their access, tap the button below.';
+// }
 
-const String caregiverAssignedText =
-    'Caregivers that have been assigned to you by your medical practitioner';
-const String caregiverConsentText = 'Caregiver consent';
-const String caregiverConsentReviewText = 'Tap to review this request';
+// String clientSelectionTitle(String username) =>
+//     'Welcome back $username! Choose your client';
+// String clientSelectionDescription(String numberOfClients) =>
+//     "We've noticed that you're managing $numberOfClients clients. Choose which client you would like to manage";
+// String yourCurrentHospitalDescription(String hospitalName) =>
+//     'You are currently signed in at $hospitalName. Tap below to sign in to a different facility';
+// const String changeMyFacility = 'Change my facility';
+// const String removeString = 'REMOVE';
+// const String removeCaregiverString = 'Remove Caregiver';
+// const String acceptString = 'I Accept';
+// const String doNotAcceptString = 'I DO NOT Accept';
 
-const String consentRecordedString = 'Consent recorded';
+// const String caregiverAssignedText =
+//     'Caregivers that have been assigned to you by your medical practitioner';
+// const String caregiverConsentText = 'Caregiver consent';
+// const String caregiverConsentReviewText = 'Tap to review this request';
+
+// const String consentRecordedString = 'Consent recorded';
 const String doneString = 'Done';

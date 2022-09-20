@@ -285,8 +285,3 @@ const Key notificationFiltersKey = Key('notification_filters_key');
 const Key notificationsListViewKey = Key('notifications_list_view_key');
 const Key healthDiaryListKey = Key('health_diary_list_key');
 const Key allHealthDiariesKey = Key('all_health_diaries_key');
-
-//consent page
-const Key acceptButtonKey = Key('accept_button_key');
-const Key doNotAcceptButtonKey = Key('do_not_accept_button_key');
-const Key removeCaregiverButtonKey = Key('remove_caregiver_button_key');

@@ -10,8 +10,6 @@ import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
-import 'package:pro_health_360/phase_2/client_caregiver_selection_page.dart';
-import 'package:pro_health_360/phase_2/client_selection_page.dart';
 import 'package:pro_health_360/presentation/assessment/pages/contraceptive_assessment_page.dart';
 import 'package:pro_health_360/presentation/assessment/widgets/successful_assessment_submission_page.dart';
 import 'package:pro_health_360/presentation/communities/community_list_page.dart';
@@ -678,28 +676,5 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<HotlinesPage>>());
     expect(route?.builder(context), isA<HotlinesPage>());
-  });
-
-  test('Test router returns client caregiver selection page', () {
-    const RouteSettings settings =
-        RouteSettings(name: AppRoutes.clientCaregiverSelectionPageRoute);
-
-    final MaterialPageRoute<ClientCaregiverSelectionPage>? route =
-        routeGenerator(settings)
-            as MaterialPageRoute<ClientCaregiverSelectionPage>?;
-
-    expect(route, isA<MaterialPageRoute<ClientCaregiverSelectionPage>>());
-    expect(route?.builder(context), isA<ClientCaregiverSelectionPage>());
-  });
-
-  test('Test router returns client selection page', () {
-    const RouteSettings settings =
-        RouteSettings(name: AppRoutes.clientSelectionPageRoute);
-
-    final MaterialPageRoute<ClientSelectionPage>? route =
-        routeGenerator(settings) as MaterialPageRoute<ClientSelectionPage>?;
-
-    expect(route, isA<MaterialPageRoute<ClientSelectionPage>>());
-    expect(route?.builder(context), isA<ClientSelectionPage>());
   });
 }

@@ -66,6 +66,23 @@ void main() {
       expect(find.byType(LoginPage), findsOneWidget);
     });
 
+    testWidgets('launch email url works correctly',
+        (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: MockGraphQlClient(),
+        widget: const ConsentConfirmationPage(),
+      );
+
+      await tester.pumpAndSettle();
+      expect(find.byType(MyAfyaHubNoBorderButton), findsOneWidget);
+
+      await tester.tap(find.byType(MyAfyaHubNoBorderButton));
+      await tester.pump();
+      await tester.pumpAndSettle(const Duration(seconds: 1));
+    });
+
     testWidgets('abort button works correctly', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,

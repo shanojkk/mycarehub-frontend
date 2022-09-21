@@ -2,6 +2,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/view_models/app_state_view_model.dart';
@@ -21,12 +22,11 @@ class ConsentConfirmationPage extends StatelessWidget {
       appBar: const CustomAppBar(title: optOutOfMyCareHubString),
       body: Container(
         width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              largeVerticalSizedBox,
               Center(
                 child: SvgPicture.asset(
                   consentConfirmationImage,
@@ -62,6 +62,12 @@ class ConsentConfirmationPage extends StatelessWidget {
               Text(
                 yourHealthRecordWillBeAnonymizedString,
                 style: normalSize14Text(AppColors.greyTextColor),
+              ),
+              MyAfyaHubNoBorderButton(
+                onPressed: () async {
+                  await launchEmailUrl(adminEmail);
+                },
+                text: adminEmail,
               ),
               largeVerticalSizedBox,
               Text(

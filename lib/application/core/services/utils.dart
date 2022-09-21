@@ -36,6 +36,7 @@ import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 AppSetupData getAppSetupData(AppContext context) {
   switch (context) {
@@ -794,3 +795,8 @@ final List<String> quoteSliderBackgroundImages = <String>[
 /// Sets Duration taken by each slide to 5 minutes when
 /// [autoPlay] is set to true.
 const int quoteSliderAutoPlayInterval = 300; //300 seconds == 5 minutes
+
+Future<void> launchEmailUrl(String email) async {
+  final Uri url = Uri.parse('mailto:$email');
+  await launchUrl(url);
+}

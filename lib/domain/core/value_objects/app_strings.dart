@@ -850,7 +850,7 @@ const String youWillNeedToRegisterString =
     '3. You will need to be registered again to access UoNAfyaApp360 services.';
 
 const String yourHealthRecordWillBeAnonymizedString =
-    '4. Your health record will be anonymized. If you wish to delete your data from UoNAfyaApp360, kindly contact the admin on $adminEmail';
+    '4. Your health record will be anonymized. If you wish to delete your data from UoNAfyaApp360, kindly contact the admin on ';
 const String areYouStillSureString =
     'Are you still sure that you want to opt out of UoNAfyaApp360?';
 

@@ -45,8 +45,6 @@ AppSetupData getAppSetupData(AppContext context) {
       return demoAppSetupData;
     case AppContext.AppProd:
       return prodAppSetupData;
-    case AppContext.AppE2E:
-      return externalAppSetupData;
     default:
       return devAppSetupData;
   }

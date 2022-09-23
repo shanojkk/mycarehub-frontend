@@ -87,3 +87,7 @@ const String pinResetServiceRequestEvent = 'pin_reset_service_request';
 const String createPINEvent = 'create_pin';
 
 const String resetPINEvent = 'reset_pin';
+
+const String successfulMedicalDataAccess = 'successful_medical_data_access';
+
+const String unsuccessfulMedicalDataAccess = 'unsuccessful_medical_data_access';

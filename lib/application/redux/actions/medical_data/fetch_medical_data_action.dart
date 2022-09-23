@@ -3,10 +3,13 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/src/response.dart';
 import 'package:pro_health_360/application/core/graphql/queries.dart';
+import 'package:pro_health_360/application/core/services/analytics_service.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/entities/medical_data/medical_data_response.dart';
 import 'package:pro_health_360/domain/core/entities/medical_data/medical_data_state.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_events.dart';
+import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class FetchMedicalDataAction extends ReduxAction<AppState> {
@@ -44,6 +47,15 @@ class FetchMedicalDataAction extends ReduxAction<AppState> {
       final String? error = httpClient.parseError(mapped);
 
       if (error != null) {
+        // log error accessing medical data
+        await AnalyticsService().logEvent(
+          name: unsuccessfulMedicalDataAccess,
+          eventType: AnalyticsEventType.INTERACTION,
+          parameters: <String, dynamic>{
+            'error': error,
+            'patientID': patientID,
+          },
+        );
         throw UserException(getErrorMessage());
       }
 
@@ -55,12 +67,30 @@ class FetchMedicalDataAction extends ReduxAction<AppState> {
       final MedicalDataState newState =
           MedicalDataState(medicalData: medicalDataResponse.medicalData);
 
+      // log successful medical data access
+      await AnalyticsService().logEvent(
+        name: successfulMedicalDataAccess,
+        eventType: AnalyticsEventType.INTERACTION,
+        parameters: <String, dynamic>{
+          'patientID': patientID,
+        },
+      );
+
       final AppState appState = state.copyWith(
         clientState: state.clientState?.copyWith(medicalDataState: newState),
       );
 
       return appState;
     } else {
+      // log error accessing medical data
+      await AnalyticsService().logEvent(
+        name: unsuccessfulMedicalDataAccess,
+        eventType: AnalyticsEventType.INTERACTION,
+        parameters: <String, dynamic>{
+          'error': processed.message,
+          'patientID': patientID,
+        },
+      );
       throw UserException(getErrorMessage());
     }
   }

@@ -54,18 +54,18 @@ AppSetupData getAppSetupData(AppContext context) {
 }
 
 String getDisplayName(User? user) {
-  final String firstName = user?.firstName ?? UNKNOWN;
+  final String firstName = user?.firstName ?? '';
   String formattedFirstName = firstName.replaceAll(' ', '');
 
   if (formattedFirstName.isEmpty) {
-    formattedFirstName = UNKNOWN;
+    formattedFirstName = '';
   }
 
-  final String lastName = user?.lastName ?? UNKNOWN;
+  final String lastName = user?.lastName ?? '';
   String formattedLastName = lastName.replaceAll(' ', '');
 
   if (formattedLastName.isEmpty) {
-    formattedLastName = UNKNOWN;
+    formattedLastName = '';
   }
 
   return '$formattedFirstName $formattedLastName';

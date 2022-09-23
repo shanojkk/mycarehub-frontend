@@ -142,7 +142,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         final String fullName =
             loginResponse.userResponse?.clientState?.user?.name ?? UNKNOWN;
         if (fullName != UNKNOWN && fullName.isNotEmpty) {
-          final List<String> names = fullName.split(' ');
+          final List<String> names = fullName.trim().split(' ');
           user = user?.copyWith(firstName: names.first, lastName: names.last);
         }
 

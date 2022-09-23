@@ -54,7 +54,7 @@ android {
     }
 
     defaultConfig {
-        applicationId 'com.mycarehub.prohealth360'
+        applicationId 'com.mycarehub.mycarehub'
         minSdkVersion 21
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()

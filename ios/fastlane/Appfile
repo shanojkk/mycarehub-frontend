@@ -8,4 +8,4 @@ itc_team_id("125225674") # App Store Connect Team ID
 
 # Get this one from https://developer.apple.com/account/#!/membership/
 team_id("3C526Y9XH4") # Developer Portal Team ID
-app_identifier 'com.mycarehub.prohealth360'
+app_identifier 'com.mycarehub.mycarehub'

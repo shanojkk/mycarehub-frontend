@@ -40,7 +40,7 @@ class FetchGroupMembersAction extends ReduxAction<AppState> {
     final Map<String, dynamic> variables = <String, dynamic>{
       'communityID': channelId,
       'communityMembersFilter': <String, dynamic>{
-        'filter': <String, String>{'invite': 'accepted'}
+        'filter': <String, dynamic>{'joined': true}
       },
       'listCommunitiesFilter': <String, dynamic>{
         'filter': <String, String>{'id': channelId}

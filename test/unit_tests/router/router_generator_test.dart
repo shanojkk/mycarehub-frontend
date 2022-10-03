@@ -12,6 +12,7 @@ import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/phase_2/client_caregiver_selection_page.dart';
 import 'package:pro_health_360/phase_2/client_selection_page.dart';
+import 'package:pro_health_360/phase_2/facility_selection_page.dart';
 import 'package:pro_health_360/presentation/assessment/pages/contraceptive_assessment_page.dart';
 import 'package:pro_health_360/presentation/assessment/widgets/successful_assessment_submission_page.dart';
 import 'package:pro_health_360/presentation/communities/community_list_page.dart';
@@ -701,5 +702,16 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<ClientSelectionPage>>());
     expect(route?.builder(context), isA<ClientSelectionPage>());
+  });
+
+  test('Test router returns facility selection page', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.facilitySelectionPageRoute);
+
+    final MaterialPageRoute<FacilitySelectionPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<FacilitySelectionPage>?;
+
+    expect(route, isA<MaterialPageRoute<FacilitySelectionPage>>());
+    expect(route?.builder(context), isA<FacilitySelectionPage>());
   });
 }

@@ -132,3 +132,5 @@ const String fetchContentCategoriesFlag = 'fetch_content_categories_flag';
 const String fetchAvailableSurveysFlag = 'fetch_available_surveys_flag';
 
 const String verifySurveySubmissionFlag = 'verify_survey_submission_flag';
+
+const String fetchFacilitiesFlag = 'fetch_facilities_flag';

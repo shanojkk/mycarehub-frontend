@@ -84,6 +84,7 @@ mixin _$ClientState {
       throw _privateConstructorUsedError;
   NotificationFilterState? get notificationFilterState =>
       throw _privateConstructorUsedError;
+  FacilityState? get facilityState => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -126,7 +127,8 @@ abstract class $ClientStateCopyWith<$Res> {
       CaregiverInformation? caregiverInformation,
       bool? hasCareGiverInfo,
       List<NotificationDetails?>? notifications,
-      NotificationFilterState? notificationFilterState});
+      NotificationFilterState? notificationFilterState,
+      FacilityState? facilityState});
 
   $UserCopyWith<$Res>? get user;
   $HealthDiaryStateCopyWith<$Res>? get healthDiaryState;
@@ -137,6 +139,7 @@ abstract class $ClientStateCopyWith<$Res> {
   $NextRefillDataCopyWith<$Res>? get nextRefillData;
   $CaregiverInformationCopyWith<$Res>? get caregiverInformation;
   $NotificationFilterStateCopyWith<$Res>? get notificationFilterState;
+  $FacilityStateCopyWith<$Res>? get facilityState;
 }
 
 /// @nodoc
@@ -179,6 +182,7 @@ class _$ClientStateCopyWithImpl<$Res> implements $ClientStateCopyWith<$Res> {
     Object? hasCareGiverInfo = freezed,
     Object? notifications = freezed,
     Object? notificationFilterState = freezed,
+    Object? facilityState = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -301,6 +305,10 @@ class _$ClientStateCopyWithImpl<$Res> implements $ClientStateCopyWith<$Res> {
           ? _value.notificationFilterState
           : notificationFilterState // ignore: cast_nullable_to_non_nullable
               as NotificationFilterState?,
+      facilityState: facilityState == freezed
+          ? _value.facilityState
+          : facilityState // ignore: cast_nullable_to_non_nullable
+              as FacilityState?,
     ));
   }
 
@@ -405,6 +413,17 @@ class _$ClientStateCopyWithImpl<$Res> implements $ClientStateCopyWith<$Res> {
       return _then(_value.copyWith(notificationFilterState: value));
     });
   }
+
+  @override
+  $FacilityStateCopyWith<$Res>? get facilityState {
+    if (_value.facilityState == null) {
+      return null;
+    }
+
+    return $FacilityStateCopyWith<$Res>(_value.facilityState!, (value) {
+      return _then(_value.copyWith(facilityState: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -444,7 +463,8 @@ abstract class _$$_ClientStateCopyWith<$Res>
       CaregiverInformation? caregiverInformation,
       bool? hasCareGiverInfo,
       List<NotificationDetails?>? notifications,
-      NotificationFilterState? notificationFilterState});
+      NotificationFilterState? notificationFilterState,
+      FacilityState? facilityState});
 
   @override
   $UserCopyWith<$Res>? get user;
@@ -464,6 +484,8 @@ abstract class _$$_ClientStateCopyWith<$Res>
   $CaregiverInformationCopyWith<$Res>? get caregiverInformation;
   @override
   $NotificationFilterStateCopyWith<$Res>? get notificationFilterState;
+  @override
+  $FacilityStateCopyWith<$Res>? get facilityState;
 }
 
 /// @nodoc
@@ -508,6 +530,7 @@ class __$$_ClientStateCopyWithImpl<$Res> extends _$ClientStateCopyWithImpl<$Res>
     Object? hasCareGiverInfo = freezed,
     Object? notifications = freezed,
     Object? notificationFilterState = freezed,
+    Object? facilityState = freezed,
   }) {
     return _then(_$_ClientState(
       id: id == freezed
@@ -630,6 +653,10 @@ class __$$_ClientStateCopyWithImpl<$Res> extends _$ClientStateCopyWithImpl<$Res>
           ? _value.notificationFilterState
           : notificationFilterState // ignore: cast_nullable_to_non_nullable
               as NotificationFilterState?,
+      facilityState: facilityState == freezed
+          ? _value.facilityState
+          : facilityState // ignore: cast_nullable_to_non_nullable
+              as FacilityState?,
     ));
   }
 }
@@ -685,7 +712,8 @@ class _$_ClientState implements _ClientState {
       this.caregiverInformation,
       this.hasCareGiverInfo,
       final List<NotificationDetails?>? notifications,
-      this.notificationFilterState})
+      this.notificationFilterState,
+      this.facilityState})
       : _addresses = addresses,
         _clientTypes = clientTypes,
         _relatedPersons = relatedPersons,
@@ -832,10 +860,12 @@ class _$_ClientState implements _ClientState {
 
   @override
   final NotificationFilterState? notificationFilterState;
+  @override
+  final FacilityState? facilityState;
 
   @override
   String toString() {
-    return 'ClientState(id: $id, active: $active, addresses: $addresses, counselled: $counselled, clientTypes: $clientTypes, facilityID: $facilityID, relatedPersons: $relatedPersons, treatmentBuddy: $treatmentBuddy, treatmentEnrollmentDate: $treatmentEnrollmentDate, user: $user, lastMoodRecordedDate: $lastMoodRecordedDate, isSignedIn: $isSignedIn, facilityName: $facilityName, facilityPhoneNumber: $facilityPhoneNumber, chvUserID: $chvUserID, chvUserName: $chvUserName, cccNumber: $cccNumber, fhirPatientID: $fhirPatientID, healthDiaryState: $healthDiaryState, communitiesState: $communitiesState, pastAppointments: $pastAppointments, upcomingAppointments: $upcomingAppointments, healthTimelineState: $healthTimelineState, medicalDataState: $medicalDataState, viralLoadData: $viralLoadData, nextRefillData: $nextRefillData, caregiverInformation: $caregiverInformation, hasCareGiverInfo: $hasCareGiverInfo, notifications: $notifications, notificationFilterState: $notificationFilterState)';
+    return 'ClientState(id: $id, active: $active, addresses: $addresses, counselled: $counselled, clientTypes: $clientTypes, facilityID: $facilityID, relatedPersons: $relatedPersons, treatmentBuddy: $treatmentBuddy, treatmentEnrollmentDate: $treatmentEnrollmentDate, user: $user, lastMoodRecordedDate: $lastMoodRecordedDate, isSignedIn: $isSignedIn, facilityName: $facilityName, facilityPhoneNumber: $facilityPhoneNumber, chvUserID: $chvUserID, chvUserName: $chvUserName, cccNumber: $cccNumber, fhirPatientID: $fhirPatientID, healthDiaryState: $healthDiaryState, communitiesState: $communitiesState, pastAppointments: $pastAppointments, upcomingAppointments: $upcomingAppointments, healthTimelineState: $healthTimelineState, medicalDataState: $medicalDataState, viralLoadData: $viralLoadData, nextRefillData: $nextRefillData, caregiverInformation: $caregiverInformation, hasCareGiverInfo: $hasCareGiverInfo, notifications: $notifications, notificationFilterState: $notificationFilterState, facilityState: $facilityState)';
   }
 
   @override
@@ -897,7 +927,9 @@ class _$_ClientState implements _ClientState {
             const DeepCollectionEquality()
                 .equals(other._notifications, _notifications) &&
             const DeepCollectionEquality().equals(
-                other.notificationFilterState, notificationFilterState));
+                other.notificationFilterState, notificationFilterState) &&
+            const DeepCollectionEquality()
+                .equals(other.facilityState, facilityState));
   }
 
   @JsonKey(ignore: true)
@@ -933,7 +965,8 @@ class _$_ClientState implements _ClientState {
         const DeepCollectionEquality().hash(caregiverInformation),
         const DeepCollectionEquality().hash(hasCareGiverInfo),
         const DeepCollectionEquality().hash(_notifications),
-        const DeepCollectionEquality().hash(notificationFilterState)
+        const DeepCollectionEquality().hash(notificationFilterState),
+        const DeepCollectionEquality().hash(facilityState)
       ]);
 
   @JsonKey(ignore: true)
@@ -998,7 +1031,8 @@ abstract class _ClientState implements ClientState {
       final CaregiverInformation? caregiverInformation,
       final bool? hasCareGiverInfo,
       final List<NotificationDetails?>? notifications,
-      final NotificationFilterState? notificationFilterState}) = _$_ClientState;
+      final NotificationFilterState? notificationFilterState,
+      final FacilityState? facilityState}) = _$_ClientState;
 
   factory _ClientState.fromJson(Map<String, dynamic> json) =
       _$_ClientState.fromJson;
@@ -1085,6 +1119,8 @@ abstract class _ClientState implements ClientState {
   List<NotificationDetails?>? get notifications;
   @override
   NotificationFilterState? get notificationFilterState;
+  @override
+  FacilityState? get facilityState;
   @override
   @JsonKey(ignore: true)
   _$$_ClientStateCopyWith<_$_ClientState> get copyWith =>

@@ -6,8 +6,8 @@ class GeneralWorkstationWidget extends StatelessWidget {
   const GeneralWorkstationWidget({
     required this.title,
     required this.bodyWidget,
-    this.onButtonCallback,
     required this.buttonText,
+    this.onButtonCallback,
     this.subtitle,
   });
 

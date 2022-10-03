@@ -21,13 +21,13 @@ void main() {
         tester: tester,
         store: store,
         client: MockGraphQlClient(),
-        widget: FacilitySelectionPage(),
+        widget: const FacilitySelectionPage(),
       );
 
       await tester.pumpAndSettle();
       expect(find.byType(GeneralWorkstationWidget), findsNWidgets(2));
 
-      expect(find.byType(SummaryBadgeWidget), findsNWidgets(8));
+      expect(find.byType(SummaryBadgeWidget), findsNWidgets(4));
     });
   });
 }

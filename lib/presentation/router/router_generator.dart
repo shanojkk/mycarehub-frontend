@@ -7,6 +7,7 @@ import 'package:pro_health_360/domain/core/value_objects/app_events.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/phase_2/client_caregiver_selection_page.dart';
 import 'package:pro_health_360/phase_2/client_selection_page.dart';
+import 'package:pro_health_360/phase_2/facility_selection_page.dart';
 import 'package:pro_health_360/presentation/assessment/pages/alcohol_substance_use_page.dart';
 import 'package:pro_health_360/presentation/assessment/pages/contraceptive_assessment_page.dart';
 import 'package:pro_health_360/presentation/assessment/pages/tuberculosis_assessment_page.dart';
@@ -520,6 +521,12 @@ class RouteGenerator {
         return MaterialPageRoute<ClientSelectionPage>(
           builder: (_) => const ClientSelectionPage(),
           settings: const RouteSettings(name: 'Client selection page'),
+        );
+
+      case AppRoutes.facilitySelectionPageRoute:
+        return MaterialPageRoute<FacilitySelectionPage>(
+          builder: (_) => const FacilitySelectionPage(),
+          settings: const RouteSettings(name: 'Facility selection page'),
         );
 
       default:

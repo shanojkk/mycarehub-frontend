@@ -200,7 +200,7 @@ Future<dynamic> showFeedbackBottomSheet({
 
 Map<String, String> extractNextRefillDate(String loadedDate) {
   final DateTime parsedDate =
-      DateTime?.tryParse(loadedDate)?.toLocal() ?? DateTime.now();
+      DateTime.tryParse(loadedDate)?.toLocal() ?? DateTime.now();
   final String postDay = DateFormat.d().format(parsedDate);
   final String postMonth = DateFormat.MMM().format(parsedDate);
 

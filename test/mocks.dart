@@ -1211,6 +1211,64 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
         ),
       );
     }
+
+    if (queryString.contains(getUserLinkedFacilitiesQuery)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{
+                'getUserLinkedFacilities': <String, dynamic>{
+                  'Pagination': <String, dynamic>{
+                    'Limit': 20,
+                    'CurrentPage': 1,
+                    'Count': 2,
+                    'TotalPages': 1,
+                    'NextPage': null,
+                    'PreviousPage': null
+                  },
+                  'Facilities': <dynamic>[
+                    <String, dynamic>{
+                      'ID': 'some-id',
+                      'name': 'hospital name',
+                      'code': 1,
+                      'phone': '',
+                      'active': true,
+                      'county': 'some-county',
+                      'description': '',
+                      'fhirOrganisationID': '',
+                      'workStationDetails': <String, dynamic>{
+                        'Notifications': 1,
+                        'Surveys': 1,
+                        'Articles': 1,
+                        'Messages': 1
+                      }
+                    },
+                    <String, dynamic>{
+                      'ID': '0some-id',
+                      'name': 'some hospital',
+                      'code': 2,
+                      'phone': '',
+                      'active': true,
+                      'county': 'some county',
+                      'description': '',
+                      'fhirOrganisationID': '',
+                      'workStationDetails': <String, dynamic>{
+                        'Notifications': 0,
+                        'Surveys': 0,
+                        'Articles': 0,
+                        'Messages': 0
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+          ),
+          201,
+        ),
+      );
+    }
     if (queryString.contains(readNotificationsMutation)) {
       return Future<http.Response>.value(
         http.Response(
@@ -2231,6 +2289,43 @@ final Map<String, dynamic> mockPrimaryContact = <String, dynamic>{
   'contact': '+254717356476',
   'contactType': 'PHONE',
   'optedIn': true
+};
+
+final Map<String, dynamic> mockFacilityState = <String, dynamic>{
+  'Facilities': <dynamic>[
+    <String, dynamic>{
+      'ID': 'some-id',
+      'name': 'hospital name',
+      'code': 1,
+      'phone': '',
+      'active': true,
+      'county': 'some-county',
+      'description': '',
+      'fhirOrganisationID': '',
+      'workStationDetails': <String, dynamic>{
+        'Notifications': 1,
+        'Surveys': 1,
+        'Articles': 1,
+        'Messages': 1
+      }
+    },
+    <String, dynamic>{
+      'ID': '0some-id',
+      'name': 'some hospital',
+      'code': 2,
+      'phone': '',
+      'active': true,
+      'county': 'some county',
+      'description': '',
+      'fhirOrganisationID': '',
+      'workStationDetails': <String, dynamic>{
+        'Notifications': 0,
+        'Surveys': 0,
+        'Articles': 0,
+        'Messages': 0
+      }
+    }
+  ]
 };
 
 final Map<String, dynamic> mockFeedContent = <String, dynamic>{

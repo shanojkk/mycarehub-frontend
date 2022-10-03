@@ -7,6 +7,7 @@ import 'package:pro_health_360/application/redux/states/communities_state.dart';
 import 'package:pro_health_360/domain/core/entities/appointments/appointment.dart';
 // Project imports:
 import 'package:pro_health_360/domain/core/entities/core/address.dart';
+import 'package:pro_health_360/domain/core/entities/core/facility_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/health_diary_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/health_timeline_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/notification_filter_state.dart';
@@ -76,6 +77,7 @@ class ClientState with _$ClientState {
     // notifications
     List<NotificationDetails?>? notifications,
     NotificationFilterState? notificationFilterState,
+    FacilityState? facilityState,
   }) = _ClientState;
 
   factory ClientState.fromJson(Map<String, dynamic> json) =>
@@ -111,5 +113,6 @@ class ClientState with _$ClientState {
         caregiverInformation: CaregiverInformation.initial(),
         notifications: <NotificationDetails>[],
         hasCareGiverInfo: false,
+        facilityState: FacilityState.initial(),
       );
 }

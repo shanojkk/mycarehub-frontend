@@ -995,8 +995,8 @@ const String client = 'Client';
 String welcomeFacilitySelectionDescription(String username) =>
     'Welcome back $username! Choose your facility';
 
-String noOfFacilitiesDescription(String numberOfFacilities) =>
-    "We've noticed that you're part of $numberOfFacilities facilities. Choose which facility you would like to log into. Here are the details";
+const String noOfFacilitiesDescription =
+    "We've noticed that you're part of multiple facilities. Choose which facility you would like to log into. Here are the details";
 
 String getConsentActionDescription(String name) {
   return '$name has been assigned to you by your medical practitioner. You are required to give consent Tap the options below to record your consent.\n\nTap the options below to record your consent';

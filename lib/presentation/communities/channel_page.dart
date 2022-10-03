@@ -53,6 +53,8 @@ class _ChannelPageState extends State<ChannelPage> {
 
     String channelName = noTitleText;
 
+    String channelDescription = '';
+
     if (channel.extraData.containsKey('Name')) {
       channelName = channel.extraData['Name']! as String;
     }
@@ -61,10 +63,19 @@ class _ChannelPageState extends State<ChannelPage> {
       channelImage = channel.extraData['image']! as String;
     }
 
+    if (channel.extraData.containsKey('Description')) {
+      channelDescription = channel.extraData['Description']! as String;
+    }
+
     return Scaffold(
       appBar: ChatPageAppBar(
         onTitleTap: () {
-          _navigateToGroupInfoPage(context, channel, channelName);
+          _navigateToGroupInfoPage(
+            context,
+            channel,
+            channelName,
+            channelDescription,
+          );
         },
         title: Text(
           channelName,
@@ -95,7 +106,12 @@ class _ChannelPageState extends State<ChannelPage> {
         actions: <Widget>[
           GestureDetector(
             onTap: () {
-              _navigateToGroupInfoPage(context, channel, channelName);
+              _navigateToGroupInfoPage(
+                context,
+                channel,
+                channelName,
+                channelDescription,
+              );
             },
             behavior: HitTestBehavior.opaque,
             child: Padding(
@@ -136,12 +152,16 @@ class _ChannelPageState extends State<ChannelPage> {
     BuildContext context,
     Channel channel,
     String channelName,
+    String channelDescription,
   ) {
     return Navigator.of(context).push(
       MaterialPageRoute<Route<dynamic>>(
         builder: (_) => StreamChannel(
           channel: channel,
-          child: GroupInfoPage(channelName: channelName),
+          child: GroupInfoPage(
+            channelName: channelName,
+            channelDesc: channelDescription,
+          ),
         ),
       ),
     );

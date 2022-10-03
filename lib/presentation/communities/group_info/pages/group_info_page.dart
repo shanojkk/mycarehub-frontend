@@ -23,9 +23,10 @@ import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class GroupInfoPage extends StatefulWidget {
-  const GroupInfoPage({required this.channelName});
+  const GroupInfoPage({required this.channelName, required this.channelDesc});
 
   final String channelName;
+  final String channelDesc;
 
   @override
   State<GroupInfoPage> createState() => _GroupInfoPageState();
@@ -63,6 +64,7 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
     final Channel channel = StreamChannel.of(context).channel;
 
     final String channelName = widget.channelName;
+    final String channelDesc = widget.channelDesc;
 
     return Scaffold(
       appBar: const CustomAppBar(title: groupInfoText),
@@ -111,6 +113,17 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                                 style: boldSize16Text(AppColors.greyTextColor),
                               ),
                             ),
+                              if (channelDesc.isNotEmpty) ...<Widget>{
+                              smallVerticalSizedBox,
+                              Center(
+                                child: Text(
+                                  channelDesc,
+                                  style:
+                                      normalSize16Text(AppColors.greyTextColor),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            },
                             const SizedBox(height: 30),
                             Container(
                               alignment: Alignment.topLeft,

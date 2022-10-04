@@ -67,7 +67,6 @@ class AppEntryPoint extends StatelessWidget {
               entryPointContext: context,
               appStore: appStore,
               client: streamClient,
-              fcmToken: fcmToken,
             ),
           );
         },

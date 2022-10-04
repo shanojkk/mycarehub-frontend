@@ -4,7 +4,6 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -101,10 +100,10 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
   );
   final SharedPreferences sharedPreferences =
       await SharedPreferences.getInstance();
+
   await sharedPreferences.setString('streamApiKey', appSetupData.streamAPIKey);
 
   await Firebase.initializeApp();
-  final String? fcmToken = await FirebaseMessaging.instance.getToken();
 
   // Initialize the flutter local notifications plugin
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -147,7 +146,6 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
             navigatorObserver: navigatorObserver,
             navigatorKey: appGlobalNavigatorKey,
             appSetupData: appSetupData,
-            fcmToken: fcmToken,
             analyticsObserver: AnalyticsService().getAnalyticsObserver(),
           ),
         ),

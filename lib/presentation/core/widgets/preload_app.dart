@@ -42,7 +42,6 @@ class PreLoadApp extends StatefulWidget {
     required this.entryPointContext,
     required this.appStore,
     required this.client,
-    this.fcmToken,
   });
 
   final String appName;
@@ -51,7 +50,6 @@ class PreLoadApp extends StatefulWidget {
   final Store<AppState> appStore;
   final stream.StreamChatClient client;
   final BuildContext entryPointContext;
-  final String? fcmToken;
   final List<AppContext> thisAppContexts;
 
   @override
@@ -142,9 +140,9 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
                   .customContext!
                   .refreshStreamTokenEndpoint,
               saveToken: (String newToken) async {
-                final SharedPreferences prefs =
+                final SharedPreferences preferences =
                     await SharedPreferences.getInstance();
-                prefs.setString('streamToken', newToken);
+                preferences.setString('streamToken', newToken);
                 StoreProvider.dispatch(
                   context,
                   UpdateUserAction(user: user?.copyWith(streamToken: newToken)),
@@ -155,10 +153,12 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
         );
       }
 
+      final String deviceToken = await getPlatformDeviceToken(context);
+
       StoreProvider.dispatch(
         context,
         SetPushToken(
-          token: widget.fcmToken ?? '',
+          token: deviceToken,
           client: AppWrapperBase.of(context)!.graphQLClient,
           streamClient: widget.client,
         ),

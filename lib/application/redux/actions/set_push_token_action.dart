@@ -48,9 +48,7 @@ class SetPushToken extends ReduxAction<AppState> {
             },
           );
         }
-        dispatch(
-          UpdateCredentialsAction(pushToken: token),
-        );
+        dispatch(UpdateCredentialsAction(pushToken: token));
         return null;
       } else {
         Sentry.captureException(

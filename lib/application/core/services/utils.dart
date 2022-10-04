@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -799,4 +800,20 @@ const int quoteSliderAutoPlayInterval = 300; //300 seconds == 5 minutes
 Future<void> launchEmailUrl(String email) async {
   final Uri url = Uri.parse('mailto:$email');
   await launchUrl(url);
+}
+
+Future<String> getPlatformDeviceToken(BuildContext context) async {
+  String? deviceToken;
+  // Check the platform
+  final TargetPlatform platform = Theme.of(context).platform;
+
+  if (platform == TargetPlatform.iOS) {
+    deviceToken = await FirebaseMessaging.instance.getAPNSToken();
+  } else {
+    // Assign the correct device token
+    deviceToken = await FirebaseMessaging.instance.getToken();
+  }
+
+  // get the token
+  return deviceToken ?? UNKNOWN;
 }

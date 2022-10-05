@@ -1726,6 +1726,13 @@ final List<dynamic> securityQuestionsMock = <dynamic>[
     'ResponseType': core.SecurityQuestionResponseType.UNKNOWN.name,
     'Active': true,
   },
+  <String, dynamic>{
+    'SecurityQuestionID': 'id4',
+    'QuestionStem': 'When did you join the platform?',
+    'Description': 'enter answer in numbers',
+    'ResponseType': core.SecurityQuestionResponseType.NUMBER.name,
+    'Active': true,
+  },
 ];
 
 Map<String, dynamic> mockSecurityQuestionsData = <String, dynamic>{

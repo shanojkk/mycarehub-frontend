@@ -1,10 +1,7 @@
 // Flutter imports:
-
-// Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
+import 'package:flutter/services.dart';
 
 // Project imports:
 import 'package:pro_health_360/application/core/services/utils.dart';
@@ -49,6 +46,10 @@ class _SecurityQuestionWidgetState extends State<SecurityQuestionWidget> {
         validator: securityQuestionValidator,
         initialValue: initialResponse,
         suffixIcon: widget.suffixIcon,
+        inputFormatters: <TextInputFormatter>[
+          if (question.responseType == SecurityQuestionResponseType.NUMBER)
+            FilteringTextInputFormatter.digitsOnly
+        ],
         questionTextStyle: const TextStyle(
           color: AppColors.greyTextColor,
           fontSize: 14.0,
@@ -61,7 +62,6 @@ class _SecurityQuestionWidgetState extends State<SecurityQuestionWidget> {
         onChanged: (String? value) {
           widget.onChanged(value);
         },
-        
       ),
     );
   }

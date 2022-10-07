@@ -17,7 +17,7 @@ _$_ClientState _$$_ClientStateFromJson(Map<String, dynamic> json) =>
       clientTypes: (json['clientTypes'] as List<dynamic>?)
           ?.map((e) => $enumDecode(_$ClientTypeEnumMap, e))
           .toList(),
-      facilityID: json['facilityID'] as String?,
+      facilityID: json['defaultFacilityID'] as String?,
       relatedPersons: (json['relatedPersons'] as List<dynamic>?)
           ?.map((e) => RelatedPerson.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -28,7 +28,7 @@ _$_ClientState _$$_ClientStateFromJson(Map<String, dynamic> json) =>
           : User.fromJson(json['user'] as Map<String, dynamic>),
       lastMoodRecordedDate: json['lastMoodRecordedDate'] as String?,
       isSignedIn: json['isSignedIn'] as bool?,
-      facilityName: json['facilityName'] as String?,
+      facilityName: json['defaultFacilityName'] as String?,
       facilityPhoneNumber: json['facilityPhoneNumber'] as String?,
       chvUserID: json['chvUserID'] as String?,
       chvUserName: json['chvUserName'] as String?,
@@ -88,14 +88,14 @@ Map<String, dynamic> _$$_ClientStateToJson(_$_ClientState instance) =>
       'counselled': instance.counselled,
       'clientTypes':
           instance.clientTypes?.map((e) => _$ClientTypeEnumMap[e]!).toList(),
-      'facilityID': instance.facilityID,
+      'defaultFacilityID': instance.facilityID,
       'relatedPersons': instance.relatedPersons,
       'treatmentBuddy': instance.treatmentBuddy,
       'treatmentEnrollmentDate': instance.treatmentEnrollmentDate,
       'user': instance.user,
       'lastMoodRecordedDate': instance.lastMoodRecordedDate,
       'isSignedIn': instance.isSignedIn,
-      'facilityName': instance.facilityName,
+      'defaultFacilityName': instance.facilityName,
       'facilityPhoneNumber': instance.facilityPhoneNumber,
       'chvUserID': instance.chvUserID,
       'chvUserName': instance.chvUserName,

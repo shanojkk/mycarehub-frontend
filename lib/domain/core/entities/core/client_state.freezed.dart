@@ -30,7 +30,7 @@ mixin _$ClientState {
   bool? get counselled => throw _privateConstructorUsedError;
   @JsonKey(name: 'clientTypes')
   List<ClientType>? get clientTypes => throw _privateConstructorUsedError;
-  @JsonKey(name: 'facilityID')
+  @JsonKey(name: 'defaultFacilityID')
   String? get facilityID => throw _privateConstructorUsedError;
   @JsonKey(name: 'relatedPersons')
   List<RelatedPerson>? get relatedPersons => throw _privateConstructorUsedError;
@@ -46,7 +46,7 @@ mixin _$ClientState {
   String? get lastMoodRecordedDate => throw _privateConstructorUsedError;
   @JsonKey(name: 'isSignedIn')
   bool? get isSignedIn => throw _privateConstructorUsedError;
-  @JsonKey(name: 'facilityName')
+  @JsonKey(name: 'defaultFacilityName')
   String? get facilityName => throw _privateConstructorUsedError;
   @JsonKey(name: 'facilityPhoneNumber')
   String? get facilityPhoneNumber => throw _privateConstructorUsedError;
@@ -102,14 +102,14 @@ abstract class $ClientStateCopyWith<$Res> {
       @JsonKey(name: 'addresses') List<Address>? addresses,
       @JsonKey(name: 'counselled', defaultValue: false) bool? counselled,
       @JsonKey(name: 'clientTypes') List<ClientType>? clientTypes,
-      @JsonKey(name: 'facilityID') String? facilityID,
+      @JsonKey(name: 'defaultFacilityID') String? facilityID,
       @JsonKey(name: 'relatedPersons') List<RelatedPerson>? relatedPersons,
       @JsonKey(name: 'treatmentBuddy') String? treatmentBuddy,
       @JsonKey(name: 'treatmentEnrollmentDate') String? treatmentEnrollmentDate,
       @JsonKey(name: 'user') User? user,
       @JsonKey(name: 'lastMoodRecordedDate') String? lastMoodRecordedDate,
       @JsonKey(name: 'isSignedIn') bool? isSignedIn,
-      @JsonKey(name: 'facilityName') String? facilityName,
+      @JsonKey(name: 'defaultFacilityName') String? facilityName,
       @JsonKey(name: 'facilityPhoneNumber') String? facilityPhoneNumber,
       @JsonKey(name: 'chvUserID') String? chvUserID,
       @JsonKey(name: 'chvUserName') String? chvUserName,
@@ -420,14 +420,14 @@ abstract class _$$_ClientStateCopyWith<$Res>
       @JsonKey(name: 'addresses') List<Address>? addresses,
       @JsonKey(name: 'counselled', defaultValue: false) bool? counselled,
       @JsonKey(name: 'clientTypes') List<ClientType>? clientTypes,
-      @JsonKey(name: 'facilityID') String? facilityID,
+      @JsonKey(name: 'defaultFacilityID') String? facilityID,
       @JsonKey(name: 'relatedPersons') List<RelatedPerson>? relatedPersons,
       @JsonKey(name: 'treatmentBuddy') String? treatmentBuddy,
       @JsonKey(name: 'treatmentEnrollmentDate') String? treatmentEnrollmentDate,
       @JsonKey(name: 'user') User? user,
       @JsonKey(name: 'lastMoodRecordedDate') String? lastMoodRecordedDate,
       @JsonKey(name: 'isSignedIn') bool? isSignedIn,
-      @JsonKey(name: 'facilityName') String? facilityName,
+      @JsonKey(name: 'defaultFacilityName') String? facilityName,
       @JsonKey(name: 'facilityPhoneNumber') String? facilityPhoneNumber,
       @JsonKey(name: 'chvUserID') String? chvUserID,
       @JsonKey(name: 'chvUserName') String? chvUserName,
@@ -648,7 +648,7 @@ class _$_ClientState implements _ClientState {
           this.counselled,
       @JsonKey(name: 'clientTypes')
           final List<ClientType>? clientTypes,
-      @JsonKey(name: 'facilityID')
+      @JsonKey(name: 'defaultFacilityID')
           this.facilityID,
       @JsonKey(name: 'relatedPersons')
           final List<RelatedPerson>? relatedPersons,
@@ -662,7 +662,7 @@ class _$_ClientState implements _ClientState {
           this.lastMoodRecordedDate,
       @JsonKey(name: 'isSignedIn')
           this.isSignedIn,
-      @JsonKey(name: 'facilityName')
+      @JsonKey(name: 'defaultFacilityName')
           this.facilityName,
       @JsonKey(name: 'facilityPhoneNumber')
           this.facilityPhoneNumber,
@@ -726,7 +726,7 @@ class _$_ClientState implements _ClientState {
   }
 
   @override
-  @JsonKey(name: 'facilityID')
+  @JsonKey(name: 'defaultFacilityID')
   final String? facilityID;
   final List<RelatedPerson>? _relatedPersons;
   @override
@@ -756,7 +756,7 @@ class _$_ClientState implements _ClientState {
   @JsonKey(name: 'isSignedIn')
   final bool? isSignedIn;
   @override
-  @JsonKey(name: 'facilityName')
+  @JsonKey(name: 'defaultFacilityName')
   final String? facilityName;
   @override
   @JsonKey(name: 'facilityPhoneNumber')
@@ -961,7 +961,7 @@ abstract class _ClientState implements ClientState {
           final bool? counselled,
       @JsonKey(name: 'clientTypes')
           final List<ClientType>? clientTypes,
-      @JsonKey(name: 'facilityID')
+      @JsonKey(name: 'defaultFacilityID')
           final String? facilityID,
       @JsonKey(name: 'relatedPersons')
           final List<RelatedPerson>? relatedPersons,
@@ -975,7 +975,7 @@ abstract class _ClientState implements ClientState {
           final String? lastMoodRecordedDate,
       @JsonKey(name: 'isSignedIn')
           final bool? isSignedIn,
-      @JsonKey(name: 'facilityName')
+      @JsonKey(name: 'defaultFacilityName')
           final String? facilityName,
       @JsonKey(name: 'facilityPhoneNumber')
           final String? facilityPhoneNumber,
@@ -1019,7 +1019,7 @@ abstract class _ClientState implements ClientState {
   @JsonKey(name: 'clientTypes')
   List<ClientType>? get clientTypes;
   @override
-  @JsonKey(name: 'facilityID')
+  @JsonKey(name: 'defaultFacilityID')
   String? get facilityID;
   @override
   @JsonKey(name: 'relatedPersons')
@@ -1042,7 +1042,7 @@ abstract class _ClientState implements ClientState {
   @JsonKey(name: 'isSignedIn')
   bool? get isSignedIn;
   @override
-  @JsonKey(name: 'facilityName')
+  @JsonKey(name: 'defaultFacilityName')
   String? get facilityName;
   @override
   @JsonKey(name: 'facilityPhoneNumber')

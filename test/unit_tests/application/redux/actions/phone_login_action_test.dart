@@ -67,7 +67,8 @@ void main() {
           ],
           'clientCounselled': true,
           'clientType': 'PMTCT',
-          'facilityID': 'some-facility-id',
+          'defaultFacilityID': 'some-facility-id',
+          'defaultFacilityName': 'some-facility-name',
           'relatedPersons': <Map<String, dynamic>>[
             <String, dynamic>{
               'active': true,

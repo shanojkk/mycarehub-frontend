@@ -30,7 +30,7 @@ class ClientState with _$ClientState {
     @JsonKey(name: 'addresses') List<Address>? addresses,
     @JsonKey(name: 'counselled', defaultValue: false) bool? counselled,
     @JsonKey(name: 'clientTypes') List<ClientType>? clientTypes,
-    @JsonKey(name: 'facilityID') String? facilityID,
+    @JsonKey(name: 'defaultFacilityID') String? facilityID,
     @JsonKey(name: 'relatedPersons') List<RelatedPerson>? relatedPersons,
     @JsonKey(name: 'treatmentBuddy') String? treatmentBuddy,
     @JsonKey(name: 'treatmentEnrollmentDate') String? treatmentEnrollmentDate,
@@ -39,7 +39,7 @@ class ClientState with _$ClientState {
     /// others
     @JsonKey(name: 'lastMoodRecordedDate') String? lastMoodRecordedDate,
     @JsonKey(name: 'isSignedIn') bool? isSignedIn,
-    @JsonKey(name: 'facilityName') String? facilityName,
+    @JsonKey(name: 'defaultFacilityName') String? facilityName,
     @JsonKey(name: 'facilityPhoneNumber') String? facilityPhoneNumber,
     @JsonKey(name: 'chvUserID') String? chvUserID,
     @JsonKey(name: 'chvUserName') String? chvUserName,

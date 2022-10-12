@@ -1,5 +1,6 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:pro_health_360/domain/core/entities/caregiver/caregiver_state.dart';
 // Project imports:
 import 'package:pro_health_360/domain/core/entities/core/auth_credentials.dart';
 import 'package:pro_health_360/domain/core/entities/core/client_state.dart';
@@ -12,6 +13,7 @@ class UserResponse with _$UserResponse {
   factory UserResponse({
     @JsonKey(name: 'credentials') AuthCredentials? credentials,
     @JsonKey(name: 'clientProfile') ClientState? clientState,
+    @JsonKey(name: 'caregiverProfile') CaregiverState? caregiverState,
     @JsonKey(name: 'getStreamToken') String? streamToken,
   }) = _UserResponse;
 

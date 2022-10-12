@@ -27,6 +27,7 @@ mixin _$AppState {
       throw _privateConstructorUsedError;
   MiscState? get miscState => throw _privateConstructorUsedError;
   ClientState? get clientState => throw _privateConstructorUsedError;
+  CaregiverState? get caregiverState => throw _privateConstructorUsedError;
   ConnectivityState? get connectivityState =>
       throw _privateConstructorUsedError;
   ContentState? get contentState => throw _privateConstructorUsedError;
@@ -50,6 +51,7 @@ abstract class $AppStateCopyWith<$Res> {
       BottomNavigationState? bottomNavigationState,
       MiscState? miscState,
       ClientState? clientState,
+      CaregiverState? caregiverState,
       ConnectivityState? connectivityState,
       ContentState? contentState,
       @JsonKey(ignore: true) Wait? wait});
@@ -60,6 +62,7 @@ abstract class $AppStateCopyWith<$Res> {
   $BottomNavigationStateCopyWith<$Res>? get bottomNavigationState;
   $MiscStateCopyWith<$Res>? get miscState;
   $ClientStateCopyWith<$Res>? get clientState;
+  $CaregiverStateCopyWith<$Res>? get caregiverState;
   $ConnectivityStateCopyWith<$Res>? get connectivityState;
   $ContentStateCopyWith<$Res>? get contentState;
 }
@@ -80,6 +83,7 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
     Object? bottomNavigationState = freezed,
     Object? miscState = freezed,
     Object? clientState = freezed,
+    Object? caregiverState = freezed,
     Object? connectivityState = freezed,
     Object? contentState = freezed,
     Object? wait = freezed,
@@ -109,6 +113,10 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
           ? _value.clientState
           : clientState // ignore: cast_nullable_to_non_nullable
               as ClientState?,
+      caregiverState: caregiverState == freezed
+          ? _value.caregiverState
+          : caregiverState // ignore: cast_nullable_to_non_nullable
+              as CaregiverState?,
       connectivityState: connectivityState == freezed
           ? _value.connectivityState
           : connectivityState // ignore: cast_nullable_to_non_nullable
@@ -192,6 +200,17 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
   }
 
   @override
+  $CaregiverStateCopyWith<$Res>? get caregiverState {
+    if (_value.caregiverState == null) {
+      return null;
+    }
+
+    return $CaregiverStateCopyWith<$Res>(_value.caregiverState!, (value) {
+      return _then(_value.copyWith(caregiverState: value));
+    });
+  }
+
+  @override
   $ConnectivityStateCopyWith<$Res>? get connectivityState {
     if (_value.connectivityState == null) {
       return null;
@@ -227,6 +246,7 @@ abstract class _$$_AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
       BottomNavigationState? bottomNavigationState,
       MiscState? miscState,
       ClientState? clientState,
+      CaregiverState? caregiverState,
       ConnectivityState? connectivityState,
       ContentState? contentState,
       @JsonKey(ignore: true) Wait? wait});
@@ -243,6 +263,8 @@ abstract class _$$_AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
   $MiscStateCopyWith<$Res>? get miscState;
   @override
   $ClientStateCopyWith<$Res>? get clientState;
+  @override
+  $CaregiverStateCopyWith<$Res>? get caregiverState;
   @override
   $ConnectivityStateCopyWith<$Res>? get connectivityState;
   @override
@@ -267,6 +289,7 @@ class __$$_AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
     Object? bottomNavigationState = freezed,
     Object? miscState = freezed,
     Object? clientState = freezed,
+    Object? caregiverState = freezed,
     Object? connectivityState = freezed,
     Object? contentState = freezed,
     Object? wait = freezed,
@@ -296,6 +319,10 @@ class __$$_AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
           ? _value.clientState
           : clientState // ignore: cast_nullable_to_non_nullable
               as ClientState?,
+      caregiverState: caregiverState == freezed
+          ? _value.caregiverState
+          : caregiverState // ignore: cast_nullable_to_non_nullable
+              as CaregiverState?,
       connectivityState: connectivityState == freezed
           ? _value.connectivityState
           : connectivityState // ignore: cast_nullable_to_non_nullable
@@ -322,6 +349,7 @@ class _$_AppState implements _AppState {
       this.bottomNavigationState,
       this.miscState,
       this.clientState,
+      this.caregiverState,
       this.connectivityState,
       this.contentState,
       @JsonKey(ignore: true) this.wait});
@@ -342,6 +370,8 @@ class _$_AppState implements _AppState {
   @override
   final ClientState? clientState;
   @override
+  final CaregiverState? caregiverState;
+  @override
   final ConnectivityState? connectivityState;
   @override
   final ContentState? contentState;
@@ -351,7 +381,7 @@ class _$_AppState implements _AppState {
 
   @override
   String toString() {
-    return 'AppState(credentials: $credentials, onboardingState: $onboardingState, homeState: $homeState, bottomNavigationState: $bottomNavigationState, miscState: $miscState, clientState: $clientState, connectivityState: $connectivityState, contentState: $contentState, wait: $wait)';
+    return 'AppState(credentials: $credentials, onboardingState: $onboardingState, homeState: $homeState, bottomNavigationState: $bottomNavigationState, miscState: $miscState, clientState: $clientState, caregiverState: $caregiverState, connectivityState: $connectivityState, contentState: $contentState, wait: $wait)';
   }
 
   @override
@@ -370,6 +400,8 @@ class _$_AppState implements _AppState {
             const DeepCollectionEquality()
                 .equals(other.clientState, clientState) &&
             const DeepCollectionEquality()
+                .equals(other.caregiverState, caregiverState) &&
+            const DeepCollectionEquality()
                 .equals(other.connectivityState, connectivityState) &&
             const DeepCollectionEquality()
                 .equals(other.contentState, contentState) &&
@@ -386,6 +418,7 @@ class _$_AppState implements _AppState {
       const DeepCollectionEquality().hash(bottomNavigationState),
       const DeepCollectionEquality().hash(miscState),
       const DeepCollectionEquality().hash(clientState),
+      const DeepCollectionEquality().hash(caregiverState),
       const DeepCollectionEquality().hash(connectivityState),
       const DeepCollectionEquality().hash(contentState),
       const DeepCollectionEquality().hash(wait));
@@ -411,6 +444,7 @@ abstract class _AppState implements AppState {
       final BottomNavigationState? bottomNavigationState,
       final MiscState? miscState,
       final ClientState? clientState,
+      final CaregiverState? caregiverState,
       final ConnectivityState? connectivityState,
       final ContentState? contentState,
       @JsonKey(ignore: true) final Wait? wait}) = _$_AppState;
@@ -429,6 +463,8 @@ abstract class _AppState implements AppState {
   MiscState? get miscState;
   @override
   ClientState? get clientState;
+  @override
+  CaregiverState? get caregiverState;
   @override
   ConnectivityState? get connectivityState;
   @override

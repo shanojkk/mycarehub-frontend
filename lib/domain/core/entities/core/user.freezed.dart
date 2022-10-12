@@ -37,7 +37,7 @@ mixin _$User {
   String? get dateOfBirth => throw _privateConstructorUsedError;
   @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
   Gender? get gender => throw _privateConstructorUsedError;
-  @JsonKey(name: 'active', defaultValue: false)
+  @JsonKey(name: 'Active', defaultValue: false)
   bool? get active => throw _privateConstructorUsedError;
   @JsonKey(name: 'primaryContact')
   Contact? get primaryContact => throw _privateConstructorUsedError;
@@ -99,7 +99,7 @@ abstract class $UserCopyWith<$Res> {
           String? dateOfBirth,
       @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
           Gender? gender,
-      @JsonKey(name: 'active', defaultValue: false)
+      @JsonKey(name: 'Active', defaultValue: false)
           bool? active,
       @JsonKey(name: 'primaryContact')
           Contact? primaryContact,
@@ -289,7 +289,7 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
           String? dateOfBirth,
       @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
           Gender? gender,
-      @JsonKey(name: 'active', defaultValue: false)
+      @JsonKey(name: 'Active', defaultValue: false)
           bool? active,
       @JsonKey(name: 'primaryContact')
           Contact? primaryContact,
@@ -468,7 +468,7 @@ class _$_User implements _User {
           this.dateOfBirth,
       @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
           this.gender,
-      @JsonKey(name: 'active', defaultValue: false)
+      @JsonKey(name: 'Active', defaultValue: false)
           this.active,
       @JsonKey(name: 'primaryContact')
           this.primaryContact,
@@ -528,7 +528,7 @@ class _$_User implements _User {
   @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
   final Gender? gender;
   @override
-  @JsonKey(name: 'active', defaultValue: false)
+  @JsonKey(name: 'Active', defaultValue: false)
   final bool? active;
   @override
   @JsonKey(name: 'primaryContact')
@@ -701,7 +701,7 @@ abstract class _User implements User {
           final String? dateOfBirth,
       @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
           final Gender? gender,
-      @JsonKey(name: 'active', defaultValue: false)
+      @JsonKey(name: 'Active', defaultValue: false)
           final bool? active,
       @JsonKey(name: 'primaryContact')
           final Contact? primaryContact,
@@ -756,7 +756,7 @@ abstract class _User implements User {
   @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
   Gender? get gender;
   @override
-  @JsonKey(name: 'active', defaultValue: false)
+  @JsonKey(name: 'Active', defaultValue: false)
   bool? get active;
   @override
   @JsonKey(name: 'primaryContact')

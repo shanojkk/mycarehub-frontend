@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:pro_health_360/domain/core/entities/caregiver/caregiver_state.dart';
 import 'package:sqflite/sqflite.dart';
 
 // Project imports:
@@ -60,7 +61,8 @@ class MyAfyaHubStateDatabase implements PersistorPrinterDecorator<AppState> {
             newState.bottomNavigationState ||
         lastPersistedState.connectivityState != newState.connectivityState ||
         lastPersistedState.miscState != newState.miscState ||
-        lastPersistedState.contentState != newState.contentState) {
+        lastPersistedState.contentState != newState.contentState ||
+        lastPersistedState.caregiverState != newState.caregiverState) {
       await persistState(
         newState,
         MyAfyaHubDatabaseMobile<Database>(
@@ -151,6 +153,12 @@ class MyAfyaHubStateDatabase implements PersistorPrinterDecorator<AppState> {
       data: newState.miscState!.toJson(),
       table: Tables.miscState,
     );
+
+    // save caregiverState state
+    await database.saveState(
+      data: newState.caregiverState!.toJson(),
+      table: Tables.caregiverState,
+    );
   }
 
   /// retrieves app state to the database
@@ -186,6 +194,10 @@ class MyAfyaHubStateDatabase implements PersistorPrinterDecorator<AppState> {
 
       miscState: MiscState.fromJson(
         await database.retrieveState(Tables.miscState),
+      ),
+
+      caregiverState: CaregiverState.fromJson(
+        await database.retrieveState(Tables.caregiverState),
       ),
 
       wait: Wait(),

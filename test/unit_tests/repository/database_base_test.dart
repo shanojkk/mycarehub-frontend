@@ -12,6 +12,7 @@ void main() {
     expect(Tables.bottomNavigationState.name, 'bottomNavigationState');
     expect(Tables.connectivityState.name, 'connectivityState');
     expect(Tables.miscState.name, 'miscState');
+    expect(Tables.caregiverState.name, 'caregiverState');
     expect(Tables.unknown.name, 'unknown');
   });
 }

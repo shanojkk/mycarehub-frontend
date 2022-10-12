@@ -17,7 +17,7 @@ class User with _$User {
     @JsonKey(name: 'dateOfBirth') String? dateOfBirth,
     @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
         Gender? gender,
-    @JsonKey(name: 'active', defaultValue: false) bool? active,
+    @JsonKey(name: 'Active', defaultValue: false) bool? active,
     @JsonKey(name: 'primaryContact') Contact? primaryContact,
     @JsonKey(name: 'secondaryContacts') List<Contact?>? secondaryContacts,
     @JsonKey(name: 'languages') List<String>? languages,

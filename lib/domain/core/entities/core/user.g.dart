@@ -15,7 +15,7 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       lastName: json['lastName'] as String?,
       dateOfBirth: json['dateOfBirth'] as String?,
       gender: genderFromJson(json['gender'] as String?),
-      active: json['active'] as bool? ?? false,
+      active: json['Active'] as bool? ?? false,
       primaryContact: json['primaryContact'] == null
           ? null
           : Contact.fromJson(json['primaryContact'] as Map<String, dynamic>),
@@ -50,7 +50,7 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'lastName': instance.lastName,
       'dateOfBirth': instance.dateOfBirth,
       'gender': genderToJson(instance.gender),
-      'active': instance.active,
+      'Active': instance.active,
       'primaryContact': instance.primaryContact,
       'secondaryContacts': instance.secondaryContacts,
       'languages': instance.languages,

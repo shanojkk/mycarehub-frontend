@@ -7,6 +7,7 @@ import 'package:pro_health_360/application/redux/states/connectivity_state.dart'
 import 'package:pro_health_360/application/redux/states/home_state.dart';
 import 'package:pro_health_360/application/redux/states/misc_state.dart';
 import 'package:pro_health_360/application/redux/states/onboarding_state.dart';
+import 'package:pro_health_360/domain/core/entities/caregiver/caregiver_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/auth_credentials.dart';
 import 'package:pro_health_360/domain/core/entities/core/client_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/content_state.dart';
@@ -26,6 +27,7 @@ class AppState with _$AppState {
     BottomNavigationState? bottomNavigationState,
     MiscState? miscState,
     ClientState? clientState,
+    CaregiverState? caregiverState,
     ConnectivityState? connectivityState,
     ContentState? contentState,
     @JsonKey(ignore: true) Wait? wait,
@@ -37,6 +39,7 @@ class AppState with _$AppState {
   factory AppState.initial() => AppState(
         credentials: AuthCredentials.initial(),
         clientState: ClientState.initial(),
+        caregiverState: CaregiverState.initial(),
         onboardingState: OnboardingState.initial(),
         homeState: HomeState.initial(),
         miscState: MiscState.initial(),

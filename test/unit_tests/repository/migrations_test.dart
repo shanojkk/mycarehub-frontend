@@ -6,6 +6,6 @@ import 'package:pro_health_360/infrastructure/repository/migrations.dart';
 
 void main() {
   test('migrations should have 7 migrations', () {
-    expect(migrations.length, 7);
+    expect(migrations.length, 8);
   });
 }

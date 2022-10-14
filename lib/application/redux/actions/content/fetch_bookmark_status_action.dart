@@ -61,9 +61,11 @@ class FetchBookmarkStatusAction extends ReduxAction<AppState> {
 
     if (error != null) {
       reportErrorToSentry(
-        context,
-        error,
         hint: fetchLikeStatusErrorString,
+        query: checkIfUserBookmarkedContentQuery,
+        variables: variables,
+        response: response,
+        state: state,
       );
       throw MyAfyaException(
         cause: fetchBookmarkStatusFlag,

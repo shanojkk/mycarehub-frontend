@@ -59,9 +59,12 @@ class BookmarkContentAction extends ReduxAction<AppState> {
 
     if (error != null) {
       reportErrorToSentry(
-        context,
-        error,
         hint: 'Error while saving content',
+        state: state,
+        query: bookmarkContentMutation,
+        response: response,
+        exception: error,
+        variables: variables,
       );
       throw MyAfyaException(
         cause: bookmarkContentTag,

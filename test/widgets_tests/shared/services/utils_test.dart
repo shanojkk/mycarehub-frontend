@@ -358,8 +358,8 @@ void main() {
             return MyAfyaHubPrimaryButton(
               onPressed: () {
                 reportErrorToSentry(
-                  context,
-                  http.Response(
+                  hint: 'error',
+                  response: http.Response(
                     json.encode(<String, dynamic>{
                       'errors': <Object>[
                         <String, dynamic>{

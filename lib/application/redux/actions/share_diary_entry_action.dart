@@ -5,10 +5,10 @@ import 'package:async_redux/async_redux.dart';
 import 'package:http/http.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:pro_health_360/application/core/services/analytics_service.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/actions/fetch_health_diary_action.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_events.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'package:pro_health_360/application/core/graphql/mutations.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
@@ -59,8 +59,12 @@ class ShareDiaryEntryAction extends ReduxAction<AppState> {
       final String? errors = client.parseError(body);
 
       if (errors != null) {
-        Sentry.captureException(
-          UserException(errors),
+        reportErrorToSentry(
+          hint: 'Error while sharing diary entry',
+          query: shareHealthDiaryEntryMutation,
+          variables: variables,
+          response: response,
+          state: state,
         );
 
         throw UserException(getErrorMessage('sharing diary entry'));

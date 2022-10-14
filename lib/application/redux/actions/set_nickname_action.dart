@@ -13,6 +13,7 @@ import 'package:http/http.dart' as http;
 import 'package:pro_health_360/application/core/graphql/mutations.dart';
 import 'package:pro_health_360/application/core/services/analytics_service.dart';
 import 'package:pro_health_360/application/core/services/onboarding_utils.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/actions/complete_onboarding_tour_action.dart';
 import 'package:pro_health_360/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:pro_health_360/application/redux/actions/update_user_profile_action.dart';
@@ -87,7 +88,13 @@ class SetNicknameAction extends ReduxAction<AppState> {
         }
 
         onError?.call(somethingWentWrongText);
-        Sentry.captureException(UserException(errors));
+        reportErrorToSentry(
+          hint: 'Error while setting nickname',
+          query: setNickNameMutation,
+          variables: variables,
+          response: result,
+          state: state,
+        );
 
         return null;
       }

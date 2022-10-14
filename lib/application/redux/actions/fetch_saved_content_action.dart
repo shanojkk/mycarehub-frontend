@@ -59,9 +59,11 @@ class FetchSavedContentAction extends ReduxAction<AppState> {
 
     if (error != null) {
       reportErrorToSentry(
-        context,
-        error,
         hint: 'Error while fetching your saved content',
+        query: getUserBookmarkedContentQuery,
+        variables: variables,
+        response: response,
+        state: state,
       );
 
       if (error == 'timeout') {

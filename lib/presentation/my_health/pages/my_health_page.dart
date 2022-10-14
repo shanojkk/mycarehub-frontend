@@ -4,7 +4,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:pro_health_360/application/core/services/app_setup_data.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_setup_data.dart';
 import 'package:pro_health_360/application/core/services/custom_client.dart';
 import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/actions/medical_data/fetch_next_refill_data_action.dart';

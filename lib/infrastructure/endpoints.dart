@@ -47,8 +47,8 @@ const String kTestClinicalEndpoint =
 /* 
 DEMO ENDPOINTS 
 
-The endpoints here have the -test suffix because this is what will be used by the 
-clients (for now)
+The endpoints here have the -test suffix because this is what will be used by
+the SIT and UAT team
 */
 const String kDemoGraphqlEndpoint =
     'https://mycarehub-testing.savannahghi.org/graphql';
@@ -89,7 +89,13 @@ const String kDemoPINResetServiceRequestEndpoint =
 const String kDemoClinicalEndpoint =
     'https://clinical-testing.savannahghi.org/graphql';
 
-/* PROD ENDPOINTS */
+/* 
+PROD ENDPOINTS 
+
+These are the endpoints for the production environment
+
+The environment that the clients use
+*/
 const String kProdGraphqlEndpoint =
     'https://mycarehub-prod.savannahghi.org/graphql';
 const String kProdLoginByPhoneEndpoint =

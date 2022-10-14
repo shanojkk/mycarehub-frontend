@@ -6,7 +6,7 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 
 // Project imports:
-import 'package:pro_health_360/application/core/services/app_setup_data.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_setup_data.dart';
 import 'package:pro_health_360/application/core/services/custom_client.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';

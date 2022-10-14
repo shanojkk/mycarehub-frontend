@@ -5,9 +5,24 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_config/flutter_config.dart';
 // Project imports:
 import 'package:pro_health_360/domain/core/value_objects/app_context_constants.dart';
+import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/infrastructure/endpoints.dart';
 import 'package:quiver/core.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
+/// Holds an environment specific app configuration
+///
+/// Items included in this config:
+/// - [appContexts] holds the environment in which the app is running on
+/// - [sentryDsn] is the [Sentry] DSN key
+/// - [streamAPIKey] is the GetStream API key for the environment
+/// - [customContext] contains extra configs for the GraphQL client
+/// - [clinicalEndpoint] is used to fetch the client's medical information
+/// - The [environment] is a string description of the environment the app is
+/// running on. It is extracted from the [AppEnvironment] object
+/// 
+/// This is used to compose the [devAppSetupData], [demoAppSetupData] and
+/// [prodAppSetupData] below
 class AppSetupData {
   final List<AppContext> appContexts;
   final String sentryDsn;
@@ -37,7 +52,7 @@ class AppSetupData {
 
 final AppSetupData devAppSetupData = AppSetupData(
   appContexts: testAppContexts,
-  environment: 'DEV',
+  environment: AppEnvironment.dev.name,
   sentryDsn: FlutterConfig.get('DEV_SENTRY_DNS') as String,
   streamAPIKey: FlutterConfig.get('DEV_STREAM_API_KEY') as String,
   customContext: const BaseContext(
@@ -70,7 +85,7 @@ final AppSetupData devAppSetupData = AppSetupData(
 
 final AppSetupData demoAppSetupData = AppSetupData(
   appContexts: demoAppContexts,
-  environment: 'DEMO',
+  environment: AppEnvironment.demo.name,
   sentryDsn: FlutterConfig.get('DEMO_SENTRY_DNS') as String,
   streamAPIKey: FlutterConfig.get('DEMO_STREAM_API_KEY') as String,
   customContext: const BaseContext(
@@ -103,7 +118,7 @@ final AppSetupData demoAppSetupData = AppSetupData(
 
 final AppSetupData prodAppSetupData = AppSetupData(
   appContexts: prodAppContexts,
-  environment: 'PROD',
+  environment: AppEnvironment.prod.name,
   sentryDsn: FlutterConfig.get('PROD_SENTRY_DNS') as String,
   streamAPIKey: FlutterConfig.get('PROD_STREAM_API_KEY') as String,
   customContext: const BaseContext(

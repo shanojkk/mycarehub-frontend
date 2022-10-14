@@ -220,39 +220,55 @@ String getEnvironmentContext(List<AppContext> contexts) {
   return 'test';
 }
 
-dynamic reportErrorToSentry(
-  BuildContext? context,
-  dynamic error, {
-  dynamic stackTrace,
-  String? hint,
+/// Reports an error to [Sentry]
+dynamic reportErrorToSentry({
+  /// A human readable description of the error
+  required String hint,
+
+  /// The [AppState] used to add contact info
+  AppState? state,
+
+  /// Used in cases of HTTP request errors
+  http.Response? response,
+
+  // Should be a derivative of the [AppRoutes class] i.e AppRoutes.loginPage
+  String? route,
+
+  /// Any exception object for example from a try {...} catch {...} operation
+  Object? exception,
+
+  /// The GraphQL query
+  String? query,
+
+  /// Variables
+  Map<String, dynamic>? variables,
 }) {
-  dynamic errorTrace = error;
-  if (error.runtimeType == http.Response) {
-    error as http.Response;
-    errorTrace = <String, dynamic>{
-      'request': error.request.toString(),
-      'body': error.body,
-      'statusCode': error.statusCode,
-    };
-  }
-  if (context != null) {
-    try {
-      final AppState state = StoreProvider.state<AppState>(context)!;
-      final Contact? contact = state.clientState?.user?.primaryContact;
+  final Map<String, dynamic> stackTrace = <String, dynamic>{};
+  final String contact =
+      state?.clientState?.user?.primaryContact?.value ?? UNKNOWN;
+  final bool isSignedIn = state?.clientState?.isSignedIn ?? false;
 
-      final bool isSignedIn = state.clientState?.isSignedIn ?? false;
-
-      if (isSignedIn) {
-        errorTrace = <String, dynamic>{
-          'phoneNumber': contact?.value ?? UNKNOWN,
-          'error': errorTrace,
-        };
-      }
-    } catch (e) {
-      errorTrace = error;
-    }
+  if (response != null) {
+    stackTrace.addAll(
+      <String, dynamic>{
+        'request': response.request.toString(),
+        'body': response.body,
+        'statusCode': response.statusCode,
+      },
+    );
   }
-  Sentry.captureException(errorTrace, hint: hint);
+
+  if (isSignedIn) {
+    stackTrace.addAll(<String, dynamic>{'phoneNumber': contact});
+  }
+
+  stackTrace.addAll(<String, dynamic>{
+    'exception': exception ?? UNKNOWN,
+    'query': query ?? UNKNOWN,
+    'variables': variables ?? UNKNOWN,
+  });
+
+  Sentry.captureException(stackTrace, stackTrace: stackTrace, hint: hint);
 }
 
 final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[

@@ -61,9 +61,11 @@ class FetchLikeStatusAction extends ReduxAction<AppState> {
 
     if (error != null) {
       reportErrorToSentry(
-        context,
-        error,
         hint: 'Error while fetching your like status',
+        query: checkIfUserHasLikedContentQuery,
+        variables: variables,
+        response: response,
+        state: state,
       );
       throw MyAfyaException(
         cause: fetchLikeStatusFlag,

@@ -9,6 +9,7 @@ import 'package:async_redux/async_redux.dart';
 
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
+import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -75,13 +76,12 @@ class CompleteOnboardingTourAction extends ReduxAction<AppState> {
         throw const UserException(onboardingErrorText);
       }
     } else {
-      Sentry.captureException(
-        processed.message,
-        hint: <String, dynamic>{
-          'query': completeOnboardingTourMutation,
-          'variables': variables,
-          'response': result.body,
-        },
+      reportErrorToSentry(
+        hint: 'Error while fetching your saved content',
+        query: completeOnboardingTourMutation,
+        variables: variables,
+        response: result,
+        state: state,
       );
 
       throw const UserException(somethingWentWrongText);

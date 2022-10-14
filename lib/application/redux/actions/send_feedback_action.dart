@@ -7,10 +7,10 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:pro_health_360/application/core/graphql/mutations.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 /// [SendFeedbackAction] is a Redux Action whose job is to send users feedback.
 /// Otherwise delightfully notify user of any Error that might occur during
@@ -78,8 +78,12 @@ class SendFeedbackAction extends ReduxAction<AppState> {
 
     if (errors != null) {
       onError?.call();
-      Sentry.captureException(
-        UserException(errors),
+      reportErrorToSentry(
+        hint: 'Error while sending feedback',
+        query: sendFeedbackMutation,
+        variables: variables,
+        response: result,
+        state: state,
       );
 
       throw const UserException(somethingWentWrongText);

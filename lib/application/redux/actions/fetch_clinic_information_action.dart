@@ -53,9 +53,11 @@ class FetchClinicInformationAction extends ReduxAction<AppState> {
 
     if (error != null) {
       reportErrorToSentry(
-        context,
-        error,
         hint: 'Error while fetching clinic information',
+        query: retrieveFacilityQuery,
+        variables: variables,
+        response: response,
+        state: state,
       );
 
       throw MyAfyaException(

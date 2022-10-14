@@ -63,9 +63,11 @@ class FetchContentAction extends ReduxAction<AppState> {
     final String? error = parseError(payLoad);
     if (error != null) {
       reportErrorToSentry(
-        context,
-        error,
         hint: 'Error while fetching your content',
+        query: getContentQuery,
+        variables: variables,
+        response: response,
+        state: state,
       );
 
       if (error == 'timeout') {

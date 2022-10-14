@@ -3,8 +3,10 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/src/response.dart';
 import 'package:pro_health_360/application/core/graphql/mutations.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/actions/update_credentials_action.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
@@ -39,13 +41,13 @@ class SetPushToken extends ReduxAction<AppState> {
         final String? errors = client.parseError(responseBody);
 
         if (errors != null) {
-          Sentry.captureException(
-            errors,
-            hint: <String, dynamic>{
-              'request': setPushTokenMutation,
-              'variables': variables,
-              'response': response,
-            },
+          reportErrorToSentry(
+            hint: failedToSetPushTokenHint,
+            state: state,
+            response: response,
+            query: setPushTokenMutation,
+            variables: variables,
+            exception: errors,
           );
         }
         dispatch(
@@ -53,13 +55,13 @@ class SetPushToken extends ReduxAction<AppState> {
         );
         return null;
       } else {
-        Sentry.captureException(
-          UserException(getErrorMessage()),
-          hint: <String, dynamic>{
-            'request': setPushTokenMutation,
-            'variables': variables,
-            'response': response,
-          },
+        reportErrorToSentry(
+          hint: failedToSetPushTokenHint,
+          state: state,
+          response: response,
+          query: setPushTokenMutation,
+          variables: variables,
+          exception: UserException(getErrorMessage()),
         );
       }
 

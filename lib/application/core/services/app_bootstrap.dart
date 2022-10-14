@@ -15,7 +15,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 import 'package:pro_health_360/application/core/services/analytics_service.dart';
-import 'package:pro_health_360/application/core/services/app_setup_data.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_setup_data.dart';
 import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_database_strings.dart';

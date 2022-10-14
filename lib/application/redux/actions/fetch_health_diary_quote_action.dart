@@ -3,11 +3,11 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:pro_health_360/application/core/graphql/queries.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/actions/update_health_diary_state.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/entities/health_diary/quote.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 class FetchHealthDiaryQuoteAction extends ReduxAction<AppState> {
   FetchHealthDiaryQuoteAction({required this.client});
@@ -48,7 +48,13 @@ class FetchHealthDiaryQuoteAction extends ReduxAction<AppState> {
     final String? error = parseError(payLoad);
 
     if (error != null) {
-      Sentry.captureException(UserException(error));
+      reportErrorToSentry(
+        hint: 'Error while fetching health diary quote',
+        query: getHealthDiaryQuoteQuery,
+        variables: variables,
+        response: response,
+        state: state,
+      );
 
       if (error == 'timeout') {
         dispatch(UpdateHealthDiaryStateActon(timeoutFetchingEntries: true));

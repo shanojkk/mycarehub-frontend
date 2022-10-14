@@ -5,10 +5,10 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:pro_health_360/application/core/graphql/mutations.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/exception_tag.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 class AcceptDeclineCommunitiesInviteAction extends ReduxAction<AppState> {
   AcceptDeclineCommunitiesInviteAction({
@@ -53,8 +53,12 @@ class AcceptDeclineCommunitiesInviteAction extends ReduxAction<AppState> {
     final String? error = parseError(responseMap);
 
     if (error != null) {
-      Sentry.captureException(
-        UserException(error),
+      reportErrorToSentry(
+        hint: 'Error responding to invite',
+        query: rejectInvitationMutation,
+        variables: variables,
+        response: response,
+        state: state,
       );
       onError?.call();
       throw MyAfyaException(

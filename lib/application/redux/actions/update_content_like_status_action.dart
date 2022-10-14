@@ -99,7 +99,10 @@ class UpdateContentLikeStatusAction extends ReduxAction<AppState> {
         );
     }
 
-    reportErrorToSentry(context, error);
+    reportErrorToSentry(
+      hint: error.toString(),
+      state: state,
+    );
     return error;
   }
 }

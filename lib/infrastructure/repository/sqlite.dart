@@ -34,7 +34,10 @@ Future<void> migrate(Database db, int oldVersion, int newVersion) async {
     try {
       await db.execute(migrations[i]);
     } catch (e) {
-      reportErrorToSentry(exception: e);
+      reportErrorToSentry(
+        exception: e,
+        hint: e.toString(),
+      );
     }
   }
 }

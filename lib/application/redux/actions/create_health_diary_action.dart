@@ -75,9 +75,11 @@ class CreateHealthDiaryAction extends ReduxAction<AppState> {
 
     if (error != null) {
       reportErrorToSentry(
-        context,
-        error,
         hint: errorCreatingHealthDiaryEntryString,
+        query: createHealthDiaryEntryMutation,
+        variables: variables,
+        response: result,
+        state: state,
       );
 
       throw MyAfyaException(

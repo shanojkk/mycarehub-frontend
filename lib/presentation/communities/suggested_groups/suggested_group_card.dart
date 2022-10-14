@@ -153,9 +153,9 @@ class SuggestedGroupCard extends StatelessWidget {
                                     ),
                                   ),
                                 );
+
                               reportErrorToSentry(
-                                context,
-                                error,
+                                hint: getErrorMessage(addingToGroupString),
                               );
                             },
                             onSuccess: () =>

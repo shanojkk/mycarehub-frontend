@@ -69,9 +69,11 @@ class SendOTPAction extends ReduxAction<AppState> {
 
       if (error != null) {
         reportErrorToSentry(
-          context,
-          error,
           hint: 'Error while sending OTP',
+          query: sendOTPEndpoint,
+          variables: variables,
+          response: httpResponse,
+          state: state,
         );
 
         dispatch(UpdateOnboardingStateAction(failedToSendOTP: true));
@@ -105,9 +107,10 @@ class SendOTPAction extends ReduxAction<AppState> {
         dispatch(UpdateOnboardingStateAction(failedToSendOTP: true));
 
         reportErrorToSentry(
-          context,
-          processedResponse.response,
-          hint: errorLoggingIn,
+          hint: 'Error while sending OTP',
+          query: sendOTPEndpoint,
+          variables: variables,
+          state: state,
         );
       }
     } else {

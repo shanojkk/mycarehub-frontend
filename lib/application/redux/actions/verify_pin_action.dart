@@ -6,6 +6,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:pro_health_360/application/core/graphql/queries.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/actions/bottom_nav_action.dart';
 import 'package:pro_health_360/application/redux/actions/update_pin_input_details_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
@@ -67,7 +68,13 @@ class VerifyPINAction extends ReduxAction<AppState> {
         );
         return state;
       } else {
-        Sentry.captureException(error, hint: 'Error while verifying user PIN');
+        reportErrorToSentry(
+          hint: 'Error while verifying user PIN',
+          query: verifyPinQuery,
+          variables: variables,
+          response: response,
+          state: state,
+        );
         throw const UserException(somethingWentWrongText);
       }
     }

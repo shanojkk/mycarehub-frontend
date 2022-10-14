@@ -35,7 +35,7 @@ class HealthDiaryEntryWidget extends StatelessWidget {
     );
 
     final String mood = removeUnderscores(diaryEntry.mood ?? '');
-    final MoodItemData moodItemData = getMoodColor(mood);
+    final MoodItemData moodItemData = getMoodData(mood);
 
     bool wasSharedWithinLastFourHrs = false;
     final DateTime? sharedDateTime =

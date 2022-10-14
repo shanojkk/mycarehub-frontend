@@ -209,7 +209,7 @@ const String personalDetails = 'Personal details';
 const String personalDetailsDesc =
     'Tell us more about you. We use the information below to enhance your UoNAfyaApp360 experience.';
 final String copyrightString =
-    'Content © University of Nairobi ${returnCurrentYear()}';
+    'Content © University of Nairobi ${getCurrentYear()}';
 const String copyrightDescriptionString =
     'UoNAfyaApp360™ is a platform developed by Johnson & Johnson Global public Health, used under license';
 const String poweredByMyCareHubString = 'Powered by myCareHub™';
@@ -380,7 +380,8 @@ String getEnrollmentDuration({
 const String congratulationsPageDescription =
     'Please create a nickname (Visible to community members)';
 const String nameInputValidateString = 'Kindly input a nickname';
-const String errorNicknameInputString = 'Please enter letters, numbers or underscores only';
+const String errorNicknameInputString =
+    'Please enter letters, numbers or underscores only';
 const String importantInformationString = 'Important Information';
 
 // Community strings

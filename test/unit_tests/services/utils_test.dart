@@ -10,6 +10,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:overlay_support/overlay_support.dart';
+import 'package:pro_health_360/application/core/services/input_validators.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_setup_data.dart';
 import 'package:pro_health_360/application/core/services/notifications_utils.dart';
 import 'package:pro_health_360/application/core/services/utils.dart';
@@ -33,15 +34,6 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   group('Utils', () {
-    test('should sentence case username', () {
-      expect(
-        sentenceCaseUserName(firstName: 'ule', lastName: 'makmende'),
-        'Ule Makmende',
-      );
-      expect(sentenceCaseUserName(firstName: 'u', lastName: 'm'), 'u m');
-      expect(sentenceCaseUserName(firstName: '', lastName: ''), ' ');
-    });
-
     test('should return an unprotected route', () async {
       expect(unProtectedRoutes[0], AppRoutes.phoneLogin);
     });
@@ -95,18 +87,18 @@ void main() {
     });
 
     test('getMoodColor should return the various mood colors', () {
-      expect(getMoodColor('Happy').color, AppColors.greenHappyColor);
-      expect(getMoodColor('Very Happy').color, AppColors.greenHappyColor);
-      expect(getMoodColor('Meh').color, AppColors.mehMoodColor);
-      expect(getMoodColor('Sad').color, AppColors.warningColor);
-      expect(getMoodColor('Very Sad').color, AppColors.verySadColor);
-      expect(getMoodColor('Other').color, AppColors.secondaryColor);
-      expect(getMoodColor(null).color, AppColors.secondaryColor);
+      expect(getMoodData('Happy').color, AppColors.greenHappyColor);
+      expect(getMoodData('Very Happy').color, AppColors.greenHappyColor);
+      expect(getMoodData('Meh').color, AppColors.mehMoodColor);
+      expect(getMoodData('Sad').color, AppColors.warningColor);
+      expect(getMoodData('Very Sad').color, AppColors.verySadColor);
+      expect(getMoodData('Other').color, AppColors.secondaryColor);
+      expect(getMoodData(null).color, AppColors.secondaryColor);
     });
 
     test('getFeedBackValidationMessage should return the various messages', () {
       expect(
-        getFeedBackValidationMessage(
+        validateFeedback(
           feedBackType: FeedBackType.SERVICES_OFFERED,
           feedBackText: '',
           selectedRating: 0,
@@ -114,7 +106,7 @@ void main() {
         'Please select a rating',
       );
       expect(
-        getFeedBackValidationMessage(
+        validateFeedback(
           feedBackType: FeedBackType.SERVICES_OFFERED,
           feedBackText: '',
           selectedRating: 1,
@@ -122,7 +114,7 @@ void main() {
         'Please enter the name of service',
       );
       expect(
-        getFeedBackValidationMessage(
+        validateFeedback(
           feedBackType: FeedBackType.GENERAL_FEEDBACK,
           feedBackText: '',
           selectedRating: 1,

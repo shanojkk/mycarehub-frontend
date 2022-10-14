@@ -22,16 +22,13 @@ import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/view_models/content/content_view_model.dart';
 import 'package:pro_health_360/domain/core/entities/core/screening_question.dart';
 import 'package:pro_health_360/domain/core/entities/core/user.dart';
-import 'package:pro_health_360/domain/core/entities/core/user_profile_item_obj.dart';
 import 'package:pro_health_360/domain/core/entities/health_diary/mood_item_data.dart';
-import 'package:pro_health_360/domain/core/entities/health_timeline/fhir_enums.dart';
 import 'package:pro_health_360/domain/core/entities/profile/caregiver_information.dart';
 import 'package:pro_health_360/domain/core/entities/profile/edit_information_item.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
-import 'package:pro_health_360/domain/core/value_objects/enums.dart' as enums;
-import 'package:pro_health_360/domain/core/value_objects/enums.dart';
+import 'package:pro_health_360/domain/core/value_objects/constants.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -57,7 +54,8 @@ AppSetupData getAppSetupData(AppContext context) {
 
 /// Returns a [User]'s display name
 ///
-/// Takes in a [User] object, extracts and concatenates their name
+/// Takes in a [User] object, extracts and concatenates their name. It removes
+/// any spaces in the name and omits empty segments of the name
 ///
 /// ```dart
 /// getDisplayName(vm.clientState?.user)
@@ -83,25 +81,7 @@ String getDisplayName(User? user) {
   return '$formattedFirstName $formattedLastName';
 }
 
-String? securityQuestionValidator(String? value) {
-  if (value != null && (value.isEmpty || value == UNKNOWN)) {
-    return 'A Response is required';
-  }
-  return null;
-}
-
-String? appointmentDateValidator(String? value) {
-  if (value?.isEmpty ?? true) {
-    return dateRequiredString;
-  } else if (!(DateFormat(datePickerFormat)
-          .parseLoose(value!)
-          .compareTo(DateTime.now()) >
-      0)) {
-    return inValidDateString;
-  }
-  return null;
-}
-
+/// Returns a human readable format of the date entered by the user
 String formatSecurityQuestionDate(
   dynamic dateValue, {
   String? format = datePickerFormat,
@@ -117,23 +97,9 @@ String formatSecurityQuestionDate(
   return DateFormat(format).format(DateTime.parse(date));
 }
 
-String sentenceCaseUserName({
-  required String firstName,
-  required String lastName,
-}) {
-  if (firstName.isNotEmpty && lastName.isNotEmpty) {
-    if (firstName.length > 1 && lastName.length > 1) {
-      return '${upperCaseFirstLetter(firstName)} ${upperCaseFirstLetter(lastName)}';
-    }
-    return '$firstName $lastName';
-  }
-  return '$firstName $lastName';
-}
-
-String upperCaseFirstLetter(String word) {
-  return '${word.substring(0, 1).toUpperCase()}${word.substring(1).toLowerCase()}';
-}
-
+/// A bottom sheet that alerts a user when a failure occurs
+///
+/// It can show an [imageAssetPath] image in the bottom sheet
 Future<dynamic> showFeedbackBottomSheet({
   required BuildContext context,
   required String modalContent,
@@ -213,6 +179,12 @@ Future<dynamic> showFeedbackBottomSheet({
   );
 }
 
+/// Formats the next refill date for a patient's viral load
+///
+/// An Map containing the day and month is returned
+/// ```dart
+/// {'day': '01', "Aug"}
+/// ```
 Map<String, String> extractNextRefillDate(String loadedDate) {
   final DateTime parsedDate =
       DateTime?.tryParse(loadedDate)?.toLocal() ?? DateTime.now();
@@ -276,54 +248,7 @@ dynamic reportErrorToSentry({
   Sentry.captureException(stackTrace, stackTrace: stackTrace, hint: hint);
 }
 
-final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[
-  UserProfileItemObj(
-    iconAssetPath: profileIcon,
-    route: AppRoutes.personalInfo,
-    title: 'Personal information',
-  ),
-  UserProfileItemObj(
-    iconAssetPath: clinicIcon,
-    route: AppRoutes.clinicInformationPage,
-    title: 'Clinic information',
-  ),
-  UserProfileItemObj(
-    iconAssetPath: surveyItemImage,
-    route: AppRoutes.surveysPage,
-    title: 'Surveys',
-  ),
-  UserProfileItemObj(
-    iconAssetPath: communityIconSvgPath,
-    route: AppRoutes.groupInvitesPage,
-    title: 'Conversations invites',
-  ),
-  UserProfileItemObj(
-    iconAssetPath: mySavedIcon,
-    route: AppRoutes.savedPosts,
-    title: 'My saved content',
-  ),
-  UserProfileItemObj(
-    iconAssetPath: faqsIcon,
-    route: AppRoutes.profileFaqsPage,
-    title: 'FAQs',
-  ),
-  UserProfileItemObj(
-    iconAssetPath: helpCircleIcon,
-    route: AppRoutes.consent,
-    title: 'Consent',
-  ),
-  UserProfileItemObj(
-    iconAssetPath: feedbackIcon,
-    route: AppRoutes.feedbackPage,
-    title: 'Feedback',
-  ),
-  UserProfileItemObj(
-    iconAssetPath: settingsIcon,
-    route: AppRoutes.settingsPage,
-    title: 'Settings',
-  ),
-];
-
+/// Indicates how long a user can retry after exponential backoff
 String tooManyTriesString(int timeLeft) {
   final DateFormat f = DateFormat('mm:ss');
   final String convertedTime =
@@ -332,6 +257,11 @@ String tooManyTriesString(int timeLeft) {
   return 'Too many tries, try again in $convertedTime minutes';
 }
 
+/// Whether a user should input their PIN to access their medical information
+///
+///
+/// Compares the last time someone signed in time and prompts them every 30
+/// minutes
 bool shouldInputPIN(BuildContext context) {
   final String? signedInTimeFromState =
       StoreProvider.state<AppState>(context)?.credentials?.signedInTime;
@@ -359,6 +289,7 @@ bool shouldInputPIN(BuildContext context) {
       differenceFromLastInput > 20;
 }
 
+/// Caregiver information menu items
 EditInformationItem getEditCareGiverInfo({
   required CaregiverInformation caregiverInformation,
 }) {
@@ -418,60 +349,7 @@ EditInformationItem nickNameEditInfo(String userNickName) =>
       ],
     );
 
-CaregiverType caregiverTypeFromJson(String? caregiverTypeString) {
-  if (caregiverTypeString == null || caregiverTypeString.isEmpty) {
-    return CaregiverType.HEALTHCARE_PROFESSIONAL;
-  }
-
-  switch (caregiverTypeString.toUpperCase()) {
-    case 'FATHER':
-      return CaregiverType.FATHER;
-    case 'MOTHER':
-      return CaregiverType.MOTHER;
-    case 'SIBLING':
-      return CaregiverType.SIBLING;
-    default:
-      return CaregiverType.HEALTHCARE_PROFESSIONAL;
-  }
-}
-
-String caregiverTypeToJson(CaregiverType? caregiverType) {
-  switch (caregiverType) {
-    case CaregiverType.FATHER:
-      return 'FATHER';
-    case CaregiverType.MOTHER:
-      return 'MOTHER';
-    case CaregiverType.SIBLING:
-      return 'SIBLING';
-    default:
-      return 'HEALTHCARE_PROFESSIONAL';
-  }
-}
-
-ObservationStatus observationStatusFromJson(String? observationStatusString) {
-  if (observationStatusString == null || observationStatusString.isEmpty) {
-    return ObservationStatus.Unknown;
-  }
-
-  return ObservationStatus.values.where((ObservationStatus observationStatus) {
-    return observationStatus.name.toLowerCase() ==
-        observationStatusString.replaceAll('-', ' ').toLowerCase();
-  }).first;
-}
-
-MedicationStatusCodes medicationStatusCodesFromJson(
-  String? medicationStatusString,
-) {
-  if (medicationStatusString == null || medicationStatusString.isEmpty) {
-    return MedicationStatusCodes.unknown;
-  }
-
-  return MedicationStatusCodes.values.where((MedicationStatusCodes code) {
-    return code.name.toLowerCase() ==
-        medicationStatusString.replaceAll('-', ' ').toLowerCase();
-  }).first;
-}
-
+/// Navigates to a new page based on the [bottomNavIndex]
 void navigateToNewPage({
   required BuildContext context,
   required String route,
@@ -483,17 +361,18 @@ void navigateToNewPage({
       BottomNavAction(currentBottomNavIndex: bottomNavIndex),
     );
   }
-  Navigator.pushReplacementNamed(
-    context,
-    route,
-  );
+  Navigator.pushReplacementNamed(context, route);
 }
 
-String returnCurrentYear() {
+/// Returns the current year
+String getCurrentYear() {
   final DateTime now = DateTime.now();
   return DateFormat('y').format(now);
 }
 
+/// Updates the status of the like of a content item
+///
+/// It updates the app state before making an API call to update the backend
 Future<void> updateLikeStatus({
   required BuildContext context,
   required int contentID,
@@ -521,6 +400,9 @@ Future<void> updateLikeStatus({
   );
 }
 
+/// Updates the status of the bookmark of a content item
+///
+/// It updates the app state before making an API call to update the backend
 Future<void> updateBookmarkStatus({
   required BuildContext context,
   required int contentID,
@@ -545,7 +427,11 @@ Future<void> updateBookmarkStatus({
   );
 }
 
-MoodItemData getMoodColor(String? mood) {
+/// Returns a [MoodItemData] that contains the mood configs like the color and
+/// the icon
+///
+/// The output is dependent on the type of the mood
+MoodItemData getMoodData(String? mood) {
   if (mood == null) {
     return MoodItemData.initial();
   }
@@ -581,6 +467,7 @@ MoodItemData getMoodColor(String? mood) {
   }
 }
 
+/// Checks whether a user has liked a content item with the provided [contentID]
 bool getHasLiked({
   required int contentID,
   required ContentDisplayedType contentDisplayedType,
@@ -599,6 +486,7 @@ bool getHasLiked({
   return false;
 }
 
+/// Returns the number of likes for a content item based on the [contentID]
 int getLikeCount({
   required int contentID,
   required ContentDisplayedType contentDisplayedType,
@@ -619,6 +507,7 @@ int getLikeCount({
   return 0;
 }
 
+/// Checks whether a user has saved a content item based on tbe [contentID]
 bool getHasSaved({
   required int contentID,
   required ContentDisplayedType contentDisplayedType,
@@ -637,6 +526,11 @@ bool getHasSaved({
   return false;
 }
 
+/// Lists content items based on the [ContentDisplayedType]
+///
+/// [ContentDisplayedType.RECENT] lists the recent content in the home page
+/// [ContentDisplayedType.FEED] lists content items in the feed
+/// [ContentDisplayedType.BOOKMARK] lists bookmarked content
 List<Content?> getContentList({
   required ContentDisplayedType contentDisplayedType,
   required ContentViewModel vm,
@@ -654,16 +548,17 @@ List<Content?> getContentList({
   }
 }
 
-int getNewLikeCount({
-  required bool? hasLiked,
-  required int likeCount,
-}) {
+/// Updates the like count based on whether a user has liked a content.
+int getNewLikeCount({required bool? hasLiked, required int likeCount}) {
   if (hasLiked != null) {
     return hasLiked ? likeCount + 1 : likeCount - 1;
   }
   return likeCount;
 }
 
+/// Updates the status of the PIN input timer
+///
+/// Used in the page to access medical information
 void pinInputTimerStatus({required BuildContext context}) {
   bool resumeTimer;
   final String maxTryTime =
@@ -673,15 +568,12 @@ void pinInputTimerStatus({required BuildContext context}) {
     final DateTime? parsedMaxTryTime = DateTime.tryParse(maxTryTime);
     if (parsedMaxTryTime != null &&
         DateTime.now().difference(parsedMaxTryTime).inSeconds <
-            startTimer - 2) {
+            medicalInfoTimer - 2) {
       resumeTimer = true;
     } else {
       StoreProvider.dispatch(
         context,
-        UpdatePINInputDetailsAction(
-          maxTryTime: '',
-          pinInputTries: 0,
-        ),
+        UpdatePINInputDetailsAction(maxTryTime: '', pinInputTries: 0),
       );
       resumeTimer = false;
     }
@@ -695,8 +587,7 @@ void pinInputTimerStatus({required BuildContext context}) {
   );
 }
 
-const int startTimer = 300;
-
+/// Shows a text snackbar
 void showTextSnackbar(
   ScaffoldMessengerState scaffoldMessengerState, {
   required String content,
@@ -717,6 +608,7 @@ void showTextSnackbar(
     );
 }
 
+/// Checks whether all questions have been answered in screening tools
 bool allQuestionsAnswered(List<ScreeningQuestion>? questions) {
   if (questions != null) {
     for (final ScreeningQuestion question in questions) {
@@ -725,33 +617,6 @@ bool allQuestionsAnswered(List<ScreeningQuestion>? questions) {
     return true;
   }
   return false;
-}
-
-String getFeedBackTypeDescription(FeedBackType feedBackType) {
-  switch (feedBackType) {
-    case FeedBackType.GENERAL_FEEDBACK:
-      return generalFeedBack;
-
-    default:
-      return servicesOffered;
-  }
-}
-
-String getFeedBackValidationMessage({
-  required FeedBackType feedBackType,
-  required String feedBackText,
-  required int selectedRating,
-  String? searchString,
-}) {
-  final bool serviceEntered = searchString?.isEmpty ?? true;
-  if (selectedRating == 0) {
-    return 'Please select a rating';
-  } else if (feedBackType == enums.FeedBackType.SERVICES_OFFERED &&
-      serviceEntered) {
-    return 'Please enter the name of service';
-  } else {
-    return 'Please share your thoughts';
-  }
 }
 
 NotificationActionInfo getNotificationInfo(NotificationType notificationType) {

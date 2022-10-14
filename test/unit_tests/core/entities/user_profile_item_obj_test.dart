@@ -14,7 +14,7 @@ void main() {
   };
   test('UserProfileItemObj toJson', () {
     expect(
-      UserProfileItemObj(
+      ProfileMenuItem(
         iconAssetPath: feedbackIcon,
         title: 'Feedback',
         route: AppRoutes.feedbackPage,
@@ -25,8 +25,8 @@ void main() {
 
   test('UserProfileItemObj fromJson', () {
     expect(
-      UserProfileItemObj.fromJson(data),
-      isA<UserProfileItemObj>(),
+      ProfileMenuItem.fromJson(data),
+      isA<ProfileMenuItem>(),
     );
   });
 }

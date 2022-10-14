@@ -17,6 +17,7 @@ import 'package:pro_health_360/application/redux/view_models/pin_input_view_mode
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/constants.dart';
 import 'package:pro_health_360/infrastructure/connectivity/connectivity_interface.dart';
 import 'package:pro_health_360/infrastructure/connectivity/mobile_connectivity_status.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
@@ -121,7 +122,7 @@ class _PINInputPageState extends State<PINInputPage> {
               !timerRunning &&
               maxTryTime != null) {
             _start = DateTime.now().difference(maxTryTime).inSeconds;
-            if (_start < startTimer - 1) {
+            if (_start < medicalInfoTimer - 1) {
               _start = 300 - _start;
               _startTimer();
             }
@@ -155,11 +156,7 @@ class _PINInputPageState extends State<PINInputPage> {
               child: Column(
                 children: <Widget>[
                   largeVerticalSizedBox,
-                  SvgPicture.asset(
-                    lockIcon,
-                    width: 30.0,
-                    height: 40.0,
-                  ),
+                  SvgPicture.asset(lockIcon, width: 30.0, height: 40.0),
                   largeVerticalSizedBox,
                   Column(
                     children: <Widget>[

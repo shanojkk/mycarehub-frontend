@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -272,6 +275,7 @@ void main() {
   test('capitalize works correctly', () {
     expect(capitalize('test'), 'Test');
   });
+
   test('shouldResumeWithPIN works correctly', () {
     expect(
       shouldResumeWithPIN(
@@ -298,5 +302,21 @@ void main() {
       ),
       false,
     );
+  });
+
+  group('reportErrorToSentry', () {
+    test('sends to sentry', () {
+      final AppState? state =
+          AppState.initial().copyWith.clientState?.call(isSignedIn: true);
+
+      reportErrorToSentry(
+        hint: 'error',
+        state: state,
+        response: Response(
+          json.encode(<String, dynamic>{'message': '4: error'}),
+          401,
+        ),
+      );
+    });
   });
 }

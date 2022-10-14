@@ -1,5 +1,4 @@
 // Dart imports:
-import 'dart:convert';
 
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
@@ -9,8 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
 import 'package:mockito/annotations.dart';
 // Project imports:
 import 'package:pro_health_360/application/core/services/utils.dart';
@@ -334,52 +331,6 @@ void main() {
       await tester.tap(find.byKey(const Key('update_contacts')));
       await tester.pumpAndSettle();
       expect(testBool, false);
-    });
-  });
-
-  group('reportErrorToSentry', () {
-    testWidgets('sends to sentry', (WidgetTester tester) async {
-      final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
-        'idToken',
-        'endpoint',
-        Response(
-          json.encode(<String, dynamic>{'data': null}),
-          201,
-        ),
-      );
-      late bool errorReported = false;
-      store.dispatch(UpdateClientProfileAction(isSignedIn: true));
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: client,
-        widget: Builder(
-          builder: (BuildContext context) {
-            return MyAfyaHubPrimaryButton(
-              onPressed: () {
-                reportErrorToSentry(
-                  hint: 'error',
-                  response: http.Response(
-                    json.encode(<String, dynamic>{
-                      'errors': <Object>[
-                        <String, dynamic>{
-                          'message': '4: error',
-                        }
-                      ]
-                    }),
-                    401,
-                  ),
-                );
-                errorReported = true;
-              },
-            );
-          },
-        ),
-      );
-
-      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
-      await tester.pumpAndSettle();
-      expect(errorReported, true);
     });
   });
 

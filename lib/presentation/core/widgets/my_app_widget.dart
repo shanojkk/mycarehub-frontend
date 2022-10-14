@@ -7,7 +7,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 // Project imports:
-import 'package:pro_health_360/application/core/services/app_setup_data.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_setup_data.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_name_constants.dart';
 import 'package:pro_health_360/presentation/core/widgets/app_entry_point.dart';

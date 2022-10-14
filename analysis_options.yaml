@@ -15,7 +15,6 @@ analyzer:
     - "lib/**/*.g.dart"
     - "lib/**/*.freezed.dart"
     - "test/**/*.mocks.dart"
-    - "lib/presentation/router/*.gr.dart"
     - "test/**/*.mocks.dart"
 
 linter:

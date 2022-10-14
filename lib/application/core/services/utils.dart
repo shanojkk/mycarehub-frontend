@@ -12,7 +12,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 // Project imports:
-import 'package:pro_health_360/application/core/services/app_setup_data.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_setup_data.dart';
 import 'package:pro_health_360/application/redux/actions/bookmark_content_action.dart';
 import 'package:pro_health_360/application/redux/actions/bottom_nav_action.dart';
 import 'package:pro_health_360/application/redux/actions/content/update_reactions_state_action.dart';
@@ -37,6 +37,9 @@ import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+/// Returns setup data depending on the environment the app is running on
+///
+/// The returned [AppSetupData]
 AppSetupData getAppSetupData(AppContext context) {
   switch (context) {
     case AppContext.AppTest:
@@ -52,6 +55,16 @@ AppSetupData getAppSetupData(AppContext context) {
   }
 }
 
+/// Returns a [User]'s display name
+///
+/// Takes in a [User] object, extracts and concatenates their name
+///
+/// ```dart
+/// getDisplayName(vm.clientState?.user)
+/// ```
+///
+/// ```output```
+/// "Abiud Orina"
 String getDisplayName(User? user) {
   final String firstName = user?.firstName ?? '';
   String formattedFirstName = firstName.replaceAll(' ', '');
@@ -210,16 +223,6 @@ Map<String, String> extractNextRefillDate(String loadedDate) {
     'day': postDay,
     'month': postMonth,
   };
-}
-
-String getEnvironmentContext(List<AppContext> contexts) {
-  if (contexts.contains(AppContext.AppProd)) {
-    return 'prod';
-  }
-  if (contexts.contains(AppContext.AppDemo)) {
-    return 'demo';
-  }
-  return 'test';
 }
 
 /// Reports an error to [Sentry]

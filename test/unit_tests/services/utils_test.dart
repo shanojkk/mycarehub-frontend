@@ -7,7 +7,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:overlay_support/overlay_support.dart';
-import 'package:pro_health_360/application/core/services/app_setup_data.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_setup_data.dart';
 import 'package:pro_health_360/application/core/services/notifications_utils.dart';
 import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
@@ -89,12 +89,6 @@ void main() {
 
         expect(getAppSetupData(AppContext.BewellCONSUMER), devAppSetupData);
       });
-    });
-
-    test('getEnvironmentContext should return the correct contexts', () async {
-      expect(getEnvironmentContext(<AppContext>[AppContext.AppProd]), 'prod');
-      expect(getEnvironmentContext(<AppContext>[AppContext.AppDemo]), 'demo');
-      expect(getEnvironmentContext(<AppContext>[AppContext.AppTest]), 'test');
     });
 
     test('getMoodColor should return the various mood colors', () {

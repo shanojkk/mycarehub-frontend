@@ -213,3 +213,12 @@ extension MoodTypeFilterEx on MoodTypeFilter {
     return describeEnum(this).toUpperCase();
   }
 }
+
+/// The environment the app is running on
+enum AppEnvironment { dev, demo, prod }
+
+extension AppEnvironmentEx on AppEnvironment {
+  String get value {
+    return describeEnum(this).toUpperCase();
+  }
+}

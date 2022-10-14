@@ -1,6 +1,6 @@
 // Package imports:
 import 'package:path/path.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:sqflite/sqflite.dart';
 
 // Project imports:
@@ -34,7 +34,7 @@ Future<void> migrate(Database db, int oldVersion, int newVersion) async {
     try {
       await db.execute(migrations[i]);
     } catch (e) {
-      Sentry.captureException(e);
+      reportErrorToSentry(exception: e);
     }
   }
 }

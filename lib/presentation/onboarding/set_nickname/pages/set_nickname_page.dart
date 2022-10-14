@@ -11,6 +11,7 @@ import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/view_models/set_nickname_view_model.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
+import 'package:pro_health_360/domain/core/value_objects/constants.dart';
 import 'package:pro_health_360/infrastructure/connectivity/connectivity_interface.dart';
 import 'package:pro_health_360/infrastructure/connectivity/mobile_connectivity_status.dart';
 import 'package:pro_health_360/presentation/content/widgets/mini_content_widget.dart';
@@ -114,9 +115,12 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
                                     validator: (String? value) {
                                       if (value!.isEmpty) {
                                         return nameInputValidateString;
+                                      } else if (!nameRegexString
+                                          .hasMatch(value)) {
+                                        return errorNicknameInputString;
+                                      } else {
+                                        return null;
                                       }
-
-                                      return null;
                                     },
                                     onChanged: (String val) {
                                       setState(() {

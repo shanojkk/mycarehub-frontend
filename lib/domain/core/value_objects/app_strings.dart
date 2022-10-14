@@ -2,6 +2,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
 // Project imports:
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_name_constants.dart';
@@ -206,8 +207,9 @@ const String fetchingYourLibraryText = 'Fetching your library';
 
 const String personalDetails = 'Personal details';
 const String personalDetailsDesc =
-    'Tell us more about you. We use the information below to enhance your $appName experience.';
-
+    'Tell us more about you. We use the information below to enhance your UoNAfyaApp360 experience.';
+final String copyrightString =
+    'Content © University of Nairobi ${getCurrentYear()}';
 const String copyrightDescriptionString =
     '$appName™ is a platform developed by Johnson & Johnson Global public Health, used under license';
 const String poweredByMyCareHubString = 'Powered by myCareHub™';
@@ -378,7 +380,8 @@ String getEnrollmentDuration({
 const String congratulationsPageDescription =
     'Please create a nickname (Visible to community members)';
 const String nameInputValidateString = 'Kindly input a nickname';
-const String errorNicknameInputString = 'Please enter letters, numbers or underscores only';
+const String errorNicknameInputString =
+    'Please enter letters, numbers or underscores only';
 const String importantInformationString = 'Important Information';
 
 // Community strings

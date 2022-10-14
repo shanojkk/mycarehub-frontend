@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
-import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/domain/core/entities/health_timeline/codeable_concept.dart';
 import 'package:pro_health_360/domain/core/entities/health_timeline/fhir_enums.dart';
 import 'package:pro_health_360/domain/core/entities/health_timeline/reaction.dart';
@@ -57,4 +56,28 @@ class FhirResource with _$FhirResource {
 
   factory FhirResource.fromJson(Map<String, dynamic> json) =>
       _$FhirResourceFromJson(json);
+}
+
+ObservationStatus observationStatusFromJson(String? observationStatusString) {
+  if (observationStatusString == null || observationStatusString.isEmpty) {
+    return ObservationStatus.Unknown;
+  }
+
+  return ObservationStatus.values.where((ObservationStatus observationStatus) {
+    return observationStatus.name.toLowerCase() ==
+        observationStatusString.replaceAll('-', ' ').toLowerCase();
+  }).first;
+}
+
+MedicationStatusCodes medicationStatusCodesFromJson(
+  String? medicationStatusString,
+) {
+  if (medicationStatusString == null || medicationStatusString.isEmpty) {
+    return MedicationStatusCodes.unknown;
+  }
+
+  return MedicationStatusCodes.values.where((MedicationStatusCodes code) {
+    return code.name.toLowerCase() ==
+        medicationStatusString.replaceAll('-', ' ').toLowerCase();
+  }).first;
 }

@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 
+/// How the user is feeling at a given time - Their mood
 enum MoodType {
   VERY_HAPPY,
   HAPPY,
@@ -34,6 +35,7 @@ extension MoodTypeEx on MoodType {
     }
   }
 
+  /// Returns the name equivalent of the [MoodType]
   String get name {
     switch (this) {
       case MoodType.VERY_HAPPY:
@@ -58,6 +60,15 @@ extension MoodTypeEx on MoodType {
   }
 }
 
+enum MoodTypeFilter {
+  ALL,
+  VERY_HAPPY,
+  HAPPY,
+  NEUTRAL,
+  SAD,
+  VERY_SAD,
+}
+
 /// The type of the client
 enum ClientType {
   PMTCT,
@@ -73,6 +84,7 @@ enum ClientType {
   UNKNOWN
 }
 
+/// Cleans up the client types by removing underscores
 extension ClientTypeEx on ClientType {
   String get name {
     return describeEnum(this).replaceAll('_', ' ');
@@ -129,6 +141,10 @@ extension ScreeningToolsTypeEX on ScreeningToolsType {
   }
 }
 
+/// The type of feedback a user is giving on the platform
+///
+/// [GENERAL_FEEDBACK] is for the platform while [SERVICES_OFFERED] means
+///  services offered at the client's clinic
 enum FeedBackType {
   GENERAL_FEEDBACK,
   SERVICES_OFFERED,
@@ -140,6 +156,7 @@ extension FeedBackTypeEx on FeedBackType {
   }
 }
 
+/// The type of medical information during display
 enum MedicalDataType { REGIMEN, ALLERGIES, WEIGHT, VIRAL_LOAD, BMI, CD4COUNT }
 
 /// [MedicalDataTypeEX] extends [MedicalDataType] enum to get the values as
@@ -150,11 +167,10 @@ extension MedicalDataTypeEX on MedicalDataType {
   }
 }
 
-// to render the success page
-// can either be created successfully or shared successfully
+/// Whether the diary entry has been creates or shared
 enum DiaryEntrySuccessType { shared, created }
 
-/// The types of events that we will collect on the app
+/// The types of events that we will collect on the platform
 enum AnalyticsEventType {
   // Navigation events
   NAVIGATION,
@@ -175,17 +191,10 @@ enum AnalyticsEventType {
   ONBOARDING
 }
 
+/// The type of section item being rendered in the home page
 enum HomePageCarouselItemType { SCREENING_TOOL, SURVEY }
 
-enum MoodTypeFilter {
-  ALL,
-  VERY_HAPPY,
-  HAPPY,
-  NEUTRAL,
-  SAD,
-  VERY_SAD,
-}
-
+/// Returns cleaned string equivalents of the user's mood
 extension MoodTypeFilterEx on MoodTypeFilter {
   String get name {
     switch (this) {
@@ -218,7 +227,7 @@ extension MoodTypeFilterEx on MoodTypeFilter {
 enum AppEnvironment { dev, demo, prod }
 
 extension AppEnvironmentEx on AppEnvironment {
-  String get value {
+  String get name {
     return describeEnum(this).toUpperCase();
   }
 }

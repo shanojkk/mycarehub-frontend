@@ -4,7 +4,7 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:pro_health_360/application/core/services/utils.dart';
+import 'package:pro_health_360/application/core/services/input_validators.dart';
 import 'package:pro_health_360/application/redux/actions/send_feedback_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
@@ -322,7 +322,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                     ..showSnackBar(
                       SnackBar(
                         content: Text(
-                          getFeedBackValidationMessage(
+                          validateFeedback(
                             feedBackType: feedBackType,
                             feedBackText: feedBackInputController.text,
                             searchString: serviceInputController.text,
@@ -343,5 +343,15 @@ class _FeedbackPageState extends State<FeedbackPage> {
         );
       },
     );
+  }
+
+  String getFeedBackTypeDescription(FeedBackType feedBackType) {
+    switch (feedBackType) {
+      case FeedBackType.GENERAL_FEEDBACK:
+        return generalFeedBack;
+
+      default:
+        return servicesOffered;
+    }
   }
 }

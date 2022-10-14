@@ -28,9 +28,7 @@ class UpdatePINInputDetailsAction extends ReduxAction<AppState> {
       resumeTimer: resumeTimer ?? state.miscState?.resumeTimer,
     );
 
-    final AppState newState = state.copyWith(
-      miscState: miscState,
-    );
+    final AppState newState = state.copyWith(miscState: miscState);
 
     return newState;
   }

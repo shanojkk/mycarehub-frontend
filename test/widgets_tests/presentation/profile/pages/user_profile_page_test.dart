@@ -4,13 +4,13 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/actions/update_client_profile_action.dart';
 import 'package:pro_health_360/application/redux/actions/update_user_profile_action.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/address.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
+import 'package:pro_health_360/domain/core/value_objects/user_profile_items.dart';
 import 'package:pro_health_360/presentation/profile/hotline/pages/hotlines_page.dart';
 import 'package:pro_health_360/presentation/profile/hotline/widgets/hotline_widget.dart';
 import 'package:pro_health_360/presentation/profile/pages/user_profile_page.dart';

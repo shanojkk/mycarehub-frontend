@@ -2,9 +2,9 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pro_health_360/application/core/services/input_validators.dart';
 
 // Project imports:
-import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 
@@ -43,7 +43,7 @@ class _SecurityQuestionWidgetState extends State<SecurityQuestionWidget> {
         dateController: dateController,
         question: question.questionStem ?? UNKNOWN,
         hintText: answerHereString,
-        validator: securityQuestionValidator,
+        validator: securityQuestionResponseValidator,
         initialValue: initialResponse,
         suffixIcon: widget.suffixIcon,
         inputFormatters: <TextInputFormatter>[

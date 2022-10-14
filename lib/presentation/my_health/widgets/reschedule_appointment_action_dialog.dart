@@ -3,7 +3,7 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:pro_health_360/application/core/services/utils.dart';
+import 'package:pro_health_360/application/core/services/input_validators.dart';
 import 'package:pro_health_360/application/redux/actions/my_health/fetch_appointments_action.dart';
 import 'package:pro_health_360/application/redux/actions/my_health/reschedule_appointment_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';

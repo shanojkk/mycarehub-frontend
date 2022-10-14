@@ -101,13 +101,6 @@ class _MyHealthPageState extends State<MyHealthPage> {
           final User? userProfileState = vm.clientState?.user;
           final String firstName = userProfileState?.firstName ?? '';
           final String lastName = userProfileState?.lastName ?? '';
-          //TODO(byron): Return this during phase 2 implementation
-          // final String userPhoneNumber =
-          //     userProfileState?.primaryContact?.value ?? '';
-          // final String hospitalName = StoreProvider.state<AppState>(context)
-          //         ?.clientState
-          //         ?.facilityName ??
-          //     '';
           final List<ViralLoadNode?> viralLoadData =
               vm.clientState?.viralLoadData?.edges ?? <ViralLoadNode>[];
 

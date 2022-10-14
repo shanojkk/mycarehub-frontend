@@ -378,6 +378,7 @@ String getEnrollmentDuration({
 const String congratulationsPageDescription =
     'Please create a nickname (Visible to community members)';
 const String nameInputValidateString = 'Kindly input a nickname';
+const String errorNicknameInputString = 'Please enter letters, numbers or underscores only';
 const String importantInformationString = 'Important Information';
 
 // Community strings

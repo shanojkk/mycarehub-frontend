@@ -71,6 +71,8 @@ class OnboardingState with _$OnboardingState {
     //  Whether the user is allowed to resend their PIN
     bool? canResendOTP,
     String? nickName,
+    bool? isClient,
+    bool? isCaregiver,
 
     ///------------ONBOARDING STATE BOOLEANS------------
   }) = _OnboardingState;
@@ -100,5 +102,7 @@ class OnboardingState with _$OnboardingState {
         hasSetPin: false,
         hasAcceptedTerms: false,
         nickName: UNKNOWN,
+        isCaregiver: false,
+        isClient: false,
       );
 }

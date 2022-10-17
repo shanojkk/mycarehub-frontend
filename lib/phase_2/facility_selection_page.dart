@@ -6,6 +6,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pro_health_360/application/redux/actions/fetch_facilities_action.dart';
+import 'package:pro_health_360/application/redux/actions/update_facility_state_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/view_models/app_state_view_model.dart';
@@ -17,6 +18,7 @@ import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 import 'package:pro_health_360/phase_2/widgets/general_workstation_widget.dart';
 import 'package:pro_health_360/phase_2/widgets/summary_badge_widget.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
+import 'package:pro_health_360/presentation/router/routes.dart';
 
 class FacilitySelectionPage extends StatelessWidget {
   const FacilitySelectionPage({super.key});
@@ -105,6 +107,18 @@ class FacilitySelectionPage extends StatelessWidget {
                             spacing: 8,
                             children: badgesList,
                           ),
+                          onButtonCallback: () {
+                            StoreProvider.dispatch(
+                              context,
+                              UpdateFacilityStateAction(
+                                currentFacility: facility,
+                              ),
+                            );
+                            Navigator.of(context).pushNamedAndRemoveUntil(
+                              AppRoutes.home,
+                              (Route<dynamic> route) => false,
+                            );
+                          },
                         ),
                       ),
                     );

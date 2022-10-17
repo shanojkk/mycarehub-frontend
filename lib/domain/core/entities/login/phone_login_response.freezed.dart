@@ -24,6 +24,10 @@ mixin _$PhoneLoginResponse {
   int? get code => throw _privateConstructorUsedError;
   @JsonKey(name: 'message')
   String? get message => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_caregiver', defaultValue: false)
+  bool? get isCaregiver => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_client', defaultValue: false)
+  bool? get isClient => throw _privateConstructorUsedError;
   @JsonKey(name: 'response')
   UserResponse? get userResponse => throw _privateConstructorUsedError;
 
@@ -41,6 +45,8 @@ abstract class $PhoneLoginResponseCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'code') int? code,
       @JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'is_caregiver', defaultValue: false) bool? isCaregiver,
+      @JsonKey(name: 'is_client', defaultValue: false) bool? isClient,
       @JsonKey(name: 'response') UserResponse? userResponse});
 
   $UserResponseCopyWith<$Res>? get userResponse;
@@ -59,6 +65,8 @@ class _$PhoneLoginResponseCopyWithImpl<$Res>
   $Res call({
     Object? code = freezed,
     Object? message = freezed,
+    Object? isCaregiver = freezed,
+    Object? isClient = freezed,
     Object? userResponse = freezed,
   }) {
     return _then(_value.copyWith(
@@ -70,6 +78,14 @@ class _$PhoneLoginResponseCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
+      isCaregiver: isCaregiver == freezed
+          ? _value.isCaregiver
+          : isCaregiver // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isClient: isClient == freezed
+          ? _value.isClient
+          : isClient // ignore: cast_nullable_to_non_nullable
+              as bool?,
       userResponse: userResponse == freezed
           ? _value.userResponse
           : userResponse // ignore: cast_nullable_to_non_nullable
@@ -99,6 +115,8 @@ abstract class _$$_PhoneLoginResponseCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'code') int? code,
       @JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'is_caregiver', defaultValue: false) bool? isCaregiver,
+      @JsonKey(name: 'is_client', defaultValue: false) bool? isClient,
       @JsonKey(name: 'response') UserResponse? userResponse});
 
   @override
@@ -120,6 +138,8 @@ class __$$_PhoneLoginResponseCopyWithImpl<$Res>
   $Res call({
     Object? code = freezed,
     Object? message = freezed,
+    Object? isCaregiver = freezed,
+    Object? isClient = freezed,
     Object? userResponse = freezed,
   }) {
     return _then(_$_PhoneLoginResponse(
@@ -131,6 +151,14 @@ class __$$_PhoneLoginResponseCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
+      isCaregiver: isCaregiver == freezed
+          ? _value.isCaregiver
+          : isCaregiver // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isClient: isClient == freezed
+          ? _value.isClient
+          : isClient // ignore: cast_nullable_to_non_nullable
+              as bool?,
       userResponse: userResponse == freezed
           ? _value.userResponse
           : userResponse // ignore: cast_nullable_to_non_nullable
@@ -145,6 +173,8 @@ class _$_PhoneLoginResponse implements _PhoneLoginResponse {
   _$_PhoneLoginResponse(
       {@JsonKey(name: 'code') this.code,
       @JsonKey(name: 'message') this.message,
+      @JsonKey(name: 'is_caregiver', defaultValue: false) this.isCaregiver,
+      @JsonKey(name: 'is_client', defaultValue: false) this.isClient,
       @JsonKey(name: 'response') this.userResponse});
 
   factory _$_PhoneLoginResponse.fromJson(Map<String, dynamic> json) =>
@@ -157,12 +187,18 @@ class _$_PhoneLoginResponse implements _PhoneLoginResponse {
   @JsonKey(name: 'message')
   final String? message;
   @override
+  @JsonKey(name: 'is_caregiver', defaultValue: false)
+  final bool? isCaregiver;
+  @override
+  @JsonKey(name: 'is_client', defaultValue: false)
+  final bool? isClient;
+  @override
   @JsonKey(name: 'response')
   final UserResponse? userResponse;
 
   @override
   String toString() {
-    return 'PhoneLoginResponse(code: $code, message: $message, userResponse: $userResponse)';
+    return 'PhoneLoginResponse(code: $code, message: $message, isCaregiver: $isCaregiver, isClient: $isClient, userResponse: $userResponse)';
   }
 
   @override
@@ -173,6 +209,9 @@ class _$_PhoneLoginResponse implements _PhoneLoginResponse {
             const DeepCollectionEquality().equals(other.code, code) &&
             const DeepCollectionEquality().equals(other.message, message) &&
             const DeepCollectionEquality()
+                .equals(other.isCaregiver, isCaregiver) &&
+            const DeepCollectionEquality().equals(other.isClient, isClient) &&
+            const DeepCollectionEquality()
                 .equals(other.userResponse, userResponse));
   }
 
@@ -182,6 +221,8 @@ class _$_PhoneLoginResponse implements _PhoneLoginResponse {
       runtimeType,
       const DeepCollectionEquality().hash(code),
       const DeepCollectionEquality().hash(message),
+      const DeepCollectionEquality().hash(isCaregiver),
+      const DeepCollectionEquality().hash(isClient),
       const DeepCollectionEquality().hash(userResponse));
 
   @JsonKey(ignore: true)
@@ -200,10 +241,16 @@ class _$_PhoneLoginResponse implements _PhoneLoginResponse {
 
 abstract class _PhoneLoginResponse implements PhoneLoginResponse {
   factory _PhoneLoginResponse(
-          {@JsonKey(name: 'code') final int? code,
-          @JsonKey(name: 'message') final String? message,
-          @JsonKey(name: 'response') final UserResponse? userResponse}) =
-      _$_PhoneLoginResponse;
+      {@JsonKey(name: 'code')
+          final int? code,
+      @JsonKey(name: 'message')
+          final String? message,
+      @JsonKey(name: 'is_caregiver', defaultValue: false)
+          final bool? isCaregiver,
+      @JsonKey(name: 'is_client', defaultValue: false)
+          final bool? isClient,
+      @JsonKey(name: 'response')
+          final UserResponse? userResponse}) = _$_PhoneLoginResponse;
 
   factory _PhoneLoginResponse.fromJson(Map<String, dynamic> json) =
       _$_PhoneLoginResponse.fromJson;
@@ -214,6 +261,12 @@ abstract class _PhoneLoginResponse implements PhoneLoginResponse {
   @override
   @JsonKey(name: 'message')
   String? get message;
+  @override
+  @JsonKey(name: 'is_caregiver', defaultValue: false)
+  bool? get isCaregiver;
+  @override
+  @JsonKey(name: 'is_client', defaultValue: false)
+  bool? get isClient;
   @override
   @JsonKey(name: 'response')
   UserResponse? get userResponse;

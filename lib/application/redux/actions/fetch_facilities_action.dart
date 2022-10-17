@@ -1,5 +1,6 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:pro_health_360/application/core/graphql/queries.dart';
@@ -7,6 +8,7 @@ import 'package:pro_health_360/application/redux/actions/update_facility_state_a
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/facility.dart';
+import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class FetchFacilitiesAction extends ReduxAction<AppState> {
@@ -68,6 +70,20 @@ class FetchFacilitiesAction extends ReduxAction<AppState> {
       }
 
       dispatch(UpdateFacilityStateAction(facilities: facilities));
+      if (facilities.length < 2) {
+        dispatch(
+          UpdateFacilityStateAction(
+            currentFacility:
+                facilities.isNotEmpty ? facilities.first : Facility.initial(),
+          ),
+        );
+        dispatch(
+          NavigateAction<AppState>.pushNamedAndRemoveUntil(
+            AppRoutes.home,
+            (Route<dynamic> route) => false,
+          ),
+        );
+      }
     } else {
       throw UserException(processedResponse.message);
     }

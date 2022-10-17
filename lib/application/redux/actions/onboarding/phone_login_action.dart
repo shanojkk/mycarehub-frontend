@@ -146,6 +146,9 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           user = user?.copyWith(firstName: names.first, lastName: names.last);
         }
 
+        final bool isClient = loginResponse.isClient ?? false;
+        final bool isCaregiver = loginResponse.isCaregiver ?? false;
+
         dispatch(
           UpdateOnboardingStateAction(
             isPhoneVerified: user?.isPhoneVerified,
@@ -153,6 +156,8 @@ class PhoneLoginAction extends ReduxAction<AppState> {
             hasSetSecurityQuestions: user?.hasSetSecurityQuestions,
             hasSetPin: user?.hasSetPin,
             hasAcceptedTerms: user?.termsAccepted,
+            isCaregiver: isCaregiver,
+            isClient: isClient,
           ),
         );
 
@@ -212,7 +217,6 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         }
 
         final OnboardingPathInfo navConfig = onboardingPath(appState: state);
-
         dispatch(
           NavigateAction<AppState>.pushNamedAndRemoveUntil(
             navConfig.nextRoute,

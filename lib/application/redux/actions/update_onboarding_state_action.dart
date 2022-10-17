@@ -27,6 +27,8 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
     this.failedLoginCount,
     this.hasAcceptedTerms,
     this.nickName,
+    this.isCaregiver,
+    this.isClient,
   });
 
   List<SecurityQuestion>? securityQuestions;
@@ -56,6 +58,8 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
   ///------------LOGIN RELATED VALUES------------
   final int? failedLoginCount;
   final bool? invalidCredentials;
+  final bool? isClient;
+  final bool? isCaregiver;
 
   @override
   AppState reduce() {
@@ -92,6 +96,8 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
       hasAcceptedTerms:
           hasAcceptedTerms ?? onboardingStateFromState?.hasAcceptedTerms,
       nickName: nickName ?? onboardingStateFromState?.nickName,
+      isCaregiver: isCaregiver ?? onboardingStateFromState?.isCaregiver,
+      isClient: isClient ?? onboardingStateFromState?.isClient,
     );
 
     final AppState newState =

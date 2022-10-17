@@ -21,6 +21,7 @@ FacilityState _$FacilityStateFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$FacilityState {
   List<Facility?>? get facilities => throw _privateConstructorUsedError;
+  Facility? get currentFacility => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +34,9 @@ abstract class $FacilityStateCopyWith<$Res> {
   factory $FacilityStateCopyWith(
           FacilityState value, $Res Function(FacilityState) then) =
       _$FacilityStateCopyWithImpl<$Res>;
-  $Res call({List<Facility?>? facilities});
+  $Res call({List<Facility?>? facilities, Facility? currentFacility});
+
+  $FacilityCopyWith<$Res>? get currentFacility;
 }
 
 /// @nodoc
@@ -48,13 +51,29 @@ class _$FacilityStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? facilities = freezed,
+    Object? currentFacility = freezed,
   }) {
     return _then(_value.copyWith(
       facilities: facilities == freezed
           ? _value.facilities
           : facilities // ignore: cast_nullable_to_non_nullable
               as List<Facility?>?,
+      currentFacility: currentFacility == freezed
+          ? _value.currentFacility
+          : currentFacility // ignore: cast_nullable_to_non_nullable
+              as Facility?,
     ));
+  }
+
+  @override
+  $FacilityCopyWith<$Res>? get currentFacility {
+    if (_value.currentFacility == null) {
+      return null;
+    }
+
+    return $FacilityCopyWith<$Res>(_value.currentFacility!, (value) {
+      return _then(_value.copyWith(currentFacility: value));
+    });
   }
 }
 
@@ -65,7 +84,10 @@ abstract class _$$_FacilityStateCopyWith<$Res>
           _$_FacilityState value, $Res Function(_$_FacilityState) then) =
       __$$_FacilityStateCopyWithImpl<$Res>;
   @override
-  $Res call({List<Facility?>? facilities});
+  $Res call({List<Facility?>? facilities, Facility? currentFacility});
+
+  @override
+  $FacilityCopyWith<$Res>? get currentFacility;
 }
 
 /// @nodoc
@@ -82,12 +104,17 @@ class __$$_FacilityStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? facilities = freezed,
+    Object? currentFacility = freezed,
   }) {
     return _then(_$_FacilityState(
       facilities: facilities == freezed
           ? _value._facilities
           : facilities // ignore: cast_nullable_to_non_nullable
               as List<Facility?>?,
+      currentFacility: currentFacility == freezed
+          ? _value.currentFacility
+          : currentFacility // ignore: cast_nullable_to_non_nullable
+              as Facility?,
     ));
   }
 }
@@ -95,7 +122,7 @@ class __$$_FacilityStateCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_FacilityState implements _FacilityState {
-  _$_FacilityState({final List<Facility?>? facilities})
+  _$_FacilityState({final List<Facility?>? facilities, this.currentFacility})
       : _facilities = facilities;
 
   factory _$_FacilityState.fromJson(Map<String, dynamic> json) =>
@@ -111,8 +138,11 @@ class _$_FacilityState implements _FacilityState {
   }
 
   @override
+  final Facility? currentFacility;
+
+  @override
   String toString() {
-    return 'FacilityState(facilities: $facilities)';
+    return 'FacilityState(facilities: $facilities, currentFacility: $currentFacility)';
   }
 
   @override
@@ -121,13 +151,17 @@ class _$_FacilityState implements _FacilityState {
         (other.runtimeType == runtimeType &&
             other is _$_FacilityState &&
             const DeepCollectionEquality()
-                .equals(other._facilities, _facilities));
+                .equals(other._facilities, _facilities) &&
+            const DeepCollectionEquality()
+                .equals(other.currentFacility, currentFacility));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_facilities));
+      runtimeType,
+      const DeepCollectionEquality().hash(_facilities),
+      const DeepCollectionEquality().hash(currentFacility));
 
   @JsonKey(ignore: true)
   @override
@@ -143,14 +177,17 @@ class _$_FacilityState implements _FacilityState {
 }
 
 abstract class _FacilityState implements FacilityState {
-  factory _FacilityState({final List<Facility?>? facilities}) =
-      _$_FacilityState;
+  factory _FacilityState(
+      {final List<Facility?>? facilities,
+      final Facility? currentFacility}) = _$_FacilityState;
 
   factory _FacilityState.fromJson(Map<String, dynamic> json) =
       _$_FacilityState.fromJson;
 
   @override
   List<Facility?>? get facilities;
+  @override
+  Facility? get currentFacility;
   @override
   @JsonKey(ignore: true)
   _$$_FacilityStateCopyWith<_$_FacilityState> get copyWith =>

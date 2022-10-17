@@ -12,9 +12,13 @@ _$_FacilityState _$$_FacilityStateFromJson(Map<String, dynamic> json) =>
           ?.map((e) =>
               e == null ? null : Facility.fromJson(e as Map<String, dynamic>))
           .toList(),
+      currentFacility: json['currentFacility'] == null
+          ? null
+          : Facility.fromJson(json['currentFacility'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_FacilityStateToJson(_$_FacilityState instance) =>
     <String, dynamic>{
       'facilities': instance.facilities,
+      'currentFacility': instance.currentFacility,
     };

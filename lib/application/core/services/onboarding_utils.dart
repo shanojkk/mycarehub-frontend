@@ -36,6 +36,8 @@ OnboardingPathInfo onboardingPath({required AppState? appState}) {
   final bool hasSetNickName = appState.onboardingState?.hasSetNickName ?? false;
   final bool hasSetPin = appState.onboardingState?.hasSetPin ?? false;
   final bool hasSetPIN = appState.onboardingState?.hasSetPin ?? false;
+  final bool isClient = appState.onboardingState?.isClient ?? false;
+  final bool isCaregiver = appState.onboardingState?.isCaregiver ?? false;
 
   /// The sign in onboarding state
   if (currentOnboardingStage == CurrentOnboardingStage.Login) {
@@ -74,9 +76,19 @@ OnboardingPathInfo onboardingPath({required AppState? appState}) {
         previousRoute: AppRoutes.createPin,
         nextRoute: AppRoutes.congratulationsPage,
       );
+    } else if (isCaregiver && isClient) {
+      return OnboardingPathInfo(
+        nextRoute: AppRoutes.clientCaregiverSelectionPageRoute,
+        previousRoute: '',
+      );
+    } else if (isCaregiver) {
+      return OnboardingPathInfo(
+        nextRoute: AppRoutes.clientSelectionPageRoute,
+        previousRoute: '',
+      );
     }
 
-    return OnboardingPathInfo(nextRoute: AppRoutes.home, previousRoute: '');
+    return OnboardingPathInfo(nextRoute: AppRoutes.facilitySelectionPageRoute, previousRoute: '');
 
     /// The PIN expiry workflow
   } else if (currentOnboardingStage == CurrentOnboardingStage.PINExpired ||

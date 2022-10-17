@@ -1,6 +1,7 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pro_health_360/application/core/services/onboarding_utils.dart';
+import 'package:pro_health_360/application/redux/actions/auth_status_action.dart';
 import 'package:pro_health_360/application/redux/actions/update_credentials_action.dart';
 import 'package:pro_health_360/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:pro_health_360/application/redux/actions/update_user_profile_action.dart';
@@ -152,6 +153,100 @@ void main() {
       final String path = onboardingPath(appState: store.state).nextRoute;
 
       expect(path, AppRoutes.phoneLogin);
+    });
+
+    testWidgets(
+        'should navigate to Client CaregiverSelection Page upon successful login',
+        (WidgetTester tester) async {
+      store.dispatch(
+        UpdateUserProfileAction(
+          pinChangeRequired: true,
+          isPhoneVerified: true,
+          termsAccepted: true,
+        ),
+      );
+
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          currentOnboardingStage: CurrentOnboardingStage.Login,
+          isPhoneVerified: true,
+          hasSetSecurityQuestions: true,
+          hasSetNickName: true,
+          hasSetPin: true,
+          isCaregiver: true,
+          isClient: true,
+        ),
+      );
+      store.dispatch(
+        AuthStatusAction(
+          isSignedIn: true,
+        ),
+      );
+      final String path = onboardingPath(appState: store.state).nextRoute;
+
+      expect(path, AppRoutes.clientCaregiverSelectionPageRoute);
+    });
+    testWidgets(
+        'should navigate to Facility Selection Page upon successful login',
+        (WidgetTester tester) async {
+      store.dispatch(
+        UpdateUserProfileAction(
+          pinChangeRequired: true,
+          isPhoneVerified: true,
+          termsAccepted: true,
+        ),
+      );
+
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          currentOnboardingStage: CurrentOnboardingStage.Login,
+          isPhoneVerified: true,
+          hasSetSecurityQuestions: true,
+          hasSetNickName: true,
+          hasSetPin: true,
+          isCaregiver: false,
+          isClient: true,
+        ),
+      );
+      store.dispatch(
+        AuthStatusAction(
+          isSignedIn: true,
+        ),
+      );
+      final String path = onboardingPath(appState: store.state).nextRoute;
+
+      expect(path, AppRoutes.facilitySelectionPageRoute);
+    });
+    testWidgets(
+        'should navigate to Client Selection Page upon successful login',
+        (WidgetTester tester) async {
+      store.dispatch(
+        UpdateUserProfileAction(
+          pinChangeRequired: true,
+          isPhoneVerified: true,
+          termsAccepted: true,
+        ),
+      );
+
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          currentOnboardingStage: CurrentOnboardingStage.Login,
+          isPhoneVerified: true,
+          hasSetSecurityQuestions: true,
+          hasSetNickName: true,
+          hasSetPin: true,
+          isCaregiver: true,
+          isClient: false,
+        ),
+      );
+      store.dispatch(
+        AuthStatusAction(
+          isSignedIn: true,
+        ),
+      );
+      final String path = onboardingPath(appState: store.state).nextRoute;
+
+      expect(path, AppRoutes.clientSelectionPageRoute);
     });
 
     testWidgets(

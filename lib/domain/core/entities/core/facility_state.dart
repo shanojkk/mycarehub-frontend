@@ -8,6 +8,7 @@ part 'facility_state.g.dart';
 class FacilityState with _$FacilityState {
   factory FacilityState({
     List<Facility?>? facilities,
+    Facility? currentFacility,
   }) = _FacilityState;
 
   factory FacilityState.fromJson(Map<String, dynamic> json) =>
@@ -15,5 +16,6 @@ class FacilityState with _$FacilityState {
 
   factory FacilityState.initial() => FacilityState(
         facilities: <Facility?>[],
+        currentFacility: Facility.initial(),
       );
 }

@@ -44,6 +44,26 @@ void main() {
             'data': <String, dynamic>{
               'getContent': <String, dynamic>{
                 'items': <dynamic>[mockContent, mockContent]
+              },
+              'getUserLinkedFacilities': <String, dynamic>{
+                'Facilities': <dynamic>[
+                  <String, dynamic>{
+                    'ID': 'some-id',
+                    'name': 'hospital name',
+                    'code': 1,
+                    'phone': '',
+                    'active': true,
+                    'county': 'some-county',
+                    'description': '',
+                    'fhirOrganisationID': '',
+                    'workStationDetails': <String, dynamic>{
+                      'Notifications': 1,
+                      'Surveys': 1,
+                      'Articles': 1,
+                      'Messages': 1
+                    }
+                  },
+                ]
               }
             }
           }),

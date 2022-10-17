@@ -10,6 +10,8 @@ class PhoneLoginResponse with _$PhoneLoginResponse {
   factory PhoneLoginResponse({
     @JsonKey(name: 'code') int? code,
     @JsonKey(name: 'message') String? message,
+    @JsonKey(name: 'is_caregiver', defaultValue: false) bool? isCaregiver,
+    @JsonKey(name: 'is_client', defaultValue: false) bool? isClient,
     @JsonKey(name: 'response') UserResponse? userResponse,
   }) = _PhoneLoginResponse;
 

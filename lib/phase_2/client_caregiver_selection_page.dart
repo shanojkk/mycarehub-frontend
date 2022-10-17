@@ -8,6 +8,7 @@ import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 import 'package:pro_health_360/phase_2/widgets/general_workstation_widget.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
+import 'package:pro_health_360/presentation/router/routes.dart';
 
 class ClientCaregiverSelectionPage extends StatelessWidget {
   const ClientCaregiverSelectionPage();
@@ -44,7 +45,10 @@ class ClientCaregiverSelectionPage extends StatelessWidget {
                           AppColors.unSelectedReactionIconColor,
                         ),
                       ),
-                      onButtonCallback: () {},
+                      onButtonCallback: () =>
+                          Navigator.of(context).pushReplacementNamed(
+                        AppRoutes.clientSelectionPageRoute,
+                      ),
                       title: caregiver,
                       buttonText: proceed,
                     ),
@@ -56,7 +60,10 @@ class ClientCaregiverSelectionPage extends StatelessWidget {
                           AppColors.unSelectedReactionIconColor,
                         ),
                       ),
-                      onButtonCallback: () {},
+                      onButtonCallback: () =>
+                          Navigator.of(context).pushReplacementNamed(
+                        AppRoutes.facilitySelectionPageRoute,
+                      ),
                       title: client,
                       buttonText: proceed,
                     )

@@ -9,6 +9,7 @@ import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 import 'package:pro_health_360/phase_2/widgets/general_workstation_widget.dart';
 import 'package:pro_health_360/phase_2/widgets/summary_badge_widget.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
+import 'package:pro_health_360/presentation/router/routes.dart';
 
 class ClientSelectionPage extends StatelessWidget {
   const ClientSelectionPage();
@@ -72,6 +73,11 @@ class ClientSelectionPage extends StatelessWidget {
                         ],
                       ),
                       buttonText: continueString,
+                      onButtonCallback: () =>
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                        AppRoutes.home,
+                        (Route<dynamic> route) => false,
+                      ),
                     ),
                     smallVerticalSizedBox,
                     GeneralWorkstationWidget(
@@ -100,6 +106,11 @@ class ClientSelectionPage extends StatelessWidget {
                         ],
                       ),
                       buttonText: continueString,
+                      onButtonCallback: () =>
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                        AppRoutes.home,
+                        (Route<dynamic> route) => false,
+                      ),
                     ),
                   ],
                 );

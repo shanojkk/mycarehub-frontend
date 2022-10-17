@@ -6,14 +6,17 @@ import 'package:pro_health_360/domain/core/entities/core/facility_state.dart';
 class UpdateFacilityStateAction extends ReduxAction<AppState> {
   UpdateFacilityStateAction({
     this.facilities,
+    this.currentFacility,
   });
 
   final List<Facility>? facilities;
+  final Facility? currentFacility;
 
   @override
   Future<AppState> reduce() async {
     final FacilityState facilityState = FacilityState(
       facilities: facilities ?? state.clientState?.facilityState?.facilities,
+      currentFacility: currentFacility ?? state.clientState?.facilityState?.currentFacility,
     );
 
     final AppState newState = state.copyWith.call(

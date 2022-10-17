@@ -409,7 +409,7 @@ const String readAndAcceptText =
     'Please review the terms of service below and accept them';
 const String acceptTermsText = 'I agree with the terms and conditions';
 const String joinString = 'Join';
-const String suggestedGroupsString = 'Suggested groups to join';
+const String suggestedGroupsString = 'Suggested groups';
 const String closeString = 'Close';
 const String acceptTermsErrorMessage =
     'Kindly agree to the terms and conditions before proceeding';

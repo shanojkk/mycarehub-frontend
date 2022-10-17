@@ -12,14 +12,16 @@ class Group with _$Group {
     @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'memberCount') int? memberCount,
     @JsonKey(name: 'avatar') String? avatar,
+    @JsonKey(name: 'description') String? description,
   }) = _Group;
 
   factory Group.fromJson(Map<String, dynamic> json) => _$GroupFromJson(json);
 
-   factory Group.initial() => Group(
+  factory Group.initial() => Group(
         id: UNKNOWN,
         name: UNKNOWN,
         memberCount: 0,
         avatar: UNKNOWN,
+        description: UNKNOWN,
       );
 }

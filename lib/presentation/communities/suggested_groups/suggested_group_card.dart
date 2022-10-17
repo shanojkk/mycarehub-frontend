@@ -25,168 +25,109 @@ class SuggestedGroupCard extends StatelessWidget {
     super.key,
     required this.group,
     required this.route,
+    required this.index,
   });
 
   final Group group;
   final String route;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 110,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8.0),
-        color: Colors.white,
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Column(
-        children: <Widget>[
-          smallVerticalSizedBox,
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: group.avatar != null &&
-                    group.avatar!.isNotEmpty &&
-                    group.avatar != UNKNOWN
-                ? ClipOval(
-                    child: Image.network(
-                      group.avatar!,
-                      height: 80,
-                      width: 80,
-                      fit: BoxFit.cover,
-                    ),
-                  )
-                : DecoratedBox(
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColors.whiteColor,
-                    ),
-                    child: Container(
-                      height: 60,
-                      width: 60,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Theme.of(context).primaryColor.withOpacity(0.3),
-                      ),
-                      child: Center(
-                        child: Text(
-                          group.name != null &&
-                                  group.name!.isNotEmpty &&
-                                  group.name != UNKNOWN
-                              ? group.name![0]
-                              : 'U',
-                          style: boldSize16Text(
-                            Theme.of(context).primaryColor,
+    return StoreConnector<AppState, GroupsViewModel>(
+      converter: (Store<AppState> store) => GroupsViewModel.fromStore(store),
+      builder: (BuildContext context, GroupsViewModel vm) {
+        return Container(
+          width: MediaQuery.of(context).size.width * 0.7,
+          decoration: BoxDecoration(
+            color: AppColors.orangeColor.withOpacity(0.14),
+            borderRadius: const BorderRadius.all(Radius.circular(8)),
+            border: Border.all(color: AppColors.orangeColor.withOpacity(0.3)),
+          ),
+          padding: const EdgeInsets.all(15),
+          margin: const EdgeInsets.only(right: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                group.name ?? '',
+                style: heavySize16Text(AppColors.orangeColor),
+              ),
+              smallVerticalSizedBox,
+              Text(
+                group.description ?? '',
+                overflow: TextOverflow.ellipsis,
+                style:
+                    normalSize14Text(AppColors.secondaryColor.withOpacity(0.6)),
+              ),
+              const Spacer(),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: vm.wait.isWaitingFor(index)
+                    ? const PlatformLoader()
+                    : SizedBox(
+                        width: double.infinity,
+                        height: 48,
+                        child: MyAfyaHubPrimaryButton(
+                          borderColor: Colors.transparent,
+                          buttonColor: AppColors.orangeColor.withOpacity(0.3),
+                          buttonKey: joinSuggestedGroupButtonKey,
+                          onPressed: () {
+                            final String clientID =
+                                StoreProvider.state<AppState>(context)
+                                        ?.clientState
+                                        ?.id ??
+                                    '';
+                            StoreProvider.dispatch<AppState>(
+                              context,
+                              AddUserToGroupAction(
+                                client:
+                                    AppWrapperBase.of(context)!.graphQLClient,
+                                variables: <String, dynamic>{
+                                  'memberIDs': <String>[clientID],
+                                  'communityID': group.id
+                                },
+                                communityId: group.id ?? '',
+                                onError: (String error) {
+                                  ScaffoldMessenger.of(context)
+                                    ..hideCurrentSnackBar()
+                                    ..showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          getErrorMessage(addingToGroupString),
+                                        ),
+                                        duration: const Duration(
+                                          seconds: kShortSnackBarDuration,
+                                        ),
+                                        action: dismissSnackBar(
+                                          closeString,
+                                          white,
+                                          context,
+                                        ),
+                                      ),
+                                    );
+                                  reportErrorToSentry(
+                                    hint: getErrorMessage(addingToGroupString),
+                                  );
+                                },
+                                onSuccess: () =>
+                                    Navigator.of(context).pushReplacementNamed(
+                                  route,
+                                ),
+                              ),
+                            );
+                          },
+                          customChild: Text(
+                            joinString,
+                            style: veryBoldSize15Text(AppColors.orangeColor),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-          ),
-          verySmallVerticalSizedBox,
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Text(
-              group.name ?? '',
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: AppColors.secondaryColor,
               ),
-            ),
+            ],
           ),
-          verySmallVerticalSizedBox,
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4.0),
-            child: Text(
-              '${group.memberCount} members',
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w400,
-                color: AppColors.greyTextColor,
-              ),
-            ),
-          ),
-          verySmallVerticalSizedBox,
-          StoreConnector<AppState, GroupsViewModel>(
-            converter: (Store<AppState> store) =>
-                GroupsViewModel.fromStore(store),
-            builder: (BuildContext context, GroupsViewModel vm) {
-              return vm.wait.isWaitingFor(group.id)
-                  ? const PlatformLoader()
-                  : RawMaterialButton(
-                      key: joinSuggestedGroupButtonKey,
-                      splashColor: AppColors.secondaryColor.withOpacity(0.2),
-                      highlightColor: Colors.transparent,
-                      elevation: 0,
-                      onPressed: () {
-                        final String clientID =
-                            StoreProvider.state<AppState>(context)
-                                    ?.clientState
-                                    ?.id ??
-                                '';
-                        StoreProvider.dispatch<AppState>(
-                          context,
-                          AddUserToGroupAction(
-                            client: AppWrapperBase.of(context)!.graphQLClient,
-                            variables: <String, dynamic>{
-                              'memberIDs': <String>[clientID],
-                              'communityID': group.id
-                            },
-                            communityId: group.id ?? '',
-                            onError: (String error) {
-                              ScaffoldMessenger.of(context)
-                                ..hideCurrentSnackBar()
-                                ..showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      getErrorMessage(addingToGroupString),
-                                    ),
-                                    duration: const Duration(
-                                      seconds: kShortSnackBarDuration,
-                                    ),
-                                    action: dismissSnackBar(
-                                      closeString,
-                                      white,
-                                      context,
-                                    ),
-                                  ),
-                                );
-
-                              reportErrorToSentry(
-                                hint: getErrorMessage(addingToGroupString),
-                              );
-                            },
-                            onSuccess: () =>
-                                Navigator.of(context).pushReplacementNamed(
-                              route,
-                            ),
-                          ),
-                        );
-                      },
-                      constraints:
-                          const BoxConstraints(minHeight: 25, minWidth: 80),
-                      fillColor: Colors.transparent,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                        side: const BorderSide(
-                          color: AppColors.secondaryColor,
-                        ),
-                      ),
-                      child: const Text(
-                        joinString,
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.secondaryColor,
-                        ),
-                      ),
-                    );
-            },
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

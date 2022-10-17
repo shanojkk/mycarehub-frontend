@@ -287,6 +287,7 @@ query recommendedCommunities($clientID: String!, $limit: Int!) {
     id
     name
     memberCount
+    description
   }
 }
 ''';

@@ -11,6 +11,7 @@ _$_Group _$$_GroupFromJson(Map<String, dynamic> json) => _$_Group(
       name: json['name'] as String?,
       memberCount: json['memberCount'] as int?,
       avatar: json['avatar'] as String?,
+      description: json['description'] as String?,
     );
 
 Map<String, dynamic> _$$_GroupToJson(_$_Group instance) => <String, dynamic>{
@@ -18,4 +19,5 @@ Map<String, dynamic> _$$_GroupToJson(_$_Group instance) => <String, dynamic>{
       'name': instance.name,
       'memberCount': instance.memberCount,
       'avatar': instance.avatar,
+      'description': instance.description,
     };

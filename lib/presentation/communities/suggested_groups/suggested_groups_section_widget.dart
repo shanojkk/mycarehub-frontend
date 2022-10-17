@@ -3,6 +3,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 // Project imports:
 import 'package:pro_health_360/application/redux/actions/communities/fetch_recommended_communities_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
@@ -10,6 +11,7 @@ import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/view_models/groups/groups_view_model.dart';
 import 'package:pro_health_360/domain/core/entities/communities/group.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 import 'package:pro_health_360/presentation/communities/suggested_groups/suggested_group_card.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
@@ -55,17 +57,35 @@ class SuggestedGroupsSection extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            suggestedGroupsString,
-                            overflow: TextOverflow.ellipsis,
-                            style: veryBoldSize16Text(AppColors.secondaryColor),
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                suggestedGroupsString,
+                                style: veryBoldSize16Text(
+                                  AppColors.secondaryColor,
+                                ),
+                              ),
+                            ),
+                            Row(
+                              children: <Widget>[
+                                SvgPicture.asset(verticalScrollIconSvgPath),
+                                verySmallHorizontalSizedBox,
+                                Text(
+                                  scrollForMoreString,
+                                  style: boldSize13Text(
+                                    AppColors.greyTextColor.withOpacity(0.8),
+                                  ),
+                                )
+                              ],
+                            )
+                          ],
                         ),
                         verySmallVerticalSizedBox,
                         SizedBox(
-                          height: 195,
+                          height: 140,
                           child: ListView.builder(
                             physics: const BouncingScrollPhysics(),
                             shrinkWrap: true,
@@ -78,6 +98,7 @@ class SuggestedGroupsSection extends StatelessWidget {
                               return Padding(
                                 padding: const EdgeInsets.only(left: 10),
                                 child: SuggestedGroupCard(
+                                  index: index,
                                   group: currentGroup,
                                   route: AppRoutes.communityListPage,
                                 ),

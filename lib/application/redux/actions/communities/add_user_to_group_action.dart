@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:pro_health_360/application/core/graphql/mutations.dart';
+import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 
 class AddUserToGroupAction extends ReduxAction<AppState> {
@@ -12,6 +13,7 @@ class AddUserToGroupAction extends ReduxAction<AppState> {
   final String communityId;
   final void Function(String)? onError;
   final VoidCallback? onSuccess;
+  final int? index;
 
   AddUserToGroupAction({
     required this.client,
@@ -19,17 +21,18 @@ class AddUserToGroupAction extends ReduxAction<AppState> {
     this.communityId = '',
     this.onError,
     this.onSuccess,
+    this.index,
   });
 
   @override
   void before() {
     super.before();
-    dispatch(WaitAction<AppState>.add(communityId));
+    dispatch(WaitAction<AppState>.add(index ?? addUserToCommunityFlag));
   }
 
   @override
   void after() {
-    dispatch(WaitAction<AppState>.remove(communityId));
+    dispatch(WaitAction<AppState>.remove(index ?? addUserToCommunityFlag));
     super.after();
   }
 

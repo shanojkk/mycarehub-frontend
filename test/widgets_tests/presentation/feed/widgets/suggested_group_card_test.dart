@@ -26,6 +26,7 @@ void main() {
     testWidgets('join button should route is successful',
         (WidgetTester tester) async {
       mockNetworkImages(() async {
+        const int index = 0;
         final MockShortGraphQlClient mockShortSILGraphQlClient =
             MockShortGraphQlClient.withResponse(
           'idToken',
@@ -42,6 +43,7 @@ void main() {
           store: store,
           client: mockShortSILGraphQlClient,
           widget: SuggestedGroupCard(
+            index: index,
             group: mockGroup,
             route: AppRoutes.phoneLogin,
           ),
@@ -60,6 +62,7 @@ void main() {
         'should show a snackbar with error message in case of error while adding member',
         (WidgetTester tester) async {
       mockNetworkImages(() async {
+        const int index = 0;
         final MockShortGraphQlClient mockShortSILGraphQlClient =
             MockShortGraphQlClient.withResponse(
           'idToken',
@@ -80,6 +83,7 @@ void main() {
           store: store,
           client: mockShortSILGraphQlClient,
           widget: SuggestedGroupCard(
+            index: index,
             group: mockGroup,
             route: AppRoutes.phoneLogin,
           ),

@@ -28,6 +28,8 @@ mixin _$Group {
   int? get memberCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'avatar')
   String? get avatar => throw _privateConstructorUsedError;
+  @JsonKey(name: 'description')
+  String? get description => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,7 +44,8 @@ abstract class $GroupCopyWith<$Res> {
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'memberCount') int? memberCount,
-      @JsonKey(name: 'avatar') String? avatar});
+      @JsonKey(name: 'avatar') String? avatar,
+      @JsonKey(name: 'description') String? description});
 }
 
 /// @nodoc
@@ -59,6 +62,7 @@ class _$GroupCopyWithImpl<$Res> implements $GroupCopyWith<$Res> {
     Object? name = freezed,
     Object? memberCount = freezed,
     Object? avatar = freezed,
+    Object? description = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -77,6 +81,10 @@ class _$GroupCopyWithImpl<$Res> implements $GroupCopyWith<$Res> {
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as String?,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -90,7 +98,8 @@ abstract class _$$_GroupCopyWith<$Res> implements $GroupCopyWith<$Res> {
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'memberCount') int? memberCount,
-      @JsonKey(name: 'avatar') String? avatar});
+      @JsonKey(name: 'avatar') String? avatar,
+      @JsonKey(name: 'description') String? description});
 }
 
 /// @nodoc
@@ -108,6 +117,7 @@ class __$$_GroupCopyWithImpl<$Res> extends _$GroupCopyWithImpl<$Res>
     Object? name = freezed,
     Object? memberCount = freezed,
     Object? avatar = freezed,
+    Object? description = freezed,
   }) {
     return _then(_$_Group(
       id: id == freezed
@@ -126,6 +136,10 @@ class __$$_GroupCopyWithImpl<$Res> extends _$GroupCopyWithImpl<$Res>
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as String?,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -137,7 +151,8 @@ class _$_Group implements _Group {
       {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'name') this.name,
       @JsonKey(name: 'memberCount') this.memberCount,
-      @JsonKey(name: 'avatar') this.avatar});
+      @JsonKey(name: 'avatar') this.avatar,
+      @JsonKey(name: 'description') this.description});
 
   factory _$_Group.fromJson(Map<String, dynamic> json) =>
       _$$_GroupFromJson(json);
@@ -154,10 +169,13 @@ class _$_Group implements _Group {
   @override
   @JsonKey(name: 'avatar')
   final String? avatar;
+  @override
+  @JsonKey(name: 'description')
+  final String? description;
 
   @override
   String toString() {
-    return 'Group(id: $id, name: $name, memberCount: $memberCount, avatar: $avatar)';
+    return 'Group(id: $id, name: $name, memberCount: $memberCount, avatar: $avatar, description: $description)';
   }
 
   @override
@@ -169,7 +187,9 @@ class _$_Group implements _Group {
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
                 .equals(other.memberCount, memberCount) &&
-            const DeepCollectionEquality().equals(other.avatar, avatar));
+            const DeepCollectionEquality().equals(other.avatar, avatar) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description));
   }
 
   @JsonKey(ignore: true)
@@ -179,7 +199,8 @@ class _$_Group implements _Group {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(memberCount),
-      const DeepCollectionEquality().hash(avatar));
+      const DeepCollectionEquality().hash(avatar),
+      const DeepCollectionEquality().hash(description));
 
   @JsonKey(ignore: true)
   @override
@@ -199,7 +220,8 @@ abstract class _Group implements Group {
       {@JsonKey(name: 'id') final String? id,
       @JsonKey(name: 'name') final String? name,
       @JsonKey(name: 'memberCount') final int? memberCount,
-      @JsonKey(name: 'avatar') final String? avatar}) = _$_Group;
+      @JsonKey(name: 'avatar') final String? avatar,
+      @JsonKey(name: 'description') final String? description}) = _$_Group;
 
   factory _Group.fromJson(Map<String, dynamic> json) = _$_Group.fromJson;
 
@@ -215,6 +237,9 @@ abstract class _Group implements Group {
   @override
   @JsonKey(name: 'avatar')
   String? get avatar;
+  @override
+  @JsonKey(name: 'description')
+  String? get description;
   @override
   @JsonKey(ignore: true)
   _$$_GroupCopyWith<_$_Group> get copyWith =>

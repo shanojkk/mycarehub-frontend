@@ -362,12 +362,6 @@ void navigateToNewPage({
   Navigator.pushReplacementNamed(context, route);
 }
 
-/// Returns the current year
-String getCurrentYear() {
-  final DateTime now = DateTime.now();
-  return DateFormat('y').format(now);
-}
-
 /// Updates the status of the like of a content item
 ///
 /// It updates the app state before making an API call to update the backend

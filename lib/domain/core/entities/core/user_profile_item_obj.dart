@@ -18,7 +18,7 @@ part 'user_profile_item_obj.g.dart';
 ///  )
 /// ```
 class ProfileMenuItem {
-  ProfileMenuItem({
+  const ProfileMenuItem({
     required this.iconAssetPath,
     required this.title,
     required this.route,

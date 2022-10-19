@@ -7,8 +7,8 @@ environment:
   sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
-  afya_moja_core: ^0.2.19
-  app_wrapper: ^0.1.36
+  afya_moja_core: ^0.2.20
+  app_wrapper: ^0.2.2
   async_redux: ^15.0.0
   collection: ^1.16.0
   connectivity_plus: ^2.3.6+1
@@ -21,7 +21,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_config: ^2.0.0
-  flutter_graphql_client: ^0.1.24
+  flutter_graphql_client: ^0.2.2
   flutter_html: ^3.0.0-alpha.5
   flutter_local_notifications: ^9.9.1
   flutter_local_notifications_platform_interface: ^5.0.0

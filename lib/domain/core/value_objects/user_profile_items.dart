@@ -3,7 +3,7 @@ import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 
 /// Configuration for the user profile menu items
-final List<ProfileMenuItem> userProfileItems = <ProfileMenuItem>[
+const List<ProfileMenuItem> userProfileItems = <ProfileMenuItem>[
   ProfileMenuItem(
     iconAssetPath: profileIcon,
     route: AppRoutes.personalInfo,

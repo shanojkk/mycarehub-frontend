@@ -14,7 +14,7 @@ void main() {
   };
   test('UserProfileItemObj toJson', () {
     expect(
-      ProfileMenuItem(
+      const ProfileMenuItem(
         iconAssetPath: feedbackIcon,
         title: 'Feedback',
         route: AppRoutes.feedbackPage,

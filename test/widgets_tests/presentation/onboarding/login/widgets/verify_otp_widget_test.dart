@@ -22,7 +22,6 @@ import 'package:pro_health_360/application/redux/actions/verify_otp_action.dart'
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/view_models/verify_phone_view_model.dart';
-import 'package:pro_health_360/domain/core/entities/core/contact.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';

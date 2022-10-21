@@ -2,6 +2,7 @@
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:pro_health_360/domain/core/entities/caregiver/managed_client.dart';
 import 'package:pro_health_360/domain/core/entities/core/user.dart';
 
 part 'caregiver_state.freezed.dart';
@@ -13,6 +14,9 @@ class CaregiverState with _$CaregiverState {
     @JsonKey(name: 'id') String? id,
     @JsonKey(name: 'user') User? user,
     @JsonKey(name: 'caregiver_number') String? caregiverNumber,
+    List<ManagedClient>? managedClients,
+    String? selectedClientId,
+    bool? errorFetchingClients,
   }) = _CaregiverState;
 
   factory CaregiverState.fromJson(Map<String, dynamic> json) =>
@@ -22,5 +26,8 @@ class CaregiverState with _$CaregiverState {
         id: UNKNOWN,
         user: User.initial(),
         caregiverNumber: UNKNOWN,
+        managedClients: <ManagedClient>[],
+        selectedClientId: UNKNOWN,
+        errorFetchingClients: false,
       );
 }

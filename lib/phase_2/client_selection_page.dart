@@ -1,10 +1,15 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pro_health_360/application/redux/actions/caregiver/fetch_managed_clients_action.dart';
+import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/view_models/app_state_view_model.dart';
+import 'package:pro_health_360/domain/core/entities/caregiver/managed_client.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 import 'package:pro_health_360/phase_2/widgets/general_workstation_widget.dart';
 import 'package:pro_health_360/phase_2/widgets/summary_badge_widget.dart';
@@ -24,94 +29,106 @@ class ClientSelectionPage extends StatelessWidget {
             child: StoreConnector<AppState, AppStateViewModel>(
               converter: (Store<AppState> store) =>
                   AppStateViewModel.fromStore(store),
+              onInit: (Store<AppState> store) async {
+                await store.dispatch(
+                  FetchManagedClientsAction(
+                    client: AppWrapperBase.of(context)!.graphQLClient,
+                  ),
+                );
+              },
               builder: (BuildContext context, AppStateViewModel vm) {
+                final List<ManagedClient>? managedClients =
+                    vm.appState.caregiverState?.managedClients;
+                final List<Widget> clientWidgets = <Widget>[];
+                if (managedClients?.isNotEmpty ?? false) {
+                  for (final ManagedClient client in managedClients!) {
+                    clientWidgets.add(
+                      Column(
+                        children: <Widget>[
+                          GeneralWorkstationWidget(
+                            title: client.user?.name ?? '',
+                            bodyWidget: Wrap(
+                              runSpacing: 12,
+                              spacing: 8,
+                              children: <Widget>[
+                                if ((client.workStationDetails?.notifications ??
+                                        0) >
+                                    0)
+                                  SummaryBadgeWidget(
+                                    title:
+                                        '${client.workStationDetails!.notifications.toString()} ${notificationsText.toLowerCase()}',
+                                    iconUrl: notificationIcon,
+                                  ),
+                                if ((client.workStationDetails?.surveys ?? 0) >
+                                    0)
+                                  SummaryBadgeWidget(
+                                    title:
+                                        '${client.workStationDetails!.surveys.toString()} ${surveys.toLowerCase()}',
+                                    iconUrl: surveyIcon,
+                                  ),
+                              ],
+                            ),
+                            buttonText: continueString,
+                            onButtonCallback: () =>
+                                Navigator.of(context).pushNamedAndRemoveUntil(
+                              AppRoutes.home,
+                              (Route<dynamic> route) => false,
+                            ),
+                          ),
+                          smallVerticalSizedBox,
+                        ],
+                      ),
+                    );
+                  }
+                }
+
                 return Column(
                   children: <Widget>[
                     Center(
                       child: SvgPicture.asset(workStationChooserImage),
                     ),
                     mediumVerticalSizedBox,
-                    Text(
-                      clientSelectionTitle(
-                        vm.appState.clientState?.user?.firstName ?? '',
-                      ),
-                      style: boldSize20Text(AppColors.primaryColor),
-                      textAlign: TextAlign.center,
-                    ),
-                    mediumVerticalSizedBox,
-                    Text(
-                      clientSelectionDescription('2'),
-                      style: normalSize14Text(
-                        AppColors.unSelectedReactionIconColor,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    mediumVerticalSizedBox,
-                    GeneralWorkstationWidget(
-                      title: 'John Doe',
-                      subtitle: 'Nanyuki District Hospital',
-                      bodyWidget: Wrap(
-                        runSpacing: 12,
-                        spacing: 8,
-                        children: const <Widget>[
-                          SummaryBadgeWidget(
-                            title: '23 notifications',
-                            iconUrl: notificationIcon,
-                          ),
-                          SummaryBadgeWidget(
-                            title: '3 surveys',
-                            iconUrl: surveyIcon,
-                          ),
-                          SummaryBadgeWidget(
-                            title: '400 messages',
-                            iconUrl: messageIcon,
-                          ),
-                          SummaryBadgeWidget(
-                            title: '3 new articles',
-                            iconUrl: pdfIcon,
+                    if (vm.wait!.isWaitingFor(fetchManagedClientsFlag))
+                      const Center(child: PlatformLoader())
+                    else if (vm.appState.caregiverState?.errorFetchingClients ??
+                        false)
+                      GenericErrorWidget(
+                        actionKey: helpNoDataWidgetKey,
+                        recoverCallback: () {
+                          StoreProvider.dispatch<AppState>(
+                            context,
+                            FetchManagedClientsAction(
+                              client: AppWrapperBase.of(context)!.graphQLClient,
+                            ),
+                          );
+                        },
+                        messageTitle: messageTitleGenericErrorWidget,
+                        messageBody: <TextSpan>[
+                          TextSpan(
+                            text: getErrorMessage(fetchingPatientsString),
+                            style: normalSize16Text(AppColors.greyTextColor),
                           ),
                         ],
+                      )
+                    else ...<Widget>{
+                      Text(
+                        clientSelectionTitle(
+                          vm.appState.clientState?.user?.firstName ?? '',
+                        ),
+                        style: boldSize20Text(AppColors.primaryColor),
+                        textAlign: TextAlign.center,
                       ),
-                      buttonText: continueString,
-                      onButtonCallback: () =>
-                          Navigator.of(context).pushNamedAndRemoveUntil(
-                        AppRoutes.home,
-                        (Route<dynamic> route) => false,
+                      mediumVerticalSizedBox,
+                      Text(
+                        clientSelectionDescription('2'),
+                        style: normalSize14Text(
+                          AppColors.unSelectedReactionIconColor,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                    ),
-                    smallVerticalSizedBox,
-                    GeneralWorkstationWidget(
-                      title: 'Jane Doe',
-                      subtitle: 'Nanyuki District Hospital',
-                      bodyWidget: Wrap(
-                        runSpacing: 12,
-                        spacing: 8,
-                        children: const <Widget>[
-                          SummaryBadgeWidget(
-                            title: '23 notifications',
-                            iconUrl: notificationIcon,
-                          ),
-                          SummaryBadgeWidget(
-                            title: '3 surveys',
-                            iconUrl: surveyIcon,
-                          ),
-                          SummaryBadgeWidget(
-                            title: '400 messages',
-                            iconUrl: messageIcon,
-                          ),
-                          SummaryBadgeWidget(
-                            title: '3 new articles',
-                            iconUrl: pdfIcon,
-                          ),
-                        ],
-                      ),
-                      buttonText: continueString,
-                      onButtonCallback: () =>
-                          Navigator.of(context).pushNamedAndRemoveUntil(
-                        AppRoutes.home,
-                        (Route<dynamic> route) => false,
-                      ),
-                    ),
+                      mediumVerticalSizedBox,
+                      ...clientWidgets,
+                    }
                   ],
                 );
               },

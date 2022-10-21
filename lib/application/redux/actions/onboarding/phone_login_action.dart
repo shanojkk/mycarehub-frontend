@@ -11,6 +11,7 @@ import 'package:http/src/response.dart';
 import 'package:pro_health_360/application/core/services/analytics_service.dart';
 import 'package:pro_health_360/application/core/services/onboarding_utils.dart';
 import 'package:pro_health_360/application/redux/actions/auth_status_action.dart';
+import 'package:pro_health_360/application/redux/actions/caregiver/update_caregiver_profile_action.dart';
 import 'package:pro_health_360/application/redux/actions/update_client_profile_action.dart';
 import 'package:pro_health_360/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
@@ -183,6 +184,12 @@ class PhoneLoginAction extends ReduxAction<AppState> {
               user: user,
               communitiesState: CommunitiesState.initial(),
             ),
+          ),
+        );
+
+        dispatch( 
+          UpdateCaregiverStateAction(
+            caregiverState: loginResponse.userResponse?.caregiverState,
           ),
         );
 

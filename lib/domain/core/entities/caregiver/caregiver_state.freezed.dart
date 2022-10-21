@@ -26,6 +26,9 @@ mixin _$CaregiverState {
   User? get user => throw _privateConstructorUsedError;
   @JsonKey(name: 'caregiver_number')
   String? get caregiverNumber => throw _privateConstructorUsedError;
+  List<ManagedClient>? get managedClients => throw _privateConstructorUsedError;
+  String? get selectedClientId => throw _privateConstructorUsedError;
+  bool? get errorFetchingClients => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +44,10 @@ abstract class $CaregiverStateCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'user') User? user,
-      @JsonKey(name: 'caregiver_number') String? caregiverNumber});
+      @JsonKey(name: 'caregiver_number') String? caregiverNumber,
+      List<ManagedClient>? managedClients,
+      String? selectedClientId,
+      bool? errorFetchingClients});
 
   $UserCopyWith<$Res>? get user;
 }
@@ -60,6 +66,9 @@ class _$CaregiverStateCopyWithImpl<$Res>
     Object? id = freezed,
     Object? user = freezed,
     Object? caregiverNumber = freezed,
+    Object? managedClients = freezed,
+    Object? selectedClientId = freezed,
+    Object? errorFetchingClients = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -74,6 +83,18 @@ class _$CaregiverStateCopyWithImpl<$Res>
           ? _value.caregiverNumber
           : caregiverNumber // ignore: cast_nullable_to_non_nullable
               as String?,
+      managedClients: managedClients == freezed
+          ? _value.managedClients
+          : managedClients // ignore: cast_nullable_to_non_nullable
+              as List<ManagedClient>?,
+      selectedClientId: selectedClientId == freezed
+          ? _value.selectedClientId
+          : selectedClientId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      errorFetchingClients: errorFetchingClients == freezed
+          ? _value.errorFetchingClients
+          : errorFetchingClients // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 
@@ -99,7 +120,10 @@ abstract class _$$_CaregiverStateCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'user') User? user,
-      @JsonKey(name: 'caregiver_number') String? caregiverNumber});
+      @JsonKey(name: 'caregiver_number') String? caregiverNumber,
+      List<ManagedClient>? managedClients,
+      String? selectedClientId,
+      bool? errorFetchingClients});
 
   @override
   $UserCopyWith<$Res>? get user;
@@ -121,6 +145,9 @@ class __$$_CaregiverStateCopyWithImpl<$Res>
     Object? id = freezed,
     Object? user = freezed,
     Object? caregiverNumber = freezed,
+    Object? managedClients = freezed,
+    Object? selectedClientId = freezed,
+    Object? errorFetchingClients = freezed,
   }) {
     return _then(_$_CaregiverState(
       id: id == freezed
@@ -135,6 +162,18 @@ class __$$_CaregiverStateCopyWithImpl<$Res>
           ? _value.caregiverNumber
           : caregiverNumber // ignore: cast_nullable_to_non_nullable
               as String?,
+      managedClients: managedClients == freezed
+          ? _value._managedClients
+          : managedClients // ignore: cast_nullable_to_non_nullable
+              as List<ManagedClient>?,
+      selectedClientId: selectedClientId == freezed
+          ? _value.selectedClientId
+          : selectedClientId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      errorFetchingClients: errorFetchingClients == freezed
+          ? _value.errorFetchingClients
+          : errorFetchingClients // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -145,7 +184,11 @@ class _$_CaregiverState implements _CaregiverState {
   _$_CaregiverState(
       {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'user') this.user,
-      @JsonKey(name: 'caregiver_number') this.caregiverNumber});
+      @JsonKey(name: 'caregiver_number') this.caregiverNumber,
+      final List<ManagedClient>? managedClients,
+      this.selectedClientId,
+      this.errorFetchingClients})
+      : _managedClients = managedClients;
 
   factory _$_CaregiverState.fromJson(Map<String, dynamic> json) =>
       _$$_CaregiverStateFromJson(json);
@@ -159,10 +202,23 @@ class _$_CaregiverState implements _CaregiverState {
   @override
   @JsonKey(name: 'caregiver_number')
   final String? caregiverNumber;
+  final List<ManagedClient>? _managedClients;
+  @override
+  List<ManagedClient>? get managedClients {
+    final value = _managedClients;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  final String? selectedClientId;
+  @override
+  final bool? errorFetchingClients;
 
   @override
   String toString() {
-    return 'CaregiverState(id: $id, user: $user, caregiverNumber: $caregiverNumber)';
+    return 'CaregiverState(id: $id, user: $user, caregiverNumber: $caregiverNumber, managedClients: $managedClients, selectedClientId: $selectedClientId, errorFetchingClients: $errorFetchingClients)';
   }
 
   @override
@@ -173,7 +229,13 @@ class _$_CaregiverState implements _CaregiverState {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.user, user) &&
             const DeepCollectionEquality()
-                .equals(other.caregiverNumber, caregiverNumber));
+                .equals(other.caregiverNumber, caregiverNumber) &&
+            const DeepCollectionEquality()
+                .equals(other._managedClients, _managedClients) &&
+            const DeepCollectionEquality()
+                .equals(other.selectedClientId, selectedClientId) &&
+            const DeepCollectionEquality()
+                .equals(other.errorFetchingClients, errorFetchingClients));
   }
 
   @JsonKey(ignore: true)
@@ -182,7 +244,10 @@ class _$_CaregiverState implements _CaregiverState {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(user),
-      const DeepCollectionEquality().hash(caregiverNumber));
+      const DeepCollectionEquality().hash(caregiverNumber),
+      const DeepCollectionEquality().hash(_managedClients),
+      const DeepCollectionEquality().hash(selectedClientId),
+      const DeepCollectionEquality().hash(errorFetchingClients));
 
   @JsonKey(ignore: true)
   @override
@@ -199,10 +264,12 @@ class _$_CaregiverState implements _CaregiverState {
 
 abstract class _CaregiverState implements CaregiverState {
   factory _CaregiverState(
-          {@JsonKey(name: 'id') final String? id,
-          @JsonKey(name: 'user') final User? user,
-          @JsonKey(name: 'caregiver_number') final String? caregiverNumber}) =
-      _$_CaregiverState;
+      {@JsonKey(name: 'id') final String? id,
+      @JsonKey(name: 'user') final User? user,
+      @JsonKey(name: 'caregiver_number') final String? caregiverNumber,
+      final List<ManagedClient>? managedClients,
+      final String? selectedClientId,
+      final bool? errorFetchingClients}) = _$_CaregiverState;
 
   factory _CaregiverState.fromJson(Map<String, dynamic> json) =
       _$_CaregiverState.fromJson;
@@ -216,6 +283,12 @@ abstract class _CaregiverState implements CaregiverState {
   @override
   @JsonKey(name: 'caregiver_number')
   String? get caregiverNumber;
+  @override
+  List<ManagedClient>? get managedClients;
+  @override
+  String? get selectedClientId;
+  @override
+  bool? get errorFetchingClients;
   @override
   @JsonKey(ignore: true)
   _$$_CaregiverStateCopyWith<_$_CaregiverState> get copyWith =>

@@ -20,7 +20,6 @@ import 'package:pro_health_360/application/redux/actions/update_content_like_sta
 import 'package:pro_health_360/application/redux/actions/update_pin_input_details_action.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/view_models/content/content_view_model.dart';
-import 'package:pro_health_360/domain/core/entities/core/contact.dart';
 import 'package:pro_health_360/domain/core/entities/core/screening_question.dart';
 import 'package:pro_health_360/domain/core/entities/core/user.dart';
 import 'package:pro_health_360/domain/core/entities/core/user_profile_item_obj.dart';

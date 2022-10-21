@@ -606,3 +606,38 @@ query getUserLinkedFacilities($userID: ID! $paginationInput: PaginationsInput!){
   }
 }
 ''';
+
+const String getCaregiverManagedClientsQuery = r'''
+query getCaregiverManagedClients(
+  $caregiverID: ID!, 
+  $paginationInput: PaginationsInput!
+){
+  getCaregiverManagedClients(
+    caregiverID: $caregiverID
+    paginationInput: $paginationInput
+  ){
+    ManagedClients{
+      caregiverConsent
+			clientConsent
+      clientProfile{
+        ID
+        User{
+          ID
+          Username
+          Name
+          Contacts{
+            id
+            contactType
+            contactValue
+          }
+          DateOfBirth
+        }
+      }
+      workStationDetails{
+        Notifications
+        Surveys
+      }
+    }
+  }
+}
+''';

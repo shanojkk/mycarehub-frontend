@@ -5,7 +5,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
 import 'package:pro_health_360/domain/core/entities/core/address.dart';
-import 'package:pro_health_360/domain/core/entities/core/contact.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 
 part 'related_person.g.dart';

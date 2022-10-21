@@ -12,7 +12,6 @@ import 'package:http/http.dart';
 // Project imports:
 import 'package:pro_health_360/application/redux/actions/send_otp_action.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
-import 'package:pro_health_360/domain/core/entities/core/contact.dart';
 
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';

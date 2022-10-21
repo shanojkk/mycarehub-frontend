@@ -1269,6 +1269,65 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
         ),
       );
     }
+
+    if (queryString.contains(getCaregiverManagedClientsQuery)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{
+                'getCaregiverManagedClients': <String, dynamic>{
+                  'Pagination': <String, dynamic>{
+                    'Limit': 20,
+                    'CurrentPage': 1,
+                    'Count': 2,
+                    'TotalPages': 1,
+                    'NextPage': null,
+                    'PreviousPage': null
+                  },
+                  'ManagedClients': <dynamic>[
+                    <String, dynamic>{
+                      'caregiverConsent': true,
+                      'clientConsent': true,
+                      'workStationDetails': <String, dynamic>{
+                        'Notifications': 1,
+                        'Surveys': 1,
+                        'Articles': 1,
+                        'Messages': 1
+                      },
+                      'clientProfile': <String, dynamic>{
+                        'ID': '0some-id',
+                        'Username': 'testUserName',
+                        'Active': true,
+                        'TermsAccepted': true,
+                      }
+                    },
+                    <String, dynamic>{
+                      'caregiverConsent': true,
+                      'clientConsent': true,
+                      'workStationDetails': <String, dynamic>{
+                        'Notifications': 0,
+                        'Surveys': 0,
+                        'Articles': 0,
+                        'Messages': 0
+                      },
+                      'clientProfile': <String, dynamic>{
+                        'ID': '0some-id',
+                        'Username': 'testUserName',
+                        'Active': true,
+                        'TermsAccepted': true,
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+          ),
+          201,
+        ),
+      );
+    }
+
     if (queryString.contains(readNotificationsMutation)) {
       return Future<http.Response>.value(
         http.Response(

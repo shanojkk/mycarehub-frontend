@@ -134,3 +134,5 @@ const String fetchAvailableSurveysFlag = 'fetch_available_surveys_flag';
 const String verifySurveySubmissionFlag = 'verify_survey_submission_flag';
 
 const String fetchFacilitiesFlag = 'fetch_facilities_flag';
+
+const String fetchManagedClientsFlag = 'fetch_managed_clients_flag';

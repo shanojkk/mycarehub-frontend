@@ -14,7 +14,6 @@ import 'package:pro_health_360/application/redux/actions/update_onboarding_state
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/states/onboarding_state.dart';
-import 'package:pro_health_360/domain/core/entities/core/contact.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';

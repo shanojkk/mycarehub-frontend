@@ -596,7 +596,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 33F4E48C3D74EFEF727F459E /* Pods-Runner.debug-prod.xcconfig */;
 			buildSettings = {
-				APP_NAME = ProHealth360;
+				APP_NAME = myCareHub v2;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-External";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ENABLE_MODULES = YES;
@@ -1007,7 +1007,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B11B60463A00163BAD388348 /* Pods-Runner.release-demo.xcconfig */;
 			buildSettings = {
-				APP_NAME = "ProHealth360 Demo";
+				APP_NAME = "myCareHub v2 Demo";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-External";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ENABLE_MODULES = YES;
@@ -1149,7 +1149,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				APP_NAME = "myCareHub Test";
+				APP_NAME = "myCareHub v2 Test";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-External";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1315,7 +1315,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 76863869D9B4C83585726E8B /* Pods-Runner.release-external.xcconfig */;
 			buildSettings = {
-				APP_NAME = "ProHealth360 Test";
+				APP_NAME = "myCareHub v2 Test";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-External";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ENABLE_MODULES = YES;
@@ -1624,7 +1624,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C2ACC26C3F2AFBC245C63EDC /* Pods-Runner.release-dev.xcconfig */;
 			buildSettings = {
-				APP_NAME = "ProHealth360 Test";
+				APP_NAME = "myCareHub v2 Test";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-External";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ENABLE_MODULES = YES;

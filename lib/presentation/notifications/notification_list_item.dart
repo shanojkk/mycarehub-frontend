@@ -85,10 +85,8 @@ class NotificationListItem extends StatelessWidget {
                         textStyle: normalSize12Text(AppColors.primaryColor),
                         borderColor: AppColors.primaryColor.withOpacity(0.14),
                         onPressed: notificationInfo.route != null
-                            ? () =>
-                                Navigator.of(context).pushNamedAndRemoveUntil(
+                            ? () => Navigator.of(context).pushNamed(
                                   notificationInfo.route!,
-                                  (Route<dynamic> route) => false,
                                 )
                             : null,
                       ),

@@ -5,12 +5,14 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:pro_health_360/application/core/graphql/queries.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/actions/communities/update_invited_communities_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/entities/communities/pending_invites_response.dart';
 import 'package:pro_health_360/domain/core/entities/core/community.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class FetchInvitedCommunitiesAction extends ReduxAction<AppState> {
@@ -48,12 +50,16 @@ class FetchInvitedCommunitiesAction extends ReduxAction<AppState> {
       final String? error = parseError(responseMap);
 
       if (error != null) {
-        Sentry.captureException(
-          const UserException(errorFetchingInvitesText),
-          hint: variables,
+        reportErrorToSentry(
+          hint: fetchInvitedCommunitiesErrorString,
+          state: state,
+          query: listUserInvitedCommunitiesQuery,
+          response: response,
+          exception: error,
+          variables: variables,
         );
 
-        throw const UserException(errorFetchingInvitesText);
+        throw const UserException(fetchInvitedCommunitiesErrorString);
       }
 
       final PendingInvitesResponse pendingInvites =
@@ -75,9 +81,12 @@ class FetchInvitedCommunitiesAction extends ReduxAction<AppState> {
 
       return state;
     } else {
-      Sentry.captureException(
-        const UserException(somethingWentWrongText),
-        hint: variables,
+      reportErrorToSentry(
+        hint: fetchInvitedCommunitiesErrorString,
+        state: state,
+        query: listUserInvitedCommunitiesQuery,
+        response: response,
+        variables: variables,
       );
 
       throw const UserException(somethingWentWrongText);

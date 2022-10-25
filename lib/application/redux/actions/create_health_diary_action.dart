@@ -15,6 +15,7 @@ import 'package:http/http.dart' as http;
 import 'package:pro_health_360/application/core/services/analytics_service.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_events.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';
 
@@ -75,7 +76,7 @@ class CreateHealthDiaryAction extends ReduxAction<AppState> {
 
     if (error != null) {
       reportErrorToSentry(
-        hint: errorCreatingHealthDiaryEntryString,
+        hint: creatingHealthDiaryEntryErrorString,
         query: createHealthDiaryEntryMutation,
         variables: variables,
         response: result,
@@ -83,7 +84,7 @@ class CreateHealthDiaryAction extends ReduxAction<AppState> {
       );
 
       throw MyAfyaException(
-        cause: errorCreatingHealthDiaryEntryString,
+        cause: creatingHealthDiaryEntryErrorString,
         message: somethingWentWrongText,
       );
     }

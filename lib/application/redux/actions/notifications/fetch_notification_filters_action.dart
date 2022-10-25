@@ -6,11 +6,12 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:pro_health_360/application/core/graphql/queries.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/actions/update_notification_filter_state.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 
 class FetchNotificationFiltersAction extends ReduxAction<AppState> {
   FetchNotificationFiltersAction({
@@ -65,8 +66,13 @@ class FetchNotificationFiltersAction extends ReduxAction<AppState> {
       final String? errors = client.parseError(body);
 
       if (errors != null) {
-        Sentry.captureException(
-          UserException(errors),
+        reportErrorToSentry(
+          hint: fetchNotificationFiltersErrorString,
+          state: state,
+          query: fetchNotificationFiltersQuery,
+          response: response,
+          exception: errors,
+          variables: variables,
         );
 
         throw UserException(getErrorMessage('fetching notification filters'));

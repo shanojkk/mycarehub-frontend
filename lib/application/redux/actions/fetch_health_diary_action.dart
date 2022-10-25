@@ -9,6 +9,7 @@ import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/entities/health_diary/health_diary_entry.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 
 class FetchHealthDiaryAction extends ReduxAction<AppState> {
   FetchHealthDiaryAction({
@@ -63,7 +64,7 @@ class FetchHealthDiaryAction extends ReduxAction<AppState> {
 
     if (error != null) {
       reportErrorToSentry(
-        hint: 'Error while fetching health diary',
+        hint: fetchHealthDiaryErrorString,
         query: getHealthDiaryEntriesQuery,
         variables: variables,
         response: response,

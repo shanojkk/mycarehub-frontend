@@ -12,6 +12,7 @@ import 'package:pro_health_360/application/redux/actions/update_pin_input_detail
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -69,7 +70,7 @@ class VerifyPINAction extends ReduxAction<AppState> {
         return state;
       } else {
         reportErrorToSentry(
-          hint: 'Error while verifying user PIN',
+          hint: verifyPINErrorString,
           query: verifyPinQuery,
           variables: variables,
           response: response,

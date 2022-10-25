@@ -11,6 +11,7 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 // Project imports:
@@ -77,7 +78,7 @@ class CompleteOnboardingTourAction extends ReduxAction<AppState> {
       }
     } else {
       reportErrorToSentry(
-        hint: 'Error while fetching your saved content',
+        hint: completeOnboardingTourErrorString,
         query: completeOnboardingTourMutation,
         variables: variables,
         response: result,

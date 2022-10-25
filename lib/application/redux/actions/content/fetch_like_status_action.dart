@@ -8,6 +8,7 @@ import 'package:async_redux/async_redux.dart';
 
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 import 'package:shared_themes/constants.dart';
 
 // Project imports:
@@ -61,7 +62,7 @@ class FetchLikeStatusAction extends ReduxAction<AppState> {
 
     if (error != null) {
       reportErrorToSentry(
-        hint: 'Error while fetching your like status',
+        hint: fetchLikeStatusErrorString,
         query: checkIfUserHasLikedContentQuery,
         variables: variables,
         response: response,

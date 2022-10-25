@@ -9,6 +9,7 @@ import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/exception_tag.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 
 class AcceptDeclineCommunitiesInviteAction extends ReduxAction<AppState> {
   AcceptDeclineCommunitiesInviteAction({
@@ -54,7 +55,7 @@ class AcceptDeclineCommunitiesInviteAction extends ReduxAction<AppState> {
 
     if (error != null) {
       reportErrorToSentry(
-        hint: 'Error responding to invite',
+        hint: acceptDeclineCommunitiesInviteErrorString,
         query: rejectInvitationMutation,
         variables: variables,
         response: response,

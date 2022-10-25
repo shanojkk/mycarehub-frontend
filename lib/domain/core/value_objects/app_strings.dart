@@ -339,8 +339,6 @@ const String iHaveAFeverString = 'I have a fever';
 const String imCoughingString = 'I\'m coughing';
 const String iVeLostWeightString = 'I\'ve lost weight';
 const String nextString = 'Next';
-const String errorCreatingHealthDiaryEntryString =
-    'Error creating health diary entry';
 const String createNewPINTitleString = 'Create your new PIN';
 const String resetPINTitleString = 'Reset PIN';
 const String pinMustMatchString = 'PIN must match';
@@ -643,8 +641,6 @@ const String contentZeroStateTitle = 'You have no content';
 const String contentZeroStateDescription =
     'Sit back, relax and enjoy a cup of coffee as we prepare fresh content for you';
 const String contentZeroStateButtonText = 'Retry';
-const String fetchLikeStatusErrorString =
-    'Error while fetching your like status';
 
 const String networkConnectionUnreliable =
     'Network connection unreliable. Please try again later.';
@@ -755,7 +751,6 @@ const String noInvitesDescription =
 const String invitationAcceptedSuccessfully =
     'Invitation accepted successfully';
 const String communitiesRejectionSuccessful = 'Invite rejection successful';
-const String errorFetchingInvitesText = 'Error fetching group invites';
 
 const String addingToGroupString = 'adding you to the group';
 const String removedFromGroup = 'removed from the group successfully';

@@ -5,9 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:pro_health_360/application/core/graphql/mutations.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/actions/update_content_engagement_state_action.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 
 class ViewContentAction extends ReduxAction<AppState> {
   ViewContentAction({
@@ -55,13 +56,13 @@ class ViewContentAction extends ReduxAction<AppState> {
 
     if (error != null) {
       onFailure?.call();
-      Sentry.captureException(
-        error,
-        hint: <String, dynamic>{
-          'query': viewContentMutation,
-          'variables': variables,
-          'response': response.body,
-        },
+      reportErrorToSentry(
+        hint: viewContentErrorString,
+        state: state,
+        query: viewContentMutation,
+        response: response,
+        exception: error,
+        variables: variables,
       );
     }
 

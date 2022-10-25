@@ -6,7 +6,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
 
 import 'package:pro_health_360/application/core/graphql/queries.dart';
 import 'package:pro_health_360/application/redux/actions/screening_tools/update_screening_tools_state_action.dart';
@@ -16,6 +16,7 @@ import 'package:pro_health_360/domain/core/entities/core/available_screening_too
 import 'package:pro_health_360/domain/core/entities/core/screening_tool.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 
 class FetchAvailableScreeningToolsAction extends ReduxAction<AppState> {
   FetchAvailableScreeningToolsAction({required this.context});
@@ -52,8 +53,13 @@ class FetchAvailableScreeningToolsAction extends ReduxAction<AppState> {
       final String? errors = client.parseError(body);
 
       if (errors != null) {
-        Sentry.captureException(
-          UserException(errors),
+        reportErrorToSentry(
+          hint: fetchAvailableScreeningToolsErrorString,
+          state: state,
+          query: getAvailableScreeningToolQuery,
+          response: response,
+          exception: errors,
+          variables: variables,
         );
 
         throw UserException(

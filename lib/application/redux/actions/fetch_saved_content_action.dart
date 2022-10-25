@@ -15,6 +15,7 @@ import 'package:pro_health_360/application/redux/actions/update_saved_content_st
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/entities/feed/saved_content.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 
 class FetchSavedContentAction extends ReduxAction<AppState> {
   FetchSavedContentAction({required this.context});
@@ -59,7 +60,7 @@ class FetchSavedContentAction extends ReduxAction<AppState> {
 
     if (error != null) {
       reportErrorToSentry(
-        hint: 'Error while fetching your saved content',
+        hint: fetchSavedContentErrorString,
         query: getUserBookmarkedContentQuery,
         variables: variables,
         response: response,

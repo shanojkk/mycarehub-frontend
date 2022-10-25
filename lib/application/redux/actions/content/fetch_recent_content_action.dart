@@ -8,10 +8,11 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 // Project imports:
 import 'package:pro_health_360/application/core/graphql/queries.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/actions/update_recent_content_state_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 
 class FetchRecentContentAction extends ReduxAction<AppState> {
   FetchRecentContentAction({
@@ -51,7 +52,14 @@ class FetchRecentContentAction extends ReduxAction<AppState> {
     final String? error = parseError(payLoad);
 
     if (error != null) {
-      Sentry.captureException(UserException(error));
+      reportErrorToSentry(
+        hint: fetchRecentContentErrorString,
+        state: state,
+        query: getContentQuery,
+        response: response,
+        exception: error,
+        variables: variables,
+      );
 
       if (error == 'timeout') {
         dispatch(UpdateRecentContentStateAction(timeoutFetchingContent: true));

@@ -5,10 +5,12 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:pro_health_360/application/core/graphql/queries.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/actions/communities/list_group_info_response.dart';
 import 'package:pro_health_360/application/redux/actions/communities/update_group_state_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class FetchGroupMembersAction extends ReduxAction<AppState> {
@@ -59,13 +61,14 @@ class FetchGroupMembersAction extends ReduxAction<AppState> {
 
     if (error != null) {
       onError?.call(error);
-      Sentry.captureException(
-        error,
-        hint: <String, dynamic>{
-          'variables': variables,
-          'query': listCommunityMembersQuery,
-          'response': response.body,
-        },
+
+      reportErrorToSentry(
+        hint: fetchGroupMembersErrorString,
+        state: state,
+        query: listCommunityMembersQuery,
+        response: response,
+        exception: error,
+        variables: variables,
       );
 
       dispatch(UpdateGroupStateAction(groupMembers: <GroupMember>[]));

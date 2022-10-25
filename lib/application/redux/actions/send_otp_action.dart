@@ -15,6 +15,7 @@ import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 
 class SendOTPAction extends ReduxAction<AppState> {
   SendOTPAction({
@@ -69,7 +70,7 @@ class SendOTPAction extends ReduxAction<AppState> {
 
       if (error != null) {
         reportErrorToSentry(
-          hint: 'Error while sending OTP',
+          hint: sendOTPErrorString,
           query: sendOTPEndpoint,
           variables: variables,
           response: httpResponse,
@@ -107,7 +108,7 @@ class SendOTPAction extends ReduxAction<AppState> {
         dispatch(UpdateOnboardingStateAction(failedToSendOTP: true));
 
         reportErrorToSentry(
-          hint: 'Error while sending OTP',
+          hint: sendOTPErrorString,
           query: sendOTPEndpoint,
           variables: variables,
           state: state,

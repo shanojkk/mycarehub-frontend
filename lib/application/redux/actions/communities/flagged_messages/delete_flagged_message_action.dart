@@ -6,11 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:pro_health_360/application/core/graphql/mutations.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/actions/communities/update_communities_state_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class DeleteFlaggedMessageAction extends ReduxAction<AppState> {
@@ -65,7 +66,14 @@ class DeleteFlaggedMessageAction extends ReduxAction<AppState> {
     final String? errors = parseError(responseMap);
 
     if (errors != null) {
-      Sentry.captureException(UserException(errors));
+      reportErrorToSentry(
+        hint: deleteFlaggedMessageErrorString,
+        state: state,
+        query: deleteCommunityMessageMutation,
+        response: response,
+        exception: errors,
+        variables: variables,
+      );
       throw const UserException(somethingWentWrongText);
     }
 

@@ -4,7 +4,8 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 
 import 'package:pro_health_360/application/core/graphql/queries.dart';
 import 'package:pro_health_360/application/redux/actions/screening_tools/update_screening_tools_state_action.dart';
@@ -113,8 +114,13 @@ class FetchScreeningToolsQuestionsAction extends ReduxAction<AppState> {
       final String? errors = client.parseError(body);
 
       if (errors != null) {
-        Sentry.captureException(
-          UserException(errors),
+        reportErrorToSentry(
+          hint: fetchScreeningQuestionsErrorString,
+          state: state,
+          query: getScreeningToolsQuestionsQuery,
+          response: response,
+          exception: errors,
+          variables: variables,
         );
 
         throw UserException(

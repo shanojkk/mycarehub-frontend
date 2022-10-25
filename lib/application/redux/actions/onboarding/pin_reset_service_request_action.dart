@@ -6,13 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:pro_health_360/application/core/services/analytics_service.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_events.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 class PINResetServiceRequestAction extends ReduxAction<AppState> {
   PINResetServiceRequestAction({
@@ -76,7 +77,13 @@ class PINResetServiceRequestAction extends ReduxAction<AppState> {
         return state;
       } else {
         onError?.call();
-        Sentry.captureException('PIN service request failed');
+        reportErrorToSentry(
+          hint: pinResetServiceRequestErrorString,
+          state: state,
+          query: pinResetServiceRequestEndpoint,
+          response: response,
+          variables: variables,
+        );
         return null;
       }
     }
@@ -85,7 +92,14 @@ class PINResetServiceRequestAction extends ReduxAction<AppState> {
 
     if (error != null) {
       onError?.call();
-      Sentry.captureException(error, hint: 'PIN service request failed');
+      reportErrorToSentry(
+        hint: pinResetServiceRequestErrorString,
+        state: state,
+        query: pinResetServiceRequestEndpoint,
+        response: response,
+        exception: error,
+        variables: variables,
+      );
     }
 
     return null;

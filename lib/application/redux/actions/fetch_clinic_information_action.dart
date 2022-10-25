@@ -13,6 +13,7 @@ import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/exception_tag.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 
 class FetchClinicInformationAction extends ReduxAction<AppState> {
   final BuildContext context;
@@ -53,7 +54,7 @@ class FetchClinicInformationAction extends ReduxAction<AppState> {
 
     if (error != null) {
       reportErrorToSentry(
-        hint: 'Error while fetching clinic information',
+        hint: fetchClinicInformationErrorString,
         query: retrieveFacilityQuery,
         variables: variables,
         response: response,

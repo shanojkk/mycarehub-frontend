@@ -11,6 +11,7 @@ import 'package:pro_health_360/application/redux/actions/communities/fetch_invit
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/community.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 
 import '../../../../../mocks.dart';
 import 'fetch_invited_communities_action_test.mocks.dart';
@@ -88,7 +89,7 @@ void main() {
 
       expect(
         info.errors.removeLast(),
-        const UserException(errorFetchingInvitesText),
+        const UserException(fetchInvitedCommunitiesErrorString),
       );
       expect(invitedCommunities?.isEmpty, true);
     });

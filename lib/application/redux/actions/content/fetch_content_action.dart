@@ -9,6 +9,7 @@ import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/actions/update_content_state_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 
 class FetchContentAction extends ReduxAction<AppState> {
   FetchContentAction({
@@ -63,7 +64,7 @@ class FetchContentAction extends ReduxAction<AppState> {
     final String? error = parseError(payLoad);
     if (error != null) {
       reportErrorToSentry(
-        hint: 'Error while fetching your content',
+        hint: fetchContentErrorString,
         query: getContentQuery,
         variables: variables,
         response: response,

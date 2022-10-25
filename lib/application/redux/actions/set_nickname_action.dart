@@ -22,6 +22,7 @@ import 'package:pro_health_360/domain/core/entities/core/onboarding_path_info.da
 import 'package:pro_health_360/domain/core/value_objects/app_events.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 /// [SetNicknameAction] is a Redux Action whose job is to update a users nickname,
@@ -89,7 +90,7 @@ class SetNicknameAction extends ReduxAction<AppState> {
 
         onError?.call(somethingWentWrongText);
         reportErrorToSentry(
-          hint: 'Error while setting nickname',
+          hint: setNicknameErrorString,
           query: setNickNameMutation,
           variables: variables,
           response: result,

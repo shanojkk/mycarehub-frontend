@@ -5,8 +5,9 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:pro_health_360/application/core/services/analytics_service.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_events.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 
 import 'package:pro_health_360/application/core/graphql/mutations.dart';
 import 'package:pro_health_360/application/redux/actions/screening_tools/update_screening_tools_state_action.dart';
@@ -58,8 +59,12 @@ class AnswerScreeningToolsAction extends ReduxAction<AppState> {
       final String? errors = client.parseError(body);
 
       if (errors != null) {
-        Sentry.captureException(
-          UserException(errors),
+        reportErrorToSentry(
+          hint: answerScreeningToolsErrorString,
+          state: state,
+          query: answerScreeningToolQuestionMutation,
+          response: response,
+          exception: errors,
         );
 
         throw UserException(

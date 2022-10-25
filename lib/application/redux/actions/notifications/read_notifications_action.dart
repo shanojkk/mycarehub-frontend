@@ -3,9 +3,10 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:pro_health_360/application/core/graphql/mutations.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 
 class ReadNotificationsAction extends ReduxAction<AppState> {
   ReadNotificationsAction({
@@ -46,8 +47,12 @@ class ReadNotificationsAction extends ReduxAction<AppState> {
       final String? errors = client.parseError(body);
 
       if (errors != null) {
-        Sentry.captureException(
-          UserException(errors),
+        reportErrorToSentry(
+          hint: readNotificationsErrorString,
+          state: state,
+          query: readNotificationsMutation,
+          response: result,
+          exception: errors,
         );
 
         throw UserException(getErrorMessage('fetching notifications'));
@@ -58,8 +63,12 @@ class ReadNotificationsAction extends ReduxAction<AppState> {
       final bool? readNotifications = data?['readNotifications'] as bool?;
 
       if (readNotifications == null || !readNotifications) {
-        Sentry.captureException(
-          UserException(errors),
+        reportErrorToSentry(
+          hint: readNotificationsErrorString,
+          state: state,
+          query: readNotificationsMutation,
+          response: result,
+          exception: errors,
         );
 
         throw UserException(getErrorMessage('fetching notifications'));

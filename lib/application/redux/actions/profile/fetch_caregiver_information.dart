@@ -4,7 +4,8 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 
 import 'package:pro_health_360/application/redux/actions/update_client_profile_action.dart';
 import 'package:pro_health_360/domain/core/entities/profile/caregiver_information.dart';
@@ -47,9 +48,14 @@ class FetchCaregiverInformationAction extends ReduxAction<AppState> {
       final String? errors = client.parseError(body);
 
       if (errors != null) {
-        Sentry.captureException(
-          UserException(errors),
-        );
+        reportErrorToSentry(
+        hint: fetchCaregiverInformationErrorString,
+        state: state,
+        query: getClientCaregiverQuery,
+        response: response,
+        exception: errors,
+        variables: variables,
+      );
 
         throw UserException(
           getErrorMessage('fetching caregiver information'),

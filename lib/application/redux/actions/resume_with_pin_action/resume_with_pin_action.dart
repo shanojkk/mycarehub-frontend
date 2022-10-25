@@ -6,6 +6,7 @@ import 'package:http/http.dart';
 import 'package:pro_health_360/application/core/graphql/queries.dart';
 import 'package:pro_health_360/application/core/services/analytics_service.dart';
 import 'package:pro_health_360/application/core/services/onboarding_utils.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/actions/update_misc_state_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
@@ -13,6 +14,7 @@ import 'package:pro_health_360/domain/core/entities/core/onboarding_path_info.da
 import 'package:pro_health_360/domain/core/value_objects/app_events.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -85,7 +87,14 @@ class ResumeWithPinAction extends ReduxAction<AppState> {
           }
         }
 
-        Sentry.captureException(error, hint: 'Error while verifying user PIN');
+        reportErrorToSentry(
+          hint: resumeWithPINErrorString,
+          state: state,
+          query: verifyPinQuery,
+          response: result,
+          exception: error,
+          variables: variables,
+        );
         throw UserException(getErrorMessage());
       }
 
@@ -107,9 +116,12 @@ class ResumeWithPinAction extends ReduxAction<AppState> {
         }
       }
     } else {
-      Sentry.captureException(
-        processedResponse.message,
-        hint: 'Error while verifying user PIN',
+      reportErrorToSentry(
+        hint: resumeWithPINErrorString,
+        state: state,
+        query: verifyPinQuery,
+        response: result,
+        variables: variables,
       );
       throw UserException(getErrorMessage());
     }

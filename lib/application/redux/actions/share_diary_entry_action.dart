@@ -13,6 +13,7 @@ import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/application/core/graphql/mutations.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 
 class ShareDiaryEntryAction extends ReduxAction<AppState> {
   ShareDiaryEntryAction({
@@ -60,7 +61,7 @@ class ShareDiaryEntryAction extends ReduxAction<AppState> {
 
       if (errors != null) {
         reportErrorToSentry(
-          hint: 'Error while sharing diary entry',
+          hint: shareDiaryEntryErrorString,
           query: shareHealthDiaryEntryMutation,
           variables: variables,
           response: response,

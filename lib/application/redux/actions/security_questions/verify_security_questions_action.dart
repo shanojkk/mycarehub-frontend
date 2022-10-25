@@ -10,6 +10,7 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:pro_health_360/application/core/services/analytics_service.dart';
 import 'package:pro_health_360/application/core/services/onboarding_utils.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
@@ -17,8 +18,8 @@ import 'package:pro_health_360/domain/core/entities/core/onboarding_path_info.da
 import 'package:pro_health_360/domain/core/value_objects/app_events.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 /// [VerifySecurityQuestionAction] is a Redux Action whose job is to verify responses for recorded
 ///  security questions responses if pin reset is true.
@@ -133,14 +134,26 @@ class VerifySecurityQuestionAction extends ReduxAction<AppState> {
         );
       } else if (processedResponse.code == 78) {
         // Throws a security questions response mismatch error
-        Sentry.captureException(UserException(errors));
+        reportErrorToSentry(
+          hint: verifySecurityQuestionsErrorString,
+          state: state,
+          query: verifySecurityQuestionsEndpoint,
+          response: result,
+          exception: errors,
+        );
         await AnalyticsService().logEvent(
           name: unMatchingSecurityQuestionResponsesEvent,
           eventType: AnalyticsEventType.ONBOARDING,
         );
         throw const UserException(responseNotMatchingText);
       } else if (errors != null || responseMap['error'] != null) {
-        Sentry.captureException(UserException(errors));
+        reportErrorToSentry(
+          hint: verifySecurityQuestionsErrorString,
+          state: state,
+          query: verifySecurityQuestionsEndpoint,
+          response: result,
+          exception: errors,
+        );
 
         throw const UserException(somethingWentWrongText);
       }

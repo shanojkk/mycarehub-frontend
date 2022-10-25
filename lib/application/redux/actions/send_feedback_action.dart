@@ -11,6 +11,7 @@ import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 
 /// [SendFeedbackAction] is a Redux Action whose job is to send users feedback.
 /// Otherwise delightfully notify user of any Error that might occur during
@@ -79,7 +80,7 @@ class SendFeedbackAction extends ReduxAction<AppState> {
     if (errors != null) {
       onError?.call();
       reportErrorToSentry(
-        hint: 'Error while sending feedback',
+        hint: sendFeedbackErrorString,
         query: sendFeedbackMutation,
         variables: variables,
         response: result,

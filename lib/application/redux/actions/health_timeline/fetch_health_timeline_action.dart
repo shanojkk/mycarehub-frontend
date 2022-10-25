@@ -4,11 +4,13 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/src/response.dart';
 import 'package:intl/intl.dart';
 import 'package:pro_health_360/application/core/graphql/queries.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/health_timeline_state.dart';
 import 'package:pro_health_360/domain/core/entities/health_timeline/fhir_resource.dart';
 import 'package:pro_health_360/domain/core/entities/health_timeline/health_timeline_response.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class FetchHealthTimelineAction extends ReduxAction<AppState> {
@@ -54,14 +56,15 @@ class FetchHealthTimelineAction extends ReduxAction<AppState> {
       final String? error = httpClient.parseError(mapped);
 
       if (error != null) {
-        Sentry.captureException(
-          MyAfyaException(cause: 'patient timeline', message: error),
-          hint: <String, dynamic>{
-            'query': patientTimelineQuery,
-            'variables': variables,
-            'response': response.body,
-          },
+        reportErrorToSentry(
+          hint: fetchHealthTimelineErrorString,
+          state: state,
+          query: patientTimelineQuery,
+          response: response,
+          exception: error,
+          variables: variables,
         );
+
         throw UserException(getErrorMessage());
       }
 
@@ -106,14 +109,14 @@ class FetchHealthTimelineAction extends ReduxAction<AppState> {
 
       return appState;
     } else {
-      Sentry.captureException(
-        MyAfyaException(cause: 'patient timeline', message: 'unknown error'),
-        hint: <String, dynamic>{
-          'query': patientTimelineQuery,
-          'variables': variables,
-          'response': response.body,
-        },
+      reportErrorToSentry(
+        hint: fetchHealthTimelineErrorString,
+        state: state,
+        query: patientTimelineQuery,
+        response: response,
+        variables: variables,
       );
+
       throw UserException(getErrorMessage());
     }
   }

@@ -8,6 +8,7 @@ import 'package:pro_health_360/application/redux/actions/update_health_diary_sta
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/entities/health_diary/quote.dart';
+import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 
 class FetchHealthDiaryQuoteAction extends ReduxAction<AppState> {
   FetchHealthDiaryQuoteAction({required this.client});
@@ -49,7 +50,7 @@ class FetchHealthDiaryQuoteAction extends ReduxAction<AppState> {
 
     if (error != null) {
       reportErrorToSentry(
-        hint: 'Error while fetching health diary quote',
+        hint: fetchHealthDiaryQuoteErrorString,
         query: getHealthDiaryQuoteQuery,
         variables: variables,
         response: response,

@@ -28,12 +28,12 @@ PROD_SCHEME = "prod"
 
 CHANGE_LOG = "Welcome to myCareHub. We update the app as often as possible to make it faster and more reliable for you. This update includes bug fixes and improvements."
 
-APPLE_APP_ID = "1631670426"
+APPLE_APP_ID = "6443988970"
 
 platform :ios do
 
   before_all do
-    setup_travis
+    ENV['ITMSTRANSPORTER_FORCE_ITMS_PACKAGE_UPLOAD'] = 'true'
   end
 
   desc :"Code Signing Dev Build for TestFlight"
@@ -88,7 +88,7 @@ platform :ios do
   end
 
   desc :"Code Signing Demo Build for TestFlight"
-  lane :demo do 
+  lane :demo do
     match(
       type: MATCH_TYPE,
       app_identifier: APP_IDENTIFIER,

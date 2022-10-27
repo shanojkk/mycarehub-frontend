@@ -1,10 +1,10 @@
 // Package imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 
 // Project imports:
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/entities/caregiver/caregiver_state.dart';
-import 'package:pro_health_360/domain/core/entities/caregiver/managed_client.dart';
 import 'package:pro_health_360/domain/core/entities/core/user.dart';
 
 class UpdateCaregiverProfileAction extends ReduxAction<AppState> {

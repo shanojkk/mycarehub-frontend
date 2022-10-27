@@ -7,7 +7,6 @@ import 'package:pro_health_360/application/redux/actions/caregiver/fetch_managed
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/view_models/app_state_view_model.dart';
-import 'package:pro_health_360/domain/core/entities/caregiver/managed_client.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';

@@ -7,8 +7,6 @@ import 'package:pro_health_360/application/core/graphql/queries.dart';
 import 'package:pro_health_360/application/redux/actions/caregiver/update_caregiver_profile_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
-import 'package:pro_health_360/domain/core/entities/caregiver/managed_client.dart';
-import 'package:pro_health_360/domain/core/entities/caregiver/managed_client_response.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 

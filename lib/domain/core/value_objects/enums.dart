@@ -187,8 +187,11 @@ enum AnalyticsEventType {
   // Connectivity events
   CONNECTIVITY,
 
-  /// Events used in the onboarding workflow
-  ONBOARDING
+  /// Events for the onboarding workflow
+  ONBOARDING,
+
+  // Conversation events
+  CONVERSATION
 }
 
 /// The type of section item being rendered in the home page

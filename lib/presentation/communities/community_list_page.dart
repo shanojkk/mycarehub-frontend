@@ -5,6 +5,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:pro_health_360/application/communities/stream_token_provider.dart';
+import 'package:pro_health_360/application/core/services/analytics_service.dart';
 import 'package:pro_health_360/application/core/services/custom_client.dart';
 import 'package:pro_health_360/application/redux/actions/communities/connect_get_stream_user_action.dart';
 import 'package:pro_health_360/application/redux/actions/update_user_profile_action.dart';
@@ -12,9 +13,11 @@ import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/client_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/user.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_events.dart';
 // Project imports:
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/presentation/communities/channel_page.dart';
 import 'package:pro_health_360/presentation/communities/chat_screen/widgets/empty_conversations_widget.dart';
 import 'package:pro_health_360/presentation/communities/view_models/community_list_view_model.dart';
@@ -126,9 +129,7 @@ class _CommunityListViewPageState extends State<CommunityListViewPage> {
                 return GenericErrorWidget(
                   messageTitle: emptyConversationTitle,
                   messageBody: const <TextSpan>[
-                    TextSpan(
-                      text: emptyConversationBody,
-                    )
+                    TextSpan(text: emptyConversationBody)
                   ],
                   headerIconSvgUrl: emptyChatsSvg,
                   recoverCallback: () {
@@ -190,10 +191,14 @@ class _CommunityListViewPageState extends State<CommunityListViewPage> {
             ),
           ),
         );
+
+        AnalyticsService().logEvent(
+          name: viewConversationEvent,
+          eventType: AnalyticsEventType.CONVERSATION,
+          parameters: <String, dynamic>{'group_name': channelName},
+        );
       },
-      leading: stream.StreamChannelAvatar(
-        channel: channel,
-      ),
+      leading: stream.StreamChannelAvatar(channel: channel),
       title: Text(
         channelName,
         style: theme.channelPreviewTheme.titleStyle!.copyWith(

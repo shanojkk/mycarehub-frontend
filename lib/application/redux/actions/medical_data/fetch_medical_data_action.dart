@@ -49,7 +49,7 @@ class FetchMedicalDataAction extends ReduxAction<AppState> {
       if (error != null) {
         // log error accessing medical data
         await AnalyticsService().logEvent(
-          name: unsuccessfulMedicalDataAccess,
+          name: unsuccessfulMedicalDataAccessEvent,
           eventType: AnalyticsEventType.INTERACTION,
           parameters: <String, dynamic>{
             'error': error,
@@ -69,7 +69,7 @@ class FetchMedicalDataAction extends ReduxAction<AppState> {
 
       // log successful medical data access
       await AnalyticsService().logEvent(
-        name: successfulMedicalDataAccess,
+        name: successfulMedicalDataAccessEvent,
         eventType: AnalyticsEventType.INTERACTION,
         parameters: <String, dynamic>{
           'patientID': patientID,
@@ -84,7 +84,7 @@ class FetchMedicalDataAction extends ReduxAction<AppState> {
     } else {
       // log error accessing medical data
       await AnalyticsService().logEvent(
-        name: unsuccessfulMedicalDataAccess,
+        name: unsuccessfulMedicalDataAccessEvent,
         eventType: AnalyticsEventType.INTERACTION,
         parameters: <String, dynamic>{
           'error': processed.message,

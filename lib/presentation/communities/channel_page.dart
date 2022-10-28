@@ -2,23 +2,24 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:pro_health_360/application/core/services/analytics_service.dart';
 import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/actions/communities/fetch_group_members_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/view_models/groups/groups_view_model.dart';
 import 'package:pro_health_360/domain/core/entities/core/community.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_events.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/presentation/communities/chat_screen/widgets/chat_page_app_bar.dart';
 import 'package:pro_health_360/presentation/communities/group_info/pages/group_info_page.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class ChannelPage extends StatefulWidget {
-  const ChannelPage({
-    super.key,
-  });
+  const ChannelPage({super.key});
 
   @override
   State<ChannelPage> createState() => _ChannelPageState();
@@ -77,10 +78,7 @@ class _ChannelPageState extends State<ChannelPage> {
             channelDescription,
           );
         },
-        title: Text(
-          channelName,
-          overflow: TextOverflow.ellipsis,
-        ),
+        title: Text(channelName, overflow: TextOverflow.ellipsis),
         subtitle: StoreConnector<AppState, GroupsViewModel>(
           converter: (Store<AppState> store) {
             return GroupsViewModel.fromStore(store);
@@ -118,10 +116,7 @@ class _ChannelPageState extends State<ChannelPage> {
               padding: const EdgeInsets.all(8.0),
               child: ClipOval(
                 child: channelImage.isNotEmpty
-                    ? Image.network(
-                        channelImage,
-                        fit: BoxFit.cover,
-                      )
+                    ? Image.network(channelImage, fit: BoxFit.cover)
                     : SvgPicture.asset(
                         acceptInvitesImage,
                         height: 30,
@@ -140,9 +135,37 @@ class _ChannelPageState extends State<ChannelPage> {
               threadBuilder: (_, Message? parentMessage) {
                 return ThreadPage(parent: parentMessage);
               },
+              onThreadTap: (Message message, Widget? widget) {
+                AnalyticsService().logEvent(
+                  name: viewMessageThreadEvent,
+                  eventType: AnalyticsEventType.CONVERSATION,
+                  parameters: <String, dynamic>{
+                    'channel_name': channelName,
+                    'parent_message_id': message.parentId,
+                    'message_id': message.id,
+                    'text': message.text,
+                    'reactions': message.reactionCounts,
+                    'attachment_count': message.attachments.length,
+                  },
+                );
+              },
             ),
           ),
-          const StreamMessageInput(),
+          StreamMessageInput(
+            onMessageSent: (Message message) {
+              AnalyticsService().logEvent(
+                name: sendMessageEvent,
+                eventType: AnalyticsEventType.CONVERSATION,
+                parameters: <String, dynamic>{
+                  'channel_name': channelName,
+                  'message_id': message.id,
+                  'text': message.text,
+                  'reactions': message.reactionCounts,
+                  'attachment_count': message.attachments.length,
+                },
+              );
+            },
+          ),
         ],
       ),
     );
@@ -154,6 +177,11 @@ class _ChannelPageState extends State<ChannelPage> {
     String channelName,
     String channelDescription,
   ) {
+    AnalyticsService().logEvent(
+      name: viewGroupInfoEvent,
+      eventType: AnalyticsEventType.CONVERSATION,
+      parameters: <String, dynamic>{'channel_name': channelName},
+    );
     return Navigator.of(context).push(
       MaterialPageRoute<Route<dynamic>>(
         builder: (_) => StreamChannel(
@@ -169,26 +197,17 @@ class _ChannelPageState extends State<ChannelPage> {
 }
 
 class ThreadPage extends StatelessWidget {
-  const ThreadPage({
-    super.key,
-    this.parent,
-  });
+  const ThreadPage({super.key, this.parent});
 
   final Message? parent;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: StreamThreadHeader(
-        parent: parent!,
-      ),
+      appBar: StreamThreadHeader(parent: parent!),
       body: Column(
         children: <Widget>[
-          Expanded(
-            child: StreamMessageListView(
-              parentMessage: parent,
-            ),
-          ),
+          Expanded(child: StreamMessageListView(parentMessage: parent)),
           const StreamMessageInput(),
         ],
       ),

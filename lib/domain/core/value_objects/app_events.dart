@@ -88,6 +88,22 @@ const String createPINEvent = 'create_pin';
 
 const String resetPINEvent = 'reset_pin';
 
-const String successfulMedicalDataAccess = 'successful_medical_data_access';
+const String successfulMedicalDataAccessEvent =
+    'successful_medical_data_access';
 
-const String unsuccessfulMedicalDataAccess = 'unsuccessful_medical_data_access';
+const String unsuccessfulMedicalDataAccessEvent =
+    'unsuccessful_medical_data_access';
+
+const String listConversationsEvent = 'list_conversations';
+
+const String viewConversationEvent = 'view_conversation';
+
+const String viewGroupInfoEvent = 'view_group_information';
+
+const String joinSuggestedGroupEvent = 'join_suggested_group';
+
+const String viewMessageThreadEvent = 'view_message_thread';
+
+const String sendMessageEvent = 'send_message';
+
+const String appPutToBackgroundEvent = 'app_put_to_background';

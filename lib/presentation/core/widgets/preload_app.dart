@@ -6,8 +6,11 @@ import 'package:async_redux/async_redux.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:overlay_support/overlay_support.dart';
+import 'package:pro_health_360/application/core/services/analytics_service.dart';
 import 'package:pro_health_360/application/redux/actions/update_misc_state_action.dart';
 import 'package:pro_health_360/domain/core/entities/core/client_state.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_events.dart';
+import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/domain/core/value_objects/global_keys.dart';
 import 'package:rxdart/src/streams/merge.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -68,6 +71,15 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
 
     final AppState? appState = StoreProvider.state<AppState>(context);
     final bool resumeWithPin = appState?.miscState?.resumeWithPin ?? false;
+
+    if (state == AppLifecycleState.paused) {
+      AnalyticsService().logEvent(
+        name: appPutToBackgroundEvent,
+        eventType: AnalyticsEventType.CONVERSATION,
+        parameters: <String, dynamic>{},
+      );
+    }
+
     if (state == AppLifecycleState.inactive && resumeWithPin) {
       StoreProvider.dispatch<AppState>(
         context,

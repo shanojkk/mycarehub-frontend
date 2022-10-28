@@ -495,9 +495,9 @@ const String relationText = 'How are you related';
 const String preferredLanguage = 'Preferred Language';
 const String english = 'English';
 const String preferredClinic = 'Preferred Clinic';
-const String clinic = 'Equity Afia Ruaka';
 const String preferredCommunication = 'Preferred way of Communication';
 const String inApp = 'in app';
+const String noFacilityProvided = 'No facility provided';
 
 // Profile FAQs
 const String faqsText = 'FAQs';
@@ -578,8 +578,6 @@ const String sibling = 'Sibling';
 const String selectYourPreferredLanguage = 'Select your preferred language';
 const String swahili = 'Swahili';
 const String selectYourPreferredClinic = 'Select your preferred Clinic';
-const String equityAfiaUmoja = 'Equity Afia Umoja';
-const String kenyattaHospital = 'Kenyatta National Hospital';
 const String selectYourPreferredCommunication =
     'Select your preferred communication channel';
 const String communicationChannel = 'Communication channel';

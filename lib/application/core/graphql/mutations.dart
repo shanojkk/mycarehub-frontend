@@ -223,3 +223,15 @@ mutation viewContent($userID: String!, $contentID: Int!){
   viewContent(userID: $userID, contentID: $contentID)
 }
 ''';
+
+const String setClientDefaultFacilityMutation = r'''
+mutation setClientDefaultFacility(
+  $userID: ID!
+  $facilityID: ID!
+){
+  setClientDefaultFacility(
+    userID: $userID
+    facilityID: $facilityID
+  )
+}
+''';

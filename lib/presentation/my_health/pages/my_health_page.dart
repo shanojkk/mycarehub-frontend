@@ -16,6 +16,7 @@ import 'package:pro_health_360/domain/core/entities/core/user.dart';
 import 'package:pro_health_360/domain/core/entities/viral_load/viral_load_node.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
+import 'package:pro_health_360/phase_2/widgets/health_page_information_widget.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:pro_health_360/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
@@ -103,6 +104,10 @@ class _MyHealthPageState extends State<MyHealthPage> {
           final String lastName = userProfileState?.lastName ?? '';
           final List<ViralLoadNode?> viralLoadData =
               vm.clientState?.viralLoadData?.edges ?? <ViralLoadNode>[];
+          final String hospitalName =
+              vm.clientState?.facilityState?.currentFacility?.name ?? '';
+          final String clientPhoneNumber =
+              vm.clientState?.user?.primaryContact?.value ?? '';
 
           final String nextRefill =
               vm.clientState?.nextRefillData?.nextRefill ?? '';
@@ -120,49 +125,19 @@ class _MyHealthPageState extends State<MyHealthPage> {
                   Column(
                     children: <Widget>[
                       GestureDetector(
+                        behavior: HitTestBehavior.opaque,
                         onTap: () async {
                           Navigator.pushNamed(
                             context,
                             AppRoutes.userProfilePage,
                           );
                         },
-                        child:
-                            //TODO(byron): Return this during phase 2 implementation
-                            // HealthPageInformationWidget(
-                            //   user: userProfileState,
-                            //   firstName: firstName,
-                            //   lastName: lastName,
-                            //   userPhoneNumber: userPhoneNumber,
-                            //   hospitalName: hospitalName,
-                            // ),
-                            InformationListCard(
-                          title: Text(
-                            myHealthPageProfile,
-                            style: boldSize16Text(AppColors.secondaryColor),
-                          ),
-                          alternateLeadingIcon: Container(
-                            padding: const EdgeInsets.all(13.5),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: AppColors.primaryColor.withOpacity(0.1),
-                            ),
-                            child: Center(
-                              child: Text(
-                                extractNamesInitials(
-                                  name: getDisplayName(userProfileState),
-                                ),
-                                style: boldSize20Text(
-                                  AppColors.primaryColor,
-                                ),
-                              ),
-                            ),
-                          ),
-                          body: Text(
-                            '$firstName $lastName',
-                            style: normalSize14Text(
-                              AppColors.greyTextColor,
-                            ),
-                          ),
+                        child: HealthPageInformationWidget(
+                          user: userProfileState,
+                          firstName: firstName,
+                          lastName: lastName,
+                          userPhoneNumber: clientPhoneNumber,
+                          hospitalName: hospitalName,
                         ),
                       ),
                       size15VerticalSizedBox,

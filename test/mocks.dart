@@ -1270,6 +1270,21 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       );
     }
 
+    if (queryString.contains(setClientDefaultFacilityMutation)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{
+                'setClientDefaultFacility': true,
+              }
+            },
+          ),
+          201,
+        ),
+      );
+    }
+
     if (queryString.contains(getCaregiverManagedClientsQuery)) {
       return Future<http.Response>.value(
         http.Response(

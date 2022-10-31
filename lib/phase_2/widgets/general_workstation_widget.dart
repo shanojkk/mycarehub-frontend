@@ -9,6 +9,7 @@ class GeneralWorkstationWidget extends StatelessWidget {
     required this.buttonText,
     this.onButtonCallback,
     this.subtitle,
+    this.buttonWidget,
   });
 
   final String title;
@@ -16,6 +17,7 @@ class GeneralWorkstationWidget extends StatelessWidget {
   final String buttonText;
   final Widget bodyWidget;
   final VoidCallback? onButtonCallback;
+  final Widget? buttonWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -57,8 +59,9 @@ class GeneralWorkstationWidget extends StatelessWidget {
             width: double.infinity,
             child: MyAfyaHubPrimaryButton(
               buttonKey: Key(buttonText),
-              text: buttonText,
               onPressed: onButtonCallback,
+              customChild: buttonWidget ??
+                  Text(buttonText, style: veryBoldSize15Text(whiteColor)),
             ),
           )
         ],

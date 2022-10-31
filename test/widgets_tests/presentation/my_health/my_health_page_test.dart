@@ -8,10 +8,10 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:pro_health_360/application/redux/actions/update_connectivity_action.dart';
-// Project imports:
 import 'package:pro_health_360/application/redux/actions/update_user_profile_action.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/phase_2/widgets/health_page_information_widget.dart';
 import 'package:pro_health_360/presentation/health_diary/pages/my_health_diary_page.dart';
 import 'package:pro_health_360/presentation/my_health/pages/appointments_page.dart';
 import 'package:pro_health_360/presentation/my_health/pages/my_health_page.dart';
@@ -68,7 +68,7 @@ void main() {
         widget: const MyHealthPage(),
       );
 
-      await tester.tap(find.text(myHealthPageProfile));
+      await tester.tap(find.byType(HealthPageInformationWidget));
       await tester.pumpAndSettle();
       expect(find.byType(UserProfilePage), findsOneWidget);
     });
@@ -80,7 +80,11 @@ void main() {
         client: MockGraphQlClient(),
         widget: const MyHealthPage(),
       );
-      await tester.tap(find.text(myHealthPageAppointments));
+      final Finder myHealthPageAppointmentsFinder =
+          find.text(myHealthPageAppointments);
+      expect(myHealthPageAppointmentsFinder, findsOneWidget);
+      await tester.ensureVisible(myHealthPageAppointmentsFinder);
+      await tester.tap(myHealthPageAppointmentsFinder);
       await tester.pumpAndSettle();
       expect(find.byType(AppointmentsPage), findsOneWidget);
     });
@@ -109,7 +113,10 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      await tester.tap(find.text(medicalDataTitle));
+      final Finder medicalDataFinder = find.text(medicalDataTitle);
+      expect(medicalDataFinder, findsOneWidget);
+      await tester.ensureVisible(medicalDataFinder);
+      await tester.tap(medicalDataFinder);
       await tester.pumpAndSettle();
       expect(find.byType(MedicalDataPage), findsOneWidget);
     });

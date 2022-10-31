@@ -136,3 +136,4 @@ const String verifySurveySubmissionFlag = 'verify_survey_submission_flag';
 const String fetchFacilitiesFlag = 'fetch_facilities_flag';
 
 const String fetchManagedClientsFlag = 'fetch_managed_clients_flag';
+const String setDefaultFacilityFlag = 'set_default_facility_flag';

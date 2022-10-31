@@ -4,6 +4,7 @@ import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/domain/core/entities/core/user.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
+import 'package:pro_health_360/presentation/router/routes.dart';
 
 class HealthPageInformationWidget extends StatelessWidget {
   const HealthPageInformationWidget({
@@ -96,10 +97,15 @@ class HealthPageInformationWidget extends StatelessWidget {
             width: double.infinity,
             height: 48,
             child: MyAfyaHubPrimaryButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                  AppRoutes.facilitySelectionPageRoute,
+                  (Route<dynamic> route) => false,
+                );
+              },
               text: changeMyFacility,
             ),
-          )
+          ),
         ],
       ),
     );

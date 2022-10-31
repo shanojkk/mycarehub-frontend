@@ -9,7 +9,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:pro_health_360/application/redux/actions/update_connectivity_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
-// Project imports:
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
@@ -202,8 +201,13 @@ void main() {
           widget: const MyHealthPage(),
         );
 
+        final Finder myHealthPageAppointmentsFinder =
+            find.text(myHealthPageAppointments);
+
         final Finder helpNoDataWidgetButton = find.byKey(helpNoDataWidgetKey);
-        await tester.tap(find.text(myHealthPageAppointments));
+        expect(myHealthPageAppointmentsFinder, findsOneWidget);
+        await tester.ensureVisible(myHealthPageAppointmentsFinder);
+        await tester.tap(myHealthPageAppointmentsFinder);
         await tester.pumpAndSettle();
         expect(find.byType(AppointmentsPage), findsOneWidget);
 
@@ -259,10 +263,16 @@ void main() {
           widget: const MyHealthPage(),
         );
 
+        final Finder myHealthPageAppointmentsFinder =
+            find.text(myHealthPageAppointments);
+
         final Finder helpNoDataWidgetButton = find.byKey(helpNoDataWidgetKey);
-        await tester.tap(find.text(myHealthPageAppointments));
+        expect(myHealthPageAppointmentsFinder, findsOneWidget);
+        await tester.ensureVisible(myHealthPageAppointmentsFinder);
+        await tester.tap(myHealthPageAppointmentsFinder);
         await tester.pumpAndSettle();
         expect(find.byType(AppointmentsPage), findsOneWidget);
+
         await tester.tap(find.text(pastAppointmentsText));
         await tester.pumpAndSettle();
 

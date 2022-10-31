@@ -6,6 +6,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pro_health_360/application/redux/actions/fetch_facilities_action.dart';
+import 'package:pro_health_360/application/redux/actions/set_client_default_facility_action.dart';
 import 'package:pro_health_360/application/redux/actions/update_facility_state_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
@@ -107,11 +108,17 @@ class FacilitySelectionPage extends StatelessWidget {
                             spacing: 8,
                             children: badgesList,
                           ),
-                          onButtonCallback: () {
-                            StoreProvider.dispatch(
+                          buttonWidget:
+                              vm.wait!.isWaitingFor(setDefaultFacilityFlag)
+                                  ? const PlatformLoader(color: whiteColor)
+                                  : null,
+                          onButtonCallback: () async {
+                            await StoreProvider.dispatch(
                               context,
-                              UpdateFacilityStateAction(
-                                currentFacility: facility,
+                              SetClientDefaultFacilityAction(
+                                facility: facility!,
+                                client:
+                                    AppWrapperBase.of(context)!.graphQLClient,
                               ),
                             );
                             Navigator.of(context).pushNamedAndRemoveUntil(

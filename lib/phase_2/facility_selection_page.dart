@@ -132,42 +132,68 @@ class FacilitySelectionPage extends StatelessWidget {
                   }
                 }
 
-                return Column(
-                  children: <Widget>[
-                    if (vm.wait!.isWaitingFor(fetchFacilitiesFlag))
-                      Container(
-                        height: 300,
-                        padding: const EdgeInsets.all(20),
-                        child: const PlatformLoader(),
-                      )
-                    else
+                if (vm.wait!.isWaitingFor(fetchFacilitiesFlag)) {
+                  return Container(
+                    height: 300,
+                    padding: const EdgeInsets.all(20),
+                    child: const PlatformLoader(),
+                  );
+                } else {
+                  return Column(
+                    children: <Widget>[
+                      Center(
+                        child: SvgPicture.asset(workStationChooserImage),
+                      ),
+                      smallVerticalSizedBox,
                       Column(
+                        mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
-                          Center(
-                            child: SvgPicture.asset(workStationChooserImage),
-                          ),
-                          smallVerticalSizedBox,
-                          Text(
-                            welcomeFacilitySelectionDescription(
-                              vm.appState.clientState?.user?.firstName ?? '',
-                            ),
-                            style: boldSize20Text(AppColors.primaryColor),
-                            textAlign: TextAlign.center,
-                          ),
-                          smallVerticalSizedBox,
-                          Text(
-                            noOfFacilitiesDescription,
-                            style: normalSize14Text(
-                              AppColors.unSelectedReactionIconColor,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                          smallVerticalSizedBox,
-                          ...facilitiesWidgetList,
+                          if (vm.wait!.isWaitingFor(setDefaultFacilityFlag))
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Text(
+                                  switchingYourFacility,
+                                  style: boldSize18Text(),
+                                  textAlign: TextAlign.center,
+                                ),
+                                smallVerticalSizedBox,
+                                const SizedBox(
+                                  height: 300,
+                                  child: Center(
+                                    child: PlatformLoader(),
+                                  ),
+                                )
+                              ],
+                            )
+                          else
+                            Column(
+                              children: <Widget>[
+                                Text(
+                                  welcomeFacilitySelectionDescription(
+                                    vm.appState.clientState?.user?.firstName ??
+                                        '',
+                                  ),
+                                  style: boldSize20Text(AppColors.primaryColor),
+                                  textAlign: TextAlign.center,
+                                ),
+                                smallVerticalSizedBox,
+                                Text(
+                                  noOfFacilitiesDescription,
+                                  style: normalSize14Text(
+                                    AppColors.unSelectedReactionIconColor,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                                smallVerticalSizedBox,
+                                ...facilitiesWidgetList,
+                              ],
+                            )
                         ],
                       ),
-                  ],
-                );
+                    ],
+                  );
+                }
               },
             ),
           ),

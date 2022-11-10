@@ -27,13 +27,11 @@ class ClientCaregiverSelectionPage extends StatelessWidget {
                 return Column(
                   children: <Widget>[
                     Center(
-                      child: SvgPicture.asset(workStationChooserImage),
+                      child: SvgPicture.asset(medicalCareImage),
                     ),
                     mediumVerticalSizedBox,
                     Text(
-                      workStationChooserDescription(
-                        vm.appState.clientState?.user?.firstName ?? '',
-                      ),
+                      proceedAs,
                       style: boldSize20Text(AppColors.primaryColor),
                       textAlign: TextAlign.center,
                     ),

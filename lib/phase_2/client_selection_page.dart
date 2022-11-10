@@ -84,7 +84,7 @@ class ClientSelectionPage extends StatelessWidget {
                 return Column(
                   children: <Widget>[
                     Center(
-                      child: SvgPicture.asset(workStationChooserImage),
+                      child: SvgPicture.asset(ophthalmologistImage),
                     ),
                     mediumVerticalSizedBox,
                     if (vm.wait!.isWaitingFor(fetchManagedClientsFlag))
@@ -111,9 +111,7 @@ class ClientSelectionPage extends StatelessWidget {
                       )
                     else ...<Widget>{
                       Text(
-                        clientSelectionTitle(
-                          vm.appState.clientState?.user?.firstName ?? '',
-                        ),
+                        clientSelectionTitle,
                         style: boldSize20Text(AppColors.primaryColor),
                         textAlign: TextAlign.center,
                       ),

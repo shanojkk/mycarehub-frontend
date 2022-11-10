@@ -986,16 +986,14 @@ const String recheckAvailableSurveys =
 const String cccNumberHint = 'Enter your CCC number...';
 const String all = 'All';
 const String unread = 'Unread';
-String workStationChooserDescription(String username) =>
-    'Welcome back $username! Please select who you would like to proceed as';
-const String proceedAsCaregiver = 'Proceed as caregiver';
-const String proceedAsClient = 'Proceed as client';
+const String proceedAs = 'Who would you like to proceed as?';
+const String proceedAsCaregiver = 'Proceed as a caregiver to access the platform on behalf of your assigned clients. You will be prompted to choose a client in the next step.';
+const String proceedAsClient = 'Proceed as a client to take charge of your health now';
 const String caregiver = 'Caregiver';
 const String proceed = 'Proceed';
 const String client = 'Client';
 
-String welcomeFacilitySelectionDescription(String username) =>
-    'Welcome back $username! Choose your facility';
+const String welcomeFacilitySelectionDescription = 'Please select your facility';
 
 const String noOfFacilitiesDescription =
     "We've noticed that you're part of multiple facilities. Choose which facility you would like to log into. Here are the details";
@@ -1008,8 +1006,7 @@ String getConsentActionRemoveDescription(String name) {
   return '$name is been assigned to you by your medical practitioner. They have access to your medical information and other information about you. They can also manage myCareHub on your behalf.\n\nTo revoke their access, tap the button below.';
 }
 
-String clientSelectionTitle(String username) =>
-    'Welcome back $username! Choose your client';
+const String clientSelectionTitle = 'Please choose your client';
 String clientSelectionDescription(String numberOfClients) =>
     "We've noticed that you're managing $numberOfClients clients. Choose which client you would like to manage";
 String yourCurrentHospitalDescription(String hospitalName) =>

@@ -142,7 +142,7 @@ class FacilitySelectionPage extends StatelessWidget {
                   return Column(
                     children: <Widget>[
                       Center(
-                        child: SvgPicture.asset(workStationChooserImage),
+                        child: SvgPicture.asset(hospitalBuildingImage),
                       ),
                       smallVerticalSizedBox,
                       Column(
@@ -170,10 +170,7 @@ class FacilitySelectionPage extends StatelessWidget {
                             Column(
                               children: <Widget>[
                                 Text(
-                                  welcomeFacilitySelectionDescription(
-                                    vm.appState.clientState?.user?.firstName ??
-                                        '',
-                                  ),
+                                  welcomeFacilitySelectionDescription,
                                   style: boldSize20Text(AppColors.primaryColor),
                                   textAlign: TextAlign.center,
                                 ),

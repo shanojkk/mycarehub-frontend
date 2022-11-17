@@ -36,7 +36,8 @@ mixin _$AppointmentState {
 abstract class $AppointmentStateCopyWith<$Res> {
   factory $AppointmentStateCopyWith(
           AppointmentState value, $Res Function(AppointmentState) then) =
-      _$AppointmentStateCopyWithImpl<$Res>;
+      _$AppointmentStateCopyWithImpl<$Res, AppointmentState>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'appointments') List<Appointment>? appointments,
       int? currentPage,
@@ -45,14 +46,16 @@ abstract class $AppointmentStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AppointmentStateCopyWithImpl<$Res>
+class _$AppointmentStateCopyWithImpl<$Res, $Val extends AppointmentState>
     implements $AppointmentStateCopyWith<$Res> {
   _$AppointmentStateCopyWithImpl(this._value, this._then);
 
-  final AppointmentState _value;
   // ignore: unused_field
-  final $Res Function(AppointmentState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? appointments = freezed,
@@ -61,23 +64,23 @@ class _$AppointmentStateCopyWithImpl<$Res>
     Object? errorFetchingAppointments = freezed,
   }) {
     return _then(_value.copyWith(
-      appointments: appointments == freezed
+      appointments: freezed == appointments
           ? _value.appointments
           : appointments // ignore: cast_nullable_to_non_nullable
               as List<Appointment>?,
-      currentPage: currentPage == freezed
+      currentPage: freezed == currentPage
           ? _value.currentPage
           : currentPage // ignore: cast_nullable_to_non_nullable
               as int?,
-      hasNextPage: hasNextPage == freezed
+      hasNextPage: freezed == hasNextPage
           ? _value.hasNextPage
           : hasNextPage // ignore: cast_nullable_to_non_nullable
               as bool?,
-      errorFetchingAppointments: errorFetchingAppointments == freezed
+      errorFetchingAppointments: freezed == errorFetchingAppointments
           ? _value.errorFetchingAppointments
           : errorFetchingAppointments // ignore: cast_nullable_to_non_nullable
               as bool?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -88,6 +91,7 @@ abstract class _$$_AppointmentStateCopyWith<$Res>
           _$_AppointmentState value, $Res Function(_$_AppointmentState) then) =
       __$$_AppointmentStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'appointments') List<Appointment>? appointments,
       int? currentPage,
@@ -97,15 +101,13 @@ abstract class _$$_AppointmentStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_AppointmentStateCopyWithImpl<$Res>
-    extends _$AppointmentStateCopyWithImpl<$Res>
+    extends _$AppointmentStateCopyWithImpl<$Res, _$_AppointmentState>
     implements _$$_AppointmentStateCopyWith<$Res> {
   __$$_AppointmentStateCopyWithImpl(
       _$_AppointmentState _value, $Res Function(_$_AppointmentState) _then)
-      : super(_value, (v) => _then(v as _$_AppointmentState));
+      : super(_value, _then);
 
-  @override
-  _$_AppointmentState get _value => super._value as _$_AppointmentState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? appointments = freezed,
@@ -114,19 +116,19 @@ class __$$_AppointmentStateCopyWithImpl<$Res>
     Object? errorFetchingAppointments = freezed,
   }) {
     return _then(_$_AppointmentState(
-      appointments: appointments == freezed
+      appointments: freezed == appointments
           ? _value._appointments
           : appointments // ignore: cast_nullable_to_non_nullable
               as List<Appointment>?,
-      currentPage: currentPage == freezed
+      currentPage: freezed == currentPage
           ? _value.currentPage
           : currentPage // ignore: cast_nullable_to_non_nullable
               as int?,
-      hasNextPage: hasNextPage == freezed
+      hasNextPage: freezed == hasNextPage
           ? _value.hasNextPage
           : hasNextPage // ignore: cast_nullable_to_non_nullable
               as bool?,
-      errorFetchingAppointments: errorFetchingAppointments == freezed
+      errorFetchingAppointments: freezed == errorFetchingAppointments
           ? _value.errorFetchingAppointments
           : errorFetchingAppointments // ignore: cast_nullable_to_non_nullable
               as bool?,
@@ -176,12 +178,13 @@ class _$_AppointmentState implements _AppointmentState {
             other is _$_AppointmentState &&
             const DeepCollectionEquality()
                 .equals(other._appointments, _appointments) &&
-            const DeepCollectionEquality()
-                .equals(other.currentPage, currentPage) &&
-            const DeepCollectionEquality()
-                .equals(other.hasNextPage, hasNextPage) &&
-            const DeepCollectionEquality().equals(
-                other.errorFetchingAppointments, errorFetchingAppointments));
+            (identical(other.currentPage, currentPage) ||
+                other.currentPage == currentPage) &&
+            (identical(other.hasNextPage, hasNextPage) ||
+                other.hasNextPage == hasNextPage) &&
+            (identical(other.errorFetchingAppointments,
+                    errorFetchingAppointments) ||
+                other.errorFetchingAppointments == errorFetchingAppointments));
   }
 
   @JsonKey(ignore: true)
@@ -189,12 +192,13 @@ class _$_AppointmentState implements _AppointmentState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_appointments),
-      const DeepCollectionEquality().hash(currentPage),
-      const DeepCollectionEquality().hash(hasNextPage),
-      const DeepCollectionEquality().hash(errorFetchingAppointments));
+      currentPage,
+      hasNextPage,
+      errorFetchingAppointments);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_AppointmentStateCopyWith<_$_AppointmentState> get copyWith =>
       __$$_AppointmentStateCopyWithImpl<_$_AppointmentState>(this, _$identity);
 

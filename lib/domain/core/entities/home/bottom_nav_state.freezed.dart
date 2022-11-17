@@ -33,29 +33,33 @@ mixin _$BottomNavigationState {
 abstract class $BottomNavigationStateCopyWith<$Res> {
   factory $BottomNavigationStateCopyWith(BottomNavigationState value,
           $Res Function(BottomNavigationState) then) =
-      _$BottomNavigationStateCopyWithImpl<$Res>;
+      _$BottomNavigationStateCopyWithImpl<$Res, BottomNavigationState>;
+  @useResult
   $Res call({int currentBottomNavIndex});
 }
 
 /// @nodoc
-class _$BottomNavigationStateCopyWithImpl<$Res>
+class _$BottomNavigationStateCopyWithImpl<$Res,
+        $Val extends BottomNavigationState>
     implements $BottomNavigationStateCopyWith<$Res> {
   _$BottomNavigationStateCopyWithImpl(this._value, this._then);
 
-  final BottomNavigationState _value;
   // ignore: unused_field
-  final $Res Function(BottomNavigationState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? currentBottomNavIndex = freezed,
+    Object? currentBottomNavIndex = null,
   }) {
     return _then(_value.copyWith(
-      currentBottomNavIndex: currentBottomNavIndex == freezed
+      currentBottomNavIndex: null == currentBottomNavIndex
           ? _value.currentBottomNavIndex
           : currentBottomNavIndex // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
@@ -66,27 +70,25 @@ abstract class _$$_BottomNavigationStateCopyWith<$Res>
           $Res Function(_$_BottomNavigationState) then) =
       __$$_BottomNavigationStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({int currentBottomNavIndex});
 }
 
 /// @nodoc
 class __$$_BottomNavigationStateCopyWithImpl<$Res>
-    extends _$BottomNavigationStateCopyWithImpl<$Res>
+    extends _$BottomNavigationStateCopyWithImpl<$Res, _$_BottomNavigationState>
     implements _$$_BottomNavigationStateCopyWith<$Res> {
   __$$_BottomNavigationStateCopyWithImpl(_$_BottomNavigationState _value,
       $Res Function(_$_BottomNavigationState) _then)
-      : super(_value, (v) => _then(v as _$_BottomNavigationState));
+      : super(_value, _then);
 
-  @override
-  _$_BottomNavigationState get _value =>
-      super._value as _$_BottomNavigationState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? currentBottomNavIndex = freezed,
+    Object? currentBottomNavIndex = null,
   }) {
     return _then(_$_BottomNavigationState(
-      currentBottomNavIndex: currentBottomNavIndex == freezed
+      currentBottomNavIndex: null == currentBottomNavIndex
           ? _value.currentBottomNavIndex
           : currentBottomNavIndex // ignore: cast_nullable_to_non_nullable
               as int,
@@ -115,17 +117,17 @@ class _$_BottomNavigationState implements _BottomNavigationState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_BottomNavigationState &&
-            const DeepCollectionEquality()
-                .equals(other.currentBottomNavIndex, currentBottomNavIndex));
+            (identical(other.currentBottomNavIndex, currentBottomNavIndex) ||
+                other.currentBottomNavIndex == currentBottomNavIndex));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(currentBottomNavIndex));
+  int get hashCode => Object.hash(runtimeType, currentBottomNavIndex);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_BottomNavigationStateCopyWith<_$_BottomNavigationState> get copyWith =>
       __$$_BottomNavigationStateCopyWithImpl<_$_BottomNavigationState>(
           this, _$identity);

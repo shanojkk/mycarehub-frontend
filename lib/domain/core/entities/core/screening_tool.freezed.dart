@@ -37,7 +37,8 @@ mixin _$ScreeningTool {
 abstract class $ScreeningToolCopyWith<$Res> {
   factory $ScreeningToolCopyWith(
           ScreeningTool value, $Res Function(ScreeningTool) then) =
-      _$ScreeningToolCopyWithImpl<$Res>;
+      _$ScreeningToolCopyWithImpl<$Res, ScreeningTool>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'title') String? title,
       @JsonKey(name: 'description') String? description,
@@ -45,14 +46,16 @@ abstract class $ScreeningToolCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ScreeningToolCopyWithImpl<$Res>
+class _$ScreeningToolCopyWithImpl<$Res, $Val extends ScreeningTool>
     implements $ScreeningToolCopyWith<$Res> {
   _$ScreeningToolCopyWithImpl(this._value, this._then);
 
-  final ScreeningTool _value;
   // ignore: unused_field
-  final $Res Function(ScreeningTool) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? title = freezed,
@@ -60,19 +63,19 @@ class _$ScreeningToolCopyWithImpl<$Res>
     Object? toolType = freezed,
   }) {
     return _then(_value.copyWith(
-      title: title == freezed
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      toolType: toolType == freezed
+      toolType: freezed == toolType
           ? _value.toolType
           : toolType // ignore: cast_nullable_to_non_nullable
               as ScreeningToolsType?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -83,6 +86,7 @@ abstract class _$$_ScreeningToolCopyWith<$Res>
           _$_ScreeningTool value, $Res Function(_$_ScreeningTool) then) =
       __$$_ScreeningToolCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'title') String? title,
       @JsonKey(name: 'description') String? description,
@@ -91,15 +95,13 @@ abstract class _$$_ScreeningToolCopyWith<$Res>
 
 /// @nodoc
 class __$$_ScreeningToolCopyWithImpl<$Res>
-    extends _$ScreeningToolCopyWithImpl<$Res>
+    extends _$ScreeningToolCopyWithImpl<$Res, _$_ScreeningTool>
     implements _$$_ScreeningToolCopyWith<$Res> {
   __$$_ScreeningToolCopyWithImpl(
       _$_ScreeningTool _value, $Res Function(_$_ScreeningTool) _then)
-      : super(_value, (v) => _then(v as _$_ScreeningTool));
+      : super(_value, _then);
 
-  @override
-  _$_ScreeningTool get _value => super._value as _$_ScreeningTool;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? title = freezed,
@@ -107,15 +109,15 @@ class __$$_ScreeningToolCopyWithImpl<$Res>
     Object? toolType = freezed,
   }) {
     return _then(_$_ScreeningTool(
-      title: title == freezed
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      toolType: toolType == freezed
+      toolType: freezed == toolType
           ? _value.toolType
           : toolType // ignore: cast_nullable_to_non_nullable
               as ScreeningToolsType?,
@@ -154,22 +156,20 @@ class _$_ScreeningTool implements _ScreeningTool {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ScreeningTool &&
-            const DeepCollectionEquality().equals(other.title, title) &&
-            const DeepCollectionEquality()
-                .equals(other.description, description) &&
-            const DeepCollectionEquality().equals(other.toolType, toolType));
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.toolType, toolType) ||
+                other.toolType == toolType));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(toolType));
+  int get hashCode => Object.hash(runtimeType, title, description, toolType);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ScreeningToolCopyWith<_$_ScreeningTool> get copyWith =>
       __$$_ScreeningToolCopyWithImpl<_$_ScreeningTool>(this, _$identity);
 

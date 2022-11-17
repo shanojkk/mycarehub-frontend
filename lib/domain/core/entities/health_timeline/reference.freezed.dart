@@ -42,35 +42,39 @@ mixin _$Reference {
 /// @nodoc
 abstract class $ReferenceCopyWith<$Res> {
   factory $ReferenceCopyWith(Reference value, $Res Function(Reference) then) =
-      _$ReferenceCopyWithImpl<$Res>;
+      _$ReferenceCopyWithImpl<$Res, Reference>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'reference') String? reference,
       @JsonKey(name: 'display') String? display});
 }
 
 /// @nodoc
-class _$ReferenceCopyWithImpl<$Res> implements $ReferenceCopyWith<$Res> {
+class _$ReferenceCopyWithImpl<$Res, $Val extends Reference>
+    implements $ReferenceCopyWith<$Res> {
   _$ReferenceCopyWithImpl(this._value, this._then);
 
-  final Reference _value;
   // ignore: unused_field
-  final $Res Function(Reference) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? reference = freezed,
     Object? display = freezed,
   }) {
     return _then(_value.copyWith(
-      reference: reference == freezed
+      reference: freezed == reference
           ? _value.reference
           : reference // ignore: cast_nullable_to_non_nullable
               as String?,
-      display: display == freezed
+      display: freezed == display
           ? _value.display
           : display // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -80,32 +84,32 @@ abstract class _$$_ReferenceCopyWith<$Res> implements $ReferenceCopyWith<$Res> {
           _$_Reference value, $Res Function(_$_Reference) then) =
       __$$_ReferenceCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'reference') String? reference,
       @JsonKey(name: 'display') String? display});
 }
 
 /// @nodoc
-class __$$_ReferenceCopyWithImpl<$Res> extends _$ReferenceCopyWithImpl<$Res>
+class __$$_ReferenceCopyWithImpl<$Res>
+    extends _$ReferenceCopyWithImpl<$Res, _$_Reference>
     implements _$$_ReferenceCopyWith<$Res> {
   __$$_ReferenceCopyWithImpl(
       _$_Reference _value, $Res Function(_$_Reference) _then)
-      : super(_value, (v) => _then(v as _$_Reference));
+      : super(_value, _then);
 
-  @override
-  _$_Reference get _value => super._value as _$_Reference;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? reference = freezed,
     Object? display = freezed,
   }) {
     return _then(_$_Reference(
-      reference: reference == freezed
+      reference: freezed == reference
           ? _value.reference
           : reference // ignore: cast_nullable_to_non_nullable
               as String?,
-      display: display == freezed
+      display: freezed == display
           ? _value.display
           : display // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -148,19 +152,18 @@ class _$_Reference implements _Reference {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Reference &&
-            const DeepCollectionEquality().equals(other.reference, reference) &&
-            const DeepCollectionEquality().equals(other.display, display));
+            (identical(other.reference, reference) ||
+                other.reference == reference) &&
+            (identical(other.display, display) || other.display == display));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(reference),
-      const DeepCollectionEquality().hash(display));
+  int get hashCode => Object.hash(runtimeType, reference, display);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ReferenceCopyWith<_$_Reference> get copyWith =>
       __$$_ReferenceCopyWithImpl<_$_Reference>(this, _$identity);
 

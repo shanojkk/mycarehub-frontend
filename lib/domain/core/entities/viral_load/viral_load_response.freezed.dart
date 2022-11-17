@@ -33,41 +33,45 @@ mixin _$ViralLoadResponse {
 abstract class $ViralLoadResponseCopyWith<$Res> {
   factory $ViralLoadResponseCopyWith(
           ViralLoadResponse value, $Res Function(ViralLoadResponse) then) =
-      _$ViralLoadResponseCopyWithImpl<$Res>;
+      _$ViralLoadResponseCopyWithImpl<$Res, ViralLoadResponse>;
+  @useResult
   $Res call({@JsonKey(name: 'searchFHIRObservation') ViralLoadEdges? data});
 
   $ViralLoadEdgesCopyWith<$Res>? get data;
 }
 
 /// @nodoc
-class _$ViralLoadResponseCopyWithImpl<$Res>
+class _$ViralLoadResponseCopyWithImpl<$Res, $Val extends ViralLoadResponse>
     implements $ViralLoadResponseCopyWith<$Res> {
   _$ViralLoadResponseCopyWithImpl(this._value, this._then);
 
-  final ViralLoadResponse _value;
   // ignore: unused_field
-  final $Res Function(ViralLoadResponse) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      data: data == freezed
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as ViralLoadEdges?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $ViralLoadEdgesCopyWith<$Res>? get data {
     if (_value.data == null) {
       return null;
     }
 
     return $ViralLoadEdgesCopyWith<$Res>(_value.data!, (value) {
-      return _then(_value.copyWith(data: value));
+      return _then(_value.copyWith(data: value) as $Val);
     });
   }
 }
@@ -79,6 +83,7 @@ abstract class _$$_ViralLoadResponseCopyWith<$Res>
           $Res Function(_$_ViralLoadResponse) then) =
       __$$_ViralLoadResponseCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({@JsonKey(name: 'searchFHIRObservation') ViralLoadEdges? data});
 
   @override
@@ -87,21 +92,19 @@ abstract class _$$_ViralLoadResponseCopyWith<$Res>
 
 /// @nodoc
 class __$$_ViralLoadResponseCopyWithImpl<$Res>
-    extends _$ViralLoadResponseCopyWithImpl<$Res>
+    extends _$ViralLoadResponseCopyWithImpl<$Res, _$_ViralLoadResponse>
     implements _$$_ViralLoadResponseCopyWith<$Res> {
   __$$_ViralLoadResponseCopyWithImpl(
       _$_ViralLoadResponse _value, $Res Function(_$_ViralLoadResponse) _then)
-      : super(_value, (v) => _then(v as _$_ViralLoadResponse));
+      : super(_value, _then);
 
-  @override
-  _$_ViralLoadResponse get _value => super._value as _$_ViralLoadResponse;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? data = freezed,
   }) {
     return _then(_$_ViralLoadResponse(
-      data: data == freezed
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as ViralLoadEdges?,
@@ -131,16 +134,16 @@ class _$_ViralLoadResponse implements _ViralLoadResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ViralLoadResponse &&
-            const DeepCollectionEquality().equals(other.data, data));
+            (identical(other.data, data) || other.data == data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
+  int get hashCode => Object.hash(runtimeType, data);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ViralLoadResponseCopyWith<_$_ViralLoadResponse> get copyWith =>
       __$$_ViralLoadResponseCopyWithImpl<_$_ViralLoadResponse>(
           this, _$identity);

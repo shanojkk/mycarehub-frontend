@@ -51,8 +51,8 @@ class _CommunityListViewPageState extends State<CommunityListViewPage> {
     _listController = stream.StreamChannelListController(
       client: stream.StreamChat.of(context).client,
       filter: channelsFilter,
-      sort: const <stream.SortOption<stream.ChannelModel>>[
-        stream.SortOption<stream.ChannelModel>('last_message_at')
+      channelStateSort: const <stream.SortOption<stream.ChannelState>>[
+        stream.SortOption<stream.ChannelState>('last_message_at')
       ],
       limit: 20,
     );

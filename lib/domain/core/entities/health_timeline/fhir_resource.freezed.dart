@@ -101,7 +101,7 @@ mixin _$FhirResource {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(
+    TResult? Function(
             @JsonKey(name: 'category')
                 List<CodeableConcept>? category,
             @JsonKey(name: 'code')
@@ -119,7 +119,7 @@ mixin _$FhirResource {
             @JsonKey(name: 'valueString')
                 String? value)?
         observation,
-    TResult Function(
+    TResult? Function(
             @JsonKey(name: 'category')
                 List<AllergyIntoleranceCategory>? category,
             @JsonKey(name: 'clinicalStatus')
@@ -141,7 +141,7 @@ mixin _$FhirResource {
             @JsonKey(name: 'verificationStatus')
                 CodeableConcept? verificationStatus)?
         allergyIntolerance,
-    TResult Function(
+    TResult? Function(
             @JsonKey(name: 'category')
                 CodeableConcept? category,
             @JsonKey(name: 'code')
@@ -233,9 +233,9 @@ mixin _$FhirResource {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Observation value)? observation,
-    TResult Function(AllergyIntolerance value)? allergyIntolerance,
-    TResult Function(MedicationStatement value)? medicationStatement,
+    TResult? Function(Observation value)? observation,
+    TResult? Function(AllergyIntolerance value)? allergyIntolerance,
+    TResult? Function(MedicationStatement value)? medicationStatement,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -256,7 +256,8 @@ mixin _$FhirResource {
 abstract class $FhirResourceCopyWith<$Res> {
   factory $FhirResourceCopyWith(
           FhirResource value, $Res Function(FhirResource) then) =
-      _$FhirResourceCopyWithImpl<$Res>;
+      _$FhirResourceCopyWithImpl<$Res, FhirResource>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'code') CodeableConcept? code,
       @JsonKey(name: 'resourceType') ReferenceType? resourceType,
@@ -266,13 +267,16 @@ abstract class $FhirResourceCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$FhirResourceCopyWithImpl<$Res> implements $FhirResourceCopyWith<$Res> {
+class _$FhirResourceCopyWithImpl<$Res, $Val extends FhirResource>
+    implements $FhirResourceCopyWith<$Res> {
   _$FhirResourceCopyWithImpl(this._value, this._then);
 
-  final FhirResource _value;
   // ignore: unused_field
-  final $Res Function(FhirResource) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? code = freezed,
@@ -280,29 +284,30 @@ class _$FhirResourceCopyWithImpl<$Res> implements $FhirResourceCopyWith<$Res> {
     Object? timelineDate = freezed,
   }) {
     return _then(_value.copyWith(
-      code: code == freezed
+      code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as CodeableConcept?,
-      resourceType: resourceType == freezed
+      resourceType: freezed == resourceType
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as ReferenceType?,
-      timelineDate: timelineDate == freezed
+      timelineDate: freezed == timelineDate
           ? _value.timelineDate
           : timelineDate // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get code {
     if (_value.code == null) {
       return null;
     }
 
     return $CodeableConceptCopyWith<$Res>(_value.code!, (value) {
-      return _then(_value.copyWith(code: value));
+      return _then(_value.copyWith(code: value) as $Val);
     });
   }
 }
@@ -314,6 +319,7 @@ abstract class _$$ObservationCopyWith<$Res>
           _$Observation value, $Res Function(_$Observation) then) =
       __$$ObservationCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'category')
           List<CodeableConcept>? category,
@@ -338,15 +344,14 @@ abstract class _$$ObservationCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ObservationCopyWithImpl<$Res> extends _$FhirResourceCopyWithImpl<$Res>
+class __$$ObservationCopyWithImpl<$Res>
+    extends _$FhirResourceCopyWithImpl<$Res, _$Observation>
     implements _$$ObservationCopyWith<$Res> {
   __$$ObservationCopyWithImpl(
       _$Observation _value, $Res Function(_$Observation) _then)
-      : super(_value, (v) => _then(v as _$Observation));
+      : super(_value, _then);
 
-  @override
-  _$Observation get _value => super._value as _$Observation;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? category = freezed,
@@ -359,35 +364,35 @@ class __$$ObservationCopyWithImpl<$Res> extends _$FhirResourceCopyWithImpl<$Res>
     Object? value = freezed,
   }) {
     return _then(_$Observation(
-      category: category == freezed
+      category: freezed == category
           ? _value._category
           : category // ignore: cast_nullable_to_non_nullable
               as List<CodeableConcept>?,
-      code: code == freezed
+      code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as CodeableConcept?,
-      date: date == freezed
+      date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as String?,
-      resourceType: resourceType == freezed
+      resourceType: freezed == resourceType
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as ReferenceType?,
-      status: status == freezed
+      status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ObservationStatus?,
-      patient: patient == freezed
+      patient: freezed == patient
           ? _value.patient
           : patient // ignore: cast_nullable_to_non_nullable
               as Reference?,
-      timelineDate: timelineDate == freezed
+      timelineDate: freezed == timelineDate
           ? _value.timelineDate
           : timelineDate // ignore: cast_nullable_to_non_nullable
               as String?,
-      value: value == freezed
+      value: freezed == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -395,6 +400,7 @@ class __$$ObservationCopyWithImpl<$Res> extends _$FhirResourceCopyWithImpl<$Res>
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get patient {
     if (_value.patient == null) {
       return null;
@@ -482,15 +488,15 @@ class _$Observation with DiagnosticableTreeMixin implements Observation {
         (other.runtimeType == runtimeType &&
             other is _$Observation &&
             const DeepCollectionEquality().equals(other._category, _category) &&
-            const DeepCollectionEquality().equals(other.code, code) &&
-            const DeepCollectionEquality().equals(other.date, date) &&
-            const DeepCollectionEquality()
-                .equals(other.resourceType, resourceType) &&
-            const DeepCollectionEquality().equals(other.status, status) &&
-            const DeepCollectionEquality().equals(other.patient, patient) &&
-            const DeepCollectionEquality()
-                .equals(other.timelineDate, timelineDate) &&
-            const DeepCollectionEquality().equals(other.value, value));
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.resourceType, resourceType) ||
+                other.resourceType == resourceType) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.patient, patient) || other.patient == patient) &&
+            (identical(other.timelineDate, timelineDate) ||
+                other.timelineDate == timelineDate) &&
+            (identical(other.value, value) || other.value == value));
   }
 
   @JsonKey(ignore: true)
@@ -498,16 +504,17 @@ class _$Observation with DiagnosticableTreeMixin implements Observation {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_category),
-      const DeepCollectionEquality().hash(code),
-      const DeepCollectionEquality().hash(date),
-      const DeepCollectionEquality().hash(resourceType),
-      const DeepCollectionEquality().hash(status),
-      const DeepCollectionEquality().hash(patient),
-      const DeepCollectionEquality().hash(timelineDate),
-      const DeepCollectionEquality().hash(value));
+      code,
+      date,
+      resourceType,
+      status,
+      patient,
+      timelineDate,
+      value);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$ObservationCopyWith<_$Observation> get copyWith =>
       __$$ObservationCopyWithImpl<_$Observation>(this, _$identity);
 
@@ -580,7 +587,7 @@ class _$Observation with DiagnosticableTreeMixin implements Observation {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(
+    TResult? Function(
             @JsonKey(name: 'category')
                 List<CodeableConcept>? category,
             @JsonKey(name: 'code')
@@ -598,7 +605,7 @@ class _$Observation with DiagnosticableTreeMixin implements Observation {
             @JsonKey(name: 'valueString')
                 String? value)?
         observation,
-    TResult Function(
+    TResult? Function(
             @JsonKey(name: 'category')
                 List<AllergyIntoleranceCategory>? category,
             @JsonKey(name: 'clinicalStatus')
@@ -620,7 +627,7 @@ class _$Observation with DiagnosticableTreeMixin implements Observation {
             @JsonKey(name: 'verificationStatus')
                 CodeableConcept? verificationStatus)?
         allergyIntolerance,
-    TResult Function(
+    TResult? Function(
             @JsonKey(name: 'category')
                 CodeableConcept? category,
             @JsonKey(name: 'code')
@@ -726,9 +733,9 @@ class _$Observation with DiagnosticableTreeMixin implements Observation {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Observation value)? observation,
-    TResult Function(AllergyIntolerance value)? allergyIntolerance,
-    TResult Function(MedicationStatement value)? medicationStatement,
+    TResult? Function(Observation value)? observation,
+    TResult? Function(AllergyIntolerance value)? allergyIntolerance,
+    TResult? Function(MedicationStatement value)? medicationStatement,
   }) {
     return observation?.call(this);
   }
@@ -809,6 +816,7 @@ abstract class _$$AllergyIntoleranceCopyWith<$Res>
           $Res Function(_$AllergyIntolerance) then) =
       __$$AllergyIntoleranceCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'category')
           List<AllergyIntoleranceCategory>? category,
@@ -840,15 +848,13 @@ abstract class _$$AllergyIntoleranceCopyWith<$Res>
 
 /// @nodoc
 class __$$AllergyIntoleranceCopyWithImpl<$Res>
-    extends _$FhirResourceCopyWithImpl<$Res>
+    extends _$FhirResourceCopyWithImpl<$Res, _$AllergyIntolerance>
     implements _$$AllergyIntoleranceCopyWith<$Res> {
   __$$AllergyIntoleranceCopyWithImpl(
       _$AllergyIntolerance _value, $Res Function(_$AllergyIntolerance) _then)
-      : super(_value, (v) => _then(v as _$AllergyIntolerance));
+      : super(_value, _then);
 
-  @override
-  _$AllergyIntolerance get _value => super._value as _$AllergyIntolerance;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? category = freezed,
@@ -863,43 +869,43 @@ class __$$AllergyIntoleranceCopyWithImpl<$Res>
     Object? verificationStatus = freezed,
   }) {
     return _then(_$AllergyIntolerance(
-      category: category == freezed
+      category: freezed == category
           ? _value._category
           : category // ignore: cast_nullable_to_non_nullable
               as List<AllergyIntoleranceCategory>?,
-      clinicalStatus: clinicalStatus == freezed
+      clinicalStatus: freezed == clinicalStatus
           ? _value.clinicalStatus
           : clinicalStatus // ignore: cast_nullable_to_non_nullable
               as CodeableConcept?,
-      code: code == freezed
+      code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as CodeableConcept?,
-      patient: patient == freezed
+      patient: freezed == patient
           ? _value.patient
           : patient // ignore: cast_nullable_to_non_nullable
               as Reference?,
-      reaction: reaction == freezed
+      reaction: freezed == reaction
           ? _value._reaction
           : reaction // ignore: cast_nullable_to_non_nullable
               as List<Reaction>?,
-      recordedDate: recordedDate == freezed
+      recordedDate: freezed == recordedDate
           ? _value.recordedDate
           : recordedDate // ignore: cast_nullable_to_non_nullable
               as String?,
-      resourceType: resourceType == freezed
+      resourceType: freezed == resourceType
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as ReferenceType?,
-      timelineDate: timelineDate == freezed
+      timelineDate: freezed == timelineDate
           ? _value.timelineDate
           : timelineDate // ignore: cast_nullable_to_non_nullable
               as String?,
-      type: type == freezed
+      type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as AllergyIntoleranceType?,
-      verificationStatus: verificationStatus == freezed
+      verificationStatus: freezed == verificationStatus
           ? _value.verificationStatus
           : verificationStatus // ignore: cast_nullable_to_non_nullable
               as CodeableConcept?,
@@ -907,6 +913,7 @@ class __$$AllergyIntoleranceCopyWithImpl<$Res>
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get clinicalStatus {
     if (_value.clinicalStatus == null) {
       return null;
@@ -918,6 +925,7 @@ class __$$AllergyIntoleranceCopyWithImpl<$Res>
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get patient {
     if (_value.patient == null) {
       return null;
@@ -929,6 +937,7 @@ class __$$AllergyIntoleranceCopyWithImpl<$Res>
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get verificationStatus {
     if (_value.verificationStatus == null) {
       return null;
@@ -1045,20 +1054,20 @@ class _$AllergyIntolerance
         (other.runtimeType == runtimeType &&
             other is _$AllergyIntolerance &&
             const DeepCollectionEquality().equals(other._category, _category) &&
-            const DeepCollectionEquality()
-                .equals(other.clinicalStatus, clinicalStatus) &&
-            const DeepCollectionEquality().equals(other.code, code) &&
-            const DeepCollectionEquality().equals(other.patient, patient) &&
+            (identical(other.clinicalStatus, clinicalStatus) ||
+                other.clinicalStatus == clinicalStatus) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.patient, patient) || other.patient == patient) &&
             const DeepCollectionEquality().equals(other._reaction, _reaction) &&
-            const DeepCollectionEquality()
-                .equals(other.recordedDate, recordedDate) &&
-            const DeepCollectionEquality()
-                .equals(other.resourceType, resourceType) &&
-            const DeepCollectionEquality()
-                .equals(other.timelineDate, timelineDate) &&
-            const DeepCollectionEquality().equals(other.type, type) &&
-            const DeepCollectionEquality()
-                .equals(other.verificationStatus, verificationStatus));
+            (identical(other.recordedDate, recordedDate) ||
+                other.recordedDate == recordedDate) &&
+            (identical(other.resourceType, resourceType) ||
+                other.resourceType == resourceType) &&
+            (identical(other.timelineDate, timelineDate) ||
+                other.timelineDate == timelineDate) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.verificationStatus, verificationStatus) ||
+                other.verificationStatus == verificationStatus));
   }
 
   @JsonKey(ignore: true)
@@ -1066,18 +1075,19 @@ class _$AllergyIntolerance
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_category),
-      const DeepCollectionEquality().hash(clinicalStatus),
-      const DeepCollectionEquality().hash(code),
-      const DeepCollectionEquality().hash(patient),
+      clinicalStatus,
+      code,
+      patient,
       const DeepCollectionEquality().hash(_reaction),
-      const DeepCollectionEquality().hash(recordedDate),
-      const DeepCollectionEquality().hash(resourceType),
-      const DeepCollectionEquality().hash(timelineDate),
-      const DeepCollectionEquality().hash(type),
-      const DeepCollectionEquality().hash(verificationStatus));
+      recordedDate,
+      resourceType,
+      timelineDate,
+      type,
+      verificationStatus);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$AllergyIntoleranceCopyWith<_$AllergyIntolerance> get copyWith =>
       __$$AllergyIntoleranceCopyWithImpl<_$AllergyIntolerance>(
           this, _$identity);
@@ -1151,7 +1161,7 @@ class _$AllergyIntolerance
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(
+    TResult? Function(
             @JsonKey(name: 'category')
                 List<CodeableConcept>? category,
             @JsonKey(name: 'code')
@@ -1169,7 +1179,7 @@ class _$AllergyIntolerance
             @JsonKey(name: 'valueString')
                 String? value)?
         observation,
-    TResult Function(
+    TResult? Function(
             @JsonKey(name: 'category')
                 List<AllergyIntoleranceCategory>? category,
             @JsonKey(name: 'clinicalStatus')
@@ -1191,7 +1201,7 @@ class _$AllergyIntolerance
             @JsonKey(name: 'verificationStatus')
                 CodeableConcept? verificationStatus)?
         allergyIntolerance,
-    TResult Function(
+    TResult? Function(
             @JsonKey(name: 'category')
                 CodeableConcept? category,
             @JsonKey(name: 'code')
@@ -1315,9 +1325,9 @@ class _$AllergyIntolerance
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Observation value)? observation,
-    TResult Function(AllergyIntolerance value)? allergyIntolerance,
-    TResult Function(MedicationStatement value)? medicationStatement,
+    TResult? Function(Observation value)? observation,
+    TResult? Function(AllergyIntolerance value)? allergyIntolerance,
+    TResult? Function(MedicationStatement value)? medicationStatement,
   }) {
     return allergyIntolerance?.call(this);
   }
@@ -1406,6 +1416,7 @@ abstract class _$$MedicationStatementCopyWith<$Res>
           $Res Function(_$MedicationStatement) then) =
       __$$MedicationStatementCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'category')
           CodeableConcept? category,
@@ -1433,15 +1444,13 @@ abstract class _$$MedicationStatementCopyWith<$Res>
 
 /// @nodoc
 class __$$MedicationStatementCopyWithImpl<$Res>
-    extends _$FhirResourceCopyWithImpl<$Res>
+    extends _$FhirResourceCopyWithImpl<$Res, _$MedicationStatement>
     implements _$$MedicationStatementCopyWith<$Res> {
   __$$MedicationStatementCopyWithImpl(
       _$MedicationStatement _value, $Res Function(_$MedicationStatement) _then)
-      : super(_value, (v) => _then(v as _$MedicationStatement));
+      : super(_value, _then);
 
-  @override
-  _$MedicationStatement get _value => super._value as _$MedicationStatement;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? category = freezed,
@@ -1454,35 +1463,35 @@ class __$$MedicationStatementCopyWithImpl<$Res>
     Object? timelineDate = freezed,
   }) {
     return _then(_$MedicationStatement(
-      category: category == freezed
+      category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as CodeableConcept?,
-      code: code == freezed
+      code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as CodeableConcept?,
-      date: date == freezed
+      date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as String?,
-      medication: medication == freezed
+      medication: freezed == medication
           ? _value.medication
           : medication // ignore: cast_nullable_to_non_nullable
               as CodeableConcept?,
-      resourceType: resourceType == freezed
+      resourceType: freezed == resourceType
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as ReferenceType?,
-      status: status == freezed
+      status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as MedicationStatusCodes?,
-      subject: subject == freezed
+      subject: freezed == subject
           ? _value.subject
           : subject // ignore: cast_nullable_to_non_nullable
               as Reference?,
-      timelineDate: timelineDate == freezed
+      timelineDate: freezed == timelineDate
           ? _value.timelineDate
           : timelineDate // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -1490,6 +1499,7 @@ class __$$MedicationStatementCopyWithImpl<$Res>
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get category {
     if (_value.category == null) {
       return null;
@@ -1501,6 +1511,7 @@ class __$$MedicationStatementCopyWithImpl<$Res>
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get medication {
     if (_value.medication == null) {
       return null;
@@ -1512,6 +1523,7 @@ class __$$MedicationStatementCopyWithImpl<$Res>
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get subject {
     if (_value.subject == null) {
       return null;
@@ -1599,34 +1611,28 @@ class _$MedicationStatement
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MedicationStatement &&
-            const DeepCollectionEquality().equals(other.category, category) &&
-            const DeepCollectionEquality().equals(other.code, code) &&
-            const DeepCollectionEquality().equals(other.date, date) &&
-            const DeepCollectionEquality()
-                .equals(other.medication, medication) &&
-            const DeepCollectionEquality()
-                .equals(other.resourceType, resourceType) &&
-            const DeepCollectionEquality().equals(other.status, status) &&
-            const DeepCollectionEquality().equals(other.subject, subject) &&
-            const DeepCollectionEquality()
-                .equals(other.timelineDate, timelineDate));
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.medication, medication) ||
+                other.medication == medication) &&
+            (identical(other.resourceType, resourceType) ||
+                other.resourceType == resourceType) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.subject, subject) || other.subject == subject) &&
+            (identical(other.timelineDate, timelineDate) ||
+                other.timelineDate == timelineDate));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(category),
-      const DeepCollectionEquality().hash(code),
-      const DeepCollectionEquality().hash(date),
-      const DeepCollectionEquality().hash(medication),
-      const DeepCollectionEquality().hash(resourceType),
-      const DeepCollectionEquality().hash(status),
-      const DeepCollectionEquality().hash(subject),
-      const DeepCollectionEquality().hash(timelineDate));
+  int get hashCode => Object.hash(runtimeType, category, code, date, medication,
+      resourceType, status, subject, timelineDate);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$MedicationStatementCopyWith<_$MedicationStatement> get copyWith =>
       __$$MedicationStatementCopyWithImpl<_$MedicationStatement>(
           this, _$identity);
@@ -1700,7 +1706,7 @@ class _$MedicationStatement
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(
+    TResult? Function(
             @JsonKey(name: 'category')
                 List<CodeableConcept>? category,
             @JsonKey(name: 'code')
@@ -1718,7 +1724,7 @@ class _$MedicationStatement
             @JsonKey(name: 'valueString')
                 String? value)?
         observation,
-    TResult Function(
+    TResult? Function(
             @JsonKey(name: 'category')
                 List<AllergyIntoleranceCategory>? category,
             @JsonKey(name: 'clinicalStatus')
@@ -1740,7 +1746,7 @@ class _$MedicationStatement
             @JsonKey(name: 'verificationStatus')
                 CodeableConcept? verificationStatus)?
         allergyIntolerance,
-    TResult Function(
+    TResult? Function(
             @JsonKey(name: 'category')
                 CodeableConcept? category,
             @JsonKey(name: 'code')
@@ -1846,9 +1852,9 @@ class _$MedicationStatement
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Observation value)? observation,
-    TResult Function(AllergyIntolerance value)? allergyIntolerance,
-    TResult Function(MedicationStatement value)? medicationStatement,
+    TResult? Function(Observation value)? observation,
+    TResult? Function(AllergyIntolerance value)? allergyIntolerance,
+    TResult? Function(MedicationStatement value)? medicationStatement,
   }) {
     return medicationStatement?.call(this);
   }

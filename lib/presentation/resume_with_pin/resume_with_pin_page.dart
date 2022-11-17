@@ -76,7 +76,7 @@ class _ResumeWithPinPageState extends State<ResumeWithPinPage> {
                     key: const Key('logout_button'),
                     onPressed: widget.logoutCallback,
                     style: ElevatedButton.styleFrom(
-                      primary: AppColors.primaryColor,
+                      backgroundColor: AppColors.primaryColor,
                     ),
                     child: const Padding(
                       padding: EdgeInsets.all(16.0),

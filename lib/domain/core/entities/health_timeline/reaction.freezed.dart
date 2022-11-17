@@ -61,7 +61,8 @@ mixin _$Reaction {
 /// @nodoc
 abstract class $ReactionCopyWith<$Res> {
   factory $ReactionCopyWith(Reaction value, $Res Function(Reaction) then) =
-      _$ReactionCopyWithImpl<$Res>;
+      _$ReactionCopyWithImpl<$Res, Reaction>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'substance')
           CodeableConcept? substance,
@@ -76,13 +77,16 @@ abstract class $ReactionCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ReactionCopyWithImpl<$Res> implements $ReactionCopyWith<$Res> {
+class _$ReactionCopyWithImpl<$Res, $Val extends Reaction>
+    implements $ReactionCopyWith<$Res> {
   _$ReactionCopyWithImpl(this._value, this._then);
 
-  final Reaction _value;
   // ignore: unused_field
-  final $Res Function(Reaction) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? substance = freezed,
@@ -91,33 +95,34 @@ class _$ReactionCopyWithImpl<$Res> implements $ReactionCopyWith<$Res> {
     Object? severity = freezed,
   }) {
     return _then(_value.copyWith(
-      substance: substance == freezed
+      substance: freezed == substance
           ? _value.substance
           : substance // ignore: cast_nullable_to_non_nullable
               as CodeableConcept?,
-      manifestation: manifestation == freezed
+      manifestation: freezed == manifestation
           ? _value.manifestation
           : manifestation // ignore: cast_nullable_to_non_nullable
               as List<CodeableConcept?>?,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      severity: severity == freezed
+      severity: freezed == severity
           ? _value.severity
           : severity // ignore: cast_nullable_to_non_nullable
               as AllergyIntoleranceSeverity?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get substance {
     if (_value.substance == null) {
       return null;
     }
 
     return $CodeableConceptCopyWith<$Res>(_value.substance!, (value) {
-      return _then(_value.copyWith(substance: value));
+      return _then(_value.copyWith(substance: value) as $Val);
     });
   }
 }
@@ -128,6 +133,7 @@ abstract class _$$_ReactionCopyWith<$Res> implements $ReactionCopyWith<$Res> {
           _$_Reaction value, $Res Function(_$_Reaction) then) =
       __$$_ReactionCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'substance')
           CodeableConcept? substance,
@@ -143,15 +149,14 @@ abstract class _$$_ReactionCopyWith<$Res> implements $ReactionCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ReactionCopyWithImpl<$Res> extends _$ReactionCopyWithImpl<$Res>
+class __$$_ReactionCopyWithImpl<$Res>
+    extends _$ReactionCopyWithImpl<$Res, _$_Reaction>
     implements _$$_ReactionCopyWith<$Res> {
   __$$_ReactionCopyWithImpl(
       _$_Reaction _value, $Res Function(_$_Reaction) _then)
-      : super(_value, (v) => _then(v as _$_Reaction));
+      : super(_value, _then);
 
-  @override
-  _$_Reaction get _value => super._value as _$_Reaction;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? substance = freezed,
@@ -160,19 +165,19 @@ class __$$_ReactionCopyWithImpl<$Res> extends _$ReactionCopyWithImpl<$Res>
     Object? severity = freezed,
   }) {
     return _then(_$_Reaction(
-      substance: substance == freezed
+      substance: freezed == substance
           ? _value.substance
           : substance // ignore: cast_nullable_to_non_nullable
               as CodeableConcept?,
-      manifestation: manifestation == freezed
+      manifestation: freezed == manifestation
           ? _value._manifestation
           : manifestation // ignore: cast_nullable_to_non_nullable
               as List<CodeableConcept?>?,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      severity: severity == freezed
+      severity: freezed == severity
           ? _value.severity
           : severity // ignore: cast_nullable_to_non_nullable
               as AllergyIntoleranceSeverity?,
@@ -249,25 +254,28 @@ class _$_Reaction implements _Reaction {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Reaction &&
-            const DeepCollectionEquality().equals(other.substance, substance) &&
+            (identical(other.substance, substance) ||
+                other.substance == substance) &&
             const DeepCollectionEquality()
                 .equals(other._manifestation, _manifestation) &&
-            const DeepCollectionEquality()
-                .equals(other.description, description) &&
-            const DeepCollectionEquality().equals(other.severity, severity));
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.severity, severity) ||
+                other.severity == severity));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(substance),
+      substance,
       const DeepCollectionEquality().hash(_manifestation),
-      const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(severity));
+      description,
+      severity);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ReactionCopyWith<_$_Reaction> get copyWith =>
       __$$_ReactionCopyWithImpl<_$_Reaction>(this, _$identity);
 

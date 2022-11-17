@@ -34,29 +34,33 @@ mixin _$MedicationCodeableConcept {
 abstract class $MedicationCodeableConceptCopyWith<$Res> {
   factory $MedicationCodeableConceptCopyWith(MedicationCodeableConcept value,
           $Res Function(MedicationCodeableConcept) then) =
-      _$MedicationCodeableConceptCopyWithImpl<$Res>;
+      _$MedicationCodeableConceptCopyWithImpl<$Res, MedicationCodeableConcept>;
+  @useResult
   $Res call({@JsonKey(name: 'Text') String? text});
 }
 
 /// @nodoc
-class _$MedicationCodeableConceptCopyWithImpl<$Res>
+class _$MedicationCodeableConceptCopyWithImpl<$Res,
+        $Val extends MedicationCodeableConcept>
     implements $MedicationCodeableConceptCopyWith<$Res> {
   _$MedicationCodeableConceptCopyWithImpl(this._value, this._then);
 
-  final MedicationCodeableConcept _value;
   // ignore: unused_field
-  final $Res Function(MedicationCodeableConcept) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? text = freezed,
   }) {
     return _then(_value.copyWith(
-      text: text == freezed
+      text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -68,28 +72,27 @@ abstract class _$$_MedicationCodeableConceptCopyWith<$Res>
           $Res Function(_$_MedicationCodeableConcept) then) =
       __$$_MedicationCodeableConceptCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({@JsonKey(name: 'Text') String? text});
 }
 
 /// @nodoc
 class __$$_MedicationCodeableConceptCopyWithImpl<$Res>
-    extends _$MedicationCodeableConceptCopyWithImpl<$Res>
+    extends _$MedicationCodeableConceptCopyWithImpl<$Res,
+        _$_MedicationCodeableConcept>
     implements _$$_MedicationCodeableConceptCopyWith<$Res> {
   __$$_MedicationCodeableConceptCopyWithImpl(
       _$_MedicationCodeableConcept _value,
       $Res Function(_$_MedicationCodeableConcept) _then)
-      : super(_value, (v) => _then(v as _$_MedicationCodeableConcept));
+      : super(_value, _then);
 
-  @override
-  _$_MedicationCodeableConcept get _value =>
-      super._value as _$_MedicationCodeableConcept;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? text = freezed,
   }) {
     return _then(_$_MedicationCodeableConcept(
-      text: text == freezed
+      text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -119,16 +122,16 @@ class _$_MedicationCodeableConcept implements _MedicationCodeableConcept {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MedicationCodeableConcept &&
-            const DeepCollectionEquality().equals(other.text, text));
+            (identical(other.text, text) || other.text == text));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(text));
+  int get hashCode => Object.hash(runtimeType, text);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_MedicationCodeableConceptCopyWith<_$_MedicationCodeableConcept>
       get copyWith => __$$_MedicationCodeableConceptCopyWithImpl<
           _$_MedicationCodeableConcept>(this, _$identity);

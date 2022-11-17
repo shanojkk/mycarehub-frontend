@@ -33,46 +33,50 @@ mixin _$FacilityState {
 abstract class $FacilityStateCopyWith<$Res> {
   factory $FacilityStateCopyWith(
           FacilityState value, $Res Function(FacilityState) then) =
-      _$FacilityStateCopyWithImpl<$Res>;
+      _$FacilityStateCopyWithImpl<$Res, FacilityState>;
+  @useResult
   $Res call({List<Facility?>? facilities, Facility? currentFacility});
 
   $FacilityCopyWith<$Res>? get currentFacility;
 }
 
 /// @nodoc
-class _$FacilityStateCopyWithImpl<$Res>
+class _$FacilityStateCopyWithImpl<$Res, $Val extends FacilityState>
     implements $FacilityStateCopyWith<$Res> {
   _$FacilityStateCopyWithImpl(this._value, this._then);
 
-  final FacilityState _value;
   // ignore: unused_field
-  final $Res Function(FacilityState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? facilities = freezed,
     Object? currentFacility = freezed,
   }) {
     return _then(_value.copyWith(
-      facilities: facilities == freezed
+      facilities: freezed == facilities
           ? _value.facilities
           : facilities // ignore: cast_nullable_to_non_nullable
               as List<Facility?>?,
-      currentFacility: currentFacility == freezed
+      currentFacility: freezed == currentFacility
           ? _value.currentFacility
           : currentFacility // ignore: cast_nullable_to_non_nullable
               as Facility?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $FacilityCopyWith<$Res>? get currentFacility {
     if (_value.currentFacility == null) {
       return null;
     }
 
     return $FacilityCopyWith<$Res>(_value.currentFacility!, (value) {
-      return _then(_value.copyWith(currentFacility: value));
+      return _then(_value.copyWith(currentFacility: value) as $Val);
     });
   }
 }
@@ -84,6 +88,7 @@ abstract class _$$_FacilityStateCopyWith<$Res>
           _$_FacilityState value, $Res Function(_$_FacilityState) then) =
       __$$_FacilityStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({List<Facility?>? facilities, Facility? currentFacility});
 
   @override
@@ -92,26 +97,24 @@ abstract class _$$_FacilityStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_FacilityStateCopyWithImpl<$Res>
-    extends _$FacilityStateCopyWithImpl<$Res>
+    extends _$FacilityStateCopyWithImpl<$Res, _$_FacilityState>
     implements _$$_FacilityStateCopyWith<$Res> {
   __$$_FacilityStateCopyWithImpl(
       _$_FacilityState _value, $Res Function(_$_FacilityState) _then)
-      : super(_value, (v) => _then(v as _$_FacilityState));
+      : super(_value, _then);
 
-  @override
-  _$_FacilityState get _value => super._value as _$_FacilityState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? facilities = freezed,
     Object? currentFacility = freezed,
   }) {
     return _then(_$_FacilityState(
-      facilities: facilities == freezed
+      facilities: freezed == facilities
           ? _value._facilities
           : facilities // ignore: cast_nullable_to_non_nullable
               as List<Facility?>?,
-      currentFacility: currentFacility == freezed
+      currentFacility: freezed == currentFacility
           ? _value.currentFacility
           : currentFacility // ignore: cast_nullable_to_non_nullable
               as Facility?,
@@ -152,19 +155,18 @@ class _$_FacilityState implements _FacilityState {
             other is _$_FacilityState &&
             const DeepCollectionEquality()
                 .equals(other._facilities, _facilities) &&
-            const DeepCollectionEquality()
-                .equals(other.currentFacility, currentFacility));
+            (identical(other.currentFacility, currentFacility) ||
+                other.currentFacility == currentFacility));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_facilities),
-      const DeepCollectionEquality().hash(currentFacility));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_facilities), currentFacility);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_FacilityStateCopyWith<_$_FacilityState> get copyWith =>
       __$$_FacilityStateCopyWithImpl<_$_FacilityState>(this, _$identity);
 

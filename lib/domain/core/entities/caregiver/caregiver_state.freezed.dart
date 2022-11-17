@@ -40,7 +40,8 @@ mixin _$CaregiverState {
 abstract class $CaregiverStateCopyWith<$Res> {
   factory $CaregiverStateCopyWith(
           CaregiverState value, $Res Function(CaregiverState) then) =
-      _$CaregiverStateCopyWithImpl<$Res>;
+      _$CaregiverStateCopyWithImpl<$Res, CaregiverState>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'user') User? user,
@@ -53,14 +54,16 @@ abstract class $CaregiverStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CaregiverStateCopyWithImpl<$Res>
+class _$CaregiverStateCopyWithImpl<$Res, $Val extends CaregiverState>
     implements $CaregiverStateCopyWith<$Res> {
   _$CaregiverStateCopyWithImpl(this._value, this._then);
 
-  final CaregiverState _value;
   // ignore: unused_field
-  final $Res Function(CaregiverState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
@@ -71,41 +74,42 @@ class _$CaregiverStateCopyWithImpl<$Res>
     Object? errorFetchingClients = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      user: user == freezed
+      user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User?,
-      caregiverNumber: caregiverNumber == freezed
+      caregiverNumber: freezed == caregiverNumber
           ? _value.caregiverNumber
           : caregiverNumber // ignore: cast_nullable_to_non_nullable
               as String?,
-      managedClients: managedClients == freezed
+      managedClients: freezed == managedClients
           ? _value.managedClients
           : managedClients // ignore: cast_nullable_to_non_nullable
               as List<ManagedClient>?,
-      selectedClientId: selectedClientId == freezed
+      selectedClientId: freezed == selectedClientId
           ? _value.selectedClientId
           : selectedClientId // ignore: cast_nullable_to_non_nullable
               as String?,
-      errorFetchingClients: errorFetchingClients == freezed
+      errorFetchingClients: freezed == errorFetchingClients
           ? _value.errorFetchingClients
           : errorFetchingClients // ignore: cast_nullable_to_non_nullable
               as bool?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $UserCopyWith<$Res>? get user {
     if (_value.user == null) {
       return null;
     }
 
     return $UserCopyWith<$Res>(_value.user!, (value) {
-      return _then(_value.copyWith(user: value));
+      return _then(_value.copyWith(user: value) as $Val);
     });
   }
 }
@@ -117,6 +121,7 @@ abstract class _$$_CaregiverStateCopyWith<$Res>
           _$_CaregiverState value, $Res Function(_$_CaregiverState) then) =
       __$$_CaregiverStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'user') User? user,
@@ -131,15 +136,13 @@ abstract class _$$_CaregiverStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_CaregiverStateCopyWithImpl<$Res>
-    extends _$CaregiverStateCopyWithImpl<$Res>
+    extends _$CaregiverStateCopyWithImpl<$Res, _$_CaregiverState>
     implements _$$_CaregiverStateCopyWith<$Res> {
   __$$_CaregiverStateCopyWithImpl(
       _$_CaregiverState _value, $Res Function(_$_CaregiverState) _then)
-      : super(_value, (v) => _then(v as _$_CaregiverState));
+      : super(_value, _then);
 
-  @override
-  _$_CaregiverState get _value => super._value as _$_CaregiverState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
@@ -150,27 +153,27 @@ class __$$_CaregiverStateCopyWithImpl<$Res>
     Object? errorFetchingClients = freezed,
   }) {
     return _then(_$_CaregiverState(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      user: user == freezed
+      user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User?,
-      caregiverNumber: caregiverNumber == freezed
+      caregiverNumber: freezed == caregiverNumber
           ? _value.caregiverNumber
           : caregiverNumber // ignore: cast_nullable_to_non_nullable
               as String?,
-      managedClients: managedClients == freezed
+      managedClients: freezed == managedClients
           ? _value._managedClients
           : managedClients // ignore: cast_nullable_to_non_nullable
               as List<ManagedClient>?,
-      selectedClientId: selectedClientId == freezed
+      selectedClientId: freezed == selectedClientId
           ? _value.selectedClientId
           : selectedClientId // ignore: cast_nullable_to_non_nullable
               as String?,
-      errorFetchingClients: errorFetchingClients == freezed
+      errorFetchingClients: freezed == errorFetchingClients
           ? _value.errorFetchingClients
           : errorFetchingClients // ignore: cast_nullable_to_non_nullable
               as bool?,
@@ -226,31 +229,32 @@ class _$_CaregiverState implements _CaregiverState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CaregiverState &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.user, user) &&
-            const DeepCollectionEquality()
-                .equals(other.caregiverNumber, caregiverNumber) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.caregiverNumber, caregiverNumber) ||
+                other.caregiverNumber == caregiverNumber) &&
             const DeepCollectionEquality()
                 .equals(other._managedClients, _managedClients) &&
-            const DeepCollectionEquality()
-                .equals(other.selectedClientId, selectedClientId) &&
-            const DeepCollectionEquality()
-                .equals(other.errorFetchingClients, errorFetchingClients));
+            (identical(other.selectedClientId, selectedClientId) ||
+                other.selectedClientId == selectedClientId) &&
+            (identical(other.errorFetchingClients, errorFetchingClients) ||
+                other.errorFetchingClients == errorFetchingClients));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(user),
-      const DeepCollectionEquality().hash(caregiverNumber),
+      id,
+      user,
+      caregiverNumber,
       const DeepCollectionEquality().hash(_managedClients),
-      const DeepCollectionEquality().hash(selectedClientId),
-      const DeepCollectionEquality().hash(errorFetchingClients));
+      selectedClientId,
+      errorFetchingClients);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_CaregiverStateCopyWith<_$_CaregiverState> get copyWith =>
       __$$_CaregiverStateCopyWithImpl<_$_CaregiverState>(this, _$identity);
 

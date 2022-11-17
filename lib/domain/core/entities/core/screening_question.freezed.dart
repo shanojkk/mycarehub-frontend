@@ -46,7 +46,8 @@ mixin _$ScreeningQuestion {
 abstract class $ScreeningQuestionCopyWith<$Res> {
   factory $ScreeningQuestionCopyWith(
           ScreeningQuestion value, $Res Function(ScreeningQuestion) then) =
-      _$ScreeningQuestionCopyWithImpl<$Res>;
+      _$ScreeningQuestionCopyWithImpl<$Res, ScreeningQuestion>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'question') String? questionText,
@@ -58,14 +59,16 @@ abstract class $ScreeningQuestionCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ScreeningQuestionCopyWithImpl<$Res>
+class _$ScreeningQuestionCopyWithImpl<$Res, $Val extends ScreeningQuestion>
     implements $ScreeningQuestionCopyWith<$Res> {
   _$ScreeningQuestionCopyWithImpl(this._value, this._then);
 
-  final ScreeningQuestion _value;
   // ignore: unused_field
-  final $Res Function(ScreeningQuestion) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
@@ -77,35 +80,35 @@ class _$ScreeningQuestionCopyWithImpl<$Res>
     Object? meta = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      questionText: questionText == freezed
+      questionText: freezed == questionText
           ? _value.questionText
           : questionText // ignore: cast_nullable_to_non_nullable
               as String?,
-      answer: answer == freezed
+      answer: freezed == answer
           ? _value.answer
           : answer // ignore: cast_nullable_to_non_nullable
               as String?,
-      toolType: toolType == freezed
+      toolType: freezed == toolType
           ? _value.toolType
           : toolType // ignore: cast_nullable_to_non_nullable
               as String?,
-      sequence: sequence == freezed
+      sequence: freezed == sequence
           ? _value.sequence
           : sequence // ignore: cast_nullable_to_non_nullable
               as int?,
-      responseChoices: responseChoices == freezed
+      responseChoices: freezed == responseChoices
           ? _value.responseChoices
           : responseChoices // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>?,
-      meta: meta == freezed
+      meta: freezed == meta
           ? _value.meta
           : meta // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -116,6 +119,7 @@ abstract class _$$_ScreeningQuestionCopyWith<$Res>
           $Res Function(_$_ScreeningQuestion) then) =
       __$$_ScreeningQuestionCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'question') String? questionText,
@@ -128,15 +132,13 @@ abstract class _$$_ScreeningQuestionCopyWith<$Res>
 
 /// @nodoc
 class __$$_ScreeningQuestionCopyWithImpl<$Res>
-    extends _$ScreeningQuestionCopyWithImpl<$Res>
+    extends _$ScreeningQuestionCopyWithImpl<$Res, _$_ScreeningQuestion>
     implements _$$_ScreeningQuestionCopyWith<$Res> {
   __$$_ScreeningQuestionCopyWithImpl(
       _$_ScreeningQuestion _value, $Res Function(_$_ScreeningQuestion) _then)
-      : super(_value, (v) => _then(v as _$_ScreeningQuestion));
+      : super(_value, _then);
 
-  @override
-  _$_ScreeningQuestion get _value => super._value as _$_ScreeningQuestion;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
@@ -148,31 +150,31 @@ class __$$_ScreeningQuestionCopyWithImpl<$Res>
     Object? meta = freezed,
   }) {
     return _then(_$_ScreeningQuestion(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      questionText: questionText == freezed
+      questionText: freezed == questionText
           ? _value.questionText
           : questionText // ignore: cast_nullable_to_non_nullable
               as String?,
-      answer: answer == freezed
+      answer: freezed == answer
           ? _value.answer
           : answer // ignore: cast_nullable_to_non_nullable
               as String?,
-      toolType: toolType == freezed
+      toolType: freezed == toolType
           ? _value.toolType
           : toolType // ignore: cast_nullable_to_non_nullable
               as String?,
-      sequence: sequence == freezed
+      sequence: freezed == sequence
           ? _value.sequence
           : sequence // ignore: cast_nullable_to_non_nullable
               as int?,
-      responseChoices: responseChoices == freezed
+      responseChoices: freezed == responseChoices
           ? _value._responseChoices
           : responseChoices // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>?,
-      meta: meta == freezed
+      meta: freezed == meta
           ? _value._meta
           : meta // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>?,
@@ -249,12 +251,14 @@ class _$_ScreeningQuestion implements _ScreeningQuestion {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ScreeningQuestion &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality()
-                .equals(other.questionText, questionText) &&
-            const DeepCollectionEquality().equals(other.answer, answer) &&
-            const DeepCollectionEquality().equals(other.toolType, toolType) &&
-            const DeepCollectionEquality().equals(other.sequence, sequence) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.questionText, questionText) ||
+                other.questionText == questionText) &&
+            (identical(other.answer, answer) || other.answer == answer) &&
+            (identical(other.toolType, toolType) ||
+                other.toolType == toolType) &&
+            (identical(other.sequence, sequence) ||
+                other.sequence == sequence) &&
             const DeepCollectionEquality()
                 .equals(other._responseChoices, _responseChoices) &&
             const DeepCollectionEquality().equals(other._meta, _meta));
@@ -264,16 +268,17 @@ class _$_ScreeningQuestion implements _ScreeningQuestion {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(questionText),
-      const DeepCollectionEquality().hash(answer),
-      const DeepCollectionEquality().hash(toolType),
-      const DeepCollectionEquality().hash(sequence),
+      id,
+      questionText,
+      answer,
+      toolType,
+      sequence,
       const DeepCollectionEquality().hash(_responseChoices),
       const DeepCollectionEquality().hash(_meta));
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ScreeningQuestionCopyWith<_$_ScreeningQuestion> get copyWith =>
       __$$_ScreeningQuestionCopyWithImpl<_$_ScreeningQuestion>(
           this, _$identity);

@@ -96,7 +96,8 @@ mixin _$ClientState {
 abstract class $ClientStateCopyWith<$Res> {
   factory $ClientStateCopyWith(
           ClientState value, $Res Function(ClientState) then) =
-      _$ClientStateCopyWithImpl<$Res>;
+      _$ClientStateCopyWithImpl<$Res, ClientState>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'active', defaultValue: false) bool? active,
@@ -143,13 +144,16 @@ abstract class $ClientStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ClientStateCopyWithImpl<$Res> implements $ClientStateCopyWith<$Res> {
+class _$ClientStateCopyWithImpl<$Res, $Val extends ClientState>
+    implements $ClientStateCopyWith<$Res> {
   _$ClientStateCopyWithImpl(this._value, this._then);
 
-  final ClientState _value;
   // ignore: unused_field
-  final $Res Function(ClientState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
@@ -185,167 +189,171 @@ class _$ClientStateCopyWithImpl<$Res> implements $ClientStateCopyWith<$Res> {
     Object? facilityState = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      active: active == freezed
+      active: freezed == active
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
               as bool?,
-      addresses: addresses == freezed
+      addresses: freezed == addresses
           ? _value.addresses
           : addresses // ignore: cast_nullable_to_non_nullable
               as List<Address>?,
-      counselled: counselled == freezed
+      counselled: freezed == counselled
           ? _value.counselled
           : counselled // ignore: cast_nullable_to_non_nullable
               as bool?,
-      clientTypes: clientTypes == freezed
+      clientTypes: freezed == clientTypes
           ? _value.clientTypes
           : clientTypes // ignore: cast_nullable_to_non_nullable
               as List<ClientType>?,
-      facilityID: facilityID == freezed
+      facilityID: freezed == facilityID
           ? _value.facilityID
           : facilityID // ignore: cast_nullable_to_non_nullable
               as String?,
-      relatedPersons: relatedPersons == freezed
+      relatedPersons: freezed == relatedPersons
           ? _value.relatedPersons
           : relatedPersons // ignore: cast_nullable_to_non_nullable
               as List<RelatedPerson>?,
-      treatmentBuddy: treatmentBuddy == freezed
+      treatmentBuddy: freezed == treatmentBuddy
           ? _value.treatmentBuddy
           : treatmentBuddy // ignore: cast_nullable_to_non_nullable
               as String?,
-      treatmentEnrollmentDate: treatmentEnrollmentDate == freezed
+      treatmentEnrollmentDate: freezed == treatmentEnrollmentDate
           ? _value.treatmentEnrollmentDate
           : treatmentEnrollmentDate // ignore: cast_nullable_to_non_nullable
               as String?,
-      user: user == freezed
+      user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User?,
-      lastMoodRecordedDate: lastMoodRecordedDate == freezed
+      lastMoodRecordedDate: freezed == lastMoodRecordedDate
           ? _value.lastMoodRecordedDate
           : lastMoodRecordedDate // ignore: cast_nullable_to_non_nullable
               as String?,
-      isSignedIn: isSignedIn == freezed
+      isSignedIn: freezed == isSignedIn
           ? _value.isSignedIn
           : isSignedIn // ignore: cast_nullable_to_non_nullable
               as bool?,
-      facilityName: facilityName == freezed
+      facilityName: freezed == facilityName
           ? _value.facilityName
           : facilityName // ignore: cast_nullable_to_non_nullable
               as String?,
-      facilityPhoneNumber: facilityPhoneNumber == freezed
+      facilityPhoneNumber: freezed == facilityPhoneNumber
           ? _value.facilityPhoneNumber
           : facilityPhoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
-      chvUserID: chvUserID == freezed
+      chvUserID: freezed == chvUserID
           ? _value.chvUserID
           : chvUserID // ignore: cast_nullable_to_non_nullable
               as String?,
-      chvUserName: chvUserName == freezed
+      chvUserName: freezed == chvUserName
           ? _value.chvUserName
           : chvUserName // ignore: cast_nullable_to_non_nullable
               as String?,
-      cccNumber: cccNumber == freezed
+      cccNumber: freezed == cccNumber
           ? _value.cccNumber
           : cccNumber // ignore: cast_nullable_to_non_nullable
               as String?,
-      fhirPatientID: fhirPatientID == freezed
+      fhirPatientID: freezed == fhirPatientID
           ? _value.fhirPatientID
           : fhirPatientID // ignore: cast_nullable_to_non_nullable
               as String?,
-      healthDiaryState: healthDiaryState == freezed
+      healthDiaryState: freezed == healthDiaryState
           ? _value.healthDiaryState
           : healthDiaryState // ignore: cast_nullable_to_non_nullable
               as HealthDiaryState?,
-      communitiesState: communitiesState == freezed
+      communitiesState: freezed == communitiesState
           ? _value.communitiesState
           : communitiesState // ignore: cast_nullable_to_non_nullable
               as CommunitiesState?,
-      pastAppointments: pastAppointments == freezed
+      pastAppointments: freezed == pastAppointments
           ? _value.pastAppointments
           : pastAppointments // ignore: cast_nullable_to_non_nullable
               as List<Appointment>?,
-      upcomingAppointments: upcomingAppointments == freezed
+      upcomingAppointments: freezed == upcomingAppointments
           ? _value.upcomingAppointments
           : upcomingAppointments // ignore: cast_nullable_to_non_nullable
               as List<Appointment>?,
-      healthTimelineState: healthTimelineState == freezed
+      healthTimelineState: freezed == healthTimelineState
           ? _value.healthTimelineState
           : healthTimelineState // ignore: cast_nullable_to_non_nullable
               as HealthTimelineState?,
-      medicalDataState: medicalDataState == freezed
+      medicalDataState: freezed == medicalDataState
           ? _value.medicalDataState
           : medicalDataState // ignore: cast_nullable_to_non_nullable
               as MedicalDataState?,
-      viralLoadData: viralLoadData == freezed
+      viralLoadData: freezed == viralLoadData
           ? _value.viralLoadData
           : viralLoadData // ignore: cast_nullable_to_non_nullable
               as ViralLoadEdges?,
-      nextRefillData: nextRefillData == freezed
+      nextRefillData: freezed == nextRefillData
           ? _value.nextRefillData
           : nextRefillData // ignore: cast_nullable_to_non_nullable
               as NextRefillData?,
-      caregiverInformation: caregiverInformation == freezed
+      caregiverInformation: freezed == caregiverInformation
           ? _value.caregiverInformation
           : caregiverInformation // ignore: cast_nullable_to_non_nullable
               as CaregiverInformation?,
-      hasCareGiverInfo: hasCareGiverInfo == freezed
+      hasCareGiverInfo: freezed == hasCareGiverInfo
           ? _value.hasCareGiverInfo
           : hasCareGiverInfo // ignore: cast_nullable_to_non_nullable
               as bool?,
-      notifications: notifications == freezed
+      notifications: freezed == notifications
           ? _value.notifications
           : notifications // ignore: cast_nullable_to_non_nullable
               as List<NotificationDetails?>?,
-      notificationFilterState: notificationFilterState == freezed
+      notificationFilterState: freezed == notificationFilterState
           ? _value.notificationFilterState
           : notificationFilterState // ignore: cast_nullable_to_non_nullable
               as NotificationFilterState?,
-      facilityState: facilityState == freezed
+      facilityState: freezed == facilityState
           ? _value.facilityState
           : facilityState // ignore: cast_nullable_to_non_nullable
               as FacilityState?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $UserCopyWith<$Res>? get user {
     if (_value.user == null) {
       return null;
     }
 
     return $UserCopyWith<$Res>(_value.user!, (value) {
-      return _then(_value.copyWith(user: value));
+      return _then(_value.copyWith(user: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $HealthDiaryStateCopyWith<$Res>? get healthDiaryState {
     if (_value.healthDiaryState == null) {
       return null;
     }
 
     return $HealthDiaryStateCopyWith<$Res>(_value.healthDiaryState!, (value) {
-      return _then(_value.copyWith(healthDiaryState: value));
+      return _then(_value.copyWith(healthDiaryState: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $CommunitiesStateCopyWith<$Res>? get communitiesState {
     if (_value.communitiesState == null) {
       return null;
     }
 
     return $CommunitiesStateCopyWith<$Res>(_value.communitiesState!, (value) {
-      return _then(_value.copyWith(communitiesState: value));
+      return _then(_value.copyWith(communitiesState: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $HealthTimelineStateCopyWith<$Res>? get healthTimelineState {
     if (_value.healthTimelineState == null) {
       return null;
@@ -353,44 +361,48 @@ class _$ClientStateCopyWithImpl<$Res> implements $ClientStateCopyWith<$Res> {
 
     return $HealthTimelineStateCopyWith<$Res>(_value.healthTimelineState!,
         (value) {
-      return _then(_value.copyWith(healthTimelineState: value));
+      return _then(_value.copyWith(healthTimelineState: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $MedicalDataStateCopyWith<$Res>? get medicalDataState {
     if (_value.medicalDataState == null) {
       return null;
     }
 
     return $MedicalDataStateCopyWith<$Res>(_value.medicalDataState!, (value) {
-      return _then(_value.copyWith(medicalDataState: value));
+      return _then(_value.copyWith(medicalDataState: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $ViralLoadEdgesCopyWith<$Res>? get viralLoadData {
     if (_value.viralLoadData == null) {
       return null;
     }
 
     return $ViralLoadEdgesCopyWith<$Res>(_value.viralLoadData!, (value) {
-      return _then(_value.copyWith(viralLoadData: value));
+      return _then(_value.copyWith(viralLoadData: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $NextRefillDataCopyWith<$Res>? get nextRefillData {
     if (_value.nextRefillData == null) {
       return null;
     }
 
     return $NextRefillDataCopyWith<$Res>(_value.nextRefillData!, (value) {
-      return _then(_value.copyWith(nextRefillData: value));
+      return _then(_value.copyWith(nextRefillData: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $CaregiverInformationCopyWith<$Res>? get caregiverInformation {
     if (_value.caregiverInformation == null) {
       return null;
@@ -398,11 +410,12 @@ class _$ClientStateCopyWithImpl<$Res> implements $ClientStateCopyWith<$Res> {
 
     return $CaregiverInformationCopyWith<$Res>(_value.caregiverInformation!,
         (value) {
-      return _then(_value.copyWith(caregiverInformation: value));
+      return _then(_value.copyWith(caregiverInformation: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $NotificationFilterStateCopyWith<$Res>? get notificationFilterState {
     if (_value.notificationFilterState == null) {
       return null;
@@ -410,18 +423,19 @@ class _$ClientStateCopyWithImpl<$Res> implements $ClientStateCopyWith<$Res> {
 
     return $NotificationFilterStateCopyWith<$Res>(
         _value.notificationFilterState!, (value) {
-      return _then(_value.copyWith(notificationFilterState: value));
+      return _then(_value.copyWith(notificationFilterState: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $FacilityStateCopyWith<$Res>? get facilityState {
     if (_value.facilityState == null) {
       return null;
     }
 
     return $FacilityStateCopyWith<$Res>(_value.facilityState!, (value) {
-      return _then(_value.copyWith(facilityState: value));
+      return _then(_value.copyWith(facilityState: value) as $Val);
     });
   }
 }
@@ -433,6 +447,7 @@ abstract class _$$_ClientStateCopyWith<$Res>
           _$_ClientState value, $Res Function(_$_ClientState) then) =
       __$$_ClientStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'active', defaultValue: false) bool? active,
@@ -489,15 +504,14 @@ abstract class _$$_ClientStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ClientStateCopyWithImpl<$Res> extends _$ClientStateCopyWithImpl<$Res>
+class __$$_ClientStateCopyWithImpl<$Res>
+    extends _$ClientStateCopyWithImpl<$Res, _$_ClientState>
     implements _$$_ClientStateCopyWith<$Res> {
   __$$_ClientStateCopyWithImpl(
       _$_ClientState _value, $Res Function(_$_ClientState) _then)
-      : super(_value, (v) => _then(v as _$_ClientState));
+      : super(_value, _then);
 
-  @override
-  _$_ClientState get _value => super._value as _$_ClientState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
@@ -533,127 +547,127 @@ class __$$_ClientStateCopyWithImpl<$Res> extends _$ClientStateCopyWithImpl<$Res>
     Object? facilityState = freezed,
   }) {
     return _then(_$_ClientState(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      active: active == freezed
+      active: freezed == active
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
               as bool?,
-      addresses: addresses == freezed
+      addresses: freezed == addresses
           ? _value._addresses
           : addresses // ignore: cast_nullable_to_non_nullable
               as List<Address>?,
-      counselled: counselled == freezed
+      counselled: freezed == counselled
           ? _value.counselled
           : counselled // ignore: cast_nullable_to_non_nullable
               as bool?,
-      clientTypes: clientTypes == freezed
+      clientTypes: freezed == clientTypes
           ? _value._clientTypes
           : clientTypes // ignore: cast_nullable_to_non_nullable
               as List<ClientType>?,
-      facilityID: facilityID == freezed
+      facilityID: freezed == facilityID
           ? _value.facilityID
           : facilityID // ignore: cast_nullable_to_non_nullable
               as String?,
-      relatedPersons: relatedPersons == freezed
+      relatedPersons: freezed == relatedPersons
           ? _value._relatedPersons
           : relatedPersons // ignore: cast_nullable_to_non_nullable
               as List<RelatedPerson>?,
-      treatmentBuddy: treatmentBuddy == freezed
+      treatmentBuddy: freezed == treatmentBuddy
           ? _value.treatmentBuddy
           : treatmentBuddy // ignore: cast_nullable_to_non_nullable
               as String?,
-      treatmentEnrollmentDate: treatmentEnrollmentDate == freezed
+      treatmentEnrollmentDate: freezed == treatmentEnrollmentDate
           ? _value.treatmentEnrollmentDate
           : treatmentEnrollmentDate // ignore: cast_nullable_to_non_nullable
               as String?,
-      user: user == freezed
+      user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User?,
-      lastMoodRecordedDate: lastMoodRecordedDate == freezed
+      lastMoodRecordedDate: freezed == lastMoodRecordedDate
           ? _value.lastMoodRecordedDate
           : lastMoodRecordedDate // ignore: cast_nullable_to_non_nullable
               as String?,
-      isSignedIn: isSignedIn == freezed
+      isSignedIn: freezed == isSignedIn
           ? _value.isSignedIn
           : isSignedIn // ignore: cast_nullable_to_non_nullable
               as bool?,
-      facilityName: facilityName == freezed
+      facilityName: freezed == facilityName
           ? _value.facilityName
           : facilityName // ignore: cast_nullable_to_non_nullable
               as String?,
-      facilityPhoneNumber: facilityPhoneNumber == freezed
+      facilityPhoneNumber: freezed == facilityPhoneNumber
           ? _value.facilityPhoneNumber
           : facilityPhoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
-      chvUserID: chvUserID == freezed
+      chvUserID: freezed == chvUserID
           ? _value.chvUserID
           : chvUserID // ignore: cast_nullable_to_non_nullable
               as String?,
-      chvUserName: chvUserName == freezed
+      chvUserName: freezed == chvUserName
           ? _value.chvUserName
           : chvUserName // ignore: cast_nullable_to_non_nullable
               as String?,
-      cccNumber: cccNumber == freezed
+      cccNumber: freezed == cccNumber
           ? _value.cccNumber
           : cccNumber // ignore: cast_nullable_to_non_nullable
               as String?,
-      fhirPatientID: fhirPatientID == freezed
+      fhirPatientID: freezed == fhirPatientID
           ? _value.fhirPatientID
           : fhirPatientID // ignore: cast_nullable_to_non_nullable
               as String?,
-      healthDiaryState: healthDiaryState == freezed
+      healthDiaryState: freezed == healthDiaryState
           ? _value.healthDiaryState
           : healthDiaryState // ignore: cast_nullable_to_non_nullable
               as HealthDiaryState?,
-      communitiesState: communitiesState == freezed
+      communitiesState: freezed == communitiesState
           ? _value.communitiesState
           : communitiesState // ignore: cast_nullable_to_non_nullable
               as CommunitiesState?,
-      pastAppointments: pastAppointments == freezed
+      pastAppointments: freezed == pastAppointments
           ? _value._pastAppointments
           : pastAppointments // ignore: cast_nullable_to_non_nullable
               as List<Appointment>?,
-      upcomingAppointments: upcomingAppointments == freezed
+      upcomingAppointments: freezed == upcomingAppointments
           ? _value._upcomingAppointments
           : upcomingAppointments // ignore: cast_nullable_to_non_nullable
               as List<Appointment>?,
-      healthTimelineState: healthTimelineState == freezed
+      healthTimelineState: freezed == healthTimelineState
           ? _value.healthTimelineState
           : healthTimelineState // ignore: cast_nullable_to_non_nullable
               as HealthTimelineState?,
-      medicalDataState: medicalDataState == freezed
+      medicalDataState: freezed == medicalDataState
           ? _value.medicalDataState
           : medicalDataState // ignore: cast_nullable_to_non_nullable
               as MedicalDataState?,
-      viralLoadData: viralLoadData == freezed
+      viralLoadData: freezed == viralLoadData
           ? _value.viralLoadData
           : viralLoadData // ignore: cast_nullable_to_non_nullable
               as ViralLoadEdges?,
-      nextRefillData: nextRefillData == freezed
+      nextRefillData: freezed == nextRefillData
           ? _value.nextRefillData
           : nextRefillData // ignore: cast_nullable_to_non_nullable
               as NextRefillData?,
-      caregiverInformation: caregiverInformation == freezed
+      caregiverInformation: freezed == caregiverInformation
           ? _value.caregiverInformation
           : caregiverInformation // ignore: cast_nullable_to_non_nullable
               as CaregiverInformation?,
-      hasCareGiverInfo: hasCareGiverInfo == freezed
+      hasCareGiverInfo: freezed == hasCareGiverInfo
           ? _value.hasCareGiverInfo
           : hasCareGiverInfo // ignore: cast_nullable_to_non_nullable
               as bool?,
-      notifications: notifications == freezed
+      notifications: freezed == notifications
           ? _value._notifications
           : notifications // ignore: cast_nullable_to_non_nullable
               as List<NotificationDetails?>?,
-      notificationFilterState: notificationFilterState == freezed
+      notificationFilterState: freezed == notificationFilterState
           ? _value.notificationFilterState
           : notificationFilterState // ignore: cast_nullable_to_non_nullable
               as NotificationFilterState?,
-      facilityState: facilityState == freezed
+      facilityState: freezed == facilityState
           ? _value.facilityState
           : facilityState // ignore: cast_nullable_to_non_nullable
               as FacilityState?,
@@ -873,104 +887,109 @@ class _$_ClientState implements _ClientState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ClientState &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.active, active) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.active, active) || other.active == active) &&
             const DeepCollectionEquality()
                 .equals(other._addresses, _addresses) &&
-            const DeepCollectionEquality()
-                .equals(other.counselled, counselled) &&
+            (identical(other.counselled, counselled) ||
+                other.counselled == counselled) &&
             const DeepCollectionEquality()
                 .equals(other._clientTypes, _clientTypes) &&
-            const DeepCollectionEquality()
-                .equals(other.facilityID, facilityID) &&
+            (identical(other.facilityID, facilityID) ||
+                other.facilityID == facilityID) &&
             const DeepCollectionEquality()
                 .equals(other._relatedPersons, _relatedPersons) &&
-            const DeepCollectionEquality()
-                .equals(other.treatmentBuddy, treatmentBuddy) &&
-            const DeepCollectionEquality().equals(
-                other.treatmentEnrollmentDate, treatmentEnrollmentDate) &&
-            const DeepCollectionEquality().equals(other.user, user) &&
-            const DeepCollectionEquality()
-                .equals(other.lastMoodRecordedDate, lastMoodRecordedDate) &&
-            const DeepCollectionEquality()
-                .equals(other.isSignedIn, isSignedIn) &&
-            const DeepCollectionEquality()
-                .equals(other.facilityName, facilityName) &&
-            const DeepCollectionEquality()
-                .equals(other.facilityPhoneNumber, facilityPhoneNumber) &&
-            const DeepCollectionEquality().equals(other.chvUserID, chvUserID) &&
-            const DeepCollectionEquality()
-                .equals(other.chvUserName, chvUserName) &&
-            const DeepCollectionEquality().equals(other.cccNumber, cccNumber) &&
-            const DeepCollectionEquality()
-                .equals(other.fhirPatientID, fhirPatientID) &&
-            const DeepCollectionEquality()
-                .equals(other.healthDiaryState, healthDiaryState) &&
-            const DeepCollectionEquality()
-                .equals(other.communitiesState, communitiesState) &&
+            (identical(other.treatmentBuddy, treatmentBuddy) ||
+                other.treatmentBuddy == treatmentBuddy) &&
+            (identical(
+                    other.treatmentEnrollmentDate, treatmentEnrollmentDate) ||
+                other.treatmentEnrollmentDate == treatmentEnrollmentDate) &&
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.lastMoodRecordedDate, lastMoodRecordedDate) ||
+                other.lastMoodRecordedDate == lastMoodRecordedDate) &&
+            (identical(other.isSignedIn, isSignedIn) ||
+                other.isSignedIn == isSignedIn) &&
+            (identical(other.facilityName, facilityName) ||
+                other.facilityName == facilityName) &&
+            (identical(other.facilityPhoneNumber, facilityPhoneNumber) ||
+                other.facilityPhoneNumber == facilityPhoneNumber) &&
+            (identical(other.chvUserID, chvUserID) ||
+                other.chvUserID == chvUserID) &&
+            (identical(other.chvUserName, chvUserName) ||
+                other.chvUserName == chvUserName) &&
+            (identical(other.cccNumber, cccNumber) ||
+                other.cccNumber == cccNumber) &&
+            (identical(other.fhirPatientID, fhirPatientID) ||
+                other.fhirPatientID == fhirPatientID) &&
+            (identical(other.healthDiaryState, healthDiaryState) ||
+                other.healthDiaryState == healthDiaryState) &&
+            (identical(other.communitiesState, communitiesState) ||
+                other.communitiesState == communitiesState) &&
             const DeepCollectionEquality()
                 .equals(other._pastAppointments, _pastAppointments) &&
             const DeepCollectionEquality()
                 .equals(other._upcomingAppointments, _upcomingAppointments) &&
-            const DeepCollectionEquality()
-                .equals(other.healthTimelineState, healthTimelineState) &&
-            const DeepCollectionEquality()
-                .equals(other.medicalDataState, medicalDataState) &&
-            const DeepCollectionEquality()
-                .equals(other.viralLoadData, viralLoadData) &&
-            const DeepCollectionEquality()
-                .equals(other.nextRefillData, nextRefillData) &&
-            const DeepCollectionEquality()
-                .equals(other.caregiverInformation, caregiverInformation) &&
-            const DeepCollectionEquality()
-                .equals(other.hasCareGiverInfo, hasCareGiverInfo) &&
+            (identical(other.healthTimelineState, healthTimelineState) ||
+                other.healthTimelineState == healthTimelineState) &&
+            (identical(other.medicalDataState, medicalDataState) ||
+                other.medicalDataState == medicalDataState) &&
+            (identical(other.viralLoadData, viralLoadData) ||
+                other.viralLoadData == viralLoadData) &&
+            (identical(other.nextRefillData, nextRefillData) ||
+                other.nextRefillData == nextRefillData) &&
+            (identical(other.caregiverInformation, caregiverInformation) ||
+                other.caregiverInformation == caregiverInformation) &&
+            (identical(other.hasCareGiverInfo, hasCareGiverInfo) ||
+                other.hasCareGiverInfo == hasCareGiverInfo) &&
             const DeepCollectionEquality()
                 .equals(other._notifications, _notifications) &&
-            const DeepCollectionEquality().equals(
-                other.notificationFilterState, notificationFilterState) &&
-            const DeepCollectionEquality()
-                .equals(other.facilityState, facilityState));
+            (identical(
+                    other.notificationFilterState, notificationFilterState) ||
+                other.notificationFilterState == notificationFilterState) &&
+            (identical(other.facilityState, facilityState) ||
+                other.facilityState == facilityState));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        const DeepCollectionEquality().hash(id),
-        const DeepCollectionEquality().hash(active),
+        id,
+        active,
         const DeepCollectionEquality().hash(_addresses),
-        const DeepCollectionEquality().hash(counselled),
+        counselled,
         const DeepCollectionEquality().hash(_clientTypes),
-        const DeepCollectionEquality().hash(facilityID),
+        facilityID,
         const DeepCollectionEquality().hash(_relatedPersons),
-        const DeepCollectionEquality().hash(treatmentBuddy),
-        const DeepCollectionEquality().hash(treatmentEnrollmentDate),
-        const DeepCollectionEquality().hash(user),
-        const DeepCollectionEquality().hash(lastMoodRecordedDate),
-        const DeepCollectionEquality().hash(isSignedIn),
-        const DeepCollectionEquality().hash(facilityName),
-        const DeepCollectionEquality().hash(facilityPhoneNumber),
-        const DeepCollectionEquality().hash(chvUserID),
-        const DeepCollectionEquality().hash(chvUserName),
-        const DeepCollectionEquality().hash(cccNumber),
-        const DeepCollectionEquality().hash(fhirPatientID),
-        const DeepCollectionEquality().hash(healthDiaryState),
-        const DeepCollectionEquality().hash(communitiesState),
+        treatmentBuddy,
+        treatmentEnrollmentDate,
+        user,
+        lastMoodRecordedDate,
+        isSignedIn,
+        facilityName,
+        facilityPhoneNumber,
+        chvUserID,
+        chvUserName,
+        cccNumber,
+        fhirPatientID,
+        healthDiaryState,
+        communitiesState,
         const DeepCollectionEquality().hash(_pastAppointments),
         const DeepCollectionEquality().hash(_upcomingAppointments),
-        const DeepCollectionEquality().hash(healthTimelineState),
-        const DeepCollectionEquality().hash(medicalDataState),
-        const DeepCollectionEquality().hash(viralLoadData),
-        const DeepCollectionEquality().hash(nextRefillData),
-        const DeepCollectionEquality().hash(caregiverInformation),
-        const DeepCollectionEquality().hash(hasCareGiverInfo),
+        healthTimelineState,
+        medicalDataState,
+        viralLoadData,
+        nextRefillData,
+        caregiverInformation,
+        hasCareGiverInfo,
         const DeepCollectionEquality().hash(_notifications),
-        const DeepCollectionEquality().hash(notificationFilterState),
-        const DeepCollectionEquality().hash(facilityState)
+        notificationFilterState,
+        facilityState
       ]);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ClientStateCopyWith<_$_ClientState> get copyWith =>
       __$$_ClientStateCopyWithImpl<_$_ClientState>(this, _$identity);
 

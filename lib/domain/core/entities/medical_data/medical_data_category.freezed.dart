@@ -33,29 +33,32 @@ mixin _$MedicalDataCategory {
 abstract class $MedicalDataCategoryCopyWith<$Res> {
   factory $MedicalDataCategoryCopyWith(
           MedicalDataCategory value, $Res Function(MedicalDataCategory) then) =
-      _$MedicalDataCategoryCopyWithImpl<$Res>;
+      _$MedicalDataCategoryCopyWithImpl<$Res, MedicalDataCategory>;
+  @useResult
   $Res call({@JsonKey(name: 'Text') String? text});
 }
 
 /// @nodoc
-class _$MedicalDataCategoryCopyWithImpl<$Res>
+class _$MedicalDataCategoryCopyWithImpl<$Res, $Val extends MedicalDataCategory>
     implements $MedicalDataCategoryCopyWith<$Res> {
   _$MedicalDataCategoryCopyWithImpl(this._value, this._then);
 
-  final MedicalDataCategory _value;
   // ignore: unused_field
-  final $Res Function(MedicalDataCategory) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? text = freezed,
   }) {
     return _then(_value.copyWith(
-      text: text == freezed
+      text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -66,26 +69,25 @@ abstract class _$$_MedicalDataCategoryCopyWith<$Res>
           $Res Function(_$_MedicalDataCategory) then) =
       __$$_MedicalDataCategoryCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({@JsonKey(name: 'Text') String? text});
 }
 
 /// @nodoc
 class __$$_MedicalDataCategoryCopyWithImpl<$Res>
-    extends _$MedicalDataCategoryCopyWithImpl<$Res>
+    extends _$MedicalDataCategoryCopyWithImpl<$Res, _$_MedicalDataCategory>
     implements _$$_MedicalDataCategoryCopyWith<$Res> {
   __$$_MedicalDataCategoryCopyWithImpl(_$_MedicalDataCategory _value,
       $Res Function(_$_MedicalDataCategory) _then)
-      : super(_value, (v) => _then(v as _$_MedicalDataCategory));
+      : super(_value, _then);
 
-  @override
-  _$_MedicalDataCategory get _value => super._value as _$_MedicalDataCategory;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? text = freezed,
   }) {
     return _then(_$_MedicalDataCategory(
-      text: text == freezed
+      text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -115,16 +117,16 @@ class _$_MedicalDataCategory implements _MedicalDataCategory {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MedicalDataCategory &&
-            const DeepCollectionEquality().equals(other.text, text));
+            (identical(other.text, text) || other.text == text));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(text));
+  int get hashCode => Object.hash(runtimeType, text);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_MedicalDataCategoryCopyWith<_$_MedicalDataCategory> get copyWith =>
       __$$_MedicalDataCategoryCopyWithImpl<_$_MedicalDataCategory>(
           this, _$identity);

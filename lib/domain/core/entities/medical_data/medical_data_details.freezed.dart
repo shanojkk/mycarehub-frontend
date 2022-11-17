@@ -40,7 +40,8 @@ mixin _$MedicalDataDetails {
 abstract class $MedicalDataDetailsCopyWith<$Res> {
   factory $MedicalDataDetailsCopyWith(
           MedicalDataDetails value, $Res Function(MedicalDataDetails) then) =
-      _$MedicalDataDetailsCopyWithImpl<$Res>;
+      _$MedicalDataDetailsCopyWithImpl<$Res, MedicalDataDetails>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'ValueString')
           String? valueString,
@@ -57,14 +58,16 @@ abstract class $MedicalDataDetailsCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$MedicalDataDetailsCopyWithImpl<$Res>
+class _$MedicalDataDetailsCopyWithImpl<$Res, $Val extends MedicalDataDetails>
     implements $MedicalDataDetailsCopyWith<$Res> {
   _$MedicalDataDetailsCopyWithImpl(this._value, this._then);
 
-  final MedicalDataDetails _value;
   // ignore: unused_field
-  final $Res Function(MedicalDataDetails) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? valueString = freezed,
@@ -73,48 +76,51 @@ class _$MedicalDataDetailsCopyWithImpl<$Res>
     Object? medicationCodeableConcept = freezed,
   }) {
     return _then(_value.copyWith(
-      valueString: valueString == freezed
+      valueString: freezed == valueString
           ? _value.valueString
           : valueString // ignore: cast_nullable_to_non_nullable
               as String?,
-      code: code == freezed
+      code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as MedicalDataCode?,
-      category: category == freezed
+      category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as MedicalDataCategory?,
-      medicationCodeableConcept: medicationCodeableConcept == freezed
+      medicationCodeableConcept: freezed == medicationCodeableConcept
           ? _value.medicationCodeableConcept
           : medicationCodeableConcept // ignore: cast_nullable_to_non_nullable
               as MedicationCodeableConcept?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $MedicalDataCodeCopyWith<$Res>? get code {
     if (_value.code == null) {
       return null;
     }
 
     return $MedicalDataCodeCopyWith<$Res>(_value.code!, (value) {
-      return _then(_value.copyWith(code: value));
+      return _then(_value.copyWith(code: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $MedicalDataCategoryCopyWith<$Res>? get category {
     if (_value.category == null) {
       return null;
     }
 
     return $MedicalDataCategoryCopyWith<$Res>(_value.category!, (value) {
-      return _then(_value.copyWith(category: value));
+      return _then(_value.copyWith(category: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $MedicationCodeableConceptCopyWith<$Res>? get medicationCodeableConcept {
     if (_value.medicationCodeableConcept == null) {
       return null;
@@ -122,7 +128,7 @@ class _$MedicalDataDetailsCopyWithImpl<$Res>
 
     return $MedicationCodeableConceptCopyWith<$Res>(
         _value.medicationCodeableConcept!, (value) {
-      return _then(_value.copyWith(medicationCodeableConcept: value));
+      return _then(_value.copyWith(medicationCodeableConcept: value) as $Val);
     });
   }
 }
@@ -134,6 +140,7 @@ abstract class _$$_MedicalDataDetailsCopyWith<$Res>
           $Res Function(_$_MedicalDataDetails) then) =
       __$$_MedicalDataDetailsCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'ValueString')
           String? valueString,
@@ -154,15 +161,13 @@ abstract class _$$_MedicalDataDetailsCopyWith<$Res>
 
 /// @nodoc
 class __$$_MedicalDataDetailsCopyWithImpl<$Res>
-    extends _$MedicalDataDetailsCopyWithImpl<$Res>
+    extends _$MedicalDataDetailsCopyWithImpl<$Res, _$_MedicalDataDetails>
     implements _$$_MedicalDataDetailsCopyWith<$Res> {
   __$$_MedicalDataDetailsCopyWithImpl(
       _$_MedicalDataDetails _value, $Res Function(_$_MedicalDataDetails) _then)
-      : super(_value, (v) => _then(v as _$_MedicalDataDetails));
+      : super(_value, _then);
 
-  @override
-  _$_MedicalDataDetails get _value => super._value as _$_MedicalDataDetails;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? valueString = freezed,
@@ -171,19 +176,19 @@ class __$$_MedicalDataDetailsCopyWithImpl<$Res>
     Object? medicationCodeableConcept = freezed,
   }) {
     return _then(_$_MedicalDataDetails(
-      valueString: valueString == freezed
+      valueString: freezed == valueString
           ? _value.valueString
           : valueString // ignore: cast_nullable_to_non_nullable
               as String?,
-      code: code == freezed
+      code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as MedicalDataCode?,
-      category: category == freezed
+      category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as MedicalDataCategory?,
-      medicationCodeableConcept: medicationCodeableConcept == freezed
+      medicationCodeableConcept: freezed == medicationCodeableConcept
           ? _value.medicationCodeableConcept
           : medicationCodeableConcept // ignore: cast_nullable_to_non_nullable
               as MedicationCodeableConcept?,
@@ -230,25 +235,24 @@ class _$_MedicalDataDetails implements _MedicalDataDetails {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MedicalDataDetails &&
-            const DeepCollectionEquality()
-                .equals(other.valueString, valueString) &&
-            const DeepCollectionEquality().equals(other.code, code) &&
-            const DeepCollectionEquality().equals(other.category, category) &&
-            const DeepCollectionEquality().equals(
-                other.medicationCodeableConcept, medicationCodeableConcept));
+            (identical(other.valueString, valueString) ||
+                other.valueString == valueString) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.medicationCodeableConcept,
+                    medicationCodeableConcept) ||
+                other.medicationCodeableConcept == medicationCodeableConcept));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(valueString),
-      const DeepCollectionEquality().hash(code),
-      const DeepCollectionEquality().hash(category),
-      const DeepCollectionEquality().hash(medicationCodeableConcept));
+      runtimeType, valueString, code, category, medicationCodeableConcept);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_MedicalDataDetailsCopyWith<_$_MedicalDataDetails> get copyWith =>
       __$$_MedicalDataDetailsCopyWithImpl<_$_MedicalDataDetails>(
           this, _$identity);

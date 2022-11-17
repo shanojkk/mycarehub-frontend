@@ -35,7 +35,9 @@ mixin _$TermsAndConditionsResponse {
 abstract class $TermsAndConditionsResponseCopyWith<$Res> {
   factory $TermsAndConditionsResponseCopyWith(TermsAndConditionsResponse value,
           $Res Function(TermsAndConditionsResponse) then) =
-      _$TermsAndConditionsResponseCopyWithImpl<$Res>;
+      _$TermsAndConditionsResponseCopyWithImpl<$Res,
+          TermsAndConditionsResponse>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'getCurrentTerms')
           TermsAndConditions termsAndConditions});
@@ -44,31 +46,35 @@ abstract class $TermsAndConditionsResponseCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TermsAndConditionsResponseCopyWithImpl<$Res>
+class _$TermsAndConditionsResponseCopyWithImpl<$Res,
+        $Val extends TermsAndConditionsResponse>
     implements $TermsAndConditionsResponseCopyWith<$Res> {
   _$TermsAndConditionsResponseCopyWithImpl(this._value, this._then);
 
-  final TermsAndConditionsResponse _value;
   // ignore: unused_field
-  final $Res Function(TermsAndConditionsResponse) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? termsAndConditions = freezed,
+    Object? termsAndConditions = null,
   }) {
     return _then(_value.copyWith(
-      termsAndConditions: termsAndConditions == freezed
+      termsAndConditions: null == termsAndConditions
           ? _value.termsAndConditions
           : termsAndConditions // ignore: cast_nullable_to_non_nullable
               as TermsAndConditions,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $TermsAndConditionsCopyWith<$Res> get termsAndConditions {
     return $TermsAndConditionsCopyWith<$Res>(_value.termsAndConditions,
         (value) {
-      return _then(_value.copyWith(termsAndConditions: value));
+      return _then(_value.copyWith(termsAndConditions: value) as $Val);
     });
   }
 }
@@ -81,6 +87,7 @@ abstract class _$$_TermsAndConditionsResponseCopyWith<$Res>
           $Res Function(_$_TermsAndConditionsResponse) then) =
       __$$_TermsAndConditionsResponseCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'getCurrentTerms')
           TermsAndConditions termsAndConditions});
@@ -91,23 +98,21 @@ abstract class _$$_TermsAndConditionsResponseCopyWith<$Res>
 
 /// @nodoc
 class __$$_TermsAndConditionsResponseCopyWithImpl<$Res>
-    extends _$TermsAndConditionsResponseCopyWithImpl<$Res>
+    extends _$TermsAndConditionsResponseCopyWithImpl<$Res,
+        _$_TermsAndConditionsResponse>
     implements _$$_TermsAndConditionsResponseCopyWith<$Res> {
   __$$_TermsAndConditionsResponseCopyWithImpl(
       _$_TermsAndConditionsResponse _value,
       $Res Function(_$_TermsAndConditionsResponse) _then)
-      : super(_value, (v) => _then(v as _$_TermsAndConditionsResponse));
+      : super(_value, _then);
 
-  @override
-  _$_TermsAndConditionsResponse get _value =>
-      super._value as _$_TermsAndConditionsResponse;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? termsAndConditions = freezed,
+    Object? termsAndConditions = null,
   }) {
     return _then(_$_TermsAndConditionsResponse(
-      termsAndConditions: termsAndConditions == freezed
+      termsAndConditions: null == termsAndConditions
           ? _value.termsAndConditions
           : termsAndConditions // ignore: cast_nullable_to_non_nullable
               as TermsAndConditions,
@@ -138,17 +143,17 @@ class _$_TermsAndConditionsResponse implements _TermsAndConditionsResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TermsAndConditionsResponse &&
-            const DeepCollectionEquality()
-                .equals(other.termsAndConditions, termsAndConditions));
+            (identical(other.termsAndConditions, termsAndConditions) ||
+                other.termsAndConditions == termsAndConditions));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(termsAndConditions));
+  int get hashCode => Object.hash(runtimeType, termsAndConditions);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_TermsAndConditionsResponseCopyWith<_$_TermsAndConditionsResponse>
       get copyWith => __$$_TermsAndConditionsResponseCopyWithImpl<
           _$_TermsAndConditionsResponse>(this, _$identity);

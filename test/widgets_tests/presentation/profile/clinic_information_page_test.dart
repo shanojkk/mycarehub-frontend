@@ -44,10 +44,7 @@ void main() {
     );
 
     setUpAll(() {
-      store = Store<AppState>(
-        initialState: AppState.initial()
-          ..clientState!.copyWith(facilityID: 'id'),
-      );
+      store = Store<AppState>(initialState: AppState.initial());
     });
     testWidgets('renders correctly', (WidgetTester tester) async {
       await buildTestWidget(

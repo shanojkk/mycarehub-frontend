@@ -33,7 +33,8 @@ mixin _$SavedContent {
 abstract class $SavedContentCopyWith<$Res> {
   factory $SavedContentCopyWith(
           SavedContent value, $Res Function(SavedContent) then) =
-      _$SavedContentCopyWithImpl<$Res>;
+      _$SavedContentCopyWithImpl<$Res, SavedContent>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'getUserBookmarkedContent') FeedItems? savedContent});
 
@@ -41,33 +42,37 @@ abstract class $SavedContentCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SavedContentCopyWithImpl<$Res> implements $SavedContentCopyWith<$Res> {
+class _$SavedContentCopyWithImpl<$Res, $Val extends SavedContent>
+    implements $SavedContentCopyWith<$Res> {
   _$SavedContentCopyWithImpl(this._value, this._then);
 
-  final SavedContent _value;
   // ignore: unused_field
-  final $Res Function(SavedContent) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? savedContent = freezed,
   }) {
     return _then(_value.copyWith(
-      savedContent: savedContent == freezed
+      savedContent: freezed == savedContent
           ? _value.savedContent
           : savedContent // ignore: cast_nullable_to_non_nullable
               as FeedItems?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $FeedItemsCopyWith<$Res>? get savedContent {
     if (_value.savedContent == null) {
       return null;
     }
 
     return $FeedItemsCopyWith<$Res>(_value.savedContent!, (value) {
-      return _then(_value.copyWith(savedContent: value));
+      return _then(_value.copyWith(savedContent: value) as $Val);
     });
   }
 }
@@ -79,6 +84,7 @@ abstract class _$$_SavedContentCopyWith<$Res>
           _$_SavedContent value, $Res Function(_$_SavedContent) then) =
       __$$_SavedContentCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'getUserBookmarkedContent') FeedItems? savedContent});
 
@@ -88,21 +94,19 @@ abstract class _$$_SavedContentCopyWith<$Res>
 
 /// @nodoc
 class __$$_SavedContentCopyWithImpl<$Res>
-    extends _$SavedContentCopyWithImpl<$Res>
+    extends _$SavedContentCopyWithImpl<$Res, _$_SavedContent>
     implements _$$_SavedContentCopyWith<$Res> {
   __$$_SavedContentCopyWithImpl(
       _$_SavedContent _value, $Res Function(_$_SavedContent) _then)
-      : super(_value, (v) => _then(v as _$_SavedContent));
+      : super(_value, _then);
 
-  @override
-  _$_SavedContent get _value => super._value as _$_SavedContent;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? savedContent = freezed,
   }) {
     return _then(_$_SavedContent(
-      savedContent: savedContent == freezed
+      savedContent: freezed == savedContent
           ? _value.savedContent
           : savedContent // ignore: cast_nullable_to_non_nullable
               as FeedItems?,
@@ -133,17 +137,17 @@ class _$_SavedContent implements _SavedContent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SavedContent &&
-            const DeepCollectionEquality()
-                .equals(other.savedContent, savedContent));
+            (identical(other.savedContent, savedContent) ||
+                other.savedContent == savedContent));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(savedContent));
+  int get hashCode => Object.hash(runtimeType, savedContent);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_SavedContentCopyWith<_$_SavedContent> get copyWith =>
       __$$_SavedContentCopyWithImpl<_$_SavedContent>(this, _$identity);
 

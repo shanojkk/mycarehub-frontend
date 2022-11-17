@@ -33,29 +33,32 @@ mixin _$ViralLoadEdges {
 abstract class $ViralLoadEdgesCopyWith<$Res> {
   factory $ViralLoadEdgesCopyWith(
           ViralLoadEdges value, $Res Function(ViralLoadEdges) then) =
-      _$ViralLoadEdgesCopyWithImpl<$Res>;
+      _$ViralLoadEdgesCopyWithImpl<$Res, ViralLoadEdges>;
+  @useResult
   $Res call({@JsonKey(name: 'edges') List<ViralLoadNode?>? edges});
 }
 
 /// @nodoc
-class _$ViralLoadEdgesCopyWithImpl<$Res>
+class _$ViralLoadEdgesCopyWithImpl<$Res, $Val extends ViralLoadEdges>
     implements $ViralLoadEdgesCopyWith<$Res> {
   _$ViralLoadEdgesCopyWithImpl(this._value, this._then);
 
-  final ViralLoadEdges _value;
   // ignore: unused_field
-  final $Res Function(ViralLoadEdges) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? edges = freezed,
   }) {
     return _then(_value.copyWith(
-      edges: edges == freezed
+      edges: freezed == edges
           ? _value.edges
           : edges // ignore: cast_nullable_to_non_nullable
               as List<ViralLoadNode?>?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -66,26 +69,25 @@ abstract class _$$_ViralLoadEdgesCopyWith<$Res>
           _$_ViralLoadEdges value, $Res Function(_$_ViralLoadEdges) then) =
       __$$_ViralLoadEdgesCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({@JsonKey(name: 'edges') List<ViralLoadNode?>? edges});
 }
 
 /// @nodoc
 class __$$_ViralLoadEdgesCopyWithImpl<$Res>
-    extends _$ViralLoadEdgesCopyWithImpl<$Res>
+    extends _$ViralLoadEdgesCopyWithImpl<$Res, _$_ViralLoadEdges>
     implements _$$_ViralLoadEdgesCopyWith<$Res> {
   __$$_ViralLoadEdgesCopyWithImpl(
       _$_ViralLoadEdges _value, $Res Function(_$_ViralLoadEdges) _then)
-      : super(_value, (v) => _then(v as _$_ViralLoadEdges));
+      : super(_value, _then);
 
-  @override
-  _$_ViralLoadEdges get _value => super._value as _$_ViralLoadEdges;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? edges = freezed,
   }) {
     return _then(_$_ViralLoadEdges(
-      edges: edges == freezed
+      edges: freezed == edges
           ? _value._edges
           : edges // ignore: cast_nullable_to_non_nullable
               as List<ViralLoadNode?>?,
@@ -132,6 +134,7 @@ class _$_ViralLoadEdges implements _ViralLoadEdges {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ViralLoadEdgesCopyWith<_$_ViralLoadEdges> get copyWith =>
       __$$_ViralLoadEdgesCopyWithImpl<_$_ViralLoadEdges>(this, _$identity);
 

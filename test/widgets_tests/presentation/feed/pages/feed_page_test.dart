@@ -67,7 +67,7 @@ void main() {
 
     testWidgets('should fetch items and play audio',
         (WidgetTester tester) async {
-            final MockShortGraphQlClient mockTestSILGraphQlClient =
+      final MockShortGraphQlClient mockTestSILGraphQlClient =
           MockShortGraphQlClient.withResponse(
         'idToken',
         'endpoint',
@@ -75,10 +75,7 @@ void main() {
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
               'getContent': <String, dynamic>{
-                'items': <dynamic>[
-                  mockAudioContent,
-                  contentMock.first
-                ]
+                'items': <dynamic>[mockAudioContent, contentMock.first]
               }
             }
           }),
@@ -406,7 +403,7 @@ void main() {
 
         await tester.pumpAndSettle();
 
-        expect(find.byType(GenericTimeoutWidget), findsOneWidget);
+        expect(find.byType(GenericTimeoutWidget), findsNWidgets(2));
       });
     });
     testWidgets('shows a generic timeout widget while fetching categories',
@@ -435,7 +432,7 @@ void main() {
 
         await tester.pumpAndSettle();
 
-        expect(find.byType(GenericTimeoutWidget), findsOneWidget);
+        expect(find.byType(GenericTimeoutWidget), findsNWidgets(2));
       });
     });
 

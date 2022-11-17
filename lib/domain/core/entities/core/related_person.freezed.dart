@@ -51,7 +51,8 @@ mixin _$RelatedPerson {
 abstract class $RelatedPersonCopyWith<$Res> {
   factory $RelatedPersonCopyWith(
           RelatedPerson value, $Res Function(RelatedPerson) then) =
-      _$RelatedPersonCopyWithImpl<$Res>;
+      _$RelatedPersonCopyWithImpl<$Res, RelatedPerson>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'active')
           bool? active,
@@ -76,14 +77,16 @@ abstract class $RelatedPersonCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$RelatedPersonCopyWithImpl<$Res>
+class _$RelatedPersonCopyWithImpl<$Res, $Val extends RelatedPerson>
     implements $RelatedPersonCopyWith<$Res> {
   _$RelatedPersonCopyWithImpl(this._value, this._then);
 
-  final RelatedPerson _value;
   // ignore: unused_field
-  final $Res Function(RelatedPerson) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? active = freezed,
@@ -98,47 +101,47 @@ class _$RelatedPersonCopyWithImpl<$Res>
     Object? contacts = freezed,
   }) {
     return _then(_value.copyWith(
-      active: active == freezed
+      active: freezed == active
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
               as bool?,
-      relatedTo: relatedTo == freezed
+      relatedTo: freezed == relatedTo
           ? _value.relatedTo
           : relatedTo // ignore: cast_nullable_to_non_nullable
               as String?,
-      relationshipType: relationshipType == freezed
+      relationshipType: freezed == relationshipType
           ? _value.relationshipType
           : relationshipType // ignore: cast_nullable_to_non_nullable
               as RelationshipType?,
-      firstName: firstName == freezed
+      firstName: freezed == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
               as String?,
-      lastName: lastName == freezed
+      lastName: freezed == lastName
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
-      otherName: otherName == freezed
+      otherName: freezed == otherName
           ? _value.otherName
           : otherName // ignore: cast_nullable_to_non_nullable
               as String?,
-      gender: gender == freezed
+      gender: freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as Gender?,
-      dateOfBirth: dateOfBirth == freezed
+      dateOfBirth: freezed == dateOfBirth
           ? _value.dateOfBirth
           : dateOfBirth // ignore: cast_nullable_to_non_nullable
               as String?,
-      addresses: addresses == freezed
+      addresses: freezed == addresses
           ? _value.addresses
           : addresses // ignore: cast_nullable_to_non_nullable
               as List<Address>?,
-      contacts: contacts == freezed
+      contacts: freezed == contacts
           ? _value.contacts
           : contacts // ignore: cast_nullable_to_non_nullable
               as List<Contact>?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -149,6 +152,7 @@ abstract class _$$_RelatedPersonCopyWith<$Res>
           _$_RelatedPerson value, $Res Function(_$_RelatedPerson) then) =
       __$$_RelatedPersonCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'active')
           bool? active,
@@ -174,15 +178,13 @@ abstract class _$$_RelatedPersonCopyWith<$Res>
 
 /// @nodoc
 class __$$_RelatedPersonCopyWithImpl<$Res>
-    extends _$RelatedPersonCopyWithImpl<$Res>
+    extends _$RelatedPersonCopyWithImpl<$Res, _$_RelatedPerson>
     implements _$$_RelatedPersonCopyWith<$Res> {
   __$$_RelatedPersonCopyWithImpl(
       _$_RelatedPerson _value, $Res Function(_$_RelatedPerson) _then)
-      : super(_value, (v) => _then(v as _$_RelatedPerson));
+      : super(_value, _then);
 
-  @override
-  _$_RelatedPerson get _value => super._value as _$_RelatedPerson;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? active = freezed,
@@ -197,43 +199,43 @@ class __$$_RelatedPersonCopyWithImpl<$Res>
     Object? contacts = freezed,
   }) {
     return _then(_$_RelatedPerson(
-      active: active == freezed
+      active: freezed == active
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
               as bool?,
-      relatedTo: relatedTo == freezed
+      relatedTo: freezed == relatedTo
           ? _value.relatedTo
           : relatedTo // ignore: cast_nullable_to_non_nullable
               as String?,
-      relationshipType: relationshipType == freezed
+      relationshipType: freezed == relationshipType
           ? _value.relationshipType
           : relationshipType // ignore: cast_nullable_to_non_nullable
               as RelationshipType?,
-      firstName: firstName == freezed
+      firstName: freezed == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
               as String?,
-      lastName: lastName == freezed
+      lastName: freezed == lastName
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
-      otherName: otherName == freezed
+      otherName: freezed == otherName
           ? _value.otherName
           : otherName // ignore: cast_nullable_to_non_nullable
               as String?,
-      gender: gender == freezed
+      gender: freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as Gender?,
-      dateOfBirth: dateOfBirth == freezed
+      dateOfBirth: freezed == dateOfBirth
           ? _value.dateOfBirth
           : dateOfBirth // ignore: cast_nullable_to_non_nullable
               as String?,
-      addresses: addresses == freezed
+      addresses: freezed == addresses
           ? _value._addresses
           : addresses // ignore: cast_nullable_to_non_nullable
               as List<Address>?,
-      contacts: contacts == freezed
+      contacts: freezed == contacts
           ? _value._contacts
           : contacts // ignore: cast_nullable_to_non_nullable
               as List<Contact>?,
@@ -325,16 +327,20 @@ class _$_RelatedPerson implements _RelatedPerson {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_RelatedPerson &&
-            const DeepCollectionEquality().equals(other.active, active) &&
-            const DeepCollectionEquality().equals(other.relatedTo, relatedTo) &&
-            const DeepCollectionEquality()
-                .equals(other.relationshipType, relationshipType) &&
-            const DeepCollectionEquality().equals(other.firstName, firstName) &&
-            const DeepCollectionEquality().equals(other.lastName, lastName) &&
-            const DeepCollectionEquality().equals(other.otherName, otherName) &&
-            const DeepCollectionEquality().equals(other.gender, gender) &&
-            const DeepCollectionEquality()
-                .equals(other.dateOfBirth, dateOfBirth) &&
+            (identical(other.active, active) || other.active == active) &&
+            (identical(other.relatedTo, relatedTo) ||
+                other.relatedTo == relatedTo) &&
+            (identical(other.relationshipType, relationshipType) ||
+                other.relationshipType == relationshipType) &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
+            (identical(other.otherName, otherName) ||
+                other.otherName == otherName) &&
+            (identical(other.gender, gender) || other.gender == gender) &&
+            (identical(other.dateOfBirth, dateOfBirth) ||
+                other.dateOfBirth == dateOfBirth) &&
             const DeepCollectionEquality()
                 .equals(other._addresses, _addresses) &&
             const DeepCollectionEquality().equals(other._contacts, _contacts));
@@ -344,19 +350,20 @@ class _$_RelatedPerson implements _RelatedPerson {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(active),
-      const DeepCollectionEquality().hash(relatedTo),
-      const DeepCollectionEquality().hash(relationshipType),
-      const DeepCollectionEquality().hash(firstName),
-      const DeepCollectionEquality().hash(lastName),
-      const DeepCollectionEquality().hash(otherName),
-      const DeepCollectionEquality().hash(gender),
-      const DeepCollectionEquality().hash(dateOfBirth),
+      active,
+      relatedTo,
+      relationshipType,
+      firstName,
+      lastName,
+      otherName,
+      gender,
+      dateOfBirth,
       const DeepCollectionEquality().hash(_addresses),
       const DeepCollectionEquality().hash(_contacts));
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_RelatedPersonCopyWith<_$_RelatedPerson> get copyWith =>
       __$$_RelatedPersonCopyWithImpl<_$_RelatedPerson>(this, _$identity);
 

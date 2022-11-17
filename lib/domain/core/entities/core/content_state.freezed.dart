@@ -39,7 +39,8 @@ mixin _$ContentState {
 abstract class $ContentStateCopyWith<$Res> {
   factory $ContentStateCopyWith(
           ContentState value, $Res Function(ContentState) then) =
-      _$ContentStateCopyWithImpl<$Res>;
+      _$ContentStateCopyWithImpl<$Res, ContentState>;
+  @useResult
   $Res call(
       {FeedContentState? feedContentState,
       SavedContentState? savedContentState,
@@ -55,13 +56,16 @@ abstract class $ContentStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ContentStateCopyWithImpl<$Res> implements $ContentStateCopyWith<$Res> {
+class _$ContentStateCopyWithImpl<$Res, $Val extends ContentState>
+    implements $ContentStateCopyWith<$Res> {
   _$ContentStateCopyWithImpl(this._value, this._then);
 
-  final ContentState _value;
   // ignore: unused_field
-  final $Res Function(ContentState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? feedContentState = freezed,
@@ -71,52 +75,55 @@ class _$ContentStateCopyWithImpl<$Res> implements $ContentStateCopyWith<$Res> {
     Object? contentEngagementState = freezed,
   }) {
     return _then(_value.copyWith(
-      feedContentState: feedContentState == freezed
+      feedContentState: freezed == feedContentState
           ? _value.feedContentState
           : feedContentState // ignore: cast_nullable_to_non_nullable
               as FeedContentState?,
-      savedContentState: savedContentState == freezed
+      savedContentState: freezed == savedContentState
           ? _value.savedContentState
           : savedContentState // ignore: cast_nullable_to_non_nullable
               as SavedContentState?,
-      recentContentState: recentContentState == freezed
+      recentContentState: freezed == recentContentState
           ? _value.recentContentState
           : recentContentState // ignore: cast_nullable_to_non_nullable
               as RecentContentState?,
-      categoriesList: categoriesList == freezed
+      categoriesList: freezed == categoriesList
           ? _value.categoriesList
           : categoriesList // ignore: cast_nullable_to_non_nullable
               as ListContentCategory?,
-      contentEngagementState: contentEngagementState == freezed
+      contentEngagementState: freezed == contentEngagementState
           ? _value.contentEngagementState
           : contentEngagementState // ignore: cast_nullable_to_non_nullable
               as ContentEngagementState?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $FeedContentStateCopyWith<$Res>? get feedContentState {
     if (_value.feedContentState == null) {
       return null;
     }
 
     return $FeedContentStateCopyWith<$Res>(_value.feedContentState!, (value) {
-      return _then(_value.copyWith(feedContentState: value));
+      return _then(_value.copyWith(feedContentState: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $SavedContentStateCopyWith<$Res>? get savedContentState {
     if (_value.savedContentState == null) {
       return null;
     }
 
     return $SavedContentStateCopyWith<$Res>(_value.savedContentState!, (value) {
-      return _then(_value.copyWith(savedContentState: value));
+      return _then(_value.copyWith(savedContentState: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $RecentContentStateCopyWith<$Res>? get recentContentState {
     if (_value.recentContentState == null) {
       return null;
@@ -124,22 +131,24 @@ class _$ContentStateCopyWithImpl<$Res> implements $ContentStateCopyWith<$Res> {
 
     return $RecentContentStateCopyWith<$Res>(_value.recentContentState!,
         (value) {
-      return _then(_value.copyWith(recentContentState: value));
+      return _then(_value.copyWith(recentContentState: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $ListContentCategoryCopyWith<$Res>? get categoriesList {
     if (_value.categoriesList == null) {
       return null;
     }
 
     return $ListContentCategoryCopyWith<$Res>(_value.categoriesList!, (value) {
-      return _then(_value.copyWith(categoriesList: value));
+      return _then(_value.copyWith(categoriesList: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $ContentEngagementStateCopyWith<$Res>? get contentEngagementState {
     if (_value.contentEngagementState == null) {
       return null;
@@ -147,7 +156,7 @@ class _$ContentStateCopyWithImpl<$Res> implements $ContentStateCopyWith<$Res> {
 
     return $ContentEngagementStateCopyWith<$Res>(_value.contentEngagementState!,
         (value) {
-      return _then(_value.copyWith(contentEngagementState: value));
+      return _then(_value.copyWith(contentEngagementState: value) as $Val);
     });
   }
 }
@@ -159,6 +168,7 @@ abstract class _$$_ContentStateCopyWith<$Res>
           _$_ContentState value, $Res Function(_$_ContentState) then) =
       __$$_ContentStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {FeedContentState? feedContentState,
       SavedContentState? savedContentState,
@@ -180,15 +190,13 @@ abstract class _$$_ContentStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_ContentStateCopyWithImpl<$Res>
-    extends _$ContentStateCopyWithImpl<$Res>
+    extends _$ContentStateCopyWithImpl<$Res, _$_ContentState>
     implements _$$_ContentStateCopyWith<$Res> {
   __$$_ContentStateCopyWithImpl(
       _$_ContentState _value, $Res Function(_$_ContentState) _then)
-      : super(_value, (v) => _then(v as _$_ContentState));
+      : super(_value, _then);
 
-  @override
-  _$_ContentState get _value => super._value as _$_ContentState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? feedContentState = freezed,
@@ -198,23 +206,23 @@ class __$$_ContentStateCopyWithImpl<$Res>
     Object? contentEngagementState = freezed,
   }) {
     return _then(_$_ContentState(
-      feedContentState: feedContentState == freezed
+      feedContentState: freezed == feedContentState
           ? _value.feedContentState
           : feedContentState // ignore: cast_nullable_to_non_nullable
               as FeedContentState?,
-      savedContentState: savedContentState == freezed
+      savedContentState: freezed == savedContentState
           ? _value.savedContentState
           : savedContentState // ignore: cast_nullable_to_non_nullable
               as SavedContentState?,
-      recentContentState: recentContentState == freezed
+      recentContentState: freezed == recentContentState
           ? _value.recentContentState
           : recentContentState // ignore: cast_nullable_to_non_nullable
               as RecentContentState?,
-      categoriesList: categoriesList == freezed
+      categoriesList: freezed == categoriesList
           ? _value.categoriesList
           : categoriesList // ignore: cast_nullable_to_non_nullable
               as ListContentCategory?,
-      contentEngagementState: contentEngagementState == freezed
+      contentEngagementState: freezed == contentEngagementState
           ? _value.contentEngagementState
           : contentEngagementState // ignore: cast_nullable_to_non_nullable
               as ContentEngagementState?,
@@ -256,30 +264,31 @@ class _$_ContentState implements _ContentState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ContentState &&
-            const DeepCollectionEquality()
-                .equals(other.feedContentState, feedContentState) &&
-            const DeepCollectionEquality()
-                .equals(other.savedContentState, savedContentState) &&
-            const DeepCollectionEquality()
-                .equals(other.recentContentState, recentContentState) &&
-            const DeepCollectionEquality()
-                .equals(other.categoriesList, categoriesList) &&
-            const DeepCollectionEquality()
-                .equals(other.contentEngagementState, contentEngagementState));
+            (identical(other.feedContentState, feedContentState) ||
+                other.feedContentState == feedContentState) &&
+            (identical(other.savedContentState, savedContentState) ||
+                other.savedContentState == savedContentState) &&
+            (identical(other.recentContentState, recentContentState) ||
+                other.recentContentState == recentContentState) &&
+            (identical(other.categoriesList, categoriesList) ||
+                other.categoriesList == categoriesList) &&
+            (identical(other.contentEngagementState, contentEngagementState) ||
+                other.contentEngagementState == contentEngagementState));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(feedContentState),
-      const DeepCollectionEquality().hash(savedContentState),
-      const DeepCollectionEquality().hash(recentContentState),
-      const DeepCollectionEquality().hash(categoriesList),
-      const DeepCollectionEquality().hash(contentEngagementState));
+      feedContentState,
+      savedContentState,
+      recentContentState,
+      categoriesList,
+      contentEngagementState);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ContentStateCopyWith<_$_ContentState> get copyWith =>
       __$$_ContentStateCopyWithImpl<_$_ContentState>(this, _$identity);
 

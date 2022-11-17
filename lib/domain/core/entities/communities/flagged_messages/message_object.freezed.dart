@@ -33,29 +33,32 @@ mixin _$MessageObject {
 abstract class $MessageObjectCopyWith<$Res> {
   factory $MessageObjectCopyWith(
           MessageObject value, $Res Function(MessageObject) then) =
-      _$MessageObjectCopyWithImpl<$Res>;
+      _$MessageObjectCopyWithImpl<$Res, MessageObject>;
+  @useResult
   $Res call({@JsonKey(name: 'message') Message? message});
 }
 
 /// @nodoc
-class _$MessageObjectCopyWithImpl<$Res>
+class _$MessageObjectCopyWithImpl<$Res, $Val extends MessageObject>
     implements $MessageObjectCopyWith<$Res> {
   _$MessageObjectCopyWithImpl(this._value, this._then);
 
-  final MessageObject _value;
   // ignore: unused_field
-  final $Res Function(MessageObject) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? message = freezed,
   }) {
     return _then(_value.copyWith(
-      message: message == freezed
+      message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as Message?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -66,26 +69,25 @@ abstract class _$$_MessageObjectCopyWith<$Res>
           _$_MessageObject value, $Res Function(_$_MessageObject) then) =
       __$$_MessageObjectCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({@JsonKey(name: 'message') Message? message});
 }
 
 /// @nodoc
 class __$$_MessageObjectCopyWithImpl<$Res>
-    extends _$MessageObjectCopyWithImpl<$Res>
+    extends _$MessageObjectCopyWithImpl<$Res, _$_MessageObject>
     implements _$$_MessageObjectCopyWith<$Res> {
   __$$_MessageObjectCopyWithImpl(
       _$_MessageObject _value, $Res Function(_$_MessageObject) _then)
-      : super(_value, (v) => _then(v as _$_MessageObject));
+      : super(_value, _then);
 
-  @override
-  _$_MessageObject get _value => super._value as _$_MessageObject;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? message = freezed,
   }) {
     return _then(_$_MessageObject(
-      message: message == freezed
+      message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as Message?,
@@ -115,16 +117,16 @@ class _$_MessageObject implements _MessageObject {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MessageObject &&
-            const DeepCollectionEquality().equals(other.message, message));
+            (identical(other.message, message) || other.message == message));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
+  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_MessageObjectCopyWith<_$_MessageObject> get copyWith =>
       __$$_MessageObjectCopyWithImpl<_$_MessageObject>(this, _$identity);
 

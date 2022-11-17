@@ -34,35 +34,39 @@ mixin _$AgeRange {
 /// @nodoc
 abstract class $AgeRangeCopyWith<$Res> {
   factory $AgeRangeCopyWith(AgeRange value, $Res Function(AgeRange) then) =
-      _$AgeRangeCopyWithImpl<$Res>;
+      _$AgeRangeCopyWithImpl<$Res, AgeRange>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'lowerBound') int? lowerBound,
       @JsonKey(name: 'upperBound') int? upperBound});
 }
 
 /// @nodoc
-class _$AgeRangeCopyWithImpl<$Res> implements $AgeRangeCopyWith<$Res> {
+class _$AgeRangeCopyWithImpl<$Res, $Val extends AgeRange>
+    implements $AgeRangeCopyWith<$Res> {
   _$AgeRangeCopyWithImpl(this._value, this._then);
 
-  final AgeRange _value;
   // ignore: unused_field
-  final $Res Function(AgeRange) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? lowerBound = freezed,
     Object? upperBound = freezed,
   }) {
     return _then(_value.copyWith(
-      lowerBound: lowerBound == freezed
+      lowerBound: freezed == lowerBound
           ? _value.lowerBound
           : lowerBound // ignore: cast_nullable_to_non_nullable
               as int?,
-      upperBound: upperBound == freezed
+      upperBound: freezed == upperBound
           ? _value.upperBound
           : upperBound // ignore: cast_nullable_to_non_nullable
               as int?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -72,32 +76,32 @@ abstract class _$$_AgeRangeCopyWith<$Res> implements $AgeRangeCopyWith<$Res> {
           _$_AgeRange value, $Res Function(_$_AgeRange) then) =
       __$$_AgeRangeCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'lowerBound') int? lowerBound,
       @JsonKey(name: 'upperBound') int? upperBound});
 }
 
 /// @nodoc
-class __$$_AgeRangeCopyWithImpl<$Res> extends _$AgeRangeCopyWithImpl<$Res>
+class __$$_AgeRangeCopyWithImpl<$Res>
+    extends _$AgeRangeCopyWithImpl<$Res, _$_AgeRange>
     implements _$$_AgeRangeCopyWith<$Res> {
   __$$_AgeRangeCopyWithImpl(
       _$_AgeRange _value, $Res Function(_$_AgeRange) _then)
-      : super(_value, (v) => _then(v as _$_AgeRange));
+      : super(_value, _then);
 
-  @override
-  _$_AgeRange get _value => super._value as _$_AgeRange;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? lowerBound = freezed,
     Object? upperBound = freezed,
   }) {
     return _then(_$_AgeRange(
-      lowerBound: lowerBound == freezed
+      lowerBound: freezed == lowerBound
           ? _value.lowerBound
           : lowerBound // ignore: cast_nullable_to_non_nullable
               as int?,
-      upperBound: upperBound == freezed
+      upperBound: freezed == upperBound
           ? _value.upperBound
           : upperBound // ignore: cast_nullable_to_non_nullable
               as int?,
@@ -132,21 +136,19 @@ class _$_AgeRange implements _AgeRange {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AgeRange &&
-            const DeepCollectionEquality()
-                .equals(other.lowerBound, lowerBound) &&
-            const DeepCollectionEquality()
-                .equals(other.upperBound, upperBound));
+            (identical(other.lowerBound, lowerBound) ||
+                other.lowerBound == lowerBound) &&
+            (identical(other.upperBound, upperBound) ||
+                other.upperBound == upperBound));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(lowerBound),
-      const DeepCollectionEquality().hash(upperBound));
+  int get hashCode => Object.hash(runtimeType, lowerBound, upperBound);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_AgeRangeCopyWith<_$_AgeRange> get copyWith =>
       __$$_AgeRangeCopyWithImpl<_$_AgeRange>(this, _$identity);
 

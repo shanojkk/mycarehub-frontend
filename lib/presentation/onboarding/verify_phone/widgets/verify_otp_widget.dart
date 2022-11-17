@@ -133,8 +133,8 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
                   onPressed: () async {
                     widget.resendOTPFunction.call();
                     restartTimer();
-                    await Future<dynamic>.delayed(const Duration(seconds: 3));
                     textEditingController.clear();
+                    await Future<dynamic>.delayed(const Duration(seconds: 3));
                   },
                 )
               else ...<Widget>[

@@ -35,36 +35,39 @@ mixin _$TermsAndConditions {
 abstract class $TermsAndConditionsCopyWith<$Res> {
   factory $TermsAndConditionsCopyWith(
           TermsAndConditions value, $Res Function(TermsAndConditions) then) =
-      _$TermsAndConditionsCopyWithImpl<$Res>;
+      _$TermsAndConditionsCopyWithImpl<$Res, TermsAndConditions>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'termsID') int termsId,
       @JsonKey(name: 'text') String text});
 }
 
 /// @nodoc
-class _$TermsAndConditionsCopyWithImpl<$Res>
+class _$TermsAndConditionsCopyWithImpl<$Res, $Val extends TermsAndConditions>
     implements $TermsAndConditionsCopyWith<$Res> {
   _$TermsAndConditionsCopyWithImpl(this._value, this._then);
 
-  final TermsAndConditions _value;
   // ignore: unused_field
-  final $Res Function(TermsAndConditions) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? termsId = freezed,
-    Object? text = freezed,
+    Object? termsId = null,
+    Object? text = null,
   }) {
     return _then(_value.copyWith(
-      termsId: termsId == freezed
+      termsId: null == termsId
           ? _value.termsId
           : termsId // ignore: cast_nullable_to_non_nullable
               as int,
-      text: text == freezed
+      text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -75,6 +78,7 @@ abstract class _$$_TermsAndConditionsCopyWith<$Res>
           $Res Function(_$_TermsAndConditions) then) =
       __$$_TermsAndConditionsCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'termsID') int termsId,
       @JsonKey(name: 'text') String text});
@@ -82,26 +86,24 @@ abstract class _$$_TermsAndConditionsCopyWith<$Res>
 
 /// @nodoc
 class __$$_TermsAndConditionsCopyWithImpl<$Res>
-    extends _$TermsAndConditionsCopyWithImpl<$Res>
+    extends _$TermsAndConditionsCopyWithImpl<$Res, _$_TermsAndConditions>
     implements _$$_TermsAndConditionsCopyWith<$Res> {
   __$$_TermsAndConditionsCopyWithImpl(
       _$_TermsAndConditions _value, $Res Function(_$_TermsAndConditions) _then)
-      : super(_value, (v) => _then(v as _$_TermsAndConditions));
+      : super(_value, _then);
 
-  @override
-  _$_TermsAndConditions get _value => super._value as _$_TermsAndConditions;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? termsId = freezed,
-    Object? text = freezed,
+    Object? termsId = null,
+    Object? text = null,
   }) {
     return _then(_$_TermsAndConditions(
-      termsId: termsId == freezed
+      termsId: null == termsId
           ? _value.termsId
           : termsId // ignore: cast_nullable_to_non_nullable
               as int,
-      text: text == freezed
+      text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
@@ -136,19 +138,17 @@ class _$_TermsAndConditions implements _TermsAndConditions {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TermsAndConditions &&
-            const DeepCollectionEquality().equals(other.termsId, termsId) &&
-            const DeepCollectionEquality().equals(other.text, text));
+            (identical(other.termsId, termsId) || other.termsId == termsId) &&
+            (identical(other.text, text) || other.text == text));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(termsId),
-      const DeepCollectionEquality().hash(text));
+  int get hashCode => Object.hash(runtimeType, termsId, text);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_TermsAndConditionsCopyWith<_$_TermsAndConditions> get copyWith =>
       __$$_TermsAndConditionsCopyWithImpl<_$_TermsAndConditions>(
           this, _$identity);

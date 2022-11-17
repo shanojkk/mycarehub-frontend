@@ -35,7 +35,8 @@ mixin _$HealthTimelineState {
 abstract class $HealthTimelineStateCopyWith<$Res> {
   factory $HealthTimelineStateCopyWith(
           HealthTimelineState value, $Res Function(HealthTimelineState) then) =
-      _$HealthTimelineStateCopyWithImpl<$Res>;
+      _$HealthTimelineStateCopyWithImpl<$Res, HealthTimelineState>;
+  @useResult
   $Res call(
       {Map<String, List<FhirResource>> healthTimelineItems,
       int offset,
@@ -43,34 +44,36 @@ abstract class $HealthTimelineStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$HealthTimelineStateCopyWithImpl<$Res>
+class _$HealthTimelineStateCopyWithImpl<$Res, $Val extends HealthTimelineState>
     implements $HealthTimelineStateCopyWith<$Res> {
   _$HealthTimelineStateCopyWithImpl(this._value, this._then);
 
-  final HealthTimelineState _value;
   // ignore: unused_field
-  final $Res Function(HealthTimelineState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? healthTimelineItems = freezed,
-    Object? offset = freezed,
-    Object? count = freezed,
+    Object? healthTimelineItems = null,
+    Object? offset = null,
+    Object? count = null,
   }) {
     return _then(_value.copyWith(
-      healthTimelineItems: healthTimelineItems == freezed
+      healthTimelineItems: null == healthTimelineItems
           ? _value.healthTimelineItems
           : healthTimelineItems // ignore: cast_nullable_to_non_nullable
               as Map<String, List<FhirResource>>,
-      offset: offset == freezed
+      offset: null == offset
           ? _value.offset
           : offset // ignore: cast_nullable_to_non_nullable
               as int,
-      count: count == freezed
+      count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
@@ -81,6 +84,7 @@ abstract class _$$_HealthTimelineStateCopyWith<$Res>
           $Res Function(_$_HealthTimelineState) then) =
       __$$_HealthTimelineStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {Map<String, List<FhirResource>> healthTimelineItems,
       int offset,
@@ -89,31 +93,29 @@ abstract class _$$_HealthTimelineStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_HealthTimelineStateCopyWithImpl<$Res>
-    extends _$HealthTimelineStateCopyWithImpl<$Res>
+    extends _$HealthTimelineStateCopyWithImpl<$Res, _$_HealthTimelineState>
     implements _$$_HealthTimelineStateCopyWith<$Res> {
   __$$_HealthTimelineStateCopyWithImpl(_$_HealthTimelineState _value,
       $Res Function(_$_HealthTimelineState) _then)
-      : super(_value, (v) => _then(v as _$_HealthTimelineState));
+      : super(_value, _then);
 
-  @override
-  _$_HealthTimelineState get _value => super._value as _$_HealthTimelineState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? healthTimelineItems = freezed,
-    Object? offset = freezed,
-    Object? count = freezed,
+    Object? healthTimelineItems = null,
+    Object? offset = null,
+    Object? count = null,
   }) {
     return _then(_$_HealthTimelineState(
-      healthTimelineItems: healthTimelineItems == freezed
+      healthTimelineItems: null == healthTimelineItems
           ? _value._healthTimelineItems
           : healthTimelineItems // ignore: cast_nullable_to_non_nullable
               as Map<String, List<FhirResource>>,
-      offset: offset == freezed
+      offset: null == offset
           ? _value.offset
           : offset // ignore: cast_nullable_to_non_nullable
               as int,
-      count: count == freezed
+      count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
@@ -161,20 +163,18 @@ class _$_HealthTimelineState implements _HealthTimelineState {
             other is _$_HealthTimelineState &&
             const DeepCollectionEquality()
                 .equals(other._healthTimelineItems, _healthTimelineItems) &&
-            const DeepCollectionEquality().equals(other.offset, offset) &&
-            const DeepCollectionEquality().equals(other.count, count));
+            (identical(other.offset, offset) || other.offset == offset) &&
+            (identical(other.count, count) || other.count == count));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_healthTimelineItems),
-      const DeepCollectionEquality().hash(offset),
-      const DeepCollectionEquality().hash(count));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_healthTimelineItems), offset, count);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_HealthTimelineStateCopyWith<_$_HealthTimelineState> get copyWith =>
       __$$_HealthTimelineStateCopyWithImpl<_$_HealthTimelineState>(
           this, _$identity);

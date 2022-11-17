@@ -39,7 +39,8 @@ mixin _$HealthDiaryState {
 abstract class $HealthDiaryStateCopyWith<$Res> {
   factory $HealthDiaryStateCopyWith(
           HealthDiaryState value, $Res Function(HealthDiaryState) then) =
-      _$HealthDiaryStateCopyWithImpl<$Res>;
+      _$HealthDiaryStateCopyWithImpl<$Res, HealthDiaryState>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'getClientHealthDiaryEntries')
           List<HealthDiaryEntry?>? entries,
@@ -54,14 +55,16 @@ abstract class $HealthDiaryStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$HealthDiaryStateCopyWithImpl<$Res>
+class _$HealthDiaryStateCopyWithImpl<$Res, $Val extends HealthDiaryState>
     implements $HealthDiaryStateCopyWith<$Res> {
   _$HealthDiaryStateCopyWithImpl(this._value, this._then);
 
-  final HealthDiaryState _value;
   // ignore: unused_field
-  final $Res Function(HealthDiaryState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? entries = freezed,
@@ -73,45 +76,46 @@ class _$HealthDiaryStateCopyWithImpl<$Res>
     Object? selectedFilter = freezed,
   }) {
     return _then(_value.copyWith(
-      entries: entries == freezed
+      entries: freezed == entries
           ? _value.entries
           : entries // ignore: cast_nullable_to_non_nullable
               as List<HealthDiaryEntry?>?,
-      quoteState: quoteState == freezed
+      quoteState: freezed == quoteState
           ? _value.quoteState
           : quoteState // ignore: cast_nullable_to_non_nullable
               as QuoteRelay?,
-      errorFetchingDiaryEntries: errorFetchingDiaryEntries == freezed
+      errorFetchingDiaryEntries: freezed == errorFetchingDiaryEntries
           ? _value.errorFetchingDiaryEntries
           : errorFetchingDiaryEntries // ignore: cast_nullable_to_non_nullable
               as bool?,
-      timeoutFetchingDiaryEntries: timeoutFetchingDiaryEntries == freezed
+      timeoutFetchingDiaryEntries: freezed == timeoutFetchingDiaryEntries
           ? _value.timeoutFetchingDiaryEntries
           : timeoutFetchingDiaryEntries // ignore: cast_nullable_to_non_nullable
               as bool?,
-      shouldShareHealthRecord: shouldShareHealthRecord == freezed
+      shouldShareHealthRecord: freezed == shouldShareHealthRecord
           ? _value.shouldShareHealthRecord
           : shouldShareHealthRecord // ignore: cast_nullable_to_non_nullable
               as bool?,
-      shouldNotShareHealthRecord: shouldNotShareHealthRecord == freezed
+      shouldNotShareHealthRecord: freezed == shouldNotShareHealthRecord
           ? _value.shouldNotShareHealthRecord
           : shouldNotShareHealthRecord // ignore: cast_nullable_to_non_nullable
               as bool?,
-      selectedFilter: selectedFilter == freezed
+      selectedFilter: freezed == selectedFilter
           ? _value.selectedFilter
           : selectedFilter // ignore: cast_nullable_to_non_nullable
               as MoodTypeFilter?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $QuoteRelayCopyWith<$Res>? get quoteState {
     if (_value.quoteState == null) {
       return null;
     }
 
     return $QuoteRelayCopyWith<$Res>(_value.quoteState!, (value) {
-      return _then(_value.copyWith(quoteState: value));
+      return _then(_value.copyWith(quoteState: value) as $Val);
     });
   }
 }
@@ -123,6 +127,7 @@ abstract class _$$_HealthDiaryStateCopyWith<$Res>
           _$_HealthDiaryState value, $Res Function(_$_HealthDiaryState) then) =
       __$$_HealthDiaryStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'getClientHealthDiaryEntries')
           List<HealthDiaryEntry?>? entries,
@@ -139,15 +144,13 @@ abstract class _$$_HealthDiaryStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_HealthDiaryStateCopyWithImpl<$Res>
-    extends _$HealthDiaryStateCopyWithImpl<$Res>
+    extends _$HealthDiaryStateCopyWithImpl<$Res, _$_HealthDiaryState>
     implements _$$_HealthDiaryStateCopyWith<$Res> {
   __$$_HealthDiaryStateCopyWithImpl(
       _$_HealthDiaryState _value, $Res Function(_$_HealthDiaryState) _then)
-      : super(_value, (v) => _then(v as _$_HealthDiaryState));
+      : super(_value, _then);
 
-  @override
-  _$_HealthDiaryState get _value => super._value as _$_HealthDiaryState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? entries = freezed,
@@ -159,31 +162,31 @@ class __$$_HealthDiaryStateCopyWithImpl<$Res>
     Object? selectedFilter = freezed,
   }) {
     return _then(_$_HealthDiaryState(
-      entries: entries == freezed
+      entries: freezed == entries
           ? _value._entries
           : entries // ignore: cast_nullable_to_non_nullable
               as List<HealthDiaryEntry?>?,
-      quoteState: quoteState == freezed
+      quoteState: freezed == quoteState
           ? _value.quoteState
           : quoteState // ignore: cast_nullable_to_non_nullable
               as QuoteRelay?,
-      errorFetchingDiaryEntries: errorFetchingDiaryEntries == freezed
+      errorFetchingDiaryEntries: freezed == errorFetchingDiaryEntries
           ? _value.errorFetchingDiaryEntries
           : errorFetchingDiaryEntries // ignore: cast_nullable_to_non_nullable
               as bool?,
-      timeoutFetchingDiaryEntries: timeoutFetchingDiaryEntries == freezed
+      timeoutFetchingDiaryEntries: freezed == timeoutFetchingDiaryEntries
           ? _value.timeoutFetchingDiaryEntries
           : timeoutFetchingDiaryEntries // ignore: cast_nullable_to_non_nullable
               as bool?,
-      shouldShareHealthRecord: shouldShareHealthRecord == freezed
+      shouldShareHealthRecord: freezed == shouldShareHealthRecord
           ? _value.shouldShareHealthRecord
           : shouldShareHealthRecord // ignore: cast_nullable_to_non_nullable
               as bool?,
-      shouldNotShareHealthRecord: shouldNotShareHealthRecord == freezed
+      shouldNotShareHealthRecord: freezed == shouldNotShareHealthRecord
           ? _value.shouldNotShareHealthRecord
           : shouldNotShareHealthRecord // ignore: cast_nullable_to_non_nullable
               as bool?,
-      selectedFilter: selectedFilter == freezed
+      selectedFilter: freezed == selectedFilter
           ? _value.selectedFilter
           : selectedFilter // ignore: cast_nullable_to_non_nullable
               as MoodTypeFilter?,
@@ -242,19 +245,24 @@ class _$_HealthDiaryState implements _HealthDiaryState {
         (other.runtimeType == runtimeType &&
             other is _$_HealthDiaryState &&
             const DeepCollectionEquality().equals(other._entries, _entries) &&
-            const DeepCollectionEquality()
-                .equals(other.quoteState, quoteState) &&
-            const DeepCollectionEquality().equals(
-                other.errorFetchingDiaryEntries, errorFetchingDiaryEntries) &&
-            const DeepCollectionEquality().equals(
-                other.timeoutFetchingDiaryEntries,
-                timeoutFetchingDiaryEntries) &&
-            const DeepCollectionEquality().equals(
-                other.shouldShareHealthRecord, shouldShareHealthRecord) &&
-            const DeepCollectionEquality().equals(
-                other.shouldNotShareHealthRecord, shouldNotShareHealthRecord) &&
-            const DeepCollectionEquality()
-                .equals(other.selectedFilter, selectedFilter));
+            (identical(other.quoteState, quoteState) ||
+                other.quoteState == quoteState) &&
+            (identical(other.errorFetchingDiaryEntries,
+                    errorFetchingDiaryEntries) ||
+                other.errorFetchingDiaryEntries == errorFetchingDiaryEntries) &&
+            (identical(other.timeoutFetchingDiaryEntries,
+                    timeoutFetchingDiaryEntries) ||
+                other.timeoutFetchingDiaryEntries ==
+                    timeoutFetchingDiaryEntries) &&
+            (identical(
+                    other.shouldShareHealthRecord, shouldShareHealthRecord) ||
+                other.shouldShareHealthRecord == shouldShareHealthRecord) &&
+            (identical(other.shouldNotShareHealthRecord,
+                    shouldNotShareHealthRecord) ||
+                other.shouldNotShareHealthRecord ==
+                    shouldNotShareHealthRecord) &&
+            (identical(other.selectedFilter, selectedFilter) ||
+                other.selectedFilter == selectedFilter));
   }
 
   @JsonKey(ignore: true)
@@ -262,15 +270,16 @@ class _$_HealthDiaryState implements _HealthDiaryState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_entries),
-      const DeepCollectionEquality().hash(quoteState),
-      const DeepCollectionEquality().hash(errorFetchingDiaryEntries),
-      const DeepCollectionEquality().hash(timeoutFetchingDiaryEntries),
-      const DeepCollectionEquality().hash(shouldShareHealthRecord),
-      const DeepCollectionEquality().hash(shouldNotShareHealthRecord),
-      const DeepCollectionEquality().hash(selectedFilter));
+      quoteState,
+      errorFetchingDiaryEntries,
+      timeoutFetchingDiaryEntries,
+      shouldShareHealthRecord,
+      shouldNotShareHealthRecord,
+      selectedFilter);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_HealthDiaryStateCopyWith<_$_HealthDiaryState> get copyWith =>
       __$$_HealthDiaryStateCopyWithImpl<_$_HealthDiaryState>(this, _$identity);
 

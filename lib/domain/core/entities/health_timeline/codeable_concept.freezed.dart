@@ -40,36 +40,39 @@ mixin _$CodeableConcept {
 abstract class $CodeableConceptCopyWith<$Res> {
   factory $CodeableConceptCopyWith(
           CodeableConcept value, $Res Function(CodeableConcept) then) =
-      _$CodeableConceptCopyWithImpl<$Res>;
+      _$CodeableConceptCopyWithImpl<$Res, CodeableConcept>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'coding') List<Coding?>? coding,
       @JsonKey(name: 'text') String? text});
 }
 
 /// @nodoc
-class _$CodeableConceptCopyWithImpl<$Res>
+class _$CodeableConceptCopyWithImpl<$Res, $Val extends CodeableConcept>
     implements $CodeableConceptCopyWith<$Res> {
   _$CodeableConceptCopyWithImpl(this._value, this._then);
 
-  final CodeableConcept _value;
   // ignore: unused_field
-  final $Res Function(CodeableConcept) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? coding = freezed,
     Object? text = freezed,
   }) {
     return _then(_value.copyWith(
-      coding: coding == freezed
+      coding: freezed == coding
           ? _value.coding
           : coding // ignore: cast_nullable_to_non_nullable
               as List<Coding?>?,
-      text: text == freezed
+      text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -80,6 +83,7 @@ abstract class _$$_CodeableConceptCopyWith<$Res>
           _$_CodeableConcept value, $Res Function(_$_CodeableConcept) then) =
       __$$_CodeableConceptCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'coding') List<Coding?>? coding,
       @JsonKey(name: 'text') String? text});
@@ -87,26 +91,24 @@ abstract class _$$_CodeableConceptCopyWith<$Res>
 
 /// @nodoc
 class __$$_CodeableConceptCopyWithImpl<$Res>
-    extends _$CodeableConceptCopyWithImpl<$Res>
+    extends _$CodeableConceptCopyWithImpl<$Res, _$_CodeableConcept>
     implements _$$_CodeableConceptCopyWith<$Res> {
   __$$_CodeableConceptCopyWithImpl(
       _$_CodeableConcept _value, $Res Function(_$_CodeableConcept) _then)
-      : super(_value, (v) => _then(v as _$_CodeableConcept));
+      : super(_value, _then);
 
-  @override
-  _$_CodeableConcept get _value => super._value as _$_CodeableConcept;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? coding = freezed,
     Object? text = freezed,
   }) {
     return _then(_$_CodeableConcept(
-      coding: coding == freezed
+      coding: freezed == coding
           ? _value._coding
           : coding // ignore: cast_nullable_to_non_nullable
               as List<Coding?>?,
-      text: text == freezed
+      text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -156,18 +158,17 @@ class _$_CodeableConcept implements _CodeableConcept {
         (other.runtimeType == runtimeType &&
             other is _$_CodeableConcept &&
             const DeepCollectionEquality().equals(other._coding, _coding) &&
-            const DeepCollectionEquality().equals(other.text, text));
+            (identical(other.text, text) || other.text == text));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_coding),
-      const DeepCollectionEquality().hash(text));
+      runtimeType, const DeepCollectionEquality().hash(_coding), text);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_CodeableConceptCopyWith<_$_CodeableConcept> get copyWith =>
       __$$_CodeableConceptCopyWithImpl<_$_CodeableConcept>(this, _$identity);
 

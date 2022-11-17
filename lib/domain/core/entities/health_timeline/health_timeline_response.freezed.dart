@@ -36,36 +36,40 @@ mixin _$HealthTimelineResponse {
 abstract class $HealthTimelineResponseCopyWith<$Res> {
   factory $HealthTimelineResponseCopyWith(HealthTimelineResponse value,
           $Res Function(HealthTimelineResponse) then) =
-      _$HealthTimelineResponseCopyWithImpl<$Res>;
+      _$HealthTimelineResponseCopyWithImpl<$Res, HealthTimelineResponse>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'timeline') List<FhirResource> patientTimeline,
       @JsonKey(name: 'totalCount') int count});
 }
 
 /// @nodoc
-class _$HealthTimelineResponseCopyWithImpl<$Res>
+class _$HealthTimelineResponseCopyWithImpl<$Res,
+        $Val extends HealthTimelineResponse>
     implements $HealthTimelineResponseCopyWith<$Res> {
   _$HealthTimelineResponseCopyWithImpl(this._value, this._then);
 
-  final HealthTimelineResponse _value;
   // ignore: unused_field
-  final $Res Function(HealthTimelineResponse) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? patientTimeline = freezed,
-    Object? count = freezed,
+    Object? patientTimeline = null,
+    Object? count = null,
   }) {
     return _then(_value.copyWith(
-      patientTimeline: patientTimeline == freezed
+      patientTimeline: null == patientTimeline
           ? _value.patientTimeline
           : patientTimeline // ignore: cast_nullable_to_non_nullable
               as List<FhirResource>,
-      count: count == freezed
+      count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
@@ -76,6 +80,7 @@ abstract class _$$_HealthTimelineResponseCopyWith<$Res>
           $Res Function(_$_HealthTimelineResponse) then) =
       __$$_HealthTimelineResponseCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'timeline') List<FhirResource> patientTimeline,
       @JsonKey(name: 'totalCount') int count});
@@ -83,27 +88,25 @@ abstract class _$$_HealthTimelineResponseCopyWith<$Res>
 
 /// @nodoc
 class __$$_HealthTimelineResponseCopyWithImpl<$Res>
-    extends _$HealthTimelineResponseCopyWithImpl<$Res>
+    extends _$HealthTimelineResponseCopyWithImpl<$Res,
+        _$_HealthTimelineResponse>
     implements _$$_HealthTimelineResponseCopyWith<$Res> {
   __$$_HealthTimelineResponseCopyWithImpl(_$_HealthTimelineResponse _value,
       $Res Function(_$_HealthTimelineResponse) _then)
-      : super(_value, (v) => _then(v as _$_HealthTimelineResponse));
+      : super(_value, _then);
 
-  @override
-  _$_HealthTimelineResponse get _value =>
-      super._value as _$_HealthTimelineResponse;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? patientTimeline = freezed,
-    Object? count = freezed,
+    Object? patientTimeline = null,
+    Object? count = null,
   }) {
     return _then(_$_HealthTimelineResponse(
-      patientTimeline: patientTimeline == freezed
+      patientTimeline: null == patientTimeline
           ? _value._patientTimeline
           : patientTimeline // ignore: cast_nullable_to_non_nullable
               as List<FhirResource>,
-      count: count == freezed
+      count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
@@ -148,18 +151,17 @@ class _$_HealthTimelineResponse implements _HealthTimelineResponse {
             other is _$_HealthTimelineResponse &&
             const DeepCollectionEquality()
                 .equals(other._patientTimeline, _patientTimeline) &&
-            const DeepCollectionEquality().equals(other.count, count));
+            (identical(other.count, count) || other.count == count));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_patientTimeline),
-      const DeepCollectionEquality().hash(count));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_patientTimeline), count);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_HealthTimelineResponseCopyWith<_$_HealthTimelineResponse> get copyWith =>
       __$$_HealthTimelineResponseCopyWithImpl<_$_HealthTimelineResponse>(
           this, _$identity);

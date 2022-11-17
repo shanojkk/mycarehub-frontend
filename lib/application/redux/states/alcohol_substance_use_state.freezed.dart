@@ -38,7 +38,8 @@ mixin _$AlcoholSubstanceUseState {
 abstract class $AlcoholSubstanceUseStateCopyWith<$Res> {
   factory $AlcoholSubstanceUseStateCopyWith(AlcoholSubstanceUseState value,
           $Res Function(AlcoholSubstanceUseState) then) =
-      _$AlcoholSubstanceUseStateCopyWithImpl<$Res>;
+      _$AlcoholSubstanceUseStateCopyWithImpl<$Res, AlcoholSubstanceUseState>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'getScreeningToolQuestions')
           ScreeningQuestionsList? screeningQuestions,
@@ -50,14 +51,17 @@ abstract class $AlcoholSubstanceUseStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AlcoholSubstanceUseStateCopyWithImpl<$Res>
+class _$AlcoholSubstanceUseStateCopyWithImpl<$Res,
+        $Val extends AlcoholSubstanceUseState>
     implements $AlcoholSubstanceUseStateCopyWith<$Res> {
   _$AlcoholSubstanceUseStateCopyWithImpl(this._value, this._then);
 
-  final AlcoholSubstanceUseState _value;
   // ignore: unused_field
-  final $Res Function(AlcoholSubstanceUseState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? screeningQuestions = freezed,
@@ -66,26 +70,27 @@ class _$AlcoholSubstanceUseStateCopyWithImpl<$Res>
     Object? errorAnsweringQuestions = freezed,
   }) {
     return _then(_value.copyWith(
-      screeningQuestions: screeningQuestions == freezed
+      screeningQuestions: freezed == screeningQuestions
           ? _value.screeningQuestions
           : screeningQuestions // ignore: cast_nullable_to_non_nullable
               as ScreeningQuestionsList?,
-      errorFetchingQuestions: errorFetchingQuestions == freezed
+      errorFetchingQuestions: freezed == errorFetchingQuestions
           ? _value.errorFetchingQuestions
           : errorFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-      timeoutFetchingQuestions: timeoutFetchingQuestions == freezed
+      timeoutFetchingQuestions: freezed == timeoutFetchingQuestions
           ? _value.timeoutFetchingQuestions
           : timeoutFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-      errorAnsweringQuestions: errorAnsweringQuestions == freezed
+      errorAnsweringQuestions: freezed == errorAnsweringQuestions
           ? _value.errorAnsweringQuestions
           : errorAnsweringQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $ScreeningQuestionsListCopyWith<$Res>? get screeningQuestions {
     if (_value.screeningQuestions == null) {
       return null;
@@ -93,7 +98,7 @@ class _$AlcoholSubstanceUseStateCopyWithImpl<$Res>
 
     return $ScreeningQuestionsListCopyWith<$Res>(_value.screeningQuestions!,
         (value) {
-      return _then(_value.copyWith(screeningQuestions: value));
+      return _then(_value.copyWith(screeningQuestions: value) as $Val);
     });
   }
 }
@@ -106,6 +111,7 @@ abstract class _$$_AlcoholSubstanceUseStateCopyWith<$Res>
           $Res Function(_$_AlcoholSubstanceUseState) then) =
       __$$_AlcoholSubstanceUseStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'getScreeningToolQuestions')
           ScreeningQuestionsList? screeningQuestions,
@@ -119,16 +125,14 @@ abstract class _$$_AlcoholSubstanceUseStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_AlcoholSubstanceUseStateCopyWithImpl<$Res>
-    extends _$AlcoholSubstanceUseStateCopyWithImpl<$Res>
+    extends _$AlcoholSubstanceUseStateCopyWithImpl<$Res,
+        _$_AlcoholSubstanceUseState>
     implements _$$_AlcoholSubstanceUseStateCopyWith<$Res> {
   __$$_AlcoholSubstanceUseStateCopyWithImpl(_$_AlcoholSubstanceUseState _value,
       $Res Function(_$_AlcoholSubstanceUseState) _then)
-      : super(_value, (v) => _then(v as _$_AlcoholSubstanceUseState));
+      : super(_value, _then);
 
-  @override
-  _$_AlcoholSubstanceUseState get _value =>
-      super._value as _$_AlcoholSubstanceUseState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? screeningQuestions = freezed,
@@ -137,19 +141,19 @@ class __$$_AlcoholSubstanceUseStateCopyWithImpl<$Res>
     Object? errorAnsweringQuestions = freezed,
   }) {
     return _then(_$_AlcoholSubstanceUseState(
-      screeningQuestions: screeningQuestions == freezed
+      screeningQuestions: freezed == screeningQuestions
           ? _value.screeningQuestions
           : screeningQuestions // ignore: cast_nullable_to_non_nullable
               as ScreeningQuestionsList?,
-      errorFetchingQuestions: errorFetchingQuestions == freezed
+      errorFetchingQuestions: freezed == errorFetchingQuestions
           ? _value.errorFetchingQuestions
           : errorFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-      timeoutFetchingQuestions: timeoutFetchingQuestions == freezed
+      timeoutFetchingQuestions: freezed == timeoutFetchingQuestions
           ? _value.timeoutFetchingQuestions
           : timeoutFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-      errorAnsweringQuestions: errorAnsweringQuestions == freezed
+      errorAnsweringQuestions: freezed == errorAnsweringQuestions
           ? _value.errorAnsweringQuestions
           : errorAnsweringQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
@@ -189,27 +193,30 @@ class _$_AlcoholSubstanceUseState implements _AlcoholSubstanceUseState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AlcoholSubstanceUseState &&
-            const DeepCollectionEquality()
-                .equals(other.screeningQuestions, screeningQuestions) &&
-            const DeepCollectionEquality()
-                .equals(other.errorFetchingQuestions, errorFetchingQuestions) &&
-            const DeepCollectionEquality().equals(
-                other.timeoutFetchingQuestions, timeoutFetchingQuestions) &&
-            const DeepCollectionEquality().equals(
-                other.errorAnsweringQuestions, errorAnsweringQuestions));
+            (identical(other.screeningQuestions, screeningQuestions) ||
+                other.screeningQuestions == screeningQuestions) &&
+            (identical(other.errorFetchingQuestions, errorFetchingQuestions) ||
+                other.errorFetchingQuestions == errorFetchingQuestions) &&
+            (identical(
+                    other.timeoutFetchingQuestions, timeoutFetchingQuestions) ||
+                other.timeoutFetchingQuestions == timeoutFetchingQuestions) &&
+            (identical(
+                    other.errorAnsweringQuestions, errorAnsweringQuestions) ||
+                other.errorAnsweringQuestions == errorAnsweringQuestions));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(screeningQuestions),
-      const DeepCollectionEquality().hash(errorFetchingQuestions),
-      const DeepCollectionEquality().hash(timeoutFetchingQuestions),
-      const DeepCollectionEquality().hash(errorAnsweringQuestions));
+      screeningQuestions,
+      errorFetchingQuestions,
+      timeoutFetchingQuestions,
+      errorAnsweringQuestions);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_AlcoholSubstanceUseStateCopyWith<_$_AlcoholSubstanceUseState>
       get copyWith => __$$_AlcoholSubstanceUseStateCopyWithImpl<
           _$_AlcoholSubstanceUseState>(this, _$identity);

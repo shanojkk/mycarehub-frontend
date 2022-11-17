@@ -35,7 +35,8 @@ mixin _$PINInputState {
 abstract class $PINInputStateCopyWith<$Res> {
   factory $PINInputStateCopyWith(
           PINInputState value, $Res Function(PINInputState) then) =
-      _$PINInputStateCopyWithImpl<$Res>;
+      _$PINInputStateCopyWithImpl<$Res, PINInputState>;
+  @useResult
   $Res call(
       {String? healthPagePINInputTime,
       int? pinInputTries,
@@ -44,14 +45,16 @@ abstract class $PINInputStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PINInputStateCopyWithImpl<$Res>
+class _$PINInputStateCopyWithImpl<$Res, $Val extends PINInputState>
     implements $PINInputStateCopyWith<$Res> {
   _$PINInputStateCopyWithImpl(this._value, this._then);
 
-  final PINInputState _value;
   // ignore: unused_field
-  final $Res Function(PINInputState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? healthPagePINInputTime = freezed,
@@ -60,23 +63,23 @@ class _$PINInputStateCopyWithImpl<$Res>
     Object? pinVerified = freezed,
   }) {
     return _then(_value.copyWith(
-      healthPagePINInputTime: healthPagePINInputTime == freezed
+      healthPagePINInputTime: freezed == healthPagePINInputTime
           ? _value.healthPagePINInputTime
           : healthPagePINInputTime // ignore: cast_nullable_to_non_nullable
               as String?,
-      pinInputTries: pinInputTries == freezed
+      pinInputTries: freezed == pinInputTries
           ? _value.pinInputTries
           : pinInputTries // ignore: cast_nullable_to_non_nullable
               as int?,
-      maxTryTime: maxTryTime == freezed
+      maxTryTime: freezed == maxTryTime
           ? _value.maxTryTime
           : maxTryTime // ignore: cast_nullable_to_non_nullable
               as String?,
-      pinVerified: pinVerified == freezed
+      pinVerified: freezed == pinVerified
           ? _value.pinVerified
           : pinVerified // ignore: cast_nullable_to_non_nullable
               as bool?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -87,6 +90,7 @@ abstract class _$$_PINInputStateCopyWith<$Res>
           _$_PINInputState value, $Res Function(_$_PINInputState) then) =
       __$$_PINInputStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String? healthPagePINInputTime,
       int? pinInputTries,
@@ -96,15 +100,13 @@ abstract class _$$_PINInputStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_PINInputStateCopyWithImpl<$Res>
-    extends _$PINInputStateCopyWithImpl<$Res>
+    extends _$PINInputStateCopyWithImpl<$Res, _$_PINInputState>
     implements _$$_PINInputStateCopyWith<$Res> {
   __$$_PINInputStateCopyWithImpl(
       _$_PINInputState _value, $Res Function(_$_PINInputState) _then)
-      : super(_value, (v) => _then(v as _$_PINInputState));
+      : super(_value, _then);
 
-  @override
-  _$_PINInputState get _value => super._value as _$_PINInputState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? healthPagePINInputTime = freezed,
@@ -113,19 +115,19 @@ class __$$_PINInputStateCopyWithImpl<$Res>
     Object? pinVerified = freezed,
   }) {
     return _then(_$_PINInputState(
-      healthPagePINInputTime: healthPagePINInputTime == freezed
+      healthPagePINInputTime: freezed == healthPagePINInputTime
           ? _value.healthPagePINInputTime
           : healthPagePINInputTime // ignore: cast_nullable_to_non_nullable
               as String?,
-      pinInputTries: pinInputTries == freezed
+      pinInputTries: freezed == pinInputTries
           ? _value.pinInputTries
           : pinInputTries // ignore: cast_nullable_to_non_nullable
               as int?,
-      maxTryTime: maxTryTime == freezed
+      maxTryTime: freezed == maxTryTime
           ? _value.maxTryTime
           : maxTryTime // ignore: cast_nullable_to_non_nullable
               as String?,
-      pinVerified: pinVerified == freezed
+      pinVerified: freezed == pinVerified
           ? _value.pinVerified
           : pinVerified // ignore: cast_nullable_to_non_nullable
               as bool?,
@@ -164,27 +166,24 @@ class _$_PINInputState implements _PINInputState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PINInputState &&
-            const DeepCollectionEquality()
-                .equals(other.healthPagePINInputTime, healthPagePINInputTime) &&
-            const DeepCollectionEquality()
-                .equals(other.pinInputTries, pinInputTries) &&
-            const DeepCollectionEquality()
-                .equals(other.maxTryTime, maxTryTime) &&
-            const DeepCollectionEquality()
-                .equals(other.pinVerified, pinVerified));
+            (identical(other.healthPagePINInputTime, healthPagePINInputTime) ||
+                other.healthPagePINInputTime == healthPagePINInputTime) &&
+            (identical(other.pinInputTries, pinInputTries) ||
+                other.pinInputTries == pinInputTries) &&
+            (identical(other.maxTryTime, maxTryTime) ||
+                other.maxTryTime == maxTryTime) &&
+            (identical(other.pinVerified, pinVerified) ||
+                other.pinVerified == pinVerified));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(healthPagePINInputTime),
-      const DeepCollectionEquality().hash(pinInputTries),
-      const DeepCollectionEquality().hash(maxTryTime),
-      const DeepCollectionEquality().hash(pinVerified));
+  int get hashCode => Object.hash(runtimeType, healthPagePINInputTime,
+      pinInputTries, maxTryTime, pinVerified);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_PINInputStateCopyWith<_$_PINInputState> get copyWith =>
       __$$_PINInputStateCopyWithImpl<_$_PINInputState>(this, _$identity);
 

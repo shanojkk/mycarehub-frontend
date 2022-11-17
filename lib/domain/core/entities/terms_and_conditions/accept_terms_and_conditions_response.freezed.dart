@@ -35,29 +35,34 @@ abstract class $AcceptTermsAndConditionsResponseCopyWith<$Res> {
   factory $AcceptTermsAndConditionsResponseCopyWith(
           AcceptTermsAndConditionsResponse value,
           $Res Function(AcceptTermsAndConditionsResponse) then) =
-      _$AcceptTermsAndConditionsResponseCopyWithImpl<$Res>;
+      _$AcceptTermsAndConditionsResponseCopyWithImpl<$Res,
+          AcceptTermsAndConditionsResponse>;
+  @useResult
   $Res call({@JsonKey(name: 'acceptTerms') bool acceptTerms});
 }
 
 /// @nodoc
-class _$AcceptTermsAndConditionsResponseCopyWithImpl<$Res>
+class _$AcceptTermsAndConditionsResponseCopyWithImpl<$Res,
+        $Val extends AcceptTermsAndConditionsResponse>
     implements $AcceptTermsAndConditionsResponseCopyWith<$Res> {
   _$AcceptTermsAndConditionsResponseCopyWithImpl(this._value, this._then);
 
-  final AcceptTermsAndConditionsResponse _value;
   // ignore: unused_field
-  final $Res Function(AcceptTermsAndConditionsResponse) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? acceptTerms = freezed,
+    Object? acceptTerms = null,
   }) {
     return _then(_value.copyWith(
-      acceptTerms: acceptTerms == freezed
+      acceptTerms: null == acceptTerms
           ? _value.acceptTerms
           : acceptTerms // ignore: cast_nullable_to_non_nullable
               as bool,
-    ));
+    ) as $Val);
   }
 }
 
@@ -69,28 +74,27 @@ abstract class _$$_AcceptTermsAndConditionsResponseCopyWith<$Res>
           $Res Function(_$_AcceptTermsAndConditionsResponse) then) =
       __$$_AcceptTermsAndConditionsResponseCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({@JsonKey(name: 'acceptTerms') bool acceptTerms});
 }
 
 /// @nodoc
 class __$$_AcceptTermsAndConditionsResponseCopyWithImpl<$Res>
-    extends _$AcceptTermsAndConditionsResponseCopyWithImpl<$Res>
+    extends _$AcceptTermsAndConditionsResponseCopyWithImpl<$Res,
+        _$_AcceptTermsAndConditionsResponse>
     implements _$$_AcceptTermsAndConditionsResponseCopyWith<$Res> {
   __$$_AcceptTermsAndConditionsResponseCopyWithImpl(
       _$_AcceptTermsAndConditionsResponse _value,
       $Res Function(_$_AcceptTermsAndConditionsResponse) _then)
-      : super(_value, (v) => _then(v as _$_AcceptTermsAndConditionsResponse));
+      : super(_value, _then);
 
-  @override
-  _$_AcceptTermsAndConditionsResponse get _value =>
-      super._value as _$_AcceptTermsAndConditionsResponse;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? acceptTerms = freezed,
+    Object? acceptTerms = null,
   }) {
     return _then(_$_AcceptTermsAndConditionsResponse(
-      acceptTerms: acceptTerms == freezed
+      acceptTerms: null == acceptTerms
           ? _value.acceptTerms
           : acceptTerms // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -123,17 +127,17 @@ class _$_AcceptTermsAndConditionsResponse
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AcceptTermsAndConditionsResponse &&
-            const DeepCollectionEquality()
-                .equals(other.acceptTerms, acceptTerms));
+            (identical(other.acceptTerms, acceptTerms) ||
+                other.acceptTerms == acceptTerms));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(acceptTerms));
+  int get hashCode => Object.hash(runtimeType, acceptTerms);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_AcceptTermsAndConditionsResponseCopyWith<
           _$_AcceptTermsAndConditionsResponse>
       get copyWith => __$$_AcceptTermsAndConditionsResponseCopyWithImpl<

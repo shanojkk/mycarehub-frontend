@@ -33,41 +33,45 @@ mixin _$NextRefillResponse {
 abstract class $NextRefillResponseCopyWith<$Res> {
   factory $NextRefillResponseCopyWith(
           NextRefillResponse value, $Res Function(NextRefillResponse) then) =
-      _$NextRefillResponseCopyWithImpl<$Res>;
+      _$NextRefillResponseCopyWithImpl<$Res, NextRefillResponse>;
+  @useResult
   $Res call({@JsonKey(name: 'data') NextRefillData? data});
 
   $NextRefillDataCopyWith<$Res>? get data;
 }
 
 /// @nodoc
-class _$NextRefillResponseCopyWithImpl<$Res>
+class _$NextRefillResponseCopyWithImpl<$Res, $Val extends NextRefillResponse>
     implements $NextRefillResponseCopyWith<$Res> {
   _$NextRefillResponseCopyWithImpl(this._value, this._then);
 
-  final NextRefillResponse _value;
   // ignore: unused_field
-  final $Res Function(NextRefillResponse) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      data: data == freezed
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as NextRefillData?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $NextRefillDataCopyWith<$Res>? get data {
     if (_value.data == null) {
       return null;
     }
 
     return $NextRefillDataCopyWith<$Res>(_value.data!, (value) {
-      return _then(_value.copyWith(data: value));
+      return _then(_value.copyWith(data: value) as $Val);
     });
   }
 }
@@ -79,6 +83,7 @@ abstract class _$$_NextRefillResponseCopyWith<$Res>
           $Res Function(_$_NextRefillResponse) then) =
       __$$_NextRefillResponseCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({@JsonKey(name: 'data') NextRefillData? data});
 
   @override
@@ -87,21 +92,19 @@ abstract class _$$_NextRefillResponseCopyWith<$Res>
 
 /// @nodoc
 class __$$_NextRefillResponseCopyWithImpl<$Res>
-    extends _$NextRefillResponseCopyWithImpl<$Res>
+    extends _$NextRefillResponseCopyWithImpl<$Res, _$_NextRefillResponse>
     implements _$$_NextRefillResponseCopyWith<$Res> {
   __$$_NextRefillResponseCopyWithImpl(
       _$_NextRefillResponse _value, $Res Function(_$_NextRefillResponse) _then)
-      : super(_value, (v) => _then(v as _$_NextRefillResponse));
+      : super(_value, _then);
 
-  @override
-  _$_NextRefillResponse get _value => super._value as _$_NextRefillResponse;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? data = freezed,
   }) {
     return _then(_$_NextRefillResponse(
-      data: data == freezed
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as NextRefillData?,
@@ -131,16 +134,16 @@ class _$_NextRefillResponse implements _NextRefillResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_NextRefillResponse &&
-            const DeepCollectionEquality().equals(other.data, data));
+            (identical(other.data, data) || other.data == data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
+  int get hashCode => Object.hash(runtimeType, data);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_NextRefillResponseCopyWith<_$_NextRefillResponse> get copyWith =>
       __$$_NextRefillResponseCopyWithImpl<_$_NextRefillResponse>(
           this, _$identity);

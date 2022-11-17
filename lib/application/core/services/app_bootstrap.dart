@@ -115,8 +115,8 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
       AndroidInitializationSettings('app_icon');
 
   // Configure the iOS notification settings
-  const IOSInitializationSettings initializationSettingsIOS =
-      IOSInitializationSettings();
+  const DarwinInitializationSettings initializationSettingsIOS =
+      DarwinInitializationSettings();
 
 // Initialize the flutter local notifications plugin with both the android and
 // iOS settings

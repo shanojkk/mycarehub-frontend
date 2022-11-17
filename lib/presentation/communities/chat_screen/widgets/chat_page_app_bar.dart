@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
-import 'package:stream_chat_flutter/src/extension.dart';
 
 class ChatPageAppBar extends StatelessWidget implements PreferredSizeWidget {
   const ChatPageAppBar({
@@ -54,7 +53,7 @@ class ChatPageAppBar extends StatelessWidget implements PreferredSizeWidget {
     final Widget leadingWidget = showBackButton
         ? StreamBackButton(
             onPressed: onBackPressed,
-            showUnreads: true,
+            showUnreadCount: true,
           )
         : const SizedBox();
 

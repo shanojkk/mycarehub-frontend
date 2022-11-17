@@ -33,29 +33,32 @@ mixin _$NextRefillData {
 abstract class $NextRefillDataCopyWith<$Res> {
   factory $NextRefillDataCopyWith(
           NextRefillData value, $Res Function(NextRefillData) then) =
-      _$NextRefillDataCopyWithImpl<$Res>;
+      _$NextRefillDataCopyWithImpl<$Res, NextRefillData>;
+  @useResult
   $Res call({@JsonKey(name: 'nextRefill') String? nextRefill});
 }
 
 /// @nodoc
-class _$NextRefillDataCopyWithImpl<$Res>
+class _$NextRefillDataCopyWithImpl<$Res, $Val extends NextRefillData>
     implements $NextRefillDataCopyWith<$Res> {
   _$NextRefillDataCopyWithImpl(this._value, this._then);
 
-  final NextRefillData _value;
   // ignore: unused_field
-  final $Res Function(NextRefillData) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? nextRefill = freezed,
   }) {
     return _then(_value.copyWith(
-      nextRefill: nextRefill == freezed
+      nextRefill: freezed == nextRefill
           ? _value.nextRefill
           : nextRefill // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -66,26 +69,25 @@ abstract class _$$_NextRefillDataCopyWith<$Res>
           _$_NextRefillData value, $Res Function(_$_NextRefillData) then) =
       __$$_NextRefillDataCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({@JsonKey(name: 'nextRefill') String? nextRefill});
 }
 
 /// @nodoc
 class __$$_NextRefillDataCopyWithImpl<$Res>
-    extends _$NextRefillDataCopyWithImpl<$Res>
+    extends _$NextRefillDataCopyWithImpl<$Res, _$_NextRefillData>
     implements _$$_NextRefillDataCopyWith<$Res> {
   __$$_NextRefillDataCopyWithImpl(
       _$_NextRefillData _value, $Res Function(_$_NextRefillData) _then)
-      : super(_value, (v) => _then(v as _$_NextRefillData));
+      : super(_value, _then);
 
-  @override
-  _$_NextRefillData get _value => super._value as _$_NextRefillData;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? nextRefill = freezed,
   }) {
     return _then(_$_NextRefillData(
-      nextRefill: nextRefill == freezed
+      nextRefill: freezed == nextRefill
           ? _value.nextRefill
           : nextRefill // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -115,17 +117,17 @@ class _$_NextRefillData implements _NextRefillData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_NextRefillData &&
-            const DeepCollectionEquality()
-                .equals(other.nextRefill, nextRefill));
+            (identical(other.nextRefill, nextRefill) ||
+                other.nextRefill == nextRefill));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(nextRefill));
+  int get hashCode => Object.hash(runtimeType, nextRefill);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_NextRefillDataCopyWith<_$_NextRefillData> get copyWith =>
       __$$_NextRefillDataCopyWithImpl<_$_NextRefillData>(this, _$identity);
 

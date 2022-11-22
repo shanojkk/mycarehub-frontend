@@ -113,13 +113,8 @@ class FetchScreeningToolsQuestionsAction extends ReduxAction<AppState> {
       final String? errors = client.parseError(body);
 
       if (errors != null) {
-        Sentry.captureException(
-          UserException(errors),
-        );
-
-        throw UserException(
-          getErrorMessage('fetching questions'),
-        );
+        Sentry.captureException(UserException(errors));
+        throw UserException(getErrorMessage('fetching questions'));
       }
 
       final Map<String, dynamic>? data = body['data'] as Map<String, dynamic>?;

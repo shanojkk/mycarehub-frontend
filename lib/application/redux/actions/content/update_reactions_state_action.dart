@@ -18,14 +18,14 @@ class UpdateReactionStatusAction extends ReduxAction<AppState> {
     this.updateLikeCount = false,
   });
 
+  final ContentDisplayedType contentDisplayedType;
   final int contentID;
   final bool? hasLiked;
   final bool? hasSaved;
   final bool updateLikeCount;
-  final ContentDisplayedType contentDisplayedType;
 
   @override
-  Future<AppState> reduce() async {
+  AppState reduce() {
     // fetch the content item to update
     // modify it with the new values
     // remove the old content item and replace with the new one

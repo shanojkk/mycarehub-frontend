@@ -19,7 +19,7 @@ class UpdateContentCategoriesAction extends ReduxAction<AppState> {
   final bool? timeoutFetchingContentCategories;
 
   @override
-  Future<AppState> reduce() async {
+  AppState reduce() {
     final ListContentCategory? listContentCategory =
         state.contentState?.categoriesList?.copyWith(
       errorFetchingContentCategories: errorFetchingContentCategories ??

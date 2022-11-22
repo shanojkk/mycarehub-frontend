@@ -18,7 +18,7 @@ class UpdateRecentContentStateAction extends ReduxAction<AppState> {
   final bool? timeoutFetchingContent;
 
   @override
-  Future<AppState> reduce() async {
+  AppState reduce() {
     final RecentContentState? recentContent =
         state.contentState?.recentContentState?.copyWith(
       contentItems:

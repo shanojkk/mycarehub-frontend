@@ -3,9 +3,9 @@ import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/community.dart';
 
 class UpdateInvitedCommunitiesStateAction extends ReduxAction<AppState> {
-  final List<Community>? communitiesList;
-
   UpdateInvitedCommunitiesStateAction({required this.communitiesList});
+
+  final List<Community>? communitiesList;
 
   @override
   AppState? reduce() {

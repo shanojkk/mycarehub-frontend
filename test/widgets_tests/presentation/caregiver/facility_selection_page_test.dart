@@ -19,11 +19,13 @@ void main() {
     setUp(() {
       store = Store<AppState>(initialState: AppState.initial());
     });
+    final StoreTester<AppState> storeTester =
+        StoreTester<AppState>(initialState: AppState.initial());
 
     testWidgets('renders correctly', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
-        store: store,
+        store: storeTester.store,
         client: MockGraphQlClient(),
         widget: const FacilitySelectionPage(),
       );

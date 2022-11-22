@@ -6,12 +6,6 @@ import 'package:pro_health_360/domain/core/entities/core/community.dart';
 import 'package:pro_health_360/domain/core/entities/core/groups_state.dart';
 
 class UpdateGroupStateAction extends ReduxAction<AppState> {
-  final List<Group?>? recommendedGroups;
-  final List<GroupMember?>? groupMembers;
-  final List<Community?>? communities;
-  final bool? isModerator;
-  final bool? isOwner;
-
   UpdateGroupStateAction({
     this.recommendedGroups,
     this.groupMembers,
@@ -19,6 +13,12 @@ class UpdateGroupStateAction extends ReduxAction<AppState> {
     this.isOwner,
     this.communities,
   });
+
+  final List<Community?>? communities;
+  final List<GroupMember?>? groupMembers;
+  final bool? isModerator;
+  final bool? isOwner;
+  final List<Group?>? recommendedGroups;
 
   @override
   AppState reduce() {

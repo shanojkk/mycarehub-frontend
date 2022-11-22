@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:async_redux/async_redux.dart';
 import 'package:pro_health_360/application/redux/states/alcohol_substance_use_state.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
@@ -24,7 +23,7 @@ class UpdateScreeningToolsState extends ReduxAction<AppState> {
   final ViolenceState? violenceState;
 
   @override
-  Future<AppState?> reduce() async {
+  AppState reduce() {
     final ScreeningToolsState newScreeningToolsState = ScreeningToolsState(
       alcoholSubstanceUseState: alcoholSubstanceUseState ??
           state.miscState?.screeningToolsState?.alcoholSubstanceUseState,

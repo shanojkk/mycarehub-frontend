@@ -18,7 +18,7 @@ class UpdateSavedContentStateAction extends ReduxAction<AppState> {
   final bool? timeoutFetchingContent;
 
   @override
-  Future<AppState> reduce() async {
+  AppState reduce() {
     final SavedContentState? savedContentState =
         state.contentState?.savedContentState?.copyWith(
       savedContentItems: savedContentItems ??

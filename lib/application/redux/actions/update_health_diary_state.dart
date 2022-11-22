@@ -30,7 +30,7 @@ class UpdateHealthDiaryStateActon extends ReduxAction<AppState> {
   final MoodTypeFilter? selectedFilter;
 
   @override
-  Future<AppState> reduce() async {
+  AppState? reduce() {
     final HealthDiaryState diaryState = HealthDiaryState(
       entries: diaryEntries ?? state.clientState?.healthDiaryState?.entries,
       quoteState: quoteState ?? state.clientState?.healthDiaryState?.quoteState,

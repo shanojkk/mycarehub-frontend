@@ -13,10 +13,11 @@ class UpdateFacilityStateAction extends ReduxAction<AppState> {
   final Facility? currentFacility;
 
   @override
-  Future<AppState> reduce() async {
+  AppState reduce() {
     final FacilityState facilityState = FacilityState(
       facilities: facilities ?? state.clientState?.facilityState?.facilities,
-      currentFacility: currentFacility ?? state.clientState?.facilityState?.currentFacility,
+      currentFacility:
+          currentFacility ?? state.clientState?.facilityState?.currentFacility,
     );
 
     final AppState newState = state.copyWith.call(

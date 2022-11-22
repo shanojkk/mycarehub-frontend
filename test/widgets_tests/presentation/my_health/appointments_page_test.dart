@@ -1,4 +1,3 @@
-// Package imports:
 import 'dart:convert';
 import 'dart:ui';
 
@@ -248,7 +247,6 @@ void main() {
 
         store.dispatch(WaitAction<AppState>.add(fetchAppointmentsFlag));
         await tester.pump();
-        await tester.pump(const Duration(seconds: 5));
 
         expect(find.byType(PlatformLoader), findsOneWidget);
       });

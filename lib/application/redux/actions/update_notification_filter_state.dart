@@ -13,7 +13,7 @@ class UpdateNotificationFilterStateAction extends ReduxAction<AppState> {
   final List<NotificationFilter>? notificationFilters;
 
   @override
-  Future<AppState> reduce() async {
+  AppState reduce() {
     final NotificationFilterState notificationFilterState =
         NotificationFilterState(
       selectedFilter: selectedFilter ??

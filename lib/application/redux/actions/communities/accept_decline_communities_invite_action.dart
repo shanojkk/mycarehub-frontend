@@ -78,6 +78,6 @@ class AcceptDeclineCommunitiesInviteAction extends ReduxAction<AppState> {
       onError?.call();
     }
 
-    return null;
+    return state;
   }
 }

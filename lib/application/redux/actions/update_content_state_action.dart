@@ -22,7 +22,7 @@ class UpdateContentStateAction extends ReduxAction<AppState> {
   final ContentCategory? selectedCategory;
 
   @override
-  Future<AppState> reduce() async {
+  AppState reduce() {
     final FeedContentState? feedContentState =
         state.contentState?.feedContentState?.copyWith(
       contentItems:

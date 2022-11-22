@@ -58,6 +58,7 @@ class PastAppointments extends StatelessWidget {
       builder: (BuildContext context, AppointmentsViewModel vm) {
         final List<Appointment> appointments =
             vm.appointmentState?.appointments ?? <Appointment>[];
+
         if (vm.wait!.isWaitingFor('${fetchAppointmentsFlag}1')) {
           return const PlatformLoader();
         } else if (vm.appointmentState?.errorFetchingAppointments ?? false) {
@@ -103,8 +104,6 @@ class PastAppointments extends StatelessWidget {
                         },
                       ),
                     ),
-                    if (vm.wait?.isWaitingFor(fetchAppointmentsFlag) ?? false)
-                      const PlatformLoader()
                   ],
                 )
               : GenericErrorWidget(

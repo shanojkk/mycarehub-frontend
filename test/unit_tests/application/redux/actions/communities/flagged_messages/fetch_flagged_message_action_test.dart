@@ -100,7 +100,7 @@ void main() {
         ),
       );
 
-      expect(error, '');
+      expect(error, connectionLostText);
 
       await storeTester.waitUntil(FetchFlaggedMessagesAction);
 

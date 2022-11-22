@@ -11,7 +11,7 @@ import 'package:pro_health_360/application/redux/actions/update_connectivity_act
 import 'package:pro_health_360/application/redux/actions/update_user_profile_action.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
-import 'package:pro_health_360/phase_2/widgets/health_page_information_widget.dart';
+import 'package:pro_health_360/presentation/caregiver/widgets/health_page_information_widget.dart';
 import 'package:pro_health_360/presentation/health_diary/pages/my_health_diary_page.dart';
 import 'package:pro_health_360/presentation/my_health/pages/appointments_page.dart';
 import 'package:pro_health_360/presentation/my_health/pages/my_health_page.dart';

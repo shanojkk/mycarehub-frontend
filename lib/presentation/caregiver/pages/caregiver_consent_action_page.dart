@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
-import 'package:pro_health_360/phase_2/widgets/remove_caregiver_dialog.dart';
+import 'package:pro_health_360/presentation/caregiver/widgets/remove_caregiver_dialog.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.dart';
 

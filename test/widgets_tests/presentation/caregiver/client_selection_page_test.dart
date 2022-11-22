@@ -7,12 +7,12 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
-import 'package:pro_health_360/phase_2/client_selection_page.dart';
-import 'package:pro_health_360/phase_2/widgets/general_workstation_widget.dart';
+import 'package:pro_health_360/presentation/caregiver/pages/client_selection_page.dart';
+import 'package:pro_health_360/presentation/caregiver/widgets/general_workstation_widget.dart';
 import 'package:pro_health_360/presentation/home/pages/home_page.dart';
 
-import '../../mocks.dart';
-import '../../test_helpers.dart';
+import '../../../mocks.dart';
+import '../../../test_helpers.dart';
 
 void main() {
   group('client Selection page', () {

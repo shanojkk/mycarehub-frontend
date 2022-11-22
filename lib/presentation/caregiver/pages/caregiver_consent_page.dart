@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
-import 'package:pro_health_360/phase_2/widgets/caregiver_consent_widget.dart';
-import 'package:pro_health_360/phase_2/widgets/consent_status_widget.dart';
+import 'package:pro_health_360/presentation/caregiver/widgets/caregiver_consent_widget.dart';
+import 'package:pro_health_360/presentation/caregiver/widgets/consent_status_widget.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.dart';
 

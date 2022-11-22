@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
-import 'package:pro_health_360/phase_2/facility_selection_page.dart';
-import 'package:pro_health_360/phase_2/widgets/general_workstation_widget.dart';
-import 'package:pro_health_360/phase_2/widgets/summary_badge_widget.dart';
+import 'package:pro_health_360/presentation/caregiver/pages/facility_selection_page.dart';
+import 'package:pro_health_360/presentation/caregiver/widgets/general_workstation_widget.dart';
+import 'package:pro_health_360/presentation/caregiver/widgets/summary_badge_widget.dart';
 import 'package:pro_health_360/presentation/home/pages/home_page.dart';
 
-import '../../mocks.dart';
-import '../../test_helpers.dart';
+import '../../../mocks.dart';
+import '../../../test_helpers.dart';
 
 void main() {
   group('Facility Selection Page', () {

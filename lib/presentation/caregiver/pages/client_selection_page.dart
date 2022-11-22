@@ -10,8 +10,8 @@ import 'package:pro_health_360/application/redux/view_models/app_state_view_mode
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
-import 'package:pro_health_360/phase_2/widgets/general_workstation_widget.dart';
-import 'package:pro_health_360/phase_2/widgets/summary_badge_widget.dart';
+import 'package:pro_health_360/presentation/caregiver/widgets/general_workstation_widget.dart';
+import 'package:pro_health_360/presentation/caregiver/widgets/summary_badge_widget.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 

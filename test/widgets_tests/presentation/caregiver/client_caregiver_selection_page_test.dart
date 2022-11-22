@@ -2,13 +2,13 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
-import 'package:pro_health_360/phase_2/client_selection_page.dart';
-import 'package:pro_health_360/phase_2/facility_selection_page.dart';
-import 'package:pro_health_360/phase_2/widgets/general_workstation_widget.dart';
-import 'package:pro_health_360/phase_2/client_caregiver_selection_page.dart';
+import 'package:pro_health_360/presentation/caregiver/pages/client_caregiver_selection_page.dart';
+import 'package:pro_health_360/presentation/caregiver/pages/client_selection_page.dart';
+import 'package:pro_health_360/presentation/caregiver/pages/facility_selection_page.dart';
+import 'package:pro_health_360/presentation/caregiver/widgets/general_workstation_widget.dart';
 
-import '../../mocks.dart';
-import '../../test_helpers.dart';
+import '../../../mocks.dart';
+import '../../../test_helpers.dart';
 
 void main() {
   group('WorkStation Chooser page', () {

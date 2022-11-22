@@ -10,11 +10,11 @@ import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
-import 'package:pro_health_360/phase_2/client_caregiver_selection_page.dart';
-import 'package:pro_health_360/phase_2/client_selection_page.dart';
-import 'package:pro_health_360/phase_2/facility_selection_page.dart';
 import 'package:pro_health_360/presentation/assessment/pages/contraceptive_assessment_page.dart';
 import 'package:pro_health_360/presentation/assessment/widgets/successful_assessment_submission_page.dart';
+import 'package:pro_health_360/presentation/caregiver/pages/client_caregiver_selection_page.dart';
+import 'package:pro_health_360/presentation/caregiver/pages/client_selection_page.dart';
+import 'package:pro_health_360/presentation/caregiver/pages/facility_selection_page.dart';
 import 'package:pro_health_360/presentation/communities/community_list_page.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/accept_group_invites_page.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/invited_groups_page.dart';

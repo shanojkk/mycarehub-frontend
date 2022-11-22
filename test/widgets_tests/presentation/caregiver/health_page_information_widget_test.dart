@@ -2,10 +2,10 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
-import 'package:pro_health_360/phase_2/widgets/health_page_information_widget.dart';
+import 'package:pro_health_360/presentation/caregiver/widgets/health_page_information_widget.dart';
 
-import '../../mocks.dart';
-import '../../test_helpers.dart';
+import '../../../mocks.dart';
+import '../../../test_helpers.dart';
 
 void main() {
   group('HealthPageInformationWidget', () {

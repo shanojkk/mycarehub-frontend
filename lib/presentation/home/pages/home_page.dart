@@ -1,4 +1,3 @@
-import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +13,8 @@ import 'package:pro_health_360/presentation/core/widgets/no_connection_widget.da
 import 'package:pro_health_360/presentation/health_diary/screening_tools/widgets/screening_tools_carousel.dart';
 import 'package:pro_health_360/presentation/health_diary/widgets/mood_checker.dart';
 import 'package:pro_health_360/presentation/home/widgets/survey_carousel.dart';
+import 'package:sghi_core/misc_utilities/misc.dart';
+import 'package:sghi_core/shared_themes/spaces.dart';
 
 class HomePage extends StatelessWidget {
   @override

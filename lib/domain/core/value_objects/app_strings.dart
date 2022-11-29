@@ -1,4 +1,4 @@
-import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -987,13 +987,16 @@ const String cccNumberHint = 'Enter your CCC number...';
 const String all = 'All';
 const String unread = 'Unread';
 const String proceedAs = 'Who would you like to proceed as?';
-const String proceedAsCaregiver = 'Proceed as a caregiver to access the platform on behalf of your assigned clients. You will be prompted to choose a client in the next step.';
-const String proceedAsClient = 'Proceed as a client to take charge of your health now';
+const String proceedAsCaregiver =
+    'Proceed as a caregiver to access the platform on behalf of your assigned clients. You will be prompted to choose a client in the next step.';
+const String proceedAsClient =
+    'Proceed as a client to take charge of your health now';
 const String caregiver = 'Caregiver';
 const String proceed = 'Proceed';
 const String client = 'Client';
 
-const String welcomeFacilitySelectionDescription = 'Please select your facility';
+const String welcomeFacilitySelectionDescription =
+    'Please select your facility';
 
 const String noOfFacilitiesDescription =
     "We've noticed that you're part of multiple facilities. Choose which facility you would like to log into. Here are the details";

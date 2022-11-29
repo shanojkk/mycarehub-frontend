@@ -1,6 +1,6 @@
 // Package imports:
 
-import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'quote.freezed.dart';
@@ -9,7 +9,7 @@ part 'quote.g.dart';
 @Freezed(makeCollectionsUnmodifiable: false)
 class QuoteRelay with _$QuoteRelay {
   factory QuoteRelay({
-    @JsonKey(name: 'getHealthDiaryQuote') List <Quote>? quotes,
+    @JsonKey(name: 'getHealthDiaryQuote') List<Quote>? quotes,
   }) = _QuoteRelay;
 
   factory QuoteRelay.fromJson(Map<String, dynamic> json) =>

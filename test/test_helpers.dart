@@ -1,11 +1,11 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:sghi_core/app_wrapper/app_wrapper.dart';
 
 // Package imports:
-import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_config/flutter_config.dart';
-import 'package:flutter_graphql_client/graph_client.dart';
+import 'package:sghi_core/flutter_graphql_client/i_flutter_graphql_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
@@ -16,6 +16,7 @@ import 'package:pro_health_360/domain/core/value_objects/app_context_constants.d
 import 'package:pro_health_360/domain/core/value_objects/app_name_constants.dart';
 import 'package:pro_health_360/domain/core/value_objects/global_keys.dart';
 import 'package:pro_health_360/presentation/router/router_generator.dart';
+
 import 'widgets_tests/shared/utils_test.mocks.dart';
 
 final BaseGraphQlClient baseGraphQlClientMock = BaseGraphQlClient();

@@ -1,6 +1,6 @@
 // Flutter imports:
 // Package imports:
-import 'package:app_wrapper/app_wrapper.dart' show AppContext, BaseContext;
+// import 'package:app_wrapper/app_wrapper.dart' show AppContext, BaseContext;
 import 'package:flutter/foundation.dart';
 import 'package:flutter_config/flutter_config.dart';
 // Project imports:
@@ -10,6 +10,8 @@ import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/infrastructure/endpoints.dart';
 import 'package:quiver/core.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:sghi_core/app_wrapper/base_context.dart';
+import 'package:sghi_core/app_wrapper/enums.dart';
 
 /// Holds an environment specific app configuration
 ///

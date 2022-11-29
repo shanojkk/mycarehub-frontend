@@ -1,7 +1,7 @@
 // Flutter imports:
 import 'dart:convert';
 
-import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 
 // Package imports:

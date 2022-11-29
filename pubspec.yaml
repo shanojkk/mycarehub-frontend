@@ -7,8 +7,6 @@ environment:
   sdk: ">=2.17.0 <3.3.8"
 
 dependencies:
-  afya_moja_core: ^0.3.1
-  app_wrapper: ^0.2.2
   async_redux: ^18.0.2
   collection: ^1.16.0
   connectivity_plus: ^2.3.6+1
@@ -21,7 +19,6 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_config: ^2.0.0
-  flutter_graphql_client: ^0.2.2
   flutter_html: ^3.0.0-alpha.5
   flutter_local_notifications: ^12.0.3+1
   flutter_local_notifications_platform_interface: ^6.0.0
@@ -31,7 +28,7 @@ dependencies:
   flutter_svg: ^1.1.6
   freezed: ^2.0.3
   freezed_annotation: ^2.2.0
-  google_fonts: ^2.2.0
+  google_fonts: ^3.0.1
   html: ^0.15.0
   http: ^0.13.5
   intl: ^0.17.0
@@ -46,9 +43,9 @@ dependencies:
   quiver: ^3.1.0
   rxdart: ^0.27.7
   sentry_flutter: ^6.15.1
+  sghi_core: ^0.2.1
   share_plus: ^4.5.0
   shared_preferences: ^2.0.15
-  shared_themes: ^0.2.0
   sms_autofill: ^2.2.0
   sqflite: ^2.2.0+3
   stream_chat_flutter: ^5.1.0
@@ -82,10 +79,3 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/
-    - packages/afya_moja_core/assets/ken.png
-    - packages/afya_moja_core/assets/tza.png
-    - packages/afya_moja_core/assets/uga.png
-    - packages/afya_moja_core/assets/usa.png
-    - packages/afya_moja_core/assets/gbr.png
-    - packages/afya_moja_core/assets/bel.png
-    - packages/afya_moja_core/assets/nga.png

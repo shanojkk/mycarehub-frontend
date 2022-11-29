@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 
 // Project imports:
@@ -11,6 +10,7 @@ import 'package:pro_health_360/application/core/services/custom_client.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/presentation/core/widgets/preload_app.dart';
+import 'package:sghi_core/app_wrapper/app_wrapper.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 
 class AppEntryPoint extends StatelessWidget {

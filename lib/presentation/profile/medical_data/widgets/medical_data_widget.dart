@@ -1,4 +1,4 @@
-import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:pro_health_360/domain/core/entities/medical_data/medical_data_details.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';

@@ -1,5 +1,5 @@
 // Package imports:
-import 'package:app_wrapper/app_wrapper.dart';
+import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 import 'package:async_redux/async_redux.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
@@ -88,7 +88,10 @@ OnboardingPathInfo onboardingPath({required AppState? appState}) {
       );
     }
 
-    return OnboardingPathInfo(nextRoute: AppRoutes.facilitySelectionPageRoute, previousRoute: '');
+    return OnboardingPathInfo(
+      nextRoute: AppRoutes.facilitySelectionPageRoute,
+      previousRoute: '',
+    );
 
     /// The PIN expiry workflow
   } else if (currentOnboardingStage == CurrentOnboardingStage.PINExpired ||

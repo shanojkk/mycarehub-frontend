@@ -1,5 +1,5 @@
 // Package imports:
-import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 
 import 'package:flutter/material.dart';
@@ -12,7 +12,7 @@ import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/presentation/health_diary/widgets/mood_selection/mood_item.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
-import 'package:shared_themes/colors.dart';
+import 'package:sghi_core/shared_themes/colors.dart';
 
 class MoodSelectionComponent extends StatelessWidget {
   const MoodSelectionComponent({super.key});

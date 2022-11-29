@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 
 import 'package:pro_health_360/presentation/core/theme/theme.dart';

@@ -3,19 +3,19 @@ import 'dart:async';
 import 'dart:convert';
 
 // Flutter imports:
-import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 
 // Project imports:
 import 'package:pro_health_360/application/redux/actions/update_credentials_action.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/auth_credentials.dart';
+import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
+import 'package:sghi_core/flutter_graphql_client/i_flutter_graphql_client.dart';
 
 class CustomClient extends IGraphQlClient {
   CustomClient(
@@ -52,9 +52,8 @@ class CustomClient extends IGraphQlClient {
         ) ??
         DateTime.now();
 
-    final bool shouldRefreshToken =
-        isSignedIn && (hasTokenExpired(expiryDateTime, DateTime.now()) ||
-            idToken == UNKNOWN);
+    final bool shouldRefreshToken = isSignedIn &&
+        (hasTokenExpired(expiryDateTime, DateTime.now()) || idToken == UNKNOWN);
 
     if (request.url ==
         Uri.parse(

@@ -8,11 +8,11 @@ import 'dart:convert' as _i13;
 import 'dart:typed_data' as _i14;
 
 import 'package:dio/dio.dart' as _i24;
-import 'package:flutter_graphql_client/src/i_flutter_graphql_client.dart'
-    as _i11;
 import 'package:http/http.dart' as _i2;
 import 'package:logging/logging.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:sghi_core/flutter_graphql_client/i_flutter_graphql_client.dart'
+    as _i11;
 import 'package:stream_chat/src/client/channel.dart' as _i9;
 import 'package:stream_chat/src/client/client.dart' as _i3;
 import 'package:stream_chat/src/client/retry_policy.dart' as _i5;

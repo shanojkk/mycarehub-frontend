@@ -1,6 +1,6 @@
 // Dart imports:
 
-import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:pro_health_360/application/core/services/onboarding_utils.dart';
@@ -16,7 +16,7 @@ import 'package:pro_health_360/infrastructure/connectivity/connectivity_interfac
 import 'package:pro_health_360/infrastructure/connectivity/mobile_connectivity_status.dart';
 import 'package:pro_health_360/presentation/content/widgets/mini_content_widget.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
-import 'package:shared_themes/text_themes.dart';
+import 'package:sghi_core/shared_themes/text_themes.dart';
 
 class SetNickNamePage extends StatefulWidget {
   SetNickNamePage({ConnectivityChecker? connectivityStatus})

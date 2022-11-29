@@ -1,6 +1,6 @@
 // Package imports:
 
-import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'record_security_question_response.freezed.dart';

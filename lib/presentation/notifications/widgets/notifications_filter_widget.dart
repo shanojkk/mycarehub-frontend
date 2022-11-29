@@ -1,7 +1,7 @@
-import 'package:app_wrapper/app_wrapper.dart';
+import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:afya_moja_core/src/domain/core/entities/notifications/notification_filter.dart';
+import 'package:sghi_core/afya_moja_core/src/domain/core/entities/notifications/notification_filter.dart';
 import 'package:pro_health_360/application/redux/actions/notifications/fetch_notifications_action.dart';
 import 'package:pro_health_360/application/redux/actions/update_notification_filter_state.dart';
 import 'package:pro_health_360/application/redux/view_models/notifications/notifications_view_model.dart';

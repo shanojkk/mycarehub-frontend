@@ -1,6 +1,6 @@
 // Flutter imports
-import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:app_wrapper/app_wrapper.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -19,7 +19,7 @@ import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.
 import 'package:pro_health_360/presentation/health_diary/widgets/mood_selection/mood_symptom_widget.dart';
 import 'package:pro_health_360/presentation/profile/feedback/widgets/rating_button.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
-import 'package:shared_themes/constants.dart';
+import 'package:sghi_core/shared_themes/constants.dart';
 
 /// [FeedbackPage] is used to get user feedback on app usage
 class FeedbackPage extends StatefulWidget {

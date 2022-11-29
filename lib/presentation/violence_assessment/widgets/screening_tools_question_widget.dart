@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:pro_health_360/application/redux/actions/screening_tools/update_screening_tools_state_action.dart';
 import 'package:pro_health_360/application/redux/states/alcohol_substance_use_state.dart';

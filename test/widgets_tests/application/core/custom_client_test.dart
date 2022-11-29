@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 // Package imports:
-import 'package:app_wrapper/app_wrapper.dart';
+import 'package:pro_health_360/infrastructure/endpoints.dart';
 import 'package:async_redux/async_redux.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';

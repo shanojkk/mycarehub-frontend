@@ -2,7 +2,7 @@
 import 'dart:convert';
 
 // Flutter imports:
-import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';

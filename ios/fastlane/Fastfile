@@ -33,58 +33,6 @@ APPLE_APP_ID = "6443988970"
 platform :ios do
 
   before_all do
-    ENV['ITMSTRANSPORTER_FORCE_ITMS_PACKAGE_UPLOAD'] = 'true'
-  end
-
-  desc :"Code Signing Dev Build for TestFlight"
-  lane :dev do 
-    match(
-      type: MATCH_TYPE,
-      app_identifier: APP_IDENTIFIER,
-      readonly: true
-    )
-
-    # App Store Connect API token to authenticate Apple ID
-    api_key = app_store_connect_api_key(
-      key_id: "#{ENV["APPLE_API_KEY_ID"]}",
-      issuer_id: "#{ENV["APPLE_ISSUER_ID"]}",
-      key_content: "#{ENV["APPLE_API_KEY_CONTENT"]}",
-    )
-
-    increment_build_number(
-      # Authenticate and increament build number
-      build_number: latest_testflight_build_number(
-        api_key: api_key) + 1,
-      xcodeproj: XCODE_PROJECT
-    )
-
-    if is_ci
-      clear_derived_data
-    cocoapods(
-      clean_install: true,
-    )
-    end
-    
-    if is_ci
-      update_code_signing_settings(
-        use_automatic_signing: false,
-        path: XCODE_PROJECT,
-    )
-    end
-
-    build_app(
-      scheme: DEV_SCHEME,
-      export_options: {
-        method: MATCH_TYPE,
-      }
-    )
-
-    upload_to_testflight(
-      skip_waiting_for_build_processing: true,
-      apple_id: APPLE_APP_ID,
-      distribute_external: true,
-      changelog: CHANGE_LOG,
-    )
   end
 
   desc :"Code Signing Demo Build for TestFlight"

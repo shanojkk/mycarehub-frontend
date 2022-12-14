@@ -1028,3 +1028,5 @@ const String caregiverConsentReviewText = 'Tap to review this request';
 const String consentRecordedString = 'Consent recorded';
 const String doneString = 'Done';
 const String switchingYourFacility = 'Switching your facility';
+const String userName = 'Username';
+const String enterYourUserName = 'Kindly enter your username';

@@ -95,58 +95,19 @@ class _LoginPageState extends State<LoginPage> {
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              phoneNumberString,
+                              userName,
                               style: boldSize14Text(
                                 AppColors.greyTextColor,
                               ),
                             ),
                           ),
                           smallVerticalSizedBox,
-                          MyAfyaHubPhoneInput(
-                            textFormFieldKey: textFormFieldKey,
-                            phoneNumberFormatter: formatPhoneNumber,
-                            decoration: InputDecoration(
-                              floatingLabelBehavior:
-                                  FloatingLabelBehavior.never,
-                              border: InputBorder.none,
-                              filled: true,
-                              fillColor: AppColors.lightGreyBackgroundColor,
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.grey[200]!),
-                                borderRadius: const BorderRadius.all(
-                                  Radius.circular(5),
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color:
-                                      Theme.of(context).colorScheme.secondary,
-                                ),
-                                borderRadius: const BorderRadius.all(
-                                  Radius.circular(5),
-                                ),
-                              ),
-                            ),
-                            onChanged: (String? val) {
-                              final bool? invalidCredentials =
-                                  vm.invalidCredentials;
-
-                              if (invalidCredentials != null &&
-                                  invalidCredentials) {
-                                StoreProvider.dispatch(
-                                  context,
-                                  UpdateOnboardingStateAction(
-                                    invalidCredentials: false,
-                                    phoneNumber: val,
-                                  ),
-                                );
-                              }
-
-                              setState(() {
-                                phoneNumber = val;
-                              });
-                            },
+                          CustomTextField(
+                            formFieldKey: usernameInputKey,
+                            borderColor: Colors.grey[200],
+                            hintText: enterYourUserName,
+                            autovalidateMode: AutovalidateMode.disabled,
+                            onChanged: (String val) {},
                           ),
                           mediumVerticalSizedBox,
                           Align(

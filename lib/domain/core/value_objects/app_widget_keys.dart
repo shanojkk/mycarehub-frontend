@@ -290,3 +290,4 @@ const Key allHealthDiariesKey = Key('all_health_diaries_key');
 const Key acceptButtonKey = Key('accept_button_key');
 const Key doNotAcceptButtonKey = Key('do_not_accept_button_key');
 const Key removeCaregiverButtonKey = Key('remove_caregiver_button_key');
+const Key usernameInputKey = Key('username_input_key');

@@ -1,4 +1,5 @@
 // Package imports:
+import 'package:pro_health_360/application/redux/states/program_state.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 // Project imports:
@@ -16,6 +17,7 @@ class OnboardingState with _$OnboardingState {
     List<SecurityQuestion>? securityQuestions,
     List<SecurityQuestionResponse>? securityQuestionResponses,
     VerifySecurityQuestionsState? verifySecurityQuestionsState,
+    ProgramState? programState,
 
     ///------------WORKFLOW RELATED BOOLEANS------------
     /// Have standardized shared values that will be used across all states
@@ -44,6 +46,9 @@ class OnboardingState with _$OnboardingState {
     ///------------WORKFLOW RELATED VALUES------------
     // The currently active user's phone number
     String? phoneNumber,
+
+    // username used for logging in
+    String? userName,
 
     // The PIN
     String? pin,
@@ -91,6 +96,7 @@ class OnboardingState with _$OnboardingState {
         hasVerifiedSecurityQuestions: false,
         currentOnboardingStage: CurrentOnboardingStage.Login,
         phoneNumber: UNKNOWN,
+        userName: UNKNOWN,
         invalidOTP: false,
         otp: UNKNOWN,
         failedLoginCount: 0,

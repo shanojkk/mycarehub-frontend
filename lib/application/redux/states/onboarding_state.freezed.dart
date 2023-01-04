@@ -28,6 +28,7 @@ mixin _$OnboardingState {
       throw _privateConstructorUsedError;
   VerifySecurityQuestionsState? get verifySecurityQuestionsState =>
       throw _privateConstructorUsedError;
+  ProgramState? get programState => throw _privateConstructorUsedError;
 
   ///------------WORKFLOW RELATED BOOLEANS------------
   /// Have standardized shared values that will be used across all states
@@ -49,7 +50,9 @@ mixin _$OnboardingState {
 
   ///------------WORKFLOW RELATED VALUES------------
 // The currently active user's phone number
-  String? get phoneNumber => throw _privateConstructorUsedError; // The PIN
+  String? get phoneNumber =>
+      throw _privateConstructorUsedError; // username used for logging in
+  String? get userName => throw _privateConstructorUsedError; // The PIN
   String? get pin => throw _privateConstructorUsedError; // The confirm PIN
   String? get confirmPIN =>
       throw _privateConstructorUsedError; // The OTP used when confirming the phone number
@@ -89,6 +92,7 @@ abstract class $OnboardingStateCopyWith<$Res> {
       List<SecurityQuestion>? securityQuestions,
       List<SecurityQuestionResponse>? securityQuestionResponses,
       VerifySecurityQuestionsState? verifySecurityQuestionsState,
+      ProgramState? programState,
       CurrentOnboardingStage? currentOnboardingStage,
       bool? isPhoneVerified,
       bool? hasSetSecurityQuestions,
@@ -97,6 +101,7 @@ abstract class $OnboardingStateCopyWith<$Res> {
       bool? hasSetPin,
       bool? hasAcceptedTerms,
       String? phoneNumber,
+      String? userName,
       String? pin,
       String? confirmPIN,
       String? otp,
@@ -111,6 +116,7 @@ abstract class $OnboardingStateCopyWith<$Res> {
 
   $TermsAndConditionsCopyWith<$Res>? get termsAndConditions;
   $VerifySecurityQuestionsStateCopyWith<$Res>? get verifySecurityQuestionsState;
+  $ProgramStateCopyWith<$Res>? get programState;
 }
 
 /// @nodoc
@@ -130,6 +136,7 @@ class _$OnboardingStateCopyWithImpl<$Res, $Val extends OnboardingState>
     Object? securityQuestions = freezed,
     Object? securityQuestionResponses = freezed,
     Object? verifySecurityQuestionsState = freezed,
+    Object? programState = freezed,
     Object? currentOnboardingStage = freezed,
     Object? isPhoneVerified = freezed,
     Object? hasSetSecurityQuestions = freezed,
@@ -138,6 +145,7 @@ class _$OnboardingStateCopyWithImpl<$Res, $Val extends OnboardingState>
     Object? hasSetPin = freezed,
     Object? hasAcceptedTerms = freezed,
     Object? phoneNumber = freezed,
+    Object? userName = freezed,
     Object? pin = freezed,
     Object? confirmPIN = freezed,
     Object? otp = freezed,
@@ -167,6 +175,10 @@ class _$OnboardingStateCopyWithImpl<$Res, $Val extends OnboardingState>
           ? _value.verifySecurityQuestionsState
           : verifySecurityQuestionsState // ignore: cast_nullable_to_non_nullable
               as VerifySecurityQuestionsState?,
+      programState: freezed == programState
+          ? _value.programState
+          : programState // ignore: cast_nullable_to_non_nullable
+              as ProgramState?,
       currentOnboardingStage: freezed == currentOnboardingStage
           ? _value.currentOnboardingStage
           : currentOnboardingStage // ignore: cast_nullable_to_non_nullable
@@ -198,6 +210,10 @@ class _$OnboardingStateCopyWithImpl<$Res, $Val extends OnboardingState>
       phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userName: freezed == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
               as String?,
       pin: freezed == pin
           ? _value.pin
@@ -273,6 +289,18 @@ class _$OnboardingStateCopyWithImpl<$Res, $Val extends OnboardingState>
           _value.copyWith(verifySecurityQuestionsState: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProgramStateCopyWith<$Res>? get programState {
+    if (_value.programState == null) {
+      return null;
+    }
+
+    return $ProgramStateCopyWith<$Res>(_value.programState!, (value) {
+      return _then(_value.copyWith(programState: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -288,6 +316,7 @@ abstract class _$$_OnboardingStateCopyWith<$Res>
       List<SecurityQuestion>? securityQuestions,
       List<SecurityQuestionResponse>? securityQuestionResponses,
       VerifySecurityQuestionsState? verifySecurityQuestionsState,
+      ProgramState? programState,
       CurrentOnboardingStage? currentOnboardingStage,
       bool? isPhoneVerified,
       bool? hasSetSecurityQuestions,
@@ -296,6 +325,7 @@ abstract class _$$_OnboardingStateCopyWith<$Res>
       bool? hasSetPin,
       bool? hasAcceptedTerms,
       String? phoneNumber,
+      String? userName,
       String? pin,
       String? confirmPIN,
       String? otp,
@@ -312,6 +342,8 @@ abstract class _$$_OnboardingStateCopyWith<$Res>
   $TermsAndConditionsCopyWith<$Res>? get termsAndConditions;
   @override
   $VerifySecurityQuestionsStateCopyWith<$Res>? get verifySecurityQuestionsState;
+  @override
+  $ProgramStateCopyWith<$Res>? get programState;
 }
 
 /// @nodoc
@@ -329,6 +361,7 @@ class __$$_OnboardingStateCopyWithImpl<$Res>
     Object? securityQuestions = freezed,
     Object? securityQuestionResponses = freezed,
     Object? verifySecurityQuestionsState = freezed,
+    Object? programState = freezed,
     Object? currentOnboardingStage = freezed,
     Object? isPhoneVerified = freezed,
     Object? hasSetSecurityQuestions = freezed,
@@ -337,6 +370,7 @@ class __$$_OnboardingStateCopyWithImpl<$Res>
     Object? hasSetPin = freezed,
     Object? hasAcceptedTerms = freezed,
     Object? phoneNumber = freezed,
+    Object? userName = freezed,
     Object? pin = freezed,
     Object? confirmPIN = freezed,
     Object? otp = freezed,
@@ -366,6 +400,10 @@ class __$$_OnboardingStateCopyWithImpl<$Res>
           ? _value.verifySecurityQuestionsState
           : verifySecurityQuestionsState // ignore: cast_nullable_to_non_nullable
               as VerifySecurityQuestionsState?,
+      programState: freezed == programState
+          ? _value.programState
+          : programState // ignore: cast_nullable_to_non_nullable
+              as ProgramState?,
       currentOnboardingStage: freezed == currentOnboardingStage
           ? _value.currentOnboardingStage
           : currentOnboardingStage // ignore: cast_nullable_to_non_nullable
@@ -397,6 +435,10 @@ class __$$_OnboardingStateCopyWithImpl<$Res>
       phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userName: freezed == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
               as String?,
       pin: freezed == pin
           ? _value.pin
@@ -454,6 +496,7 @@ class _$_OnboardingState implements _OnboardingState {
       this.securityQuestions,
       this.securityQuestionResponses,
       this.verifySecurityQuestionsState,
+      this.programState,
       this.currentOnboardingStage,
       this.isPhoneVerified,
       this.hasSetSecurityQuestions,
@@ -462,6 +505,7 @@ class _$_OnboardingState implements _OnboardingState {
       this.hasSetPin,
       this.hasAcceptedTerms,
       this.phoneNumber,
+      this.userName,
       this.pin,
       this.confirmPIN,
       this.otp,
@@ -485,6 +529,8 @@ class _$_OnboardingState implements _OnboardingState {
   final List<SecurityQuestionResponse>? securityQuestionResponses;
   @override
   final VerifySecurityQuestionsState? verifySecurityQuestionsState;
+  @override
+  final ProgramState? programState;
 
   ///------------WORKFLOW RELATED BOOLEANS------------
   /// Have standardized shared values that will be used across all states
@@ -515,6 +561,9 @@ class _$_OnboardingState implements _OnboardingState {
 // The currently active user's phone number
   @override
   final String? phoneNumber;
+// username used for logging in
+  @override
+  final String? userName;
 // The PIN
   @override
   final String? pin;
@@ -552,7 +601,7 @@ class _$_OnboardingState implements _OnboardingState {
 
   @override
   String toString() {
-    return 'OnboardingState(termsAndConditions: $termsAndConditions, securityQuestions: $securityQuestions, securityQuestionResponses: $securityQuestionResponses, verifySecurityQuestionsState: $verifySecurityQuestionsState, currentOnboardingStage: $currentOnboardingStage, isPhoneVerified: $isPhoneVerified, hasSetSecurityQuestions: $hasSetSecurityQuestions, hasVerifiedSecurityQuestions: $hasVerifiedSecurityQuestions, hasSetNickName: $hasSetNickName, hasSetPin: $hasSetPin, hasAcceptedTerms: $hasAcceptedTerms, phoneNumber: $phoneNumber, pin: $pin, confirmPIN: $confirmPIN, otp: $otp, failedLoginCount: $failedLoginCount, invalidCredentials: $invalidCredentials, invalidOTP: $invalidOTP, failedToSendOTP: $failedToSendOTP, canResendOTP: $canResendOTP, nickName: $nickName, isClient: $isClient, isCaregiver: $isCaregiver)';
+    return 'OnboardingState(termsAndConditions: $termsAndConditions, securityQuestions: $securityQuestions, securityQuestionResponses: $securityQuestionResponses, verifySecurityQuestionsState: $verifySecurityQuestionsState, programState: $programState, currentOnboardingStage: $currentOnboardingStage, isPhoneVerified: $isPhoneVerified, hasSetSecurityQuestions: $hasSetSecurityQuestions, hasVerifiedSecurityQuestions: $hasVerifiedSecurityQuestions, hasSetNickName: $hasSetNickName, hasSetPin: $hasSetPin, hasAcceptedTerms: $hasAcceptedTerms, phoneNumber: $phoneNumber, userName: $userName, pin: $pin, confirmPIN: $confirmPIN, otp: $otp, failedLoginCount: $failedLoginCount, invalidCredentials: $invalidCredentials, invalidOTP: $invalidOTP, failedToSendOTP: $failedToSendOTP, canResendOTP: $canResendOTP, nickName: $nickName, isClient: $isClient, isCaregiver: $isCaregiver)';
   }
 
   @override
@@ -569,12 +618,13 @@ class _$_OnboardingState implements _OnboardingState {
             (identical(other.verifySecurityQuestionsState, verifySecurityQuestionsState) ||
                 other.verifySecurityQuestionsState ==
                     verifySecurityQuestionsState) &&
+            (identical(other.programState, programState) ||
+                other.programState == programState) &&
             (identical(other.currentOnboardingStage, currentOnboardingStage) ||
                 other.currentOnboardingStage == currentOnboardingStage) &&
             (identical(other.isPhoneVerified, isPhoneVerified) ||
                 other.isPhoneVerified == isPhoneVerified) &&
-            (identical(
-                    other.hasSetSecurityQuestions, hasSetSecurityQuestions) ||
+            (identical(other.hasSetSecurityQuestions, hasSetSecurityQuestions) ||
                 other.hasSetSecurityQuestions == hasSetSecurityQuestions) &&
             (identical(other.hasVerifiedSecurityQuestions,
                     hasVerifiedSecurityQuestions) ||
@@ -588,6 +638,8 @@ class _$_OnboardingState implements _OnboardingState {
                 other.hasAcceptedTerms == hasAcceptedTerms) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
+            (identical(other.userName, userName) ||
+                other.userName == userName) &&
             (identical(other.pin, pin) || other.pin == pin) &&
             (identical(other.confirmPIN, confirmPIN) ||
                 other.confirmPIN == confirmPIN) &&
@@ -618,6 +670,7 @@ class _$_OnboardingState implements _OnboardingState {
         const DeepCollectionEquality().hash(securityQuestions),
         const DeepCollectionEquality().hash(securityQuestionResponses),
         verifySecurityQuestionsState,
+        programState,
         currentOnboardingStage,
         isPhoneVerified,
         hasSetSecurityQuestions,
@@ -626,6 +679,7 @@ class _$_OnboardingState implements _OnboardingState {
         hasSetPin,
         hasAcceptedTerms,
         phoneNumber,
+        userName,
         pin,
         confirmPIN,
         otp,
@@ -659,6 +713,7 @@ abstract class _OnboardingState implements OnboardingState {
       final List<SecurityQuestion>? securityQuestions,
       final List<SecurityQuestionResponse>? securityQuestionResponses,
       final VerifySecurityQuestionsState? verifySecurityQuestionsState,
+      final ProgramState? programState,
       final CurrentOnboardingStage? currentOnboardingStage,
       final bool? isPhoneVerified,
       final bool? hasSetSecurityQuestions,
@@ -667,6 +722,7 @@ abstract class _OnboardingState implements OnboardingState {
       final bool? hasSetPin,
       final bool? hasAcceptedTerms,
       final String? phoneNumber,
+      final String? userName,
       final String? pin,
       final String? confirmPIN,
       final String? otp,
@@ -691,6 +747,8 @@ abstract class _OnboardingState implements OnboardingState {
   @override
   VerifySecurityQuestionsState? get verifySecurityQuestionsState;
   @override
+  ProgramState? get programState;
+  @override
 
   ///------------WORKFLOW RELATED BOOLEANS------------
   /// Have standardized shared values that will be used across all states
@@ -714,6 +772,8 @@ abstract class _OnboardingState implements OnboardingState {
   ///------------WORKFLOW RELATED VALUES------------
 // The currently active user's phone number
   String? get phoneNumber;
+  @override // username used for logging in
+  String? get userName;
   @override // The PIN
   String? get pin;
   @override // The confirm PIN

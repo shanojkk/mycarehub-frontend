@@ -2,6 +2,8 @@
 import 'dart:convert';
 
 // Package imports:
+import 'package:pro_health_360/domain/core/entities/core/user.dart';
+import 'package:pro_health_360/domain/core/entities/core/user_profile.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -73,12 +75,22 @@ void main() {
 
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
+      final UserProfile? userProfile =
+          phoneLoginResponse.userResponse?.userProfile;
 
-      store.dispatch(
-        UpdateUserAction(
-          user: phoneLoginResponse.userResponse?.clientState?.user,
-        ),
+      final User user = User(
+        pinChangeRequired: userProfile?.pinChangeRequired,
+        name: userProfile?.name,
+        username: userProfile?.userName,
+        hasSetPin: userProfile?.hasSetPin,
+        isPhoneVerified: userProfile?.isPhoneVerified,
+        hasSetSecurityQuestions: userProfile?.hasSetSecurityQuestions,
+        pinUpdateRequired: userProfile?.pinUpdateRequired,
+        termsAccepted: userProfile?.termsAccepted,
+        suspended: userProfile?.suspended,
+        active: userProfile?.active,
       );
+      store.dispatch(UpdateUserAction(user: user));
 
       final DateTime now = DateTime.now();
       final int expiryTime = int.tryParse(

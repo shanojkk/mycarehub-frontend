@@ -23,8 +23,8 @@ import 'package:pro_health_360/presentation/onboarding/login/widgets/phone_login
 
 /// [LoginPage] is parsed in [PhoneNumberLoginPage]
 ///
-/// It consists of [MyAfyaHubPhoneInput] used to user input PhoneNumber,
-///  [CustomTextField] to input PIN and [MyAfyaHubPrimaryButton] as submit button
+/// It consists of [CustomTextField] used to user input username and
+/// [CustomTextField]  to input PIN and [MyAfyaHubPrimaryButton] as submit button
 class LoginPage extends StatefulWidget {
   const LoginPage();
 
@@ -33,14 +33,56 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String? phoneNumber;
-  final TextEditingController phoneNumberInputController =
-      TextEditingController();
-
+  String? userName;
   String? pin;
   TextEditingController pinController = TextEditingController();
+  final TextEditingController usernameInputController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  void signInUser({
+    required String pin,
+    required String userName,
+  }) {
+    // this is the Redux Action that store the username and PIN user enters
+    StoreProvider.dispatch(
+      context,
+      UpdateOnboardingStateAction(userName: userName, pin: pin),
+    );
+
+    final IGraphQlClient httpClient = AppWrapperBase.of(context)!.graphQLClient;
+    final String loginEndpoint =
+        AppWrapperBase.of(context)!.customContext!.loginByPhoneEndpoint;
+
+    final bool hasConnection = StoreProvider.state<AppState>(context)
+            ?.connectivityState
+            ?.isConnected ??
+        false;
+
+    if (hasConnection) {
+      StoreProvider.dispatch<AppState>(
+        context,
+        PhoneLoginAction(
+          httpClient: httpClient,
+          endpoint: loginEndpoint,
+          errorCallback: (String reason) {
+            showFeedbackBottomSheet(
+              context: context,
+              modalContent: reason,
+              imageAssetPath: errorIconUrl,
+            );
+          },
+        ),
+      );
+    } else {
+      const SnackBar snackbar = SnackBar(content: Text(checkInternetText));
+      ScaffoldMessenger.of(context).showSnackBar(snackbar);
+      AnalyticsService().logEvent(
+        name: noConnectionEvent,
+        eventType: AnalyticsEventType.CONNECTIVITY,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
       },
       onDispose: (Store<AppState> store) {
         pinController.dispose();
-        phoneNumberInputController.dispose();
+        usernameInputController.dispose();
       },
       builder: (BuildContext context, LoginPageViewModel vm) {
         final TargetPlatform platform = Theme.of(context).platform;
@@ -93,42 +135,23 @@ class _LoginPageState extends State<LoginPage> {
                           smallVerticalSizedBox,
                           largeVerticalSizedBox,
                           Align(
-                            alignment: Alignment.centerLeft,
+                            alignment: Alignment.topLeft,
                             child: Text(
-                              phoneNumberString,
+                              userNameString,
                               style: boldSize14Text(
                                 AppColors.greyTextColor,
                               ),
                             ),
                           ),
                           smallVerticalSizedBox,
-                          MyAfyaHubPhoneInput(
-                            textFormFieldKey: textFormFieldKey,
-                            phoneNumberFormatter: formatPhoneNumber,
-                            decoration: InputDecoration(
-                              floatingLabelBehavior:
-                                  FloatingLabelBehavior.never,
-                              border: InputBorder.none,
-                              filled: true,
-                              fillColor: AppColors.lightGreyBackgroundColor,
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.grey[200]!),
-                                borderRadius: const BorderRadius.all(
-                                  Radius.circular(5),
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color:
-                                      Theme.of(context).colorScheme.secondary,
-                                ),
-                                borderRadius: const BorderRadius.all(
-                                  Radius.circular(5),
-                                ),
-                              ),
-                            ),
-                            onChanged: (String? val) {
+                          CustomTextField(
+                            formFieldKey: userNameInputKey,
+                            borderColor: Colors.grey[200],
+                            keyboardType: TextInputType.number,
+                            hintText: enterYourUserName,
+                            validator: usernameValidator,
+                            autovalidateMode: AutovalidateMode.disabled,
+                            onChanged: (String val) {
                               final bool? invalidCredentials =
                                   vm.invalidCredentials;
 
@@ -138,13 +161,13 @@ class _LoginPageState extends State<LoginPage> {
                                   context,
                                   UpdateOnboardingStateAction(
                                     invalidCredentials: false,
-                                    phoneNumber: val,
+                                    userName: val,
                                   ),
                                 );
                               }
 
                               setState(() {
-                                phoneNumber = val;
+                                userName = val;
                               });
                             },
                           ),
@@ -196,7 +219,7 @@ class _LoginPageState extends State<LoginPage> {
                             largeVerticalSizedBox,
                             PhoneLoginErrorWidget(
                               formKey: _formKey,
-                              phone: phoneNumber,
+                              userName: userName,
                             ),
                           ],
                           largeVerticalSizedBox,
@@ -243,12 +266,12 @@ class _LoginPageState extends State<LoginPage> {
                         if (isFormValid != null &&
                             isFormValid &&
                             pin != null &&
-                            phoneNumber != null &&
+                            userName != null &&
                             pin != UNKNOWN &&
-                            phoneNumber != UNKNOWN) {
+                            userName != UNKNOWN) {
                           signInUser(
                             pin: pin!,
-                            phoneNumber: phoneNumber!,
+                            userName: userName!,
                           );
                         }
                       },
@@ -263,49 +286,5 @@ class _LoginPageState extends State<LoginPage> {
         );
       },
     );
-  }
-
-  void signInUser({
-    required String pin,
-    required String phoneNumber,
-  }) {
-    // this is the Redux Action that store the phone number and PIN user enters
-    StoreProvider.dispatch(
-      context,
-      UpdateOnboardingStateAction(phoneNumber: phoneNumber, pin: pin),
-    );
-
-    final IGraphQlClient httpClient = AppWrapperBase.of(context)!.graphQLClient;
-    final String loginEndpoint =
-        AppWrapperBase.of(context)!.customContext!.loginByPhoneEndpoint;
-
-    final bool hasConnection = StoreProvider.state<AppState>(context)
-            ?.connectivityState
-            ?.isConnected ??
-        false;
-
-    if (hasConnection) {
-      StoreProvider.dispatch<AppState>(
-        context,
-        PhoneLoginAction(
-          httpClient: httpClient,
-          endpoint: loginEndpoint,
-          errorCallback: (String reason) {
-            showFeedbackBottomSheet(
-              context: context,
-              modalContent: reason,
-              imageAssetPath: errorIconUrl,
-            );
-          },
-        ),
-      );
-    } else {
-      const SnackBar snackbar = SnackBar(content: Text(checkInternetText));
-      ScaffoldMessenger.of(context).showSnackBar(snackbar);
-      AnalyticsService().logEvent(
-        name: noConnectionEvent,
-        eventType: AnalyticsEventType.CONNECTIVITY,
-      );
-    }
   }
 }

@@ -10,6 +10,7 @@ const Key continueKey = Key('continue_button_key');
 
 // phone login keys
 const Key pinInputKey = Key('pin_input_key');
+const Key userNameInputKey = Key('username_input_key');
 
 /// bottom sheet keys
 const Key bottomSheetKey = Key('bottom_sheet_key');

@@ -1,4 +1,5 @@
 // Package imports:
+import 'package:pro_health_360/domain/core/entities/core/user.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 
@@ -29,6 +30,7 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
     this.caregiverInformation,
     this.notifications,
     this.hasCaregiverInfo,
+    this.user,
   });
 
   final bool? active;
@@ -49,6 +51,7 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
   final List<NotificationDetails?>? notifications;
   final String? treatmentBuddy;
   final String? treatmentEnrollmentDate;
+  final User? user;
 
   @override
   AppState reduce() {
@@ -78,6 +81,7 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
         notifications: this.notifications ?? state.clientState?.notifications,
         hasCareGiverInfo:
             this.hasCaregiverInfo ?? state.clientState?.hasCareGiverInfo,
+        user: this.user ?? state.clientState?.user,
       ),
     );
 
@@ -92,8 +96,9 @@ class UpdateClientStateAction extends ReduxAction<AppState> {
 
   @override
   AppState reduce() {
-    final AppState newState =
-        state.copyWith(clientState: clientState ?? state.clientState);
+    final AppState newState = state.copyWith(
+      clientState: clientState ?? state.clientState,
+    );
 
     return newState;
   }

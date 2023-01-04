@@ -12,9 +12,9 @@ _$_UserResponse _$$_UserResponseFromJson(Map<String, dynamic> json) =>
           ? null
           : AuthCredentials.fromJson(
               json['credentials'] as Map<String, dynamic>),
-      clientState: json['clientProfile'] == null
+      userProfile: json['userProfile'] == null
           ? null
-          : ClientState.fromJson(json['clientProfile'] as Map<String, dynamic>),
+          : UserProfile.fromJson(json['userProfile'] as Map<String, dynamic>),
       caregiverState: json['caregiverProfile'] == null
           ? null
           : CaregiverState.fromJson(
@@ -25,7 +25,7 @@ _$_UserResponse _$$_UserResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_UserResponseToJson(_$_UserResponse instance) =>
     <String, dynamic>{
       'credentials': instance.credentials,
-      'clientProfile': instance.clientState,
+      'userProfile': instance.userProfile,
       'caregiverProfile': instance.caregiverState,
       'getStreamToken': instance.streamToken,
     };

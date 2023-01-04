@@ -43,7 +43,7 @@ void main() {
                   ),
                   PhoneLoginErrorWidget(
                     formKey: formKey,
-                    phone: '0712345678',
+                    userName: '0712345678',
                   ),
                 ],
               ),

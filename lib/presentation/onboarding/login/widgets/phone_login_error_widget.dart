@@ -9,9 +9,9 @@ import 'package:pro_health_360/presentation/router/routes.dart';
 
 class PhoneLoginErrorWidget extends StatelessWidget {
   final GlobalKey<FormState> formKey;
-  final String? phone;
+  final String? userName;
 
-  const PhoneLoginErrorWidget({required this.formKey, this.phone});
+  const PhoneLoginErrorWidget({required this.formKey, this.userName});
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +25,8 @@ class PhoneLoginErrorWidget extends StatelessWidget {
 
         if (isFormValid != null &&
             isFormValid &&
-            phone != null &&
-            phone != UNKNOWN) {
+            userName != null &&
+            userName != UNKNOWN) {
           StoreProvider.dispatch<AppState>(
             context,
             UpdateOnboardingStateAction(invalidCredentials: false),

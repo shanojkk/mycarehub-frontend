@@ -302,10 +302,11 @@ const String phoneNumberRequiredText = 'A phone number is required';
 const String validPhoneNumberText = 'Please enter a valid phone number';
 const String loginPageTitleString = 'Welcome to ';
 const String loginPageSubTitleString =
-    'Please enter your phone number and PIN to continue.';
+    'Please enter your Username and PIN to continue.';
 const String phoneNumberString = 'Phone Number';
 const String pinString = 'PIN';
 const String enterYourString = 'Kindly enter your PIN';
+const String enterYourUserName = 'Kindly enter your Username';
 const String enterPhoneNumberString = 'Kindly enter your phone number';
 const String continueString = 'Continue';
 String howAreYouFeelingTodayText(String user) {
@@ -1028,3 +1029,4 @@ const String caregiverConsentReviewText = 'Tap to review this request';
 const String consentRecordedString = 'Consent recorded';
 const String doneString = 'Done';
 const String switchingYourFacility = 'Switching your facility';
+const String userNameString = 'Username';

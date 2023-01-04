@@ -675,3 +675,10 @@ Future<void> launchEmailUrl(String email) async {
   final Uri url = Uri.parse('mailto:$email');
   await launchUrl(url);
 }
+
+String? usernameValidator(String? value) {
+  if (value?.trim().isEmpty ?? true) {
+    return 'Please enter a Username';
+  }
+  return null;
+}

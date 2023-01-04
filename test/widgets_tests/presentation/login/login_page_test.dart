@@ -40,28 +40,6 @@ void main() {
       await Firebase.initializeApp();
     });
 
-    testWidgets('should validate Phone Number', (WidgetTester tester) async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: baseGraphQlClientMock,
-        widget: const LoginPage(),
-      );
-      await tester.pumpAndSettle();
-
-      final Finder phoneInputField = find.byKey(textFormFieldKey);
-      final Finder continueButton = find.byKey(phoneLoginContinueButtonKey);
-      expect(phoneInputField, findsOneWidget);
-      expect(continueButton, findsOneWidget);
-
-      expect(find.text('Phone number is required'), findsNothing);
-
-      await tester.ensureVisible(continueButton);
-      await tester.tap(continueButton);
-      await tester.pumpAndSettle();
-      expect(find.text('Phone number is required'), findsOneWidget);
-    });
-
     testWidgets('should validate PIN', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
@@ -120,12 +98,12 @@ void main() {
         );
         await tester.pump();
 
-        final Finder phoneInputField = find.byKey(textFormFieldKey);
+        final Finder usernameInputField = find.byKey(userNameInputKey);
         final Finder pinInputField = find.byKey(pinInputKey);
         final Finder continueButton = find.byKey(phoneLoginContinueButtonKey);
 
-        await tester.showKeyboard(phoneInputField);
-        await tester.enterText(phoneInputField, '723456789');
+        await tester.showKeyboard(usernameInputField);
+        await tester.enterText(usernameInputField, 'username');
         await tester.pumpAndSettle();
 
         await tester.showKeyboard(pinInputField);
@@ -182,12 +160,12 @@ void main() {
         );
         await tester.pump();
 
-        final Finder phoneInputField = find.byKey(textFormFieldKey);
+        final Finder usernameInputField = find.byKey(userNameInputKey);
         final Finder pinInputField = find.byKey(pinInputKey);
         final Finder continueButton = find.byKey(phoneLoginContinueButtonKey);
 
-        await tester.showKeyboard(phoneInputField);
-        await tester.enterText(phoneInputField, '723456789');
+        await tester.showKeyboard(usernameInputField);
+        await tester.enterText(usernameInputField, 'username');
         await tester.pumpAndSettle();
 
         await tester.showKeyboard(pinInputField);
@@ -228,12 +206,13 @@ void main() {
         );
         await tester.pump();
 
-        final Finder phoneInputField = find.byKey(textFormFieldKey);
+        final Finder usernameInputField = find.byKey(userNameInputKey);
+
         final Finder pinInputField = find.byKey(pinInputKey);
         final Finder continueButton = find.byKey(phoneLoginContinueButtonKey);
 
-        await tester.showKeyboard(phoneInputField);
-        await tester.enterText(phoneInputField, '723456789');
+        await tester.showKeyboard(usernameInputField);
+        await tester.enterText(usernameInputField, '723456789');
         await tester.pumpAndSettle();
 
         await tester.showKeyboard(pinInputField);
@@ -276,12 +255,13 @@ void main() {
       expect(store.state.onboardingState?.invalidCredentials, false);
       expect(find.byType(PhoneLoginErrorWidget), findsNothing);
 
-      final Finder phoneInputField = find.byKey(textFormFieldKey);
+      final Finder usernameInputField = find.byKey(userNameInputKey);
+
       final Finder pinInputField = find.byKey(pinInputKey);
       final Finder continueButton = find.byKey(phoneLoginContinueButtonKey);
 
-      await tester.showKeyboard(phoneInputField);
-      await tester.enterText(phoneInputField, '723456789');
+      await tester.showKeyboard(usernameInputField);
+      await tester.enterText(usernameInputField, '723456789');
       await tester.pump();
 
       await tester.showKeyboard(pinInputField);
@@ -310,8 +290,8 @@ void main() {
 
       expect(find.byType(PhoneLoginErrorWidget), findsOneWidget);
 
-      await tester.showKeyboard(phoneInputField);
-      await tester.enterText(phoneInputField, '7');
+      await tester.showKeyboard(usernameInputField);
+      await tester.enterText(usernameInputField, '7');
       await tester.pumpAndSettle();
 
       // final sanity check
@@ -337,10 +317,11 @@ void main() {
       );
       await tester.pump();
 
-      final Finder phoneInputField = find.byKey(textFormFieldKey);
+      final Finder usernameInputField = find.byKey(userNameInputKey);
+
       final Finder pinInputField = find.byKey(pinInputKey);
-      await tester.showKeyboard(phoneInputField);
-      await tester.enterText(phoneInputField, '723456789');
+      await tester.showKeyboard(usernameInputField);
+      await tester.enterText(usernameInputField, '723456789');
       await tester.pumpAndSettle();
 
       await tester.showKeyboard(pinInputField);

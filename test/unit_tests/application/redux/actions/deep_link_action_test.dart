@@ -7,6 +7,8 @@ import 'package:pro_health_360/application/redux/actions/update_credentials_acti
 import 'package:pro_health_360/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:pro_health_360/application/redux/actions/update_user_profile_action.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/entities/core/user.dart';
+import 'package:pro_health_360/domain/core/entities/core/user_profile.dart';
 import 'package:pro_health_360/domain/core/entities/login/phone_login_response.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
@@ -23,11 +25,23 @@ void main() {
       final PhoneLoginResponse phoneLoginResponse =
           PhoneLoginResponse.fromJson(mockLoginResponse);
 
-      store.dispatch(
-        UpdateUserAction(
-          user: phoneLoginResponse.userResponse?.clientState?.user,
-        ),
+      final UserProfile? userProfile =
+          phoneLoginResponse.userResponse?.userProfile;
+
+      final User user = User(
+        pinChangeRequired: userProfile?.pinChangeRequired,
+        name: userProfile?.name,
+        username: userProfile?.userName,
+        hasSetPin: userProfile?.hasSetPin,
+        isPhoneVerified: userProfile?.isPhoneVerified,
+        hasSetSecurityQuestions: userProfile?.hasSetSecurityQuestions,
+        pinUpdateRequired: userProfile?.pinUpdateRequired,
+        termsAccepted: false,
+        suspended: userProfile?.suspended,
+        active: userProfile?.active,
       );
+
+      store.dispatch(UpdateUserAction(user: user));
 
       store.dispatch(
         UpdateOnboardingStateAction(
@@ -127,11 +141,23 @@ void main() {
       final PhoneLoginResponse phoneLoginResponse =
           PhoneLoginResponse.fromJson(mockLoginResponse);
 
-      store.dispatch(
-        UpdateUserAction(
-          user: phoneLoginResponse.userResponse?.clientState?.user,
-        ),
+      final UserProfile? userProfile =
+          phoneLoginResponse.userResponse?.userProfile;
+
+      final User user = User(
+        pinChangeRequired: userProfile?.pinChangeRequired,
+        name: userProfile?.name,
+        username: userProfile?.userName,
+        hasSetPin: userProfile?.hasSetPin,
+        isPhoneVerified: userProfile?.isPhoneVerified,
+        hasSetSecurityQuestions: userProfile?.hasSetSecurityQuestions,
+        pinUpdateRequired: userProfile?.pinUpdateRequired,
+        termsAccepted: userProfile?.termsAccepted,
+        suspended: userProfile?.suspended,
+        active: userProfile?.active,
       );
+
+      store.dispatch(UpdateUserAction(user: user));
 
       final String tokenExpiryDate =
           DateTime.now().add(const Duration(minutes: 1)).toString();

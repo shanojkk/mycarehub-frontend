@@ -1,4 +1,5 @@
 // Package imports:
+import 'package:pro_health_360/application/redux/states/program_state.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 // Project imports:
@@ -29,10 +30,13 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
     this.nickName,
     this.isCaregiver,
     this.isClient,
+    this.programState,
+    this.userName,
   });
 
   List<SecurityQuestion>? securityQuestions;
   List<SecurityQuestionResponse>? securityQuestionsResponses;
+  ProgramState? programState;
 
   ///------------WORKFLOW RELATED BOOLEANS------------
   final CurrentOnboardingStage? currentOnboardingStage;
@@ -48,6 +52,7 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
   final String? confirmPIN;
   final String? otp;
   final String? nickName;
+  final String? userName;
 
   ///------------VERIFY PIN RELATED VALUES------------
   final bool? invalidOTP;
@@ -98,6 +103,8 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
       nickName: nickName ?? onboardingStateFromState?.nickName,
       isCaregiver: isCaregiver ?? onboardingStateFromState?.isCaregiver,
       isClient: isClient ?? onboardingStateFromState?.isClient,
+      programState: programState ?? onboardingStateFromState?.programState,
+      userName: userName ?? onboardingStateFromState?.userName,
     );
 
     final AppState newState =

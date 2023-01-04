@@ -1800,6 +1800,20 @@ final Map<String, dynamic> mockLoginResponse = <String, dynamic>{
       'idToken': 'some id token',
       'refreshToken': 'some-refresh-token'
     },
+    'userProfile': <String, dynamic>{
+      'id': 'some_id',
+      'name': 'John Doe',
+      'username': 'j_doe',
+      'active': true,
+      'pinChangeRequired': true,
+      'hasSetPin': true,
+      'hasSetSecurityQuestions': true,
+      'isPhoneVerified': true,
+      'termsAccepted': true,
+      'suspended': false,
+      'pinUpdateRequired': false,
+      'hasSetNickname': false
+    },
     'clientProfile': <String, dynamic>{
       'active': true,
       'addresses': <Map<String, dynamic>>[
@@ -2327,6 +2341,21 @@ final Map<String, dynamic> mockOnboardingState = <String, dynamic>{
   ],
 };
 
+final Map<String, dynamic> mockProgramState = <String, dynamic>{
+  'programs': <dynamic>[mockProgram],
+  'currentProgram': mockProgram
+};
+final Map<String, dynamic> mockProgram = <String, dynamic>{
+  'id': 'some-id',
+  'active': true,
+  'name': 'name',
+  'organisation': <String, dynamic>{
+    'id': 'some-id',
+    'description': 'some description',
+    'name': 'name',
+  }
+};
+
 final Map<String, dynamic> mockAddress = <String, dynamic>{
   'active': true,
   'addressType': 'POSTAL',
@@ -2431,6 +2460,21 @@ final Map<String, dynamic> mockRelatedPerson = <String, dynamic>{
   'addresses': <dynamic>[mockAddress],
   'primaryContact': mockPrimaryContact,
   'secondaryContacts': <dynamic>[mockPrimaryContact]
+};
+
+final Map<String, dynamic> mockUserProfile = <String, dynamic>{
+  'id': 'some_id',
+  'name': 'John Doe',
+  'username': 'j_doe',
+  'active': true,
+  'pinChangeRequired': true,
+  'hasSetPin': false,
+  'hasSetSecurityQuestions': false,
+  'isPhoneVerified': false,
+  'termsAccepted': false,
+  'suspended': false,
+  'pinUpdateRequired': false,
+  'hasSetNickname': false
 };
 
 final Map<String, dynamic> mockUser = <String, dynamic>{

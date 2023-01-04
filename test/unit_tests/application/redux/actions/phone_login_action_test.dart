@@ -34,7 +34,7 @@ void main() {
       storeTester = StoreTester<AppState>(
         initialState: AppState.initial().copyWith(
           onboardingState: OnboardingState.initial().copyWith.call(
-                phoneNumber: '+254798000000',
+                userName: 'username',
                 pin: '0000',
               ),
         ),
@@ -53,91 +53,19 @@ void main() {
           'idToken': 'some id token',
           'refreshToken': 'some-refresh-token'
         },
-        'clientProfile': <String, dynamic>{
+        'userProfile': <String, dynamic>{
+          'id': 'some-id',
+          'name': 'John Doe',
+          'username': 'j_doe',
           'active': true,
-          'addresses': <Map<String, dynamic>>[
-            <String, dynamic>{
-              'active': true,
-              'addressType': 'POSTAL',
-              'country': 'Kenya',
-              'county': null,
-              'postalCode': '00300',
-              'text': 'One Padmore'
-            }
-          ],
-          'clientCounselled': true,
-          'clientType': 'PMTCT',
-          'defaultFacilityID': 'some-facility-id',
-          'defaultFacilityName': 'some-facility-name',
-          'relatedPersons': <Map<String, dynamic>>[
-            <String, dynamic>{
-              'active': true,
-              'dateOfBirth': '21 Nov 2002',
-              'firstName': 'Juha',
-              'gender': 'MALE',
-              'lastName': 'Kalulu',
-              'otherName': null,
-              'relatedTo': 'some-user-id',
-              'relationshipType': 'NEXT_OF_KIN',
-              'addresses': <Map<String, dynamic>>[
-                <String, dynamic>{
-                  'active': true,
-                  'addressType': 'POSTAL',
-                  'country': 'Kenya',
-                  'county': null,
-                  'postalCode': '00300',
-                  'text': 'One Padmore'
-                }
-              ],
-              'primaryContact': <String, dynamic>{
-                'active': true,
-                'contact': '+254717356476',
-                'contactType': 'PHONE',
-                'optedIn': true
-              },
-              'secondaryContacts': <Map<String, dynamic>>[
-                <String, dynamic>{
-                  'active': true,
-                  'contact': '+254717356476',
-                  'contactType': 'PHONE',
-                  'optedIn': true
-                }
-              ]
-            }
-          ],
-          'treatmentBuddy': null,
-          'treatmentEnrollmentDate': '21 Nov 2021',
-          'user': <String, dynamic>{
-            'active': true,
-            'name': 'Juha Kalulu',
-            'firstName': 'Juha',
-            'gender': 'MALE',
-            'languages': <String>['en', 'sw'],
-            'suspended': false,
-            'avatar': 'https://i.postimg.cc/9XpbrC25/profile-image.png',
-            'primaryContact': <String, dynamic>{
-              'active': true,
-              'contact': '+254717356476',
-              'contactType': 'PHONE',
-              'optedIn': true
-            },
-            'secondaryContacts': <Map<String, dynamic>>[
-              <String, dynamic>{
-                'active': true,
-                'contact': '+254717356476',
-                'contactType': 'PHONE',
-                'optedIn': true
-              }
-            ],
-            'lastName': 'Kalulu',
-            'pinChangeRequired': true,
-            'pinUpdateRequired': true,
-            'termsAccepted': false,
-            'userID': 'some-user-id',
-            'userName': 'Kowalski',
-            'userType': 'CLIENT',
-            'dateOfBirth': '21 Nov 2002',
-          },
+          'pinChangeRequired': true,
+          'hasSetPin': false,
+          'hasSetSecurityQuestions': false,
+          'isPhoneVerified': false,
+          'termsAccepted': false,
+          'suspended': false,
+          'pinUpdateRequired': false,
+          'hasSetNickname': false
         },
         'getStreamToken': 'some-test-token',
       }
@@ -229,7 +157,7 @@ void main() {
       final TestInfo<AppState> info =
           await storeTester.waitUntil(PhoneLoginAction);
 
-      expect(info.state.clientState?.user?.name, 'Juha Kalulu');
+      expect(info.state.clientState?.user?.name, 'John Doe');
     });
 
     test('navigates to next page successfully', () async {
@@ -337,8 +265,8 @@ void main() {
     test('should change to new user workflow when pin update is required',
         () async {
       // ignore: avoid_dynamic_calls
-      pinChangeRequiredMock['response']['clientProfile']['user']
-          ['pinUpdateRequired'] = true;
+      pinChangeRequiredMock['response']['userProfile']['pinUpdateRequired'] =
+          true;
       storeTester.dispatch(
         PhoneLoginAction(
           httpClient: MockShortGraphQlClient.withResponse(

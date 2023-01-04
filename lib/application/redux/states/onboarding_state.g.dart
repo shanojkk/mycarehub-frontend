@@ -24,6 +24,9 @@ _$_OnboardingState _$$_OnboardingStateFromJson(Map<String, dynamic> json) =>
           ? null
           : VerifySecurityQuestionsState.fromJson(
               json['verifySecurityQuestionsState'] as Map<String, dynamic>),
+      programState: json['programState'] == null
+          ? null
+          : ProgramState.fromJson(json['programState'] as Map<String, dynamic>),
       currentOnboardingStage: $enumDecodeNullable(
           _$CurrentOnboardingStageEnumMap, json['currentOnboardingStage']),
       isPhoneVerified: json['isPhoneVerified'] as bool?,
@@ -34,6 +37,7 @@ _$_OnboardingState _$$_OnboardingStateFromJson(Map<String, dynamic> json) =>
       hasSetPin: json['hasSetPin'] as bool?,
       hasAcceptedTerms: json['hasAcceptedTerms'] as bool?,
       phoneNumber: json['phoneNumber'] as String?,
+      userName: json['userName'] as String?,
       pin: json['pin'] as String?,
       confirmPIN: json['confirmPIN'] as String?,
       otp: json['otp'] as String?,
@@ -53,6 +57,7 @@ Map<String, dynamic> _$$_OnboardingStateToJson(_$_OnboardingState instance) =>
       'securityQuestions': instance.securityQuestions,
       'securityQuestionResponses': instance.securityQuestionResponses,
       'verifySecurityQuestionsState': instance.verifySecurityQuestionsState,
+      'programState': instance.programState,
       'currentOnboardingStage':
           _$CurrentOnboardingStageEnumMap[instance.currentOnboardingStage],
       'isPhoneVerified': instance.isPhoneVerified,
@@ -62,6 +67,7 @@ Map<String, dynamic> _$$_OnboardingStateToJson(_$_OnboardingState instance) =>
       'hasSetPin': instance.hasSetPin,
       'hasAcceptedTerms': instance.hasAcceptedTerms,
       'phoneNumber': instance.phoneNumber,
+      'userName': instance.userName,
       'pin': instance.pin,
       'confirmPIN': instance.confirmPIN,
       'otp': instance.otp,

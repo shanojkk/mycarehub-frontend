@@ -3,6 +3,8 @@ import 'dart:async';
 import 'dart:convert';
 
 // Package imports:
+import 'package:pro_health_360/application/redux/actions/update_client_profile_action.dart';
+import 'package:pro_health_360/domain/core/entities/core/user_profile.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
@@ -12,11 +14,9 @@ import 'package:pro_health_360/application/core/services/analytics_service.dart'
 import 'package:pro_health_360/application/core/services/onboarding_utils.dart';
 import 'package:pro_health_360/application/redux/actions/auth_status_action.dart';
 import 'package:pro_health_360/application/redux/actions/caregiver/update_caregiver_profile_action.dart';
-import 'package:pro_health_360/application/redux/actions/update_client_profile_action.dart';
 import 'package:pro_health_360/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
-import 'package:pro_health_360/application/redux/states/communities_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/auth_credentials.dart';
 import 'package:pro_health_360/domain/core/entities/core/onboarding_path_info.dart';
 import 'package:pro_health_360/domain/core/entities/core/user.dart';
@@ -26,7 +26,6 @@ import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 /// [PhoneLoginAction] is a Redux Action whose job is to verify a user signed
 /// in using valid credentials that match those stored in the backend
@@ -67,14 +66,14 @@ class PhoneLoginAction extends ReduxAction<AppState> {
   @override
   Future<AppState?> reduce() async {
     /// [pin] variable is retrieving the PIN the user input in the [PhoneLogin] page from state
-    /// [phoneNumber] variable is retrieving the Phone Number the user input in the [PhoneLogin] page from state
+    /// [userName] variable is retrieving the username the user input in the [PhoneLogin] page from state
     final String pin = state.onboardingState?.pin ?? UNKNOWN;
-    final String phoneNumber = state.onboardingState?.phoneNumber ?? UNKNOWN;
+    final String userName = state.onboardingState?.userName ?? UNKNOWN;
 
     /// Check and verify that the phone and PIN are present
-    if (pin != UNKNOWN && phoneNumber != UNKNOWN && pin.length == 4) {
+    if (pin != UNKNOWN && userName != UNKNOWN && pin.length == 4) {
       final Map<String, dynamic> variables = <String, dynamic>{
-        'phoneNumber': phoneNumber,
+        'userName': userName,
         'pin': pin,
         'flavour': Flavour.consumer.name,
       };
@@ -89,20 +88,12 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           processHttpResponse(httpResponse);
 
       if (processedResponse.ok) {
-        final Map<String, dynamic> parsed =
-            jsonDecode(utf8.decode(processedResponse.response.bodyBytes))
-                as Map<String, dynamic>;
+        final Map<String, dynamic> parsed = jsonDecode(
+          utf8.decode(processedResponse.response.bodyBytes),
+        ) as Map<String, dynamic>;
 
         final PhoneLoginResponse loginResponse =
             PhoneLoginResponse.fromJson(parsed);
-
-        final SharedPreferences sharedPreferences =
-            await SharedPreferences.getInstance();
-
-        await sharedPreferences.setString(
-          'clientId',
-          loginResponse.userResponse?.clientState?.id ?? '',
-        );
 
         final DateTime now = DateTime.now();
 
@@ -134,17 +125,33 @@ class PhoneLoginAction extends ReduxAction<AppState> {
             tokenExpiryTimestamp: authCredentials?.tokenExpiryTimestamp,
           ),
         );
+        final UserProfile? userProfile =
+            loginResponse.userResponse?.userProfile;
 
-        User? user = loginResponse.userResponse?.clientState?.user;
+        User user = User(
+          pinChangeRequired: userProfile?.pinChangeRequired,
+          name: userProfile?.name,
+          username: userProfile?.userName,
+          hasSetPin: userProfile?.hasSetPin,
+          isPhoneVerified: userProfile?.isPhoneVerified,
+          hasSetSecurityQuestions: userProfile?.hasSetSecurityQuestions,
+          pinUpdateRequired: userProfile?.pinUpdateRequired,
+          termsAccepted: userProfile?.termsAccepted,
+          suspended: userProfile?.suspended,
+          active: userProfile?.active,
+        );
 
-        await AnalyticsService().setUserId(user?.userId);
+        await AnalyticsService().setUserId(user.userId);
 
         // Clean up the user's names
-        final String fullName =
-            loginResponse.userResponse?.clientState?.user?.name ?? UNKNOWN;
+        final String fullName = userProfile?.name ?? UNKNOWN;
+
         if (fullName != UNKNOWN && fullName.isNotEmpty) {
           final List<String> names = fullName.trim().split(' ');
-          user = user?.copyWith(firstName: names.first, lastName: names.last);
+          user = user.copyWith(
+            firstName: names.first,
+            lastName: names.last,
+          );
         }
 
         final bool isClient = loginResponse.isClient ?? false;
@@ -152,39 +159,18 @@ class PhoneLoginAction extends ReduxAction<AppState> {
 
         dispatch(
           UpdateOnboardingStateAction(
-            isPhoneVerified: user?.isPhoneVerified,
-            hasSetNickName: user?.username != null,
-            hasSetSecurityQuestions: user?.hasSetSecurityQuestions,
-            hasSetPin: user?.hasSetPin,
-            hasAcceptedTerms: user?.termsAccepted,
+            isPhoneVerified: user.isPhoneVerified,
+            hasSetNickName: user.username != null,
+            hasSetSecurityQuestions: user.hasSetSecurityQuestions,
+            hasSetPin: user.hasSetPin,
+            hasAcceptedTerms: user.termsAccepted,
             isCaregiver: isCaregiver,
             isClient: isClient,
           ),
         );
 
-        // add fhir info
-        final String fhirPatientId =
-            loginResponse.userResponse?.clientState?.fhirPatientID ?? UNKNOWN;
-        final String chvName =
-            loginResponse.userResponse?.clientState?.chvUserName ?? UNKNOWN;
-        final String facilityId =
-            loginResponse.userResponse?.clientState?.facilityID ?? UNKNOWN;
-        final String treatmentBuddy =
-            loginResponse.userResponse?.clientState?.treatmentBuddy ?? UNKNOWN;
-
-        await AnalyticsService().setUserFacility(facilityId);
-
         dispatch(
-          UpdateClientStateAction(
-            clientState: loginResponse.userResponse?.clientState?.copyWith.call(
-              fhirPatientID: fhirPatientId,
-              chvUserName: chvName,
-              facilityID: facilityId,
-              treatmentBuddy: treatmentBuddy,
-              user: user,
-              communitiesState: CommunitiesState.initial(),
-            ),
-          ),
+          UpdateClientProfileAction(user: user),
         );
 
         dispatch(
@@ -198,7 +184,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         ///
         /// Note: For this to work, the backend should trigger these properties
         /// in the user profile (isPhoneVerified, hasSetPin, hasSetSecurityQuestions)
-        if (user?.pinUpdateRequired ?? false) {
+        if (user.pinUpdateRequired ?? false) {
           dispatch(
             UpdateOnboardingStateAction(
               currentOnboardingStage: CurrentOnboardingStage.PINUpdate,
@@ -210,7 +196,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         }
 
         /// This is used to kickstart the onboarding workflow for a new user
-        if (user?.pinChangeRequired ?? false) {
+        if (user.pinChangeRequired ?? false) {
           dispatch(
             UpdateOnboardingStateAction(
               currentOnboardingStage: CurrentOnboardingStage.Login,

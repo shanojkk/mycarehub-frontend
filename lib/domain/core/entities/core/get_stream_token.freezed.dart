@@ -33,29 +33,32 @@ mixin _$GetStreamToken {
 abstract class $GetStreamTokenCopyWith<$Res> {
   factory $GetStreamTokenCopyWith(
           GetStreamToken value, $Res Function(GetStreamToken) then) =
-      _$GetStreamTokenCopyWithImpl<$Res>;
+      _$GetStreamTokenCopyWithImpl<$Res, GetStreamToken>;
+  @useResult
   $Res call({@JsonKey(name: 'getStreamToken') String? getStreamToken});
 }
 
 /// @nodoc
-class _$GetStreamTokenCopyWithImpl<$Res>
+class _$GetStreamTokenCopyWithImpl<$Res, $Val extends GetStreamToken>
     implements $GetStreamTokenCopyWith<$Res> {
   _$GetStreamTokenCopyWithImpl(this._value, this._then);
 
-  final GetStreamToken _value;
   // ignore: unused_field
-  final $Res Function(GetStreamToken) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? getStreamToken = freezed,
   }) {
     return _then(_value.copyWith(
-      getStreamToken: getStreamToken == freezed
+      getStreamToken: freezed == getStreamToken
           ? _value.getStreamToken
           : getStreamToken // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -66,26 +69,25 @@ abstract class _$$_GetStreamTokenCopyWith<$Res>
           _$_GetStreamToken value, $Res Function(_$_GetStreamToken) then) =
       __$$_GetStreamTokenCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({@JsonKey(name: 'getStreamToken') String? getStreamToken});
 }
 
 /// @nodoc
 class __$$_GetStreamTokenCopyWithImpl<$Res>
-    extends _$GetStreamTokenCopyWithImpl<$Res>
+    extends _$GetStreamTokenCopyWithImpl<$Res, _$_GetStreamToken>
     implements _$$_GetStreamTokenCopyWith<$Res> {
   __$$_GetStreamTokenCopyWithImpl(
       _$_GetStreamToken _value, $Res Function(_$_GetStreamToken) _then)
-      : super(_value, (v) => _then(v as _$_GetStreamToken));
+      : super(_value, _then);
 
-  @override
-  _$_GetStreamToken get _value => super._value as _$_GetStreamToken;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? getStreamToken = freezed,
   }) {
     return _then(_$_GetStreamToken(
-      getStreamToken: getStreamToken == freezed
+      getStreamToken: freezed == getStreamToken
           ? _value.getStreamToken
           : getStreamToken // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -115,17 +117,17 @@ class _$_GetStreamToken implements _GetStreamToken {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_GetStreamToken &&
-            const DeepCollectionEquality()
-                .equals(other.getStreamToken, getStreamToken));
+            (identical(other.getStreamToken, getStreamToken) ||
+                other.getStreamToken == getStreamToken));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(getStreamToken));
+  int get hashCode => Object.hash(runtimeType, getStreamToken);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_GetStreamTokenCopyWith<_$_GetStreamToken> get copyWith =>
       __$$_GetStreamTokenCopyWithImpl<_$_GetStreamToken>(this, _$identity);
 

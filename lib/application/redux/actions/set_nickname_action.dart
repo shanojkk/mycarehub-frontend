@@ -2,12 +2,12 @@
 import 'dart:async';
 
 // Flutter imports:
-import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_graphql_client/graph_client.dart';
+import 'package:sghi_core/flutter_graphql_client/i_flutter_graphql_client.dart';
 import 'package:http/http.dart' as http;
 // Project imports:
 import 'package:pro_health_360/application/core/graphql/mutations.dart';

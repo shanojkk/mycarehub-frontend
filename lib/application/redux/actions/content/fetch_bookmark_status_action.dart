@@ -1,15 +1,14 @@
 // Flutter imports:
-import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
+import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 
 // Package imports:
-import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 
-import 'package:flutter_graphql_client/graph_client.dart';
+import 'package:sghi_core/flutter_graphql_client/i_flutter_graphql_client.dart';
 import 'package:http/http.dart';
 import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
-import 'package:shared_themes/constants.dart';
 
 // Project imports:
 import 'package:pro_health_360/application/core/graphql/queries.dart';
@@ -18,6 +17,7 @@ import 'package:pro_health_360/application/redux/actions/content/update_reaction
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:sghi_core/shared_themes/constants.dart';
 
 class FetchBookmarkStatusAction extends ReduxAction<AppState> {
   FetchBookmarkStatusAction({

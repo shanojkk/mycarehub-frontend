@@ -39,7 +39,8 @@ mixin _$ViralLoadNodeData {
 abstract class $ViralLoadNodeDataCopyWith<$Res> {
   factory $ViralLoadNodeDataCopyWith(
           ViralLoadNodeData value, $Res Function(ViralLoadNodeData) then) =
-      _$ViralLoadNodeDataCopyWithImpl<$Res>;
+      _$ViralLoadNodeDataCopyWithImpl<$Res, ViralLoadNodeData>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'Status') String? status,
       @JsonKey(name: 'ValueString') String? valueString,
@@ -50,14 +51,16 @@ abstract class $ViralLoadNodeDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ViralLoadNodeDataCopyWithImpl<$Res>
+class _$ViralLoadNodeDataCopyWithImpl<$Res, $Val extends ViralLoadNodeData>
     implements $ViralLoadNodeDataCopyWith<$Res> {
   _$ViralLoadNodeDataCopyWithImpl(this._value, this._then);
 
-  final ViralLoadNodeData _value;
   // ignore: unused_field
-  final $Res Function(ViralLoadNodeData) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? status = freezed,
@@ -66,33 +69,34 @@ class _$ViralLoadNodeDataCopyWithImpl<$Res>
     Object? code = freezed,
   }) {
     return _then(_value.copyWith(
-      status: status == freezed
+      status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String?,
-      valueString: valueString == freezed
+      valueString: freezed == valueString
           ? _value.valueString
           : valueString // ignore: cast_nullable_to_non_nullable
               as String?,
-      effectiveInstant: effectiveInstant == freezed
+      effectiveInstant: freezed == effectiveInstant
           ? _value.effectiveInstant
           : effectiveInstant // ignore: cast_nullable_to_non_nullable
               as String?,
-      code: code == freezed
+      code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as ViralLoadCode?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $ViralLoadCodeCopyWith<$Res>? get code {
     if (_value.code == null) {
       return null;
     }
 
     return $ViralLoadCodeCopyWith<$Res>(_value.code!, (value) {
-      return _then(_value.copyWith(code: value));
+      return _then(_value.copyWith(code: value) as $Val);
     });
   }
 }
@@ -104,6 +108,7 @@ abstract class _$$_ViralLoadNodeDataCopyWith<$Res>
           $Res Function(_$_ViralLoadNodeData) then) =
       __$$_ViralLoadNodeDataCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'Status') String? status,
       @JsonKey(name: 'ValueString') String? valueString,
@@ -116,15 +121,13 @@ abstract class _$$_ViralLoadNodeDataCopyWith<$Res>
 
 /// @nodoc
 class __$$_ViralLoadNodeDataCopyWithImpl<$Res>
-    extends _$ViralLoadNodeDataCopyWithImpl<$Res>
+    extends _$ViralLoadNodeDataCopyWithImpl<$Res, _$_ViralLoadNodeData>
     implements _$$_ViralLoadNodeDataCopyWith<$Res> {
   __$$_ViralLoadNodeDataCopyWithImpl(
       _$_ViralLoadNodeData _value, $Res Function(_$_ViralLoadNodeData) _then)
-      : super(_value, (v) => _then(v as _$_ViralLoadNodeData));
+      : super(_value, _then);
 
-  @override
-  _$_ViralLoadNodeData get _value => super._value as _$_ViralLoadNodeData;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? status = freezed,
@@ -133,19 +136,19 @@ class __$$_ViralLoadNodeDataCopyWithImpl<$Res>
     Object? code = freezed,
   }) {
     return _then(_$_ViralLoadNodeData(
-      status: status == freezed
+      status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String?,
-      valueString: valueString == freezed
+      valueString: freezed == valueString
           ? _value.valueString
           : valueString // ignore: cast_nullable_to_non_nullable
               as String?,
-      effectiveInstant: effectiveInstant == freezed
+      effectiveInstant: freezed == effectiveInstant
           ? _value.effectiveInstant
           : effectiveInstant // ignore: cast_nullable_to_non_nullable
               as String?,
-      code: code == freezed
+      code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as ViralLoadCode?,
@@ -188,25 +191,22 @@ class _$_ViralLoadNodeData implements _ViralLoadNodeData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ViralLoadNodeData &&
-            const DeepCollectionEquality().equals(other.status, status) &&
-            const DeepCollectionEquality()
-                .equals(other.valueString, valueString) &&
-            const DeepCollectionEquality()
-                .equals(other.effectiveInstant, effectiveInstant) &&
-            const DeepCollectionEquality().equals(other.code, code));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.valueString, valueString) ||
+                other.valueString == valueString) &&
+            (identical(other.effectiveInstant, effectiveInstant) ||
+                other.effectiveInstant == effectiveInstant) &&
+            (identical(other.code, code) || other.code == code));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(status),
-      const DeepCollectionEquality().hash(valueString),
-      const DeepCollectionEquality().hash(effectiveInstant),
-      const DeepCollectionEquality().hash(code));
+  int get hashCode =>
+      Object.hash(runtimeType, status, valueString, effectiveInstant, code);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ViralLoadNodeDataCopyWith<_$_ViralLoadNodeData> get copyWith =>
       __$$_ViralLoadNodeDataCopyWithImpl<_$_ViralLoadNodeData>(
           this, _$identity);

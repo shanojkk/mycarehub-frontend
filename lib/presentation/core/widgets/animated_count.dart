@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shared_themes/text_themes.dart';
+import 'package:sghi_core/shared_themes/text_themes.dart';
 
 class AnimatedCount extends ImplicitlyAnimatedWidget {
   const AnimatedCount({

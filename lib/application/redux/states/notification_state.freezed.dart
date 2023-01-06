@@ -27,17 +27,18 @@ mixin _$NotificationState {
 abstract class $NotificationStateCopyWith<$Res> {
   factory $NotificationStateCopyWith(
           NotificationState value, $Res Function(NotificationState) then) =
-      _$NotificationStateCopyWithImpl<$Res>;
+      _$NotificationStateCopyWithImpl<$Res, NotificationState>;
 }
 
 /// @nodoc
-class _$NotificationStateCopyWithImpl<$Res>
+class _$NotificationStateCopyWithImpl<$Res, $Val extends NotificationState>
     implements $NotificationStateCopyWith<$Res> {
   _$NotificationStateCopyWithImpl(this._value, this._then);
 
-  final NotificationState _value;
   // ignore: unused_field
-  final $Res Function(NotificationState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -49,14 +50,11 @@ abstract class _$$_NotificationStateCopyWith<$Res> {
 
 /// @nodoc
 class __$$_NotificationStateCopyWithImpl<$Res>
-    extends _$NotificationStateCopyWithImpl<$Res>
+    extends _$NotificationStateCopyWithImpl<$Res, _$_NotificationState>
     implements _$$_NotificationStateCopyWith<$Res> {
   __$$_NotificationStateCopyWithImpl(
       _$_NotificationState _value, $Res Function(_$_NotificationState) _then)
-      : super(_value, (v) => _then(v as _$_NotificationState));
-
-  @override
-  _$_NotificationState get _value => super._value as _$_NotificationState;
+      : super(_value, _then);
 }
 
 /// @nodoc

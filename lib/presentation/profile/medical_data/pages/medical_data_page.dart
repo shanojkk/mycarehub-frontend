@@ -1,9 +1,10 @@
 // Flutter imports:
-import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:app_wrapper/app_wrapper.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_graphql_client/graph_client.dart';
+import 'package:sghi_core/app_wrapper/enums.dart';
+import 'package:sghi_core/flutter_graphql_client/i_flutter_graphql_client.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_setup_data.dart';
 import 'package:pro_health_360/application/core/services/custom_client.dart';
 import 'package:pro_health_360/application/core/services/utils.dart';

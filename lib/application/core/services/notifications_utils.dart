@@ -1,4 +1,4 @@
-import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';

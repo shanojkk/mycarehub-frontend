@@ -33,41 +33,45 @@ mixin _$MedicalDataResponse {
 abstract class $MedicalDataResponseCopyWith<$Res> {
   factory $MedicalDataResponseCopyWith(
           MedicalDataResponse value, $Res Function(MedicalDataResponse) then) =
-      _$MedicalDataResponseCopyWithImpl<$Res>;
+      _$MedicalDataResponseCopyWithImpl<$Res, MedicalDataResponse>;
+  @useResult
   $Res call({@JsonKey(name: 'getMedicalData') MedicalData? medicalData});
 
   $MedicalDataCopyWith<$Res>? get medicalData;
 }
 
 /// @nodoc
-class _$MedicalDataResponseCopyWithImpl<$Res>
+class _$MedicalDataResponseCopyWithImpl<$Res, $Val extends MedicalDataResponse>
     implements $MedicalDataResponseCopyWith<$Res> {
   _$MedicalDataResponseCopyWithImpl(this._value, this._then);
 
-  final MedicalDataResponse _value;
   // ignore: unused_field
-  final $Res Function(MedicalDataResponse) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? medicalData = freezed,
   }) {
     return _then(_value.copyWith(
-      medicalData: medicalData == freezed
+      medicalData: freezed == medicalData
           ? _value.medicalData
           : medicalData // ignore: cast_nullable_to_non_nullable
               as MedicalData?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $MedicalDataCopyWith<$Res>? get medicalData {
     if (_value.medicalData == null) {
       return null;
     }
 
     return $MedicalDataCopyWith<$Res>(_value.medicalData!, (value) {
-      return _then(_value.copyWith(medicalData: value));
+      return _then(_value.copyWith(medicalData: value) as $Val);
     });
   }
 }
@@ -79,6 +83,7 @@ abstract class _$$_MedicalDataResponseCopyWith<$Res>
           $Res Function(_$_MedicalDataResponse) then) =
       __$$_MedicalDataResponseCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({@JsonKey(name: 'getMedicalData') MedicalData? medicalData});
 
   @override
@@ -87,21 +92,19 @@ abstract class _$$_MedicalDataResponseCopyWith<$Res>
 
 /// @nodoc
 class __$$_MedicalDataResponseCopyWithImpl<$Res>
-    extends _$MedicalDataResponseCopyWithImpl<$Res>
+    extends _$MedicalDataResponseCopyWithImpl<$Res, _$_MedicalDataResponse>
     implements _$$_MedicalDataResponseCopyWith<$Res> {
   __$$_MedicalDataResponseCopyWithImpl(_$_MedicalDataResponse _value,
       $Res Function(_$_MedicalDataResponse) _then)
-      : super(_value, (v) => _then(v as _$_MedicalDataResponse));
+      : super(_value, _then);
 
-  @override
-  _$_MedicalDataResponse get _value => super._value as _$_MedicalDataResponse;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? medicalData = freezed,
   }) {
     return _then(_$_MedicalDataResponse(
-      medicalData: medicalData == freezed
+      medicalData: freezed == medicalData
           ? _value.medicalData
           : medicalData // ignore: cast_nullable_to_non_nullable
               as MedicalData?,
@@ -131,17 +134,17 @@ class _$_MedicalDataResponse implements _MedicalDataResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MedicalDataResponse &&
-            const DeepCollectionEquality()
-                .equals(other.medicalData, medicalData));
+            (identical(other.medicalData, medicalData) ||
+                other.medicalData == medicalData));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(medicalData));
+  int get hashCode => Object.hash(runtimeType, medicalData);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_MedicalDataResponseCopyWith<_$_MedicalDataResponse> get copyWith =>
       __$$_MedicalDataResponseCopyWithImpl<_$_MedicalDataResponse>(
           this, _$identity);

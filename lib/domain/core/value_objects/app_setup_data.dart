@@ -1,6 +1,6 @@
 // Flutter imports:
 // Package imports:
-import 'package:app_wrapper/app_wrapper.dart' show AppContext, BaseContext;
+// import 'package:sghi_core/app_wrapper/app_wrapper_base.dart' show AppContext, BaseContext;
 import 'package:flutter/foundation.dart';
 import 'package:flutter_config/flutter_config.dart';
 // Project imports:
@@ -9,6 +9,8 @@ import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/infrastructure/endpoints.dart';
 import 'package:quiver/core.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:sghi_core/app_wrapper/base_context.dart';
+import 'package:sghi_core/app_wrapper/enums.dart';
 
 /// Holds an environment specific app configuration
 ///
@@ -20,7 +22,7 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 /// - [clinicalEndpoint] is used to fetch the client's medical information
 /// - The [environment] is a string description of the environment the app is
 /// running on. It is extracted from the [AppEnvironment] object
-/// 
+///
 /// This is used to compose the [devAppSetupData], [demoAppSetupData] and
 /// [prodAppSetupData] below
 class AppSetupData {
@@ -79,6 +81,7 @@ final AppSetupData devAppSetupData = AppSetupData(
     refreshStreamTokenEndpoint: kTestRefreshStreamTokenEndpoint,
     pinResetServiceRequestEndpoint: kTestPINResetServiceRequestEndpoint,
     optInClientEndpoint: '',
+    listOrganisationsEndpoint: '',
   ),
   clinicalEndpoint: kTestClinicalEndpoint,
 );
@@ -112,6 +115,7 @@ final AppSetupData demoAppSetupData = AppSetupData(
     refreshStreamTokenEndpoint: kDemoRefreshStreamTokenEndpoint,
     pinResetServiceRequestEndpoint: kDemoPINResetServiceRequestEndpoint,
     optInClientEndpoint: '',
+    listOrganisationsEndpoint: '',
   ),
   clinicalEndpoint: kDemoClinicalEndpoint,
 );
@@ -145,6 +149,7 @@ final AppSetupData prodAppSetupData = AppSetupData(
     refreshStreamTokenEndpoint: kProdRefreshStreamTokenEndpoint,
     pinResetServiceRequestEndpoint: kProdPINResetServiceRequestEndpoint,
     optInClientEndpoint: '',
+    listOrganisationsEndpoint: '',
   ),
   clinicalEndpoint: kProdClinicalEndpoint,
 );

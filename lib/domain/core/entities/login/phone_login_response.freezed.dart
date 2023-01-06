@@ -37,7 +37,8 @@ mixin _$PhoneLoginResponse {
 abstract class $PhoneLoginResponseCopyWith<$Res> {
   factory $PhoneLoginResponseCopyWith(
           PhoneLoginResponse value, $Res Function(PhoneLoginResponse) then) =
-      _$PhoneLoginResponseCopyWithImpl<$Res>;
+      _$PhoneLoginResponseCopyWithImpl<$Res, PhoneLoginResponse>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'code') int? code,
       @JsonKey(name: 'message') String? message,
@@ -47,14 +48,16 @@ abstract class $PhoneLoginResponseCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PhoneLoginResponseCopyWithImpl<$Res>
+class _$PhoneLoginResponseCopyWithImpl<$Res, $Val extends PhoneLoginResponse>
     implements $PhoneLoginResponseCopyWith<$Res> {
   _$PhoneLoginResponseCopyWithImpl(this._value, this._then);
 
-  final PhoneLoginResponse _value;
   // ignore: unused_field
-  final $Res Function(PhoneLoginResponse) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? code = freezed,
@@ -62,29 +65,30 @@ class _$PhoneLoginResponseCopyWithImpl<$Res>
     Object? userResponse = freezed,
   }) {
     return _then(_value.copyWith(
-      code: code == freezed
+      code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as int?,
-      message: message == freezed
+      message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
-      userResponse: userResponse == freezed
+      userResponse: freezed == userResponse
           ? _value.userResponse
           : userResponse // ignore: cast_nullable_to_non_nullable
               as UserResponse?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $UserResponseCopyWith<$Res>? get userResponse {
     if (_value.userResponse == null) {
       return null;
     }
 
     return $UserResponseCopyWith<$Res>(_value.userResponse!, (value) {
-      return _then(_value.copyWith(userResponse: value));
+      return _then(_value.copyWith(userResponse: value) as $Val);
     });
   }
 }
@@ -96,6 +100,7 @@ abstract class _$$_PhoneLoginResponseCopyWith<$Res>
           $Res Function(_$_PhoneLoginResponse) then) =
       __$$_PhoneLoginResponseCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'code') int? code,
       @JsonKey(name: 'message') String? message,
@@ -107,15 +112,13 @@ abstract class _$$_PhoneLoginResponseCopyWith<$Res>
 
 /// @nodoc
 class __$$_PhoneLoginResponseCopyWithImpl<$Res>
-    extends _$PhoneLoginResponseCopyWithImpl<$Res>
+    extends _$PhoneLoginResponseCopyWithImpl<$Res, _$_PhoneLoginResponse>
     implements _$$_PhoneLoginResponseCopyWith<$Res> {
   __$$_PhoneLoginResponseCopyWithImpl(
       _$_PhoneLoginResponse _value, $Res Function(_$_PhoneLoginResponse) _then)
-      : super(_value, (v) => _then(v as _$_PhoneLoginResponse));
+      : super(_value, _then);
 
-  @override
-  _$_PhoneLoginResponse get _value => super._value as _$_PhoneLoginResponse;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? code = freezed,
@@ -123,15 +126,15 @@ class __$$_PhoneLoginResponseCopyWithImpl<$Res>
     Object? userResponse = freezed,
   }) {
     return _then(_$_PhoneLoginResponse(
-      code: code == freezed
+      code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as int?,
-      message: message == freezed
+      message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
-      userResponse: userResponse == freezed
+      userResponse: freezed == userResponse
           ? _value.userResponse
           : userResponse // ignore: cast_nullable_to_non_nullable
               as UserResponse?,
@@ -170,22 +173,19 @@ class _$_PhoneLoginResponse implements _PhoneLoginResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PhoneLoginResponse &&
-            const DeepCollectionEquality().equals(other.code, code) &&
-            const DeepCollectionEquality().equals(other.message, message) &&
-            const DeepCollectionEquality()
-                .equals(other.userResponse, userResponse));
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.userResponse, userResponse) ||
+                other.userResponse == userResponse));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(code),
-      const DeepCollectionEquality().hash(message),
-      const DeepCollectionEquality().hash(userResponse));
+  int get hashCode => Object.hash(runtimeType, code, message, userResponse);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_PhoneLoginResponseCopyWith<_$_PhoneLoginResponse> get copyWith =>
       __$$_PhoneLoginResponseCopyWithImpl<_$_PhoneLoginResponse>(
           this, _$identity);

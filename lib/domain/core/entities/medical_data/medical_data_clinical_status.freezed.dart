@@ -33,29 +33,32 @@ mixin _$MedicalDataCode {
 abstract class $MedicalDataCodeCopyWith<$Res> {
   factory $MedicalDataCodeCopyWith(
           MedicalDataCode value, $Res Function(MedicalDataCode) then) =
-      _$MedicalDataCodeCopyWithImpl<$Res>;
+      _$MedicalDataCodeCopyWithImpl<$Res, MedicalDataCode>;
+  @useResult
   $Res call({@JsonKey(name: 'Text') String? text});
 }
 
 /// @nodoc
-class _$MedicalDataCodeCopyWithImpl<$Res>
+class _$MedicalDataCodeCopyWithImpl<$Res, $Val extends MedicalDataCode>
     implements $MedicalDataCodeCopyWith<$Res> {
   _$MedicalDataCodeCopyWithImpl(this._value, this._then);
 
-  final MedicalDataCode _value;
   // ignore: unused_field
-  final $Res Function(MedicalDataCode) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? text = freezed,
   }) {
     return _then(_value.copyWith(
-      text: text == freezed
+      text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -66,26 +69,25 @@ abstract class _$$_MedicalDataCodeCopyWith<$Res>
           _$_MedicalDataCode value, $Res Function(_$_MedicalDataCode) then) =
       __$$_MedicalDataCodeCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({@JsonKey(name: 'Text') String? text});
 }
 
 /// @nodoc
 class __$$_MedicalDataCodeCopyWithImpl<$Res>
-    extends _$MedicalDataCodeCopyWithImpl<$Res>
+    extends _$MedicalDataCodeCopyWithImpl<$Res, _$_MedicalDataCode>
     implements _$$_MedicalDataCodeCopyWith<$Res> {
   __$$_MedicalDataCodeCopyWithImpl(
       _$_MedicalDataCode _value, $Res Function(_$_MedicalDataCode) _then)
-      : super(_value, (v) => _then(v as _$_MedicalDataCode));
+      : super(_value, _then);
 
-  @override
-  _$_MedicalDataCode get _value => super._value as _$_MedicalDataCode;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? text = freezed,
   }) {
     return _then(_$_MedicalDataCode(
-      text: text == freezed
+      text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -115,16 +117,16 @@ class _$_MedicalDataCode implements _MedicalDataCode {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MedicalDataCode &&
-            const DeepCollectionEquality().equals(other.text, text));
+            (identical(other.text, text) || other.text == text));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(text));
+  int get hashCode => Object.hash(runtimeType, text);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_MedicalDataCodeCopyWith<_$_MedicalDataCode> get copyWith =>
       __$$_MedicalDataCodeCopyWithImpl<_$_MedicalDataCode>(this, _$identity);
 

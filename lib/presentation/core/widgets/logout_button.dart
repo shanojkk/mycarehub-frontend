@@ -9,7 +9,7 @@ import 'package:pro_health_360/application/redux/actions/logout_action.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
-import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 
 class LogoutButton extends StatelessWidget {

@@ -33,29 +33,32 @@ mixin _$ViralLoadCode {
 abstract class $ViralLoadCodeCopyWith<$Res> {
   factory $ViralLoadCodeCopyWith(
           ViralLoadCode value, $Res Function(ViralLoadCode) then) =
-      _$ViralLoadCodeCopyWithImpl<$Res>;
+      _$ViralLoadCodeCopyWithImpl<$Res, ViralLoadCode>;
+  @useResult
   $Res call({@JsonKey(name: 'Text') String? text});
 }
 
 /// @nodoc
-class _$ViralLoadCodeCopyWithImpl<$Res>
+class _$ViralLoadCodeCopyWithImpl<$Res, $Val extends ViralLoadCode>
     implements $ViralLoadCodeCopyWith<$Res> {
   _$ViralLoadCodeCopyWithImpl(this._value, this._then);
 
-  final ViralLoadCode _value;
   // ignore: unused_field
-  final $Res Function(ViralLoadCode) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? text = freezed,
   }) {
     return _then(_value.copyWith(
-      text: text == freezed
+      text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -66,26 +69,25 @@ abstract class _$$_ViralLoadCodeCopyWith<$Res>
           _$_ViralLoadCode value, $Res Function(_$_ViralLoadCode) then) =
       __$$_ViralLoadCodeCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({@JsonKey(name: 'Text') String? text});
 }
 
 /// @nodoc
 class __$$_ViralLoadCodeCopyWithImpl<$Res>
-    extends _$ViralLoadCodeCopyWithImpl<$Res>
+    extends _$ViralLoadCodeCopyWithImpl<$Res, _$_ViralLoadCode>
     implements _$$_ViralLoadCodeCopyWith<$Res> {
   __$$_ViralLoadCodeCopyWithImpl(
       _$_ViralLoadCode _value, $Res Function(_$_ViralLoadCode) _then)
-      : super(_value, (v) => _then(v as _$_ViralLoadCode));
+      : super(_value, _then);
 
-  @override
-  _$_ViralLoadCode get _value => super._value as _$_ViralLoadCode;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? text = freezed,
   }) {
     return _then(_$_ViralLoadCode(
-      text: text == freezed
+      text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -115,16 +117,16 @@ class _$_ViralLoadCode implements _ViralLoadCode {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ViralLoadCode &&
-            const DeepCollectionEquality().equals(other.text, text));
+            (identical(other.text, text) || other.text == text));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(text));
+  int get hashCode => Object.hash(runtimeType, text);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ViralLoadCodeCopyWith<_$_ViralLoadCode> get copyWith =>
       __$$_ViralLoadCodeCopyWithImpl<_$_ViralLoadCode>(this, _$identity);
 

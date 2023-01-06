@@ -33,41 +33,45 @@ mixin _$ViralLoadNode {
 abstract class $ViralLoadNodeCopyWith<$Res> {
   factory $ViralLoadNodeCopyWith(
           ViralLoadNode value, $Res Function(ViralLoadNode) then) =
-      _$ViralLoadNodeCopyWithImpl<$Res>;
+      _$ViralLoadNodeCopyWithImpl<$Res, ViralLoadNode>;
+  @useResult
   $Res call({@JsonKey(name: 'node') ViralLoadNodeData? node});
 
   $ViralLoadNodeDataCopyWith<$Res>? get node;
 }
 
 /// @nodoc
-class _$ViralLoadNodeCopyWithImpl<$Res>
+class _$ViralLoadNodeCopyWithImpl<$Res, $Val extends ViralLoadNode>
     implements $ViralLoadNodeCopyWith<$Res> {
   _$ViralLoadNodeCopyWithImpl(this._value, this._then);
 
-  final ViralLoadNode _value;
   // ignore: unused_field
-  final $Res Function(ViralLoadNode) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? node = freezed,
   }) {
     return _then(_value.copyWith(
-      node: node == freezed
+      node: freezed == node
           ? _value.node
           : node // ignore: cast_nullable_to_non_nullable
               as ViralLoadNodeData?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $ViralLoadNodeDataCopyWith<$Res>? get node {
     if (_value.node == null) {
       return null;
     }
 
     return $ViralLoadNodeDataCopyWith<$Res>(_value.node!, (value) {
-      return _then(_value.copyWith(node: value));
+      return _then(_value.copyWith(node: value) as $Val);
     });
   }
 }
@@ -79,6 +83,7 @@ abstract class _$$_ViralLoadNodeCopyWith<$Res>
           _$_ViralLoadNode value, $Res Function(_$_ViralLoadNode) then) =
       __$$_ViralLoadNodeCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({@JsonKey(name: 'node') ViralLoadNodeData? node});
 
   @override
@@ -87,21 +92,19 @@ abstract class _$$_ViralLoadNodeCopyWith<$Res>
 
 /// @nodoc
 class __$$_ViralLoadNodeCopyWithImpl<$Res>
-    extends _$ViralLoadNodeCopyWithImpl<$Res>
+    extends _$ViralLoadNodeCopyWithImpl<$Res, _$_ViralLoadNode>
     implements _$$_ViralLoadNodeCopyWith<$Res> {
   __$$_ViralLoadNodeCopyWithImpl(
       _$_ViralLoadNode _value, $Res Function(_$_ViralLoadNode) _then)
-      : super(_value, (v) => _then(v as _$_ViralLoadNode));
+      : super(_value, _then);
 
-  @override
-  _$_ViralLoadNode get _value => super._value as _$_ViralLoadNode;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? node = freezed,
   }) {
     return _then(_$_ViralLoadNode(
-      node: node == freezed
+      node: freezed == node
           ? _value.node
           : node // ignore: cast_nullable_to_non_nullable
               as ViralLoadNodeData?,
@@ -131,16 +134,16 @@ class _$_ViralLoadNode implements _ViralLoadNode {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ViralLoadNode &&
-            const DeepCollectionEquality().equals(other.node, node));
+            (identical(other.node, node) || other.node == node));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(node));
+  int get hashCode => Object.hash(runtimeType, node);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ViralLoadNodeCopyWith<_$_ViralLoadNode> get copyWith =>
       __$$_ViralLoadNodeCopyWithImpl<_$_ViralLoadNode>(this, _$identity);
 

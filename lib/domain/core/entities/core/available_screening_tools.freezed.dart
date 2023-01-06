@@ -37,7 +37,8 @@ mixin _$AvailableScreeningTools {
 abstract class $AvailableScreeningToolsCopyWith<$Res> {
   factory $AvailableScreeningToolsCopyWith(AvailableScreeningTools value,
           $Res Function(AvailableScreeningTools) then) =
-      _$AvailableScreeningToolsCopyWithImpl<$Res>;
+      _$AvailableScreeningToolsCopyWithImpl<$Res, AvailableScreeningTools>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'availableScreeningTools')
           List<ScreeningTool>? availableScreeningTools,
@@ -46,14 +47,17 @@ abstract class $AvailableScreeningToolsCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AvailableScreeningToolsCopyWithImpl<$Res>
+class _$AvailableScreeningToolsCopyWithImpl<$Res,
+        $Val extends AvailableScreeningTools>
     implements $AvailableScreeningToolsCopyWith<$Res> {
   _$AvailableScreeningToolsCopyWithImpl(this._value, this._then);
 
-  final AvailableScreeningTools _value;
   // ignore: unused_field
-  final $Res Function(AvailableScreeningTools) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? availableScreeningTools = freezed,
@@ -61,19 +65,19 @@ class _$AvailableScreeningToolsCopyWithImpl<$Res>
     Object? timeoutFetchingQuestions = freezed,
   }) {
     return _then(_value.copyWith(
-      availableScreeningTools: availableScreeningTools == freezed
+      availableScreeningTools: freezed == availableScreeningTools
           ? _value.availableScreeningTools
           : availableScreeningTools // ignore: cast_nullable_to_non_nullable
               as List<ScreeningTool>?,
-      errorFetchingQuestions: errorFetchingQuestions == freezed
+      errorFetchingQuestions: freezed == errorFetchingQuestions
           ? _value.errorFetchingQuestions
           : errorFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-      timeoutFetchingQuestions: timeoutFetchingQuestions == freezed
+      timeoutFetchingQuestions: freezed == timeoutFetchingQuestions
           ? _value.timeoutFetchingQuestions
           : timeoutFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -84,6 +88,7 @@ abstract class _$$_AvailableScreeningToolsCopyWith<$Res>
           $Res Function(_$_AvailableScreeningTools) then) =
       __$$_AvailableScreeningToolsCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'availableScreeningTools')
           List<ScreeningTool>? availableScreeningTools,
@@ -93,16 +98,14 @@ abstract class _$$_AvailableScreeningToolsCopyWith<$Res>
 
 /// @nodoc
 class __$$_AvailableScreeningToolsCopyWithImpl<$Res>
-    extends _$AvailableScreeningToolsCopyWithImpl<$Res>
+    extends _$AvailableScreeningToolsCopyWithImpl<$Res,
+        _$_AvailableScreeningTools>
     implements _$$_AvailableScreeningToolsCopyWith<$Res> {
   __$$_AvailableScreeningToolsCopyWithImpl(_$_AvailableScreeningTools _value,
       $Res Function(_$_AvailableScreeningTools) _then)
-      : super(_value, (v) => _then(v as _$_AvailableScreeningTools));
+      : super(_value, _then);
 
-  @override
-  _$_AvailableScreeningTools get _value =>
-      super._value as _$_AvailableScreeningTools;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? availableScreeningTools = freezed,
@@ -110,15 +113,15 @@ class __$$_AvailableScreeningToolsCopyWithImpl<$Res>
     Object? timeoutFetchingQuestions = freezed,
   }) {
     return _then(_$_AvailableScreeningTools(
-      availableScreeningTools: availableScreeningTools == freezed
+      availableScreeningTools: freezed == availableScreeningTools
           ? _value._availableScreeningTools
           : availableScreeningTools // ignore: cast_nullable_to_non_nullable
               as List<ScreeningTool>?,
-      errorFetchingQuestions: errorFetchingQuestions == freezed
+      errorFetchingQuestions: freezed == errorFetchingQuestions
           ? _value.errorFetchingQuestions
           : errorFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-      timeoutFetchingQuestions: timeoutFetchingQuestions == freezed
+      timeoutFetchingQuestions: freezed == timeoutFetchingQuestions
           ? _value.timeoutFetchingQuestions
           : timeoutFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
@@ -166,10 +169,11 @@ class _$_AvailableScreeningTools implements _AvailableScreeningTools {
             other is _$_AvailableScreeningTools &&
             const DeepCollectionEquality().equals(
                 other._availableScreeningTools, _availableScreeningTools) &&
-            const DeepCollectionEquality()
-                .equals(other.errorFetchingQuestions, errorFetchingQuestions) &&
-            const DeepCollectionEquality().equals(
-                other.timeoutFetchingQuestions, timeoutFetchingQuestions));
+            (identical(other.errorFetchingQuestions, errorFetchingQuestions) ||
+                other.errorFetchingQuestions == errorFetchingQuestions) &&
+            (identical(
+                    other.timeoutFetchingQuestions, timeoutFetchingQuestions) ||
+                other.timeoutFetchingQuestions == timeoutFetchingQuestions));
   }
 
   @JsonKey(ignore: true)
@@ -177,11 +181,12 @@ class _$_AvailableScreeningTools implements _AvailableScreeningTools {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_availableScreeningTools),
-      const DeepCollectionEquality().hash(errorFetchingQuestions),
-      const DeepCollectionEquality().hash(timeoutFetchingQuestions));
+      errorFetchingQuestions,
+      timeoutFetchingQuestions);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_AvailableScreeningToolsCopyWith<_$_AvailableScreeningTools>
       get copyWith =>
           __$$_AvailableScreeningToolsCopyWithImpl<_$_AvailableScreeningTools>(

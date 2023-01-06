@@ -40,7 +40,8 @@ mixin _$CaregiverInformation {
 abstract class $CaregiverInformationCopyWith<$Res> {
   factory $CaregiverInformationCopyWith(CaregiverInformation value,
           $Res Function(CaregiverInformation) then) =
-      _$CaregiverInformationCopyWithImpl<$Res>;
+      _$CaregiverInformationCopyWithImpl<$Res, CaregiverInformation>;
+  @useResult
   $Res call(
       {String? firstName,
       String? lastName,
@@ -51,14 +52,17 @@ abstract class $CaregiverInformationCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CaregiverInformationCopyWithImpl<$Res>
+class _$CaregiverInformationCopyWithImpl<$Res,
+        $Val extends CaregiverInformation>
     implements $CaregiverInformationCopyWith<$Res> {
   _$CaregiverInformationCopyWithImpl(this._value, this._then);
 
-  final CaregiverInformation _value;
   // ignore: unused_field
-  final $Res Function(CaregiverInformation) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? firstName = freezed,
@@ -68,27 +72,27 @@ class _$CaregiverInformationCopyWithImpl<$Res>
     Object? clientID = freezed,
   }) {
     return _then(_value.copyWith(
-      firstName: firstName == freezed
+      firstName: freezed == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
               as String?,
-      lastName: lastName == freezed
+      lastName: freezed == lastName
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
-      phoneNumber: phoneNumber == freezed
+      phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
-      caregiverType: caregiverType == freezed
+      caregiverType: freezed == caregiverType
           ? _value.caregiverType
           : caregiverType // ignore: cast_nullable_to_non_nullable
               as CaregiverType?,
-      clientID: clientID == freezed
+      clientID: freezed == clientID
           ? _value.clientID
           : clientID // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -99,6 +103,7 @@ abstract class _$$_CaregiverInformationCopyWith<$Res>
           $Res Function(_$_CaregiverInformation) then) =
       __$$_CaregiverInformationCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String? firstName,
       String? lastName,
@@ -110,15 +115,13 @@ abstract class _$$_CaregiverInformationCopyWith<$Res>
 
 /// @nodoc
 class __$$_CaregiverInformationCopyWithImpl<$Res>
-    extends _$CaregiverInformationCopyWithImpl<$Res>
+    extends _$CaregiverInformationCopyWithImpl<$Res, _$_CaregiverInformation>
     implements _$$_CaregiverInformationCopyWith<$Res> {
   __$$_CaregiverInformationCopyWithImpl(_$_CaregiverInformation _value,
       $Res Function(_$_CaregiverInformation) _then)
-      : super(_value, (v) => _then(v as _$_CaregiverInformation));
+      : super(_value, _then);
 
-  @override
-  _$_CaregiverInformation get _value => super._value as _$_CaregiverInformation;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? firstName = freezed,
@@ -128,23 +131,23 @@ class __$$_CaregiverInformationCopyWithImpl<$Res>
     Object? clientID = freezed,
   }) {
     return _then(_$_CaregiverInformation(
-      firstName: firstName == freezed
+      firstName: freezed == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
               as String?,
-      lastName: lastName == freezed
+      lastName: freezed == lastName
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
-      phoneNumber: phoneNumber == freezed
+      phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
-      caregiverType: caregiverType == freezed
+      caregiverType: freezed == caregiverType
           ? _value.caregiverType
           : caregiverType // ignore: cast_nullable_to_non_nullable
               as CaregiverType?,
-      clientID: clientID == freezed
+      clientID: freezed == clientID
           ? _value.clientID
           : clientID // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -191,27 +194,26 @@ class _$_CaregiverInformation implements _CaregiverInformation {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CaregiverInformation &&
-            const DeepCollectionEquality().equals(other.firstName, firstName) &&
-            const DeepCollectionEquality().equals(other.lastName, lastName) &&
-            const DeepCollectionEquality()
-                .equals(other.phoneNumber, phoneNumber) &&
-            const DeepCollectionEquality()
-                .equals(other.caregiverType, caregiverType) &&
-            const DeepCollectionEquality().equals(other.clientID, clientID));
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
+            (identical(other.caregiverType, caregiverType) ||
+                other.caregiverType == caregiverType) &&
+            (identical(other.clientID, clientID) ||
+                other.clientID == clientID));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(firstName),
-      const DeepCollectionEquality().hash(lastName),
-      const DeepCollectionEquality().hash(phoneNumber),
-      const DeepCollectionEquality().hash(caregiverType),
-      const DeepCollectionEquality().hash(clientID));
+      runtimeType, firstName, lastName, phoneNumber, caregiverType, clientID);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_CaregiverInformationCopyWith<_$_CaregiverInformation> get copyWith =>
       __$$_CaregiverInformationCopyWithImpl<_$_CaregiverInformation>(
           this, _$identity);

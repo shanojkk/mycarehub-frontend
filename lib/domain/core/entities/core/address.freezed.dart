@@ -41,7 +41,8 @@ mixin _$Address {
 /// @nodoc
 abstract class $AddressCopyWith<$Res> {
   factory $AddressCopyWith(Address value, $Res Function(Address) then) =
-      _$AddressCopyWithImpl<$Res>;
+      _$AddressCopyWithImpl<$Res, Address>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'addressType') AddressType? addressType,
       @JsonKey(name: 'text') String? text,
@@ -52,13 +53,16 @@ abstract class $AddressCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AddressCopyWithImpl<$Res> implements $AddressCopyWith<$Res> {
+class _$AddressCopyWithImpl<$Res, $Val extends Address>
+    implements $AddressCopyWith<$Res> {
   _$AddressCopyWithImpl(this._value, this._then);
 
-  final Address _value;
   // ignore: unused_field
-  final $Res Function(Address) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? addressType = freezed,
@@ -69,31 +73,31 @@ class _$AddressCopyWithImpl<$Res> implements $AddressCopyWith<$Res> {
     Object? active = freezed,
   }) {
     return _then(_value.copyWith(
-      addressType: addressType == freezed
+      addressType: freezed == addressType
           ? _value.addressType
           : addressType // ignore: cast_nullable_to_non_nullable
               as AddressType?,
-      text: text == freezed
+      text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String?,
-      country: country == freezed
+      country: freezed == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
               as String?,
-      postalCode: postalCode == freezed
+      postalCode: freezed == postalCode
           ? _value.postalCode
           : postalCode // ignore: cast_nullable_to_non_nullable
               as String?,
-      county: county == freezed
+      county: freezed == county
           ? _value.county
           : county // ignore: cast_nullable_to_non_nullable
               as String?,
-      active: active == freezed
+      active: freezed == active
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
               as bool?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -103,6 +107,7 @@ abstract class _$$_AddressCopyWith<$Res> implements $AddressCopyWith<$Res> {
           _$_Address value, $Res Function(_$_Address) then) =
       __$$_AddressCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'addressType') AddressType? addressType,
       @JsonKey(name: 'text') String? text,
@@ -113,14 +118,13 @@ abstract class _$$_AddressCopyWith<$Res> implements $AddressCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_AddressCopyWithImpl<$Res> extends _$AddressCopyWithImpl<$Res>
+class __$$_AddressCopyWithImpl<$Res>
+    extends _$AddressCopyWithImpl<$Res, _$_Address>
     implements _$$_AddressCopyWith<$Res> {
   __$$_AddressCopyWithImpl(_$_Address _value, $Res Function(_$_Address) _then)
-      : super(_value, (v) => _then(v as _$_Address));
+      : super(_value, _then);
 
-  @override
-  _$_Address get _value => super._value as _$_Address;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? addressType = freezed,
@@ -131,27 +135,27 @@ class __$$_AddressCopyWithImpl<$Res> extends _$AddressCopyWithImpl<$Res>
     Object? active = freezed,
   }) {
     return _then(_$_Address(
-      addressType: addressType == freezed
+      addressType: freezed == addressType
           ? _value.addressType
           : addressType // ignore: cast_nullable_to_non_nullable
               as AddressType?,
-      text: text == freezed
+      text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String?,
-      country: country == freezed
+      country: freezed == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
               as String?,
-      postalCode: postalCode == freezed
+      postalCode: freezed == postalCode
           ? _value.postalCode
           : postalCode // ignore: cast_nullable_to_non_nullable
               as String?,
-      county: county == freezed
+      county: freezed == county
           ? _value.county
           : county // ignore: cast_nullable_to_non_nullable
               as String?,
-      active: active == freezed
+      active: freezed == active
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
               as bool?,
@@ -202,29 +206,24 @@ class _$_Address implements _Address {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Address &&
-            const DeepCollectionEquality()
-                .equals(other.addressType, addressType) &&
-            const DeepCollectionEquality().equals(other.text, text) &&
-            const DeepCollectionEquality().equals(other.country, country) &&
-            const DeepCollectionEquality()
-                .equals(other.postalCode, postalCode) &&
-            const DeepCollectionEquality().equals(other.county, county) &&
-            const DeepCollectionEquality().equals(other.active, active));
+            (identical(other.addressType, addressType) ||
+                other.addressType == addressType) &&
+            (identical(other.text, text) || other.text == text) &&
+            (identical(other.country, country) || other.country == country) &&
+            (identical(other.postalCode, postalCode) ||
+                other.postalCode == postalCode) &&
+            (identical(other.county, county) || other.county == county) &&
+            (identical(other.active, active) || other.active == active));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(addressType),
-      const DeepCollectionEquality().hash(text),
-      const DeepCollectionEquality().hash(country),
-      const DeepCollectionEquality().hash(postalCode),
-      const DeepCollectionEquality().hash(county),
-      const DeepCollectionEquality().hash(active));
+      runtimeType, addressType, text, country, postalCode, county, active);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_AddressCopyWith<_$_Address> get copyWith =>
       __$$_AddressCopyWithImpl<_$_Address>(this, _$identity);
 

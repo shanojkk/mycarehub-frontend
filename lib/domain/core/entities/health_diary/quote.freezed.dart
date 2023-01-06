@@ -33,28 +33,32 @@ mixin _$QuoteRelay {
 abstract class $QuoteRelayCopyWith<$Res> {
   factory $QuoteRelayCopyWith(
           QuoteRelay value, $Res Function(QuoteRelay) then) =
-      _$QuoteRelayCopyWithImpl<$Res>;
+      _$QuoteRelayCopyWithImpl<$Res, QuoteRelay>;
+  @useResult
   $Res call({@JsonKey(name: 'getHealthDiaryQuote') List<Quote>? quotes});
 }
 
 /// @nodoc
-class _$QuoteRelayCopyWithImpl<$Res> implements $QuoteRelayCopyWith<$Res> {
+class _$QuoteRelayCopyWithImpl<$Res, $Val extends QuoteRelay>
+    implements $QuoteRelayCopyWith<$Res> {
   _$QuoteRelayCopyWithImpl(this._value, this._then);
 
-  final QuoteRelay _value;
   // ignore: unused_field
-  final $Res Function(QuoteRelay) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? quotes = freezed,
   }) {
     return _then(_value.copyWith(
-      quotes: quotes == freezed
+      quotes: freezed == quotes
           ? _value.quotes
           : quotes // ignore: cast_nullable_to_non_nullable
               as List<Quote>?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -65,25 +69,25 @@ abstract class _$$_QuoteRelayCopyWith<$Res>
           _$_QuoteRelay value, $Res Function(_$_QuoteRelay) then) =
       __$$_QuoteRelayCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({@JsonKey(name: 'getHealthDiaryQuote') List<Quote>? quotes});
 }
 
 /// @nodoc
-class __$$_QuoteRelayCopyWithImpl<$Res> extends _$QuoteRelayCopyWithImpl<$Res>
+class __$$_QuoteRelayCopyWithImpl<$Res>
+    extends _$QuoteRelayCopyWithImpl<$Res, _$_QuoteRelay>
     implements _$$_QuoteRelayCopyWith<$Res> {
   __$$_QuoteRelayCopyWithImpl(
       _$_QuoteRelay _value, $Res Function(_$_QuoteRelay) _then)
-      : super(_value, (v) => _then(v as _$_QuoteRelay));
+      : super(_value, _then);
 
-  @override
-  _$_QuoteRelay get _value => super._value as _$_QuoteRelay;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? quotes = freezed,
   }) {
     return _then(_$_QuoteRelay(
-      quotes: quotes == freezed
+      quotes: freezed == quotes
           ? _value.quotes
           : quotes // ignore: cast_nullable_to_non_nullable
               as List<Quote>?,
@@ -123,6 +127,7 @@ class _$_QuoteRelay implements _QuoteRelay {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_QuoteRelayCopyWith<_$_QuoteRelay> get copyWith =>
       __$$_QuoteRelayCopyWithImpl<_$_QuoteRelay>(this, _$identity);
 
@@ -170,35 +175,39 @@ mixin _$Quote {
 /// @nodoc
 abstract class $QuoteCopyWith<$Res> {
   factory $QuoteCopyWith(Quote value, $Res Function(Quote) then) =
-      _$QuoteCopyWithImpl<$Res>;
+      _$QuoteCopyWithImpl<$Res, Quote>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'author') String? author,
       @JsonKey(name: 'quote') String? quote});
 }
 
 /// @nodoc
-class _$QuoteCopyWithImpl<$Res> implements $QuoteCopyWith<$Res> {
+class _$QuoteCopyWithImpl<$Res, $Val extends Quote>
+    implements $QuoteCopyWith<$Res> {
   _$QuoteCopyWithImpl(this._value, this._then);
 
-  final Quote _value;
   // ignore: unused_field
-  final $Res Function(Quote) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? author = freezed,
     Object? quote = freezed,
   }) {
     return _then(_value.copyWith(
-      author: author == freezed
+      author: freezed == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
               as String?,
-      quote: quote == freezed
+      quote: freezed == quote
           ? _value.quote
           : quote // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -207,31 +216,30 @@ abstract class _$$_QuoteCopyWith<$Res> implements $QuoteCopyWith<$Res> {
   factory _$$_QuoteCopyWith(_$_Quote value, $Res Function(_$_Quote) then) =
       __$$_QuoteCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'author') String? author,
       @JsonKey(name: 'quote') String? quote});
 }
 
 /// @nodoc
-class __$$_QuoteCopyWithImpl<$Res> extends _$QuoteCopyWithImpl<$Res>
+class __$$_QuoteCopyWithImpl<$Res> extends _$QuoteCopyWithImpl<$Res, _$_Quote>
     implements _$$_QuoteCopyWith<$Res> {
   __$$_QuoteCopyWithImpl(_$_Quote _value, $Res Function(_$_Quote) _then)
-      : super(_value, (v) => _then(v as _$_Quote));
+      : super(_value, _then);
 
-  @override
-  _$_Quote get _value => super._value as _$_Quote;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? author = freezed,
     Object? quote = freezed,
   }) {
     return _then(_$_Quote(
-      author: author == freezed
+      author: freezed == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
               as String?,
-      quote: quote == freezed
+      quote: freezed == quote
           ? _value.quote
           : quote // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -266,19 +274,17 @@ class _$_Quote implements _Quote {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Quote &&
-            const DeepCollectionEquality().equals(other.author, author) &&
-            const DeepCollectionEquality().equals(other.quote, quote));
+            (identical(other.author, author) || other.author == author) &&
+            (identical(other.quote, quote) || other.quote == quote));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(author),
-      const DeepCollectionEquality().hash(quote));
+  int get hashCode => Object.hash(runtimeType, author, quote);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_QuoteCopyWith<_$_Quote> get copyWith =>
       __$$_QuoteCopyWithImpl<_$_Quote>(this, _$identity);
 

@@ -1,15 +1,13 @@
-// Package imports:
 import 'dart:convert';
 import 'dart:ui';
 
-import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:pro_health_360/application/redux/actions/update_connectivity_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
-// Project imports:
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
@@ -202,8 +200,13 @@ void main() {
           widget: const MyHealthPage(),
         );
 
+        final Finder myHealthPageAppointmentsFinder =
+            find.text(myHealthPageAppointments);
+
         final Finder helpNoDataWidgetButton = find.byKey(helpNoDataWidgetKey);
-        await tester.tap(find.text(myHealthPageAppointments));
+        expect(myHealthPageAppointmentsFinder, findsOneWidget);
+        await tester.ensureVisible(myHealthPageAppointmentsFinder);
+        await tester.tap(myHealthPageAppointmentsFinder);
         await tester.pumpAndSettle();
         expect(find.byType(AppointmentsPage), findsOneWidget);
 
@@ -244,7 +247,6 @@ void main() {
 
         store.dispatch(WaitAction<AppState>.add(fetchAppointmentsFlag));
         await tester.pump();
-        await tester.pump(const Duration(seconds: 5));
 
         expect(find.byType(PlatformLoader), findsOneWidget);
       });
@@ -259,10 +261,16 @@ void main() {
           widget: const MyHealthPage(),
         );
 
+        final Finder myHealthPageAppointmentsFinder =
+            find.text(myHealthPageAppointments);
+
         final Finder helpNoDataWidgetButton = find.byKey(helpNoDataWidgetKey);
-        await tester.tap(find.text(myHealthPageAppointments));
+        expect(myHealthPageAppointmentsFinder, findsOneWidget);
+        await tester.ensureVisible(myHealthPageAppointmentsFinder);
+        await tester.tap(myHealthPageAppointmentsFinder);
         await tester.pumpAndSettle();
         expect(find.byType(AppointmentsPage), findsOneWidget);
+
         await tester.tap(find.text(pastAppointmentsText));
         await tester.pumpAndSettle();
 

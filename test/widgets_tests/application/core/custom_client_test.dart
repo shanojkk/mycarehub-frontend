@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 // Package imports:
-import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
@@ -17,6 +16,7 @@ import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/auth_credentials.dart';
 import 'package:pro_health_360/infrastructure/endpoints.dart'
     as my_afya_hub_endpoints;
+import 'package:sghi_core/app_wrapper/endpoints.dart';
 
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';

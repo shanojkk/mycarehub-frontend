@@ -35,7 +35,8 @@ mixin _$RecentContentState {
 abstract class $RecentContentStateCopyWith<$Res> {
   factory $RecentContentStateCopyWith(
           RecentContentState value, $Res Function(RecentContentState) then) =
-      _$RecentContentStateCopyWithImpl<$Res>;
+      _$RecentContentStateCopyWithImpl<$Res, RecentContentState>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'items') List<Content?>? contentItems,
       bool? errorFetchingContent,
@@ -43,14 +44,16 @@ abstract class $RecentContentStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$RecentContentStateCopyWithImpl<$Res>
+class _$RecentContentStateCopyWithImpl<$Res, $Val extends RecentContentState>
     implements $RecentContentStateCopyWith<$Res> {
   _$RecentContentStateCopyWithImpl(this._value, this._then);
 
-  final RecentContentState _value;
   // ignore: unused_field
-  final $Res Function(RecentContentState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? contentItems = freezed,
@@ -58,19 +61,19 @@ class _$RecentContentStateCopyWithImpl<$Res>
     Object? timeoutFetchingContent = freezed,
   }) {
     return _then(_value.copyWith(
-      contentItems: contentItems == freezed
+      contentItems: freezed == contentItems
           ? _value.contentItems
           : contentItems // ignore: cast_nullable_to_non_nullable
               as List<Content?>?,
-      errorFetchingContent: errorFetchingContent == freezed
+      errorFetchingContent: freezed == errorFetchingContent
           ? _value.errorFetchingContent
           : errorFetchingContent // ignore: cast_nullable_to_non_nullable
               as bool?,
-      timeoutFetchingContent: timeoutFetchingContent == freezed
+      timeoutFetchingContent: freezed == timeoutFetchingContent
           ? _value.timeoutFetchingContent
           : timeoutFetchingContent // ignore: cast_nullable_to_non_nullable
               as bool?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -81,6 +84,7 @@ abstract class _$$_FeedContentStateCopyWith<$Res>
           _$_FeedContentState value, $Res Function(_$_FeedContentState) then) =
       __$$_FeedContentStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'items') List<Content?>? contentItems,
       bool? errorFetchingContent,
@@ -89,15 +93,13 @@ abstract class _$$_FeedContentStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_FeedContentStateCopyWithImpl<$Res>
-    extends _$RecentContentStateCopyWithImpl<$Res>
+    extends _$RecentContentStateCopyWithImpl<$Res, _$_FeedContentState>
     implements _$$_FeedContentStateCopyWith<$Res> {
   __$$_FeedContentStateCopyWithImpl(
       _$_FeedContentState _value, $Res Function(_$_FeedContentState) _then)
-      : super(_value, (v) => _then(v as _$_FeedContentState));
+      : super(_value, _then);
 
-  @override
-  _$_FeedContentState get _value => super._value as _$_FeedContentState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? contentItems = freezed,
@@ -105,15 +107,15 @@ class __$$_FeedContentStateCopyWithImpl<$Res>
     Object? timeoutFetchingContent = freezed,
   }) {
     return _then(_$_FeedContentState(
-      contentItems: contentItems == freezed
+      contentItems: freezed == contentItems
           ? _value.contentItems
           : contentItems // ignore: cast_nullable_to_non_nullable
               as List<Content?>?,
-      errorFetchingContent: errorFetchingContent == freezed
+      errorFetchingContent: freezed == errorFetchingContent
           ? _value.errorFetchingContent
           : errorFetchingContent // ignore: cast_nullable_to_non_nullable
               as bool?,
-      timeoutFetchingContent: timeoutFetchingContent == freezed
+      timeoutFetchingContent: freezed == timeoutFetchingContent
           ? _value.timeoutFetchingContent
           : timeoutFetchingContent // ignore: cast_nullable_to_non_nullable
               as bool?,
@@ -152,10 +154,10 @@ class _$_FeedContentState implements _FeedContentState {
             other is _$_FeedContentState &&
             const DeepCollectionEquality()
                 .equals(other.contentItems, contentItems) &&
-            const DeepCollectionEquality()
-                .equals(other.errorFetchingContent, errorFetchingContent) &&
-            const DeepCollectionEquality()
-                .equals(other.timeoutFetchingContent, timeoutFetchingContent));
+            (identical(other.errorFetchingContent, errorFetchingContent) ||
+                other.errorFetchingContent == errorFetchingContent) &&
+            (identical(other.timeoutFetchingContent, timeoutFetchingContent) ||
+                other.timeoutFetchingContent == timeoutFetchingContent));
   }
 
   @JsonKey(ignore: true)
@@ -163,11 +165,12 @@ class _$_FeedContentState implements _FeedContentState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(contentItems),
-      const DeepCollectionEquality().hash(errorFetchingContent),
-      const DeepCollectionEquality().hash(timeoutFetchingContent));
+      errorFetchingContent,
+      timeoutFetchingContent);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_FeedContentStateCopyWith<_$_FeedContentState> get copyWith =>
       __$$_FeedContentStateCopyWithImpl<_$_FeedContentState>(this, _$identity);
 

@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:app_wrapper/app_wrapper.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +13,7 @@ import 'package:pro_health_360/domain/core/value_objects/app_events.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/domain/core/value_objects/global_keys.dart';
 import 'package:rxdart/src/streams/merge.dart';
+import 'package:sghi_core/app_wrapper/enums.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 

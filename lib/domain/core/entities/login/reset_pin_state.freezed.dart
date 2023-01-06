@@ -34,34 +34,37 @@ mixin _$ResetPINState {
 abstract class $ResetPINStateCopyWith<$Res> {
   factory $ResetPINStateCopyWith(
           ResetPINState value, $Res Function(ResetPINState) then) =
-      _$ResetPINStateCopyWithImpl<$Res>;
+      _$ResetPINStateCopyWithImpl<$Res, ResetPINState>;
+  @useResult
   $Res call({String? phone, bool? isPINSet});
 }
 
 /// @nodoc
-class _$ResetPINStateCopyWithImpl<$Res>
+class _$ResetPINStateCopyWithImpl<$Res, $Val extends ResetPINState>
     implements $ResetPINStateCopyWith<$Res> {
   _$ResetPINStateCopyWithImpl(this._value, this._then);
 
-  final ResetPINState _value;
   // ignore: unused_field
-  final $Res Function(ResetPINState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? phone = freezed,
     Object? isPINSet = freezed,
   }) {
     return _then(_value.copyWith(
-      phone: phone == freezed
+      phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
-      isPINSet: isPINSet == freezed
+      isPINSet: freezed == isPINSet
           ? _value.isPINSet
           : isPINSet // ignore: cast_nullable_to_non_nullable
               as bool?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -72,31 +75,30 @@ abstract class _$$_ResetPINStateCopyWith<$Res>
           _$_ResetPINState value, $Res Function(_$_ResetPINState) then) =
       __$$_ResetPINStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String? phone, bool? isPINSet});
 }
 
 /// @nodoc
 class __$$_ResetPINStateCopyWithImpl<$Res>
-    extends _$ResetPINStateCopyWithImpl<$Res>
+    extends _$ResetPINStateCopyWithImpl<$Res, _$_ResetPINState>
     implements _$$_ResetPINStateCopyWith<$Res> {
   __$$_ResetPINStateCopyWithImpl(
       _$_ResetPINState _value, $Res Function(_$_ResetPINState) _then)
-      : super(_value, (v) => _then(v as _$_ResetPINState));
+      : super(_value, _then);
 
-  @override
-  _$_ResetPINState get _value => super._value as _$_ResetPINState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? phone = freezed,
     Object? isPINSet = freezed,
   }) {
     return _then(_$_ResetPINState(
-      phone: phone == freezed
+      phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
-      isPINSet: isPINSet == freezed
+      isPINSet: freezed == isPINSet
           ? _value.isPINSet
           : isPINSet // ignore: cast_nullable_to_non_nullable
               as bool?,
@@ -128,19 +130,18 @@ class _$_ResetPINState implements _ResetPINState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ResetPINState &&
-            const DeepCollectionEquality().equals(other.phone, phone) &&
-            const DeepCollectionEquality().equals(other.isPINSet, isPINSet));
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.isPINSet, isPINSet) ||
+                other.isPINSet == isPINSet));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(phone),
-      const DeepCollectionEquality().hash(isPINSet));
+  int get hashCode => Object.hash(runtimeType, phone, isPINSet);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ResetPINStateCopyWith<_$_ResetPINState> get copyWith =>
       __$$_ResetPINStateCopyWithImpl<_$_ResetPINState>(this, _$identity);
 

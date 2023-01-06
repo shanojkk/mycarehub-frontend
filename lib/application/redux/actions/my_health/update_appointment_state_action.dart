@@ -17,7 +17,7 @@ class UpdateAppointmentStateAction extends ReduxAction<AppState> {
   });
 
   @override
-  Future<AppState?> reduce() async {
+  AppState reduce() {
     final AppointmentState? appointmentState =
         state.miscState?.appointmentState?.copyWith(
       appointments:

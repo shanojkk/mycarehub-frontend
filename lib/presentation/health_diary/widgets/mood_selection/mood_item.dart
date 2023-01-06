@@ -1,10 +1,10 @@
 // Flutter imports:
-import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:pro_health_360/presentation/core/theme/theme.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shared_themes/colors.dart';
 
 class MoodItem extends StatelessWidget {
   const MoodItem({
@@ -33,7 +33,7 @@ class MoodItem extends StatelessWidget {
             smallVerticalSizedBox,
             Text(
               moodText,
-              style: boldSize14Text(white).copyWith(),
+              style: boldSize14Text(AppColors.whiteColor).copyWith(),
               textAlign: TextAlign.center,
             ),
           ],

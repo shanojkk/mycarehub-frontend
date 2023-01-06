@@ -1,4 +1,4 @@
-import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
@@ -76,7 +76,7 @@ class _ResumeWithPinPageState extends State<ResumeWithPinPage> {
                     key: const Key('logout_button'),
                     onPressed: widget.logoutCallback,
                     style: ElevatedButton.styleFrom(
-                      primary: AppColors.primaryColor,
+                      backgroundColor: AppColors.primaryColor,
                     ),
                     child: const Padding(
                       padding: EdgeInsets.all(16.0),

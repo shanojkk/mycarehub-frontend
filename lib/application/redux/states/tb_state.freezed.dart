@@ -35,7 +35,8 @@ mixin _$TBState {
 /// @nodoc
 abstract class $TBStateCopyWith<$Res> {
   factory $TBStateCopyWith(TBState value, $Res Function(TBState) then) =
-      _$TBStateCopyWithImpl<$Res>;
+      _$TBStateCopyWithImpl<$Res, TBState>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'getScreeningToolQuestions')
           ScreeningQuestionsList? screeningQuestions,
@@ -47,13 +48,16 @@ abstract class $TBStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TBStateCopyWithImpl<$Res> implements $TBStateCopyWith<$Res> {
+class _$TBStateCopyWithImpl<$Res, $Val extends TBState>
+    implements $TBStateCopyWith<$Res> {
   _$TBStateCopyWithImpl(this._value, this._then);
 
-  final TBState _value;
   // ignore: unused_field
-  final $Res Function(TBState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? screeningQuestions = freezed,
@@ -62,26 +66,27 @@ class _$TBStateCopyWithImpl<$Res> implements $TBStateCopyWith<$Res> {
     Object? errorAnsweringQuestions = freezed,
   }) {
     return _then(_value.copyWith(
-      screeningQuestions: screeningQuestions == freezed
+      screeningQuestions: freezed == screeningQuestions
           ? _value.screeningQuestions
           : screeningQuestions // ignore: cast_nullable_to_non_nullable
               as ScreeningQuestionsList?,
-      errorFetchingQuestions: errorFetchingQuestions == freezed
+      errorFetchingQuestions: freezed == errorFetchingQuestions
           ? _value.errorFetchingQuestions
           : errorFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-      timeoutFetchingQuestions: timeoutFetchingQuestions == freezed
+      timeoutFetchingQuestions: freezed == timeoutFetchingQuestions
           ? _value.timeoutFetchingQuestions
           : timeoutFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-      errorAnsweringQuestions: errorAnsweringQuestions == freezed
+      errorAnsweringQuestions: freezed == errorAnsweringQuestions
           ? _value.errorAnsweringQuestions
           : errorAnsweringQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $ScreeningQuestionsListCopyWith<$Res>? get screeningQuestions {
     if (_value.screeningQuestions == null) {
       return null;
@@ -89,7 +94,7 @@ class _$TBStateCopyWithImpl<$Res> implements $TBStateCopyWith<$Res> {
 
     return $ScreeningQuestionsListCopyWith<$Res>(_value.screeningQuestions!,
         (value) {
-      return _then(_value.copyWith(screeningQuestions: value));
+      return _then(_value.copyWith(screeningQuestions: value) as $Val);
     });
   }
 }
@@ -100,6 +105,7 @@ abstract class _$$_TBStateCopyWith<$Res> implements $TBStateCopyWith<$Res> {
           _$_TBState value, $Res Function(_$_TBState) then) =
       __$$_TBStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'getScreeningToolQuestions')
           ScreeningQuestionsList? screeningQuestions,
@@ -112,14 +118,13 @@ abstract class _$$_TBStateCopyWith<$Res> implements $TBStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_TBStateCopyWithImpl<$Res> extends _$TBStateCopyWithImpl<$Res>
+class __$$_TBStateCopyWithImpl<$Res>
+    extends _$TBStateCopyWithImpl<$Res, _$_TBState>
     implements _$$_TBStateCopyWith<$Res> {
   __$$_TBStateCopyWithImpl(_$_TBState _value, $Res Function(_$_TBState) _then)
-      : super(_value, (v) => _then(v as _$_TBState));
+      : super(_value, _then);
 
-  @override
-  _$_TBState get _value => super._value as _$_TBState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? screeningQuestions = freezed,
@@ -128,19 +133,19 @@ class __$$_TBStateCopyWithImpl<$Res> extends _$TBStateCopyWithImpl<$Res>
     Object? errorAnsweringQuestions = freezed,
   }) {
     return _then(_$_TBState(
-      screeningQuestions: screeningQuestions == freezed
+      screeningQuestions: freezed == screeningQuestions
           ? _value.screeningQuestions
           : screeningQuestions // ignore: cast_nullable_to_non_nullable
               as ScreeningQuestionsList?,
-      errorFetchingQuestions: errorFetchingQuestions == freezed
+      errorFetchingQuestions: freezed == errorFetchingQuestions
           ? _value.errorFetchingQuestions
           : errorFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-      timeoutFetchingQuestions: timeoutFetchingQuestions == freezed
+      timeoutFetchingQuestions: freezed == timeoutFetchingQuestions
           ? _value.timeoutFetchingQuestions
           : timeoutFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-      errorAnsweringQuestions: errorAnsweringQuestions == freezed
+      errorAnsweringQuestions: freezed == errorAnsweringQuestions
           ? _value.errorAnsweringQuestions
           : errorAnsweringQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
@@ -180,27 +185,30 @@ class _$_TBState implements _TBState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TBState &&
-            const DeepCollectionEquality()
-                .equals(other.screeningQuestions, screeningQuestions) &&
-            const DeepCollectionEquality()
-                .equals(other.errorFetchingQuestions, errorFetchingQuestions) &&
-            const DeepCollectionEquality().equals(
-                other.timeoutFetchingQuestions, timeoutFetchingQuestions) &&
-            const DeepCollectionEquality().equals(
-                other.errorAnsweringQuestions, errorAnsweringQuestions));
+            (identical(other.screeningQuestions, screeningQuestions) ||
+                other.screeningQuestions == screeningQuestions) &&
+            (identical(other.errorFetchingQuestions, errorFetchingQuestions) ||
+                other.errorFetchingQuestions == errorFetchingQuestions) &&
+            (identical(
+                    other.timeoutFetchingQuestions, timeoutFetchingQuestions) ||
+                other.timeoutFetchingQuestions == timeoutFetchingQuestions) &&
+            (identical(
+                    other.errorAnsweringQuestions, errorAnsweringQuestions) ||
+                other.errorAnsweringQuestions == errorAnsweringQuestions));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(screeningQuestions),
-      const DeepCollectionEquality().hash(errorFetchingQuestions),
-      const DeepCollectionEquality().hash(timeoutFetchingQuestions),
-      const DeepCollectionEquality().hash(errorAnsweringQuestions));
+      screeningQuestions,
+      errorFetchingQuestions,
+      timeoutFetchingQuestions,
+      errorAnsweringQuestions);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_TBStateCopyWith<_$_TBState> get copyWith =>
       __$$_TBStateCopyWithImpl<_$_TBState>(this, _$identity);
 

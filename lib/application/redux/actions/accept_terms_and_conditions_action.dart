@@ -3,13 +3,14 @@ import 'dart:async';
 import 'dart:convert';
 
 // Flutter imports:
-import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:pro_health_360/presentation/core/theme/theme.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 // Package imports:
-import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_graphql_client/graph_client.dart';
+import 'package:sghi_core/flutter_graphql_client/i_flutter_graphql_client.dart';
 import 'package:http/http.dart' as http;
 // Project imports:
 import 'package:pro_health_360/application/core/graphql/mutations.dart';
@@ -24,8 +25,7 @@ import 'package:pro_health_360/domain/core/value_objects/app_events.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/domain/core/value_objects/exception_tag.dart';
-import 'package:shared_themes/colors.dart';
-import 'package:shared_themes/constants.dart';
+import 'package:sghi_core/shared_themes/constants.dart';
 
 class AcceptTermsAndConditionsAction extends ReduxAction<AppState> {
   AcceptTermsAndConditionsAction({
@@ -125,7 +125,7 @@ class AcceptTermsAndConditionsAction extends ReduxAction<AppState> {
             duration: const Duration(seconds: kShortSnackBarDuration),
             action: dismissSnackBar(
               closeString,
-              white,
+              AppColors.whiteColor,
               context,
             ),
           ),

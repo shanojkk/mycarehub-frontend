@@ -1,4 +1,4 @@
-import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/view_models/verify_phone_view_model.dart';
@@ -134,7 +134,6 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
                     widget.resendOTPFunction.call();
                     restartTimer();
                     await Future<dynamic>.delayed(const Duration(seconds: 3));
-                    textEditingController.clear();
                   },
                 )
               else ...<Widget>[

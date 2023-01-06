@@ -26,16 +26,18 @@ mixin _$FeedState {
 /// @nodoc
 abstract class $FeedStateCopyWith<$Res> {
   factory $FeedStateCopyWith(FeedState value, $Res Function(FeedState) then) =
-      _$FeedStateCopyWithImpl<$Res>;
+      _$FeedStateCopyWithImpl<$Res, FeedState>;
 }
 
 /// @nodoc
-class _$FeedStateCopyWithImpl<$Res> implements $FeedStateCopyWith<$Res> {
+class _$FeedStateCopyWithImpl<$Res, $Val extends FeedState>
+    implements $FeedStateCopyWith<$Res> {
   _$FeedStateCopyWithImpl(this._value, this._then);
 
-  final FeedState _value;
   // ignore: unused_field
-  final $Res Function(FeedState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -46,14 +48,12 @@ abstract class _$$_FeedStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_FeedStateCopyWithImpl<$Res> extends _$FeedStateCopyWithImpl<$Res>
+class __$$_FeedStateCopyWithImpl<$Res>
+    extends _$FeedStateCopyWithImpl<$Res, _$_FeedState>
     implements _$$_FeedStateCopyWith<$Res> {
   __$$_FeedStateCopyWithImpl(
       _$_FeedState _value, $Res Function(_$_FeedState) _then)
-      : super(_value, (v) => _then(v as _$_FeedState));
-
-  @override
-  _$_FeedState get _value => super._value as _$_FeedState;
+      : super(_value, _then);
 }
 
 /// @nodoc

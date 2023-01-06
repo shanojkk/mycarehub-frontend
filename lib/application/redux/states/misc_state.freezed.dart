@@ -54,7 +54,8 @@ mixin _$MiscState {
 /// @nodoc
 abstract class $MiscStateCopyWith<$Res> {
   factory $MiscStateCopyWith(MiscState value, $Res Function(MiscState) then) =
-      _$MiscStateCopyWithImpl<$Res>;
+      _$MiscStateCopyWithImpl<$Res, MiscState>;
+  @useResult
   $Res call(
       {@JsonKey(defaultValue: AppRoutes.phoneLogin)
           String initialRoute,
@@ -85,16 +86,19 @@ abstract class $MiscStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
+class _$MiscStateCopyWithImpl<$Res, $Val extends MiscState>
+    implements $MiscStateCopyWith<$Res> {
   _$MiscStateCopyWithImpl(this._value, this._then);
 
-  final MiscState _value;
   // ignore: unused_field
-  final $Res Function(MiscState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? initialRoute = freezed,
+    Object? initialRoute = null,
     Object? libraryListItems = freezed,
     Object? profileFAQsContentState = freezed,
     Object? healthPagePINInputTime = freezed,
@@ -113,78 +117,79 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
     Object? selectedSurvey = freezed,
   }) {
     return _then(_value.copyWith(
-      initialRoute: initialRoute == freezed
+      initialRoute: null == initialRoute
           ? _value.initialRoute
           : initialRoute // ignore: cast_nullable_to_non_nullable
               as String,
-      libraryListItems: libraryListItems == freezed
+      libraryListItems: freezed == libraryListItems
           ? _value.libraryListItems
           : libraryListItems // ignore: cast_nullable_to_non_nullable
               as List<dynamic>?,
-      profileFAQsContentState: profileFAQsContentState == freezed
+      profileFAQsContentState: freezed == profileFAQsContentState
           ? _value.profileFAQsContentState
           : profileFAQsContentState // ignore: cast_nullable_to_non_nullable
               as FAQsContentState?,
-      healthPagePINInputTime: healthPagePINInputTime == freezed
+      healthPagePINInputTime: freezed == healthPagePINInputTime
           ? _value.healthPagePINInputTime
           : healthPagePINInputTime // ignore: cast_nullable_to_non_nullable
               as String?,
-      pinInputTries: pinInputTries == freezed
+      pinInputTries: freezed == pinInputTries
           ? _value.pinInputTries
           : pinInputTries // ignore: cast_nullable_to_non_nullable
               as int?,
-      maxTryTime: maxTryTime == freezed
+      maxTryTime: freezed == maxTryTime
           ? _value.maxTryTime
           : maxTryTime // ignore: cast_nullable_to_non_nullable
               as String?,
-      pinVerified: pinVerified == freezed
+      pinVerified: freezed == pinVerified
           ? _value.pinVerified
           : pinVerified // ignore: cast_nullable_to_non_nullable
               as bool?,
-      resumeTimer: resumeTimer == freezed
+      resumeTimer: freezed == resumeTimer
           ? _value.resumeTimer
           : resumeTimer // ignore: cast_nullable_to_non_nullable
               as bool?,
-      groupState: groupState == freezed
+      groupState: freezed == groupState
           ? _value.groupState
           : groupState // ignore: cast_nullable_to_non_nullable
               as GroupState?,
-      channelMembersState: channelMembersState == freezed
+      channelMembersState: freezed == channelMembersState
           ? _value.channelMembersState
           : channelMembersState // ignore: cast_nullable_to_non_nullable
               as ChannelMembersState?,
-      screeningToolsState: screeningToolsState == freezed
+      screeningToolsState: freezed == screeningToolsState
           ? _value.screeningToolsState
           : screeningToolsState // ignore: cast_nullable_to_non_nullable
               as ScreeningToolsState?,
-      appointmentState: appointmentState == freezed
+      appointmentState: freezed == appointmentState
           ? _value.appointmentState
           : appointmentState // ignore: cast_nullable_to_non_nullable
               as AppointmentState?,
-      inactiveTime: inactiveTime == freezed
+      inactiveTime: freezed == inactiveTime
           ? _value.inactiveTime
           : inactiveTime // ignore: cast_nullable_to_non_nullable
               as String?,
-      resumeWithPin: resumeWithPin == freezed
+      resumeWithPin: freezed == resumeWithPin
           ? _value.resumeWithPin
           : resumeWithPin // ignore: cast_nullable_to_non_nullable
               as bool?,
-      availableSurveysList: availableSurveysList == freezed
+      availableSurveysList: freezed == availableSurveysList
           ? _value.availableSurveysList
           : availableSurveysList // ignore: cast_nullable_to_non_nullable
               as List<Survey>?,
-      resumeWithPINRetries: resumeWithPINRetries == freezed
+      resumeWithPINRetries: freezed == resumeWithPINRetries
           ? _value.resumeWithPINRetries
           : resumeWithPINRetries // ignore: cast_nullable_to_non_nullable
               as int?,
-      selectedSurvey: selectedSurvey == freezed
+      selectedSurvey: freezed == selectedSurvey
           ? _value.selectedSurvey
           : selectedSurvey // ignore: cast_nullable_to_non_nullable
               as Survey?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $FAQsContentStateCopyWith<$Res>? get profileFAQsContentState {
     if (_value.profileFAQsContentState == null) {
       return null;
@@ -192,22 +197,24 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
 
     return $FAQsContentStateCopyWith<$Res>(_value.profileFAQsContentState!,
         (value) {
-      return _then(_value.copyWith(profileFAQsContentState: value));
+      return _then(_value.copyWith(profileFAQsContentState: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $GroupStateCopyWith<$Res>? get groupState {
     if (_value.groupState == null) {
       return null;
     }
 
     return $GroupStateCopyWith<$Res>(_value.groupState!, (value) {
-      return _then(_value.copyWith(groupState: value));
+      return _then(_value.copyWith(groupState: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $ChannelMembersStateCopyWith<$Res>? get channelMembersState {
     if (_value.channelMembersState == null) {
       return null;
@@ -215,11 +222,12 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
 
     return $ChannelMembersStateCopyWith<$Res>(_value.channelMembersState!,
         (value) {
-      return _then(_value.copyWith(channelMembersState: value));
+      return _then(_value.copyWith(channelMembersState: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $ScreeningToolsStateCopyWith<$Res>? get screeningToolsState {
     if (_value.screeningToolsState == null) {
       return null;
@@ -227,29 +235,31 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
 
     return $ScreeningToolsStateCopyWith<$Res>(_value.screeningToolsState!,
         (value) {
-      return _then(_value.copyWith(screeningToolsState: value));
+      return _then(_value.copyWith(screeningToolsState: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $AppointmentStateCopyWith<$Res>? get appointmentState {
     if (_value.appointmentState == null) {
       return null;
     }
 
     return $AppointmentStateCopyWith<$Res>(_value.appointmentState!, (value) {
-      return _then(_value.copyWith(appointmentState: value));
+      return _then(_value.copyWith(appointmentState: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $SurveyCopyWith<$Res>? get selectedSurvey {
     if (_value.selectedSurvey == null) {
       return null;
     }
 
     return $SurveyCopyWith<$Res>(_value.selectedSurvey!, (value) {
-      return _then(_value.copyWith(selectedSurvey: value));
+      return _then(_value.copyWith(selectedSurvey: value) as $Val);
     });
   }
 }
@@ -260,6 +270,7 @@ abstract class _$$_MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
           _$_MiscState value, $Res Function(_$_MiscState) then) =
       __$$_MiscStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(defaultValue: AppRoutes.phoneLogin)
           String initialRoute,
@@ -296,18 +307,17 @@ abstract class _$$_MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
+class __$$_MiscStateCopyWithImpl<$Res>
+    extends _$MiscStateCopyWithImpl<$Res, _$_MiscState>
     implements _$$_MiscStateCopyWith<$Res> {
   __$$_MiscStateCopyWithImpl(
       _$_MiscState _value, $Res Function(_$_MiscState) _then)
-      : super(_value, (v) => _then(v as _$_MiscState));
+      : super(_value, _then);
 
-  @override
-  _$_MiscState get _value => super._value as _$_MiscState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? initialRoute = freezed,
+    Object? initialRoute = null,
     Object? libraryListItems = freezed,
     Object? profileFAQsContentState = freezed,
     Object? healthPagePINInputTime = freezed,
@@ -326,71 +336,71 @@ class __$$_MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
     Object? selectedSurvey = freezed,
   }) {
     return _then(_$_MiscState(
-      initialRoute: initialRoute == freezed
+      initialRoute: null == initialRoute
           ? _value.initialRoute
           : initialRoute // ignore: cast_nullable_to_non_nullable
               as String,
-      libraryListItems: libraryListItems == freezed
+      libraryListItems: freezed == libraryListItems
           ? _value._libraryListItems
           : libraryListItems // ignore: cast_nullable_to_non_nullable
               as List<dynamic>?,
-      profileFAQsContentState: profileFAQsContentState == freezed
+      profileFAQsContentState: freezed == profileFAQsContentState
           ? _value.profileFAQsContentState
           : profileFAQsContentState // ignore: cast_nullable_to_non_nullable
               as FAQsContentState?,
-      healthPagePINInputTime: healthPagePINInputTime == freezed
+      healthPagePINInputTime: freezed == healthPagePINInputTime
           ? _value.healthPagePINInputTime
           : healthPagePINInputTime // ignore: cast_nullable_to_non_nullable
               as String?,
-      pinInputTries: pinInputTries == freezed
+      pinInputTries: freezed == pinInputTries
           ? _value.pinInputTries
           : pinInputTries // ignore: cast_nullable_to_non_nullable
               as int?,
-      maxTryTime: maxTryTime == freezed
+      maxTryTime: freezed == maxTryTime
           ? _value.maxTryTime
           : maxTryTime // ignore: cast_nullable_to_non_nullable
               as String?,
-      pinVerified: pinVerified == freezed
+      pinVerified: freezed == pinVerified
           ? _value.pinVerified
           : pinVerified // ignore: cast_nullable_to_non_nullable
               as bool?,
-      resumeTimer: resumeTimer == freezed
+      resumeTimer: freezed == resumeTimer
           ? _value.resumeTimer
           : resumeTimer // ignore: cast_nullable_to_non_nullable
               as bool?,
-      groupState: groupState == freezed
+      groupState: freezed == groupState
           ? _value.groupState
           : groupState // ignore: cast_nullable_to_non_nullable
               as GroupState?,
-      channelMembersState: channelMembersState == freezed
+      channelMembersState: freezed == channelMembersState
           ? _value.channelMembersState
           : channelMembersState // ignore: cast_nullable_to_non_nullable
               as ChannelMembersState?,
-      screeningToolsState: screeningToolsState == freezed
+      screeningToolsState: freezed == screeningToolsState
           ? _value.screeningToolsState
           : screeningToolsState // ignore: cast_nullable_to_non_nullable
               as ScreeningToolsState?,
-      appointmentState: appointmentState == freezed
+      appointmentState: freezed == appointmentState
           ? _value.appointmentState
           : appointmentState // ignore: cast_nullable_to_non_nullable
               as AppointmentState?,
-      inactiveTime: inactiveTime == freezed
+      inactiveTime: freezed == inactiveTime
           ? _value.inactiveTime
           : inactiveTime // ignore: cast_nullable_to_non_nullable
               as String?,
-      resumeWithPin: resumeWithPin == freezed
+      resumeWithPin: freezed == resumeWithPin
           ? _value.resumeWithPin
           : resumeWithPin // ignore: cast_nullable_to_non_nullable
               as bool?,
-      availableSurveysList: availableSurveysList == freezed
+      availableSurveysList: freezed == availableSurveysList
           ? _value._availableSurveysList
           : availableSurveysList // ignore: cast_nullable_to_non_nullable
               as List<Survey>?,
-      resumeWithPINRetries: resumeWithPINRetries == freezed
+      resumeWithPINRetries: freezed == resumeWithPINRetries
           ? _value.resumeWithPINRetries
           : resumeWithPINRetries // ignore: cast_nullable_to_non_nullable
               as int?,
-      selectedSurvey: selectedSurvey == freezed
+      selectedSurvey: freezed == selectedSurvey
           ? _value.selectedSurvey
           : selectedSurvey // ignore: cast_nullable_to_non_nullable
               as Survey?,
@@ -488,66 +498,68 @@ class _$_MiscState implements _MiscState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MiscState &&
-            const DeepCollectionEquality()
-                .equals(other.initialRoute, initialRoute) &&
+            (identical(other.initialRoute, initialRoute) ||
+                other.initialRoute == initialRoute) &&
             const DeepCollectionEquality()
                 .equals(other._libraryListItems, _libraryListItems) &&
-            const DeepCollectionEquality().equals(
-                other.profileFAQsContentState, profileFAQsContentState) &&
-            const DeepCollectionEquality()
-                .equals(other.healthPagePINInputTime, healthPagePINInputTime) &&
-            const DeepCollectionEquality()
-                .equals(other.pinInputTries, pinInputTries) &&
-            const DeepCollectionEquality()
-                .equals(other.maxTryTime, maxTryTime) &&
-            const DeepCollectionEquality()
-                .equals(other.pinVerified, pinVerified) &&
-            const DeepCollectionEquality()
-                .equals(other.resumeTimer, resumeTimer) &&
-            const DeepCollectionEquality()
-                .equals(other.groupState, groupState) &&
-            const DeepCollectionEquality()
-                .equals(other.channelMembersState, channelMembersState) &&
-            const DeepCollectionEquality()
-                .equals(other.screeningToolsState, screeningToolsState) &&
-            const DeepCollectionEquality()
-                .equals(other.appointmentState, appointmentState) &&
-            const DeepCollectionEquality()
-                .equals(other.inactiveTime, inactiveTime) &&
-            const DeepCollectionEquality()
-                .equals(other.resumeWithPin, resumeWithPin) &&
+            (identical(
+                    other.profileFAQsContentState, profileFAQsContentState) ||
+                other.profileFAQsContentState == profileFAQsContentState) &&
+            (identical(other.healthPagePINInputTime, healthPagePINInputTime) ||
+                other.healthPagePINInputTime == healthPagePINInputTime) &&
+            (identical(other.pinInputTries, pinInputTries) ||
+                other.pinInputTries == pinInputTries) &&
+            (identical(other.maxTryTime, maxTryTime) ||
+                other.maxTryTime == maxTryTime) &&
+            (identical(other.pinVerified, pinVerified) ||
+                other.pinVerified == pinVerified) &&
+            (identical(other.resumeTimer, resumeTimer) ||
+                other.resumeTimer == resumeTimer) &&
+            (identical(other.groupState, groupState) ||
+                other.groupState == groupState) &&
+            (identical(other.channelMembersState, channelMembersState) ||
+                other.channelMembersState == channelMembersState) &&
+            (identical(other.screeningToolsState, screeningToolsState) ||
+                other.screeningToolsState == screeningToolsState) &&
+            (identical(other.appointmentState, appointmentState) ||
+                other.appointmentState == appointmentState) &&
+            (identical(other.inactiveTime, inactiveTime) ||
+                other.inactiveTime == inactiveTime) &&
+            (identical(other.resumeWithPin, resumeWithPin) ||
+                other.resumeWithPin == resumeWithPin) &&
             const DeepCollectionEquality()
                 .equals(other._availableSurveysList, _availableSurveysList) &&
-            const DeepCollectionEquality()
-                .equals(other.resumeWithPINRetries, resumeWithPINRetries) &&
-            const DeepCollectionEquality()
-                .equals(other.selectedSurvey, selectedSurvey));
+            (identical(other.resumeWithPINRetries, resumeWithPINRetries) ||
+                other.resumeWithPINRetries == resumeWithPINRetries) &&
+            (identical(other.selectedSurvey, selectedSurvey) ||
+                other.selectedSurvey == selectedSurvey));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(initialRoute),
+      initialRoute,
       const DeepCollectionEquality().hash(_libraryListItems),
-      const DeepCollectionEquality().hash(profileFAQsContentState),
-      const DeepCollectionEquality().hash(healthPagePINInputTime),
-      const DeepCollectionEquality().hash(pinInputTries),
-      const DeepCollectionEquality().hash(maxTryTime),
-      const DeepCollectionEquality().hash(pinVerified),
-      const DeepCollectionEquality().hash(resumeTimer),
-      const DeepCollectionEquality().hash(groupState),
-      const DeepCollectionEquality().hash(channelMembersState),
-      const DeepCollectionEquality().hash(screeningToolsState),
-      const DeepCollectionEquality().hash(appointmentState),
-      const DeepCollectionEquality().hash(inactiveTime),
-      const DeepCollectionEquality().hash(resumeWithPin),
+      profileFAQsContentState,
+      healthPagePINInputTime,
+      pinInputTries,
+      maxTryTime,
+      pinVerified,
+      resumeTimer,
+      groupState,
+      channelMembersState,
+      screeningToolsState,
+      appointmentState,
+      inactiveTime,
+      resumeWithPin,
       const DeepCollectionEquality().hash(_availableSurveysList),
-      const DeepCollectionEquality().hash(resumeWithPINRetries),
-      const DeepCollectionEquality().hash(selectedSurvey));
+      resumeWithPINRetries,
+      selectedSurvey);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_MiscStateCopyWith<_$_MiscState> get copyWith =>
       __$$_MiscStateCopyWithImpl<_$_MiscState>(this, _$identity);
 

@@ -1,7 +1,7 @@
 // Flutter imports:
 
 // Package imports:
-import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 
 // Project imports:
@@ -22,7 +22,7 @@ class UpdateContentStateAction extends ReduxAction<AppState> {
   final ContentCategory? selectedCategory;
 
   @override
-  Future<AppState> reduce() async {
+  AppState reduce() {
     final FeedContentState? feedContentState =
         state.contentState?.feedContentState?.copyWith(
       contentItems:

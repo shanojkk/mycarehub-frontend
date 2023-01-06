@@ -39,7 +39,8 @@ mixin _$ScreeningToolsState {
 abstract class $ScreeningToolsStateCopyWith<$Res> {
   factory $ScreeningToolsStateCopyWith(
           ScreeningToolsState value, $Res Function(ScreeningToolsState) then) =
-      _$ScreeningToolsStateCopyWithImpl<$Res>;
+      _$ScreeningToolsStateCopyWithImpl<$Res, ScreeningToolsState>;
+  @useResult
   $Res call(
       {ViolenceState? violenceState,
       ContraceptiveState? contraceptiveState,
@@ -55,14 +56,16 @@ abstract class $ScreeningToolsStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ScreeningToolsStateCopyWithImpl<$Res>
+class _$ScreeningToolsStateCopyWithImpl<$Res, $Val extends ScreeningToolsState>
     implements $ScreeningToolsStateCopyWith<$Res> {
   _$ScreeningToolsStateCopyWithImpl(this._value, this._then);
 
-  final ScreeningToolsState _value;
   // ignore: unused_field
-  final $Res Function(ScreeningToolsState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? violenceState = freezed,
@@ -72,41 +75,43 @@ class _$ScreeningToolsStateCopyWithImpl<$Res>
     Object? availableScreeningTools = freezed,
   }) {
     return _then(_value.copyWith(
-      violenceState: violenceState == freezed
+      violenceState: freezed == violenceState
           ? _value.violenceState
           : violenceState // ignore: cast_nullable_to_non_nullable
               as ViolenceState?,
-      contraceptiveState: contraceptiveState == freezed
+      contraceptiveState: freezed == contraceptiveState
           ? _value.contraceptiveState
           : contraceptiveState // ignore: cast_nullable_to_non_nullable
               as ContraceptiveState?,
-      tbState: tbState == freezed
+      tbState: freezed == tbState
           ? _value.tbState
           : tbState // ignore: cast_nullable_to_non_nullable
               as TBState?,
-      alcoholSubstanceUseState: alcoholSubstanceUseState == freezed
+      alcoholSubstanceUseState: freezed == alcoholSubstanceUseState
           ? _value.alcoholSubstanceUseState
           : alcoholSubstanceUseState // ignore: cast_nullable_to_non_nullable
               as AlcoholSubstanceUseState?,
-      availableScreeningTools: availableScreeningTools == freezed
+      availableScreeningTools: freezed == availableScreeningTools
           ? _value.availableScreeningTools
           : availableScreeningTools // ignore: cast_nullable_to_non_nullable
               as AvailableScreeningTools?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $ViolenceStateCopyWith<$Res>? get violenceState {
     if (_value.violenceState == null) {
       return null;
     }
 
     return $ViolenceStateCopyWith<$Res>(_value.violenceState!, (value) {
-      return _then(_value.copyWith(violenceState: value));
+      return _then(_value.copyWith(violenceState: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $ContraceptiveStateCopyWith<$Res>? get contraceptiveState {
     if (_value.contraceptiveState == null) {
       return null;
@@ -114,22 +119,24 @@ class _$ScreeningToolsStateCopyWithImpl<$Res>
 
     return $ContraceptiveStateCopyWith<$Res>(_value.contraceptiveState!,
         (value) {
-      return _then(_value.copyWith(contraceptiveState: value));
+      return _then(_value.copyWith(contraceptiveState: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $TBStateCopyWith<$Res>? get tbState {
     if (_value.tbState == null) {
       return null;
     }
 
     return $TBStateCopyWith<$Res>(_value.tbState!, (value) {
-      return _then(_value.copyWith(tbState: value));
+      return _then(_value.copyWith(tbState: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $AlcoholSubstanceUseStateCopyWith<$Res>? get alcoholSubstanceUseState {
     if (_value.alcoholSubstanceUseState == null) {
       return null;
@@ -137,11 +144,12 @@ class _$ScreeningToolsStateCopyWithImpl<$Res>
 
     return $AlcoholSubstanceUseStateCopyWith<$Res>(
         _value.alcoholSubstanceUseState!, (value) {
-      return _then(_value.copyWith(alcoholSubstanceUseState: value));
+      return _then(_value.copyWith(alcoholSubstanceUseState: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $AvailableScreeningToolsCopyWith<$Res>? get availableScreeningTools {
     if (_value.availableScreeningTools == null) {
       return null;
@@ -149,7 +157,7 @@ class _$ScreeningToolsStateCopyWithImpl<$Res>
 
     return $AvailableScreeningToolsCopyWith<$Res>(
         _value.availableScreeningTools!, (value) {
-      return _then(_value.copyWith(availableScreeningTools: value));
+      return _then(_value.copyWith(availableScreeningTools: value) as $Val);
     });
   }
 }
@@ -161,6 +169,7 @@ abstract class _$$_ScreeningToolsStateCopyWith<$Res>
           $Res Function(_$_ScreeningToolsState) then) =
       __$$_ScreeningToolsStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {ViolenceState? violenceState,
       ContraceptiveState? contraceptiveState,
@@ -182,15 +191,13 @@ abstract class _$$_ScreeningToolsStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_ScreeningToolsStateCopyWithImpl<$Res>
-    extends _$ScreeningToolsStateCopyWithImpl<$Res>
+    extends _$ScreeningToolsStateCopyWithImpl<$Res, _$_ScreeningToolsState>
     implements _$$_ScreeningToolsStateCopyWith<$Res> {
   __$$_ScreeningToolsStateCopyWithImpl(_$_ScreeningToolsState _value,
       $Res Function(_$_ScreeningToolsState) _then)
-      : super(_value, (v) => _then(v as _$_ScreeningToolsState));
+      : super(_value, _then);
 
-  @override
-  _$_ScreeningToolsState get _value => super._value as _$_ScreeningToolsState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? violenceState = freezed,
@@ -200,23 +207,23 @@ class __$$_ScreeningToolsStateCopyWithImpl<$Res>
     Object? availableScreeningTools = freezed,
   }) {
     return _then(_$_ScreeningToolsState(
-      violenceState: violenceState == freezed
+      violenceState: freezed == violenceState
           ? _value.violenceState
           : violenceState // ignore: cast_nullable_to_non_nullable
               as ViolenceState?,
-      contraceptiveState: contraceptiveState == freezed
+      contraceptiveState: freezed == contraceptiveState
           ? _value.contraceptiveState
           : contraceptiveState // ignore: cast_nullable_to_non_nullable
               as ContraceptiveState?,
-      tbState: tbState == freezed
+      tbState: freezed == tbState
           ? _value.tbState
           : tbState // ignore: cast_nullable_to_non_nullable
               as TBState?,
-      alcoholSubstanceUseState: alcoholSubstanceUseState == freezed
+      alcoholSubstanceUseState: freezed == alcoholSubstanceUseState
           ? _value.alcoholSubstanceUseState
           : alcoholSubstanceUseState // ignore: cast_nullable_to_non_nullable
               as AlcoholSubstanceUseState?,
-      availableScreeningTools: availableScreeningTools == freezed
+      availableScreeningTools: freezed == availableScreeningTools
           ? _value.availableScreeningTools
           : availableScreeningTools // ignore: cast_nullable_to_non_nullable
               as AvailableScreeningTools?,
@@ -258,29 +265,32 @@ class _$_ScreeningToolsState implements _ScreeningToolsState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ScreeningToolsState &&
-            const DeepCollectionEquality()
-                .equals(other.violenceState, violenceState) &&
-            const DeepCollectionEquality()
-                .equals(other.contraceptiveState, contraceptiveState) &&
-            const DeepCollectionEquality().equals(other.tbState, tbState) &&
-            const DeepCollectionEquality().equals(
-                other.alcoholSubstanceUseState, alcoholSubstanceUseState) &&
-            const DeepCollectionEquality().equals(
-                other.availableScreeningTools, availableScreeningTools));
+            (identical(other.violenceState, violenceState) ||
+                other.violenceState == violenceState) &&
+            (identical(other.contraceptiveState, contraceptiveState) ||
+                other.contraceptiveState == contraceptiveState) &&
+            (identical(other.tbState, tbState) || other.tbState == tbState) &&
+            (identical(
+                    other.alcoholSubstanceUseState, alcoholSubstanceUseState) ||
+                other.alcoholSubstanceUseState == alcoholSubstanceUseState) &&
+            (identical(
+                    other.availableScreeningTools, availableScreeningTools) ||
+                other.availableScreeningTools == availableScreeningTools));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(violenceState),
-      const DeepCollectionEquality().hash(contraceptiveState),
-      const DeepCollectionEquality().hash(tbState),
-      const DeepCollectionEquality().hash(alcoholSubstanceUseState),
-      const DeepCollectionEquality().hash(availableScreeningTools));
+      violenceState,
+      contraceptiveState,
+      tbState,
+      alcoholSubstanceUseState,
+      availableScreeningTools);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ScreeningToolsStateCopyWith<_$_ScreeningToolsState> get copyWith =>
       __$$_ScreeningToolsStateCopyWithImpl<_$_ScreeningToolsState>(
           this, _$identity);

@@ -1,6 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:pro_health_360/application/redux/actions/fetch_clinic_information_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';

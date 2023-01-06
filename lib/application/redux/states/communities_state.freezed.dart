@@ -35,7 +35,8 @@ mixin _$CommunitiesState {
 abstract class $CommunitiesStateCopyWith<$Res> {
   factory $CommunitiesStateCopyWith(
           CommunitiesState value, $Res Function(CommunitiesState) then) =
-      _$CommunitiesStateCopyWithImpl<$Res>;
+      _$CommunitiesStateCopyWithImpl<$Res, CommunitiesState>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'invitedCommunities')
           List<Community?>? invitedCommunities,
@@ -43,29 +44,31 @@ abstract class $CommunitiesStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CommunitiesStateCopyWithImpl<$Res>
+class _$CommunitiesStateCopyWithImpl<$Res, $Val extends CommunitiesState>
     implements $CommunitiesStateCopyWith<$Res> {
   _$CommunitiesStateCopyWithImpl(this._value, this._then);
 
-  final CommunitiesState _value;
   // ignore: unused_field
-  final $Res Function(CommunitiesState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? invitedCommunities = freezed,
     Object? flaggedMessages = freezed,
   }) {
     return _then(_value.copyWith(
-      invitedCommunities: invitedCommunities == freezed
+      invitedCommunities: freezed == invitedCommunities
           ? _value.invitedCommunities
           : invitedCommunities // ignore: cast_nullable_to_non_nullable
               as List<Community?>?,
-      flaggedMessages: flaggedMessages == freezed
+      flaggedMessages: freezed == flaggedMessages
           ? _value.flaggedMessages
           : flaggedMessages // ignore: cast_nullable_to_non_nullable
               as List<Message?>?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -76,6 +79,7 @@ abstract class _$$_CommunitiesStateCopyWith<$Res>
           _$_CommunitiesState value, $Res Function(_$_CommunitiesState) then) =
       __$$_CommunitiesStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'invitedCommunities')
           List<Community?>? invitedCommunities,
@@ -84,26 +88,24 @@ abstract class _$$_CommunitiesStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_CommunitiesStateCopyWithImpl<$Res>
-    extends _$CommunitiesStateCopyWithImpl<$Res>
+    extends _$CommunitiesStateCopyWithImpl<$Res, _$_CommunitiesState>
     implements _$$_CommunitiesStateCopyWith<$Res> {
   __$$_CommunitiesStateCopyWithImpl(
       _$_CommunitiesState _value, $Res Function(_$_CommunitiesState) _then)
-      : super(_value, (v) => _then(v as _$_CommunitiesState));
+      : super(_value, _then);
 
-  @override
-  _$_CommunitiesState get _value => super._value as _$_CommunitiesState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? invitedCommunities = freezed,
     Object? flaggedMessages = freezed,
   }) {
     return _then(_$_CommunitiesState(
-      invitedCommunities: invitedCommunities == freezed
+      invitedCommunities: freezed == invitedCommunities
           ? _value._invitedCommunities
           : invitedCommunities // ignore: cast_nullable_to_non_nullable
               as List<Community?>?,
-      flaggedMessages: flaggedMessages == freezed
+      flaggedMessages: freezed == flaggedMessages
           ? _value._flaggedMessages
           : flaggedMessages // ignore: cast_nullable_to_non_nullable
               as List<Message?>?,
@@ -168,6 +170,7 @@ class _$_CommunitiesState implements _CommunitiesState {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_CommunitiesStateCopyWith<_$_CommunitiesState> get copyWith =>
       __$$_CommunitiesStateCopyWithImpl<_$_CommunitiesState>(this, _$identity);
 

@@ -37,7 +37,8 @@ mixin _$UserResponse {
 abstract class $UserResponseCopyWith<$Res> {
   factory $UserResponseCopyWith(
           UserResponse value, $Res Function(UserResponse) then) =
-      _$UserResponseCopyWithImpl<$Res>;
+      _$UserResponseCopyWithImpl<$Res, UserResponse>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'credentials') AuthCredentials? credentials,
       @JsonKey(name: 'clientProfile') ClientState? clientState,
@@ -48,13 +49,16 @@ abstract class $UserResponseCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UserResponseCopyWithImpl<$Res> implements $UserResponseCopyWith<$Res> {
+class _$UserResponseCopyWithImpl<$Res, $Val extends UserResponse>
+    implements $UserResponseCopyWith<$Res> {
   _$UserResponseCopyWithImpl(this._value, this._then);
 
-  final UserResponse _value;
   // ignore: unused_field
-  final $Res Function(UserResponse) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? credentials = freezed,
@@ -62,40 +66,42 @@ class _$UserResponseCopyWithImpl<$Res> implements $UserResponseCopyWith<$Res> {
     Object? streamToken = freezed,
   }) {
     return _then(_value.copyWith(
-      credentials: credentials == freezed
+      credentials: freezed == credentials
           ? _value.credentials
           : credentials // ignore: cast_nullable_to_non_nullable
               as AuthCredentials?,
-      clientState: clientState == freezed
+      clientState: freezed == clientState
           ? _value.clientState
           : clientState // ignore: cast_nullable_to_non_nullable
               as ClientState?,
-      streamToken: streamToken == freezed
+      streamToken: freezed == streamToken
           ? _value.streamToken
           : streamToken // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $AuthCredentialsCopyWith<$Res>? get credentials {
     if (_value.credentials == null) {
       return null;
     }
 
     return $AuthCredentialsCopyWith<$Res>(_value.credentials!, (value) {
-      return _then(_value.copyWith(credentials: value));
+      return _then(_value.copyWith(credentials: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $ClientStateCopyWith<$Res>? get clientState {
     if (_value.clientState == null) {
       return null;
     }
 
     return $ClientStateCopyWith<$Res>(_value.clientState!, (value) {
-      return _then(_value.copyWith(clientState: value));
+      return _then(_value.copyWith(clientState: value) as $Val);
     });
   }
 }
@@ -107,6 +113,7 @@ abstract class _$$_UserResponseCopyWith<$Res>
           _$_UserResponse value, $Res Function(_$_UserResponse) then) =
       __$$_UserResponseCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'credentials') AuthCredentials? credentials,
       @JsonKey(name: 'clientProfile') ClientState? clientState,
@@ -120,15 +127,13 @@ abstract class _$$_UserResponseCopyWith<$Res>
 
 /// @nodoc
 class __$$_UserResponseCopyWithImpl<$Res>
-    extends _$UserResponseCopyWithImpl<$Res>
+    extends _$UserResponseCopyWithImpl<$Res, _$_UserResponse>
     implements _$$_UserResponseCopyWith<$Res> {
   __$$_UserResponseCopyWithImpl(
       _$_UserResponse _value, $Res Function(_$_UserResponse) _then)
-      : super(_value, (v) => _then(v as _$_UserResponse));
+      : super(_value, _then);
 
-  @override
-  _$_UserResponse get _value => super._value as _$_UserResponse;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? credentials = freezed,
@@ -136,15 +141,15 @@ class __$$_UserResponseCopyWithImpl<$Res>
     Object? streamToken = freezed,
   }) {
     return _then(_$_UserResponse(
-      credentials: credentials == freezed
+      credentials: freezed == credentials
           ? _value.credentials
           : credentials // ignore: cast_nullable_to_non_nullable
               as AuthCredentials?,
-      clientState: clientState == freezed
+      clientState: freezed == clientState
           ? _value.clientState
           : clientState // ignore: cast_nullable_to_non_nullable
               as ClientState?,
-      streamToken: streamToken == freezed
+      streamToken: freezed == streamToken
           ? _value.streamToken
           : streamToken // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -183,24 +188,22 @@ class _$_UserResponse implements _UserResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UserResponse &&
-            const DeepCollectionEquality()
-                .equals(other.credentials, credentials) &&
-            const DeepCollectionEquality()
-                .equals(other.clientState, clientState) &&
-            const DeepCollectionEquality()
-                .equals(other.streamToken, streamToken));
+            (identical(other.credentials, credentials) ||
+                other.credentials == credentials) &&
+            (identical(other.clientState, clientState) ||
+                other.clientState == clientState) &&
+            (identical(other.streamToken, streamToken) ||
+                other.streamToken == streamToken));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(credentials),
-      const DeepCollectionEquality().hash(clientState),
-      const DeepCollectionEquality().hash(streamToken));
+  int get hashCode =>
+      Object.hash(runtimeType, credentials, clientState, streamToken);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_UserResponseCopyWith<_$_UserResponse> get copyWith =>
       __$$_UserResponseCopyWithImpl<_$_UserResponse>(this, _$identity);
 

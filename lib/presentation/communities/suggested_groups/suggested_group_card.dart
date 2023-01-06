@@ -1,14 +1,13 @@
 // Flutter imports:
-import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:app_wrapper/app_wrapper.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/actions/communities/add_user_to_group_action.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/view_models/groups/groups_view_model.dart';
-import 'package:shared_themes/colors.dart';
-import 'package:shared_themes/constants.dart';
+import 'package:sghi_core/shared_themes/constants.dart';
 
 // Project imports:
 import 'package:pro_health_360/domain/core/entities/communities/group.dart';
@@ -101,7 +100,7 @@ class SuggestedGroupCard extends StatelessWidget {
                                         ),
                                         action: dismissSnackBar(
                                           closeString,
-                                          white,
+                                          AppColors.whiteColor,
                                           context,
                                         ),
                                       ),

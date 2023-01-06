@@ -45,7 +45,8 @@ mixin _$MedicalData {
 abstract class $MedicalDataCopyWith<$Res> {
   factory $MedicalDataCopyWith(
           MedicalData value, $Res Function(MedicalData) then) =
-      _$MedicalDataCopyWithImpl<$Res>;
+      _$MedicalDataCopyWithImpl<$Res, MedicalData>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'regimen') List<MedicalDataDetails?>? regimen,
       @JsonKey(name: 'allergies') List<MedicalDataDetails?>? allergies,
@@ -56,13 +57,16 @@ abstract class $MedicalDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$MedicalDataCopyWithImpl<$Res> implements $MedicalDataCopyWith<$Res> {
+class _$MedicalDataCopyWithImpl<$Res, $Val extends MedicalData>
+    implements $MedicalDataCopyWith<$Res> {
   _$MedicalDataCopyWithImpl(this._value, this._then);
 
-  final MedicalData _value;
   // ignore: unused_field
-  final $Res Function(MedicalData) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? regimen = freezed,
@@ -73,31 +77,31 @@ class _$MedicalDataCopyWithImpl<$Res> implements $MedicalDataCopyWith<$Res> {
     Object? cd4Count = freezed,
   }) {
     return _then(_value.copyWith(
-      regimen: regimen == freezed
+      regimen: freezed == regimen
           ? _value.regimen
           : regimen // ignore: cast_nullable_to_non_nullable
               as List<MedicalDataDetails?>?,
-      allergies: allergies == freezed
+      allergies: freezed == allergies
           ? _value.allergies
           : allergies // ignore: cast_nullable_to_non_nullable
               as List<MedicalDataDetails?>?,
-      weight: weight == freezed
+      weight: freezed == weight
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as List<MedicalDataDetails?>?,
-      viralLoad: viralLoad == freezed
+      viralLoad: freezed == viralLoad
           ? _value.viralLoad
           : viralLoad // ignore: cast_nullable_to_non_nullable
               as List<MedicalDataDetails?>?,
-      bmi: bmi == freezed
+      bmi: freezed == bmi
           ? _value.bmi
           : bmi // ignore: cast_nullable_to_non_nullable
               as List<MedicalDataDetails?>?,
-      cd4Count: cd4Count == freezed
+      cd4Count: freezed == cd4Count
           ? _value.cd4Count
           : cd4Count // ignore: cast_nullable_to_non_nullable
               as List<MedicalDataDetails?>?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -108,6 +112,7 @@ abstract class _$$_MedicalDataCopyWith<$Res>
           _$_MedicalData value, $Res Function(_$_MedicalData) then) =
       __$$_MedicalDataCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'regimen') List<MedicalDataDetails?>? regimen,
       @JsonKey(name: 'allergies') List<MedicalDataDetails?>? allergies,
@@ -118,15 +123,14 @@ abstract class _$$_MedicalDataCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_MedicalDataCopyWithImpl<$Res> extends _$MedicalDataCopyWithImpl<$Res>
+class __$$_MedicalDataCopyWithImpl<$Res>
+    extends _$MedicalDataCopyWithImpl<$Res, _$_MedicalData>
     implements _$$_MedicalDataCopyWith<$Res> {
   __$$_MedicalDataCopyWithImpl(
       _$_MedicalData _value, $Res Function(_$_MedicalData) _then)
-      : super(_value, (v) => _then(v as _$_MedicalData));
+      : super(_value, _then);
 
-  @override
-  _$_MedicalData get _value => super._value as _$_MedicalData;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? regimen = freezed,
@@ -137,27 +141,27 @@ class __$$_MedicalDataCopyWithImpl<$Res> extends _$MedicalDataCopyWithImpl<$Res>
     Object? cd4Count = freezed,
   }) {
     return _then(_$_MedicalData(
-      regimen: regimen == freezed
+      regimen: freezed == regimen
           ? _value._regimen
           : regimen // ignore: cast_nullable_to_non_nullable
               as List<MedicalDataDetails?>?,
-      allergies: allergies == freezed
+      allergies: freezed == allergies
           ? _value._allergies
           : allergies // ignore: cast_nullable_to_non_nullable
               as List<MedicalDataDetails?>?,
-      weight: weight == freezed
+      weight: freezed == weight
           ? _value._weight
           : weight // ignore: cast_nullable_to_non_nullable
               as List<MedicalDataDetails?>?,
-      viralLoad: viralLoad == freezed
+      viralLoad: freezed == viralLoad
           ? _value._viralLoad
           : viralLoad // ignore: cast_nullable_to_non_nullable
               as List<MedicalDataDetails?>?,
-      bmi: bmi == freezed
+      bmi: freezed == bmi
           ? _value._bmi
           : bmi // ignore: cast_nullable_to_non_nullable
               as List<MedicalDataDetails?>?,
-      cd4Count: cd4Count == freezed
+      cd4Count: freezed == cd4Count
           ? _value._cd4Count
           : cd4Count // ignore: cast_nullable_to_non_nullable
               as List<MedicalDataDetails?>?,
@@ -278,6 +282,7 @@ class _$_MedicalData implements _MedicalData {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_MedicalDataCopyWith<_$_MedicalData> get copyWith =>
       __$$_MedicalDataCopyWithImpl<_$_MedicalData>(this, _$identity);
 

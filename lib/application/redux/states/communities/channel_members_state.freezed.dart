@@ -32,29 +32,32 @@ mixin _$ChannelMembersState {
 abstract class $ChannelMembersStateCopyWith<$Res> {
   factory $ChannelMembersStateCopyWith(
           ChannelMembersState value, $Res Function(ChannelMembersState) then) =
-      _$ChannelMembersStateCopyWithImpl<$Res>;
+      _$ChannelMembersStateCopyWithImpl<$Res, ChannelMembersState>;
+  @useResult
   $Res call({List<Member>? members});
 }
 
 /// @nodoc
-class _$ChannelMembersStateCopyWithImpl<$Res>
+class _$ChannelMembersStateCopyWithImpl<$Res, $Val extends ChannelMembersState>
     implements $ChannelMembersStateCopyWith<$Res> {
   _$ChannelMembersStateCopyWithImpl(this._value, this._then);
 
-  final ChannelMembersState _value;
   // ignore: unused_field
-  final $Res Function(ChannelMembersState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? members = freezed,
   }) {
     return _then(_value.copyWith(
-      members: members == freezed
+      members: freezed == members
           ? _value.members
           : members // ignore: cast_nullable_to_non_nullable
               as List<Member>?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -65,26 +68,25 @@ abstract class _$$_ChannelMembersStateCopyWith<$Res>
           $Res Function(_$_ChannelMembersState) then) =
       __$$_ChannelMembersStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({List<Member>? members});
 }
 
 /// @nodoc
 class __$$_ChannelMembersStateCopyWithImpl<$Res>
-    extends _$ChannelMembersStateCopyWithImpl<$Res>
+    extends _$ChannelMembersStateCopyWithImpl<$Res, _$_ChannelMembersState>
     implements _$$_ChannelMembersStateCopyWith<$Res> {
   __$$_ChannelMembersStateCopyWithImpl(_$_ChannelMembersState _value,
       $Res Function(_$_ChannelMembersState) _then)
-      : super(_value, (v) => _then(v as _$_ChannelMembersState));
+      : super(_value, _then);
 
-  @override
-  _$_ChannelMembersState get _value => super._value as _$_ChannelMembersState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? members = freezed,
   }) {
     return _then(_$_ChannelMembersState(
-      members: members == freezed
+      members: freezed == members
           ? _value._members
           : members // ignore: cast_nullable_to_non_nullable
               as List<Member>?,
@@ -129,6 +131,7 @@ class _$_ChannelMembersState implements _ChannelMembersState {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ChannelMembersStateCopyWith<_$_ChannelMembersState> get copyWith =>
       __$$_ChannelMembersStateCopyWithImpl<_$_ChannelMembersState>(
           this, _$identity);

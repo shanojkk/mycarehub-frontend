@@ -1,9 +1,8 @@
-import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:app_wrapper/app_wrapper.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_graphql_client/src/i_flutter_graphql_client.dart';
 
 import 'package:pro_health_360/application/core/services/analytics_service.dart';
 import 'package:pro_health_360/application/core/services/utils.dart';
@@ -19,6 +18,8 @@ import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/onboarding/login/widgets/phone_login_error_widget.dart';
+import 'package:sghi_core/app_wrapper/enums.dart';
+import 'package:sghi_core/flutter_graphql_client/i_flutter_graphql_client.dart';
 
 /// [LoginPage] is parsed in [PhoneNumberLoginPage]
 ///

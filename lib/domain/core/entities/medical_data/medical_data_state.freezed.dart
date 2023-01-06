@@ -32,41 +32,45 @@ mixin _$MedicalDataState {
 abstract class $MedicalDataStateCopyWith<$Res> {
   factory $MedicalDataStateCopyWith(
           MedicalDataState value, $Res Function(MedicalDataState) then) =
-      _$MedicalDataStateCopyWithImpl<$Res>;
+      _$MedicalDataStateCopyWithImpl<$Res, MedicalDataState>;
+  @useResult
   $Res call({MedicalData? medicalData});
 
   $MedicalDataCopyWith<$Res>? get medicalData;
 }
 
 /// @nodoc
-class _$MedicalDataStateCopyWithImpl<$Res>
+class _$MedicalDataStateCopyWithImpl<$Res, $Val extends MedicalDataState>
     implements $MedicalDataStateCopyWith<$Res> {
   _$MedicalDataStateCopyWithImpl(this._value, this._then);
 
-  final MedicalDataState _value;
   // ignore: unused_field
-  final $Res Function(MedicalDataState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? medicalData = freezed,
   }) {
     return _then(_value.copyWith(
-      medicalData: medicalData == freezed
+      medicalData: freezed == medicalData
           ? _value.medicalData
           : medicalData // ignore: cast_nullable_to_non_nullable
               as MedicalData?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $MedicalDataCopyWith<$Res>? get medicalData {
     if (_value.medicalData == null) {
       return null;
     }
 
     return $MedicalDataCopyWith<$Res>(_value.medicalData!, (value) {
-      return _then(_value.copyWith(medicalData: value));
+      return _then(_value.copyWith(medicalData: value) as $Val);
     });
   }
 }
@@ -78,6 +82,7 @@ abstract class _$$_MedicalDataStateCopyWith<$Res>
           _$_MedicalDataState value, $Res Function(_$_MedicalDataState) then) =
       __$$_MedicalDataStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({MedicalData? medicalData});
 
   @override
@@ -86,21 +91,19 @@ abstract class _$$_MedicalDataStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_MedicalDataStateCopyWithImpl<$Res>
-    extends _$MedicalDataStateCopyWithImpl<$Res>
+    extends _$MedicalDataStateCopyWithImpl<$Res, _$_MedicalDataState>
     implements _$$_MedicalDataStateCopyWith<$Res> {
   __$$_MedicalDataStateCopyWithImpl(
       _$_MedicalDataState _value, $Res Function(_$_MedicalDataState) _then)
-      : super(_value, (v) => _then(v as _$_MedicalDataState));
+      : super(_value, _then);
 
-  @override
-  _$_MedicalDataState get _value => super._value as _$_MedicalDataState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? medicalData = freezed,
   }) {
     return _then(_$_MedicalDataState(
-      medicalData: medicalData == freezed
+      medicalData: freezed == medicalData
           ? _value.medicalData
           : medicalData // ignore: cast_nullable_to_non_nullable
               as MedicalData?,
@@ -129,17 +132,17 @@ class _$_MedicalDataState implements _MedicalDataState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MedicalDataState &&
-            const DeepCollectionEquality()
-                .equals(other.medicalData, medicalData));
+            (identical(other.medicalData, medicalData) ||
+                other.medicalData == medicalData));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(medicalData));
+  int get hashCode => Object.hash(runtimeType, medicalData);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_MedicalDataStateCopyWith<_$_MedicalDataState> get copyWith =>
       __$$_MedicalDataStateCopyWithImpl<_$_MedicalDataState>(this, _$identity);
 

@@ -35,31 +35,35 @@ mixin _$ScreeningQuestionsList {
 abstract class $ScreeningQuestionsListCopyWith<$Res> {
   factory $ScreeningQuestionsListCopyWith(ScreeningQuestionsList value,
           $Res Function(ScreeningQuestionsList) then) =
-      _$ScreeningQuestionsListCopyWithImpl<$Res>;
+      _$ScreeningQuestionsListCopyWithImpl<$Res, ScreeningQuestionsList>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'getScreeningToolQuestions')
           List<ScreeningQuestion>? screeningQuestionsList});
 }
 
 /// @nodoc
-class _$ScreeningQuestionsListCopyWithImpl<$Res>
+class _$ScreeningQuestionsListCopyWithImpl<$Res,
+        $Val extends ScreeningQuestionsList>
     implements $ScreeningQuestionsListCopyWith<$Res> {
   _$ScreeningQuestionsListCopyWithImpl(this._value, this._then);
 
-  final ScreeningQuestionsList _value;
   // ignore: unused_field
-  final $Res Function(ScreeningQuestionsList) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? screeningQuestionsList = freezed,
   }) {
     return _then(_value.copyWith(
-      screeningQuestionsList: screeningQuestionsList == freezed
+      screeningQuestionsList: freezed == screeningQuestionsList
           ? _value.screeningQuestionsList
           : screeningQuestionsList // ignore: cast_nullable_to_non_nullable
               as List<ScreeningQuestion>?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -70,6 +74,7 @@ abstract class _$$_ScreeningQuestionsListCopyWith<$Res>
           $Res Function(_$_ScreeningQuestionsList) then) =
       __$$_ScreeningQuestionsListCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'getScreeningToolQuestions')
           List<ScreeningQuestion>? screeningQuestionsList});
@@ -77,22 +82,20 @@ abstract class _$$_ScreeningQuestionsListCopyWith<$Res>
 
 /// @nodoc
 class __$$_ScreeningQuestionsListCopyWithImpl<$Res>
-    extends _$ScreeningQuestionsListCopyWithImpl<$Res>
+    extends _$ScreeningQuestionsListCopyWithImpl<$Res,
+        _$_ScreeningQuestionsList>
     implements _$$_ScreeningQuestionsListCopyWith<$Res> {
   __$$_ScreeningQuestionsListCopyWithImpl(_$_ScreeningQuestionsList _value,
       $Res Function(_$_ScreeningQuestionsList) _then)
-      : super(_value, (v) => _then(v as _$_ScreeningQuestionsList));
+      : super(_value, _then);
 
-  @override
-  _$_ScreeningQuestionsList get _value =>
-      super._value as _$_ScreeningQuestionsList;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? screeningQuestionsList = freezed,
   }) {
     return _then(_$_ScreeningQuestionsList(
-      screeningQuestionsList: screeningQuestionsList == freezed
+      screeningQuestionsList: freezed == screeningQuestionsList
           ? _value.screeningQuestionsList
           : screeningQuestionsList // ignore: cast_nullable_to_non_nullable
               as List<ScreeningQuestion>?,
@@ -135,6 +138,7 @@ class _$_ScreeningQuestionsList implements _ScreeningQuestionsList {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ScreeningQuestionsListCopyWith<_$_ScreeningQuestionsList> get copyWith =>
       __$$_ScreeningQuestionsListCopyWithImpl<_$_ScreeningQuestionsList>(
           this, _$identity);

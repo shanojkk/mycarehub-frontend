@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:app_wrapper/app_wrapper.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:pro_health_360/application/redux/actions/share_diary_entry_action.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';

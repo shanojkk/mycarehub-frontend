@@ -37,7 +37,8 @@ mixin _$ViolenceState {
 abstract class $ViolenceStateCopyWith<$Res> {
   factory $ViolenceStateCopyWith(
           ViolenceState value, $Res Function(ViolenceState) then) =
-      _$ViolenceStateCopyWithImpl<$Res>;
+      _$ViolenceStateCopyWithImpl<$Res, ViolenceState>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'getScreeningToolQuestions')
           ScreeningQuestionsList? screeningQuestions,
@@ -49,14 +50,16 @@ abstract class $ViolenceStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ViolenceStateCopyWithImpl<$Res>
+class _$ViolenceStateCopyWithImpl<$Res, $Val extends ViolenceState>
     implements $ViolenceStateCopyWith<$Res> {
   _$ViolenceStateCopyWithImpl(this._value, this._then);
 
-  final ViolenceState _value;
   // ignore: unused_field
-  final $Res Function(ViolenceState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? screeningQuestions = freezed,
@@ -65,26 +68,27 @@ class _$ViolenceStateCopyWithImpl<$Res>
     Object? errorAnsweringQuestions = freezed,
   }) {
     return _then(_value.copyWith(
-      screeningQuestions: screeningQuestions == freezed
+      screeningQuestions: freezed == screeningQuestions
           ? _value.screeningQuestions
           : screeningQuestions // ignore: cast_nullable_to_non_nullable
               as ScreeningQuestionsList?,
-      errorFetchingQuestions: errorFetchingQuestions == freezed
+      errorFetchingQuestions: freezed == errorFetchingQuestions
           ? _value.errorFetchingQuestions
           : errorFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-      timeoutFetchingQuestions: timeoutFetchingQuestions == freezed
+      timeoutFetchingQuestions: freezed == timeoutFetchingQuestions
           ? _value.timeoutFetchingQuestions
           : timeoutFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-      errorAnsweringQuestions: errorAnsweringQuestions == freezed
+      errorAnsweringQuestions: freezed == errorAnsweringQuestions
           ? _value.errorAnsweringQuestions
           : errorAnsweringQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $ScreeningQuestionsListCopyWith<$Res>? get screeningQuestions {
     if (_value.screeningQuestions == null) {
       return null;
@@ -92,7 +96,7 @@ class _$ViolenceStateCopyWithImpl<$Res>
 
     return $ScreeningQuestionsListCopyWith<$Res>(_value.screeningQuestions!,
         (value) {
-      return _then(_value.copyWith(screeningQuestions: value));
+      return _then(_value.copyWith(screeningQuestions: value) as $Val);
     });
   }
 }
@@ -104,6 +108,7 @@ abstract class _$$_ViolenceStateCopyWith<$Res>
           _$_ViolenceState value, $Res Function(_$_ViolenceState) then) =
       __$$_ViolenceStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'getScreeningToolQuestions')
           ScreeningQuestionsList? screeningQuestions,
@@ -117,15 +122,13 @@ abstract class _$$_ViolenceStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_ViolenceStateCopyWithImpl<$Res>
-    extends _$ViolenceStateCopyWithImpl<$Res>
+    extends _$ViolenceStateCopyWithImpl<$Res, _$_ViolenceState>
     implements _$$_ViolenceStateCopyWith<$Res> {
   __$$_ViolenceStateCopyWithImpl(
       _$_ViolenceState _value, $Res Function(_$_ViolenceState) _then)
-      : super(_value, (v) => _then(v as _$_ViolenceState));
+      : super(_value, _then);
 
-  @override
-  _$_ViolenceState get _value => super._value as _$_ViolenceState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? screeningQuestions = freezed,
@@ -134,19 +137,19 @@ class __$$_ViolenceStateCopyWithImpl<$Res>
     Object? errorAnsweringQuestions = freezed,
   }) {
     return _then(_$_ViolenceState(
-      screeningQuestions: screeningQuestions == freezed
+      screeningQuestions: freezed == screeningQuestions
           ? _value.screeningQuestions
           : screeningQuestions // ignore: cast_nullable_to_non_nullable
               as ScreeningQuestionsList?,
-      errorFetchingQuestions: errorFetchingQuestions == freezed
+      errorFetchingQuestions: freezed == errorFetchingQuestions
           ? _value.errorFetchingQuestions
           : errorFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-      timeoutFetchingQuestions: timeoutFetchingQuestions == freezed
+      timeoutFetchingQuestions: freezed == timeoutFetchingQuestions
           ? _value.timeoutFetchingQuestions
           : timeoutFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-      errorAnsweringQuestions: errorAnsweringQuestions == freezed
+      errorAnsweringQuestions: freezed == errorAnsweringQuestions
           ? _value.errorAnsweringQuestions
           : errorAnsweringQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
@@ -186,27 +189,30 @@ class _$_ViolenceState implements _ViolenceState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ViolenceState &&
-            const DeepCollectionEquality()
-                .equals(other.screeningQuestions, screeningQuestions) &&
-            const DeepCollectionEquality()
-                .equals(other.errorFetchingQuestions, errorFetchingQuestions) &&
-            const DeepCollectionEquality().equals(
-                other.timeoutFetchingQuestions, timeoutFetchingQuestions) &&
-            const DeepCollectionEquality().equals(
-                other.errorAnsweringQuestions, errorAnsweringQuestions));
+            (identical(other.screeningQuestions, screeningQuestions) ||
+                other.screeningQuestions == screeningQuestions) &&
+            (identical(other.errorFetchingQuestions, errorFetchingQuestions) ||
+                other.errorFetchingQuestions == errorFetchingQuestions) &&
+            (identical(
+                    other.timeoutFetchingQuestions, timeoutFetchingQuestions) ||
+                other.timeoutFetchingQuestions == timeoutFetchingQuestions) &&
+            (identical(
+                    other.errorAnsweringQuestions, errorAnsweringQuestions) ||
+                other.errorAnsweringQuestions == errorAnsweringQuestions));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(screeningQuestions),
-      const DeepCollectionEquality().hash(errorFetchingQuestions),
-      const DeepCollectionEquality().hash(timeoutFetchingQuestions),
-      const DeepCollectionEquality().hash(errorAnsweringQuestions));
+      screeningQuestions,
+      errorFetchingQuestions,
+      timeoutFetchingQuestions,
+      errorAnsweringQuestions);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ViolenceStateCopyWith<_$_ViolenceState> get copyWith =>
       __$$_ViolenceStateCopyWithImpl<_$_ViolenceState>(this, _$identity);
 

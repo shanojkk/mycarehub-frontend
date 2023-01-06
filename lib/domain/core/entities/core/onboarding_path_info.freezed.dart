@@ -32,39 +32,42 @@ mixin _$OnboardingPathInfo {
 abstract class $OnboardingPathInfoCopyWith<$Res> {
   factory $OnboardingPathInfoCopyWith(
           OnboardingPathInfo value, $Res Function(OnboardingPathInfo) then) =
-      _$OnboardingPathInfoCopyWithImpl<$Res>;
+      _$OnboardingPathInfoCopyWithImpl<$Res, OnboardingPathInfo>;
+  @useResult
   $Res call({String nextRoute, String previousRoute, dynamic arguments});
 }
 
 /// @nodoc
-class _$OnboardingPathInfoCopyWithImpl<$Res>
+class _$OnboardingPathInfoCopyWithImpl<$Res, $Val extends OnboardingPathInfo>
     implements $OnboardingPathInfoCopyWith<$Res> {
   _$OnboardingPathInfoCopyWithImpl(this._value, this._then);
 
-  final OnboardingPathInfo _value;
   // ignore: unused_field
-  final $Res Function(OnboardingPathInfo) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? nextRoute = freezed,
-    Object? previousRoute = freezed,
-    Object? arguments = freezed,
+    Object? nextRoute = null,
+    Object? previousRoute = null,
+    Object? arguments = null,
   }) {
     return _then(_value.copyWith(
-      nextRoute: nextRoute == freezed
+      nextRoute: null == nextRoute
           ? _value.nextRoute
           : nextRoute // ignore: cast_nullable_to_non_nullable
               as String,
-      previousRoute: previousRoute == freezed
+      previousRoute: null == previousRoute
           ? _value.previousRoute
           : previousRoute // ignore: cast_nullable_to_non_nullable
               as String,
-      arguments: arguments == freezed
+      arguments: null == arguments
           ? _value.arguments
           : arguments // ignore: cast_nullable_to_non_nullable
               as dynamic,
-    ));
+    ) as $Val);
   }
 }
 
@@ -75,36 +78,35 @@ abstract class _$$_OnboardingPathInfoCopyWith<$Res>
           $Res Function(_$_OnboardingPathInfo) then) =
       __$$_OnboardingPathInfoCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String nextRoute, String previousRoute, dynamic arguments});
 }
 
 /// @nodoc
 class __$$_OnboardingPathInfoCopyWithImpl<$Res>
-    extends _$OnboardingPathInfoCopyWithImpl<$Res>
+    extends _$OnboardingPathInfoCopyWithImpl<$Res, _$_OnboardingPathInfo>
     implements _$$_OnboardingPathInfoCopyWith<$Res> {
   __$$_OnboardingPathInfoCopyWithImpl(
       _$_OnboardingPathInfo _value, $Res Function(_$_OnboardingPathInfo) _then)
-      : super(_value, (v) => _then(v as _$_OnboardingPathInfo));
+      : super(_value, _then);
 
-  @override
-  _$_OnboardingPathInfo get _value => super._value as _$_OnboardingPathInfo;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? nextRoute = freezed,
-    Object? previousRoute = freezed,
-    Object? arguments = freezed,
+    Object? nextRoute = null,
+    Object? previousRoute = null,
+    Object? arguments = null,
   }) {
     return _then(_$_OnboardingPathInfo(
-      nextRoute: nextRoute == freezed
+      nextRoute: null == nextRoute
           ? _value.nextRoute
           : nextRoute // ignore: cast_nullable_to_non_nullable
               as String,
-      previousRoute: previousRoute == freezed
+      previousRoute: null == previousRoute
           ? _value.previousRoute
           : previousRoute // ignore: cast_nullable_to_non_nullable
               as String,
-      arguments: arguments == freezed
+      arguments: null == arguments
           ? _value.arguments
           : arguments // ignore: cast_nullable_to_non_nullable
               as dynamic,
@@ -141,21 +143,20 @@ class _$_OnboardingPathInfo implements _OnboardingPathInfo {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_OnboardingPathInfo &&
-            const DeepCollectionEquality().equals(other.nextRoute, nextRoute) &&
-            const DeepCollectionEquality()
-                .equals(other.previousRoute, previousRoute) &&
+            (identical(other.nextRoute, nextRoute) ||
+                other.nextRoute == nextRoute) &&
+            (identical(other.previousRoute, previousRoute) ||
+                other.previousRoute == previousRoute) &&
             const DeepCollectionEquality().equals(other.arguments, arguments));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(nextRoute),
-      const DeepCollectionEquality().hash(previousRoute),
+  int get hashCode => Object.hash(runtimeType, nextRoute, previousRoute,
       const DeepCollectionEquality().hash(arguments));
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_OnboardingPathInfoCopyWith<_$_OnboardingPathInfo> get copyWith =>
       __$$_OnboardingPathInfoCopyWithImpl<_$_OnboardingPathInfo>(
           this, _$identity);

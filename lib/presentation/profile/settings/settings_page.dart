@@ -1,6 +1,6 @@
 // Package imports:
-import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:app_wrapper/app_wrapper.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 // Project imports:
@@ -117,7 +117,9 @@ class SettingsPage extends StatelessWidget {
                     ),
                     Container(
                       width: MediaQuery.of(context).size.width / 1.4,
-                      padding: const EdgeInsets.only(bottom: 10,),
+                      padding: const EdgeInsets.only(
+                        bottom: 10,
+                      ),
                       child: Text(
                         copyrightDescriptionString,
                         style: normalSize10Text(Colors.grey),

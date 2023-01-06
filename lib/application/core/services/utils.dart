@@ -2,8 +2,7 @@
 import 'dart:async';
 
 // Package imports:
-import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:app_wrapper/app_wrapper.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
@@ -32,6 +31,7 @@ import 'package:pro_health_360/domain/core/value_objects/constants.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:sghi_core/app_wrapper/enums.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// Returns setup data depending on the environment the app is running on
@@ -187,7 +187,7 @@ Future<dynamic> showFeedbackBottomSheet({
 /// ```
 Map<String, String> extractNextRefillDate(String loadedDate) {
   final DateTime parsedDate =
-      DateTime?.tryParse(loadedDate)?.toLocal() ?? DateTime.now();
+      DateTime.tryParse(loadedDate)?.toLocal() ?? DateTime.now();
   final String postDay = DateFormat.d().format(parsedDate);
   final String postMonth = DateFormat.MMM().format(parsedDate);
 

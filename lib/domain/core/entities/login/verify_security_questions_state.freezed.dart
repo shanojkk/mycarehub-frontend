@@ -34,29 +34,34 @@ abstract class $VerifySecurityQuestionsStateCopyWith<$Res> {
   factory $VerifySecurityQuestionsStateCopyWith(
           VerifySecurityQuestionsState value,
           $Res Function(VerifySecurityQuestionsState) then) =
-      _$VerifySecurityQuestionsStateCopyWithImpl<$Res>;
+      _$VerifySecurityQuestionsStateCopyWithImpl<$Res,
+          VerifySecurityQuestionsState>;
+  @useResult
   $Res call({bool hasVerifiedSecurityQuestions});
 }
 
 /// @nodoc
-class _$VerifySecurityQuestionsStateCopyWithImpl<$Res>
+class _$VerifySecurityQuestionsStateCopyWithImpl<$Res,
+        $Val extends VerifySecurityQuestionsState>
     implements $VerifySecurityQuestionsStateCopyWith<$Res> {
   _$VerifySecurityQuestionsStateCopyWithImpl(this._value, this._then);
 
-  final VerifySecurityQuestionsState _value;
   // ignore: unused_field
-  final $Res Function(VerifySecurityQuestionsState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? hasVerifiedSecurityQuestions = freezed,
+    Object? hasVerifiedSecurityQuestions = null,
   }) {
     return _then(_value.copyWith(
-      hasVerifiedSecurityQuestions: hasVerifiedSecurityQuestions == freezed
+      hasVerifiedSecurityQuestions: null == hasVerifiedSecurityQuestions
           ? _value.hasVerifiedSecurityQuestions
           : hasVerifiedSecurityQuestions // ignore: cast_nullable_to_non_nullable
               as bool,
-    ));
+    ) as $Val);
   }
 }
 
@@ -68,28 +73,27 @@ abstract class _$$_VerifySecurityQuestionsStateCopyWith<$Res>
           $Res Function(_$_VerifySecurityQuestionsState) then) =
       __$$_VerifySecurityQuestionsStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({bool hasVerifiedSecurityQuestions});
 }
 
 /// @nodoc
 class __$$_VerifySecurityQuestionsStateCopyWithImpl<$Res>
-    extends _$VerifySecurityQuestionsStateCopyWithImpl<$Res>
+    extends _$VerifySecurityQuestionsStateCopyWithImpl<$Res,
+        _$_VerifySecurityQuestionsState>
     implements _$$_VerifySecurityQuestionsStateCopyWith<$Res> {
   __$$_VerifySecurityQuestionsStateCopyWithImpl(
       _$_VerifySecurityQuestionsState _value,
       $Res Function(_$_VerifySecurityQuestionsState) _then)
-      : super(_value, (v) => _then(v as _$_VerifySecurityQuestionsState));
+      : super(_value, _then);
 
-  @override
-  _$_VerifySecurityQuestionsState get _value =>
-      super._value as _$_VerifySecurityQuestionsState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? hasVerifiedSecurityQuestions = freezed,
+    Object? hasVerifiedSecurityQuestions = null,
   }) {
     return _then(_$_VerifySecurityQuestionsState(
-      hasVerifiedSecurityQuestions: hasVerifiedSecurityQuestions == freezed
+      hasVerifiedSecurityQuestions: null == hasVerifiedSecurityQuestions
           ? _value.hasVerifiedSecurityQuestions
           : hasVerifiedSecurityQuestions // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -119,18 +123,19 @@ class _$_VerifySecurityQuestionsState implements _VerifySecurityQuestionsState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_VerifySecurityQuestionsState &&
-            const DeepCollectionEquality().equals(
-                other.hasVerifiedSecurityQuestions,
-                hasVerifiedSecurityQuestions));
+            (identical(other.hasVerifiedSecurityQuestions,
+                    hasVerifiedSecurityQuestions) ||
+                other.hasVerifiedSecurityQuestions ==
+                    hasVerifiedSecurityQuestions));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(hasVerifiedSecurityQuestions));
+  int get hashCode => Object.hash(runtimeType, hasVerifiedSecurityQuestions);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_VerifySecurityQuestionsStateCopyWith<_$_VerifySecurityQuestionsState>
       get copyWith => __$$_VerifySecurityQuestionsStateCopyWithImpl<
           _$_VerifySecurityQuestionsState>(this, _$identity);

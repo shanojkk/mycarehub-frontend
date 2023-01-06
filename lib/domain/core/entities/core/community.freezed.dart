@@ -46,7 +46,8 @@ mixin _$Community {
 /// @nodoc
 abstract class $CommunityCopyWith<$Res> {
   factory $CommunityCopyWith(Community value, $Res Function(Community) then) =
-      _$CommunityCopyWithImpl<$Res>;
+      _$CommunityCopyWithImpl<$Res, Community>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'name') String? name,
@@ -62,13 +63,16 @@ abstract class $CommunityCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CommunityCopyWithImpl<$Res> implements $CommunityCopyWith<$Res> {
+class _$CommunityCopyWithImpl<$Res, $Val extends Community>
+    implements $CommunityCopyWith<$Res> {
   _$CommunityCopyWithImpl(this._value, this._then);
 
-  final Community _value;
   // ignore: unused_field
-  final $Res Function(Community) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
@@ -81,60 +85,62 @@ class _$CommunityCopyWithImpl<$Res> implements $CommunityCopyWith<$Res> {
     Object? clientType = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      memberCount: memberCount == freezed
+      memberCount: freezed == memberCount
           ? _value.memberCount
           : memberCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdBy: createdBy == freezed
+      createdBy: freezed == createdBy
           ? _value.createdBy
           : createdBy // ignore: cast_nullable_to_non_nullable
               as Member?,
-      ageRange: ageRange == freezed
+      ageRange: freezed == ageRange
           ? _value.ageRange
           : ageRange // ignore: cast_nullable_to_non_nullable
               as AgeRange?,
-      gender: gender == freezed
+      gender: freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as List<Gender>?,
-      clientType: clientType == freezed
+      clientType: freezed == clientType
           ? _value.clientType
           : clientType // ignore: cast_nullable_to_non_nullable
               as List<ClientType>?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $MemberCopyWith<$Res>? get createdBy {
     if (_value.createdBy == null) {
       return null;
     }
 
     return $MemberCopyWith<$Res>(_value.createdBy!, (value) {
-      return _then(_value.copyWith(createdBy: value));
+      return _then(_value.copyWith(createdBy: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $AgeRangeCopyWith<$Res>? get ageRange {
     if (_value.ageRange == null) {
       return null;
     }
 
     return $AgeRangeCopyWith<$Res>(_value.ageRange!, (value) {
-      return _then(_value.copyWith(ageRange: value));
+      return _then(_value.copyWith(ageRange: value) as $Val);
     });
   }
 }
@@ -145,6 +151,7 @@ abstract class _$$_CommunityCopyWith<$Res> implements $CommunityCopyWith<$Res> {
           _$_Community value, $Res Function(_$_Community) then) =
       __$$_CommunityCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'name') String? name,
@@ -162,15 +169,14 @@ abstract class _$$_CommunityCopyWith<$Res> implements $CommunityCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_CommunityCopyWithImpl<$Res> extends _$CommunityCopyWithImpl<$Res>
+class __$$_CommunityCopyWithImpl<$Res>
+    extends _$CommunityCopyWithImpl<$Res, _$_Community>
     implements _$$_CommunityCopyWith<$Res> {
   __$$_CommunityCopyWithImpl(
       _$_Community _value, $Res Function(_$_Community) _then)
-      : super(_value, (v) => _then(v as _$_Community));
+      : super(_value, _then);
 
-  @override
-  _$_Community get _value => super._value as _$_Community;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
@@ -183,35 +189,35 @@ class __$$_CommunityCopyWithImpl<$Res> extends _$CommunityCopyWithImpl<$Res>
     Object? clientType = freezed,
   }) {
     return _then(_$_Community(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      memberCount: memberCount == freezed
+      memberCount: freezed == memberCount
           ? _value.memberCount
           : memberCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdBy: createdBy == freezed
+      createdBy: freezed == createdBy
           ? _value.createdBy
           : createdBy // ignore: cast_nullable_to_non_nullable
               as Member?,
-      ageRange: ageRange == freezed
+      ageRange: freezed == ageRange
           ? _value.ageRange
           : ageRange // ignore: cast_nullable_to_non_nullable
               as AgeRange?,
-      gender: gender == freezed
+      gender: freezed == gender
           ? _value._gender
           : gender // ignore: cast_nullable_to_non_nullable
               as List<Gender>?,
-      clientType: clientType == freezed
+      clientType: freezed == clientType
           ? _value._clientType
           : clientType // ignore: cast_nullable_to_non_nullable
               as List<ClientType>?,
@@ -285,14 +291,16 @@ class _$_Community implements _Community {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Community &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality()
-                .equals(other.memberCount, memberCount) &&
-            const DeepCollectionEquality()
-                .equals(other.description, description) &&
-            const DeepCollectionEquality().equals(other.createdBy, createdBy) &&
-            const DeepCollectionEquality().equals(other.ageRange, ageRange) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.memberCount, memberCount) ||
+                other.memberCount == memberCount) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.ageRange, ageRange) ||
+                other.ageRange == ageRange) &&
             const DeepCollectionEquality().equals(other._gender, _gender) &&
             const DeepCollectionEquality()
                 .equals(other._clientType, _clientType));
@@ -302,17 +310,18 @@ class _$_Community implements _Community {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(memberCount),
-      const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(createdBy),
-      const DeepCollectionEquality().hash(ageRange),
+      id,
+      name,
+      memberCount,
+      description,
+      createdBy,
+      ageRange,
       const DeepCollectionEquality().hash(_gender),
       const DeepCollectionEquality().hash(_clientType));
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_CommunityCopyWith<_$_Community> get copyWith =>
       __$$_CommunityCopyWithImpl<_$_Community>(this, _$identity);
 

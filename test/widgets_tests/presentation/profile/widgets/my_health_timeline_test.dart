@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_graphql_client/graph_client.dart';
+import 'package:sghi_core/flutter_graphql_client/i_flutter_graphql_client.dart';
 
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';

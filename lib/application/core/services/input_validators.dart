@@ -1,7 +1,7 @@
 // Dart imports:
 
 // Package imports:
-import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 // Flutter imports:
 import 'package:intl/intl.dart';
 // Project imports:
@@ -32,7 +32,6 @@ String? appointmentDateValidator(String? value) {
   }
   return null;
 }
-
 
 String validateFeedback({
   required FeedBackType feedBackType,

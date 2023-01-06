@@ -80,7 +80,8 @@ mixin _$OnboardingState {
 abstract class $OnboardingStateCopyWith<$Res> {
   factory $OnboardingStateCopyWith(
           OnboardingState value, $Res Function(OnboardingState) then) =
-      _$OnboardingStateCopyWithImpl<$Res>;
+      _$OnboardingStateCopyWithImpl<$Res, OnboardingState>;
+  @useResult
   $Res call(
       {TermsAndConditions? termsAndConditions,
       List<SecurityQuestion>? securityQuestions,
@@ -109,14 +110,16 @@ abstract class $OnboardingStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$OnboardingStateCopyWithImpl<$Res>
+class _$OnboardingStateCopyWithImpl<$Res, $Val extends OnboardingState>
     implements $OnboardingStateCopyWith<$Res> {
   _$OnboardingStateCopyWithImpl(this._value, this._then);
 
-  final OnboardingState _value;
   // ignore: unused_field
-  final $Res Function(OnboardingState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? termsAndConditions = freezed,
@@ -142,94 +145,95 @@ class _$OnboardingStateCopyWithImpl<$Res>
     Object? nickName = freezed,
   }) {
     return _then(_value.copyWith(
-      termsAndConditions: termsAndConditions == freezed
+      termsAndConditions: freezed == termsAndConditions
           ? _value.termsAndConditions
           : termsAndConditions // ignore: cast_nullable_to_non_nullable
               as TermsAndConditions?,
-      securityQuestions: securityQuestions == freezed
+      securityQuestions: freezed == securityQuestions
           ? _value.securityQuestions
           : securityQuestions // ignore: cast_nullable_to_non_nullable
               as List<SecurityQuestion>?,
-      securityQuestionResponses: securityQuestionResponses == freezed
+      securityQuestionResponses: freezed == securityQuestionResponses
           ? _value.securityQuestionResponses
           : securityQuestionResponses // ignore: cast_nullable_to_non_nullable
               as List<SecurityQuestionResponse>?,
-      verifySecurityQuestionsState: verifySecurityQuestionsState == freezed
+      verifySecurityQuestionsState: freezed == verifySecurityQuestionsState
           ? _value.verifySecurityQuestionsState
           : verifySecurityQuestionsState // ignore: cast_nullable_to_non_nullable
               as VerifySecurityQuestionsState?,
-      currentOnboardingStage: currentOnboardingStage == freezed
+      currentOnboardingStage: freezed == currentOnboardingStage
           ? _value.currentOnboardingStage
           : currentOnboardingStage // ignore: cast_nullable_to_non_nullable
               as CurrentOnboardingStage?,
-      isPhoneVerified: isPhoneVerified == freezed
+      isPhoneVerified: freezed == isPhoneVerified
           ? _value.isPhoneVerified
           : isPhoneVerified // ignore: cast_nullable_to_non_nullable
               as bool?,
-      hasSetSecurityQuestions: hasSetSecurityQuestions == freezed
+      hasSetSecurityQuestions: freezed == hasSetSecurityQuestions
           ? _value.hasSetSecurityQuestions
           : hasSetSecurityQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-      hasVerifiedSecurityQuestions: hasVerifiedSecurityQuestions == freezed
+      hasVerifiedSecurityQuestions: freezed == hasVerifiedSecurityQuestions
           ? _value.hasVerifiedSecurityQuestions
           : hasVerifiedSecurityQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-      hasSetNickName: hasSetNickName == freezed
+      hasSetNickName: freezed == hasSetNickName
           ? _value.hasSetNickName
           : hasSetNickName // ignore: cast_nullable_to_non_nullable
               as bool?,
-      hasSetPin: hasSetPin == freezed
+      hasSetPin: freezed == hasSetPin
           ? _value.hasSetPin
           : hasSetPin // ignore: cast_nullable_to_non_nullable
               as bool?,
-      hasAcceptedTerms: hasAcceptedTerms == freezed
+      hasAcceptedTerms: freezed == hasAcceptedTerms
           ? _value.hasAcceptedTerms
           : hasAcceptedTerms // ignore: cast_nullable_to_non_nullable
               as bool?,
-      phoneNumber: phoneNumber == freezed
+      phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
-      pin: pin == freezed
+      pin: freezed == pin
           ? _value.pin
           : pin // ignore: cast_nullable_to_non_nullable
               as String?,
-      confirmPIN: confirmPIN == freezed
+      confirmPIN: freezed == confirmPIN
           ? _value.confirmPIN
           : confirmPIN // ignore: cast_nullable_to_non_nullable
               as String?,
-      otp: otp == freezed
+      otp: freezed == otp
           ? _value.otp
           : otp // ignore: cast_nullable_to_non_nullable
               as String?,
-      failedLoginCount: failedLoginCount == freezed
+      failedLoginCount: freezed == failedLoginCount
           ? _value.failedLoginCount
           : failedLoginCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      invalidCredentials: invalidCredentials == freezed
+      invalidCredentials: freezed == invalidCredentials
           ? _value.invalidCredentials
           : invalidCredentials // ignore: cast_nullable_to_non_nullable
               as bool?,
-      invalidOTP: invalidOTP == freezed
+      invalidOTP: freezed == invalidOTP
           ? _value.invalidOTP
           : invalidOTP // ignore: cast_nullable_to_non_nullable
               as bool?,
-      failedToSendOTP: failedToSendOTP == freezed
+      failedToSendOTP: freezed == failedToSendOTP
           ? _value.failedToSendOTP
           : failedToSendOTP // ignore: cast_nullable_to_non_nullable
               as bool?,
-      canResendOTP: canResendOTP == freezed
+      canResendOTP: freezed == canResendOTP
           ? _value.canResendOTP
           : canResendOTP // ignore: cast_nullable_to_non_nullable
               as bool?,
-      nickName: nickName == freezed
+      nickName: freezed == nickName
           ? _value.nickName
           : nickName // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $TermsAndConditionsCopyWith<$Res>? get termsAndConditions {
     if (_value.termsAndConditions == null) {
       return null;
@@ -237,11 +241,12 @@ class _$OnboardingStateCopyWithImpl<$Res>
 
     return $TermsAndConditionsCopyWith<$Res>(_value.termsAndConditions!,
         (value) {
-      return _then(_value.copyWith(termsAndConditions: value));
+      return _then(_value.copyWith(termsAndConditions: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $VerifySecurityQuestionsStateCopyWith<$Res>?
       get verifySecurityQuestionsState {
     if (_value.verifySecurityQuestionsState == null) {
@@ -250,7 +255,8 @@ class _$OnboardingStateCopyWithImpl<$Res>
 
     return $VerifySecurityQuestionsStateCopyWith<$Res>(
         _value.verifySecurityQuestionsState!, (value) {
-      return _then(_value.copyWith(verifySecurityQuestionsState: value));
+      return _then(
+          _value.copyWith(verifySecurityQuestionsState: value) as $Val);
     });
   }
 }
@@ -262,6 +268,7 @@ abstract class _$$_OnboardingStateCopyWith<$Res>
           _$_OnboardingState value, $Res Function(_$_OnboardingState) then) =
       __$$_OnboardingStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {TermsAndConditions? termsAndConditions,
       List<SecurityQuestion>? securityQuestions,
@@ -293,15 +300,13 @@ abstract class _$$_OnboardingStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_OnboardingStateCopyWithImpl<$Res>
-    extends _$OnboardingStateCopyWithImpl<$Res>
+    extends _$OnboardingStateCopyWithImpl<$Res, _$_OnboardingState>
     implements _$$_OnboardingStateCopyWith<$Res> {
   __$$_OnboardingStateCopyWithImpl(
       _$_OnboardingState _value, $Res Function(_$_OnboardingState) _then)
-      : super(_value, (v) => _then(v as _$_OnboardingState));
+      : super(_value, _then);
 
-  @override
-  _$_OnboardingState get _value => super._value as _$_OnboardingState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? termsAndConditions = freezed,
@@ -327,87 +332,87 @@ class __$$_OnboardingStateCopyWithImpl<$Res>
     Object? nickName = freezed,
   }) {
     return _then(_$_OnboardingState(
-      termsAndConditions: termsAndConditions == freezed
+      termsAndConditions: freezed == termsAndConditions
           ? _value.termsAndConditions
           : termsAndConditions // ignore: cast_nullable_to_non_nullable
               as TermsAndConditions?,
-      securityQuestions: securityQuestions == freezed
+      securityQuestions: freezed == securityQuestions
           ? _value.securityQuestions
           : securityQuestions // ignore: cast_nullable_to_non_nullable
               as List<SecurityQuestion>?,
-      securityQuestionResponses: securityQuestionResponses == freezed
+      securityQuestionResponses: freezed == securityQuestionResponses
           ? _value.securityQuestionResponses
           : securityQuestionResponses // ignore: cast_nullable_to_non_nullable
               as List<SecurityQuestionResponse>?,
-      verifySecurityQuestionsState: verifySecurityQuestionsState == freezed
+      verifySecurityQuestionsState: freezed == verifySecurityQuestionsState
           ? _value.verifySecurityQuestionsState
           : verifySecurityQuestionsState // ignore: cast_nullable_to_non_nullable
               as VerifySecurityQuestionsState?,
-      currentOnboardingStage: currentOnboardingStage == freezed
+      currentOnboardingStage: freezed == currentOnboardingStage
           ? _value.currentOnboardingStage
           : currentOnboardingStage // ignore: cast_nullable_to_non_nullable
               as CurrentOnboardingStage?,
-      isPhoneVerified: isPhoneVerified == freezed
+      isPhoneVerified: freezed == isPhoneVerified
           ? _value.isPhoneVerified
           : isPhoneVerified // ignore: cast_nullable_to_non_nullable
               as bool?,
-      hasSetSecurityQuestions: hasSetSecurityQuestions == freezed
+      hasSetSecurityQuestions: freezed == hasSetSecurityQuestions
           ? _value.hasSetSecurityQuestions
           : hasSetSecurityQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-      hasVerifiedSecurityQuestions: hasVerifiedSecurityQuestions == freezed
+      hasVerifiedSecurityQuestions: freezed == hasVerifiedSecurityQuestions
           ? _value.hasVerifiedSecurityQuestions
           : hasVerifiedSecurityQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-      hasSetNickName: hasSetNickName == freezed
+      hasSetNickName: freezed == hasSetNickName
           ? _value.hasSetNickName
           : hasSetNickName // ignore: cast_nullable_to_non_nullable
               as bool?,
-      hasSetPin: hasSetPin == freezed
+      hasSetPin: freezed == hasSetPin
           ? _value.hasSetPin
           : hasSetPin // ignore: cast_nullable_to_non_nullable
               as bool?,
-      hasAcceptedTerms: hasAcceptedTerms == freezed
+      hasAcceptedTerms: freezed == hasAcceptedTerms
           ? _value.hasAcceptedTerms
           : hasAcceptedTerms // ignore: cast_nullable_to_non_nullable
               as bool?,
-      phoneNumber: phoneNumber == freezed
+      phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
-      pin: pin == freezed
+      pin: freezed == pin
           ? _value.pin
           : pin // ignore: cast_nullable_to_non_nullable
               as String?,
-      confirmPIN: confirmPIN == freezed
+      confirmPIN: freezed == confirmPIN
           ? _value.confirmPIN
           : confirmPIN // ignore: cast_nullable_to_non_nullable
               as String?,
-      otp: otp == freezed
+      otp: freezed == otp
           ? _value.otp
           : otp // ignore: cast_nullable_to_non_nullable
               as String?,
-      failedLoginCount: failedLoginCount == freezed
+      failedLoginCount: freezed == failedLoginCount
           ? _value.failedLoginCount
           : failedLoginCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      invalidCredentials: invalidCredentials == freezed
+      invalidCredentials: freezed == invalidCredentials
           ? _value.invalidCredentials
           : invalidCredentials // ignore: cast_nullable_to_non_nullable
               as bool?,
-      invalidOTP: invalidOTP == freezed
+      invalidOTP: freezed == invalidOTP
           ? _value.invalidOTP
           : invalidOTP // ignore: cast_nullable_to_non_nullable
               as bool?,
-      failedToSendOTP: failedToSendOTP == freezed
+      failedToSendOTP: freezed == failedToSendOTP
           ? _value.failedToSendOTP
           : failedToSendOTP // ignore: cast_nullable_to_non_nullable
               as bool?,
-      canResendOTP: canResendOTP == freezed
+      canResendOTP: freezed == canResendOTP
           ? _value.canResendOTP
           : canResendOTP // ignore: cast_nullable_to_non_nullable
               as bool?,
-      nickName: nickName == freezed
+      nickName: freezed == nickName
           ? _value.nickName
           : nickName // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -523,77 +528,82 @@ class _$_OnboardingState implements _OnboardingState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_OnboardingState &&
-            const DeepCollectionEquality()
-                .equals(other.termsAndConditions, termsAndConditions) &&
+            (identical(other.termsAndConditions, termsAndConditions) ||
+                other.termsAndConditions == termsAndConditions) &&
             const DeepCollectionEquality()
                 .equals(other.securityQuestions, securityQuestions) &&
             const DeepCollectionEquality().equals(
                 other.securityQuestionResponses, securityQuestionResponses) &&
-            const DeepCollectionEquality().equals(
-                other.verifySecurityQuestionsState,
-                verifySecurityQuestionsState) &&
-            const DeepCollectionEquality()
-                .equals(other.currentOnboardingStage, currentOnboardingStage) &&
-            const DeepCollectionEquality()
-                .equals(other.isPhoneVerified, isPhoneVerified) &&
-            const DeepCollectionEquality().equals(
-                other.hasSetSecurityQuestions, hasSetSecurityQuestions) &&
-            const DeepCollectionEquality().equals(
-                other.hasVerifiedSecurityQuestions,
-                hasVerifiedSecurityQuestions) &&
-            const DeepCollectionEquality()
-                .equals(other.hasSetNickName, hasSetNickName) &&
-            const DeepCollectionEquality().equals(other.hasSetPin, hasSetPin) &&
-            const DeepCollectionEquality()
-                .equals(other.hasAcceptedTerms, hasAcceptedTerms) &&
-            const DeepCollectionEquality()
-                .equals(other.phoneNumber, phoneNumber) &&
-            const DeepCollectionEquality().equals(other.pin, pin) &&
-            const DeepCollectionEquality()
-                .equals(other.confirmPIN, confirmPIN) &&
-            const DeepCollectionEquality().equals(other.otp, otp) &&
-            const DeepCollectionEquality()
-                .equals(other.failedLoginCount, failedLoginCount) &&
-            const DeepCollectionEquality()
-                .equals(other.invalidCredentials, invalidCredentials) &&
-            const DeepCollectionEquality()
-                .equals(other.invalidOTP, invalidOTP) &&
-            const DeepCollectionEquality()
-                .equals(other.failedToSendOTP, failedToSendOTP) &&
-            const DeepCollectionEquality()
-                .equals(other.canResendOTP, canResendOTP) &&
-            const DeepCollectionEquality().equals(other.nickName, nickName));
+            (identical(other.verifySecurityQuestionsState,
+                    verifySecurityQuestionsState) ||
+                other.verifySecurityQuestionsState ==
+                    verifySecurityQuestionsState) &&
+            (identical(other.currentOnboardingStage, currentOnboardingStage) ||
+                other.currentOnboardingStage == currentOnboardingStage) &&
+            (identical(other.isPhoneVerified, isPhoneVerified) ||
+                other.isPhoneVerified == isPhoneVerified) &&
+            (identical(other.hasSetSecurityQuestions, hasSetSecurityQuestions) ||
+                other.hasSetSecurityQuestions == hasSetSecurityQuestions) &&
+            (identical(other.hasVerifiedSecurityQuestions,
+                    hasVerifiedSecurityQuestions) ||
+                other.hasVerifiedSecurityQuestions ==
+                    hasVerifiedSecurityQuestions) &&
+            (identical(other.hasSetNickName, hasSetNickName) ||
+                other.hasSetNickName == hasSetNickName) &&
+            (identical(other.hasSetPin, hasSetPin) ||
+                other.hasSetPin == hasSetPin) &&
+            (identical(other.hasAcceptedTerms, hasAcceptedTerms) ||
+                other.hasAcceptedTerms == hasAcceptedTerms) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
+            (identical(other.pin, pin) || other.pin == pin) &&
+            (identical(other.confirmPIN, confirmPIN) ||
+                other.confirmPIN == confirmPIN) &&
+            (identical(other.otp, otp) || other.otp == otp) &&
+            (identical(other.failedLoginCount, failedLoginCount) ||
+                other.failedLoginCount == failedLoginCount) &&
+            (identical(other.invalidCredentials, invalidCredentials) ||
+                other.invalidCredentials == invalidCredentials) &&
+            (identical(other.invalidOTP, invalidOTP) ||
+                other.invalidOTP == invalidOTP) &&
+            (identical(other.failedToSendOTP, failedToSendOTP) ||
+                other.failedToSendOTP == failedToSendOTP) &&
+            (identical(other.canResendOTP, canResendOTP) ||
+                other.canResendOTP == canResendOTP) &&
+            (identical(other.nickName, nickName) ||
+                other.nickName == nickName));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        const DeepCollectionEquality().hash(termsAndConditions),
+        termsAndConditions,
         const DeepCollectionEquality().hash(securityQuestions),
         const DeepCollectionEquality().hash(securityQuestionResponses),
-        const DeepCollectionEquality().hash(verifySecurityQuestionsState),
-        const DeepCollectionEquality().hash(currentOnboardingStage),
-        const DeepCollectionEquality().hash(isPhoneVerified),
-        const DeepCollectionEquality().hash(hasSetSecurityQuestions),
-        const DeepCollectionEquality().hash(hasVerifiedSecurityQuestions),
-        const DeepCollectionEquality().hash(hasSetNickName),
-        const DeepCollectionEquality().hash(hasSetPin),
-        const DeepCollectionEquality().hash(hasAcceptedTerms),
-        const DeepCollectionEquality().hash(phoneNumber),
-        const DeepCollectionEquality().hash(pin),
-        const DeepCollectionEquality().hash(confirmPIN),
-        const DeepCollectionEquality().hash(otp),
-        const DeepCollectionEquality().hash(failedLoginCount),
-        const DeepCollectionEquality().hash(invalidCredentials),
-        const DeepCollectionEquality().hash(invalidOTP),
-        const DeepCollectionEquality().hash(failedToSendOTP),
-        const DeepCollectionEquality().hash(canResendOTP),
-        const DeepCollectionEquality().hash(nickName)
+        verifySecurityQuestionsState,
+        currentOnboardingStage,
+        isPhoneVerified,
+        hasSetSecurityQuestions,
+        hasVerifiedSecurityQuestions,
+        hasSetNickName,
+        hasSetPin,
+        hasAcceptedTerms,
+        phoneNumber,
+        pin,
+        confirmPIN,
+        otp,
+        failedLoginCount,
+        invalidCredentials,
+        invalidOTP,
+        failedToSendOTP,
+        canResendOTP,
+        nickName
       ]);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_OnboardingStateCopyWith<_$_OnboardingState> get copyWith =>
       __$$_OnboardingStateCopyWithImpl<_$_OnboardingState>(this, _$identity);
 

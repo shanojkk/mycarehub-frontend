@@ -1,8 +1,7 @@
-import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_graphql_client/src/i_flutter_graphql_client.dart';
 import 'package:intl/intl.dart';
 import 'package:pro_health_360/application/redux/actions/health_timeline/fetch_health_timeline_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
@@ -20,6 +19,7 @@ import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/profile/health_timeline/timeline_indicator.dart';
 import 'package:pro_health_360/presentation/profile/widgets/custom_timeline_list_item.dart';
+import 'package:sghi_core/flutter_graphql_client/i_flutter_graphql_client.dart';
 
 class MyHealthTimeline extends StatefulWidget {
   const MyHealthTimeline({

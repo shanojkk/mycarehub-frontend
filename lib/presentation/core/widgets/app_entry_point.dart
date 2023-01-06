@@ -1,8 +1,8 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:sghi_core/app_wrapper/app_wrapper.dart';
 
 // Package imports:
-import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 
 // Project imports:

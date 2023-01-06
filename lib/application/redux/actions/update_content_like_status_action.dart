@@ -2,22 +2,21 @@
 import 'dart:async';
 
 // Flutter imports:
-import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:pro_health_360/presentation/core/theme/theme.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:app_wrapper/app_wrapper.dart';
+import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 import 'package:async_redux/async_redux.dart';
 
-import 'package:flutter_graphql_client/graph_client.dart';
+import 'package:sghi_core/flutter_graphql_client/i_flutter_graphql_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:pro_health_360/application/core/services/analytics_service.dart';
 import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_events.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
-import 'package:shared_themes/colors.dart';
-import 'package:shared_themes/constants.dart';
-
+import 'package:sghi_core/shared_themes/constants.dart';
 // Project imports:
 import 'package:pro_health_360/application/core/graphql/mutations.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
@@ -94,7 +93,7 @@ class UpdateContentLikeStatusAction extends ReduxAction<AppState> {
           SnackBar(
             content: Text((error as MyAfyaException).message.toString()),
             duration: const Duration(seconds: kShortSnackBarDuration),
-            action: dismissSnackBar(closeString, white, context),
+            action: dismissSnackBar(closeString, AppColors.whiteColor, context),
           ),
         );
     }

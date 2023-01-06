@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:afya_moja_core/src/domain/core/entities/notifications/notification_filter.dart';
+import 'package:sghi_core/afya_moja_core/src/domain/core/entities/notifications/notification_filter.dart';
 
 part 'notification_filter_state.freezed.dart';
 part 'notification_filter_state.g.dart';

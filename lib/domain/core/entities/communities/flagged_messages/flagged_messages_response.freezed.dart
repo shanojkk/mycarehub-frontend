@@ -34,30 +34,34 @@ mixin _$FlaggedMessagesResponse {
 abstract class $FlaggedMessagesResponseCopyWith<$Res> {
   factory $FlaggedMessagesResponseCopyWith(FlaggedMessagesResponse value,
           $Res Function(FlaggedMessagesResponse) then) =
-      _$FlaggedMessagesResponseCopyWithImpl<$Res>;
+      _$FlaggedMessagesResponseCopyWithImpl<$Res, FlaggedMessagesResponse>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'listFlaggedMessages') List<MessageObject?>? messages});
 }
 
 /// @nodoc
-class _$FlaggedMessagesResponseCopyWithImpl<$Res>
+class _$FlaggedMessagesResponseCopyWithImpl<$Res,
+        $Val extends FlaggedMessagesResponse>
     implements $FlaggedMessagesResponseCopyWith<$Res> {
   _$FlaggedMessagesResponseCopyWithImpl(this._value, this._then);
 
-  final FlaggedMessagesResponse _value;
   // ignore: unused_field
-  final $Res Function(FlaggedMessagesResponse) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? messages = freezed,
   }) {
     return _then(_value.copyWith(
-      messages: messages == freezed
+      messages: freezed == messages
           ? _value.messages
           : messages // ignore: cast_nullable_to_non_nullable
               as List<MessageObject?>?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -68,28 +72,27 @@ abstract class _$$_FlaggedMessagesResponseCopyWith<$Res>
           $Res Function(_$_FlaggedMessagesResponse) then) =
       __$$_FlaggedMessagesResponseCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'listFlaggedMessages') List<MessageObject?>? messages});
 }
 
 /// @nodoc
 class __$$_FlaggedMessagesResponseCopyWithImpl<$Res>
-    extends _$FlaggedMessagesResponseCopyWithImpl<$Res>
+    extends _$FlaggedMessagesResponseCopyWithImpl<$Res,
+        _$_FlaggedMessagesResponse>
     implements _$$_FlaggedMessagesResponseCopyWith<$Res> {
   __$$_FlaggedMessagesResponseCopyWithImpl(_$_FlaggedMessagesResponse _value,
       $Res Function(_$_FlaggedMessagesResponse) _then)
-      : super(_value, (v) => _then(v as _$_FlaggedMessagesResponse));
+      : super(_value, _then);
 
-  @override
-  _$_FlaggedMessagesResponse get _value =>
-      super._value as _$_FlaggedMessagesResponse;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? messages = freezed,
   }) {
     return _then(_$_FlaggedMessagesResponse(
-      messages: messages == freezed
+      messages: freezed == messages
           ? _value._messages
           : messages // ignore: cast_nullable_to_non_nullable
               as List<MessageObject?>?,
@@ -138,6 +141,7 @@ class _$_FlaggedMessagesResponse implements _FlaggedMessagesResponse {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_FlaggedMessagesResponseCopyWith<_$_FlaggedMessagesResponse>
       get copyWith =>
           __$$_FlaggedMessagesResponseCopyWithImpl<_$_FlaggedMessagesResponse>(

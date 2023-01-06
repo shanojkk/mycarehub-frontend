@@ -36,36 +36,40 @@ mixin _$ListGroupInfoResponse {
 abstract class $ListGroupInfoResponseCopyWith<$Res> {
   factory $ListGroupInfoResponseCopyWith(ListGroupInfoResponse value,
           $Res Function(ListGroupInfoResponse) then) =
-      _$ListGroupInfoResponseCopyWithImpl<$Res>;
+      _$ListGroupInfoResponseCopyWithImpl<$Res, ListGroupInfoResponse>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'listCommunityMembers') List<GroupMember?>? groupMembers,
       @JsonKey(name: 'listCommunities') List<Community?>? communities});
 }
 
 /// @nodoc
-class _$ListGroupInfoResponseCopyWithImpl<$Res>
+class _$ListGroupInfoResponseCopyWithImpl<$Res,
+        $Val extends ListGroupInfoResponse>
     implements $ListGroupInfoResponseCopyWith<$Res> {
   _$ListGroupInfoResponseCopyWithImpl(this._value, this._then);
 
-  final ListGroupInfoResponse _value;
   // ignore: unused_field
-  final $Res Function(ListGroupInfoResponse) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? groupMembers = freezed,
     Object? communities = freezed,
   }) {
     return _then(_value.copyWith(
-      groupMembers: groupMembers == freezed
+      groupMembers: freezed == groupMembers
           ? _value.groupMembers
           : groupMembers // ignore: cast_nullable_to_non_nullable
               as List<GroupMember?>?,
-      communities: communities == freezed
+      communities: freezed == communities
           ? _value.communities
           : communities // ignore: cast_nullable_to_non_nullable
               as List<Community?>?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -76,6 +80,7 @@ abstract class _$$_ListGroupInfoResponseCopyWith<$Res>
           $Res Function(_$_ListGroupInfoResponse) then) =
       __$$_ListGroupInfoResponseCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'listCommunityMembers') List<GroupMember?>? groupMembers,
       @JsonKey(name: 'listCommunities') List<Community?>? communities});
@@ -83,27 +88,24 @@ abstract class _$$_ListGroupInfoResponseCopyWith<$Res>
 
 /// @nodoc
 class __$$_ListGroupInfoResponseCopyWithImpl<$Res>
-    extends _$ListGroupInfoResponseCopyWithImpl<$Res>
+    extends _$ListGroupInfoResponseCopyWithImpl<$Res, _$_ListGroupInfoResponse>
     implements _$$_ListGroupInfoResponseCopyWith<$Res> {
   __$$_ListGroupInfoResponseCopyWithImpl(_$_ListGroupInfoResponse _value,
       $Res Function(_$_ListGroupInfoResponse) _then)
-      : super(_value, (v) => _then(v as _$_ListGroupInfoResponse));
+      : super(_value, _then);
 
-  @override
-  _$_ListGroupInfoResponse get _value =>
-      super._value as _$_ListGroupInfoResponse;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? groupMembers = freezed,
     Object? communities = freezed,
   }) {
     return _then(_$_ListGroupInfoResponse(
-      groupMembers: groupMembers == freezed
+      groupMembers: freezed == groupMembers
           ? _value._groupMembers
           : groupMembers // ignore: cast_nullable_to_non_nullable
               as List<GroupMember?>?,
-      communities: communities == freezed
+      communities: freezed == communities
           ? _value._communities
           : communities // ignore: cast_nullable_to_non_nullable
               as List<Community?>?,
@@ -170,6 +172,7 @@ class _$_ListGroupInfoResponse implements _ListGroupInfoResponse {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ListGroupInfoResponseCopyWith<_$_ListGroupInfoResponse> get copyWith =>
       __$$_ListGroupInfoResponseCopyWithImpl<_$_ListGroupInfoResponse>(
           this, _$identity);

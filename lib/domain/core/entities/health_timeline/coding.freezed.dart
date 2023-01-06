@@ -44,7 +44,8 @@ mixin _$Coding {
 /// @nodoc
 abstract class $CodingCopyWith<$Res> {
   factory $CodingCopyWith(Coding value, $Res Function(Coding) then) =
-      _$CodingCopyWithImpl<$Res>;
+      _$CodingCopyWithImpl<$Res, Coding>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'system') String? system,
       @JsonKey(name: 'code') String? code,
@@ -52,13 +53,16 @@ abstract class $CodingCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CodingCopyWithImpl<$Res> implements $CodingCopyWith<$Res> {
+class _$CodingCopyWithImpl<$Res, $Val extends Coding>
+    implements $CodingCopyWith<$Res> {
   _$CodingCopyWithImpl(this._value, this._then);
 
-  final Coding _value;
   // ignore: unused_field
-  final $Res Function(Coding) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? system = freezed,
@@ -66,19 +70,19 @@ class _$CodingCopyWithImpl<$Res> implements $CodingCopyWith<$Res> {
     Object? display = freezed,
   }) {
     return _then(_value.copyWith(
-      system: system == freezed
+      system: freezed == system
           ? _value.system
           : system // ignore: cast_nullable_to_non_nullable
               as String?,
-      code: code == freezed
+      code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String?,
-      display: display == freezed
+      display: freezed == display
           ? _value.display
           : display // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -87,6 +91,7 @@ abstract class _$$_CodingCopyWith<$Res> implements $CodingCopyWith<$Res> {
   factory _$$_CodingCopyWith(_$_Coding value, $Res Function(_$_Coding) then) =
       __$$_CodingCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'system') String? system,
       @JsonKey(name: 'code') String? code,
@@ -94,14 +99,13 @@ abstract class _$$_CodingCopyWith<$Res> implements $CodingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_CodingCopyWithImpl<$Res> extends _$CodingCopyWithImpl<$Res>
+class __$$_CodingCopyWithImpl<$Res>
+    extends _$CodingCopyWithImpl<$Res, _$_Coding>
     implements _$$_CodingCopyWith<$Res> {
   __$$_CodingCopyWithImpl(_$_Coding _value, $Res Function(_$_Coding) _then)
-      : super(_value, (v) => _then(v as _$_Coding));
+      : super(_value, _then);
 
-  @override
-  _$_Coding get _value => super._value as _$_Coding;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? system = freezed,
@@ -109,15 +113,15 @@ class __$$_CodingCopyWithImpl<$Res> extends _$CodingCopyWithImpl<$Res>
     Object? display = freezed,
   }) {
     return _then(_$_Coding(
-      system: system == freezed
+      system: freezed == system
           ? _value.system
           : system // ignore: cast_nullable_to_non_nullable
               as String?,
-      code: code == freezed
+      code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String?,
-      display: display == freezed
+      display: freezed == display
           ? _value.display
           : display // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -165,21 +169,18 @@ class _$_Coding implements _Coding {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Coding &&
-            const DeepCollectionEquality().equals(other.system, system) &&
-            const DeepCollectionEquality().equals(other.code, code) &&
-            const DeepCollectionEquality().equals(other.display, display));
+            (identical(other.system, system) || other.system == system) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.display, display) || other.display == display));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(system),
-      const DeepCollectionEquality().hash(code),
-      const DeepCollectionEquality().hash(display));
+  int get hashCode => Object.hash(runtimeType, system, code, display);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_CodingCopyWith<_$_Coding> get copyWith =>
       __$$_CodingCopyWithImpl<_$_Coding>(this, _$identity);
 

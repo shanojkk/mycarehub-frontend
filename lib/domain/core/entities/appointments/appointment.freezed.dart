@@ -39,7 +39,8 @@ mixin _$Appointment {
 abstract class $AppointmentCopyWith<$Res> {
   factory $AppointmentCopyWith(
           Appointment value, $Res Function(Appointment) then) =
-      _$AppointmentCopyWithImpl<$Res>;
+      _$AppointmentCopyWithImpl<$Res, Appointment>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'ID')
           String? id,
@@ -52,38 +53,41 @@ abstract class $AppointmentCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AppointmentCopyWithImpl<$Res> implements $AppointmentCopyWith<$Res> {
+class _$AppointmentCopyWithImpl<$Res, $Val extends Appointment>
+    implements $AppointmentCopyWith<$Res> {
   _$AppointmentCopyWithImpl(this._value, this._then);
 
-  final Appointment _value;
   // ignore: unused_field
-  final $Res Function(Appointment) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
     Object? reason = freezed,
     Object? date = freezed,
-    Object? pendingReschedule = freezed,
+    Object? pendingReschedule = null,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      reason: reason == freezed
+      reason: freezed == reason
           ? _value.reason
           : reason // ignore: cast_nullable_to_non_nullable
               as String?,
-      date: date == freezed
+      date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as String?,
-      pendingReschedule: pendingReschedule == freezed
+      pendingReschedule: null == pendingReschedule
           ? _value.pendingReschedule
           : pendingReschedule // ignore: cast_nullable_to_non_nullable
               as bool,
-    ));
+    ) as $Val);
   }
 }
 
@@ -94,6 +98,7 @@ abstract class _$$_AppointmentCopyWith<$Res>
           _$_Appointment value, $Res Function(_$_Appointment) then) =
       __$$_AppointmentCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'ID')
           String? id,
@@ -106,36 +111,35 @@ abstract class _$$_AppointmentCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_AppointmentCopyWithImpl<$Res> extends _$AppointmentCopyWithImpl<$Res>
+class __$$_AppointmentCopyWithImpl<$Res>
+    extends _$AppointmentCopyWithImpl<$Res, _$_Appointment>
     implements _$$_AppointmentCopyWith<$Res> {
   __$$_AppointmentCopyWithImpl(
       _$_Appointment _value, $Res Function(_$_Appointment) _then)
-      : super(_value, (v) => _then(v as _$_Appointment));
+      : super(_value, _then);
 
-  @override
-  _$_Appointment get _value => super._value as _$_Appointment;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
     Object? reason = freezed,
     Object? date = freezed,
-    Object? pendingReschedule = freezed,
+    Object? pendingReschedule = null,
   }) {
     return _then(_$_Appointment(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      reason: reason == freezed
+      reason: freezed == reason
           ? _value.reason
           : reason // ignore: cast_nullable_to_non_nullable
               as String?,
-      date: date == freezed
+      date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as String?,
-      pendingReschedule: pendingReschedule == freezed
+      pendingReschedule: null == pendingReschedule
           ? _value.pendingReschedule
           : pendingReschedule // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -182,24 +186,21 @@ class _$_Appointment implements _Appointment {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Appointment &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.reason, reason) &&
-            const DeepCollectionEquality().equals(other.date, date) &&
-            const DeepCollectionEquality()
-                .equals(other.pendingReschedule, pendingReschedule));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.reason, reason) || other.reason == reason) &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.pendingReschedule, pendingReschedule) ||
+                other.pendingReschedule == pendingReschedule));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(reason),
-      const DeepCollectionEquality().hash(date),
-      const DeepCollectionEquality().hash(pendingReschedule));
+  int get hashCode =>
+      Object.hash(runtimeType, id, reason, date, pendingReschedule);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_AppointmentCopyWith<_$_Appointment> get copyWith =>
       __$$_AppointmentCopyWithImpl<_$_Appointment>(this, _$identity);
 

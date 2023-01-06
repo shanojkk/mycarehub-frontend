@@ -3,13 +3,14 @@ import 'dart:async';
 import 'dart:convert';
 
 // Package imports:
-import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:app_wrapper/app_wrapper.dart';
+import 'package:pro_health_360/presentation/core/theme/theme.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 import 'package:async_redux/async_redux.dart';
 
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter_graphql_client/graph_client.dart';
+import 'package:sghi_core/flutter_graphql_client/i_flutter_graphql_client.dart';
 import 'package:http/http.dart' as http;
 // Project imports:
 import 'package:pro_health_360/application/core/graphql/mutations.dart';
@@ -19,8 +20,7 @@ import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_events.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
-import 'package:shared_themes/colors.dart';
-import 'package:shared_themes/constants.dart';
+import 'package:sghi_core/shared_themes/constants.dart';
 
 /// [ShareContentAction] is a Redux Action whose job is to update the number of shares whenever a user shares content
 ///
@@ -86,7 +86,7 @@ class ShareContentAction extends ReduxAction<AppState> {
           SnackBar(
             content: Text((error as MyAfyaException).message.toString()),
             duration: const Duration(seconds: kShortSnackBarDuration),
-            action: dismissSnackBar(closeString, white, context),
+            action: dismissSnackBar(closeString, AppColors.whiteColor, context),
           ),
         );
       return error;

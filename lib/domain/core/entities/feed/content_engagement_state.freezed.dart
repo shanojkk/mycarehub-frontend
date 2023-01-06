@@ -36,36 +36,40 @@ mixin _$ContentEngagementState {
 abstract class $ContentEngagementStateCopyWith<$Res> {
   factory $ContentEngagementStateCopyWith(ContentEngagementState value,
           $Res Function(ContentEngagementState) then) =
-      _$ContentEngagementStateCopyWithImpl<$Res>;
+      _$ContentEngagementStateCopyWithImpl<$Res, ContentEngagementState>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'contentId') int? contentId,
       @JsonKey(name: 'contentOpenedAt') String? contentOpenedAt});
 }
 
 /// @nodoc
-class _$ContentEngagementStateCopyWithImpl<$Res>
+class _$ContentEngagementStateCopyWithImpl<$Res,
+        $Val extends ContentEngagementState>
     implements $ContentEngagementStateCopyWith<$Res> {
   _$ContentEngagementStateCopyWithImpl(this._value, this._then);
 
-  final ContentEngagementState _value;
   // ignore: unused_field
-  final $Res Function(ContentEngagementState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? contentId = freezed,
     Object? contentOpenedAt = freezed,
   }) {
     return _then(_value.copyWith(
-      contentId: contentId == freezed
+      contentId: freezed == contentId
           ? _value.contentId
           : contentId // ignore: cast_nullable_to_non_nullable
               as int?,
-      contentOpenedAt: contentOpenedAt == freezed
+      contentOpenedAt: freezed == contentOpenedAt
           ? _value.contentOpenedAt
           : contentOpenedAt // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -76,6 +80,7 @@ abstract class _$$_ContentEngagementStateCopyWith<$Res>
           $Res Function(_$_ContentEngagementState) then) =
       __$$_ContentEngagementStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'contentId') int? contentId,
       @JsonKey(name: 'contentOpenedAt') String? contentOpenedAt});
@@ -83,27 +88,25 @@ abstract class _$$_ContentEngagementStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_ContentEngagementStateCopyWithImpl<$Res>
-    extends _$ContentEngagementStateCopyWithImpl<$Res>
+    extends _$ContentEngagementStateCopyWithImpl<$Res,
+        _$_ContentEngagementState>
     implements _$$_ContentEngagementStateCopyWith<$Res> {
   __$$_ContentEngagementStateCopyWithImpl(_$_ContentEngagementState _value,
       $Res Function(_$_ContentEngagementState) _then)
-      : super(_value, (v) => _then(v as _$_ContentEngagementState));
+      : super(_value, _then);
 
-  @override
-  _$_ContentEngagementState get _value =>
-      super._value as _$_ContentEngagementState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? contentId = freezed,
     Object? contentOpenedAt = freezed,
   }) {
     return _then(_$_ContentEngagementState(
-      contentId: contentId == freezed
+      contentId: freezed == contentId
           ? _value.contentId
           : contentId // ignore: cast_nullable_to_non_nullable
               as int?,
-      contentOpenedAt: contentOpenedAt == freezed
+      contentOpenedAt: freezed == contentOpenedAt
           ? _value.contentOpenedAt
           : contentOpenedAt // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -138,20 +141,19 @@ class _$_ContentEngagementState implements _ContentEngagementState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ContentEngagementState &&
-            const DeepCollectionEquality().equals(other.contentId, contentId) &&
-            const DeepCollectionEquality()
-                .equals(other.contentOpenedAt, contentOpenedAt));
+            (identical(other.contentId, contentId) ||
+                other.contentId == contentId) &&
+            (identical(other.contentOpenedAt, contentOpenedAt) ||
+                other.contentOpenedAt == contentOpenedAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(contentId),
-      const DeepCollectionEquality().hash(contentOpenedAt));
+  int get hashCode => Object.hash(runtimeType, contentId, contentOpenedAt);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ContentEngagementStateCopyWith<_$_ContentEngagementState> get copyWith =>
       __$$_ContentEngagementStateCopyWithImpl<_$_ContentEngagementState>(
           this, _$identity);

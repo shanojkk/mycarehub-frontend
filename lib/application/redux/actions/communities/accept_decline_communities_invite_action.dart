@@ -29,7 +29,7 @@ class AcceptDeclineCommunitiesInviteAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final String memberId = state.clientState!.id!;
+    final String memberId = state.clientState!.clientProfile!.id!;
     final Map<String, dynamic> variables = <String, dynamic>{
       'memberID': memberId,
       'communityID': communityID,

@@ -34,7 +34,7 @@ class FetchCaregiverInformationAction extends ReduxAction<AppState> {
   @override
   Future<AppState?> reduce() async {
     final Map<String, dynamic> variables = <String, dynamic>{
-      'clientID': state.clientState!.id,
+      'clientID': state.clientState!.clientProfile!.id,
     };
     final Response response =
         await client.query(getClientCaregiverQuery, variables);

@@ -1,4 +1,5 @@
 // Package imports:
+import 'package:pro_health_360/domain/core/entities/core/client_profile.dart';
 import 'package:pro_health_360/domain/core/entities/core/user.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
@@ -31,6 +32,7 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
     this.notifications,
     this.hasCaregiverInfo,
     this.user,
+    this.roles,
   });
 
   final bool? active;
@@ -52,29 +54,36 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
   final String? treatmentBuddy;
   final String? treatmentEnrollmentDate;
   final User? user;
+  final List<Role>? roles;
 
   @override
   AppState reduce() {
+    final ClientProfile newClientProfile = ClientProfile(
+      id: this.id ?? state.clientState?.clientProfile?.id,
+      active: this.active ?? state.clientState?.clientProfile?.active,
+      treatmentEnrollmentDate: this.treatmentEnrollmentDate ??
+          state.clientState!.clientProfile?.treatmentEnrollmentDate,
+      clientTypes:
+          this.clientTypes ?? state.clientState?.clientProfile?.clientTypes,
+      counselled:
+          this.counselled ?? state.clientState?.clientProfile?.counselled,
+      treatmentBuddy: this.treatmentBuddy ??
+          state.clientState?.clientProfile?.treatmentBuddy,
+      chvUserID: this.chvUserID ?? state.clientState?.clientProfile?.chvUserID,
+      chvUserName:
+          this.chvUserName ?? state.clientState?.clientProfile?.chvUserName,
+      cccNumber: this.cccNumber ?? state.clientState?.clientProfile?.cccNumber,
+    );
     final AppState newState = state.copyWith(
       clientState: state.clientState?.copyWith.call(
-        id: this.id ?? state.clientState?.id,
-        active: this.active ?? state.clientState?.active,
+        clientProfile: newClientProfile,
         isSignedIn: this.isSignedIn ?? state.clientState?.isSignedIn,
         lastMoodRecordedDate: this.lastMoodRecordedDate ??
             state.clientState?.lastMoodRecordedDate,
-        treatmentEnrollmentDate: this.treatmentEnrollmentDate ??
-            state.clientState!.treatmentEnrollmentDate,
-        clientTypes: this.clientTypes ?? state.clientState?.clientTypes,
-        counselled: this.counselled ?? state.clientState?.counselled,
         facilityID: this.facilityID ?? state.clientState?.facilityID,
-        treatmentBuddy:
-            this.treatmentBuddy ?? state.clientState?.treatmentBuddy,
         facilityName: this.facilityName ?? state.clientState?.facilityName,
         facilityPhoneNumber:
             this.facilityPhoneNumber ?? state.clientState?.facilityPhoneNumber,
-        chvUserID: this.chvUserID ?? state.clientState?.chvUserID,
-        chvUserName: this.chvUserName ?? state.clientState?.chvUserName,
-        cccNumber: this.cccNumber ?? state.clientState?.cccNumber,
         addresses: this.addresses ?? state.clientState?.addresses,
         caregiverInformation: this.caregiverInformation ??
             state.clientState?.caregiverInformation,
@@ -82,6 +91,7 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
         hasCareGiverInfo:
             this.hasCaregiverInfo ?? state.clientState?.hasCareGiverInfo,
         user: this.user ?? state.clientState?.user,
+        roles: this.roles ?? state.clientState?.roles,
       ),
     );
 

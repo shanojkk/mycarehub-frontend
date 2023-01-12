@@ -37,7 +37,7 @@ class FetchHealthTimelineAction extends ReduxAction<AppState> {
     final int offset = state.clientState?.healthTimelineState?.offset ?? 0;
     final Map<String, dynamic> variables = <String, dynamic>{
       'input': <String, dynamic>{
-        'patientID': state.clientState?.fhirPatientID,
+        'patientID': state.clientState?.clientProfile?.fhirPatientID,
         'offset': offset,
         'limit': limit,
       }

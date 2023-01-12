@@ -1,24 +1,24 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_svg/svg.dart';
+import 'package:async_redux/async_redux.dart';
+import 'package:pro_health_360/application/redux/actions/programs/list_user_programs_action.dart';
+import 'package:pro_health_360/application/redux/actions/programs/set_current_program_action.dart';
+import 'package:pro_health_360/application/redux/states/program_state.dart';
+import 'package:pro_health_360/domain/core/entities/login/program.dart';
+import 'package:pro_health_360/presentation/onboarding/program_selection/widgets/program_card_widget.dart';
+
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
-import 'package:async_redux/async_redux.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:pro_health_360/application/redux/actions/fetch_facilities_action.dart';
-import 'package:pro_health_360/application/redux/actions/set_client_default_facility_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/view_models/app_state_view_model.dart';
-import 'package:pro_health_360/domain/core/entities/core/facility.dart';
-import 'package:pro_health_360/domain/core/entities/core/facility_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
-import 'package:pro_health_360/presentation/caregiver/widgets/general_workstation_widget.dart';
-import 'package:pro_health_360/presentation/caregiver/widgets/summary_badge_widget.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
-import 'package:pro_health_360/presentation/router/routes.dart';
 
-class FacilitySelectionPage extends StatelessWidget {
-  const FacilitySelectionPage({super.key});
+class ProgramSelectionPage extends StatelessWidget {
+  const ProgramSelectionPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,78 +32,26 @@ class FacilitySelectionPage extends StatelessWidget {
                   AppStateViewModel.fromStore(store),
               onInit: (Store<AppState> store) async {
                 await store.dispatch(
-                  FetchFacilitiesAction(
+                  ListUserProgramsAction(
                     client: AppWrapperBase.of(context)!.graphQLClient,
                   ),
                 );
               },
               builder: (BuildContext context, AppStateViewModel vm) {
-                final FacilityState? facilityState =
-                    vm.appState.clientState?.facilityState;
-                final List<Facility?>? facilities = facilityState?.facilities;
-                final List<Widget> facilitiesWidgetList = <Widget>[];
+                final ProgramState? programState =
+                    vm.appState.onboardingState?.programState;
+                final List<Program?>? programs = programState?.programs;
+                final List<Widget> programsWidgetList = <Widget>[];
 
-                if (facilities != null && facilities.isNotEmpty) {
-                  for (final Facility? facility in facilities) {
-                    final int messagesCount =
-                        facility?.workStationDetails?.messages ?? 0;
-
-                    final int notificationsCount =
-                        facility?.workStationDetails?.notifications ?? 0;
-
-                    final int surveysCount =
-                        facility?.workStationDetails?.surveys ?? 0;
-
-                    final int articlesCount =
-                        facility?.workStationDetails?.articles ?? 0;
-
-                    final List<Widget> badgesList = <Widget>[];
-                    if (messagesCount > 0) {
-                      badgesList.add(
-                        SummaryBadgeWidget(
-                          title: '${messagesCount.toString()} messages',
-                          iconUrl: messageIcon,
-                        ),
-                      );
-                    }
-                    if (notificationsCount > 0) {
-                      badgesList.add(
-                        SummaryBadgeWidget(
-                          title:
-                              '${notificationsCount.toString()} notifications',
-                          iconUrl: notificationIcon,
-                        ),
-                      );
-                    }
-
-                    if (surveysCount > 0) {
-                      badgesList.add(
-                        SummaryBadgeWidget(
-                          title: '${surveysCount.toString()} surveys',
-                          iconUrl: surveyIcon,
-                        ),
-                      );
-                    }
-
-                    if (articlesCount > 0) {
-                      badgesList.add(
-                        SummaryBadgeWidget(
-                          title: '${surveysCount.toString()} articles',
-                          iconUrl: pdfIcon,
-                        ),
-                      );
-                    }
-                    facilitiesWidgetList.add(
+                if (programs != null && programs.isNotEmpty) {
+                  for (final Program? program in programs) {
+                    programsWidgetList.add(
                       Padding(
                         padding: const EdgeInsets.only(top: 10.0),
-                        child: GeneralWorkstationWidget(
-                          title: facility?.name ?? '',
+                        child: ProgramCardWidget(
+                          programName: program?.name ?? '',
+                          organizationName: program?.organization?.name ?? '',
                           buttonText: continueString,
-                          bodyWidget: Wrap(
-                            runSpacing: 12,
-                            spacing: 8,
-                            children: badgesList,
-                          ),
                           buttonWidget:
                               vm.wait!.isWaitingFor(setDefaultFacilityFlag)
                                   ? const PlatformLoader(color: whiteColor)
@@ -111,15 +59,14 @@ class FacilitySelectionPage extends StatelessWidget {
                           onButtonCallback: () async {
                             await StoreProvider.dispatch(
                               context,
-                              SetClientDefaultFacilityAction(
-                                facility: facility!,
+                              SetCurrentProgramAction(
+                                programId: program?.id ?? '',
                                 client:
                                     AppWrapperBase.of(context)!.graphQLClient,
+                                onFailure: (String message) {
+                                  // TODO(Byron): Add logic here
+                                },
                               ),
-                            );
-                            Navigator.of(context).pushNamedAndRemoveUntil(
-                              AppRoutes.home,
-                              (Route<dynamic> route) => false,
                             );
                           },
                         ),
@@ -179,7 +126,7 @@ class FacilitySelectionPage extends StatelessWidget {
                                   textAlign: TextAlign.center,
                                 ),
                                 smallVerticalSizedBox,
-                                ...facilitiesWidgetList,
+                                ...programsWidgetList,
                               ],
                             )
                         ],

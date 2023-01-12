@@ -8,32 +8,31 @@ part of 'client_state.dart';
 
 _$_ClientState _$$_ClientStateFromJson(Map<String, dynamic> json) =>
     _$_ClientState(
-      id: json['id'] as String?,
-      active: json['active'] as bool? ?? false,
+      clientProfile: json['clientProfile'] == null
+          ? null
+          : ClientProfile.fromJson(
+              json['clientProfile'] as Map<String, dynamic>),
       addresses: (json['addresses'] as List<dynamic>?)
           ?.map((e) => Address.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      counselled: json['counselled'] as bool? ?? false,
-      clientTypes: (json['clientTypes'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$ClientTypeEnumMap, e))
           .toList(),
       facilityID: json['defaultFacilityID'] as String?,
       relatedPersons: (json['relatedPersons'] as List<dynamic>?)
           ?.map((e) => RelatedPerson.fromJson(e as Map<String, dynamic>))
           .toList(),
-      treatmentBuddy: json['treatmentBuddy'] as String?,
-      treatmentEnrollmentDate: json['treatmentEnrollmentDate'] as String?,
-      user: json['user'] == null
+      user: json['User'] == null
           ? null
-          : User.fromJson(json['user'] as Map<String, dynamic>),
+          : User.fromJson(json['User'] as Map<String, dynamic>),
       lastMoodRecordedDate: json['lastMoodRecordedDate'] as String?,
       isSignedIn: json['isSignedIn'] as bool?,
       facilityName: json['defaultFacilityName'] as String?,
       facilityPhoneNumber: json['facilityPhoneNumber'] as String?,
-      chvUserID: json['chvUserID'] as String?,
-      chvUserName: json['chvUserName'] as String?,
-      cccNumber: json['CCCNumber'] as String?,
-      fhirPatientID: json['fhirPatientID'] as String?,
+      roles: (json['roles'] as List<dynamic>?)
+          ?.map((e) => Role.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      permissions: (json['permissions'] as List<dynamic>?)
+          ?.map((e) => AuthorityPermission.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      communityToken: json['communityToken'] as String?,
       healthDiaryState: json['healthDiaryState'] == null
           ? null
           : HealthDiaryState.fromJson(
@@ -86,25 +85,18 @@ _$_ClientState _$$_ClientStateFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$_ClientStateToJson(_$_ClientState instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'active': instance.active,
+      'clientProfile': instance.clientProfile,
       'addresses': instance.addresses,
-      'counselled': instance.counselled,
-      'clientTypes':
-          instance.clientTypes?.map((e) => _$ClientTypeEnumMap[e]!).toList(),
       'defaultFacilityID': instance.facilityID,
       'relatedPersons': instance.relatedPersons,
-      'treatmentBuddy': instance.treatmentBuddy,
-      'treatmentEnrollmentDate': instance.treatmentEnrollmentDate,
-      'user': instance.user,
+      'User': instance.user,
       'lastMoodRecordedDate': instance.lastMoodRecordedDate,
       'isSignedIn': instance.isSignedIn,
       'defaultFacilityName': instance.facilityName,
       'facilityPhoneNumber': instance.facilityPhoneNumber,
-      'chvUserID': instance.chvUserID,
-      'chvUserName': instance.chvUserName,
-      'CCCNumber': instance.cccNumber,
-      'fhirPatientID': instance.fhirPatientID,
+      'roles': instance.roles,
+      'permissions': instance.permissions,
+      'communityToken': instance.communityToken,
       'healthDiaryState': instance.healthDiaryState,
       'communitiesState': instance.communitiesState,
       'pastAppointments': instance.pastAppointments,
@@ -119,17 +111,3 @@ Map<String, dynamic> _$$_ClientStateToJson(_$_ClientState instance) =>
       'notificationFilterState': instance.notificationFilterState,
       'facilityState': instance.facilityState,
     };
-
-const _$ClientTypeEnumMap = {
-  ClientType.PMTCT: 'PMTCT',
-  ClientType.OVC: 'OVC',
-  ClientType.OTZ: 'OTZ',
-  ClientType.OTZ_PLUS: 'OTZ_PLUS',
-  ClientType.HVL: 'HVL',
-  ClientType.DREAMS: 'DREAMS',
-  ClientType.HIGH_RISK: 'HIGH_RISK',
-  ClientType.SPOUSES: 'SPOUSES',
-  ClientType.YOUTH: 'YOUTH',
-  ClientType.KenyaEMR: 'KenyaEMR',
-  ClientType.UNKNOWN: 'UNKNOWN',
-};

@@ -351,11 +351,13 @@ String setNickNamePageTitle({required BuildContext context}) {
         DateTime.parse(
           StoreProvider.state<AppState>(context)!
                       .clientState!
+                      .clientProfile!
                       .treatmentEnrollmentDate! ==
                   UNKNOWN
               ? DateTime.now().toString()
               : StoreProvider.state<AppState>(context)!
                   .clientState!
+                  .clientProfile!
                   .treatmentEnrollmentDate!,
         ),
       )

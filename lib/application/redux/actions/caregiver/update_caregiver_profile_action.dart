@@ -28,7 +28,7 @@ class UpdateCaregiverProfileAction extends ReduxAction<AppState> {
   AppState reduce() {
     final AppState newState = state.copyWith(
       caregiverState: state.caregiverState?.copyWith.call(
-        id: this.id ?? state.clientState?.id,
+        id: this.id ?? state.clientState?.clientProfile?.id,
         user: this.user ?? state.caregiverState?.user,
         caregiverNumber:
             this.caregiverNumber ?? state.caregiverState?.caregiverNumber,

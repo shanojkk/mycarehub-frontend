@@ -34,7 +34,7 @@ class FetchClinicInformationAction extends ReduxAction<AppState> {
   @override
   Future<AppState?> reduce() async {
     final String facilityId = state.clientState!.facilityID!;
-    final bool active = state.clientState!.active!;
+    final bool active = state.clientState!.clientProfile!.active!;
     final Map<String, dynamic> variables = <String, dynamic>{
       'id': facilityId,
       'active': active,

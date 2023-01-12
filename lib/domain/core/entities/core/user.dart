@@ -7,26 +7,28 @@ part 'user.g.dart';
 @freezed
 class User with _$User {
   factory User({
-    @JsonKey(name: 'userID') String? userId,
-    @JsonKey(name: 'userName') String? username, // This is the nickname
+    @JsonKey(name: 'ID') String? userId,
+    @JsonKey(name: 'Username') String? username, // This is the nickname
     @JsonKey(name: 'avatar') String? avatar,
-    @JsonKey(name: 'name') String? name, // This is the @handle
+    @JsonKey(name: 'Name') String? name, // This is the @handle
     @JsonKey(name: 'firstName') String? firstName,
     @JsonKey(name: 'lastName') String? lastName,
-    @JsonKey(name: 'dateOfBirth') String? dateOfBirth,
-    @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
+    @JsonKey(name: 'DateOfBirth') String? dateOfBirth,
+    @JsonKey(name: 'Gender', fromJson: genderFromJson, toJson: genderToJson)
         Gender? gender,
     @JsonKey(name: 'Active', defaultValue: false) bool? active,
     @JsonKey(name: 'primaryContact') Contact? primaryContact,
     @JsonKey(name: 'secondaryContacts') List<Contact?>? secondaryContacts,
     @JsonKey(name: 'languages') List<String>? languages,
-    @JsonKey(name: 'termsAccepted', defaultValue: false) bool? termsAccepted,
+    @JsonKey(name: 'TermsAccepted', defaultValue: false) bool? termsAccepted,
     @JsonKey(name: 'hasSetPin', defaultValue: false) bool? hasSetPin,
     @JsonKey(name: 'hasSetSecurityQuestions', defaultValue: false)
         bool? hasSetSecurityQuestions,
     @JsonKey(name: 'hasSetNickname', defaultValue: false) bool? hasSetNickname,
-    @JsonKey(name: 'isPhoneVerified', defaultValue: false)
+    @JsonKey(name: 'IsPhoneVerified', defaultValue: false)
         bool? isPhoneVerified,
+    @JsonKey(name: 'currentOrganizationID') String? currentOrganizationID,
+    @JsonKey(name: 'currentProgramID') String? currentProgramID,
 
     /// Whether this user needs to change their PIN
     ///
@@ -39,9 +41,8 @@ class User with _$User {
     /// This is used to trigger the change PIN workflow
     @JsonKey(name: 'pinUpdateRequired', defaultValue: false)
         bool? pinUpdateRequired,
-    @JsonKey(name: 'suspended', defaultValue: false) bool? suspended,
+    @JsonKey(name: 'Suspended', defaultValue: false) bool? suspended,
     String? streamToken,
-    @JsonKey(name: 'roles') List<Role>? roles,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
@@ -68,6 +69,5 @@ class User with _$User {
         hasSetSecurityQuestions: false,
         isPhoneVerified: false,
         suspended: false,
-        roles: <Role>[],
       );
 }

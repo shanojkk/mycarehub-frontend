@@ -14,7 +14,6 @@ class UserResponse with _$UserResponse {
     @JsonKey(name: 'credentials') AuthCredentials? credentials,
     @JsonKey(name: 'userProfile') UserProfile? userProfile,
     @JsonKey(name: 'caregiverProfile') CaregiverState? caregiverState,
-    @JsonKey(name: 'getStreamToken') String? streamToken,
   }) = _UserResponse;
 
   factory UserResponse.fromJson(Map<String, dynamic> json) =>

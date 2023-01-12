@@ -129,9 +129,9 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
           StoreProvider.state<AppState>(context)?.clientState;
       final User? user = clientState?.user;
 
-      if (clientState?.id != null &&
-          clientState!.id!.isNotEmpty &&
-          clientState.id! != UNKNOWN) {
+      if (clientState?.clientProfile?.id != null &&
+          clientState!.clientProfile!.id!.isNotEmpty &&
+          clientState.clientProfile!.id! != UNKNOWN) {
         StoreProvider.dispatch(
           context,
           ConnectGetStreamUserAction(

@@ -19,7 +19,6 @@ _$_UserResponse _$$_UserResponseFromJson(Map<String, dynamic> json) =>
           ? null
           : CaregiverState.fromJson(
               json['caregiverProfile'] as Map<String, dynamic>),
-      streamToken: json['getStreamToken'] as String?,
     );
 
 Map<String, dynamic> _$$_UserResponseToJson(_$_UserResponse instance) =>
@@ -27,5 +26,4 @@ Map<String, dynamic> _$$_UserResponseToJson(_$_UserResponse instance) =>
       'credentials': instance.credentials,
       'userProfile': instance.userProfile,
       'caregiverProfile': instance.caregiverState,
-      'getStreamToken': instance.streamToken,
     };

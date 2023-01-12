@@ -642,3 +642,21 @@ query getCaregiverManagedClients(
   }
 }
 ''';
+
+const String listUserProgramsQuery = r'''
+query listUserPrograms($userID: ID!, $flavour: Flavour!) {
+  listUserPrograms(userID: $userID, flavour: $flavour) {
+    count
+    programs{
+      id
+      name
+      active
+      organisation{
+        id
+        name
+        description
+      }
+    }
+  }
+}
+''';

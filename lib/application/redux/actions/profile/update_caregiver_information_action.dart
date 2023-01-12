@@ -23,7 +23,7 @@ class UpdateCaregiverInfoAction extends ReduxAction<AppState> {
   Future<AppState?> reduce() async {
     final Map<String, dynamic> variables = <String, dynamic>{
       'caregiverInput': caregiverInformation
-          .copyWith(clientID: state.clientState?.id)
+          .copyWith(clientID: state.clientState?.clientProfile?.id)
           .toJson()
     };
 

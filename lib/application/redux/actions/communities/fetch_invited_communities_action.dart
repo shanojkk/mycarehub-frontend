@@ -32,7 +32,7 @@ class FetchInvitedCommunitiesAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final String memberId = state.clientState!.id!;
+    final String memberId = state.clientState!.clientProfile!.id!;
     final Map<String, dynamic> variables = <String, dynamic>{
       'memberID': memberId,
       'input': <String, dynamic>{'limit': 20},

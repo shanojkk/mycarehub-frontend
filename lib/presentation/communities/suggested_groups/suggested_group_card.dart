@@ -76,6 +76,7 @@ class SuggestedGroupCard extends StatelessWidget {
                             final String clientID =
                                 StoreProvider.state<AppState>(context)
                                         ?.clientState
+                                        ?.clientProfile
                                         ?.id ??
                                     '';
                             StoreProvider.dispatch<AppState>(

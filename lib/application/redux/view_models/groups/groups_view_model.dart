@@ -41,9 +41,9 @@ class GroupsViewModel extends Vm {
       wait: store.state.wait!,
       recommendedGroups: store.state.miscState?.groupState?.recommendedGroups,
       groupMembers: store.state.miscState?.groupState?.groupMembers,
-      clientRoles: store.state.clientState?.user?.roles,
+      clientRoles: store.state.clientState?.roles,
       isModerator: store.state.miscState?.groupState?.isModerator,
-      clientId: store.state.clientState?.id,
+      clientId: store.state.clientState?.clientProfile?.id,
       communities: store.state.miscState?.groupState?.communities,
     );
   }

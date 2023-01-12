@@ -52,7 +52,7 @@ class CreateHealthDiaryAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState> reduce() async {
-    final String? userID = state.clientState?.id;
+    final String? userID = state.clientState?.clientProfile?.id;
     final bool shouldShareHealthRecord =
         state.clientState?.healthDiaryState?.shouldShareHealthRecord ?? false;
 

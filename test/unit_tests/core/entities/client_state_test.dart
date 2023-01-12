@@ -8,22 +8,22 @@ import 'package:pro_health_360/domain/core/entities/core/client_state.dart';
 import '../../../mocks.dart';
 
 void main() {
-  test('ClientProfile fromJson', () {
+  test('ClientState fromJson', () {
     expect(
-      ClientState.fromJson(mockClientProfile),
+      ClientState.fromJson(mockClientState),
       isA<ClientState>(),
     );
   });
 
-  test('ClientProfile initial is set', () {
-    final ClientState initialClientProfile = ClientState.initial();
+  test('ClientState initial is set', () {
+    final ClientState initialClientState = ClientState.initial();
 
     expect(
-      initialClientProfile.treatmentEnrollmentDate,
+      initialClientState.clientProfile?.treatmentEnrollmentDate,
       UNKNOWN,
     );
     expect(
-      initialClientProfile.facilityID,
+      initialClientState.facilityID,
       UNKNOWN,
     );
   });

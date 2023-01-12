@@ -29,7 +29,8 @@ class SuggestedGroupsSection extends StatelessWidget {
     return StoreConnector<AppState, GroupsViewModel>(
       converter: (Store<AppState> store) => GroupsViewModel.fromStore(store),
       onInit: (Store<AppState> store) async {
-        final String clientID = store.state.clientState?.id ?? '';
+        final String clientID =
+            store.state.clientState?.clientProfile?.id ?? '';
         final bool isSignedIn = store.state.credentials?.isSignedIn ?? false;
 
         if (isSignedIn) {

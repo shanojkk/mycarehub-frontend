@@ -54,9 +54,11 @@ class _ClinicInformationPageState extends State<ClinicInformationPage> {
               );
             } else {
               final String chvNameString =
-                  vm.appState.clientState?.chvUserName ?? chvName;
+                  vm.appState.clientState?.clientProfile?.chvUserName ??
+                      chvName;
               final String treatmentBuddyString =
-                  vm.appState.clientState?.treatmentBuddy ?? treatmentBuddy;
+                  vm.appState.clientState?.clientProfile?.treatmentBuddy ??
+                      treatmentBuddy;
 
               final String clinicNameString =
                   vm.appState.clientState?.facilityName ?? clinicName;

@@ -32,7 +32,8 @@ class UserDetailsCard extends StatelessWidget {
 
         final String phone = user?.primaryContact?.value ?? UNKNOWN;
         final String name = getDisplayName(user);
-        final String cccNumber = vm.clientState?.cccNumber ?? UNKNOWN;
+        final String cccNumber =
+            vm.clientState?.clientProfile?.cccNumber ?? UNKNOWN;
         final String dateOfBirth = vm.clientState?.user?.dateOfBirth ?? UNKNOWN;
         final String age = calculateAge(dateOfBirth);
         final String nickName = vm.clientState?.user?.username ?? '';

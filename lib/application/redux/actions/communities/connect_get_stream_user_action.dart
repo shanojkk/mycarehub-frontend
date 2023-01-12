@@ -35,7 +35,7 @@ class ConnectGetStreamUserAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final String clientId = state.clientState?.id ?? '';
+    final String clientId = state.clientState?.clientProfile?.id ?? '';
 
     try {
       if (streamClient.wsConnectionStatus ==

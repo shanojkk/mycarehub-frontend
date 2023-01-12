@@ -11,20 +11,20 @@ void main() {
 
       final Map<String, dynamic> clientStateJson = clientState.toJson();
 
-      expect(clientStateJson.containsKey('counselled'), true);
+      expect(clientStateJson.containsKey('clientProfile'), true);
 
       final Map<String, dynamic> clientStateMap = <String, dynamic>{
         'user': <String, dynamic>{'userId': 'some-user-id'},
-        'counselled': true,
+        'clientProfile': <String, dynamic>{'ClientCounselled': true},
       };
 
       expect(
-        ClientState.fromJson(clientStateMap).counselled,
+        ClientState.fromJson(clientStateMap).clientProfile!.counselled,
         isNotNull,
       );
 
       expect(
-        ClientState.fromJson(clientStateMap).counselled,
+        ClientState.fromJson(clientStateMap).clientProfile!.counselled,
         true,
       );
     });

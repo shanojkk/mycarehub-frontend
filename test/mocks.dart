@@ -2511,7 +2511,7 @@ final Map<String, dynamic> mockUser = <String, dynamic>{
   'isPhoneVerified': false,
 };
 
-final Map<String, dynamic> mockClientProfile = <String, dynamic>{
+final Map<String, dynamic> mockClientState = <String, dynamic>{
   'clientProfile': <String, dynamic>{
     'active': true,
     'addresses': <dynamic>[mockAddress],

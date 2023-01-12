@@ -31,7 +31,8 @@ class FetchMedicalDataAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final String patientID = state.clientState?.fhirPatientID ?? '';
+    final String patientID =
+        state.clientState?.clientProfile?.fhirPatientID ?? '';
     final Map<String, dynamic> variables = <String, dynamic>{
       'patientID': patientID == UNKNOWN ? '' : patientID,
     };

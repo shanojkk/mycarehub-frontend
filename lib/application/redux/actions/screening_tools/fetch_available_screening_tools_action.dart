@@ -37,7 +37,7 @@ class FetchAvailableScreeningToolsAction extends ReduxAction<AppState> {
   @override
   Future<AppState?> reduce() async {
     final Map<String, dynamic> variables = <String, dynamic>{
-      'clientID': state.clientState!.id,
+      'clientID': state.clientState!.clientProfile!.id,
     };
     final IGraphQlClient client = AppWrapperBase.of(context)!.graphQLClient;
 

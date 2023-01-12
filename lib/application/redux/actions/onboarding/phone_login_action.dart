@@ -129,16 +129,18 @@ class PhoneLoginAction extends ReduxAction<AppState> {
             loginResponse.userResponse?.userProfile;
 
         User user = User(
-          pinChangeRequired: userProfile?.pinChangeRequired,
+          userId: userProfile?.id,
           name: userProfile?.name,
           username: userProfile?.userName,
+          active: userProfile?.active,
+          pinChangeRequired: userProfile?.pinChangeRequired,
           hasSetPin: userProfile?.hasSetPin,
           isPhoneVerified: userProfile?.isPhoneVerified,
           hasSetSecurityQuestions: userProfile?.hasSetSecurityQuestions,
-          pinUpdateRequired: userProfile?.pinUpdateRequired,
           termsAccepted: userProfile?.termsAccepted,
           suspended: userProfile?.suspended,
-          active: userProfile?.active,
+          pinUpdateRequired: userProfile?.pinUpdateRequired,
+          hasSetNickname: userProfile?.hasSetNickname,
         );
 
         await AnalyticsService().setUserId(user.userId);
@@ -169,9 +171,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           ),
         );
 
-        dispatch(
-          UpdateClientProfileAction(user: user),
-        );
+        dispatch(UpdateClientProfileAction(user: user));
 
         dispatch(
           UpdateCaregiverStateAction(

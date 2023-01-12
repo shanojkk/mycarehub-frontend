@@ -235,3 +235,57 @@ mutation setClientDefaultFacility(
   )
 }
 ''';
+
+const String setClientProgramMutation = r'''
+mutation setClientProgram($programID: ID!) {
+  setClientProgram(programID: $programID) {
+    clientProfile {
+      ID
+      User {
+        ID
+        Username
+        Name
+        Gender
+        Active
+        Contacts{
+          id
+          contactType
+          contactValue
+          active
+          optedIn
+        }
+      }
+      Active
+      ClientTypes
+      TreatmentEnrollmentDate
+      FHIRPatientID
+      HealthRecordID
+      TreatmentBuddy
+      ClientCounselled
+      DefaultFacility {
+        ID
+        name
+        phone
+        active
+        county
+        description
+        fhirOrganisationID
+      }
+      CHVUserID
+      CHVUserName
+      CaregiverID
+      CCCNumber
+    }
+    roles {
+      authorityRoleID
+      name
+      active
+    }
+    permissions {
+      permissionID
+      active
+    }
+    communityToken
+  }
+}
+''';

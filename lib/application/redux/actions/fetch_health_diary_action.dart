@@ -42,7 +42,7 @@ class FetchHealthDiaryAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final String? clientID = state.clientState!.id;
+    final String? clientID = state.clientState!.clientProfile!.id;
     final String? moodType =
         (filter == MoodTypeFilter.ALL.value) ? null : filter;
 

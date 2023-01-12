@@ -137,3 +137,5 @@ const String fetchFacilitiesFlag = 'fetch_facilities_flag';
 
 const String fetchManagedClientsFlag = 'fetch_managed_clients_flag';
 const String setDefaultFacilityFlag = 'set_default_facility_flag';
+const String fetchProgramsFlag = '/fetchProgramsFlag';
+const String setCurrentProgramFlag = '/setCurrentProgramFlag';

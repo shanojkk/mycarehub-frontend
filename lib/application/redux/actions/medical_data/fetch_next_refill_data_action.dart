@@ -27,7 +27,7 @@ class FetchNextRefillDataAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final String? clientID = state.clientState!.id;
+    final String? clientID = state.clientState!.clientProfile!.id;
 
     final Map<String, dynamic> variables = <String, dynamic>{
       'clientID': clientID

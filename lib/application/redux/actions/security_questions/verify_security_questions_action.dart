@@ -73,8 +73,6 @@ class VerifySecurityQuestionAction extends ReduxAction<AppState> {
 
     final Map<String, dynamic> body = client.toMap(result);
 
-    client.close();
-
     final ProcessedResponse processedResponse = processHttpResponse(result);
     final Map<String, dynamic> responseMap =
         client.toMap(processedResponse.response);

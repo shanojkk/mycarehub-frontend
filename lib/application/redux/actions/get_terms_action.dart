@@ -48,7 +48,7 @@ class GetTermsAction extends ReduxAction<AppState> {
 
     final http.Response result = await client.query(
       getTermsQuery,
-      <String, dynamic>{'flavour': Flavour.consumer.name},
+      <String, dynamic>{},
     );
 
     final Map<String, dynamic> body = client.toMap(result);

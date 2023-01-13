@@ -66,8 +66,6 @@ class RecordSecurityQuestionResponsesAction extends ReduxAction<AppState> {
 
     final Map<String, dynamic> body = client.toMap(result);
 
-    client.close();
-
     if (client.parseError(body) != null) {
       throw MyAfyaException(
         cause: recordSecurityQuestionsFlag,

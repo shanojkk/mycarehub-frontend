@@ -38,7 +38,6 @@ import 'package:pro_health_360/presentation/onboarding/login/pages/pin_input_pag
 import 'package:pro_health_360/presentation/onboarding/login/widgets/login_counter_page.dart';
 import 'package:pro_health_360/presentation/onboarding/pin_expired/pages/pin_expired_page.dart';
 import 'package:pro_health_360/presentation/onboarding/set_new_pin/pages/create_new_pin_page.dart';
-import 'package:pro_health_360/presentation/onboarding/set_nickname/pages/set_nickname_page.dart';
 import 'package:pro_health_360/presentation/onboarding/set_security_questions/answer_security_question_page.dart';
 import 'package:pro_health_360/presentation/onboarding/set_security_questions/security_questions_page.dart';
 import 'package:pro_health_360/presentation/onboarding/terms/terms_and_conditions_page.dart';
@@ -86,12 +85,6 @@ class RouteGenerator {
         return MaterialPageRoute<VerifyPhonePage>(
           builder: (_) => const VerifyPhonePage(),
           settings: const RouteSettings(name: 'Verify phone page'),
-        );
-
-      case AppRoutes.congratulationsPage:
-        return MaterialPageRoute<SetNickNamePage>(
-          builder: (_) => SetNickNamePage(),
-          settings: const RouteSettings(name: 'Set nickname page'),
         );
 
       case AppRoutes.termsAndConditions:

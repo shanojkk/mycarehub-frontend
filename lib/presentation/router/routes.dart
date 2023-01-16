@@ -11,7 +11,6 @@ class AppRoutes {
   static const String termsAndConditions = '/termsAndConditions';
   static const String verifySignUpOTP = '/verifySignUpOTP';
   static const String securityQuestionsPage = '/securityQuestionsPage';
-  static const String congratulationsPage = '/congratulationsPage';
 
   static const String createPin = '/createPin';
   static const String confirmCreatePin = '/confirmCreatePin';

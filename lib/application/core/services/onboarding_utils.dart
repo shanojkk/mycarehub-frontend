@@ -1,16 +1,11 @@
 // Package imports:
-import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 import 'package:async_redux/async_redux.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:pro_health_360/application/core/services/utils.dart';
 // Project imports:
-import 'package:pro_health_360/application/redux/actions/set_nickname_action.dart';
-import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/onboarding_path_info.dart';
-import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 
@@ -33,7 +28,6 @@ OnboardingPathInfo onboardingPath({required AppState? appState}) {
       appState.onboardingState?.hasSetSecurityQuestions ?? false;
   final bool hasVerifiedSecurityQuestions =
       appState.onboardingState?.hasVerifiedSecurityQuestions ?? false;
-  final bool hasSetNickName = appState.onboardingState?.hasSetNickName ?? false;
   final bool hasSetPin = appState.onboardingState?.hasSetPin ?? false;
   final bool hasSetPIN = appState.onboardingState?.hasSetPin ?? false;
   final bool isClient = appState.onboardingState?.isClient ?? false;
@@ -70,11 +64,6 @@ OnboardingPathInfo onboardingPath({required AppState? appState}) {
       return OnboardingPathInfo(
         previousRoute: AppRoutes.securityQuestionsPage,
         nextRoute: AppRoutes.createPin,
-      );
-    } else if (!hasSetNickName) {
-      return OnboardingPathInfo(
-        previousRoute: AppRoutes.createPin,
-        nextRoute: AppRoutes.congratulationsPage,
       );
     } else if (isCaregiver && isClient) {
       return OnboardingPathInfo(
@@ -160,24 +149,4 @@ OnboardingPathInfo onboardingPath({required AppState? appState}) {
       previousRoute: '',
     );
   }
-}
-
-void setUserNickname({required BuildContext context}) {
-  // this is the Redux Action that handles set nickname for an existing user
-  StoreProvider.dispatch<AppState>(
-    context,
-    SetNicknameAction(
-      client: AppWrapperBase.of(context)!.graphQLClient,
-      onSuccess: () {
-        showTextSnackbar(
-          ScaffoldMessenger.of(context),
-          content: nicknameSuccessString,
-        );
-      },
-      onError: (String error) {
-        showTextSnackbar(ScaffoldMessenger.of(context), content: error);
-      },
-      flag: setNickNameFlag,
-    ),
-  );
 }

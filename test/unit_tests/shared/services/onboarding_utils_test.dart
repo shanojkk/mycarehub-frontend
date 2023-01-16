@@ -84,31 +84,6 @@ void main() {
       expect(path, AppRoutes.createPin);
     });
 
-    testWidgets('should navigate to congratulations page',
-        (WidgetTester tester) async {
-      store.dispatch(UpdateCredentialsAction(isSignedIn: true));
-      store.dispatch(
-        UpdateUserProfileAction(
-          pinChangeRequired: true,
-          termsAccepted: true,
-          isPhoneVerified: true,
-        ),
-      );
-
-      store.dispatch(
-        UpdateOnboardingStateAction(
-          isPhoneVerified: true,
-          hasSetSecurityQuestions: true,
-          hasSetPin: true,
-          currentOnboardingStage: CurrentOnboardingStage.Login,
-        ),
-      );
-
-      final String path = onboardingPath(appState: store.state).nextRoute;
-
-      expect(path, AppRoutes.congratulationsPage);
-    });
-
     testWidgets('should navigate to verify phone page',
         (WidgetTester tester) async {
       store.dispatch(UpdateCredentialsAction(isSignedIn: true));

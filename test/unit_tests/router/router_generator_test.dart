@@ -40,7 +40,6 @@ import 'package:pro_health_360/presentation/onboarding/login/pages/pin_input_pag
 import 'package:pro_health_360/presentation/onboarding/login/widgets/login_counter_page.dart';
 import 'package:pro_health_360/presentation/onboarding/pin_expired/pages/pin_expired_page.dart';
 import 'package:pro_health_360/presentation/onboarding/set_new_pin/pages/create_new_pin_page.dart';
-import 'package:pro_health_360/presentation/onboarding/set_nickname/pages/set_nickname_page.dart';
 import 'package:pro_health_360/presentation/onboarding/set_security_questions/answer_security_question_page.dart';
 import 'package:pro_health_360/presentation/onboarding/set_security_questions/security_questions_page.dart';
 import 'package:pro_health_360/presentation/onboarding/terms/terms_and_conditions_page.dart';
@@ -149,19 +148,6 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<DocumentContentPage>>());
     expect(route.builder(context), isA<DocumentContentPage>());
-  });
-
-  test('Test router returns congratulations page', () {
-    const RouteSettings settings = RouteSettings(
-      name: AppRoutes.congratulationsPage,
-      arguments: <String, dynamic>{'duration': '1 year'},
-    );
-
-    final MaterialPageRoute<SetNickNamePage> route =
-        routeGenerator(settings) as MaterialPageRoute<SetNickNamePage>;
-
-    expect(route, isA<MaterialPageRoute<SetNickNamePage>>());
-    expect(route.builder(context), isA<SetNickNamePage>());
   });
 
   test('Test router returns Home', () {

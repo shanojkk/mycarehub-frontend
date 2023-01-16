@@ -49,7 +49,9 @@ class RecordSecurityQuestionResponsesAction extends ReduxAction<AppState> {
   Future<AppState> reduce() async {
     final List<SecurityQuestionResponse> securityQuestionsResponses =
         state.onboardingState!.securityQuestionResponses!;
+
     final List<Map<String, dynamic>> vars = <Map<String, dynamic>>[];
+
     for (final SecurityQuestionResponse response
         in securityQuestionsResponses) {
       vars.add(response.toJson());

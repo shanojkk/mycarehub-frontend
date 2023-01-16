@@ -1032,3 +1032,5 @@ const String consentRecordedString = 'Consent recorded';
 const String doneString = 'Done';
 const String switchingYourFacility = 'Switching your facility';
 const String userNameString = 'Username';
+const String switchingYourProgram = 'Switching your program';
+const String selectProgram = 'Please choose your program';

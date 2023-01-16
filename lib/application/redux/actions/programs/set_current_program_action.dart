@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:pro_health_360/application/redux/actions/update_client_profile_action.dart';
 import 'package:pro_health_360/domain/core/entities/core/client_state.dart';
+import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:sghi_core/flutter_graphql_client/i_flutter_graphql_client.dart';
@@ -16,11 +17,9 @@ import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 class SetCurrentProgramAction extends ReduxAction<AppState> {
   SetCurrentProgramAction({
     required this.client,
-    this.onFailure,
     required this.programId,
   });
 
-  final void Function(String message)? onFailure;
   final IGraphQlClient client;
   final String programId;
 
@@ -74,6 +73,11 @@ class SetCurrentProgramAction extends ReduxAction<AppState> {
         );
 
         dispatch(UpdateClientStateAction(clientState: clientState));
+        dispatch(
+          NavigateAction<AppState>.pushNamed(
+            AppRoutes.facilitySelectionPageRoute,
+          ),
+        );
       }
     } else {
       throw UserException(processedResponse.message);

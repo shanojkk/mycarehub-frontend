@@ -5,6 +5,8 @@ import 'dart:async';
 import 'dart:convert';
 
 // Package imports:
+import 'package:pro_health_360/application/core/services/custom_client.dart';
+import 'package:pro_health_360/domain/core/entities/core/auth_credentials.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart' as core;
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -231,6 +233,51 @@ class TestNavigatorObserver extends NavigatorObserver {
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
     onPush?.call(route, previousRoute);
   }
+}
+
+class MockCustomGraphQlClient extends IGraphQlClient implements CustomClient {
+  MockCustomGraphQlClient.withResponse(
+    String idToken,
+    String endpoint,
+    this.response,
+  ) {
+    super.idToken = idToken;
+    super.endpoint = endpoint;
+  }
+
+  final http.Response response;
+
+  @override
+  Future<http.Response> callRESTAPI({
+    required String endpoint,
+    required String method,
+    Map<String, dynamic>? variables,
+  }) {
+    return Future<http.Response>.value(response);
+  }
+
+  @override
+  Future<http.Response> query(
+    String queryString,
+    Map<String, dynamic> variables, [
+    ContentType contentType = ContentType.json,
+  ]) {
+    return Future<http.Response>.value(response);
+  }
+
+  @override
+  Future<AuthCredentials?> refreshToken() {
+    return Future<AuthCredentials>(AuthCredentials.initial);
+  }
+
+  @override
+  BuildContext get context => throw UnimplementedError();
+
+  @override
+  String get refreshTokenEndpoint => throw UnimplementedError();
+
+  @override
+  String get userID => throw UnimplementedError();
 }
 
 /// a short client for providing custom responses
@@ -1072,6 +1119,91 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
           json.encode(
             <String, dynamic>{
               'data': <String, dynamic>{'answerScreeningToolQuestion': true}
+            },
+          ),
+          200,
+        ),
+      );
+    }
+
+    if (queryString == listUserProgramsQuery) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{
+                'listUserPrograms': <String, dynamic>{
+                  'count': 1,
+                  'programs': <dynamic>[
+                    <String, dynamic>{
+                      'id': 'some-id',
+                      'name': 'Mycarehub',
+                      'active': true,
+                      'organisation': <String, dynamic>{
+                        'id': 'some-id',
+                        'description': ''
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+          ),
+          200,
+        ),
+      );
+    }
+
+    if (queryString == setClientProgramMutation) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{
+                'setClientProgram': <String, dynamic>{
+                  'clientProfile': <String, dynamic>{
+                    'ID': 'some-id',
+                    'User': <String, dynamic>{
+                      'ID': 'some-id',
+                      'Username': 'jr_jr',
+                      'Name': 'JR jr JR',
+                      'Gender': 'MALE',
+                      'Active': true,
+                      'Contacts': <String, dynamic>{
+                        'id': '',
+                        'contactType': '',
+                        'contactValue': '',
+                        'active': false,
+                        'optedIn': false
+                      }
+                    },
+                    'Active': true,
+                    'ClientTypes': <dynamic>['PMTCT', 'OVC', 'OTZ'],
+                    'TreatmentEnrollmentDate': '2000-02-20T00:00:00Z',
+                    'FHIRPatientID': null,
+                    'HealthRecordID': null,
+                    'TreatmentBuddy': '',
+                    'ClientCounselled': true,
+                    'DefaultFacility': <String, dynamic>{
+                      'ID': '5ec816ea-aa7f-40fc-af0d-5cdb87295f1e',
+                      'name': 'Kerugoya CRH',
+                      'phone': '+254712345678',
+                      'active': true,
+                      'county': 'County',
+                      'description':
+                          'Opens from Monday to Friday from 8:00 to 17:00',
+                      'fhirOrganisationID': ''
+                    },
+                    'CHVUserID': null,
+                    'CHVUserName': '',
+                    'CaregiverID': null,
+                    'CCCNumber': ''
+                  },
+                  'roles': <dynamic>[],
+                  'permissions': <dynamic>[],
+                  'communityToken': 'token'
+                }
+              }
             },
           ),
           200,

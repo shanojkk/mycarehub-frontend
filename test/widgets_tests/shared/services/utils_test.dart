@@ -1,6 +1,10 @@
 // Dart imports:
 
 // Package imports:
+import 'dart:convert';
+
+import 'package:http/http.dart';
+import 'package:pro_health_360/application/core/services/custom_client.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 
@@ -19,6 +23,7 @@ import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
+import 'package:sghi_core/app_wrapper/endpoints.dart';
 import 'package:sghi_core/flutter_graphql_client/flutter_graphql_client.dart';
 
 import '../../../mocks.dart';
@@ -398,5 +403,43 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.byType(SnackBar), findsNothing);
     expect(find.text('Test'), findsNothing);
+  });
+
+  testWidgets('getCustomClient works correctly', (WidgetTester tester) async {
+    final Store<AppState> store =
+        Store<AppState>(initialState: AppState.initial());
+    final MockShortGraphQlClient mockShortGraphQlClient =
+        MockShortGraphQlClient.withResponse(
+      'idToken',
+      kTestGraphqlEndpoint,
+      Response(
+        json.encode(<String, String>{'error': 'error occurred'}),
+        201,
+      ),
+    );
+
+    late dynamic client;
+
+    await buildTestWidget(
+      tester: tester,
+      store: store,
+      client: mockShortGraphQlClient,
+      widget: Builder(
+        builder: (BuildContext context) {
+          return MyAfyaHubPrimaryButton(
+            onPressed: () {
+              client = getCustomClient(context: context);
+            },
+          );
+        },
+      ),
+    );
+
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byType(MyAfyaHubPrimaryButton));
+    await tester.pumpAndSettle();
+
+    expect(client, isA<CustomClient>());
   });
 }

@@ -218,3 +218,4 @@ const String caregiverConsentImage =
 const String medicalCareImage = 'assets/images/medical_care.svg';
 const String hospitalBuildingImage = 'assets/images/hospital_building.svg';
 const String ophthalmologistImage = 'assets/images/ophthalmologist.svg';
+const String programSelectionImage = 'assets/images/program_selection.svg';

@@ -8,6 +8,7 @@ import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/onboarding_path_info.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
+import 'package:sghi_core/afya_moja_core/src/constants.dart';
 
 void clearAllFlags(BuildContext context) {
   SchedulerBinding.instance.addPostFrameCallback((_) {
@@ -28,10 +29,13 @@ OnboardingPathInfo onboardingPath({required AppState? appState}) {
       appState.onboardingState?.hasSetSecurityQuestions ?? false;
   final bool hasVerifiedSecurityQuestions =
       appState.onboardingState?.hasVerifiedSecurityQuestions ?? false;
-  final bool hasSetPin = appState.onboardingState?.hasSetPin ?? false;
+
   final bool hasSetPIN = appState.onboardingState?.hasSetPin ?? false;
   final bool isClient = appState.onboardingState?.isClient ?? false;
   final bool isCaregiver = appState.onboardingState?.isCaregiver ?? false;
+
+  final String programId =
+      appState.onboardingState?.programState?.currentProgram?.id ?? UNKNOWN;
 
   /// The sign in onboarding state
   if (currentOnboardingStage == CurrentOnboardingStage.Login) {
@@ -60,7 +64,7 @@ OnboardingPathInfo onboardingPath({required AppState? appState}) {
         previousRoute: AppRoutes.termsAndConditions,
         nextRoute: AppRoutes.securityQuestionsPage,
       );
-    } else if (!hasSetPin) {
+    } else if (!hasSetPIN) {
       return OnboardingPathInfo(
         previousRoute: AppRoutes.securityQuestionsPage,
         nextRoute: AppRoutes.createPin,
@@ -78,7 +82,9 @@ OnboardingPathInfo onboardingPath({required AppState? appState}) {
     }
 
     return OnboardingPathInfo(
-      nextRoute: AppRoutes.facilitySelectionPageRoute,
+      nextRoute: programId == UNKNOWN
+          ? AppRoutes.programSelectionPageRoute
+          : AppRoutes.home,
       previousRoute: '',
     );
 

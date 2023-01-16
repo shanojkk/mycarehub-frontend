@@ -2,8 +2,12 @@
 import 'dart:convert';
 
 // Package imports:
+import 'package:pro_health_360/application/redux/actions/update_program_state_action.dart';
 import 'package:pro_health_360/domain/core/entities/core/user.dart';
 import 'package:pro_health_360/domain/core/entities/core/user_profile.dart';
+import 'package:pro_health_360/domain/core/entities/login/organization.dart';
+import 'package:pro_health_360/domain/core/entities/login/program.dart';
+import 'package:pro_health_360/presentation/home/pages/home_page.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -19,7 +23,6 @@ import 'package:pro_health_360/application/redux/actions/update_user_profile_act
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/entities/login/phone_login_response.dart';
 import 'package:pro_health_360/presentation/core/widgets/handle_deep_link.dart';
-import 'package:pro_health_360/presentation/home/pages/home_page.dart';
 
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
@@ -46,6 +49,20 @@ void main() {
             'data': <String, dynamic>{
               'getContent': <String, dynamic>{
                 'items': <dynamic>[mockContent, mockContent]
+              },
+              'listUserPrograms': <String, dynamic>{
+                'count': 1,
+                'programs': <dynamic>[
+                  <String, dynamic>{
+                    'id': 'bbe653e3-4159-44a0-8f75-ff1af971521f',
+                    'name': 'Mycarehub',
+                    'active': true,
+                    'organisation': <String, dynamic>{
+                      'id': '4181df12-ca96-4f28-b78b-8e8ad88b25df',
+                      'description': ''
+                    }
+                  }
+                ]
               },
               'getUserLinkedFacilities': <String, dynamic>{
                 'Facilities': <dynamic>[
@@ -75,6 +92,7 @@ void main() {
 
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
+
       final UserProfile? userProfile =
           phoneLoginResponse.userResponse?.userProfile;
 
@@ -117,6 +135,19 @@ void main() {
           hasSetNickName: true,
         ),
       );
+
+      store.dispatch(
+        UpdateProgramStateAction(
+          currentProgram: Program(
+            active: true,
+            id: 'some-id',
+            name: 'name',
+            organization:
+                Organization(description: 'desc', id: 'id', name: 'some-name'),
+          ),
+        ),
+      );
+
       store.dispatch(
         UpdateContentStateAction(contentItems: <Content>[mockContent]),
       );

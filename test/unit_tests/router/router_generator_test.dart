@@ -1,6 +1,7 @@
 // Flutter imports:
 
 // Package imports:
+import 'package:pro_health_360/presentation/onboarding/program_selection/program_selection_page.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -699,5 +700,16 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<FacilitySelectionPage>>());
     expect(route?.builder(context), isA<FacilitySelectionPage>());
+  });
+
+  test('Test router returns program selection page', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.programSelectionPageRoute);
+
+    final MaterialPageRoute<ProgramSelectionPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<ProgramSelectionPage>?;
+
+    expect(route, isA<MaterialPageRoute<ProgramSelectionPage>>());
+    expect(route?.builder(context), isA<ProgramSelectionPage>());
   });
 }

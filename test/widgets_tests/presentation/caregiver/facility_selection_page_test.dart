@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:http/http.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
@@ -68,6 +71,49 @@ void main() {
 
       await tester.ensureVisible(primaryButton);
       await tester.tap(primaryButton);
+      await tester.pumpAndSettle();
+      expect(find.byType(HomePage), findsOneWidget);
+    });
+
+    testWidgets(' navigates to home page correctly when there is one facility',
+        (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: MockShortGraphQlClient.withResponse(
+          '',
+          '',
+          Response(
+            json.encode(<String, dynamic>{
+              'data': <String, dynamic>{
+                'getUserLinkedFacilities': <String, dynamic>{
+                  'Facilities': <dynamic>[
+                    <String, dynamic>{
+                      'ID': 'some-id',
+                      'name': 'Test Facility',
+                      'code': 1234,
+                      'description': '',
+                      'phone': '',
+                      'active': true,
+                      'county': 'Test',
+                      'fhirOrganisationID': '',
+                      'workStationDetails': <String, dynamic>{
+                        'Notifications': 1,
+                        'Messages': 1,
+                        'ServiceRequests': 1
+                      }
+                    }
+                  ]
+                },
+                'setStaffDefaultFacility': true,
+              }
+            }),
+            201,
+          ),
+        ),
+        widget: const FacilitySelectionPage(),
+      );
+
       await tester.pumpAndSettle();
       expect(find.byType(HomePage), findsOneWidget);
     });

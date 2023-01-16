@@ -2,6 +2,7 @@
 import 'dart:async';
 
 // Package imports:
+import 'package:pro_health_360/application/core/services/custom_client.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 // Flutter imports:
@@ -31,7 +32,9 @@ import 'package:pro_health_360/domain/core/value_objects/constants.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 import 'package:sghi_core/app_wrapper/enums.dart';
+import 'package:sghi_core/flutter_graphql_client/i_flutter_graphql_client.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// Returns setup data depending on the environment the app is running on
@@ -681,4 +684,37 @@ String? usernameValidator(String? value) {
     return 'Please enter a Username';
   }
   return null;
+}
+
+IGraphQlClient getCustomClient({
+  IGraphQlClient? graphQlClient,
+  required BuildContext context,
+}) {
+  if (graphQlClient != null) {
+    return graphQlClient;
+  }
+  final List<AppContext>? contexts = AppWrapperBase.of(context)?.appContexts;
+  final AppSetupData appSetupData =
+      getAppSetupData(contexts?.last ?? AppContext.AppTest);
+  final String graphqlEndpoint =
+      appSetupData.customContext?.graphqlEndpoint ?? '';
+  final String refreshTokenEndpoint =
+      appSetupData.customContext?.refreshTokenEndpoint ?? '';
+
+  final String idToken =
+      StoreProvider.state<AppState>(context)?.credentials?.idToken ?? '';
+  final String userID = StoreProvider.state<AppState>(context)
+          ?.clientState
+          ?.clientProfile
+          ?.user
+          ?.userId ??
+      '';
+
+  return CustomClient(
+    idToken,
+    graphqlEndpoint,
+    context: context,
+    refreshTokenEndpoint: refreshTokenEndpoint,
+    userID: userID,
+  );
 }

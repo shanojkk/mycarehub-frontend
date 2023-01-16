@@ -162,7 +162,7 @@ void main() {
       expect(path, AppRoutes.clientCaregiverSelectionPageRoute);
     });
     testWidgets(
-        'should navigate to Facility Selection Page upon successful login',
+        'should navigate to Program Selection Page upon successful login',
         (WidgetTester tester) async {
       store.dispatch(
         UpdateUserProfileAction(
@@ -190,7 +190,7 @@ void main() {
       );
       final String path = onboardingPath(appState: store.state).nextRoute;
 
-      expect(path, AppRoutes.facilitySelectionPageRoute);
+      expect(path, AppRoutes.programSelectionPageRoute);
     });
     testWidgets(
         'should navigate to Client Selection Page upon successful login',

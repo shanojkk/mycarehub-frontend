@@ -141,6 +141,8 @@ class AppRoutes {
   static const String clientSelectionPageRoute = '/clientSelectionPageRoute';
   static const String facilitySelectionPageRoute =
       '/facilitySelectionPageRoute';
+
+  static const String programSelectionPageRoute = '/programSelectionPageRoute';
 }
 
 List<String> unProtectedRoutes = <String>[AppRoutes.phoneLogin];

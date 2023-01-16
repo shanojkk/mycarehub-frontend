@@ -33,7 +33,64 @@ void main() {
       final TestInfo<AppState> info =
           await storeTester.waitUntil(FetchFacilitiesAction);
 
-      expect(info.state.wait!.isWaitingFor(fetchNotificationsFlag), false);
+      expect(info.state.wait!.isWaitingFor(fetchFacilitiesFlag), false);
+    });
+
+    test('should run successfully when there is one facility', () async {
+      storeTester.dispatch(
+        FetchFacilitiesAction(
+          client: MockShortGraphQlClient.withResponse(
+            '',
+            '',
+            Response(
+              json.encode(
+                <String, dynamic>{
+                  'data': <String, dynamic>{
+                    'getUserLinkedFacilities': <String, dynamic>{
+                      'Pagination': <String, dynamic>{
+                        'Limit': 20,
+                        'CurrentPage': 1,
+                        'Count': 1,
+                        'TotalPages': 1,
+                        'NextPage': null,
+                        'PreviousPage': null
+                      },
+                      'Facilities': <dynamic>[
+                        <String, dynamic>{
+                          'ID': 'some-id',
+                          'name': 'hospital name',
+                          'code': 1,
+                          'phone': '',
+                          'active': true,
+                          'county': 'some-county',
+                          'description': '',
+                          'fhirOrganisationID': '',
+                          'workStationDetails': <String, dynamic>{
+                            'Notifications': 1,
+                            'Surveys': 1,
+                            'Articles': 1,
+                            'Messages': 1
+                          }
+                        },
+                      ]
+                    }
+                  }
+                },
+              ),
+              201,
+            ),
+          ),
+        ),
+      );
+
+      final TestInfo<AppState> info =
+          await storeTester.waitUntil(FetchFacilitiesAction);
+
+      expect(info.state.wait!.isWaitingFor(fetchFacilitiesFlag), false);
+      expect(
+        info.state.clientState?.facilityState?.currentFacility?.name,
+        'hospital name',
+      );
     });
 
     test('should throw error if api call is not 200', () async {

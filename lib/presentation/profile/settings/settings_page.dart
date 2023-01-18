@@ -54,7 +54,8 @@ class SettingsPage extends StatelessWidget {
                             ),
                             EditInformationButtonWidget(
                               editInformationItem: nickNameEditInfo(
-                                vm.clientState?.user?.username ?? UNKNOWN,
+                                vm.clientState?.clientProfile?.user?.username ??
+                                    UNKNOWN,
                               ),
                               submitFunction:
                                   (EditInformationItem editInformationItem) {
@@ -88,9 +89,12 @@ class SettingsPage extends StatelessWidget {
                                       StoreProvider.dispatch<AppState>(
                                         context,
                                         UpdateUserProfileAction(
-                                          nickName:
-                                              vm.clientState?.user?.username ??
-                                                  '',
+                                          nickName: vm
+                                                  .clientState
+                                                  ?.clientProfile
+                                                  ?.user
+                                                  ?.username ??
+                                              '',
                                         ),
                                       );
 
@@ -111,7 +115,8 @@ class SettingsPage extends StatelessWidget {
                         smallVerticalSizedBox,
                         PersonalInformationWidget(
                           description:
-                              vm.clientState?.user?.username ?? UNKNOWN,
+                              vm.clientState?.clientProfile?.user?.username ??
+                                  UNKNOWN,
                         ),
                       ],
                     ),

@@ -118,7 +118,9 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                       ),
                     ),
                   ),
-                  if (vm.appState.clientState?.user?.termsAccepted ?? false)
+                  if (vm.appState.clientState?.clientProfile?.user
+                          ?.termsAccepted ??
+                      false)
                     Padding(
                       padding: const EdgeInsets.only(top: 16),
                       child: Column(

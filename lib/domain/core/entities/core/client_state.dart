@@ -14,7 +14,6 @@ import 'package:pro_health_360/domain/core/entities/core/health_diary_state.dart
 import 'package:pro_health_360/domain/core/entities/core/health_timeline_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/notification_filter_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/related_person.dart';
-import 'package:pro_health_360/domain/core/entities/core/user.dart';
 import 'package:pro_health_360/domain/core/entities/medical_data/medical_data_state.dart';
 import 'package:pro_health_360/domain/core/entities/medical_data/next_refill_data.dart';
 import 'package:pro_health_360/domain/core/entities/profile/caregiver_information.dart';
@@ -30,7 +29,6 @@ class ClientState with _$ClientState {
     @JsonKey(name: 'addresses') List<Address>? addresses,
     @JsonKey(name: 'defaultFacilityID') String? facilityID,
     @JsonKey(name: 'relatedPersons') List<RelatedPerson>? relatedPersons,
-    @JsonKey(name: 'User') User? user,
 
     /// others
     @JsonKey(name: 'lastMoodRecordedDate') String? lastMoodRecordedDate,
@@ -79,9 +77,7 @@ class ClientState with _$ClientState {
       _$ClientStateFromJson(json);
 
   factory ClientState.initial() => ClientState(
-        // id: UNKNOWN,
         clientProfile: ClientProfile.initial(),
-        user: User.initial(),
         addresses: <Address>[],
         relatedPersons: <RelatedPerson>[],
         facilityID: UNKNOWN,

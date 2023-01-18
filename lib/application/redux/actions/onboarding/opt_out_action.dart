@@ -33,7 +33,7 @@ class OptOutAction extends ReduxAction<AppState> {
   @override
   Future<AppState?> reduce() async {
     final String phoneNumber =
-        state.clientState?.user?.primaryContact?.value ?? '';
+        state.clientState?.clientProfile?.user?.primaryContact?.value ?? '';
 
     final Map<String, dynamic> variables = <String, dynamic>{
       'phoneNumber': phoneNumber,

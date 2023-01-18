@@ -59,7 +59,7 @@ AppSetupData getAppSetupData(AppContext context) {
 /// any spaces in the name and omits empty segments of the name
 ///
 /// ```dart
-/// getDisplayName(vm.clientState?.user)
+/// getDisplayName(vm.clientState?.clientProfile?.user)
 /// ```
 ///
 /// ```output```
@@ -223,7 +223,7 @@ dynamic reportErrorToSentry({
 }) {
   final Map<String, dynamic> stackTrace = <String, dynamic>{};
   final String contact =
-      state?.clientState?.user?.primaryContact?.value ?? UNKNOWN;
+      state?.clientState?.clientProfile?.user?.primaryContact?.value ?? UNKNOWN;
   final bool isSignedIn = state?.clientState?.isSignedIn ?? false;
 
   if (response != null) {
@@ -649,7 +649,7 @@ String capitalize(String word) {
 
 bool shouldResumeWithPIN(AppState? appState) {
   final bool isSignedIn = appState?.credentials?.isSignedIn ?? false;
-  final User? userState = appState?.clientState?.user;
+  final User? userState = appState?.clientState?.clientProfile?.user;
 
   return isSignedIn &&
       (userState?.hasSetNickname ?? false) &&

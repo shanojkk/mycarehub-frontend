@@ -59,7 +59,7 @@ class _CommunityListViewPageState extends State<CommunityListViewPage> {
 
     final ClientState? clientState =
         StoreProvider.state<AppState>(context)?.clientState;
-    final User? user = clientState?.user;
+    final User? user = clientState?.clientProfile?.user;
 
     if (clientState?.clientProfile?.id != null &&
         clientState!.clientProfile!.id!.isNotEmpty &&

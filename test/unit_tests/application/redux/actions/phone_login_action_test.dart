@@ -157,7 +157,7 @@ void main() {
       final TestInfo<AppState> info =
           await storeTester.waitUntil(PhoneLoginAction);
 
-      expect(info.state.clientState?.user?.name, 'John Doe');
+      expect(info.state.clientState?.clientProfile?.user?.name, 'John Doe');
     });
 
     test('navigates to next page successfully', () async {

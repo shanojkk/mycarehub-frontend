@@ -26,6 +26,7 @@ void main() {
         initialState: AppState.initial()
             .copyWith
             .clientState!
+            .clientProfile!
             .user!
             .call(
               primaryContact: Contact(value: '+254717356476'),

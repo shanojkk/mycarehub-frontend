@@ -21,7 +21,7 @@ void main() {
         store: store,
         client: MockGraphQlClient(),
         widget: HealthPageInformationWidget(
-          user: store.state.clientState?.user,
+          user: store.state.clientState?.clientProfile?.user,
           firstName: 'firstName',
           lastName: 'lastName',
           userPhoneNumber: 'userPhoneNumber',

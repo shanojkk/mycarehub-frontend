@@ -24,7 +24,8 @@ OnboardingPathInfo onboardingPath({required AppState? appState}) {
 
   final bool isPhoneVerified =
       appState.onboardingState?.isPhoneVerified ?? false;
-  final bool termsAccepted = appState.clientState?.user?.termsAccepted ?? false;
+  final bool termsAccepted =
+      appState.clientState?.clientProfile?.user?.termsAccepted ?? false;
   final bool hasSetSecurityQuestions =
       appState.onboardingState?.hasSetSecurityQuestions ?? false;
   final bool hasVerifiedSecurityQuestions =

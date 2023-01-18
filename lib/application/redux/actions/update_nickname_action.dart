@@ -13,10 +13,10 @@ class UpdateNickNameAction extends ReduxAction<AppState> {
   @override
   AppState reduce() {
     final User? newUserState =
-        state.clientState?.user?.copyWith(username: nickName);
+        state.clientState?.clientProfile?.user?.copyWith(username: nickName);
 
     final AppState newState =
-        state.copyWith.clientState!.call(user: newUserState);
+        state.copyWith.clientState!.clientProfile!.call(user: newUserState);
 
     return newState;
   }

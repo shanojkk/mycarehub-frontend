@@ -62,9 +62,12 @@ class _MyHealthPageState extends State<MyHealthPage> {
 
       final String idToken =
           StoreProvider.state<AppState>(context)?.credentials?.idToken ?? '';
-      final String userID =
-          StoreProvider.state<AppState>(context)?.clientState?.user?.userId ??
-              '';
+      final String userID = StoreProvider.state<AppState>(context)
+              ?.clientState
+              ?.clientProfile
+              ?.user
+              ?.userId ??
+          '';
 
       return CustomClient(
         idToken,
@@ -100,7 +103,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
         converter: (Store<AppState> store) =>
             ClientProfileViewModel.fromStore(store),
         builder: (BuildContext context, ClientProfileViewModel vm) {
-          final User? userProfileState = vm.clientState?.user;
+          final User? userProfileState = vm.clientState?.clientProfile?.user;
           final String firstName = userProfileState?.firstName ?? '';
           final String lastName = userProfileState?.lastName ?? '';
           final List<ViralLoadNode?> viralLoadData =
@@ -108,7 +111,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
           final String hospitalName =
               vm.clientState?.facilityState?.currentFacility?.name ?? '';
           final String clientPhoneNumber =
-              vm.clientState?.user?.primaryContact?.value ?? '';
+              vm.clientState?.clientProfile?.user?.primaryContact?.value ?? '';
 
           final String nextRefill =
               vm.clientState?.nextRefillData?.nextRefill ?? '';

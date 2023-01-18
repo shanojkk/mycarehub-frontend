@@ -20,7 +20,7 @@ class SetNicknameViewModel extends Vm {
   factory SetNicknameViewModel.fromStore(AppState state) {
     return SetNicknameViewModel(
       wait: state.wait,
-      username: state.clientState?.user?.username,
+      username: state.clientState?.clientProfile?.user?.username,
       feedContentState: state.contentState?.feedContentState,
     );
   }

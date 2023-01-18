@@ -30,7 +30,7 @@ class FetchAvailableSurveysAction extends ReduxAction<AppState> {
   @override
   Future<AppState?> reduce() async {
     final Map<String, dynamic> variables = <String, dynamic>{
-      'userID': state.clientState!.user!.userId,
+      'userID': state.clientState!.clientProfile!.user!.userId,
     };
 
     final Response response =

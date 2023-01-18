@@ -50,7 +50,8 @@ class _MedicalDataPageState extends State<MedicalDataPage> {
                 appSetupData.customContext?.refreshTokenEndpoint ?? '';
 
             final String idToken = store.state.credentials?.idToken ?? '';
-            final String userID = store.state.clientState?.user?.userId ?? '';
+            final String userID =
+                store.state.clientState?.clientProfile?.user?.userId ?? '';
 
             if (widget.graphQlClient != null) {
               client = widget.graphQlClient!;

@@ -28,7 +28,7 @@ class ListUserProgramsAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final String? userID = state.clientState!.user!.userId;
+    final String? userID = state.clientState!.clientProfile!.user!.userId;
 
     final Map<String, dynamic> variables = <String, dynamic>{
       'userID': userID,

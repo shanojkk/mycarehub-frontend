@@ -1,4 +1,5 @@
 // Package imports:
+import 'package:pro_health_360/domain/core/entities/core/client_profile.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 
@@ -40,9 +41,10 @@ class UpdateUserProfileAction extends ReduxAction<AppState> {
 
   @override
   AppState reduce() {
-    final User? userFromState = state.clientState?.user;
+    final User? userFromState = state.clientState?.clientProfile?.user;
 
-    final User? newUserProfile = state.clientState?.user?.copyWith(
+    final User? newUserProfile =
+        state.clientState?.clientProfile?.user?.copyWith(
       active: this.active ?? userFromState?.active,
       firstName: firstName ?? userFromState?.firstName,
       lastName: lastName ?? userFromState?.lastName,
@@ -58,8 +60,11 @@ class UpdateUserProfileAction extends ReduxAction<AppState> {
       pinUpdateRequired: pinUpdateRequired ?? userFromState?.pinUpdateRequired,
     );
 
+    final ClientProfile newClientProfile =
+        state.clientState!.clientProfile!.copyWith(user: newUserProfile);
+
     final ClientState newState =
-        state.clientState!.copyWith(user: newUserProfile);
+        state.clientState!.copyWith(clientProfile: newClientProfile);
 
     return state.copyWith.call(clientState: newState);
   }
@@ -73,7 +78,10 @@ class UpdateUserAction extends ReduxAction<AppState> {
 
   @override
   AppState reduce() {
-    final ClientState? newClientState = state.clientState?.copyWith(user: user);
+    final ClientProfile? newClientProfile =
+        state.clientState?.clientProfile?.copyWith(user: user);
+    final ClientState? newClientState =
+        state.clientState?.copyWith(clientProfile: newClientProfile);
     final AppState newState =
         state.copyWith(clientState: newClientState ?? state.clientState);
 

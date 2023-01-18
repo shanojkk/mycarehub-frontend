@@ -24,7 +24,7 @@ class UserDetailsCard extends StatelessWidget {
       converter: (Store<AppState> store) =>
           ClientProfileViewModel.fromStore(store),
       builder: (BuildContext context, ClientProfileViewModel vm) {
-        final User? user = vm.clientState?.user;
+        final User? user = vm.clientState?.clientProfile?.user;
         final bool addressIsEmpty = vm.clientState?.addresses?.isEmpty ?? true;
         final String address = addressIsEmpty
             ? locationNotRecorded
@@ -34,9 +34,11 @@ class UserDetailsCard extends StatelessWidget {
         final String name = getDisplayName(user);
         final String cccNumber =
             vm.clientState?.clientProfile?.cccNumber ?? UNKNOWN;
-        final String dateOfBirth = vm.clientState?.user?.dateOfBirth ?? UNKNOWN;
+        final String dateOfBirth =
+            vm.clientState?.clientProfile?.user?.dateOfBirth ?? UNKNOWN;
         final String age = calculateAge(dateOfBirth);
-        final String nickName = vm.clientState?.user?.username ?? '';
+        final String nickName =
+            vm.clientState?.clientProfile?.user?.username ?? '';
 
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),

@@ -69,7 +69,7 @@ void main() {
           await storeTester.waitUntil(SetNicknameAction);
 
       expect(info.state.onboardingState?.hasSetNickName, true);
-      expect(info.state.clientState?.user?.username, 'test');
+      expect(info.state.clientState?.clientProfile?.user?.username, 'test');
     });
 
     test('should not update state if error occurs during API call', () async {
@@ -91,7 +91,7 @@ void main() {
           await storeTester.waitUntil(SetNicknameAction);
 
       expect(info.state.onboardingState?.hasSetNickName, false);
-      expect(info.state.clientState?.user?.username, UNKNOWN);
+      expect(info.state.clientState?.clientProfile?.user?.username, UNKNOWN);
     });
 
     test('should handle error code 71', () async {
@@ -120,7 +120,7 @@ void main() {
           await storeTester.waitUntil(SetNicknameAction);
 
       expect(info.state.onboardingState?.hasSetNickName, false);
-      expect(info.state.clientState?.user?.username, UNKNOWN);
+      expect(info.state.clientState?.clientProfile?.user?.username, UNKNOWN);
       expect(errorString, usernameTakenText);
     });
 
@@ -154,7 +154,7 @@ void main() {
           await storeTester.waitUntil(SetNicknameAction);
 
       expect(info.state.onboardingState?.hasSetNickName, false);
-      expect(info.state.clientState?.user?.username, UNKNOWN);
+      expect(info.state.clientState?.clientProfile?.user?.username, UNKNOWN);
       expect(errorString, errorSettingNicknameText);
     });
 
@@ -177,7 +177,7 @@ void main() {
           await storeTester.waitUntilErrorGetLast(error: UserException);
 
       expect(info.state.onboardingState?.hasSetNickName, false);
-      expect(info.state.clientState?.user?.username, UNKNOWN);
+      expect(info.state.clientState?.clientProfile?.user?.username, UNKNOWN);
       expect(info.errors.removeLast(), UserException(getErrorMessage()));
     });
 
@@ -239,7 +239,7 @@ void main() {
           await storeTester.waitUntil(SetNicknameAction);
 
       expect(info.state.onboardingState?.hasSetNickName, false);
-      expect(info.state.clientState?.user?.username, UNKNOWN);
+      expect(info.state.clientState?.clientProfile?.user?.username, UNKNOWN);
       expect(info.errors.removeLast(), UserException(getErrorMessage()));
     });
   });

@@ -139,7 +139,8 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
             vm.appState.onboardingState?.securityQuestionResponses ??
                 <SecurityQuestionResponse>[];
 
-        final String userId = vm.appState.clientState!.user!.userId!;
+        final String userId =
+            vm.appState.clientState!.clientProfile!.user!.userId!;
         final bool isResetPin =
             vm.appState.onboardingState?.currentOnboardingStage ==
                 CurrentOnboardingStage.ResetPIN;

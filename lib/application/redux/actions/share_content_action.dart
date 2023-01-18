@@ -39,7 +39,7 @@ class ShareContentAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState> reduce() async {
-    final String? userID = state.clientState!.user!.userId;
+    final String? userID = state.clientState!.clientProfile!.user!.userId;
 
     // initializing of the LikeContent mutation
     final Map<String, dynamic> variables = <String, dynamic>{

@@ -45,7 +45,7 @@ class ConnectGetStreamUserAction extends ReduxAction<AppState> {
         return null;
       }
 
-      final User? user = state.clientState?.user;
+      final User? user = state.clientState?.clientProfile?.user;
 
       final String? name = user?.name;
       final String? username = user?.username;

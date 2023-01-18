@@ -13,7 +13,7 @@ class DeepLinkAction extends ReduxAction<AppState> {
   AppState? reduce() {
     late OnboardingPathInfo navConfig;
 
-    if (state.clientState?.user == null) {
+    if (state.clientState?.clientProfile?.user == null) {
       navConfig = OnboardingPathInfo(
         nextRoute: AppRoutes.phoneLogin,
         previousRoute: '',

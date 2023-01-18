@@ -10,6 +10,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:pro_health_360/application/core/services/input_validators.dart';
+import 'package:pro_health_360/domain/core/entities/core/client_profile.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_setup_data.dart';
 import 'package:pro_health_360/application/core/services/notifications_utils.dart';
 import 'package:pro_health_360/application/core/services/utils.dart';
@@ -266,14 +267,16 @@ void main() {
         AppState(
           credentials: AuthCredentials(isSignedIn: true),
           clientState: ClientState(
-            user: User(
-              hasSetNickname: true,
-              hasSetPin: true,
-              hasSetSecurityQuestions: true,
-              isPhoneVerified: true,
-              pinChangeRequired: false,
-              pinUpdateRequired: false,
-              termsAccepted: true,
+            clientProfile: ClientProfile(
+              user: User(
+                hasSetNickname: true,
+                hasSetPin: true,
+                hasSetSecurityQuestions: true,
+                isPhoneVerified: true,
+                pinChangeRequired: false,
+                pinUpdateRequired: false,
+                termsAccepted: true,
+              ),
             ),
           ),
         ),

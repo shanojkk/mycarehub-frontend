@@ -37,9 +37,12 @@ class _MyHealthTimelineContainerState extends State<MyHealthTimelineContainer> {
 
       final String idToken =
           StoreProvider.state<AppState>(context)?.credentials?.idToken ?? '';
-      final String userID =
-          StoreProvider.state<AppState>(context)?.clientState?.user?.userId ??
-              '';
+      final String userID = StoreProvider.state<AppState>(context)
+              ?.clientState
+              ?.clientProfile
+              ?.user
+              ?.userId ??
+          '';
 
       return CustomClient(
         idToken,

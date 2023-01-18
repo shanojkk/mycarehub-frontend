@@ -54,7 +54,7 @@ class CreatePINAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState> reduce() async {
-    final String? userID = state.clientState!.user!.userId;
+    final String? userID = state.clientState!.clientProfile!.user!.userId;
     final String newPIN = state.onboardingState?.pin ?? UNKNOWN;
     final String confirmPIN = state.onboardingState?.confirmPIN ?? UNKNOWN;
 

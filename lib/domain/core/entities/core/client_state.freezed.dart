@@ -21,20 +21,13 @@ ClientState _$ClientStateFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ClientState {
   @JsonKey(name: 'clientProfile')
-  ClientProfile? get clientProfile =>
-      throw _privateConstructorUsedError; // @JsonKey(name: 'ID') String? id,
-// @JsonKey(name: 'Active', defaultValue: false) bool? active,
+  ClientProfile? get clientProfile => throw _privateConstructorUsedError;
   @JsonKey(name: 'addresses')
-  List<Address>? get addresses =>
-      throw _privateConstructorUsedError; // @JsonKey(name: 'ClientCounselled', defaultValue: false) bool? counselled,
-// @JsonKey(name: 'ClientTypes') List<ClientType>? clientTypes,
+  List<Address>? get addresses => throw _privateConstructorUsedError;
   @JsonKey(name: 'defaultFacilityID')
   String? get facilityID => throw _privateConstructorUsedError;
   @JsonKey(name: 'relatedPersons')
-  List<RelatedPerson>? get relatedPersons =>
-      throw _privateConstructorUsedError; // @JsonKey(name: 'TreatmentEnrollmentDate') String? treatmentEnrollmentDate,
-  @JsonKey(name: 'User')
-  User? get user => throw _privateConstructorUsedError;
+  List<RelatedPerson>? get relatedPersons => throw _privateConstructorUsedError;
 
   /// others
   @JsonKey(name: 'lastMoodRecordedDate')
@@ -44,13 +37,7 @@ mixin _$ClientState {
   @JsonKey(name: 'defaultFacilityName')
   String? get facilityName => throw _privateConstructorUsedError;
   @JsonKey(name: 'facilityPhoneNumber')
-  String? get facilityPhoneNumber =>
-      throw _privateConstructorUsedError; // @JsonKey(name: 'ChvUserID') String? chvUserID,
-// @JsonKey(name: 'ChvUserName') String? chvUserName,
-// @JsonKey(name: 'CCCNumber') String? cccNumber,
-// @JsonKey(name: 'FhirPatientID') String? fhirPatientID,
-// @JsonKey(name: 'HealthRecordID') String? healthRecordID,
-// @JsonKey(name: 'DefaultFacility') Facility? defaultFacility,
+  String? get facilityPhoneNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'roles')
   List<Role>? get roles => throw _privateConstructorUsedError;
   @JsonKey(name: 'permissions')
@@ -103,7 +90,6 @@ abstract class $ClientStateCopyWith<$Res> {
       @JsonKey(name: 'addresses') List<Address>? addresses,
       @JsonKey(name: 'defaultFacilityID') String? facilityID,
       @JsonKey(name: 'relatedPersons') List<RelatedPerson>? relatedPersons,
-      @JsonKey(name: 'User') User? user,
       @JsonKey(name: 'lastMoodRecordedDate') String? lastMoodRecordedDate,
       @JsonKey(name: 'isSignedIn') bool? isSignedIn,
       @JsonKey(name: 'defaultFacilityName') String? facilityName,
@@ -126,7 +112,6 @@ abstract class $ClientStateCopyWith<$Res> {
       FacilityState? facilityState});
 
   $ClientProfileCopyWith<$Res>? get clientProfile;
-  $UserCopyWith<$Res>? get user;
   $HealthDiaryStateCopyWith<$Res>? get healthDiaryState;
   $CommunitiesStateCopyWith<$Res>? get communitiesState;
   $HealthTimelineStateCopyWith<$Res>? get healthTimelineState;
@@ -155,7 +140,6 @@ class _$ClientStateCopyWithImpl<$Res, $Val extends ClientState>
     Object? addresses = freezed,
     Object? facilityID = freezed,
     Object? relatedPersons = freezed,
-    Object? user = freezed,
     Object? lastMoodRecordedDate = freezed,
     Object? isSignedIn = freezed,
     Object? facilityName = freezed,
@@ -194,10 +178,6 @@ class _$ClientStateCopyWithImpl<$Res, $Val extends ClientState>
           ? _value.relatedPersons
           : relatedPersons // ignore: cast_nullable_to_non_nullable
               as List<RelatedPerson>?,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
       lastMoodRecordedDate: freezed == lastMoodRecordedDate
           ? _value.lastMoodRecordedDate
           : lastMoodRecordedDate // ignore: cast_nullable_to_non_nullable
@@ -290,18 +270,6 @@ class _$ClientStateCopyWithImpl<$Res, $Val extends ClientState>
 
     return $ClientProfileCopyWith<$Res>(_value.clientProfile!, (value) {
       return _then(_value.copyWith(clientProfile: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res>? get user {
-    if (_value.user == null) {
-      return null;
-    }
-
-    return $UserCopyWith<$Res>(_value.user!, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
     });
   }
 
@@ -430,7 +398,6 @@ abstract class _$$_ClientStateCopyWith<$Res>
       @JsonKey(name: 'addresses') List<Address>? addresses,
       @JsonKey(name: 'defaultFacilityID') String? facilityID,
       @JsonKey(name: 'relatedPersons') List<RelatedPerson>? relatedPersons,
-      @JsonKey(name: 'User') User? user,
       @JsonKey(name: 'lastMoodRecordedDate') String? lastMoodRecordedDate,
       @JsonKey(name: 'isSignedIn') bool? isSignedIn,
       @JsonKey(name: 'defaultFacilityName') String? facilityName,
@@ -454,8 +421,6 @@ abstract class _$$_ClientStateCopyWith<$Res>
 
   @override
   $ClientProfileCopyWith<$Res>? get clientProfile;
-  @override
-  $UserCopyWith<$Res>? get user;
   @override
   $HealthDiaryStateCopyWith<$Res>? get healthDiaryState;
   @override
@@ -491,7 +456,6 @@ class __$$_ClientStateCopyWithImpl<$Res>
     Object? addresses = freezed,
     Object? facilityID = freezed,
     Object? relatedPersons = freezed,
-    Object? user = freezed,
     Object? lastMoodRecordedDate = freezed,
     Object? isSignedIn = freezed,
     Object? facilityName = freezed,
@@ -530,10 +494,6 @@ class __$$_ClientStateCopyWithImpl<$Res>
           ? _value._relatedPersons
           : relatedPersons // ignore: cast_nullable_to_non_nullable
               as List<RelatedPerson>?,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
       lastMoodRecordedDate: freezed == lastMoodRecordedDate
           ? _value.lastMoodRecordedDate
           : lastMoodRecordedDate // ignore: cast_nullable_to_non_nullable
@@ -630,8 +590,6 @@ class _$_ClientState implements _ClientState {
           this.facilityID,
       @JsonKey(name: 'relatedPersons')
           final List<RelatedPerson>? relatedPersons,
-      @JsonKey(name: 'User')
-          this.user,
       @JsonKey(name: 'lastMoodRecordedDate')
           this.lastMoodRecordedDate,
       @JsonKey(name: 'isSignedIn')
@@ -673,11 +631,7 @@ class _$_ClientState implements _ClientState {
   @override
   @JsonKey(name: 'clientProfile')
   final ClientProfile? clientProfile;
-// @JsonKey(name: 'ID') String? id,
-// @JsonKey(name: 'Active', defaultValue: false) bool? active,
   final List<Address>? _addresses;
-// @JsonKey(name: 'ID') String? id,
-// @JsonKey(name: 'Active', defaultValue: false) bool? active,
   @override
   @JsonKey(name: 'addresses')
   List<Address>? get addresses {
@@ -687,8 +641,6 @@ class _$_ClientState implements _ClientState {
     return EqualUnmodifiableListView(value);
   }
 
-// @JsonKey(name: 'ClientCounselled', defaultValue: false) bool? counselled,
-// @JsonKey(name: 'ClientTypes') List<ClientType>? clientTypes,
   @override
   @JsonKey(name: 'defaultFacilityID')
   final String? facilityID;
@@ -701,11 +653,6 @@ class _$_ClientState implements _ClientState {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
-
-// @JsonKey(name: 'TreatmentEnrollmentDate') String? treatmentEnrollmentDate,
-  @override
-  @JsonKey(name: 'User')
-  final User? user;
 
   /// others
   @override
@@ -720,19 +667,7 @@ class _$_ClientState implements _ClientState {
   @override
   @JsonKey(name: 'facilityPhoneNumber')
   final String? facilityPhoneNumber;
-// @JsonKey(name: 'ChvUserID') String? chvUserID,
-// @JsonKey(name: 'ChvUserName') String? chvUserName,
-// @JsonKey(name: 'CCCNumber') String? cccNumber,
-// @JsonKey(name: 'FhirPatientID') String? fhirPatientID,
-// @JsonKey(name: 'HealthRecordID') String? healthRecordID,
-// @JsonKey(name: 'DefaultFacility') Facility? defaultFacility,
   final List<Role>? _roles;
-// @JsonKey(name: 'ChvUserID') String? chvUserID,
-// @JsonKey(name: 'ChvUserName') String? chvUserName,
-// @JsonKey(name: 'CCCNumber') String? cccNumber,
-// @JsonKey(name: 'FhirPatientID') String? fhirPatientID,
-// @JsonKey(name: 'HealthRecordID') String? healthRecordID,
-// @JsonKey(name: 'DefaultFacility') Facility? defaultFacility,
   @override
   @JsonKey(name: 'roles')
   List<Role>? get roles {
@@ -819,7 +754,7 @@ class _$_ClientState implements _ClientState {
 
   @override
   String toString() {
-    return 'ClientState(clientProfile: $clientProfile, addresses: $addresses, facilityID: $facilityID, relatedPersons: $relatedPersons, user: $user, lastMoodRecordedDate: $lastMoodRecordedDate, isSignedIn: $isSignedIn, facilityName: $facilityName, facilityPhoneNumber: $facilityPhoneNumber, roles: $roles, permissions: $permissions, communityToken: $communityToken, healthDiaryState: $healthDiaryState, communitiesState: $communitiesState, pastAppointments: $pastAppointments, upcomingAppointments: $upcomingAppointments, healthTimelineState: $healthTimelineState, medicalDataState: $medicalDataState, viralLoadData: $viralLoadData, nextRefillData: $nextRefillData, caregiverInformation: $caregiverInformation, hasCareGiverInfo: $hasCareGiverInfo, notifications: $notifications, notificationFilterState: $notificationFilterState, facilityState: $facilityState)';
+    return 'ClientState(clientProfile: $clientProfile, addresses: $addresses, facilityID: $facilityID, relatedPersons: $relatedPersons, lastMoodRecordedDate: $lastMoodRecordedDate, isSignedIn: $isSignedIn, facilityName: $facilityName, facilityPhoneNumber: $facilityPhoneNumber, roles: $roles, permissions: $permissions, communityToken: $communityToken, healthDiaryState: $healthDiaryState, communitiesState: $communitiesState, pastAppointments: $pastAppointments, upcomingAppointments: $upcomingAppointments, healthTimelineState: $healthTimelineState, medicalDataState: $medicalDataState, viralLoadData: $viralLoadData, nextRefillData: $nextRefillData, caregiverInformation: $caregiverInformation, hasCareGiverInfo: $hasCareGiverInfo, notifications: $notifications, notificationFilterState: $notificationFilterState, facilityState: $facilityState)';
   }
 
   @override
@@ -835,7 +770,6 @@ class _$_ClientState implements _ClientState {
                 other.facilityID == facilityID) &&
             const DeepCollectionEquality()
                 .equals(other._relatedPersons, _relatedPersons) &&
-            (identical(other.user, user) || other.user == user) &&
             (identical(other.lastMoodRecordedDate, lastMoodRecordedDate) ||
                 other.lastMoodRecordedDate == lastMoodRecordedDate) &&
             (identical(other.isSignedIn, isSignedIn) ||
@@ -886,7 +820,6 @@ class _$_ClientState implements _ClientState {
         const DeepCollectionEquality().hash(_addresses),
         facilityID,
         const DeepCollectionEquality().hash(_relatedPersons),
-        user,
         lastMoodRecordedDate,
         isSignedIn,
         facilityName,
@@ -933,8 +866,6 @@ abstract class _ClientState implements ClientState {
           final String? facilityID,
       @JsonKey(name: 'relatedPersons')
           final List<RelatedPerson>? relatedPersons,
-      @JsonKey(name: 'User')
-          final User? user,
       @JsonKey(name: 'lastMoodRecordedDate')
           final String? lastMoodRecordedDate,
       @JsonKey(name: 'isSignedIn')
@@ -969,20 +900,15 @@ abstract class _ClientState implements ClientState {
   @override
   @JsonKey(name: 'clientProfile')
   ClientProfile? get clientProfile;
-  @override // @JsonKey(name: 'ID') String? id,
-// @JsonKey(name: 'Active', defaultValue: false) bool? active,
+  @override
   @JsonKey(name: 'addresses')
   List<Address>? get addresses;
-  @override // @JsonKey(name: 'ClientCounselled', defaultValue: false) bool? counselled,
-// @JsonKey(name: 'ClientTypes') List<ClientType>? clientTypes,
+  @override
   @JsonKey(name: 'defaultFacilityID')
   String? get facilityID;
   @override
   @JsonKey(name: 'relatedPersons')
   List<RelatedPerson>? get relatedPersons;
-  @override // @JsonKey(name: 'TreatmentEnrollmentDate') String? treatmentEnrollmentDate,
-  @JsonKey(name: 'User')
-  User? get user;
   @override
 
   /// others
@@ -997,12 +923,7 @@ abstract class _ClientState implements ClientState {
   @override
   @JsonKey(name: 'facilityPhoneNumber')
   String? get facilityPhoneNumber;
-  @override // @JsonKey(name: 'ChvUserID') String? chvUserID,
-// @JsonKey(name: 'ChvUserName') String? chvUserName,
-// @JsonKey(name: 'CCCNumber') String? cccNumber,
-// @JsonKey(name: 'FhirPatientID') String? fhirPatientID,
-// @JsonKey(name: 'HealthRecordID') String? healthRecordID,
-// @JsonKey(name: 'DefaultFacility') Facility? defaultFacility,
+  @override
   @JsonKey(name: 'roles')
   List<Role>? get roles;
   @override

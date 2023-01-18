@@ -40,7 +40,7 @@ class VerifyPhoneViewModel extends Vm {
   static VerifyPhoneViewModel fromStore(AppState state) {
     return VerifyPhoneViewModel(
       wait: state.wait,
-      userID: state.clientState?.user?.userId ?? UNKNOWN,
+      userID: state.clientState?.clientProfile?.user?.userId ?? UNKNOWN,
       phoneNumber: state.onboardingState?.phoneNumber ?? UNKNOWN,
       otp: state.onboardingState?.otp ?? UNKNOWN,
       invalidOTP: state.onboardingState?.invalidOTP ?? false,

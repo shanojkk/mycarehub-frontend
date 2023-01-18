@@ -71,7 +71,7 @@ void main() {
               buttonKey: const Key('get_first_name_Key'),
               onPressed: () {
                 actualNameFromState = getDisplayName(
-                  store.state.clientState!.user,
+                  store.state.clientState!.clientProfile!.user,
                 );
               },
             );
@@ -104,8 +104,9 @@ void main() {
                   return MyAfyaHubPrimaryButton(
                     buttonKey: const Key('get_first_name_Key'),
                     onPressed: () {
-                      actualNameFromState =
-                          getDisplayName(store.state.clientState!.user);
+                      actualNameFromState = getDisplayName(
+                        store.state.clientState!.clientProfile!.user,
+                      );
                     },
                   );
                 },

@@ -19,9 +19,6 @@ _$_ClientState _$$_ClientStateFromJson(Map<String, dynamic> json) =>
       relatedPersons: (json['relatedPersons'] as List<dynamic>?)
           ?.map((e) => RelatedPerson.fromJson(e as Map<String, dynamic>))
           .toList(),
-      user: json['User'] == null
-          ? null
-          : User.fromJson(json['User'] as Map<String, dynamic>),
       lastMoodRecordedDate: json['lastMoodRecordedDate'] as String?,
       isSignedIn: json['isSignedIn'] as bool?,
       facilityName: json['defaultFacilityName'] as String?,
@@ -89,7 +86,6 @@ Map<String, dynamic> _$$_ClientStateToJson(_$_ClientState instance) =>
       'addresses': instance.addresses,
       'defaultFacilityID': instance.facilityID,
       'relatedPersons': instance.relatedPersons,
-      'User': instance.user,
       'lastMoodRecordedDate': instance.lastMoodRecordedDate,
       'isSignedIn': instance.isSignedIn,
       'defaultFacilityName': instance.facilityName,

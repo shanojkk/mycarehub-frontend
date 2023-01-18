@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 // Flutter imports:
+import 'package:pro_health_360/domain/core/entities/core/client_profile.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
@@ -75,7 +76,9 @@ void main() {
       store.dispatch(
         UpdateClientStateAction(
           clientState: ClientState.initial().copyWith(
-            user: User.initial().copyWith(termsAccepted: true),
+            clientProfile: ClientProfile(
+              user: User.initial().copyWith(termsAccepted: true),
+            ),
           ),
         ),
       );

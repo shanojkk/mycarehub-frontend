@@ -73,6 +73,7 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
       chvUserName:
           this.chvUserName ?? state.clientState?.clientProfile?.chvUserName,
       cccNumber: this.cccNumber ?? state.clientState?.clientProfile?.cccNumber,
+      user: this.user ?? state.clientState?.clientProfile?.user,
     );
     final AppState newState = state.copyWith(
       clientState: state.clientState?.copyWith.call(
@@ -90,7 +91,6 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
         notifications: this.notifications ?? state.clientState?.notifications,
         hasCareGiverInfo:
             this.hasCaregiverInfo ?? state.clientState?.hasCareGiverInfo,
-        user: this.user ?? state.clientState?.user,
         roles: this.roles ?? state.clientState?.roles,
       ),
     );

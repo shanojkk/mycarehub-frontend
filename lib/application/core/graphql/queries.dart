@@ -591,7 +591,6 @@ query getUserLinkedFacilities($userID: ID! $paginationInput: PaginationsInput!){
     Facilities{
       ID
       name
-      code
       phone
       active
       county

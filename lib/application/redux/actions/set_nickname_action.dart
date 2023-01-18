@@ -60,7 +60,7 @@ class SetNicknameAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final String? userID = state.clientState?.user?.userId;
+    final String? userID = state.clientState?.clientProfile?.user?.userId;
     final String nickname = state.onboardingState?.nickName ?? '';
 
     // initializing of the SetNicknameAction mutation

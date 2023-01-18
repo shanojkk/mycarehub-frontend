@@ -52,7 +52,7 @@ class AcceptTermsAndConditionsAction extends ReduxAction<AppState> {
   Future<AppState> reduce() async {
     final int acceptedTermsID =
         state.onboardingState!.termsAndConditions!.termsId;
-    final String? userID = state.clientState!.user!.userId;
+    final String? userID = state.clientState!.clientProfile!.user!.userId;
 
     final IGraphQlClient client = AppWrapperBase.of(context)!.graphQLClient;
 

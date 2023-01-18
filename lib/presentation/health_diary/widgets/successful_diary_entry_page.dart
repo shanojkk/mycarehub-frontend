@@ -33,7 +33,7 @@ class SuccessfulDiaryEntryPage extends StatelessWidget {
                 ClientProfileViewModel.fromStore(store),
             builder: (BuildContext context, ClientProfileViewModel vm) {
               final String userName =
-                  vm.clientState?.user?.firstName ?? UNKNOWN;
+                  vm.clientState?.clientProfile?.user?.firstName ?? UNKNOWN;
               final bool hasSharedEntry = vm.clientState?.healthDiaryState
                       ?.shouldNotShareHealthRecord ??
                   false;

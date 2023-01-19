@@ -53,7 +53,7 @@ void main() {
               'getClientFacilities': <String, dynamic>{
                 'Facilities': <dynamic>[
                   <String, dynamic>{
-                    'ID': 'some-id',
+                    'id': 'some-id',
                     'name': 'Some Facility',
                     'phone': '+254712345678',
                     'active': true,
@@ -62,15 +62,15 @@ void main() {
                         'Opens from Monday to Friday from 8:00 to 17:00',
                     'fhirOrganisationID': '',
                     'workStationDetails': <String, dynamic>{
-                      'Notifications': 0,
-                      'Surveys': 0,
-                      'Articles': 0,
-                      'Messages': 0,
-                      'ServiceRequests': 0
+                      'notifications': 0,
+                      'surveys': 0,
+                      'articles': 0,
+                      'messages': 0,
+                      'serviceRequests': 0
                     }
                   },
                   <String, dynamic>{
-                    'ID': 'some-id-2',
+                    'id': 'some-id-2',
                     'name': 'Some Facility B',
                     'phone': '+254712345678',
                     'active': true,
@@ -79,33 +79,33 @@ void main() {
                         'Opens from Monday to Friday from 8:00 to 17:00',
                     'fhirOrganisationID': '',
                     'workStationDetails': <String, dynamic>{
-                      'Notifications': 0,
-                      'Surveys': 0,
-                      'Articles': 0,
-                      'Messages': 0,
-                      'ServiceRequests': 0
+                      'notifications': 0,
+                      'surveys': 0,
+                      'articles': 0,
+                      'messages': 0,
+                      'serviceRequests': 0
                     }
                   }
                 ],
                 'Pagination': <String, dynamic>{
-                  'Limit': 20,
-                  'CurrentPage': 1,
-                  'Count': 2,
-                  'TotalPages': 1,
-                  'NextPage': null,
-                  'PreviousPage': null
+                  'limit': 20,
+                  'currentPage': 1,
+                  'count': 2,
+                  'totalPages': 1,
+                  'nextPage': null,
+                  'previousPage': null
                 }
               },
               'setClientProgram': <String, dynamic>{
                 'clientProfile': <String, dynamic>{
-                  'ID': 'some-id',
-                  'User': <String, dynamic>{
-                    'ID': 'some-id',
-                    'Username': 'jr_jr',
-                    'Name': 'JR jr JR',
-                    'Gender': 'MALE',
-                    'Active': true,
-                    'Contacts': <String, dynamic>{
+                  'id': 'some-id',
+                  'user': <String, dynamic>{
+                    'id': 'some-id',
+                    'username': 'jr_jr',
+                    'name': 'JR jr JR',
+                    'gender': 'MALE',
+                    'active': true,
+                    'contacts': <String, dynamic>{
                       'id': '',
                       'contactType': '',
                       'contactValue': '',
@@ -113,15 +113,15 @@ void main() {
                       'optedIn': false
                     }
                   },
-                  'Active': true,
-                  'ClientTypes': <dynamic>['PMTCT', 'OVC', 'OTZ'],
-                  'TreatmentEnrollmentDate': '2000-02-20T00:00:00Z',
-                  'FHIRPatientID': null,
-                  'HealthRecordID': null,
-                  'TreatmentBuddy': '',
-                  'ClientCounselled': true,
-                  'DefaultFacility': <String, dynamic>{
-                    'ID': 'some-id',
+                  'active': true,
+                  'clientTypes': <dynamic>['PMTCT', 'OVC', 'OTZ'],
+                  'treatmentEnrollmentDate': '2000-02-20T00:00:00Z',
+                  'fhirPatientID': null,
+                  'healthRecordID': null,
+                  'treatmentBuddy': '',
+                  'clientCounselled': true,
+                  'defaultFacility': <String, dynamic>{
+                    'id': 'some-id',
                     'name': 'Kerugoya CRH',
                     'phone': '+254712345678',
                     'active': true,
@@ -130,10 +130,10 @@ void main() {
                         'Opens from Monday to Friday from 8:00 to 17:00',
                     'fhirOrganisationID': ''
                   },
-                  'CHVUserID': null,
-                  'CHVUserName': '',
-                  'CaregiverID': null,
-                  'CCCNumber': ''
+                  'chvUserID': null,
+                  'chvUserName': '',
+                  'caregiverID': null,
+                  'cccNumber': ''
                 },
                 'roles': <dynamic>[],
                 'permissions': <dynamic>[],

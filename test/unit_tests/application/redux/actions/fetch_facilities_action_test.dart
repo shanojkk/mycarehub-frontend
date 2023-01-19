@@ -48,16 +48,16 @@ void main() {
                   'data': <String, dynamic>{
                     'getClientFacilities': <String, dynamic>{
                       'Pagination': <String, dynamic>{
-                        'Limit': 20,
-                        'CurrentPage': 1,
-                        'Count': 1,
-                        'TotalPages': 1,
-                        'NextPage': null,
-                        'PreviousPage': null
+                        'limit': 20,
+                        'currentPage': 1,
+                        'count': 1,
+                        'totalPages': 1,
+                        'nextPage': null,
+                        'previousPage': null
                       },
                       'Facilities': <dynamic>[
                         <String, dynamic>{
-                          'ID': 'some-id',
+                          'id': 'some-id',
                           'name': 'hospital name',
                           'code': 1,
                           'phone': '',
@@ -66,10 +66,10 @@ void main() {
                           'description': '',
                           'fhirOrganisationID': '',
                           'workStationDetails': <String, dynamic>{
-                            'Notifications': 1,
-                            'Surveys': 1,
-                            'Articles': 1,
-                            'Messages': 1
+                            'notifications': 1,
+                            'surveys': 1,
+                            'articles': 1,
+                            'messages': 1
                           }
                         },
                       ]

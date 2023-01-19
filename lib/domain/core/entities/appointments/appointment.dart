@@ -6,10 +6,10 @@ part 'appointment.g.dart';
 @freezed
 class Appointment with _$Appointment {
   factory Appointment({
-    @JsonKey(name: 'ID') required String? id,
+    @JsonKey(name: 'id') required String? id,
     @JsonKey(name: 'reason') required String? reason,
     @JsonKey(name: 'date') required String? date,
-    @JsonKey(name: 'HasRescheduledAppointment', defaultValue: false)
+    @JsonKey(name: 'hasRescheduledAppointment', defaultValue: false)
         required bool pendingReschedule,
   }) = _Appointment;
 

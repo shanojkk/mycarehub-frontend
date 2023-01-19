@@ -7,7 +7,7 @@ part of 'facility.dart';
 // **************************************************************************
 
 _$_Facility _$$_FacilityFromJson(Map<String, dynamic> json) => _$_Facility(
-      id: json['ID'] as String?,
+      id: json['id'] as String?,
       name: json['name'] as String?,
       code: json['code'] as int?,
       phone: json['phone'] as String?,
@@ -23,7 +23,7 @@ _$_Facility _$$_FacilityFromJson(Map<String, dynamic> json) => _$_Facility(
 
 Map<String, dynamic> _$$_FacilityToJson(_$_Facility instance) =>
     <String, dynamic>{
-      'ID': instance.id,
+      'id': instance.id,
       'name': instance.name,
       'code': instance.code,
       'phone': instance.phone,

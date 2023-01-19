@@ -76,10 +76,10 @@ void main() {
                     'description': '',
                     'fhirOrganisationID': '',
                     'workStationDetails': <String, dynamic>{
-                      'Notifications': 1,
-                      'Surveys': 1,
-                      'Articles': 1,
-                      'Messages': 1
+                      'notifications': 1,
+                      'surveys': 1,
+                      'articles': 1,
+                      'messages': 1
                     }
                   },
                 ]

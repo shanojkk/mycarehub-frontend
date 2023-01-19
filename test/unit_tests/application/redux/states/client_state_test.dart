@@ -15,7 +15,7 @@ void main() {
 
       final Map<String, dynamic> clientStateMap = <String, dynamic>{
         'user': <String, dynamic>{'userId': 'some-user-id'},
-        'clientProfile': <String, dynamic>{'ClientCounselled': true},
+        'clientProfile': <String, dynamic>{'clientCounselled': true},
       };
 
       expect(

@@ -14,20 +14,20 @@ part 'client_profile.g.dart';
 @freezed
 class ClientProfile with _$ClientProfile {
   factory ClientProfile({
-    @JsonKey(name: 'ID') String? id,
-    @JsonKey(name: 'Active', defaultValue: false) bool? active,
-    @JsonKey(name: 'ClientCounselled', defaultValue: false) bool? counselled,
-    @JsonKey(name: 'ClientTypes') List<ClientType>? clientTypes,
+    @JsonKey(name: 'id') String? id,
+    @JsonKey(name: 'active', defaultValue: false) bool? active,
+    @JsonKey(name: 'clientCounselled', defaultValue: false) bool? counselled,
+    @JsonKey(name: 'clientTypes') List<ClientType>? clientTypes,
     @JsonKey(name: 'defaultFacilityID') String? facilityID,
-    @JsonKey(name: 'TreatmentEnrollmentDate') String? treatmentEnrollmentDate,
-    @JsonKey(name: 'TreatmentBuddy') String? treatmentBuddy,
-    @JsonKey(name: 'User') User? user,
-    @JsonKey(name: 'ChvUserID') String? chvUserID,
-    @JsonKey(name: 'ChvUserName') String? chvUserName,
-    @JsonKey(name: 'CCCNumber') String? cccNumber,
-    @JsonKey(name: 'FhirPatientID') String? fhirPatientID,
-    @JsonKey(name: 'HealthRecordID') String? healthRecordID,
-    @JsonKey(name: 'DefaultFacility') Facility? defaultFacility,
+    @JsonKey(name: 'treatmentEnrollmentDate') String? treatmentEnrollmentDate,
+    @JsonKey(name: 'treatmentBuddy') String? treatmentBuddy,
+    @JsonKey(name: 'user') User? user,
+    @JsonKey(name: 'chvUserID') String? chvUserID,
+    @JsonKey(name: 'chvUserName') String? chvUserName,
+    @JsonKey(name: 'cccNumber') String? cccNumber,
+    @JsonKey(name: 'fhirPatientID') String? fhirPatientID,
+    @JsonKey(name: 'healthRecordID') String? healthRecordID,
+    @JsonKey(name: 'defaultFacility') Facility? defaultFacility,
   }) = _ClientProfile;
 
   factory ClientProfile.fromJson(Map<String, dynamic> json) =>

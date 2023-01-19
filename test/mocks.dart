@@ -1354,7 +1354,7 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
                 'getClientFacilities': <String, dynamic>{
                   'Facilities': <dynamic>[
                     <String, dynamic>{
-                      'ID': 'some-id',
+                      'id': 'some-id',
                       'name': 'Some Facility',
                       'phone': '+254712345678',
                       'active': true,
@@ -1363,14 +1363,14 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
                           'Opens from Monday to Friday from 8:00 to 17:00',
                       'fhirOrganisationID': '',
                       'workStationDetails': <String, dynamic>{
-                        'Notifications': 1,
-                        'Surveys': 1,
-                        'Articles': 1,
-                        'Messages': 1
+                        'notifications': 1,
+                        'surveys': 1,
+                        'articles': 1,
+                        'messages': 1
                       }
                     },
                     <String, dynamic>{
-                      'ID': 'some-id-2',
+                      'id': 'some-id-2',
                       'name': 'Some Facility B',
                       'phone': '+254712345678',
                       'active': true,
@@ -1379,21 +1379,21 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
                           'Opens from Monday to Friday from 8:00 to 17:00',
                       'fhirOrganisationID': '',
                       'workStationDetails': <String, dynamic>{
-                        'Notifications': 0,
-                        'Surveys': 0,
-                        'Articles': 0,
-                        'Messages': 0,
-                        'ServiceRequests': 0
+                        'notifications': 0,
+                        'surveys': 0,
+                        'articles': 0,
+                        'messages': 0,
+                        'serviceRequests': 0
                       }
                     }
                   ],
                   'Pagination': <String, dynamic>{
-                    'Limit': 20,
-                    'CurrentPage': 1,
-                    'Count': 2,
-                    'TotalPages': 1,
-                    'NextPage': null,
-                    'PreviousPage': null
+                    'limit': 20,
+                    'currentPage': 1,
+                    'count': 2,
+                    'totalPages': 1,
+                    'nextPage': null,
+                    'previousPage': null
                   }
                 }
               }
@@ -1427,22 +1427,22 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
               'data': <String, dynamic>{
                 'getCaregiverManagedClients': <String, dynamic>{
                   'Pagination': <String, dynamic>{
-                    'Limit': 20,
-                    'CurrentPage': 1,
-                    'Count': 2,
-                    'TotalPages': 1,
-                    'NextPage': null,
-                    'PreviousPage': null
+                    'limit': 20,
+                    'currentPage': 1,
+                    'count': 2,
+                    'totalPages': 1,
+                    'nextPage': null,
+                    'previousPage': null
                   },
                   'ManagedClients': <dynamic>[
                     <String, dynamic>{
                       'caregiverConsent': true,
                       'clientConsent': true,
                       'workStationDetails': <String, dynamic>{
-                        'Notifications': 1,
-                        'Surveys': 1,
-                        'Articles': 1,
-                        'Messages': 1
+                        'notifications': 1,
+                        'surveys': 1,
+                        'articles': 1,
+                        'messages': 1
                       },
                       'clientProfile': <String, dynamic>{
                         'ID': '0some-id',
@@ -1455,10 +1455,10 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
                       'caregiverConsent': true,
                       'clientConsent': true,
                       'workStationDetails': <String, dynamic>{
-                        'Notifications': 0,
-                        'Surveys': 0,
-                        'Articles': 0,
-                        'Messages': 0
+                        'notifications': 0,
+                        'surveys': 0,
+                        'articles': 0,
+                        'messages': 0
                       },
                       'clientProfile': <String, dynamic>{
                         'ID': '0some-id',
@@ -1620,224 +1620,224 @@ final Map<String, dynamic> mockNotificationFiltersResponse = <String, dynamic>{
 
 final List<dynamic> mockAppointments = <dynamic>[
   <String, dynamic>{
-    'ID': '1234',
+    'id': '1234',
     'type': 'DENTAL',
     'reason': 'test',
     'status': 'SCHEDULED',
     'date': '2022-01-04',
     'start': 'test',
     'end': 'test',
-    'HasRescheduledAppointment': false
+    'hasRescheduledAppointment': false
   },
   <String, dynamic>{
-    'ID': '56789',
+    'id': '56789',
     'type': 'DENTAL',
     'reason': 'test',
     'status': 'SCHEDULED',
     'date': '2022-01-04',
     'start': 'test',
     'end': 'test',
-    'HasRescheduledAppointment': true
+    'hasRescheduledAppointment': true
   },
   <String, dynamic>{
-    'ID': '1234',
+    'id': '1234',
     'type': 'DENTAL',
     'reason': 'test',
     'status': 'SCHEDULED',
     'date': '2022-01-04',
     'start': 'test',
     'end': 'test',
-    'HasRescheduledAppointment': false
+    'hasRescheduledAppointment': false
   },
   <String, dynamic>{
-    'ID': '56789',
+    'id': '56789',
     'type': 'DENTAL',
     'reason': 'test',
     'status': 'SCHEDULED',
     'date': '2022-01-04',
     'start': 'test',
     'end': 'test',
-    'HasRescheduledAppointment': true
+    'hasRescheduledAppointment': true
   },
   <String, dynamic>{
-    'ID': '1234',
+    'id': '1234',
     'type': 'DENTAL',
     'reason': 'test',
     'status': 'SCHEDULED',
     'date': '2022-01-04',
     'start': 'test',
     'end': 'test',
-    'HasRescheduledAppointment': false
+    'hasRescheduledAppointment': false
   },
   <String, dynamic>{
-    'ID': '56789',
+    'id': '56789',
     'type': 'DENTAL',
     'reason': 'test',
     'status': 'SCHEDULED',
     'date': '2022-01-04',
     'start': 'test',
     'end': 'test',
-    'HasRescheduledAppointment': true
+    'hasRescheduledAppointment': true
   },
   <String, dynamic>{
-    'ID': '1234',
+    'id': '1234',
     'type': 'DENTAL',
     'reason': 'test',
     'status': 'SCHEDULED',
     'date': '2022-01-04',
     'start': 'test',
     'end': 'test',
-    'HasRescheduledAppointment': false
+    'hasRescheduledAppointment': false
   },
   <String, dynamic>{
-    'ID': '56789',
+    'id': '56789',
     'type': 'DENTAL',
     'reason': 'test',
     'status': 'SCHEDULED',
     'date': '2022-01-04',
     'start': 'test',
     'end': 'test',
-    'HasRescheduledAppointment': true
+    'hasRescheduledAppointment': true
   },
   <String, dynamic>{
-    'ID': '1234',
+    'id': '1234',
     'type': 'DENTAL',
     'reason': 'test',
     'status': 'SCHEDULED',
     'date': '2022-01-04',
     'start': 'test',
     'end': 'test',
-    'HasRescheduledAppointment': false
+    'hasRescheduledAppointment': false
   },
   <String, dynamic>{
-    'ID': '56789',
+    'id': '56789',
     'type': 'DENTAL',
     'reason': 'test',
     'status': 'SCHEDULED',
     'date': '2022-01-04',
     'start': 'test',
     'end': 'test',
-    'HasRescheduledAppointment': true
+    'hasRescheduledAppointment': true
   },
   <String, dynamic>{
-    'ID': '1234',
+    'id': '1234',
     'type': 'DENTAL',
     'reason': 'test',
     'status': 'SCHEDULED',
     'date': '2022-01-04',
     'start': 'test',
     'end': 'test',
-    'HasRescheduledAppointment': false
+    'hasRescheduledAppointment': false
   },
   <String, dynamic>{
-    'ID': '56789',
+    'id': '56789',
     'type': 'DENTAL',
     'reason': 'test',
     'status': 'SCHEDULED',
     'date': '2022-01-04',
     'start': 'test',
     'end': 'test',
-    'HasRescheduledAppointment': true
+    'hasRescheduledAppointment': true
   },
   <String, dynamic>{
-    'ID': '1234',
+    'id': '1234',
     'type': 'DENTAL',
     'reason': 'test',
     'status': 'SCHEDULED',
     'date': '2022-01-04',
     'start': 'test',
     'end': 'test',
-    'HasRescheduledAppointment': false
+    'hasRescheduledAppointment': false
   },
   <String, dynamic>{
-    'ID': '56789',
+    'id': '56789',
     'type': 'DENTAL',
     'reason': 'test',
     'status': 'SCHEDULED',
     'date': '2022-01-04',
     'start': 'test',
     'end': 'test',
-    'HasRescheduledAppointment': true
+    'hasRescheduledAppointment': true
   },
   <String, dynamic>{
-    'ID': '1234',
+    'id': '1234',
     'type': 'DENTAL',
     'reason': 'test',
     'status': 'SCHEDULED',
     'date': '2022-01-04',
     'start': 'test',
     'end': 'test',
-    'HasRescheduledAppointment': false
+    'hasRescheduledAppointment': false
   },
   <String, dynamic>{
-    'ID': '56789',
+    'id': '56789',
     'type': 'DENTAL',
     'reason': 'test',
     'status': 'SCHEDULED',
     'date': '2022-01-04',
     'start': 'test',
     'end': 'test',
-    'HasRescheduledAppointment': true
+    'hasRescheduledAppointment': true
   },
   <String, dynamic>{
-    'ID': '1234',
+    'id': '1234',
     'type': 'DENTAL',
     'reason': 'test',
     'status': 'SCHEDULED',
     'date': '2022-01-04',
     'start': 'test',
     'end': 'test',
-    'HasRescheduledAppointment': false
+    'hasRescheduledAppointment': false
   },
   <String, dynamic>{
-    'ID': '56789',
+    'id': '56789',
     'type': 'DENTAL',
     'reason': 'test',
     'status': 'SCHEDULED',
     'date': '2022-01-04',
     'start': 'test',
     'end': 'test',
-    'HasRescheduledAppointment': true
+    'hasRescheduledAppointment': true
   },
   <String, dynamic>{
-    'ID': '1234',
+    'id': '1234',
     'type': 'DENTAL',
     'reason': 'test',
     'status': 'SCHEDULED',
     'date': '2022-01-04',
     'start': 'test',
     'end': 'test',
-    'HasRescheduledAppointment': false
+    'hasRescheduledAppointment': false
   },
   <String, dynamic>{
-    'ID': '56789',
+    'id': '56789',
     'type': 'DENTAL',
     'reason': 'test',
     'status': 'SCHEDULED',
     'date': '2022-01-04',
     'start': 'test',
     'end': 'test',
-    'HasRescheduledAppointment': true
+    'hasRescheduledAppointment': true
   },
   <String, dynamic>{
-    'ID': '1234',
+    'id': '1234',
     'type': 'DENTAL',
     'reason': 'test',
     'status': 'SCHEDULED',
     'date': '2022-01-04',
     'start': 'test',
     'end': 'test',
-    'HasRescheduledAppointment': false
+    'hasRescheduledAppointment': false
   },
   <String, dynamic>{
-    'ID': '56789',
+    'id': '56789',
     'type': 'DENTAL',
     'reason': 'test',
     'status': 'SCHEDULED',
     'date': '2022-01-04',
     'start': 'test',
     'end': 'test',
-    'HasRescheduledAppointment': true
+    'hasRescheduledAppointment': true
   },
 ];
 
@@ -1846,41 +1846,41 @@ Map<String, dynamic> mockBottomNavigationState = <String, dynamic>{
 };
 
 Map<String, dynamic> mockSecurityQuestion = <String, dynamic>{
-  'SecurityQuestionID': 'id',
-  'QuestionStem': 'question_stem',
-  'Description': 'description',
-  'ResponseType': core.SecurityQuestionResponseType.UNKNOWN.name,
-  'Active': true,
+  'securityQuestionID': 'id',
+  'questionStem': 'question_stem',
+  'description': 'description',
+  'responseType': core.SecurityQuestionResponseType.UNKNOWN.name,
+  'active': true,
 };
 
 final List<dynamic> securityQuestionsMock = <dynamic>[
   <String, dynamic>{
-    'SecurityQuestionID': 'id1',
-    'QuestionStem': 'What are the last 4 digits of your CCC number?',
-    'Description': 'Please provide the last 4 digits of your clinic number',
-    'ResponseType': core.SecurityQuestionResponseType.UNKNOWN.name,
-    'Active': true,
+    'securityQuestionID': 'id1',
+    'questionStem': 'What are the last 4 digits of your CCC number?',
+    'description': 'Please provide the last 4 digits of your clinic number',
+    'responseType': core.SecurityQuestionResponseType.UNKNOWN.name,
+    'active': true,
   },
   <String, dynamic>{
-    'SecurityQuestionID': 'id2',
-    'QuestionStem': 'Which month did you start your treatment?',
-    'Description': 'Enter the month you started your treatment',
-    'ResponseType': core.SecurityQuestionResponseType.DATE.name,
-    'Active': true,
+    'securityQuestionID': 'id2',
+    'questionStem': 'Which month did you start your treatment?',
+    'description': 'Enter the month you started your treatment',
+    'responseType': core.SecurityQuestionResponseType.DATE.name,
+    'active': true,
   },
   <String, dynamic>{
-    'SecurityQuestionID': 'id3',
-    'QuestionStem': 'Which county is your clinic located?',
-    'Description': 'enter the name of the county in small letters',
-    'ResponseType': core.SecurityQuestionResponseType.UNKNOWN.name,
-    'Active': true,
+    'securityQuestionID': 'id3',
+    'questionStem': 'Which county is your clinic located?',
+    'description': 'enter the name of the county in small letters',
+    'responseType': core.SecurityQuestionResponseType.UNKNOWN.name,
+    'active': true,
   },
   <String, dynamic>{
-    'SecurityQuestionID': 'id4',
-    'QuestionStem': 'When did you join the platform?',
-    'Description': 'enter answer in numbers',
-    'ResponseType': core.SecurityQuestionResponseType.NUMBER.name,
-    'Active': true,
+    'securityQuestionID': 'id4',
+    'questionStem': 'When did you join the platform?',
+    'description': 'enter answer in numbers',
+    'responseType': core.SecurityQuestionResponseType.NUMBER.name,
+    'active': true,
   },
 ];
 
@@ -2070,7 +2070,7 @@ final Map<String, dynamic> mockAudioContent = <String, dynamic>{
 };
 
 final Map<String, dynamic> documentContentMock = <String, dynamic>{
-  'ID': 16,
+  'id': 16,
   'title': 'Test Document',
   'date': '2022-01-13',
   'intro': 'This is a test document',
@@ -2104,9 +2104,9 @@ final Map<String, dynamic> documentContentMock = <String, dynamic>{
   'author': <String, dynamic>{'ID': 'test-id-001'},
   'documents': <Map<String, dynamic>>[
     <String, dynamic>{
-      'ID': 10001,
-      'Document': <String, dynamic>{
-        'ID': 10001,
+      'id': 10001,
+      'document': <String, dynamic>{
+        'id': 10001,
         'title': 'UoNAfyaApp360 Requirements',
         'meta': <String, dynamic>{
           'documentDetailUrl':
@@ -2119,7 +2119,7 @@ final Map<String, dynamic> documentContentMock = <String, dynamic>{
   ],
   'categoryDetails': <Map<String, dynamic>>[
     <String, dynamic>{
-      'ID': 6,
+      'id': 6,
       'categoryName': 'recommended',
       'categoryIcon': 'https://test.png'
     }
@@ -2141,7 +2141,7 @@ final core.Content mockContent = core.Content.fromJson(contentMock.first);
 
 final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
   <String, dynamic>{
-    'ID': 1,
+    'id': 1,
     'title': 'Tips on how to keep yourself healthy',
     'date': '2021-08-23T06:42:05.085216Z',
     'intro': 'Keep yourself healthy',
@@ -2171,7 +2171,7 @@ final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
     'tagNames': <String>['Recommended', 'Health', 'Fitness'],
     'featuredMedia': <Map<String, dynamic>>[
       <String, dynamic>{
-        'ID': 7,
+        'id': 7,
         'url':
             'https://storage.googleapis.com/mycarehub-test/media/media/Background_Music_Soft_Piano_Music.aac',
         'title': 'Background',
@@ -2184,7 +2184,7 @@ final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
     ]
   },
   <String, dynamic>{
-    'ID': 12,
+    'id': 12,
     'title': 'Test article',
     'date': '2022-01-06',
     'intro': 'This is a test article',
@@ -2226,7 +2226,7 @@ final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
     ],
     'featuredMedia': <Map<String, dynamic>>[
       <String, dynamic>{
-        'ID': 2,
+        'id': 2,
         'url':
             'https://storage.googleapis.com/mycarehub-test/media/media/Background_Music_Soft_Piano_Music_ppKS2s4.aac',
         'title': 'soft_piano_music',
@@ -2239,9 +2239,9 @@ final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
     ],
     'galleryImages': <Map<String, dynamic>>[
       <String, dynamic>{
-        'ID': 1,
+        'id': 1,
         'image': <String, dynamic>{
-          'ID': 8,
+          'id': 8,
           'title': 'Contrail',
           'meta': <String, dynamic>{
             'imageDownloadUrl':
@@ -2250,9 +2250,9 @@ final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
         }
       },
       <String, dynamic>{
-        'ID': 2,
+        'id': 2,
         'image': <String, dynamic>{
-          'ID': 7,
+          'id': 7,
           'title': 'Plane_with_background',
           'meta': <String, dynamic>{
             'imageDownloadUrl':
@@ -2261,9 +2261,9 @@ final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
         }
       },
       <String, dynamic>{
-        'ID': 3,
+        'id': 3,
         'image': <String, dynamic>{
-          'ID': 9,
+          'id': 9,
           'title': 'sunbeds3',
           'meta': <String, dynamic>{
             'imageDownloadUrl':
@@ -2272,9 +2272,9 @@ final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
         }
       },
       <String, dynamic>{
-        'ID': 4,
+        'id': 4,
         'image': <String, dynamic>{
-          'ID': 11,
+          'id': 11,
           'title': 'syringe',
           'meta': <String, dynamic>{
             'imageDownloadUrl':
@@ -2285,7 +2285,7 @@ final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
     ],
   },
   <String, dynamic>{
-    'ID': 1,
+    'id': 1,
     'title': 'Tips on how to keep yourself healthy',
     'date': '2021-08-23T06:42:05.085216Z',
     'intro': 'Keep yourself healthy',
@@ -2315,7 +2315,7 @@ final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
     'tagNames': <String>['Recommended', 'Health', 'Fitness'],
     'featuredMedia': <Map<String, dynamic>>[
       <String, dynamic>{
-        'ID': 7,
+        'id': 7,
         'url':
             'https://storage.googleapis.com/mycarehub-test/media/media/Background_Music_Soft_Piano_Music.aac',
         'title': 'Background',
@@ -2547,10 +2547,10 @@ final Map<String, dynamic> mockFacilityState = <String, dynamic>{
       'description': '',
       'fhirOrganisationID': '',
       'workStationDetails': <String, dynamic>{
-        'Notifications': 1,
-        'Surveys': 1,
-        'Articles': 1,
-        'Messages': 1
+        'notifications': 1,
+        'surveys': 1,
+        'articles': 1,
+        'messages': 1
       }
     },
     <String, dynamic>{
@@ -2563,10 +2563,10 @@ final Map<String, dynamic> mockFacilityState = <String, dynamic>{
       'description': '',
       'fhirOrganisationID': '',
       'workStationDetails': <String, dynamic>{
-        'Notifications': 0,
-        'Surveys': 0,
-        'Articles': 0,
-        'Messages': 0
+        'notifications': 0,
+        'surveys': 0,
+        'articles': 0,
+        'messages': 0
       }
     }
   ]

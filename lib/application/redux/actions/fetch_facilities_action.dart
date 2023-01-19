@@ -35,8 +35,8 @@ class FetchFacilitiesAction extends ReduxAction<AppState> {
     final Map<String, dynamic> variables = <String, dynamic>{
       'clientID': clientID,
       'paginationInput': <String, dynamic>{
-        'Limit': 20,
-        'CurrentPage': 1,
+        'limit': 20,
+        'currentPage': 1,
       },
     };
 

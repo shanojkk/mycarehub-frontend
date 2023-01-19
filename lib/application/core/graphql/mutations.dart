@@ -190,8 +190,8 @@ mutation demoteModerators($memberIDs: [String!]!, $communityID: String!){
 ''';
 
 const String banUserMutation = r'''
-mutation BanUser($memberID: String!, $bannedBy: String!, $communityID: String!){
-  banUser(MemberID: $memberID, bannedBy: $bannedBy, communityID: $communityID)
+mutation banUser($memberID: String!, $bannedBy: String!, $communityID: String!){
+  banUser(memberID: $memberID, bannedBy: $bannedBy, communityID: $communityID)
 }
 ''';
 
@@ -241,11 +241,11 @@ mutation setClientDefaultFacility(
     description
     fhirOrganisationID
     workStationDetails {
-      Notifications
-      Surveys
-      Articles
-      Messages
-      ServiceRequests
+      notifications
+      surveys
+      articles
+      messages
+      serviceRequests
     }
   }
 }
@@ -255,14 +255,14 @@ const String setClientProgramMutation = r'''
 mutation setClientProgram($programID: ID!) {
   setClientProgram(programID: $programID) {
     clientProfile {
-      ID
-      User {
-        ID
-        Username
-        Name
-        Gender
-        Active
-        Contacts{
+      id
+      user {
+        id
+        username
+        name
+        gender
+        active
+        contacts{
           id
           contactType
           contactValue
@@ -270,15 +270,15 @@ mutation setClientProgram($programID: ID!) {
           optedIn
         }
       }
-      Active
-      ClientTypes
-      TreatmentEnrollmentDate
-      FHIRPatientID
-      HealthRecordID
-      TreatmentBuddy
-      ClientCounselled
-      DefaultFacility {
-        ID
+      active
+      clientTypes
+      treatmentEnrollmentDate
+      fhirPatientID
+      healthRecordID
+      treatmentBuddy
+      clientCounselled
+      defaultFacility {
+        id
         name
         phone
         active
@@ -286,10 +286,10 @@ mutation setClientProgram($programID: ID!) {
         description
         fhirOrganisationID
       }
-      CHVUserID
-      CHVUserName
-      CaregiverID
-      CCCNumber
+      chvUserID
+      chvUserName
+      caregiverID
+      cccNumber
     }
     roles {
       authorityRoleID

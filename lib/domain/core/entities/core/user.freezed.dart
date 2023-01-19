@@ -20,24 +20,24 @@ User _$UserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$User {
-  @JsonKey(name: 'ID')
+  @JsonKey(name: 'id')
   String? get userId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Username')
+  @JsonKey(name: 'username')
   String? get username =>
       throw _privateConstructorUsedError; // This is the nickname
   @JsonKey(name: 'avatar')
   String? get avatar => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Name')
+  @JsonKey(name: 'name')
   String? get name => throw _privateConstructorUsedError; // This is the @handle
   @JsonKey(name: 'firstName')
   String? get firstName => throw _privateConstructorUsedError;
   @JsonKey(name: 'lastName')
   String? get lastName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'DateOfBirth')
+  @JsonKey(name: 'dateOfBirth')
   String? get dateOfBirth => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Gender', fromJson: genderFromJson, toJson: genderToJson)
+  @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
   Gender? get gender => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Active', defaultValue: false)
+  @JsonKey(name: 'active', defaultValue: false)
   bool? get active => throw _privateConstructorUsedError;
   @JsonKey(name: 'primaryContact')
   Contact? get primaryContact => throw _privateConstructorUsedError;
@@ -45,7 +45,7 @@ mixin _$User {
   List<Contact?>? get secondaryContacts => throw _privateConstructorUsedError;
   @JsonKey(name: 'languages')
   List<String>? get languages => throw _privateConstructorUsedError;
-  @JsonKey(name: 'TermsAccepted', defaultValue: false)
+  @JsonKey(name: 'termsAccepted', defaultValue: false)
   bool? get termsAccepted => throw _privateConstructorUsedError;
   @JsonKey(name: 'hasSetPin', defaultValue: false)
   bool? get hasSetPin => throw _privateConstructorUsedError;
@@ -71,7 +71,7 @@ mixin _$User {
   /// This is used to trigger the change PIN workflow
   @JsonKey(name: 'pinUpdateRequired', defaultValue: false)
   bool? get pinUpdateRequired => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Suspended', defaultValue: false)
+  @JsonKey(name: 'suspended', defaultValue: false)
   bool? get suspended => throw _privateConstructorUsedError;
   String? get streamToken => throw _privateConstructorUsedError;
 
@@ -86,23 +86,23 @@ abstract class $UserCopyWith<$Res> {
       _$UserCopyWithImpl<$Res, User>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'ID')
+      {@JsonKey(name: 'id')
           String? userId,
-      @JsonKey(name: 'Username')
+      @JsonKey(name: 'username')
           String? username,
       @JsonKey(name: 'avatar')
           String? avatar,
-      @JsonKey(name: 'Name')
+      @JsonKey(name: 'name')
           String? name,
       @JsonKey(name: 'firstName')
           String? firstName,
       @JsonKey(name: 'lastName')
           String? lastName,
-      @JsonKey(name: 'DateOfBirth')
+      @JsonKey(name: 'dateOfBirth')
           String? dateOfBirth,
-      @JsonKey(name: 'Gender', fromJson: genderFromJson, toJson: genderToJson)
+      @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
           Gender? gender,
-      @JsonKey(name: 'Active', defaultValue: false)
+      @JsonKey(name: 'active', defaultValue: false)
           bool? active,
       @JsonKey(name: 'primaryContact')
           Contact? primaryContact,
@@ -110,7 +110,7 @@ abstract class $UserCopyWith<$Res> {
           List<Contact?>? secondaryContacts,
       @JsonKey(name: 'languages')
           List<String>? languages,
-      @JsonKey(name: 'TermsAccepted', defaultValue: false)
+      @JsonKey(name: 'termsAccepted', defaultValue: false)
           bool? termsAccepted,
       @JsonKey(name: 'hasSetPin', defaultValue: false)
           bool? hasSetPin,
@@ -128,7 +128,7 @@ abstract class $UserCopyWith<$Res> {
           bool? pinChangeRequired,
       @JsonKey(name: 'pinUpdateRequired', defaultValue: false)
           bool? pinUpdateRequired,
-      @JsonKey(name: 'Suspended', defaultValue: false)
+      @JsonKey(name: 'suspended', defaultValue: false)
           bool? suspended,
       String? streamToken});
 
@@ -288,23 +288,23 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'ID')
+      {@JsonKey(name: 'id')
           String? userId,
-      @JsonKey(name: 'Username')
+      @JsonKey(name: 'username')
           String? username,
       @JsonKey(name: 'avatar')
           String? avatar,
-      @JsonKey(name: 'Name')
+      @JsonKey(name: 'name')
           String? name,
       @JsonKey(name: 'firstName')
           String? firstName,
       @JsonKey(name: 'lastName')
           String? lastName,
-      @JsonKey(name: 'DateOfBirth')
+      @JsonKey(name: 'dateOfBirth')
           String? dateOfBirth,
-      @JsonKey(name: 'Gender', fromJson: genderFromJson, toJson: genderToJson)
+      @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
           Gender? gender,
-      @JsonKey(name: 'Active', defaultValue: false)
+      @JsonKey(name: 'active', defaultValue: false)
           bool? active,
       @JsonKey(name: 'primaryContact')
           Contact? primaryContact,
@@ -312,7 +312,7 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
           List<Contact?>? secondaryContacts,
       @JsonKey(name: 'languages')
           List<String>? languages,
-      @JsonKey(name: 'TermsAccepted', defaultValue: false)
+      @JsonKey(name: 'termsAccepted', defaultValue: false)
           bool? termsAccepted,
       @JsonKey(name: 'hasSetPin', defaultValue: false)
           bool? hasSetPin,
@@ -330,7 +330,7 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
           bool? pinChangeRequired,
       @JsonKey(name: 'pinUpdateRequired', defaultValue: false)
           bool? pinUpdateRequired,
-      @JsonKey(name: 'Suspended', defaultValue: false)
+      @JsonKey(name: 'suspended', defaultValue: false)
           bool? suspended,
       String? streamToken});
 
@@ -472,23 +472,23 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
 @JsonSerializable()
 class _$_User implements _User {
   _$_User(
-      {@JsonKey(name: 'ID')
+      {@JsonKey(name: 'id')
           this.userId,
-      @JsonKey(name: 'Username')
+      @JsonKey(name: 'username')
           this.username,
       @JsonKey(name: 'avatar')
           this.avatar,
-      @JsonKey(name: 'Name')
+      @JsonKey(name: 'name')
           this.name,
       @JsonKey(name: 'firstName')
           this.firstName,
       @JsonKey(name: 'lastName')
           this.lastName,
-      @JsonKey(name: 'DateOfBirth')
+      @JsonKey(name: 'dateOfBirth')
           this.dateOfBirth,
-      @JsonKey(name: 'Gender', fromJson: genderFromJson, toJson: genderToJson)
+      @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
           this.gender,
-      @JsonKey(name: 'Active', defaultValue: false)
+      @JsonKey(name: 'active', defaultValue: false)
           this.active,
       @JsonKey(name: 'primaryContact')
           this.primaryContact,
@@ -496,7 +496,7 @@ class _$_User implements _User {
           final List<Contact?>? secondaryContacts,
       @JsonKey(name: 'languages')
           final List<String>? languages,
-      @JsonKey(name: 'TermsAccepted', defaultValue: false)
+      @JsonKey(name: 'termsAccepted', defaultValue: false)
           this.termsAccepted,
       @JsonKey(name: 'hasSetPin', defaultValue: false)
           this.hasSetPin,
@@ -514,7 +514,7 @@ class _$_User implements _User {
           this.pinChangeRequired,
       @JsonKey(name: 'pinUpdateRequired', defaultValue: false)
           this.pinUpdateRequired,
-      @JsonKey(name: 'Suspended', defaultValue: false)
+      @JsonKey(name: 'suspended', defaultValue: false)
           this.suspended,
       this.streamToken})
       : _secondaryContacts = secondaryContacts,
@@ -523,17 +523,17 @@ class _$_User implements _User {
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
   @override
-  @JsonKey(name: 'ID')
+  @JsonKey(name: 'id')
   final String? userId;
   @override
-  @JsonKey(name: 'Username')
+  @JsonKey(name: 'username')
   final String? username;
 // This is the nickname
   @override
   @JsonKey(name: 'avatar')
   final String? avatar;
   @override
-  @JsonKey(name: 'Name')
+  @JsonKey(name: 'name')
   final String? name;
 // This is the @handle
   @override
@@ -543,13 +543,13 @@ class _$_User implements _User {
   @JsonKey(name: 'lastName')
   final String? lastName;
   @override
-  @JsonKey(name: 'DateOfBirth')
+  @JsonKey(name: 'dateOfBirth')
   final String? dateOfBirth;
   @override
-  @JsonKey(name: 'Gender', fromJson: genderFromJson, toJson: genderToJson)
+  @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
   final Gender? gender;
   @override
-  @JsonKey(name: 'Active', defaultValue: false)
+  @JsonKey(name: 'active', defaultValue: false)
   final bool? active;
   @override
   @JsonKey(name: 'primaryContact')
@@ -575,7 +575,7 @@ class _$_User implements _User {
   }
 
   @override
-  @JsonKey(name: 'TermsAccepted', defaultValue: false)
+  @JsonKey(name: 'termsAccepted', defaultValue: false)
   final bool? termsAccepted;
   @override
   @JsonKey(name: 'hasSetPin', defaultValue: false)
@@ -610,7 +610,7 @@ class _$_User implements _User {
   @JsonKey(name: 'pinUpdateRequired', defaultValue: false)
   final bool? pinUpdateRequired;
   @override
-  @JsonKey(name: 'Suspended', defaultValue: false)
+  @JsonKey(name: 'suspended', defaultValue: false)
   final bool? suspended;
   @override
   final String? streamToken;
@@ -714,23 +714,23 @@ class _$_User implements _User {
 
 abstract class _User implements User {
   factory _User(
-      {@JsonKey(name: 'ID')
+      {@JsonKey(name: 'id')
           final String? userId,
-      @JsonKey(name: 'Username')
+      @JsonKey(name: 'username')
           final String? username,
       @JsonKey(name: 'avatar')
           final String? avatar,
-      @JsonKey(name: 'Name')
+      @JsonKey(name: 'name')
           final String? name,
       @JsonKey(name: 'firstName')
           final String? firstName,
       @JsonKey(name: 'lastName')
           final String? lastName,
-      @JsonKey(name: 'DateOfBirth')
+      @JsonKey(name: 'dateOfBirth')
           final String? dateOfBirth,
-      @JsonKey(name: 'Gender', fromJson: genderFromJson, toJson: genderToJson)
+      @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
           final Gender? gender,
-      @JsonKey(name: 'Active', defaultValue: false)
+      @JsonKey(name: 'active', defaultValue: false)
           final bool? active,
       @JsonKey(name: 'primaryContact')
           final Contact? primaryContact,
@@ -738,7 +738,7 @@ abstract class _User implements User {
           final List<Contact?>? secondaryContacts,
       @JsonKey(name: 'languages')
           final List<String>? languages,
-      @JsonKey(name: 'TermsAccepted', defaultValue: false)
+      @JsonKey(name: 'termsAccepted', defaultValue: false)
           final bool? termsAccepted,
       @JsonKey(name: 'hasSetPin', defaultValue: false)
           final bool? hasSetPin,
@@ -756,23 +756,23 @@ abstract class _User implements User {
           final bool? pinChangeRequired,
       @JsonKey(name: 'pinUpdateRequired', defaultValue: false)
           final bool? pinUpdateRequired,
-      @JsonKey(name: 'Suspended', defaultValue: false)
+      @JsonKey(name: 'suspended', defaultValue: false)
           final bool? suspended,
       final String? streamToken}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
   @override
-  @JsonKey(name: 'ID')
+  @JsonKey(name: 'id')
   String? get userId;
   @override
-  @JsonKey(name: 'Username')
+  @JsonKey(name: 'username')
   String? get username;
   @override // This is the nickname
   @JsonKey(name: 'avatar')
   String? get avatar;
   @override
-  @JsonKey(name: 'Name')
+  @JsonKey(name: 'name')
   String? get name;
   @override // This is the @handle
   @JsonKey(name: 'firstName')
@@ -781,13 +781,13 @@ abstract class _User implements User {
   @JsonKey(name: 'lastName')
   String? get lastName;
   @override
-  @JsonKey(name: 'DateOfBirth')
+  @JsonKey(name: 'dateOfBirth')
   String? get dateOfBirth;
   @override
-  @JsonKey(name: 'Gender', fromJson: genderFromJson, toJson: genderToJson)
+  @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
   Gender? get gender;
   @override
-  @JsonKey(name: 'Active', defaultValue: false)
+  @JsonKey(name: 'active', defaultValue: false)
   bool? get active;
   @override
   @JsonKey(name: 'primaryContact')
@@ -799,7 +799,7 @@ abstract class _User implements User {
   @JsonKey(name: 'languages')
   List<String>? get languages;
   @override
-  @JsonKey(name: 'TermsAccepted', defaultValue: false)
+  @JsonKey(name: 'termsAccepted', defaultValue: false)
   bool? get termsAccepted;
   @override
   @JsonKey(name: 'hasSetPin', defaultValue: false)
@@ -834,7 +834,7 @@ abstract class _User implements User {
   @JsonKey(name: 'pinUpdateRequired', defaultValue: false)
   bool? get pinUpdateRequired;
   @override
-  @JsonKey(name: 'Suspended', defaultValue: false)
+  @JsonKey(name: 'suspended', defaultValue: false)
   bool? get suspended;
   @override
   String? get streamToken;

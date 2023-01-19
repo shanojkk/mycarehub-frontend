@@ -7,15 +7,15 @@ part of 'user.dart';
 // **************************************************************************
 
 _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
-      userId: json['ID'] as String?,
-      username: json['Username'] as String?,
+      userId: json['id'] as String?,
+      username: json['username'] as String?,
       avatar: json['avatar'] as String?,
-      name: json['Name'] as String?,
+      name: json['name'] as String?,
       firstName: json['firstName'] as String?,
       lastName: json['lastName'] as String?,
-      dateOfBirth: json['DateOfBirth'] as String?,
-      gender: genderFromJson(json['Gender'] as String?),
-      active: json['Active'] as bool? ?? false,
+      dateOfBirth: json['dateOfBirth'] as String?,
+      gender: genderFromJson(json['gender'] as String?),
+      active: json['active'] as bool? ?? false,
       primaryContact: json['primaryContact'] == null
           ? null
           : Contact.fromJson(json['primaryContact'] as Map<String, dynamic>),
@@ -26,7 +26,7 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       languages: (json['languages'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
-      termsAccepted: json['TermsAccepted'] as bool? ?? false,
+      termsAccepted: json['termsAccepted'] as bool? ?? false,
       hasSetPin: json['hasSetPin'] as bool? ?? false,
       hasSetSecurityQuestions:
           json['hasSetSecurityQuestions'] as bool? ?? false,
@@ -36,24 +36,24 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       currentProgramID: json['currentProgramID'] as String?,
       pinChangeRequired: json['pinChangeRequired'] as bool? ?? false,
       pinUpdateRequired: json['pinUpdateRequired'] as bool? ?? false,
-      suspended: json['Suspended'] as bool? ?? false,
+      suspended: json['suspended'] as bool? ?? false,
       streamToken: json['streamToken'] as String?,
     );
 
 Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
-      'ID': instance.userId,
-      'Username': instance.username,
+      'id': instance.userId,
+      'username': instance.username,
       'avatar': instance.avatar,
-      'Name': instance.name,
+      'name': instance.name,
       'firstName': instance.firstName,
       'lastName': instance.lastName,
-      'DateOfBirth': instance.dateOfBirth,
-      'Gender': genderToJson(instance.gender),
-      'Active': instance.active,
+      'dateOfBirth': instance.dateOfBirth,
+      'gender': genderToJson(instance.gender),
+      'active': instance.active,
       'primaryContact': instance.primaryContact,
       'secondaryContacts': instance.secondaryContacts,
       'languages': instance.languages,
-      'TermsAccepted': instance.termsAccepted,
+      'termsAccepted': instance.termsAccepted,
       'hasSetPin': instance.hasSetPin,
       'hasSetSecurityQuestions': instance.hasSetSecurityQuestions,
       'hasSetNickname': instance.hasSetNickname,
@@ -62,6 +62,6 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'currentProgramID': instance.currentProgramID,
       'pinChangeRequired': instance.pinChangeRequired,
       'pinUpdateRequired': instance.pinUpdateRequired,
-      'Suspended': instance.suspended,
+      'suspended': instance.suspended,
       'streamToken': instance.streamToken,
     };

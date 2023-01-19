@@ -7,20 +7,20 @@ part 'user.g.dart';
 @freezed
 class User with _$User {
   factory User({
-    @JsonKey(name: 'ID') String? userId,
-    @JsonKey(name: 'Username') String? username, // This is the nickname
+    @JsonKey(name: 'id') String? userId,
+    @JsonKey(name: 'username') String? username, // This is the nickname
     @JsonKey(name: 'avatar') String? avatar,
-    @JsonKey(name: 'Name') String? name, // This is the @handle
+    @JsonKey(name: 'name') String? name, // This is the @handle
     @JsonKey(name: 'firstName') String? firstName,
     @JsonKey(name: 'lastName') String? lastName,
-    @JsonKey(name: 'DateOfBirth') String? dateOfBirth,
-    @JsonKey(name: 'Gender', fromJson: genderFromJson, toJson: genderToJson)
+    @JsonKey(name: 'dateOfBirth') String? dateOfBirth,
+    @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
         Gender? gender,
-    @JsonKey(name: 'Active', defaultValue: false) bool? active,
+    @JsonKey(name: 'active', defaultValue: false) bool? active,
     @JsonKey(name: 'primaryContact') Contact? primaryContact,
     @JsonKey(name: 'secondaryContacts') List<Contact?>? secondaryContacts,
     @JsonKey(name: 'languages') List<String>? languages,
-    @JsonKey(name: 'TermsAccepted', defaultValue: false) bool? termsAccepted,
+    @JsonKey(name: 'termsAccepted', defaultValue: false) bool? termsAccepted,
     @JsonKey(name: 'hasSetPin', defaultValue: false) bool? hasSetPin,
     @JsonKey(name: 'hasSetSecurityQuestions', defaultValue: false)
         bool? hasSetSecurityQuestions,
@@ -41,7 +41,7 @@ class User with _$User {
     /// This is used to trigger the change PIN workflow
     @JsonKey(name: 'pinUpdateRequired', defaultValue: false)
         bool? pinUpdateRequired,
-    @JsonKey(name: 'Suspended', defaultValue: false) bool? suspended,
+    @JsonKey(name: 'suspended', defaultValue: false) bool? suspended,
     String? streamToken,
   }) = _User;
 

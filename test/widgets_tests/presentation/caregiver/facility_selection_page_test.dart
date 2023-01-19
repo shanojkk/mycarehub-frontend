@@ -98,9 +98,9 @@ void main() {
                       'county': 'Test',
                       'fhirOrganisationID': '',
                       'workStationDetails': <String, dynamic>{
-                        'Notifications': 1,
-                        'Messages': 1,
-                        'ServiceRequests': 1
+                        'notifications': 1,
+                        'messages': 1,
+                        'serviceRequests': 1
                       }
                     }
                   ]

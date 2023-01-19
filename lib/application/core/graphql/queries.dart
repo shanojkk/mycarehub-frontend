@@ -19,11 +19,11 @@ query canRecordMood($clientID: String!){
 const String getSecurityQuestionsQuery = r'''
 query getSecurityQuestions($flavour: Flavour!) {
   getSecurityQuestions(flavour: $flavour) {
-    SecurityQuestionID
-    QuestionStem
-    Description
-    Active
-    ResponseType
+    securityQuestionID
+    questionStem
+    description
+    active
+    responseType
   }
 }
 ''';
@@ -38,8 +38,8 @@ query getCurrentTerms {
 ''';
 
 const String getContentQuery = r'''
-query getContent($categoryID: Int, $Limit: String!){
-  getContent(categoryID: $categoryID, Limit: $Limit) {
+query getContent($categoryID: Int, $limit: String!){
+  getContent(categoryID: $categoryID, limit: $limit) {
     meta{
       totalCount
     }
@@ -258,7 +258,7 @@ query verifyPin($userID: String!, $flavour:Flavour!, $pin: String!){
 const String retrieveFacilityQuery = r'''
 query retrieveFacility($id: String!, $active: Boolean!){
   retrieveFacility(id: $id, active: $active){
-    ID
+    id
     name
     code
     county
@@ -304,7 +304,7 @@ query listAppointments(
     filters: $filters
   ) {
     appointments {
-      ID
+      id
       reason
       date
       HasRescheduledAppointment
@@ -581,7 +581,7 @@ const String getClientFacilitiesQuery = r'''
 query getClientFacilities($clientID: ID!, $paginationInput: PaginationsInput!){
   getClientFacilities(clientID: $clientID, paginationInput: $paginationInput){
     Facilities{
-      ID
+      id
       name
       phone
       active
@@ -589,20 +589,20 @@ query getClientFacilities($clientID: ID!, $paginationInput: PaginationsInput!){
       description
       fhirOrganisationID
       workStationDetails{
-        Notifications
-        Surveys
-        Articles
-        Messages
-        ServiceRequests
+        notifications
+        surveys
+        articles
+        messages
+        serviceRequests
       }
     }
     Pagination{
-      Limit
-      CurrentPage
-      Count
-      TotalPages
-      NextPage
-      PreviousPage
+      limit
+      currentPage
+      count
+      totalPages
+      nextPage
+      previousPage
     }
   }
 }
@@ -621,22 +621,22 @@ query getCaregiverManagedClients(
       caregiverConsent
 			clientConsent
       clientProfile{
-        ID
-        User{
-          ID
-          Username
-          Name
-          Contacts{
+        id
+        user{
+          id
+          username
+          name
+          contacts{
             id
             contactType
             contactValue
           }
-          DateOfBirth
+          dateOfBirth
         }
       }
       workStationDetails{
-        Notifications
-        Surveys
+        notifications
+        surveys
       }
     }
   }

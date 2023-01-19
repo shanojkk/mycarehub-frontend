@@ -226,13 +226,28 @@ mutation viewContent($userID: String!, $contentID: Int!){
 
 const String setClientDefaultFacilityMutation = r'''
 mutation setClientDefaultFacility(
-  $userID: ID!
+  $clientID: ID!
   $facilityID: ID!
 ){
   setClientDefaultFacility(
-    userID: $userID
+    clientID: $clientID
     facilityID: $facilityID
-  )
+  ){
+   	ID
+    name
+    phone
+    active
+    county
+    description
+    fhirOrganisationID
+    workStationDetails {
+      Notifications
+      Surveys
+      Articles
+      Messages
+      ServiceRequests
+    }
+  }
 }
 ''';
 

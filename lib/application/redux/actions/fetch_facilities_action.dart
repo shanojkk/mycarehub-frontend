@@ -30,10 +30,10 @@ class FetchFacilitiesAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final String? userID = state.clientState?.clientProfile?.user?.userId;
+    final String? clientID = state.clientState?.clientProfile?.id;
 
     final Map<String, dynamic> variables = <String, dynamic>{
-      'userID': userID,
+      'clientID': clientID,
       'paginationInput': <String, dynamic>{
         'Limit': 20,
         'CurrentPage': 1,
@@ -42,7 +42,7 @@ class FetchFacilitiesAction extends ReduxAction<AppState> {
 
     /// fetch the data from the api
     final Response response = await client.query(
-      getUserLinkedFacilitiesQuery,
+      getClientFacilitiesQuery,
       variables,
     );
     final ProcessedResponse processedResponse = processHttpResponse(response);
@@ -60,7 +60,7 @@ class FetchFacilitiesAction extends ReduxAction<AppState> {
       final Map<String, dynamic> data = payLoad['data'] as Map<String, dynamic>;
 
       final Map<String, dynamic> facilitiesMap =
-          data['getUserLinkedFacilities'] as Map<String, dynamic>;
+          data['getClientFacilities'] as Map<String, dynamic>;
 
       final List<dynamic> facilitiesData =
           facilitiesMap['Facilities'] as List<dynamic>;

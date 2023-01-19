@@ -577,17 +577,9 @@ query fetchNotificationTypeFilters($flavour: Flavour!) {
 }
 ''';
 
-const String getUserLinkedFacilitiesQuery = r'''
-query getUserLinkedFacilities($userID: ID! $paginationInput: PaginationsInput!){
-  getUserLinkedFacilities(userID: $userID, paginationInput: $paginationInput){
-    Pagination{
-      Limit
-      CurrentPage
-      Count
-      TotalPages
-      NextPage
-      PreviousPage
-    }
+const String getClientFacilitiesQuery = r'''
+query getClientFacilities($clientID: ID!, $paginationInput: PaginationsInput!){
+  getClientFacilities(clientID: $clientID, paginationInput: $paginationInput){
     Facilities{
       ID
       name
@@ -601,7 +593,16 @@ query getUserLinkedFacilities($userID: ID! $paginationInput: PaginationsInput!){
         Surveys
         Articles
         Messages
+        ServiceRequests
       }
+    }
+    Pagination{
+      Limit
+      CurrentPage
+      Count
+      TotalPages
+      NextPage
+      PreviousPage
     }
   }
 }

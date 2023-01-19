@@ -46,7 +46,7 @@ void main() {
               json.encode(
                 <String, dynamic>{
                   'data': <String, dynamic>{
-                    'getUserLinkedFacilities': <String, dynamic>{
+                    'getClientFacilities': <String, dynamic>{
                       'Pagination': <String, dynamic>{
                         'Limit': 20,
                         'CurrentPage': 1,

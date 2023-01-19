@@ -42,7 +42,7 @@ class SetClientDefaultFacilityAction extends ReduxAction<AppState> {
   Future<AppState?> reduce() async {
     final Map<String, dynamic> variables = <String, dynamic>{
       'facilityID': facility.id,
-      'userID': state.clientState?.clientProfile?.user?.userId
+      'clientID': state.clientState?.clientProfile?.id
     };
 
     final Response response = await client.query(

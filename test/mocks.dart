@@ -1345,30 +1345,22 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       );
     }
 
-    if (queryString.contains(getUserLinkedFacilitiesQuery)) {
+    if (queryString.contains(getClientFacilitiesQuery)) {
       return Future<http.Response>.value(
         http.Response(
           json.encode(
             <String, dynamic>{
               'data': <String, dynamic>{
-                'getUserLinkedFacilities': <String, dynamic>{
-                  'Pagination': <String, dynamic>{
-                    'Limit': 20,
-                    'CurrentPage': 1,
-                    'Count': 2,
-                    'TotalPages': 1,
-                    'NextPage': null,
-                    'PreviousPage': null
-                  },
+                'getClientFacilities': <String, dynamic>{
                   'Facilities': <dynamic>[
                     <String, dynamic>{
                       'ID': 'some-id',
-                      'name': 'hospital name',
-                      'code': 1,
-                      'phone': '',
+                      'name': 'Some Facility',
+                      'phone': '+254712345678',
                       'active': true,
-                      'county': 'some-county',
-                      'description': '',
+                      'county': 'Nairobi',
+                      'description':
+                          'Opens from Monday to Friday from 8:00 to 17:00',
                       'fhirOrganisationID': '',
                       'workStationDetails': <String, dynamic>{
                         'Notifications': 1,
@@ -1378,22 +1370,31 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
                       }
                     },
                     <String, dynamic>{
-                      'ID': '0some-id',
-                      'name': 'some hospital',
-                      'code': 2,
-                      'phone': '',
+                      'ID': 'some-id-2',
+                      'name': 'Some Facility B',
+                      'phone': '+254712345678',
                       'active': true,
-                      'county': 'some county',
-                      'description': '',
+                      'county': 'Nairobi',
+                      'description':
+                          'Opens from Monday to Friday from 8:00 to 17:00',
                       'fhirOrganisationID': '',
                       'workStationDetails': <String, dynamic>{
                         'Notifications': 0,
                         'Surveys': 0,
                         'Articles': 0,
-                        'Messages': 0
+                        'Messages': 0,
+                        'ServiceRequests': 0
                       }
                     }
-                  ]
+                  ],
+                  'Pagination': <String, dynamic>{
+                    'Limit': 20,
+                    'CurrentPage': 1,
+                    'Count': 2,
+                    'TotalPages': 1,
+                    'NextPage': null,
+                    'PreviousPage': null
+                  }
                 }
               }
             },

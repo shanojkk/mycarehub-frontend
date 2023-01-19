@@ -50,7 +50,43 @@ void main() {
                   }
                 ]
               },
-              'getUserLinkedFacilities': <String, dynamic>{
+              'getClientFacilities': <String, dynamic>{
+                'Facilities': <dynamic>[
+                  <String, dynamic>{
+                    'ID': 'some-id',
+                    'name': 'Some Facility',
+                    'phone': '+254712345678',
+                    'active': true,
+                    'county': 'Nairobi',
+                    'description':
+                        'Opens from Monday to Friday from 8:00 to 17:00',
+                    'fhirOrganisationID': '',
+                    'workStationDetails': <String, dynamic>{
+                      'Notifications': 0,
+                      'Surveys': 0,
+                      'Articles': 0,
+                      'Messages': 0,
+                      'ServiceRequests': 0
+                    }
+                  },
+                  <String, dynamic>{
+                    'ID': 'some-id-2',
+                    'name': 'Some Facility B',
+                    'phone': '+254712345678',
+                    'active': true,
+                    'county': 'Nairobi',
+                    'description':
+                        'Opens from Monday to Friday from 8:00 to 17:00',
+                    'fhirOrganisationID': '',
+                    'workStationDetails': <String, dynamic>{
+                      'Notifications': 0,
+                      'Surveys': 0,
+                      'Articles': 0,
+                      'Messages': 0,
+                      'ServiceRequests': 0
+                    }
+                  }
+                ],
                 'Pagination': <String, dynamic>{
                   'Limit': 20,
                   'CurrentPage': 1,
@@ -58,41 +94,7 @@ void main() {
                   'TotalPages': 1,
                   'NextPage': null,
                   'PreviousPage': null
-                },
-                'Facilities': <dynamic>[
-                  <String, dynamic>{
-                    'ID': 'some-id',
-                    'name': 'hospital name',
-                    'code': 1,
-                    'phone': '',
-                    'active': true,
-                    'county': 'some-county',
-                    'description': '',
-                    'fhirOrganisationID': '',
-                    'workStationDetails': <String, dynamic>{
-                      'Notifications': 1,
-                      'Surveys': 1,
-                      'Articles': 1,
-                      'Messages': 1
-                    }
-                  },
-                  <String, dynamic>{
-                    'ID': '0some-id',
-                    'name': 'some hospital',
-                    'code': 2,
-                    'phone': '',
-                    'active': true,
-                    'county': 'some county',
-                    'description': '',
-                    'fhirOrganisationID': '',
-                    'workStationDetails': <String, dynamic>{
-                      'Notifications': 0,
-                      'Surveys': 0,
-                      'Articles': 0,
-                      'Messages': 0
-                    }
-                  }
-                ]
+                }
               },
               'setClientProgram': <String, dynamic>{
                 'clientProfile': <String, dynamic>{
@@ -119,7 +121,7 @@ void main() {
                   'TreatmentBuddy': '',
                   'ClientCounselled': true,
                   'DefaultFacility': <String, dynamic>{
-                    'ID': '5ec816ea-aa7f-40fc-af0d-5cdb87295f1e',
+                    'ID': 'some-id',
                     'name': 'Kerugoya CRH',
                     'phone': '+254712345678',
                     'active': true,

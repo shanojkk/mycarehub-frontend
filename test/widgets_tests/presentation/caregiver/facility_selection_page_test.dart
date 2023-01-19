@@ -75,7 +75,7 @@ void main() {
       expect(find.byType(HomePage), findsOneWidget);
     });
 
-    testWidgets(' navigates to home page correctly when there is one facility',
+    testWidgets('navigates to home page correctly when there is one facility',
         (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
@@ -86,7 +86,7 @@ void main() {
           Response(
             json.encode(<String, dynamic>{
               'data': <String, dynamic>{
-                'getUserLinkedFacilities': <String, dynamic>{
+                'getClientFacilities': <String, dynamic>{
                   'Facilities': <dynamic>[
                     <String, dynamic>{
                       'ID': 'some-id',

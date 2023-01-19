@@ -20,7 +20,7 @@ Facility _$FacilityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Facility {
-  @JsonKey(name: 'ID')
+  @JsonKey(name: 'id')
   String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'name')
   String? get name => throw _privateConstructorUsedError;
@@ -52,7 +52,7 @@ abstract class $FacilityCopyWith<$Res> {
       _$FacilityCopyWithImpl<$Res, Facility>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'ID')
+      {@JsonKey(name: 'id')
           String? id,
       @JsonKey(name: 'name')
           String? name,
@@ -159,7 +159,7 @@ abstract class _$$_FacilityCopyWith<$Res> implements $FacilityCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'ID')
+      {@JsonKey(name: 'id')
           String? id,
       @JsonKey(name: 'name')
           String? name,
@@ -248,7 +248,7 @@ class __$$_FacilityCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Facility implements _Facility {
   _$_Facility(
-      {@JsonKey(name: 'ID') this.id,
+      {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'name') this.name,
       @JsonKey(name: 'code') this.code,
       @JsonKey(name: 'phone') this.phone,
@@ -262,7 +262,7 @@ class _$_Facility implements _Facility {
       _$$_FacilityFromJson(json);
 
   @override
-  @JsonKey(name: 'ID')
+  @JsonKey(name: 'id')
   final String? id;
   @override
   @JsonKey(name: 'name')
@@ -334,7 +334,7 @@ class _$_Facility implements _Facility {
 
 abstract class _Facility implements Facility {
   factory _Facility(
-      {@JsonKey(name: 'ID')
+      {@JsonKey(name: 'id')
           final String? id,
       @JsonKey(name: 'name')
           final String? name,
@@ -356,7 +356,7 @@ abstract class _Facility implements Facility {
   factory _Facility.fromJson(Map<String, dynamic> json) = _$_Facility.fromJson;
 
   @override
-  @JsonKey(name: 'ID')
+  @JsonKey(name: 'id')
   String? get id;
   @override
   @JsonKey(name: 'name')

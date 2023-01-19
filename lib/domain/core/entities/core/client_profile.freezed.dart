@@ -20,33 +20,33 @@ ClientProfile _$ClientProfileFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ClientProfile {
-  @JsonKey(name: 'ID')
+  @JsonKey(name: 'id')
   String? get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Active', defaultValue: false)
+  @JsonKey(name: 'active', defaultValue: false)
   bool? get active => throw _privateConstructorUsedError;
-  @JsonKey(name: 'ClientCounselled', defaultValue: false)
+  @JsonKey(name: 'clientCounselled', defaultValue: false)
   bool? get counselled => throw _privateConstructorUsedError;
-  @JsonKey(name: 'ClientTypes')
+  @JsonKey(name: 'clientTypes')
   List<ClientType>? get clientTypes => throw _privateConstructorUsedError;
   @JsonKey(name: 'defaultFacilityID')
   String? get facilityID => throw _privateConstructorUsedError;
-  @JsonKey(name: 'TreatmentEnrollmentDate')
+  @JsonKey(name: 'treatmentEnrollmentDate')
   String? get treatmentEnrollmentDate => throw _privateConstructorUsedError;
-  @JsonKey(name: 'TreatmentBuddy')
+  @JsonKey(name: 'treatmentBuddy')
   String? get treatmentBuddy => throw _privateConstructorUsedError;
-  @JsonKey(name: 'User')
+  @JsonKey(name: 'user')
   User? get user => throw _privateConstructorUsedError;
-  @JsonKey(name: 'ChvUserID')
+  @JsonKey(name: 'chvUserID')
   String? get chvUserID => throw _privateConstructorUsedError;
-  @JsonKey(name: 'ChvUserName')
+  @JsonKey(name: 'chvUserName')
   String? get chvUserName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'CCCNumber')
+  @JsonKey(name: 'cccNumber')
   String? get cccNumber => throw _privateConstructorUsedError;
-  @JsonKey(name: 'FhirPatientID')
+  @JsonKey(name: 'fhirPatientID')
   String? get fhirPatientID => throw _privateConstructorUsedError;
-  @JsonKey(name: 'HealthRecordID')
+  @JsonKey(name: 'healthRecordID')
   String? get healthRecordID => throw _privateConstructorUsedError;
-  @JsonKey(name: 'DefaultFacility')
+  @JsonKey(name: 'defaultFacility')
   Facility? get defaultFacility => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -62,20 +62,20 @@ abstract class $ClientProfileCopyWith<$Res> {
       _$ClientProfileCopyWithImpl<$Res, ClientProfile>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'ID') String? id,
-      @JsonKey(name: 'Active', defaultValue: false) bool? active,
-      @JsonKey(name: 'ClientCounselled', defaultValue: false) bool? counselled,
-      @JsonKey(name: 'ClientTypes') List<ClientType>? clientTypes,
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'active', defaultValue: false) bool? active,
+      @JsonKey(name: 'clientCounselled', defaultValue: false) bool? counselled,
+      @JsonKey(name: 'clientTypes') List<ClientType>? clientTypes,
       @JsonKey(name: 'defaultFacilityID') String? facilityID,
-      @JsonKey(name: 'TreatmentEnrollmentDate') String? treatmentEnrollmentDate,
-      @JsonKey(name: 'TreatmentBuddy') String? treatmentBuddy,
-      @JsonKey(name: 'User') User? user,
-      @JsonKey(name: 'ChvUserID') String? chvUserID,
-      @JsonKey(name: 'ChvUserName') String? chvUserName,
-      @JsonKey(name: 'CCCNumber') String? cccNumber,
-      @JsonKey(name: 'FhirPatientID') String? fhirPatientID,
-      @JsonKey(name: 'HealthRecordID') String? healthRecordID,
-      @JsonKey(name: 'DefaultFacility') Facility? defaultFacility});
+      @JsonKey(name: 'treatmentEnrollmentDate') String? treatmentEnrollmentDate,
+      @JsonKey(name: 'treatmentBuddy') String? treatmentBuddy,
+      @JsonKey(name: 'user') User? user,
+      @JsonKey(name: 'chvUserID') String? chvUserID,
+      @JsonKey(name: 'chvUserName') String? chvUserName,
+      @JsonKey(name: 'cccNumber') String? cccNumber,
+      @JsonKey(name: 'fhirPatientID') String? fhirPatientID,
+      @JsonKey(name: 'healthRecordID') String? healthRecordID,
+      @JsonKey(name: 'defaultFacility') Facility? defaultFacility});
 
   $UserCopyWith<$Res>? get user;
   $FacilityCopyWith<$Res>? get defaultFacility;
@@ -203,20 +203,20 @@ abstract class _$$_ClientProfileCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'ID') String? id,
-      @JsonKey(name: 'Active', defaultValue: false) bool? active,
-      @JsonKey(name: 'ClientCounselled', defaultValue: false) bool? counselled,
-      @JsonKey(name: 'ClientTypes') List<ClientType>? clientTypes,
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'active', defaultValue: false) bool? active,
+      @JsonKey(name: 'clientCounselled', defaultValue: false) bool? counselled,
+      @JsonKey(name: 'clientTypes') List<ClientType>? clientTypes,
       @JsonKey(name: 'defaultFacilityID') String? facilityID,
-      @JsonKey(name: 'TreatmentEnrollmentDate') String? treatmentEnrollmentDate,
-      @JsonKey(name: 'TreatmentBuddy') String? treatmentBuddy,
-      @JsonKey(name: 'User') User? user,
-      @JsonKey(name: 'ChvUserID') String? chvUserID,
-      @JsonKey(name: 'ChvUserName') String? chvUserName,
-      @JsonKey(name: 'CCCNumber') String? cccNumber,
-      @JsonKey(name: 'FhirPatientID') String? fhirPatientID,
-      @JsonKey(name: 'HealthRecordID') String? healthRecordID,
-      @JsonKey(name: 'DefaultFacility') Facility? defaultFacility});
+      @JsonKey(name: 'treatmentEnrollmentDate') String? treatmentEnrollmentDate,
+      @JsonKey(name: 'treatmentBuddy') String? treatmentBuddy,
+      @JsonKey(name: 'user') User? user,
+      @JsonKey(name: 'chvUserID') String? chvUserID,
+      @JsonKey(name: 'chvUserName') String? chvUserName,
+      @JsonKey(name: 'cccNumber') String? cccNumber,
+      @JsonKey(name: 'fhirPatientID') String? fhirPatientID,
+      @JsonKey(name: 'healthRecordID') String? healthRecordID,
+      @JsonKey(name: 'defaultFacility') Facility? defaultFacility});
 
   @override
   $UserCopyWith<$Res>? get user;
@@ -315,37 +315,37 @@ class __$$_ClientProfileCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ClientProfile implements _ClientProfile {
   _$_ClientProfile(
-      {@JsonKey(name: 'ID') this.id,
-      @JsonKey(name: 'Active', defaultValue: false) this.active,
-      @JsonKey(name: 'ClientCounselled', defaultValue: false) this.counselled,
-      @JsonKey(name: 'ClientTypes') final List<ClientType>? clientTypes,
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'active', defaultValue: false) this.active,
+      @JsonKey(name: 'clientCounselled', defaultValue: false) this.counselled,
+      @JsonKey(name: 'clientTypes') final List<ClientType>? clientTypes,
       @JsonKey(name: 'defaultFacilityID') this.facilityID,
-      @JsonKey(name: 'TreatmentEnrollmentDate') this.treatmentEnrollmentDate,
-      @JsonKey(name: 'TreatmentBuddy') this.treatmentBuddy,
-      @JsonKey(name: 'User') this.user,
-      @JsonKey(name: 'ChvUserID') this.chvUserID,
-      @JsonKey(name: 'ChvUserName') this.chvUserName,
-      @JsonKey(name: 'CCCNumber') this.cccNumber,
-      @JsonKey(name: 'FhirPatientID') this.fhirPatientID,
-      @JsonKey(name: 'HealthRecordID') this.healthRecordID,
-      @JsonKey(name: 'DefaultFacility') this.defaultFacility})
+      @JsonKey(name: 'treatmentEnrollmentDate') this.treatmentEnrollmentDate,
+      @JsonKey(name: 'treatmentBuddy') this.treatmentBuddy,
+      @JsonKey(name: 'user') this.user,
+      @JsonKey(name: 'chvUserID') this.chvUserID,
+      @JsonKey(name: 'chvUserName') this.chvUserName,
+      @JsonKey(name: 'cccNumber') this.cccNumber,
+      @JsonKey(name: 'fhirPatientID') this.fhirPatientID,
+      @JsonKey(name: 'healthRecordID') this.healthRecordID,
+      @JsonKey(name: 'defaultFacility') this.defaultFacility})
       : _clientTypes = clientTypes;
 
   factory _$_ClientProfile.fromJson(Map<String, dynamic> json) =>
       _$$_ClientProfileFromJson(json);
 
   @override
-  @JsonKey(name: 'ID')
+  @JsonKey(name: 'id')
   final String? id;
   @override
-  @JsonKey(name: 'Active', defaultValue: false)
+  @JsonKey(name: 'active', defaultValue: false)
   final bool? active;
   @override
-  @JsonKey(name: 'ClientCounselled', defaultValue: false)
+  @JsonKey(name: 'clientCounselled', defaultValue: false)
   final bool? counselled;
   final List<ClientType>? _clientTypes;
   @override
-  @JsonKey(name: 'ClientTypes')
+  @JsonKey(name: 'clientTypes')
   List<ClientType>? get clientTypes {
     final value = _clientTypes;
     if (value == null) return null;
@@ -357,31 +357,31 @@ class _$_ClientProfile implements _ClientProfile {
   @JsonKey(name: 'defaultFacilityID')
   final String? facilityID;
   @override
-  @JsonKey(name: 'TreatmentEnrollmentDate')
+  @JsonKey(name: 'treatmentEnrollmentDate')
   final String? treatmentEnrollmentDate;
   @override
-  @JsonKey(name: 'TreatmentBuddy')
+  @JsonKey(name: 'treatmentBuddy')
   final String? treatmentBuddy;
   @override
-  @JsonKey(name: 'User')
+  @JsonKey(name: 'user')
   final User? user;
   @override
-  @JsonKey(name: 'ChvUserID')
+  @JsonKey(name: 'chvUserID')
   final String? chvUserID;
   @override
-  @JsonKey(name: 'ChvUserName')
+  @JsonKey(name: 'chvUserName')
   final String? chvUserName;
   @override
-  @JsonKey(name: 'CCCNumber')
+  @JsonKey(name: 'cccNumber')
   final String? cccNumber;
   @override
-  @JsonKey(name: 'FhirPatientID')
+  @JsonKey(name: 'fhirPatientID')
   final String? fhirPatientID;
   @override
-  @JsonKey(name: 'HealthRecordID')
+  @JsonKey(name: 'healthRecordID')
   final String? healthRecordID;
   @override
-  @JsonKey(name: 'DefaultFacility')
+  @JsonKey(name: 'defaultFacility')
   final Facility? defaultFacility;
 
   @override
@@ -457,79 +457,79 @@ class _$_ClientProfile implements _ClientProfile {
 
 abstract class _ClientProfile implements ClientProfile {
   factory _ClientProfile(
-      {@JsonKey(name: 'ID')
+      {@JsonKey(name: 'id')
           final String? id,
-      @JsonKey(name: 'Active', defaultValue: false)
+      @JsonKey(name: 'active', defaultValue: false)
           final bool? active,
-      @JsonKey(name: 'ClientCounselled', defaultValue: false)
+      @JsonKey(name: 'clientCounselled', defaultValue: false)
           final bool? counselled,
-      @JsonKey(name: 'ClientTypes')
+      @JsonKey(name: 'clientTypes')
           final List<ClientType>? clientTypes,
       @JsonKey(name: 'defaultFacilityID')
           final String? facilityID,
-      @JsonKey(name: 'TreatmentEnrollmentDate')
+      @JsonKey(name: 'treatmentEnrollmentDate')
           final String? treatmentEnrollmentDate,
-      @JsonKey(name: 'TreatmentBuddy')
+      @JsonKey(name: 'treatmentBuddy')
           final String? treatmentBuddy,
-      @JsonKey(name: 'User')
+      @JsonKey(name: 'user')
           final User? user,
-      @JsonKey(name: 'ChvUserID')
+      @JsonKey(name: 'chvUserID')
           final String? chvUserID,
-      @JsonKey(name: 'ChvUserName')
+      @JsonKey(name: 'chvUserName')
           final String? chvUserName,
-      @JsonKey(name: 'CCCNumber')
+      @JsonKey(name: 'cccNumber')
           final String? cccNumber,
-      @JsonKey(name: 'FhirPatientID')
+      @JsonKey(name: 'fhirPatientID')
           final String? fhirPatientID,
-      @JsonKey(name: 'HealthRecordID')
+      @JsonKey(name: 'healthRecordID')
           final String? healthRecordID,
-      @JsonKey(name: 'DefaultFacility')
+      @JsonKey(name: 'defaultFacility')
           final Facility? defaultFacility}) = _$_ClientProfile;
 
   factory _ClientProfile.fromJson(Map<String, dynamic> json) =
       _$_ClientProfile.fromJson;
 
   @override
-  @JsonKey(name: 'ID')
+  @JsonKey(name: 'id')
   String? get id;
   @override
-  @JsonKey(name: 'Active', defaultValue: false)
+  @JsonKey(name: 'active', defaultValue: false)
   bool? get active;
   @override
-  @JsonKey(name: 'ClientCounselled', defaultValue: false)
+  @JsonKey(name: 'clientCounselled', defaultValue: false)
   bool? get counselled;
   @override
-  @JsonKey(name: 'ClientTypes')
+  @JsonKey(name: 'clientTypes')
   List<ClientType>? get clientTypes;
   @override
   @JsonKey(name: 'defaultFacilityID')
   String? get facilityID;
   @override
-  @JsonKey(name: 'TreatmentEnrollmentDate')
+  @JsonKey(name: 'treatmentEnrollmentDate')
   String? get treatmentEnrollmentDate;
   @override
-  @JsonKey(name: 'TreatmentBuddy')
+  @JsonKey(name: 'treatmentBuddy')
   String? get treatmentBuddy;
   @override
-  @JsonKey(name: 'User')
+  @JsonKey(name: 'user')
   User? get user;
   @override
-  @JsonKey(name: 'ChvUserID')
+  @JsonKey(name: 'chvUserID')
   String? get chvUserID;
   @override
-  @JsonKey(name: 'ChvUserName')
+  @JsonKey(name: 'chvUserName')
   String? get chvUserName;
   @override
-  @JsonKey(name: 'CCCNumber')
+  @JsonKey(name: 'cccNumber')
   String? get cccNumber;
   @override
-  @JsonKey(name: 'FhirPatientID')
+  @JsonKey(name: 'fhirPatientID')
   String? get fhirPatientID;
   @override
-  @JsonKey(name: 'HealthRecordID')
+  @JsonKey(name: 'healthRecordID')
   String? get healthRecordID;
   @override
-  @JsonKey(name: 'DefaultFacility')
+  @JsonKey(name: 'defaultFacility')
   Facility? get defaultFacility;
   @override
   @JsonKey(ignore: true)

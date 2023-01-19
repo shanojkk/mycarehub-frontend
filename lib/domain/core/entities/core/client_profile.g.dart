@@ -8,45 +8,45 @@ part of 'client_profile.dart';
 
 _$_ClientProfile _$$_ClientProfileFromJson(Map<String, dynamic> json) =>
     _$_ClientProfile(
-      id: json['ID'] as String?,
-      active: json['Active'] as bool? ?? false,
-      counselled: json['ClientCounselled'] as bool? ?? false,
-      clientTypes: (json['ClientTypes'] as List<dynamic>?)
+      id: json['id'] as String?,
+      active: json['active'] as bool? ?? false,
+      counselled: json['clientCounselled'] as bool? ?? false,
+      clientTypes: (json['clientTypes'] as List<dynamic>?)
           ?.map((e) => $enumDecode(_$ClientTypeEnumMap, e))
           .toList(),
       facilityID: json['defaultFacilityID'] as String?,
-      treatmentEnrollmentDate: json['TreatmentEnrollmentDate'] as String?,
-      treatmentBuddy: json['TreatmentBuddy'] as String?,
-      user: json['User'] == null
+      treatmentEnrollmentDate: json['treatmentEnrollmentDate'] as String?,
+      treatmentBuddy: json['treatmentBuddy'] as String?,
+      user: json['user'] == null
           ? null
-          : User.fromJson(json['User'] as Map<String, dynamic>),
-      chvUserID: json['ChvUserID'] as String?,
-      chvUserName: json['ChvUserName'] as String?,
-      cccNumber: json['CCCNumber'] as String?,
-      fhirPatientID: json['FhirPatientID'] as String?,
-      healthRecordID: json['HealthRecordID'] as String?,
-      defaultFacility: json['DefaultFacility'] == null
+          : User.fromJson(json['user'] as Map<String, dynamic>),
+      chvUserID: json['chvUserID'] as String?,
+      chvUserName: json['chvUserName'] as String?,
+      cccNumber: json['cccNumber'] as String?,
+      fhirPatientID: json['fhirPatientID'] as String?,
+      healthRecordID: json['healthRecordID'] as String?,
+      defaultFacility: json['defaultFacility'] == null
           ? null
-          : Facility.fromJson(json['DefaultFacility'] as Map<String, dynamic>),
+          : Facility.fromJson(json['defaultFacility'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_ClientProfileToJson(_$_ClientProfile instance) =>
     <String, dynamic>{
-      'ID': instance.id,
-      'Active': instance.active,
-      'ClientCounselled': instance.counselled,
-      'ClientTypes':
+      'id': instance.id,
+      'active': instance.active,
+      'clientCounselled': instance.counselled,
+      'clientTypes':
           instance.clientTypes?.map((e) => _$ClientTypeEnumMap[e]!).toList(),
       'defaultFacilityID': instance.facilityID,
-      'TreatmentEnrollmentDate': instance.treatmentEnrollmentDate,
-      'TreatmentBuddy': instance.treatmentBuddy,
-      'User': instance.user,
-      'ChvUserID': instance.chvUserID,
-      'ChvUserName': instance.chvUserName,
-      'CCCNumber': instance.cccNumber,
-      'FhirPatientID': instance.fhirPatientID,
-      'HealthRecordID': instance.healthRecordID,
-      'DefaultFacility': instance.defaultFacility,
+      'treatmentEnrollmentDate': instance.treatmentEnrollmentDate,
+      'treatmentBuddy': instance.treatmentBuddy,
+      'user': instance.user,
+      'chvUserID': instance.chvUserID,
+      'chvUserName': instance.chvUserName,
+      'cccNumber': instance.cccNumber,
+      'fhirPatientID': instance.fhirPatientID,
+      'healthRecordID': instance.healthRecordID,
+      'defaultFacility': instance.defaultFacility,
     };
 
 const _$ClientTypeEnumMap = {

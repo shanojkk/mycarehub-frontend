@@ -20,13 +20,13 @@ Appointment _$AppointmentFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Appointment {
-  @JsonKey(name: 'ID')
+  @JsonKey(name: 'id')
   String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'reason')
   String? get reason => throw _privateConstructorUsedError;
   @JsonKey(name: 'date')
   String? get date => throw _privateConstructorUsedError;
-  @JsonKey(name: 'HasRescheduledAppointment', defaultValue: false)
+  @JsonKey(name: 'hasRescheduledAppointment', defaultValue: false)
   bool get pendingReschedule => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,13 +42,13 @@ abstract class $AppointmentCopyWith<$Res> {
       _$AppointmentCopyWithImpl<$Res, Appointment>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'ID')
+      {@JsonKey(name: 'id')
           String? id,
       @JsonKey(name: 'reason')
           String? reason,
       @JsonKey(name: 'date')
           String? date,
-      @JsonKey(name: 'HasRescheduledAppointment', defaultValue: false)
+      @JsonKey(name: 'hasRescheduledAppointment', defaultValue: false)
           bool pendingReschedule});
 }
 
@@ -100,13 +100,13 @@ abstract class _$$_AppointmentCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'ID')
+      {@JsonKey(name: 'id')
           String? id,
       @JsonKey(name: 'reason')
           String? reason,
       @JsonKey(name: 'date')
           String? date,
-      @JsonKey(name: 'HasRescheduledAppointment', defaultValue: false)
+      @JsonKey(name: 'hasRescheduledAppointment', defaultValue: false)
           bool pendingReschedule});
 }
 
@@ -151,20 +151,20 @@ class __$$_AppointmentCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Appointment implements _Appointment {
   _$_Appointment(
-      {@JsonKey(name: 'ID')
+      {@JsonKey(name: 'id')
           required this.id,
       @JsonKey(name: 'reason')
           required this.reason,
       @JsonKey(name: 'date')
           required this.date,
-      @JsonKey(name: 'HasRescheduledAppointment', defaultValue: false)
+      @JsonKey(name: 'hasRescheduledAppointment', defaultValue: false)
           required this.pendingReschedule});
 
   factory _$_Appointment.fromJson(Map<String, dynamic> json) =>
       _$$_AppointmentFromJson(json);
 
   @override
-  @JsonKey(name: 'ID')
+  @JsonKey(name: 'id')
   final String? id;
   @override
   @JsonKey(name: 'reason')
@@ -173,7 +173,7 @@ class _$_Appointment implements _Appointment {
   @JsonKey(name: 'date')
   final String? date;
   @override
-  @JsonKey(name: 'HasRescheduledAppointment', defaultValue: false)
+  @JsonKey(name: 'hasRescheduledAppointment', defaultValue: false)
   final bool pendingReschedule;
 
   @override
@@ -214,20 +214,20 @@ class _$_Appointment implements _Appointment {
 
 abstract class _Appointment implements Appointment {
   factory _Appointment(
-      {@JsonKey(name: 'ID')
+      {@JsonKey(name: 'id')
           required final String? id,
       @JsonKey(name: 'reason')
           required final String? reason,
       @JsonKey(name: 'date')
           required final String? date,
-      @JsonKey(name: 'HasRescheduledAppointment', defaultValue: false)
+      @JsonKey(name: 'hasRescheduledAppointment', defaultValue: false)
           required final bool pendingReschedule}) = _$_Appointment;
 
   factory _Appointment.fromJson(Map<String, dynamic> json) =
       _$_Appointment.fromJson;
 
   @override
-  @JsonKey(name: 'ID')
+  @JsonKey(name: 'id')
   String? get id;
   @override
   @JsonKey(name: 'reason')
@@ -236,7 +236,7 @@ abstract class _Appointment implements Appointment {
   @JsonKey(name: 'date')
   String? get date;
   @override
-  @JsonKey(name: 'HasRescheduledAppointment', defaultValue: false)
+  @JsonKey(name: 'hasRescheduledAppointment', defaultValue: false)
   bool get pendingReschedule;
   @override
   @JsonKey(ignore: true)

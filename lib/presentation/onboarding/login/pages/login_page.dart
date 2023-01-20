@@ -147,7 +147,6 @@ class _LoginPageState extends State<LoginPage> {
                           CustomTextField(
                             formFieldKey: userNameInputKey,
                             borderColor: Colors.grey[200],
-                            keyboardType: TextInputType.number,
                             hintText: enterYourUserName,
                             validator: usernameValidator,
                             autovalidateMode: AutovalidateMode.disabled,

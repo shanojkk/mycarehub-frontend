@@ -144,6 +144,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                           smallVerticalSizedBox,
+                          // userName
                           CustomTextField(
                             formFieldKey: userNameInputKey,
                             borderColor: Colors.grey[200],
@@ -153,6 +154,7 @@ class _LoginPageState extends State<LoginPage> {
                             onChanged: (String val) {
                               final bool? invalidCredentials =
                                   vm.invalidCredentials;
+                              final String formattedUserName = val.trim();
 
                               if (invalidCredentials != null &&
                                   invalidCredentials) {
@@ -160,13 +162,13 @@ class _LoginPageState extends State<LoginPage> {
                                   context,
                                   UpdateOnboardingStateAction(
                                     invalidCredentials: false,
-                                    userName: val,
+                                    userName: formattedUserName,
                                   ),
                                 );
                               }
 
                               setState(() {
-                                userName = val;
+                                userName = formattedUserName;
                               });
                             },
                           ),
@@ -181,6 +183,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                           smallVerticalSizedBox,
+                          // pin
                           CustomTextField(
                             formFieldKey: pinInputKey,
                             borderColor: Colors.grey[200],

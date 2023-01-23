@@ -237,7 +237,7 @@ mutation setClientDefaultFacility(
     name
     phone
     active
-    county
+    country
     description
     fhirOrganisationID
     workStationDetails {
@@ -282,7 +282,7 @@ mutation setClientProgram($programID: ID!) {
         name
         phone
         active
-        county
+        country
         description
         fhirOrganisationID
       }

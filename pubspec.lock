@@ -1378,7 +1378,7 @@ packages:
       name: sghi_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.6"
+    version: "0.2.7"
   share_plus:
     dependency: "direct main"
     description:

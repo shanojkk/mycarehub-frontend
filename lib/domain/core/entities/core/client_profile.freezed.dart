@@ -46,6 +46,8 @@ mixin _$ClientProfile {
   String? get fhirPatientID => throw _privateConstructorUsedError;
   @JsonKey(name: 'healthRecordID')
   String? get healthRecordID => throw _privateConstructorUsedError;
+  @JsonKey(name: 'caregiverID')
+  String? get caregiverID => throw _privateConstructorUsedError;
   @JsonKey(name: 'defaultFacility')
   Facility? get defaultFacility => throw _privateConstructorUsedError;
 
@@ -75,6 +77,7 @@ abstract class $ClientProfileCopyWith<$Res> {
       @JsonKey(name: 'cccNumber') String? cccNumber,
       @JsonKey(name: 'fhirPatientID') String? fhirPatientID,
       @JsonKey(name: 'healthRecordID') String? healthRecordID,
+      @JsonKey(name: 'caregiverID') String? caregiverID,
       @JsonKey(name: 'defaultFacility') Facility? defaultFacility});
 
   $UserCopyWith<$Res>? get user;
@@ -107,6 +110,7 @@ class _$ClientProfileCopyWithImpl<$Res, $Val extends ClientProfile>
     Object? cccNumber = freezed,
     Object? fhirPatientID = freezed,
     Object? healthRecordID = freezed,
+    Object? caregiverID = freezed,
     Object? defaultFacility = freezed,
   }) {
     return _then(_value.copyWith(
@@ -162,6 +166,10 @@ class _$ClientProfileCopyWithImpl<$Res, $Val extends ClientProfile>
           ? _value.healthRecordID
           : healthRecordID // ignore: cast_nullable_to_non_nullable
               as String?,
+      caregiverID: freezed == caregiverID
+          ? _value.caregiverID
+          : caregiverID // ignore: cast_nullable_to_non_nullable
+              as String?,
       defaultFacility: freezed == defaultFacility
           ? _value.defaultFacility
           : defaultFacility // ignore: cast_nullable_to_non_nullable
@@ -216,6 +224,7 @@ abstract class _$$_ClientProfileCopyWith<$Res>
       @JsonKey(name: 'cccNumber') String? cccNumber,
       @JsonKey(name: 'fhirPatientID') String? fhirPatientID,
       @JsonKey(name: 'healthRecordID') String? healthRecordID,
+      @JsonKey(name: 'caregiverID') String? caregiverID,
       @JsonKey(name: 'defaultFacility') Facility? defaultFacility});
 
   @override
@@ -248,6 +257,7 @@ class __$$_ClientProfileCopyWithImpl<$Res>
     Object? cccNumber = freezed,
     Object? fhirPatientID = freezed,
     Object? healthRecordID = freezed,
+    Object? caregiverID = freezed,
     Object? defaultFacility = freezed,
   }) {
     return _then(_$_ClientProfile(
@@ -303,6 +313,10 @@ class __$$_ClientProfileCopyWithImpl<$Res>
           ? _value.healthRecordID
           : healthRecordID // ignore: cast_nullable_to_non_nullable
               as String?,
+      caregiverID: freezed == caregiverID
+          ? _value.caregiverID
+          : caregiverID // ignore: cast_nullable_to_non_nullable
+              as String?,
       defaultFacility: freezed == defaultFacility
           ? _value.defaultFacility
           : defaultFacility // ignore: cast_nullable_to_non_nullable
@@ -328,6 +342,7 @@ class _$_ClientProfile implements _ClientProfile {
       @JsonKey(name: 'cccNumber') this.cccNumber,
       @JsonKey(name: 'fhirPatientID') this.fhirPatientID,
       @JsonKey(name: 'healthRecordID') this.healthRecordID,
+      @JsonKey(name: 'caregiverID') this.caregiverID,
       @JsonKey(name: 'defaultFacility') this.defaultFacility})
       : _clientTypes = clientTypes;
 
@@ -381,12 +396,15 @@ class _$_ClientProfile implements _ClientProfile {
   @JsonKey(name: 'healthRecordID')
   final String? healthRecordID;
   @override
+  @JsonKey(name: 'caregiverID')
+  final String? caregiverID;
+  @override
   @JsonKey(name: 'defaultFacility')
   final Facility? defaultFacility;
 
   @override
   String toString() {
-    return 'ClientProfile(id: $id, active: $active, counselled: $counselled, clientTypes: $clientTypes, facilityID: $facilityID, treatmentEnrollmentDate: $treatmentEnrollmentDate, treatmentBuddy: $treatmentBuddy, user: $user, chvUserID: $chvUserID, chvUserName: $chvUserName, cccNumber: $cccNumber, fhirPatientID: $fhirPatientID, healthRecordID: $healthRecordID, defaultFacility: $defaultFacility)';
+    return 'ClientProfile(id: $id, active: $active, counselled: $counselled, clientTypes: $clientTypes, facilityID: $facilityID, treatmentEnrollmentDate: $treatmentEnrollmentDate, treatmentBuddy: $treatmentBuddy, user: $user, chvUserID: $chvUserID, chvUserName: $chvUserName, cccNumber: $cccNumber, fhirPatientID: $fhirPatientID, healthRecordID: $healthRecordID, caregiverID: $caregiverID, defaultFacility: $defaultFacility)';
   }
 
   @override
@@ -418,6 +436,8 @@ class _$_ClientProfile implements _ClientProfile {
                 other.fhirPatientID == fhirPatientID) &&
             (identical(other.healthRecordID, healthRecordID) ||
                 other.healthRecordID == healthRecordID) &&
+            (identical(other.caregiverID, caregiverID) ||
+                other.caregiverID == caregiverID) &&
             (identical(other.defaultFacility, defaultFacility) ||
                 other.defaultFacility == defaultFacility));
   }
@@ -439,6 +459,7 @@ class _$_ClientProfile implements _ClientProfile {
       cccNumber,
       fhirPatientID,
       healthRecordID,
+      caregiverID,
       defaultFacility);
 
   @JsonKey(ignore: true)
@@ -483,6 +504,8 @@ abstract class _ClientProfile implements ClientProfile {
           final String? fhirPatientID,
       @JsonKey(name: 'healthRecordID')
           final String? healthRecordID,
+      @JsonKey(name: 'caregiverID')
+          final String? caregiverID,
       @JsonKey(name: 'defaultFacility')
           final Facility? defaultFacility}) = _$_ClientProfile;
 
@@ -528,6 +551,9 @@ abstract class _ClientProfile implements ClientProfile {
   @override
   @JsonKey(name: 'healthRecordID')
   String? get healthRecordID;
+  @override
+  @JsonKey(name: 'caregiverID')
+  String? get caregiverID;
   @override
   @JsonKey(name: 'defaultFacility')
   Facility? get defaultFacility;

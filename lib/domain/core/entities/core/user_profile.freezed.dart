@@ -22,12 +22,12 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) {
 mixin _$UserProfile {
   @JsonKey(name: 'id')
   String? get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'userName')
+  @JsonKey(name: 'username')
   String? get userName =>
       throw _privateConstructorUsedError; // This is the nickname
   @JsonKey(name: 'name')
   String? get name => throw _privateConstructorUsedError; // This is the @handle
-  @JsonKey(name: 'Active', defaultValue: false)
+  @JsonKey(name: 'active', defaultValue: false)
   bool? get active => throw _privateConstructorUsedError;
   @JsonKey(name: 'termsAccepted', defaultValue: false)
   bool? get termsAccepted => throw _privateConstructorUsedError;
@@ -69,11 +69,11 @@ abstract class $UserProfileCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'id')
           String? id,
-      @JsonKey(name: 'userName')
+      @JsonKey(name: 'username')
           String? userName,
       @JsonKey(name: 'name')
           String? name,
-      @JsonKey(name: 'Active', defaultValue: false)
+      @JsonKey(name: 'active', defaultValue: false)
           bool? active,
       @JsonKey(name: 'termsAccepted', defaultValue: false)
           bool? termsAccepted,
@@ -183,11 +183,11 @@ abstract class _$$_UserProfileCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'id')
           String? id,
-      @JsonKey(name: 'userName')
+      @JsonKey(name: 'username')
           String? userName,
       @JsonKey(name: 'name')
           String? name,
-      @JsonKey(name: 'Active', defaultValue: false)
+      @JsonKey(name: 'active', defaultValue: false)
           bool? active,
       @JsonKey(name: 'termsAccepted', defaultValue: false)
           bool? termsAccepted,
@@ -290,11 +290,11 @@ class _$_UserProfile implements _UserProfile {
   _$_UserProfile(
       {@JsonKey(name: 'id')
           this.id,
-      @JsonKey(name: 'userName')
+      @JsonKey(name: 'username')
           this.userName,
       @JsonKey(name: 'name')
           this.name,
-      @JsonKey(name: 'Active', defaultValue: false)
+      @JsonKey(name: 'active', defaultValue: false)
           this.active,
       @JsonKey(name: 'termsAccepted', defaultValue: false)
           this.termsAccepted,
@@ -320,7 +320,7 @@ class _$_UserProfile implements _UserProfile {
   @JsonKey(name: 'id')
   final String? id;
   @override
-  @JsonKey(name: 'userName')
+  @JsonKey(name: 'username')
   final String? userName;
 // This is the nickname
   @override
@@ -328,7 +328,7 @@ class _$_UserProfile implements _UserProfile {
   final String? name;
 // This is the @handle
   @override
-  @JsonKey(name: 'Active', defaultValue: false)
+  @JsonKey(name: 'active', defaultValue: false)
   final bool? active;
   @override
   @JsonKey(name: 'termsAccepted', defaultValue: false)
@@ -432,11 +432,11 @@ abstract class _UserProfile implements UserProfile {
   factory _UserProfile(
       {@JsonKey(name: 'id')
           final String? id,
-      @JsonKey(name: 'userName')
+      @JsonKey(name: 'username')
           final String? userName,
       @JsonKey(name: 'name')
           final String? name,
-      @JsonKey(name: 'Active', defaultValue: false)
+      @JsonKey(name: 'active', defaultValue: false)
           final bool? active,
       @JsonKey(name: 'termsAccepted', defaultValue: false)
           final bool? termsAccepted,
@@ -462,13 +462,13 @@ abstract class _UserProfile implements UserProfile {
   @JsonKey(name: 'id')
   String? get id;
   @override
-  @JsonKey(name: 'userName')
+  @JsonKey(name: 'username')
   String? get userName;
   @override // This is the nickname
   @JsonKey(name: 'name')
   String? get name;
   @override // This is the @handle
-  @JsonKey(name: 'Active', defaultValue: false)
+  @JsonKey(name: 'active', defaultValue: false)
   bool? get active;
   @override
   @JsonKey(name: 'termsAccepted', defaultValue: false)

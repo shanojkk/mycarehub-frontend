@@ -27,6 +27,7 @@ class ClientProfile with _$ClientProfile {
     @JsonKey(name: 'cccNumber') String? cccNumber,
     @JsonKey(name: 'fhirPatientID') String? fhirPatientID,
     @JsonKey(name: 'healthRecordID') String? healthRecordID,
+    @JsonKey(name: 'caregiverID') String? caregiverID,
     @JsonKey(name: 'defaultFacility') Facility? defaultFacility,
   }) = _ClientProfile;
 

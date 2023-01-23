@@ -14,6 +14,8 @@ import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 
+import 'package:pro_health_360/domain/core/entities/core/user.dart';
+
 class SetCurrentProgramAction extends ReduxAction<AppState> {
   SetCurrentProgramAction({
     required this.client,
@@ -71,8 +73,32 @@ class SetCurrentProgramAction extends ReduxAction<AppState> {
         final ClientState clientState = ClientState.fromJson(
           data['setClientProgram'] as Map<String, dynamic>,
         );
+        final User? user = state.clientState?.clientProfile?.user?.copyWith(
+          primaryContact: clientState.clientProfile?.user?.primaryContact,
+        );
 
-        dispatch(UpdateClientStateAction(clientState: clientState));
+        dispatch(
+          UpdateClientProfileAction(
+            user: user,
+            roles: clientState.roles,
+            permissions: clientState.permissions,
+            communityToken: clientState.communityToken,
+            active: clientState.clientProfile?.active,
+            id: clientState.clientProfile?.id,
+            clientTypes: clientState.clientProfile?.clientTypes,
+            treatmentEnrollmentDate:
+                clientState.clientProfile?.treatmentEnrollmentDate,
+            treatmentBuddy: clientState.clientProfile?.treatmentBuddy,
+            counselled: clientState.clientProfile?.counselled,
+            chvUserID: clientState.clientProfile?.chvUserID,
+            chvUserName: clientState.clientProfile?.chvUserName,
+            cccNumber: clientState.clientProfile?.cccNumber,
+            fhirPatientID: clientState.clientProfile?.fhirPatientID,
+            healthRecordID: clientState.clientProfile?.healthRecordID,
+            defaultFacility: clientState.clientProfile?.defaultFacility,
+            caregiverID: clientState.clientProfile?.caregiverID,
+          ),
+        );
         dispatch(
           NavigateAction<AppState>.pushNamed(
             AppRoutes.facilitySelectionPageRoute,

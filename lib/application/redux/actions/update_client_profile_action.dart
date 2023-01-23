@@ -1,5 +1,7 @@
 // Package imports:
+import 'package:pro_health_360/domain/core/entities/core/authority_permission.dart';
 import 'package:pro_health_360/domain/core/entities/core/client_profile.dart';
+import 'package:pro_health_360/domain/core/entities/core/facility.dart';
 import 'package:pro_health_360/domain/core/entities/core/user.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
@@ -33,6 +35,12 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
     this.hasCaregiverInfo,
     this.user,
     this.roles,
+    this.permissions,
+    this.communityToken,
+    this.fhirPatientID,
+    this.healthRecordID,
+    this.defaultFacility,
+    this.caregiverID,
   });
 
   final bool? active;
@@ -46,6 +54,8 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
   final String? facilityID;
   final String? facilityName;
   final String? facilityPhoneNumber;
+  final String? fhirPatientID;
+  final String? healthRecordID;
   final bool? hasCaregiverInfo;
   final String? id;
   final bool? isSignedIn;
@@ -55,6 +65,10 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
   final String? treatmentEnrollmentDate;
   final User? user;
   final List<Role>? roles;
+  final List<AuthorityPermission>? permissions;
+  final String? communityToken;
+  final Facility? defaultFacility;
+  final String? caregiverID;
 
   @override
   AppState reduce() {
@@ -74,7 +88,16 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
           this.chvUserName ?? state.clientState?.clientProfile?.chvUserName,
       cccNumber: this.cccNumber ?? state.clientState?.clientProfile?.cccNumber,
       user: this.user ?? state.clientState?.clientProfile?.user,
+      fhirPatientID:
+          this.fhirPatientID ?? state.clientState?.clientProfile?.fhirPatientID,
+      healthRecordID: this.healthRecordID ??
+          state.clientState?.clientProfile?.healthRecordID,
+      defaultFacility: this.defaultFacility ??
+          state.clientState?.clientProfile?.defaultFacility,
+      caregiverID:
+          this.caregiverID ?? state.clientState?.clientProfile?.caregiverID,
     );
+
     final AppState newState = state.copyWith(
       clientState: state.clientState?.copyWith.call(
         clientProfile: newClientProfile,
@@ -92,6 +115,9 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
         hasCareGiverInfo:
             this.hasCaregiverInfo ?? state.clientState?.hasCareGiverInfo,
         roles: this.roles ?? state.clientState?.roles,
+        permissions: this.permissions ?? state.clientState?.permissions,
+        communityToken:
+            this.communityToken ?? state.clientState?.communityToken,
       ),
     );
 

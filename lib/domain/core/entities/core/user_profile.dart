@@ -8,9 +8,9 @@ part 'user_profile.g.dart';
 class UserProfile with _$UserProfile {
   factory UserProfile({
     @JsonKey(name: 'id') String? id,
-    @JsonKey(name: 'userName') String? userName, // This is the nickname
+    @JsonKey(name: 'username') String? userName, // This is the nickname
     @JsonKey(name: 'name') String? name, // This is the @handle
-    @JsonKey(name: 'Active', defaultValue: false) bool? active,
+    @JsonKey(name: 'active', defaultValue: false) bool? active,
     @JsonKey(name: 'termsAccepted', defaultValue: false) bool? termsAccepted,
     @JsonKey(name: 'hasSetPin', defaultValue: false) bool? hasSetPin,
     @JsonKey(name: 'hasSetSecurityQuestions', defaultValue: false)

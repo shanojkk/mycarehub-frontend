@@ -9,9 +9,9 @@ part of 'user_profile.dart';
 _$_UserProfile _$$_UserProfileFromJson(Map<String, dynamic> json) =>
     _$_UserProfile(
       id: json['id'] as String?,
-      userName: json['userName'] as String?,
+      userName: json['username'] as String?,
       name: json['name'] as String?,
-      active: json['Active'] as bool? ?? false,
+      active: json['active'] as bool? ?? false,
       termsAccepted: json['termsAccepted'] as bool? ?? false,
       hasSetPin: json['hasSetPin'] as bool? ?? false,
       hasSetSecurityQuestions:
@@ -26,9 +26,9 @@ _$_UserProfile _$$_UserProfileFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_UserProfileToJson(_$_UserProfile instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'userName': instance.userName,
+      'username': instance.userName,
       'name': instance.name,
-      'Active': instance.active,
+      'active': instance.active,
       'termsAccepted': instance.termsAccepted,
       'hasSetPin': instance.hasSetPin,
       'hasSetSecurityQuestions': instance.hasSetSecurityQuestions,

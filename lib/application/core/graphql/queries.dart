@@ -261,7 +261,7 @@ query retrieveFacility($id: String!, $active: Boolean!){
     id
     name
     code
-    county
+    country
     active
     phone
     description
@@ -585,7 +585,7 @@ query getClientFacilities($clientID: ID!, $paginationInput: PaginationsInput!){
       name
       phone
       active
-      county
+      country
       description
       fhirOrganisationID
       workStationDetails{

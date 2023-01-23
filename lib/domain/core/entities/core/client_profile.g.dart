@@ -25,6 +25,7 @@ _$_ClientProfile _$$_ClientProfileFromJson(Map<String, dynamic> json) =>
       cccNumber: json['cccNumber'] as String?,
       fhirPatientID: json['fhirPatientID'] as String?,
       healthRecordID: json['healthRecordID'] as String?,
+      caregiverID: json['caregiverID'] as String?,
       defaultFacility: json['defaultFacility'] == null
           ? null
           : Facility.fromJson(json['defaultFacility'] as Map<String, dynamic>),
@@ -46,6 +47,7 @@ Map<String, dynamic> _$$_ClientProfileToJson(_$_ClientProfile instance) =>
       'cccNumber': instance.cccNumber,
       'fhirPatientID': instance.fhirPatientID,
       'healthRecordID': instance.healthRecordID,
+      'caregiverID': instance.caregiverID,
       'defaultFacility': instance.defaultFacility,
     };
 

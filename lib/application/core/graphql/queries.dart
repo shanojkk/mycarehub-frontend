@@ -44,7 +44,7 @@ query getContent($categoryID: Int, $limit: String!){
       totalCount
     }
     items {
-      ID
+      id
       title
       date
       intro
@@ -65,7 +65,7 @@ query getContent($categoryID: Int, $limit: String!){
       timeEstimateSeconds
       body
       heroImage{
-        ID
+        id
         title
       }
       heroImageRendition{
@@ -79,12 +79,12 @@ query getContent($categoryID: Int, $limit: String!){
       viewCount
       shareCount
       author {
-        ID
+        id
       }
       documents {
-        ID
-        Document {
-          ID
+        id
+        document {
+          id
           title
           meta {
             documentDetailUrl
@@ -93,12 +93,12 @@ query getContent($categoryID: Int, $limit: String!){
         }
       }
       categoryDetails{
-        ID
+        id
         categoryName
         categoryIcon
       }
       featuredMedia{
-        ID
+        id
         url
         title
         type
@@ -109,9 +109,9 @@ query getContent($categoryID: Int, $limit: String!){
         duration
       }
       galleryImages{
-        ID
+        id
         image{
-          ID
+          id
           title
           meta{
             imageDownloadUrl

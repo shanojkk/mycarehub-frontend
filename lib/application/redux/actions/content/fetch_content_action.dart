@@ -47,7 +47,7 @@ class FetchContentAction extends ReduxAction<AppState> {
 
     final Map<String, dynamic> variables = <String, dynamic>{
       'categoryID': selectedCategory.id == 0 ? null : selectedCategory.id,
-      'Limit': limit.toString()
+      'limit': limit.toString()
     };
 
     final IGraphQlClient client = AppWrapperBase.of(context)!.graphQLClient;

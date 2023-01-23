@@ -87,9 +87,9 @@ void main() {
             json.encode(<String, dynamic>{
               'data': <String, dynamic>{
                 'getClientFacilities': <String, dynamic>{
-                  'Facilities': <dynamic>[
+                  'facilities': <dynamic>[
                     <String, dynamic>{
-                      'ID': 'some-id',
+                      'id': 'some-id',
                       'name': 'Test Facility',
                       'code': 1234,
                       'description': '',

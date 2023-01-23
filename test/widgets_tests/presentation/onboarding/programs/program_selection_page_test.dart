@@ -51,7 +51,7 @@ void main() {
                 ]
               },
               'getClientFacilities': <String, dynamic>{
-                'Facilities': <dynamic>[
+                'facilities': <dynamic>[
                   <String, dynamic>{
                     'id': 'some-id',
                     'name': 'Some Facility',

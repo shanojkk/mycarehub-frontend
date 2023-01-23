@@ -55,7 +55,7 @@ void main() {
                         'nextPage': null,
                         'previousPage': null
                       },
-                      'Facilities': <dynamic>[
+                      'facilities': <dynamic>[
                         <String, dynamic>{
                           'id': 'some-id',
                           'name': 'hospital name',

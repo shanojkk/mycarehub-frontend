@@ -1352,7 +1352,7 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
             <String, dynamic>{
               'data': <String, dynamic>{
                 'getClientFacilities': <String, dynamic>{
-                  'Facilities': <dynamic>[
+                  'facilities': <dynamic>[
                     <String, dynamic>{
                       'id': 'some-id',
                       'name': 'Some Facility',
@@ -1387,7 +1387,7 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
                       }
                     }
                   ],
-                  'Pagination': <String, dynamic>{
+                  'pagination': <String, dynamic>{
                     'limit': 20,
                     'currentPage': 1,
                     'count': 2,

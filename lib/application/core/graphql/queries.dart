@@ -580,7 +580,7 @@ query fetchNotificationTypeFilters($flavour: Flavour!) {
 const String getClientFacilitiesQuery = r'''
 query getClientFacilities($clientID: ID!, $paginationInput: PaginationsInput!){
   getClientFacilities(clientID: $clientID, paginationInput: $paginationInput){
-    Facilities{
+    facilities{
       id
       name
       phone
@@ -596,7 +596,7 @@ query getClientFacilities($clientID: ID!, $paginationInput: PaginationsInput!){
         serviceRequests
       }
     }
-    Pagination{
+    pagination{
       limit
       currentPage
       count

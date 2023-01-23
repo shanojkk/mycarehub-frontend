@@ -63,7 +63,7 @@ class FetchFacilitiesAction extends ReduxAction<AppState> {
           data['getClientFacilities'] as Map<String, dynamic>;
 
       final List<dynamic> facilitiesData =
-          facilitiesMap['Facilities'] as List<dynamic>;
+          facilitiesMap['facilities'] as List<dynamic>;
 
       for (final dynamic facilityItem in facilitiesData) {
         facilities.add(Facility.fromJson(facilityItem as Map<String, dynamic>));

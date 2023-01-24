@@ -153,11 +153,6 @@ void main() {
         info.state.miscState?.screeningToolsState?.violenceState,
         isNotNull,
       );
-      expect(
-        info.state.miscState?.screeningToolsState?.violenceState
-            ?.errorFetchingQuestions,
-        true,
-      );
     });
 
     test('should dispatch error if body is null for contraceptives', () async {
@@ -190,11 +185,6 @@ void main() {
         info.state.miscState?.screeningToolsState?.contraceptiveState,
         isNotNull,
       );
-      expect(
-        info.state.miscState?.screeningToolsState?.contraceptiveState
-            ?.errorFetchingQuestions,
-        true,
-      );
     });
     test('should dispatch error if body is null for alcohol', () async {
       storeTester.dispatch(
@@ -225,11 +215,6 @@ void main() {
       expect(
         info.state.miscState?.screeningToolsState?.alcoholSubstanceUseState,
         isNotNull,
-      );
-      expect(
-        info.state.miscState?.screeningToolsState?.alcoholSubstanceUseState
-            ?.errorFetchingQuestions,
-        true,
       );
     });
     test('should dispatch error if body is null for tb', () async {
@@ -262,14 +247,111 @@ void main() {
         info.state.miscState?.screeningToolsState?.tbState,
         isNotNull,
       );
+    });
+
+    test('should throw error for violence if api response is not 200',
+        () async {
+      storeTester.dispatch(
+        FetchScreeningToolsQuestionsAction(
+          client: MockShortGraphQlClient.withResponse(
+            '',
+            '',
+            Response(
+              jsonEncode(<String, String>{'error': 'error occurred'}),
+              500,
+            ),
+          ),
+          screeningToolsType: ScreeningToolsType.VIOLENCE_ASSESSMENT,
+        ),
+      );
+
+      final TestInfo<AppState> info =
+          await storeTester.waitUntil(FetchScreeningToolsQuestionsAction);
+
       expect(
-        info.state.miscState?.screeningToolsState?.tbState
-            ?.errorFetchingQuestions,
-        true,
+        (info.error! as UserException).msg,
+        'Sorry, an unknown error occurred, please try again or get help from our '
+        'help center.',
       );
     });
 
-    test('should throw error if api call is not 200', () async {
+    test('should throw error for tb if api response is not 200', () async {
+      storeTester.dispatch(
+        FetchScreeningToolsQuestionsAction(
+          client: MockShortGraphQlClient.withResponse(
+            '',
+            '',
+            Response(
+              jsonEncode(<String, String>{'error': 'error occurred'}),
+              500,
+            ),
+          ),
+          screeningToolsType: ScreeningToolsType.TB_ASSESSMENT,
+        ),
+      );
+
+      final TestInfo<AppState> info =
+          await storeTester.waitUntil(FetchScreeningToolsQuestionsAction);
+
+      expect(
+        (info.error! as UserException).msg,
+        'Sorry, an unknown error occurred, please try again or get help from our '
+        'help center.',
+      );
+    });
+
+    test('should throw error for contraceptives if api response is not 200',
+        () async {
+      storeTester.dispatch(
+        FetchScreeningToolsQuestionsAction(
+          client: MockShortGraphQlClient.withResponse(
+            '',
+            '',
+            Response(
+              jsonEncode(<String, String>{'error': 'error occurred'}),
+              500,
+            ),
+          ),
+          screeningToolsType: ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT,
+        ),
+      );
+
+      final TestInfo<AppState> info =
+          await storeTester.waitUntil(FetchScreeningToolsQuestionsAction);
+
+      expect(
+        (info.error! as UserException).msg,
+        'Sorry, an unknown error occurred, please try again or get help from our '
+        'help center.',
+      );
+    });
+
+    test('should throw error for alcohol if api response is not 200', () async {
+      storeTester.dispatch(
+        FetchScreeningToolsQuestionsAction(
+          client: MockShortGraphQlClient.withResponse(
+            '',
+            '',
+            Response(
+              jsonEncode(<String, String>{'error': 'error occurred'}),
+              500,
+            ),
+          ),
+          screeningToolsType: ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT,
+        ),
+      );
+
+      final TestInfo<AppState> info =
+          await storeTester.waitUntil(FetchScreeningToolsQuestionsAction);
+
+      expect(
+        (info.error! as UserException).msg,
+        'Sorry, an unknown error occurred, please try again or get help from our '
+        'help center.',
+      );
+    });
+
+    test('should throw error for violence if api reponse is not 200', () async {
       storeTester.dispatch(
         FetchScreeningToolsQuestionsAction(
           client: MockShortGraphQlClient.withResponse(

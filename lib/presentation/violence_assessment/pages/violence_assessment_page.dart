@@ -73,39 +73,45 @@ class _ViolenceAssessmentPageState extends State<ViolenceAssessmentPage> {
                     padding: const EdgeInsets.all(20),
                     child: const PlatformLoader(),
                   )
-                : SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 14,
+                : vm.violenceState?.screeningQuestions?.screeningQuestionsList
+                            ?.isEmpty ??
+                        true
+                    ? Container()
+                    : SingleChildScrollView(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 14,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                violenceAssessmentSubtitle,
+                                style: normalSize14Text(
+                                  AppColors.greyTextColor,
+                                ),
+                              ),
+                              mediumVerticalSizedBox,
+                              // questions
+                              ScreeningToolQuestionWidget(
+                                screeningToolsQuestions: vm
+                                    .violenceState!
+                                    .screeningQuestions!
+                                    .screeningQuestionsList!,
+                                screeningToolsType:
+                                    ScreeningToolsType.VIOLENCE_ASSESSMENT,
+                              ),
+                              // contains guidance information
+                              const ViolenceAssessmentInformation(),
+                              size40VerticalSizedBox,
+                              const SizedBox(
+                                height: 80,
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            violenceAssessmentSubtitle,
-                            style: normalSize14Text(
-                              AppColors.greyTextColor,
-                            ),
-                          ),
-                          mediumVerticalSizedBox,
-                          // questions
-                          ScreeningToolQuestionWidget(
-                            screeningToolsQuestions: vm.violenceState!
-                                .screeningQuestions!.screeningQuestionsList!,
-                            screeningToolsType:
-                                ScreeningToolsType.VIOLENCE_ASSESSMENT,
-                          ),
-                          // contains guidance information
-                          const ViolenceAssessmentInformation(),
-                          size40VerticalSizedBox,
-                          const SizedBox(
-                            height: 80,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.miniCenterFloat,

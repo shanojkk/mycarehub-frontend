@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:http/http.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -42,6 +45,31 @@ void main() {
 
       await tester.pumpAndSettle();
       expect(find.byType(SuccessfulAssessmentSubmissionPage), findsOneWidget);
+    });
+
+    testWidgets('handles errors correctly', (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: MockShortGraphQlClient.withResponse(
+          '',
+          '',
+          Response(
+            json.encode(<String, dynamic>{
+              'data': <String, dynamic>{
+                'getScreeningToolQuestions': <dynamic>[]
+              }
+            }),
+            200,
+          ),
+        ),
+        widget: const ViolenceAssessmentPage(),
+      );
+
+      await tester.pumpAndSettle();
+      final Finder submitButtonFinder = find.byType(MyAfyaHubPrimaryButton);
+      expect(submitButtonFinder, findsOneWidget);
+      expect(find.byType(ScreeningToolQuestionWidget), findsNothing);
     });
 
     testWidgets('shows snackbar to prompt user to answer all questions',

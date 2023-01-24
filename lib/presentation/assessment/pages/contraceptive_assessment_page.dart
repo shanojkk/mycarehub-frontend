@@ -75,49 +75,56 @@ class _ContraceptiveAssessmentPageState
                     padding: const EdgeInsets.all(20),
                     child: const PlatformLoader(),
                   )
-                : SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Row(
+                : vm.contraceptiveState?.screeningQuestions
+                            ?.screeningQuestionsList?.isEmpty ??
+                        true
+                    ? Container()
+                    : SingleChildScrollView(
+                        child: Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Flexible(
-                                child: RichText(
-                                  text: TextSpan(
-                                    text: contraceptiveAssessmentDescription,
-                                    style: normalSize14Text(
-                                      AppColors.greyTextColor,
-                                    ),
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                        text: ifYouIntendToUse,
+                              Row(
+                                children: <Widget>[
+                                  Flexible(
+                                    child: RichText(
+                                      text: TextSpan(
+                                        text:
+                                            contraceptiveAssessmentDescription,
                                         style: normalSize14Text(
                                           AppColors.greyTextColor,
                                         ),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: ifYouIntendToUse,
+                                            style: normalSize14Text(
+                                              AppColors.greyTextColor,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ],
+                                    ),
                                   ),
-                                ),
+                                ],
                               ),
+                              size15VerticalSizedBox,
+                              // questions
+                              ScreeningToolQuestionWidget(
+                                screeningToolsQuestions: vm
+                                    .contraceptiveState!
+                                    .screeningQuestions!
+                                    .screeningQuestionsList!,
+                                screeningToolsType:
+                                    ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT,
+                              ),
+                              const ContraceptivesInformation(),
+                              size40VerticalSizedBox,
+                              const SizedBox(height: 80),
                             ],
                           ),
-                          size15VerticalSizedBox,
-                          // questions
-                          ScreeningToolQuestionWidget(
-                            screeningToolsQuestions: vm.contraceptiveState!
-                                .screeningQuestions!.screeningQuestionsList!,
-                            screeningToolsType:
-                                ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT,
-                          ),
-                          const ContraceptivesInformation(),
-                          size40VerticalSizedBox,
-                          const SizedBox(height: 80),
-                        ],
+                        ),
                       ),
-                    ),
-                  ),
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.miniCenterFloat,

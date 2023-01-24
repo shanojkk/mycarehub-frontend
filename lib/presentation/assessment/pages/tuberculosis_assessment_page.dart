@@ -74,40 +74,46 @@ class _TuberculosisAssessmentPageState
                     padding: const EdgeInsets.all(20),
                     child: const PlatformLoader(),
                   )
-                : SingleChildScrollView(
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          largeVerticalSizedBox,
-                          Text(
-                            tuberculosisAssessmentDescription,
-                            style: normalSize14Text(
-                              AppColors.greyTextColor,
-                            ),
+                : vm.tBState?.screeningQuestions?.screeningQuestionsList
+                            ?.isEmpty ??
+                        true
+                    ? Container()
+                    : SingleChildScrollView(
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              largeVerticalSizedBox,
+                              Text(
+                                tuberculosisAssessmentDescription,
+                                style: normalSize14Text(
+                                  AppColors.greyTextColor,
+                                ),
+                              ),
+                              smallVerticalSizedBox,
+                              Text(
+                                pleaseVisitClinic,
+                                style: normalSize14Text(
+                                  AppColors.greyTextColor,
+                                ),
+                              ),
+                              mediumVerticalSizedBox,
+                              // questions
+                              ScreeningToolQuestionWidget(
+                                screeningToolsQuestions: vm
+                                    .tBState!
+                                    .screeningQuestions!
+                                    .screeningQuestionsList!,
+                                screeningToolsType:
+                                    ScreeningToolsType.TB_ASSESSMENT,
+                              ),
+                              size40VerticalSizedBox,
+                              const SizedBox(height: 80),
+                            ],
                           ),
-                          smallVerticalSizedBox,
-                          Text(
-                            pleaseVisitClinic,
-                            style: normalSize14Text(
-                              AppColors.greyTextColor,
-                            ),
-                          ),
-                          mediumVerticalSizedBox,
-                          // questions
-                          ScreeningToolQuestionWidget(
-                            screeningToolsQuestions: vm.tBState!
-                                .screeningQuestions!.screeningQuestionsList!,
-                            screeningToolsType:
-                                ScreeningToolsType.TB_ASSESSMENT,
-                          ),
-                          size40VerticalSizedBox,
-                          const SizedBox(height: 80),
-                        ],
+                        ),
                       ),
-                    ),
-                  ),
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.miniCenterFloat,

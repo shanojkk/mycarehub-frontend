@@ -136,12 +136,9 @@ class FetchScreeningToolsQuestionsAction extends ReduxAction<AppState> {
             ),
           );
         }
-      } else {
-        dispatch(
-          updateErrorScreeningToolsQuestions(type: screeningToolsType),
-        );
       }
     } else {
+      dispatch(updateErrorScreeningToolsQuestions(type: screeningToolsType));
       throw UserException(processedResponse.message);
     }
 

@@ -76,36 +76,40 @@ class _AlcoholSubstanceUsePageState extends State<AlcoholSubstanceUsePage> {
                     padding: const EdgeInsets.all(20),
                     child: const PlatformLoader(),
                   )
-                : SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          largeVerticalSizedBox,
-                          Text(
-                            alcoholSubstanceUseDescription,
-                            style: normalSize14Text(
-                              AppColors.greyTextColor,
-                            ),
+                : vm.alcoholSubstanceUseState?.screeningQuestions
+                            ?.screeningQuestionsList?.isEmpty ??
+                        true
+                    ? Container()
+                    : SingleChildScrollView(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              largeVerticalSizedBox,
+                              Text(
+                                alcoholSubstanceUseDescription,
+                                style: normalSize14Text(
+                                  AppColors.greyTextColor,
+                                ),
+                              ),
+                              mediumVerticalSizedBox,
+                              // questions
+                              ScreeningToolQuestionWidget(
+                                screeningToolsQuestions: vm
+                                    .alcoholSubstanceUseState!
+                                    .screeningQuestions!
+                                    .screeningQuestionsList!,
+                                screeningToolsType: ScreeningToolsType
+                                    .ALCOHOL_SUBSTANCE_ASSESSMENT,
+                              ),
+                              const AlcoholAssessmentInformation(),
+                              size40VerticalSizedBox,
+                              const SizedBox(height: 80),
+                            ],
                           ),
-                          mediumVerticalSizedBox,
-                          // questions
-                          ScreeningToolQuestionWidget(
-                            screeningToolsQuestions: vm
-                                .alcoholSubstanceUseState!
-                                .screeningQuestions!
-                                .screeningQuestionsList!,
-                            screeningToolsType:
-                                ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT,
-                          ),
-                          const AlcoholAssessmentInformation(),
-                          size40VerticalSizedBox,
-                          const SizedBox(height: 80),
-                        ],
+                        ),
                       ),
-                    ),
-                  ),
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.miniCenterFloat,

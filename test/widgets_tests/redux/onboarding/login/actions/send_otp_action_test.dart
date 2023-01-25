@@ -63,7 +63,7 @@ void main() {
               onPressed: () {
                 StoreProvider.dispatch<AppState>(
                   context,
-                  SendOTPAction(context: context, phoneNumber: UNKNOWN),
+                  SendOTPAction(context: context, username: UNKNOWN),
                 );
               },
             );
@@ -107,7 +107,7 @@ void main() {
               buttonKey: const Key('update_contacts'),
               onPressed: () async {
                 await store.dispatch(
-                  SendOTPAction(context: context, phoneNumber: '+254712345678'),
+                  SendOTPAction(context: context, username: '+254712345678'),
                 );
               },
             );
@@ -151,7 +151,7 @@ void main() {
               buttonKey: const Key('update_contacts'),
               onPressed: () async {
                 await store.dispatch(
-                  SendOTPAction(context: context, phoneNumber: '+254712345678'),
+                  SendOTPAction(context: context, username: '+254712345678'),
                 );
               },
             );

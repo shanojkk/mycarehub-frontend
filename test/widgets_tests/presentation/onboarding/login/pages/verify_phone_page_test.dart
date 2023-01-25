@@ -62,7 +62,10 @@ void main() {
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
               'getCurrentTerms': termsMock,
-              'sendOTP': '123456',
+              'sendOTP': <String, dynamic>{
+                'otp': '123456',
+                'phoneNumber': '254712345678',
+              },
               'verifyOTP': true
             }
           }),
@@ -104,7 +107,10 @@ void main() {
         http.Response(
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
-              'sendOTP': '123456',
+              'sendOTP': <String, dynamic>{
+                'otp': '123456',
+                'phoneNumber': '254712345678',
+              },
             }
           }),
           201,
@@ -138,7 +144,10 @@ void main() {
         http.Response(
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
-              'sendOTP': '123456',
+              'sendOTP': <String, dynamic>{
+                'otp': '123456',
+                'phoneNumber': '254712345678',
+              },
             }
           }),
           201,
@@ -171,7 +180,10 @@ void main() {
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
               'verifyOTP': true,
-              'sendOTP': '123456',
+              'sendOTP': <String, dynamic>{
+                'otp': '123456',
+                'phoneNumber': '254712345678',
+              },
             }
           }),
           201,
@@ -275,7 +287,13 @@ void main() {
         http.Response(
           json.encode(<String, dynamic>{
             'otp': '123456',
-            'data': <String, dynamic>{'sendOTP': '123456', 'verifyOTP': true}
+            'data': <String, dynamic>{
+              'sendOTP': <String, dynamic>{
+                'otp': '123456',
+                'phoneNumber': '254712345678',
+              },
+              'verifyOTP': true,
+            }
           }),
           201,
         ),
@@ -317,7 +335,10 @@ void main() {
             'otp': '123456',
             'data': <String, dynamic>{
               'sendRetryOTP': '123456',
-              'sendOTP': '123456',
+              'sendOTP': <String, dynamic>{
+                'otp': '123456',
+                'phoneNumber': '254712345678',
+              },
               'verifyOTP': true
             }
           }),

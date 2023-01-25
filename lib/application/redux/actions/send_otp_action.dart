@@ -1,6 +1,7 @@
 // Dart imports:
 import 'dart:convert';
 
+import 'package:pro_health_360/domain/core/entities/send_otp/send_otp_response.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 import 'package:async_redux/async_redux.dart';
@@ -19,12 +20,12 @@ import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 class SendOTPAction extends ReduxAction<AppState> {
   SendOTPAction({
     required this.context,
-    required this.phoneNumber,
+    required this.username,
   });
 
   final BuildContext context;
 // The phone number to resend this OTP to
-  final String phoneNumber;
+  final String username;
 
   @override
   void after() {
@@ -40,9 +41,9 @@ class SendOTPAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    if (phoneNumber != UNKNOWN) {
+    if (username != UNKNOWN) {
       final Map<String, dynamic> variables = <String, dynamic>{
-        'phoneNumber': phoneNumber,
+        'username': username,
         'flavour': Flavour.consumer.name,
       };
 
@@ -89,10 +90,16 @@ class SendOTPAction extends ReduxAction<AppState> {
         final Map<String, dynamic>? data =
             parsed['data'] as Map<String, dynamic>?;
 
-        final String otp = data?['sendOTP'] as String;
+        final SendOTPResponse sendOTPResponse =
+            SendOTPResponse.fromJson(data?['sendOTP'] as Map<String, dynamic>);
 
         // save the OTP to state
-        dispatch(UpdateOnboardingStateAction(otp: otp));
+        dispatch(
+          UpdateOnboardingStateAction(
+            otp: sendOTPResponse.otp,
+            phoneNumber: sendOTPResponse.phoneNumber,
+          ),
+        );
 
         return state;
       } else {

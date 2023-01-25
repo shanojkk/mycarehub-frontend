@@ -32,7 +32,7 @@ class VerifyPhonePage extends StatelessWidget {
           sendOTPFunction: () {
             StoreProvider.dispatch<AppState>(
               context,
-              SendOTPAction(context: context, phoneNumber: phoneNumber),
+              SendOTPAction(context: context, username: phoneNumber),
             );
             AnalyticsService().logEvent(
               name: sendOTPEvent,

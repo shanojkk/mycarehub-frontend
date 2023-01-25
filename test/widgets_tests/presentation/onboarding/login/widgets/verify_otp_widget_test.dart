@@ -1,5 +1,3 @@
-// Flutter imports:
-
 // Dart imports:
 import 'dart:convert';
 
@@ -64,7 +62,10 @@ void main() {
           Response(
             json.encode(<String, dynamic>{
               'data': <String, dynamic>{
-                'sendOTP': '123456',
+                'sendOTP': <String, dynamic>{
+                  'otp': '123456',
+                  'phoneNumber': '254712345678',
+                },
                 'sendRetryOTP': '123456',
               }
             }),
@@ -90,7 +91,7 @@ void main() {
                 sendOTPFunction: () async {
                   StoreProvider.dispatch<AppState>(
                     context,
-                    SendOTPAction(context: context, phoneNumber: phoneNumber),
+                    SendOTPAction(context: context, username: phoneNumber),
                   );
                 },
                 canResendOTPFunction: () async {
@@ -167,7 +168,10 @@ void main() {
         Response(
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
-              'sendOTP': '123456',
+              'sendOTP': <String, dynamic>{
+                'otp': '123456',
+                'phoneNumber': '254712345678',
+              },
               'sendRetryOTP': '123456',
             }
           }),
@@ -193,7 +197,7 @@ void main() {
                   context,
                   SendOTPAction(
                     context: context,
-                    phoneNumber: phoneNumber,
+                    username: phoneNumber,
                   ),
                 );
               },

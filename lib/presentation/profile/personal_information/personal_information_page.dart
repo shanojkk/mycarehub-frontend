@@ -66,7 +66,9 @@ class PersonalInformationPage extends StatelessWidget {
                           hotlineNumberString;
 
               final String relation = caregiverInformation!.caregiverType!.name;
-              final String facilityName = vm.facilityName ?? clinic;
+              final String facilityName =
+                  vm.clientState?.clientProfile?.defaultFacility?.name ??
+                      clinic;
 
               return Padding(
                 padding:

@@ -29,14 +29,16 @@ class HotlineWidget extends StatelessWidget {
             child: const PlatformLoader(),
           );
         } else {
-          if (vm.appState.clientState?.facilityPhoneNumber != null &&
-              vm.appState.clientState!.facilityPhoneNumber! != UNKNOWN) {
-            final String hotlineSubtitle =
-                vm.appState.clientState!.facilityPhoneNumber!.isNotEmpty
-                    ? hotlineDescription
-                    : noHotlineContactDescription;
+          if (vm.appState.clientState?.clientProfile?.defaultFacility?.phone !=
+                  null &&
+              vm.appState.clientState!.clientProfile!.defaultFacility!.phone! !=
+                  UNKNOWN) {
+            final String hotlineSubtitle = vm.appState.clientState!
+                    .clientProfile!.defaultFacility!.phone!.isNotEmpty
+                ? hotlineDescription
+                : noHotlineContactDescription;
             final String facilityPhone =
-                vm.appState.clientState!.facilityPhoneNumber!;
+                vm.appState.clientState!.clientProfile!.defaultFacility!.phone!;
 
             return Container(
               padding: const EdgeInsets.all(20),
@@ -53,10 +55,12 @@ class HotlineWidget extends StatelessWidget {
                     hotlineTitle,
                     style: heavySize18Text(AppColors.primaryColor),
                   ),
-                  if (vm.appState.clientState!.facilityPhoneNumber!.isNotEmpty)
+                  if (vm.appState.clientState!.clientProfile!.defaultFacility!
+                      .phone!.isNotEmpty)
                     verySmallVerticalSizedBox,
                   Text(
-                    vm.appState.clientState!.facilityPhoneNumber!,
+                    vm.appState.clientState!.clientProfile!.defaultFacility!
+                        .phone!,
                     style: boldSize15Text(AppColors.greyTextColor),
                   ),
                   smallVerticalSizedBox,
@@ -65,7 +69,8 @@ class HotlineWidget extends StatelessWidget {
                     style: normalSize14Text(AppColors.primaryColor),
                   ),
                   size15VerticalSizedBox,
-                  if (vm.appState.clientState!.facilityPhoneNumber!.isNotEmpty)
+                  if (vm.appState.clientState!.clientProfile!.defaultFacility!
+                      .phone!.isNotEmpty)
                     SizedBox(
                       width: double.infinity,
                       height: 48,

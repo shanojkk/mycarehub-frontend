@@ -105,9 +105,6 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
         lastMoodRecordedDate: this.lastMoodRecordedDate ??
             state.clientState?.lastMoodRecordedDate,
         facilityID: this.facilityID ?? state.clientState?.facilityID,
-        facilityName: this.facilityName ?? state.clientState?.facilityName,
-        facilityPhoneNumber:
-            this.facilityPhoneNumber ?? state.clientState?.facilityPhoneNumber,
         addresses: this.addresses ?? state.clientState?.addresses,
         caregiverInformation: this.caregiverInformation ??
             state.clientState?.caregiverInformation,

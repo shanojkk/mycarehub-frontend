@@ -35,9 +35,13 @@ class FetchCaregiverInformationAction extends ReduxAction<AppState> {
   Future<AppState?> reduce() async {
     final Map<String, dynamic> variables = <String, dynamic>{
       'clientID': state.clientState!.clientProfile!.id,
+      'paginationInput': <String, dynamic>{
+        'limit': 20,
+        'currentPage': 1,
+      },
     };
     final Response response =
-        await client.query(getClientCaregiverQuery, variables);
+        await client.query(listClientCaregiverQuery, variables);
 
     final ProcessedResponse processedResponse = processHttpResponse(response);
 
@@ -57,10 +61,10 @@ class FetchCaregiverInformationAction extends ReduxAction<AppState> {
       }
       final Map<String, dynamic>? data = body['data'] as Map<String, dynamic>?;
 
-      if (data?['getClientCaregiver'] != null) {
+      if (data?['listClientsCaregivers'] != null) {
         final CaregiverInformation caregiverInformation =
             CaregiverInformation.fromJson(
-          data?['getClientCaregiver'] as Map<String, dynamic>,
+          data?['listClientsCaregivers'] as Map<String, dynamic>,
         );
 
         dispatch(

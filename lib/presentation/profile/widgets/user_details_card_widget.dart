@@ -30,7 +30,7 @@ class UserDetailsCard extends StatelessWidget {
             ? locationNotRecorded
             : vm.clientState?.addresses?.first.text ?? locationNotRecorded;
 
-        final String phone = user?.primaryContact?.value ?? UNKNOWN;
+        final String phone = user?.primaryContact?.value ?? phoneNotRecorded;
         final String name = getDisplayName(user);
         final String cccNumber =
             vm.clientState?.clientProfile?.cccNumber ?? UNKNOWN;
@@ -93,7 +93,7 @@ class UserDetailsCard extends StatelessWidget {
                   ),
                   smallVerticalSizedBox,
                   Text(
-                    'Age: $age yrs',
+                    'Age: $age',
                     style: const TextStyle(
                       color: AppColors.secondaryColor,
                       fontSize: 16,

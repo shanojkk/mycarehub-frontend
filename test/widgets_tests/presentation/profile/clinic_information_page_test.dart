@@ -29,7 +29,7 @@ void main() {
         json.encode(<String, dynamic>{
           'data': <String, dynamic>{
             'retrieveFacility': <String, dynamic>{
-              'ID': 'abcd',
+              'id': 'abcd',
               'name': 'Some hospital',
               'code': 12345,
               'county': 'Nairobi',
@@ -53,6 +53,7 @@ void main() {
         client: mockShortSILGraphQlClient,
         widget: ClinicInformationPage(),
       );
+      await tester.pumpAndSettle();
       expect(find.byType(ClinicInformationItemWidget), findsNWidgets(3));
 
       await tester.tap(find.byKey(hotlineCallButtonKey));

@@ -243,7 +243,7 @@ void main() {
     final String fiveYearAgo =
         DateTime.now().subtract(const Duration(days: 365 * 5)).toString();
     final String age = calculateAge(fiveYearAgo);
-    expect(age, '5');
+    expect(age, '5 yrs');
   });
 
   test('appointmentDateValidator works correctly', () {

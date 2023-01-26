@@ -14,7 +14,6 @@ _$_ClientProfile _$$_ClientProfileFromJson(Map<String, dynamic> json) =>
       clientTypes: (json['clientTypes'] as List<dynamic>?)
           ?.map((e) => $enumDecode(_$ClientTypeEnumMap, e))
           .toList(),
-      facilityID: json['defaultFacilityID'] as String?,
       treatmentEnrollmentDate: json['treatmentEnrollmentDate'] as String?,
       treatmentBuddy: json['treatmentBuddy'] as String?,
       user: json['user'] == null
@@ -38,7 +37,6 @@ Map<String, dynamic> _$$_ClientProfileToJson(_$_ClientProfile instance) =>
       'clientCounselled': instance.counselled,
       'clientTypes':
           instance.clientTypes?.map((e) => _$ClientTypeEnumMap[e]!).toList(),
-      'defaultFacilityID': instance.facilityID,
       'treatmentEnrollmentDate': instance.treatmentEnrollmentDate,
       'treatmentBuddy': instance.treatmentBuddy,
       'user': instance.user,

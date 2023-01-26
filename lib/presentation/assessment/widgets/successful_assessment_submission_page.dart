@@ -1,4 +1,3 @@
-// Flutter imports:
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
@@ -51,10 +50,13 @@ class SuccessfulAssessmentSubmissionPage extends StatelessWidget {
                             text: assessmentSubmissionSuccessfulDescription,
                             style: normalSize14Text(AppColors.greyTextColor),
                             children: <TextSpan>[
-                              if (vm.clientState?.facilityPhoneNumber != null &&
-                                  vm.clientState!.facilityPhoneNumber!
-                                      .isNotEmpty &&
-                                  vm.clientState!.facilityPhoneNumber !=
+                              if (vm.clientState?.clientProfile?.defaultFacility
+                                          ?.phone !=
+                                      null &&
+                                  vm.clientState!.clientProfile!
+                                      .defaultFacility!.phone!.isNotEmpty &&
+                                  vm.clientState!.clientProfile!
+                                          .defaultFacility!.phone! !=
                                       UNKNOWN)
                                 TextSpan(
                                   text: ifItIsAnEmergency,
@@ -62,14 +64,17 @@ class SuccessfulAssessmentSubmissionPage extends StatelessWidget {
                                     AppColors.greyTextColor,
                                   ),
                                 ),
-                              if (vm.clientState?.facilityPhoneNumber != null &&
-                                  vm.clientState!.facilityPhoneNumber!
-                                      .isNotEmpty &&
-                                  vm.clientState!.facilityPhoneNumber !=
+                              if (vm.clientState?.clientProfile?.defaultFacility
+                                          ?.phone !=
+                                      null &&
+                                  vm.clientState!.clientProfile!
+                                      .defaultFacility!.phone!.isNotEmpty &&
+                                  vm.clientState!.clientProfile!
+                                          .defaultFacility!.phone! !=
                                       UNKNOWN)
                                 TextSpan(
-                                  text: vm.clientState?.facilityPhoneNumber ??
-                                      UNKNOWN,
+                                  text: vm.clientState!.clientProfile!
+                                      .defaultFacility!.phone,
                                   style: veryBoldSize14Text(
                                     AppColors.greyTextColor,
                                   ),

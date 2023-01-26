@@ -634,13 +634,11 @@ NotificationActionInfo getNotificationInfo(NotificationType notificationType) {
 /// calculates someone's age from the date of birth
 String calculateAge(String dateOfBirth) {
   if (dateOfBirth.isEmpty || dateOfBirth == UNKNOWN) {
-    return 'No age recorded';
+    return 'Age not recorded';
   }
   final DateTime parsedDate = DateTime.parse(dateOfBirth);
 
-  return (DateTime.now().difference(parsedDate).inDays / 365)
-      .round()
-      .toString();
+  return '${(DateTime.now().difference(parsedDate).inDays / 365).round().toString()} yrs';
 }
 
 String capitalize(String word) {

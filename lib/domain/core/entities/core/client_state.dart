@@ -33,8 +33,6 @@ class ClientState with _$ClientState {
     /// others
     @JsonKey(name: 'lastMoodRecordedDate') String? lastMoodRecordedDate,
     @JsonKey(name: 'isSignedIn') bool? isSignedIn,
-    @JsonKey(name: 'defaultFacilityName') String? facilityName,
-    @JsonKey(name: 'facilityPhoneNumber') String? facilityPhoneNumber,
     @JsonKey(name: 'roles') List<Role>? roles,
     @JsonKey(name: 'permissions') List<AuthorityPermission>? permissions,
     @JsonKey(name: 'communityToken') String? communityToken,
@@ -83,9 +81,7 @@ class ClientState with _$ClientState {
         facilityID: UNKNOWN,
         lastMoodRecordedDate: UNKNOWN,
         isSignedIn: false,
-        facilityName: UNKNOWN,
         healthDiaryState: HealthDiaryState.initial(),
-        facilityPhoneNumber: UNKNOWN,
         communitiesState: CommunitiesState.initial(),
         pastAppointments: <Appointment>[],
         upcomingAppointments: <Appointment>[],

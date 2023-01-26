@@ -1015,12 +1015,12 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       );
     }
 
-    if (queryString == getClientCaregiverQuery) {
+    if (queryString == listClientCaregiverQuery) {
       return Future<http.Response>.value(
         http.Response(
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
-              'getClientCaregiver': <String, dynamic>{
+              'listClientsCaregivers': <String, dynamic>{
                 'firstName': 'Jac',
                 'lastName': 'Dough',
                 'phoneNumber': '+254712344679',
@@ -2147,7 +2147,7 @@ final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
     'intro': 'Keep yourself healthy',
     'authorName': 'Abiud Orina',
     'authorAvatar': 'https://i.postimg.cc/9XpbrC25/profile-image.png',
-    'author': <String, dynamic>{'ID': 'some-id'},
+    'author': <String, dynamic>{'id': 'some-id'},
     'itemType': 'ARTICLE',
     'timeEstimateSeconds': 180,
     'body':
@@ -2216,10 +2216,10 @@ final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
     'bookmarkCount': 2,
     'viewCount': 0,
     'shareCount': 1,
-    'author': <String, dynamic>{'ID': 'cd92a709-c397-4b04-a963-709eb7e08486'},
+    'author': <String, dynamic>{'id': 'cd92a709-c397-4b04-a963-709eb7e08486'},
     'categoryDetails': <Map<String, dynamic>>[
       <String, dynamic>{
-        'ID': 6,
+        'id': 6,
         'categoryName': 'recommended',
         'categoryIcon': ''
       }

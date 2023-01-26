@@ -873,6 +873,7 @@ const String sendingPINResetRequestSting = 'sending your pin reset request';
 const String successfulPINResetRequestString =
     'PIN reset requested successfully';
 const String locationNotRecorded = 'Location not recorded';
+const String phoneNotRecorded = 'Phone number not recorded';
 
 const String optingOutString = 'opting out';
 const String optOutSuccessfulString = 'You have opted out successfully';

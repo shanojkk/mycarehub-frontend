@@ -52,16 +52,27 @@ bool isSubmitActive({
 }
 
 class _FeedbackPageState extends State<FeedbackPage> {
+  bool allowFollowUp = false;
+  int selectedRating = 0;
+  FeedBackType feedBackType = FeedBackType.GENERAL_FEEDBACK;
+
   final TextEditingController feedBackInputController = TextEditingController();
   final TextEditingController serviceInputController = TextEditingController();
 
-  bool allowFollowUp = false;
-  FeedBackType feedBackType = FeedBackType.GENERAL_FEEDBACK;
-  int selectedRating = 0;
   void onRatingButtonPressed(int selectedButton) {
     setState(() {
       selectedRating = selectedButton;
     });
+  }
+
+  String getFeedBackTypeDescription(FeedBackType feedBackType) {
+    switch (feedBackType) {
+      case FeedBackType.GENERAL_FEEDBACK:
+        return generalFeedBack;
+
+      default:
+        return servicesOffered;
+    }
   }
 
   @override
@@ -277,9 +288,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
           floatingActionButtonLocation:
               FloatingActionButtonLocation.miniCenterFloat,
           floatingActionButton: Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             height: 48,
             width: double.infinity,
             child: MyAfyaHubPrimaryButton(
@@ -343,15 +352,5 @@ class _FeedbackPageState extends State<FeedbackPage> {
         );
       },
     );
-  }
-
-  String getFeedBackTypeDescription(FeedBackType feedBackType) {
-    switch (feedBackType) {
-      case FeedBackType.GENERAL_FEEDBACK:
-        return generalFeedBack;
-
-      default:
-        return servicesOffered;
-    }
   }
 }

@@ -34,50 +34,52 @@ class _UserProfilePageState extends State<UserProfilePage> {
                   largeVerticalSizedBox,
                   const UserDetailsCard(),
                   largeVerticalSizedBox,
-                  ...List<Widget>.generate(userProfileItems.length,
-                      (int index) {
-                    final String iconPath =
-                        userProfileItems.elementAt(index).iconAssetPath;
-                    final String title =
-                        userProfileItems.elementAt(index).title;
-                    final String routeName =
-                        userProfileItems.elementAt(index).route;
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 4),
-                      child: GestureDetector(
-                        onTap: () {
-                          if (routeName.isNotEmpty) {
-                            Navigator.pushNamed(context, routeName);
-                          }
-                        },
-                        child: InformationListCard(
-                          title: Text(
-                            title,
-                            maxLines: 2,
-                            style: const TextStyle(
-                              color: AppColors.secondaryColor,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 14,
+                  ...List<Widget>.generate(
+                    userProfileItems.length,
+                    (int index) {
+                      final String iconPath =
+                          userProfileItems.elementAt(index).iconAssetPath;
+                      final String title =
+                          userProfileItems.elementAt(index).title;
+                      final String routeName =
+                          userProfileItems.elementAt(index).route;
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 4),
+                        child: GestureDetector(
+                          onTap: () {
+                            if (routeName.isNotEmpty) {
+                              Navigator.pushNamed(context, routeName);
+                            }
+                          },
+                          child: InformationListCard(
+                            title: Text(
+                              title,
+                              maxLines: 2,
+                              style: const TextStyle(
+                                color: AppColors.secondaryColor,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 14,
+                              ),
+                              overflow: TextOverflow.ellipsis,
                             ),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          iconBackgroundColor: AppColors.listCardColor,
-                          leadingIcon: DecoratedBox(
-                            decoration: BoxDecoration(
-                              color: AppColors.listCardColor,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: SvgPicture.asset(
-                              iconPath,
-                              width: 20,
-                              height: 20,
-                              color: AppColors.primaryColor,
+                            iconBackgroundColor: AppColors.listCardColor,
+                            leadingIcon: DecoratedBox(
+                              decoration: BoxDecoration(
+                                color: AppColors.listCardColor,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: SvgPicture.asset(
+                                iconPath,
+                                width: 20,
+                                height: 20,
+                                color: AppColors.primaryColor,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    );
-                  }),
+                      );
+                    },
+                  ),
                   mediumVerticalSizedBox,
                   const HotlineWidget(),
                   mediumVerticalSizedBox,

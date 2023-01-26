@@ -28,8 +28,6 @@ mixin _$ClientProfile {
   bool? get counselled => throw _privateConstructorUsedError;
   @JsonKey(name: 'clientTypes')
   List<ClientType>? get clientTypes => throw _privateConstructorUsedError;
-  @JsonKey(name: 'defaultFacilityID')
-  String? get facilityID => throw _privateConstructorUsedError;
   @JsonKey(name: 'treatmentEnrollmentDate')
   String? get treatmentEnrollmentDate => throw _privateConstructorUsedError;
   @JsonKey(name: 'treatmentBuddy')
@@ -68,7 +66,6 @@ abstract class $ClientProfileCopyWith<$Res> {
       @JsonKey(name: 'active', defaultValue: false) bool? active,
       @JsonKey(name: 'clientCounselled', defaultValue: false) bool? counselled,
       @JsonKey(name: 'clientTypes') List<ClientType>? clientTypes,
-      @JsonKey(name: 'defaultFacilityID') String? facilityID,
       @JsonKey(name: 'treatmentEnrollmentDate') String? treatmentEnrollmentDate,
       @JsonKey(name: 'treatmentBuddy') String? treatmentBuddy,
       @JsonKey(name: 'user') User? user,
@@ -101,7 +98,6 @@ class _$ClientProfileCopyWithImpl<$Res, $Val extends ClientProfile>
     Object? active = freezed,
     Object? counselled = freezed,
     Object? clientTypes = freezed,
-    Object? facilityID = freezed,
     Object? treatmentEnrollmentDate = freezed,
     Object? treatmentBuddy = freezed,
     Object? user = freezed,
@@ -130,10 +126,6 @@ class _$ClientProfileCopyWithImpl<$Res, $Val extends ClientProfile>
           ? _value.clientTypes
           : clientTypes // ignore: cast_nullable_to_non_nullable
               as List<ClientType>?,
-      facilityID: freezed == facilityID
-          ? _value.facilityID
-          : facilityID // ignore: cast_nullable_to_non_nullable
-              as String?,
       treatmentEnrollmentDate: freezed == treatmentEnrollmentDate
           ? _value.treatmentEnrollmentDate
           : treatmentEnrollmentDate // ignore: cast_nullable_to_non_nullable
@@ -215,7 +207,6 @@ abstract class _$$_ClientProfileCopyWith<$Res>
       @JsonKey(name: 'active', defaultValue: false) bool? active,
       @JsonKey(name: 'clientCounselled', defaultValue: false) bool? counselled,
       @JsonKey(name: 'clientTypes') List<ClientType>? clientTypes,
-      @JsonKey(name: 'defaultFacilityID') String? facilityID,
       @JsonKey(name: 'treatmentEnrollmentDate') String? treatmentEnrollmentDate,
       @JsonKey(name: 'treatmentBuddy') String? treatmentBuddy,
       @JsonKey(name: 'user') User? user,
@@ -248,7 +239,6 @@ class __$$_ClientProfileCopyWithImpl<$Res>
     Object? active = freezed,
     Object? counselled = freezed,
     Object? clientTypes = freezed,
-    Object? facilityID = freezed,
     Object? treatmentEnrollmentDate = freezed,
     Object? treatmentBuddy = freezed,
     Object? user = freezed,
@@ -277,10 +267,6 @@ class __$$_ClientProfileCopyWithImpl<$Res>
           ? _value._clientTypes
           : clientTypes // ignore: cast_nullable_to_non_nullable
               as List<ClientType>?,
-      facilityID: freezed == facilityID
-          ? _value.facilityID
-          : facilityID // ignore: cast_nullable_to_non_nullable
-              as String?,
       treatmentEnrollmentDate: freezed == treatmentEnrollmentDate
           ? _value.treatmentEnrollmentDate
           : treatmentEnrollmentDate // ignore: cast_nullable_to_non_nullable
@@ -333,7 +319,6 @@ class _$_ClientProfile implements _ClientProfile {
       @JsonKey(name: 'active', defaultValue: false) this.active,
       @JsonKey(name: 'clientCounselled', defaultValue: false) this.counselled,
       @JsonKey(name: 'clientTypes') final List<ClientType>? clientTypes,
-      @JsonKey(name: 'defaultFacilityID') this.facilityID,
       @JsonKey(name: 'treatmentEnrollmentDate') this.treatmentEnrollmentDate,
       @JsonKey(name: 'treatmentBuddy') this.treatmentBuddy,
       @JsonKey(name: 'user') this.user,
@@ -369,9 +354,6 @@ class _$_ClientProfile implements _ClientProfile {
   }
 
   @override
-  @JsonKey(name: 'defaultFacilityID')
-  final String? facilityID;
-  @override
   @JsonKey(name: 'treatmentEnrollmentDate')
   final String? treatmentEnrollmentDate;
   @override
@@ -404,7 +386,7 @@ class _$_ClientProfile implements _ClientProfile {
 
   @override
   String toString() {
-    return 'ClientProfile(id: $id, active: $active, counselled: $counselled, clientTypes: $clientTypes, facilityID: $facilityID, treatmentEnrollmentDate: $treatmentEnrollmentDate, treatmentBuddy: $treatmentBuddy, user: $user, chvUserID: $chvUserID, chvUserName: $chvUserName, cccNumber: $cccNumber, fhirPatientID: $fhirPatientID, healthRecordID: $healthRecordID, caregiverID: $caregiverID, defaultFacility: $defaultFacility)';
+    return 'ClientProfile(id: $id, active: $active, counselled: $counselled, clientTypes: $clientTypes, treatmentEnrollmentDate: $treatmentEnrollmentDate, treatmentBuddy: $treatmentBuddy, user: $user, chvUserID: $chvUserID, chvUserName: $chvUserName, cccNumber: $cccNumber, fhirPatientID: $fhirPatientID, healthRecordID: $healthRecordID, caregiverID: $caregiverID, defaultFacility: $defaultFacility)';
   }
 
   @override
@@ -418,8 +400,6 @@ class _$_ClientProfile implements _ClientProfile {
                 other.counselled == counselled) &&
             const DeepCollectionEquality()
                 .equals(other._clientTypes, _clientTypes) &&
-            (identical(other.facilityID, facilityID) ||
-                other.facilityID == facilityID) &&
             (identical(
                     other.treatmentEnrollmentDate, treatmentEnrollmentDate) ||
                 other.treatmentEnrollmentDate == treatmentEnrollmentDate) &&
@@ -450,7 +430,6 @@ class _$_ClientProfile implements _ClientProfile {
       active,
       counselled,
       const DeepCollectionEquality().hash(_clientTypes),
-      facilityID,
       treatmentEnrollmentDate,
       treatmentBuddy,
       user,
@@ -486,8 +465,6 @@ abstract class _ClientProfile implements ClientProfile {
           final bool? counselled,
       @JsonKey(name: 'clientTypes')
           final List<ClientType>? clientTypes,
-      @JsonKey(name: 'defaultFacilityID')
-          final String? facilityID,
       @JsonKey(name: 'treatmentEnrollmentDate')
           final String? treatmentEnrollmentDate,
       @JsonKey(name: 'treatmentBuddy')
@@ -524,9 +501,6 @@ abstract class _ClientProfile implements ClientProfile {
   @override
   @JsonKey(name: 'clientTypes')
   List<ClientType>? get clientTypes;
-  @override
-  @JsonKey(name: 'defaultFacilityID')
-  String? get facilityID;
   @override
   @JsonKey(name: 'treatmentEnrollmentDate')
   String? get treatmentEnrollmentDate;

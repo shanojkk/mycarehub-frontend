@@ -22,20 +22,6 @@ class ClinicInformationPage extends StatefulWidget {
 
 class _ClinicInformationPageState extends State<ClinicInformationPage> {
   @override
-  void initState() {
-    super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback(
-      (Duration timeStamp) async {
-        StoreProvider.dispatch<AppState>(
-          context,
-          FetchClinicInformationAction(context: context),
-        );
-      },
-    );
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
@@ -45,6 +31,12 @@ class _ClinicInformationPageState extends State<ClinicInformationPage> {
         child: StoreConnector<AppState, AppStateViewModel>(
           converter: (Store<AppState> store) =>
               AppStateViewModel.fromStore(store),
+          onInit: (Store<AppState> store) {
+            StoreProvider.dispatch<AppState>(
+              context,
+              FetchClinicInformationAction(context: context),
+            );
+          },
           builder: (BuildContext context, AppStateViewModel vm) {
             if (vm.appState.wait!.isWaitingFor(fetchClinicInformationFlag)) {
               return Container(
@@ -60,24 +52,32 @@ class _ClinicInformationPageState extends State<ClinicInformationPage> {
                   vm.appState.clientState?.clientProfile?.treatmentBuddy ??
                       treatmentBuddy;
 
-              final String clinicNameString =
-                  vm.appState.clientState?.facilityName ?? clinicName;
+              final String clinicNameString = vm.appState.clientState
+                      ?.clientProfile?.defaultFacility?.name ??
+                  clinicName;
+
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   mediumVerticalSizedBox,
-                  if (vm.appState.clientState?.facilityPhoneNumber != null &&
-                      vm.appState.clientState!.facilityPhoneNumber!.isNotEmpty)
+                  if (vm.appState.clientState?.clientProfile?.defaultFacility
+                              ?.phone !=
+                          null &&
+                      vm.appState.clientState!.clientProfile!.defaultFacility!
+                          .phone!.isNotEmpty)
                     Text(
                       clinicContactString,
                       style: boldSize14Text(AppColors.secondaryColor),
                     ),
                   smallVerticalSizedBox,
-                  if (vm.appState.clientState?.facilityPhoneNumber != null &&
-                      vm.appState.clientState!.facilityPhoneNumber!.isNotEmpty)
+                  if (vm.appState.clientState?.clientProfile?.defaultFacility
+                              ?.phone !=
+                          null &&
+                      vm.appState.clientState!.clientProfile!.defaultFacility!
+                          .phone!.isNotEmpty)
                     CallContactActionWidget(
-                      phoneNumber:
-                          vm.appState.clientState!.facilityPhoneNumber!,
+                      phoneNumber: vm.appState.clientState!.clientProfile!
+                          .defaultFacility!.phone!,
                     ),
                   size15VerticalSizedBox,
                   ClinicInformationItemWidget(

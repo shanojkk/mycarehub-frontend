@@ -233,7 +233,7 @@ mutation setClientDefaultFacility(
     clientID: $clientID
     facilityID: $facilityID
   ){
-   	ID
+   	id
     name
     phone
     active
@@ -269,6 +269,9 @@ mutation setClientProgram($programID: ID!) {
           active
           optedIn
         }
+        dateOfBirth
+        currentProgramID
+        currentOrganizationID
       }
       active
       clientTypes

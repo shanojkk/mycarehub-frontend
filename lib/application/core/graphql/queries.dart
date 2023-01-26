@@ -165,10 +165,10 @@ query checkIfUserBookmarkedContent($userID: String!, $contentID: Int!) {
 ''';
 
 const String getUserBookmarkedContentQuery = r'''
-query getUserBookmarkedContent($userID: String!){
-  getUserBookmarkedContent(userID: $userID){
+query getUserBookmarkedContent($clientID: String!){
+  getUserBookmarkedContent(clientID: $clientID){
     items {
-      ID
+      id
       title
       date
       intro
@@ -189,7 +189,7 @@ query getUserBookmarkedContent($userID: String!){
       timeEstimateSeconds
       body
       heroImage{
-        ID
+        id
         title
       }
       heroImageRendition{
@@ -203,12 +203,12 @@ query getUserBookmarkedContent($userID: String!){
       viewCount
       shareCount
       author {
-        ID
+        id
       }
       documents {
-        ID
-        Document {
-          ID
+        id
+        document {
+          id
           title
         }
         meta{
@@ -218,12 +218,12 @@ query getUserBookmarkedContent($userID: String!){
         }
       }
       categoryDetails{
-        ID
+        id
         categoryName
         categoryIcon
       }
       featuredMedia{
-        ID
+        id
         url
         title
         type
@@ -233,9 +233,9 @@ query getUserBookmarkedContent($userID: String!){
         thumbnail
       }
       galleryImages{
-        ID
+        id
         image{
-          ID
+          id
           title
           meta{
             type
@@ -430,13 +430,28 @@ query nextRefill ($clientID: ID!){
   nextRefill(clientID: $clientID)
 }
 ''';
-const String getClientCaregiverQuery = r'''
-query getClientCaregiver($clientID: String!){
-  getClientCaregiver(clientID: $clientID){
-    firstName,
-    lastName,
-    phoneNumber,
-    caregiverType
+const String listClientCaregiverQuery = r'''
+query listClientsCaregivers($clientID: String!, $paginationInput: PaginationsInput!){
+  listClientsCaregivers(clientID: $clientID, paginationInput: $paginationInput){
+    caregivers{
+      id
+      user{
+        id
+        username
+        name
+        contacts{
+          contactType
+          contactValue
+        }
+      }
+      caregiverNumber
+      isClient
+      consent{
+        consentStatus
+      }
+      currentClient
+      currentFacility
+    }
   }
 }
 ''';
@@ -507,7 +522,7 @@ const String getFAQsQuery = r'''
 query getFAQs($flavour: Flavour!){
   getFAQs(flavour: $flavour){
     items {
-      ID
+      id
       title
       date
       intro
@@ -532,9 +547,9 @@ query getFAQs($flavour: Flavour!){
         alt
       }
       documents {
-        ID
+        id
         Document {
-          ID
+          id
           title
           meta {
             documentDetailUrl
@@ -543,7 +558,7 @@ query getFAQs($flavour: Flavour!){
         }
       }
       featuredMedia{
-        ID
+        id
         url
         title
         type
@@ -554,9 +569,9 @@ query getFAQs($flavour: Flavour!){
         duration
       }
       galleryImages{
-        ID
+        id
         image{
-          ID
+          id
           title
           meta{
             imageDownloadUrl

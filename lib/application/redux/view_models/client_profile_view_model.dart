@@ -29,7 +29,8 @@ class ClientProfileViewModel extends Vm {
     return ClientProfileViewModel(
       clientState: store.state.clientState,
       wait: store.state.wait,
-      facilityName: store.state.clientState?.facilityName,
+      facilityName:
+          store.state.clientState?.clientProfile?.defaultFacility?.name,
       connectivityState: store.state.connectivityState,
     );
   }

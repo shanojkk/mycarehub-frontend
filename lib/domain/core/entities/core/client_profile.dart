@@ -18,7 +18,6 @@ class ClientProfile with _$ClientProfile {
     @JsonKey(name: 'active', defaultValue: false) bool? active,
     @JsonKey(name: 'clientCounselled', defaultValue: false) bool? counselled,
     @JsonKey(name: 'clientTypes') List<ClientType>? clientTypes,
-    @JsonKey(name: 'defaultFacilityID') String? facilityID,
     @JsonKey(name: 'treatmentEnrollmentDate') String? treatmentEnrollmentDate,
     @JsonKey(name: 'treatmentBuddy') String? treatmentBuddy,
     @JsonKey(name: 'user') User? user,
@@ -41,12 +40,12 @@ class ClientProfile with _$ClientProfile {
         treatmentBuddy: UNKNOWN,
         clientTypes: <ClientType>[ClientType.UNKNOWN],
         active: false,
-        facilityID: UNKNOWN,
         counselled: false,
         chvUserID: UNKNOWN,
         chvUserName: UNKNOWN,
         cccNumber: UNKNOWN,
         fhirPatientID: UNKNOWN,
         healthRecordID: UNKNOWN,
+        defaultFacility: Facility.initial(),
       );
 }

@@ -37,7 +37,7 @@ class FetchRecentContentAction extends ReduxAction<AppState> {
   @override
   Future<AppState?> reduce() async {
     final Map<String, dynamic> variables = <String, dynamic>{
-      'Limit': limit.toString()
+      'limit': limit.toString()
     };
     final IGraphQlClient client = AppWrapperBase.of(context)!.graphQLClient;
 

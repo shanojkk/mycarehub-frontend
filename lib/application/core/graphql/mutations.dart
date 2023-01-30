@@ -24,7 +24,7 @@ mutation acceptTerms($userID: String!, $termsID: Int!){
 
 const String createHealthDiaryEntryMutation = r'''
 mutation createHealthDiaryEntry($clientID: String!, $note: String,$mood:String!, $reportToStaff: Boolean!){
-  createHealthDiaryEntry(clientID: $clientID, note: $note,mood: $mood,reportToStaff: $reportToStaff)  
+  createHealthDiaryEntry(clientID: $clientID, note: $note,mood: $mood,reportToStaff: $reportToStaff) 
 }
  ''';
 

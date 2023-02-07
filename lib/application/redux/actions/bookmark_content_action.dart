@@ -41,11 +41,11 @@ class BookmarkContentAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState> reduce() async {
-    final String? userID = state.clientState?.clientProfile?.user?.userId;
+    final String? clientID = state.clientState?.clientProfile?.id;
 
     // initializing of the LikeContent mutation
     final Map<String, dynamic> variables = <String, dynamic>{
-      'userID': userID,
+      'clientID': clientID,
       'contentItemID': contentID,
     };
     final IGraphQlClient client = AppWrapperBase.of(context)!.graphQLClient;

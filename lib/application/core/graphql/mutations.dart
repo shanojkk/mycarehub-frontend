@@ -72,14 +72,14 @@ mutation recordSecurityQuestionResponses($input: [SecurityQuestionResponseInput!
  ''';
 
 const String unlikeContentMutation = r'''
- mutation unlikeContent($userID: String!, $contentID: Int!){
-  unlikeContent(userID: $userID, contentID: $contentID)
+ mutation unlikeContent($clientID: String!, $contentID: Int!){
+  unlikeContent(clientID: $clientID, contentID: $contentID)
 }
 ''';
 
 const String likeContentMutation = r'''
- mutation likeContent($userID: String!, $contentID: Int!){
-  likeContent(userID: $userID, contentID: $contentID)
+ mutation likeContent($clientID: String!, $contentID: Int!){
+  likeContent(clientID: $clientID, contentID: $contentID)
 }
 ''';
 
@@ -96,14 +96,14 @@ Map<String, dynamic> shareContentMutationVariables(
 }
 
 const String bookmarkContentMutation = r'''
-mutation bookmarkContent($userID: String!, $contentItemID: Int!){
-  bookmarkContent(userID: $userID, contentItemID: $contentItemID)
+mutation bookmarkContent($clientID: String!, $contentItemID: Int!){
+  bookmarkContent(clientID: $clientID, contentItemID: $contentItemID)
 }
 ''';
 
 const String unbookmarkContentMutation = r'''
-mutation unbookmarkContent($userID: String!, $contentItemID: Int!){
-  UnBookmarkContent(userID: $userID, contentItemID: $contentItemID)
+mutation unbookmarkContent($clientID: String!, $contentItemID: Int!){
+  UnBookmarkContent(clientID: $clientID, contentItemID: $contentItemID)
 }
 ''';
 

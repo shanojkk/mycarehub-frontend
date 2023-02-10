@@ -66,17 +66,16 @@ void main() {
         (WidgetTester tester) async {
       mockLoginResponse.addAll(<String, dynamic>{'getCurrentTerms': termsMock});
       mockLoginResponse.addAll(<String, dynamic>{
-        'data': <String, dynamic>{'sendOTP': '123456'}
+        'data': <String, dynamic>{
+          'sendOTP': <String, dynamic>{'otp': '123456'}
+        }
       });
 
       final MockShortGraphQlClient mockShortSILGraphQlClient =
           MockShortGraphQlClient.withResponse(
         'idToken',
         'endpoint',
-        Response(
-          json.encode(mockLoginResponse),
-          200,
-        ),
+        Response(json.encode(mockLoginResponse), 200),
       );
 
       store.dispatch(

@@ -24,7 +24,6 @@ class SendOTPAction extends ReduxAction<AppState> {
   });
 
   final BuildContext context;
-// The phone number to resend this OTP to
   final String username;
 
   @override
@@ -87,11 +86,11 @@ class SendOTPAction extends ReduxAction<AppState> {
         final Map<String, dynamic> parsed =
             jsonDecode(httpResponse.body) as Map<String, dynamic>;
 
-        final Map<String, dynamic>? data =
-            parsed['data'] as Map<String, dynamic>?;
+        final Map<String, dynamic> data =
+            parsed['data'] as Map<String, dynamic>;
 
         final SendOTPResponse sendOTPResponse =
-            SendOTPResponse.fromJson(data?['sendOTP'] as Map<String, dynamic>);
+            SendOTPResponse.fromJson(data['sendOTP'] as Map<String, dynamic>);
 
         // save the OTP to state
         dispatch(

@@ -64,7 +64,7 @@ void main() {
                 await storeTester.dispatch(
                   ResendOTPAction(
                     context: context,
-                    phoneNumber: UNKNOWN,
+                    userName: UNKNOWN,
                   ),
                 );
               },
@@ -114,7 +114,7 @@ void main() {
                   await storeTester.dispatch(
                     ResendOTPAction(
                       context: context,
-                      phoneNumber: '+254712345678',
+                      userName: '+254712345678',
                     ),
                   );
                 } catch (e) {

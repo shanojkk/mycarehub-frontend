@@ -9,44 +9,48 @@ class VerifyPhoneViewModel extends Vm {
   VerifyPhoneViewModel({
     required this.wait,
     required this.userID,
-    required this.phoneNumber,
+    required this.username,
     required this.otp,
     required this.currentOnboardingStage,
     this.failedToSendOTP,
     this.canResendOTP,
     this.invalidOTP,
+    this.phoneNumber,
   }) : super(
           equals: <Object?>[
             wait,
             userID,
-            phoneNumber,
+            username,
             otp,
             failedToSendOTP,
             canResendOTP,
             invalidOTP,
             currentOnboardingStage,
+            phoneNumber
           ],
         );
 
   final Wait? wait;
   final String? userID;
-  final String? phoneNumber;
+  final String? username;
   final String? otp;
   final bool? invalidOTP;
   final bool? failedToSendOTP;
   final bool? canResendOTP;
   final CurrentOnboardingStage? currentOnboardingStage;
+  final String? phoneNumber;
 
   static VerifyPhoneViewModel fromStore(AppState state) {
     return VerifyPhoneViewModel(
       wait: state.wait,
       userID: state.clientState?.clientProfile?.user?.userId ?? UNKNOWN,
-      phoneNumber: state.onboardingState?.phoneNumber ?? UNKNOWN,
+      username: state.onboardingState?.userName ?? UNKNOWN,
       otp: state.onboardingState?.otp ?? UNKNOWN,
       invalidOTP: state.onboardingState?.invalidOTP ?? false,
       failedToSendOTP: state.onboardingState?.failedToSendOTP ?? false,
       canResendOTP: state.onboardingState?.canResendOTP ?? false,
       currentOnboardingStage: state.onboardingState?.currentOnboardingStage,
+      phoneNumber: state.onboardingState?.phoneNumber,
     );
   }
 }

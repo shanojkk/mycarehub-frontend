@@ -23,12 +23,11 @@ import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 class ResendOTPAction extends ReduxAction<AppState> {
   ResendOTPAction({
     required this.context,
-    required this.phoneNumber,
+    required this.userName,
   });
 
   final BuildContext context;
-  // The phone number to resend this OTP to
-  final String phoneNumber;
+  final String userName;
 
   @override
   void after() {
@@ -43,12 +42,12 @@ class ResendOTPAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    if (phoneNumber != UNKNOWN) {
+    if (userName != UNKNOWN) {
       final String sendOTPEndpoint =
           AppWrapperBase.of(context)!.customContext!.retryResendOtpEndpoint;
 
       final Map<String, dynamic> variables = <String, dynamic>{
-        'phoneNumber': phoneNumber,
+        'username': userName,
         'flavour': Flavour.consumer.name,
       };
 

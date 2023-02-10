@@ -123,7 +123,7 @@ void main() {
                 resendOTPFunction: () async {
                   StoreProvider.dispatch<AppState>(
                     context,
-                    ResendOTPAction(context: context, phoneNumber: phoneNumber),
+                    ResendOTPAction(context: context, userName: phoneNumber),
                   );
                 },
               );
@@ -230,7 +230,7 @@ void main() {
               resendOTPFunction: () async {
                 StoreProvider.dispatch<AppState>(
                   context,
-                  ResendOTPAction(context: context, phoneNumber: phoneNumber),
+                  ResendOTPAction(context: context, userName: phoneNumber),
                 );
               },
             );

@@ -351,7 +351,7 @@ void main() {
           onboardingState: OnboardingState.initial().copyWith(
             failedToSendOTP: false,
             canResendOTP: true,
-            phoneNumber: '+254798000000',
+            userName: 'user',
           ),
         ),
       );
@@ -376,7 +376,7 @@ void main() {
 
         await tester.showKeyboard(find.byType(PINInputField));
         await tester.enterText(find.byType(PINInputField), '123456');
-
+        await tester.pumpAndSettle();
         expect(store.state.onboardingState!.isPhoneVerified, true);
       });
     });

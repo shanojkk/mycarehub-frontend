@@ -1,4 +1,3 @@
-import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:pro_health_360/application/core/services/analytics_service.dart';
@@ -21,18 +20,16 @@ class VerifyPhonePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, VerifyPhoneViewModel>(
-      converter: (Store<AppState> store) {
-        return VerifyPhoneViewModel.fromStore(store.state);
-      },
+      converter: (Store<AppState> store) =>
+          VerifyPhoneViewModel.fromStore(store.state),
       builder: (BuildContext context, VerifyPhoneViewModel vm) {
-        final String phoneNumber = vm.phoneNumber ?? UNKNOWN;
-
+        final String userName = vm.username ?? '';
         return VerifyPhoneWidget(
           vm: vm,
           sendOTPFunction: () {
             StoreProvider.dispatch<AppState>(
               context,
-              SendOTPAction(context: context, username: phoneNumber),
+              SendOTPAction(context: context, username: userName),
             );
             AnalyticsService().logEvent(
               name: sendOTPEvent,
@@ -68,7 +65,7 @@ class VerifyPhonePage extends StatelessWidget {
           resendOTPFunction: () {
             StoreProvider.dispatch<AppState>(
               context,
-              ResendOTPAction(context: context, phoneNumber: phoneNumber),
+              ResendOTPAction(context: context, userName: userName),
             );
             AnalyticsService().logEvent(
               name: resendOTPEvent,

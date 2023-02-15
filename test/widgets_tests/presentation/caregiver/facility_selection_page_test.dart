@@ -1,6 +1,9 @@
 import 'dart:convert';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:http/http.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
+import 'package:pro_health_360/presentation/onboarding/login/pages/login_page.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +22,10 @@ void main() {
   group('Facility Selection Page', () {
     late Store<AppState> store;
 
-    setUp(() {
+    setUp(() async {
       store = Store<AppState>(initialState: AppState.initial());
+      setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
     });
     final StoreTester<AppState> storeTester =
         StoreTester<AppState>(initialState: AppState.initial());
@@ -40,6 +45,25 @@ void main() {
       await tester.tap(find.byType(MyAfyaHubPrimaryButton).first);
       await tester.pumpAndSettle();
       expect(find.byType(HomePage), findsOneWidget);
+    });
+
+    testWidgets('Logout button works correctly', (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: storeTester.store,
+        client: MockGraphQlClient(),
+        widget: const FacilitySelectionPage(),
+      );
+
+      await tester.pumpAndSettle();
+      expect(find.byType(GeneralWorkstationWidget), findsNWidgets(2));
+      final Finder logoutButtonFinder = find.byKey(logoutButtonKey);
+
+      expect(find.byType(SummaryBadgeWidget), findsNWidgets(4));
+      await tester.tap(logoutButtonFinder.first);
+      await tester.pumpAndSettle();
+
+      expect(find.byType(LoginPage), findsOneWidget);
     });
 
     testWidgets('renders loader correctly', (WidgetTester tester) async {

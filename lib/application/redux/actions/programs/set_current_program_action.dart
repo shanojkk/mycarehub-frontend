@@ -70,12 +70,24 @@ class SetCurrentProgramAction extends ReduxAction<AppState> {
 
       if ((body['data'] as Map<String, dynamic>).isNotEmpty) {
         final Map<String, dynamic> data = body['data'] as Map<String, dynamic>;
+
         final ClientState clientState = ClientState.fromJson(
           data['setClientProgram'] as Map<String, dynamic>,
         );
-        final User? user = state.clientState?.clientProfile?.user?.copyWith(
-          primaryContact: clientState.clientProfile?.user?.primaryContact,
-        );
+
+        User? user = clientState.clientProfile?.user;
+
+        // Clean up the user's names
+        final String fullName =
+            clientState.clientProfile?.user?.name ?? UNKNOWN;
+
+        if (fullName != UNKNOWN && fullName.isNotEmpty) {
+          final List<String> names = fullName.trim().split(' ');
+          user = user?.copyWith(
+            firstName: names.first,
+            lastName: names.last,
+          );
+        }
 
         dispatch(
           UpdateClientProfileAction(

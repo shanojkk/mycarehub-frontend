@@ -7,6 +7,8 @@ import 'package:pro_health_360/application/redux/actions/programs/list_user_prog
 import 'package:pro_health_360/application/redux/actions/programs/set_current_program_action.dart';
 import 'package:pro_health_360/application/redux/states/program_state.dart';
 import 'package:pro_health_360/domain/core/entities/login/program.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
+import 'package:pro_health_360/presentation/core/widgets/logout_button.dart';
 import 'package:pro_health_360/presentation/onboarding/program_selection/widgets/program_card_widget.dart';
 
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
@@ -29,110 +31,121 @@ class ProgramSelectionPage extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-          child: SingleChildScrollView(
-            child: StoreConnector<AppState, AppStateViewModel>(
-              converter: (Store<AppState> store) =>
-                  AppStateViewModel.fromStore(store),
-              onInit: (Store<AppState> store) async {
-                await store.dispatch(
-                  ListUserProgramsAction(
-                    client: getCustomClient(
-                      context: context,
-                      graphQlClient: graphQlClient,
-                    ),
-                  ),
-                );
-              },
-              builder: (BuildContext context, AppStateViewModel vm) {
-                final ProgramState? programState =
-                    vm.appState.onboardingState?.programState;
-                final List<Program?>? programs = programState?.programs;
-                final List<Widget> programsWidgetList = <Widget>[];
-
-                if (programs != null && programs.isNotEmpty) {
-                  for (final Program? program in programs) {
-                    programsWidgetList.add(
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: ProgramCardWidget(
-                          programName: program?.name ?? '',
-                          organizationName: program?.organization?.name ?? '',
-                          buttonText: continueString,
-                          buttonWidget:
-                              vm.wait!.isWaitingFor(setCurrentProgramFlag)
-                                  ? const PlatformLoader(color: whiteColor)
-                                  : null,
-                          onButtonCallback: () async {
-                            await StoreProvider.dispatch(
-                              context,
-                              SetCurrentProgramAction(
-                                programId: program?.id ?? '',
-                                client: getCustomClient(
-                                  context: context,
-                                  graphQlClient: graphQlClient,
-                                ),
-                              ),
-                            );
-                          },
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                child: SingleChildScrollView(
+                  child: StoreConnector<AppState, AppStateViewModel>(
+                    converter: (Store<AppState> store) =>
+                        AppStateViewModel.fromStore(store),
+                    onInit: (Store<AppState> store) async {
+                      await store.dispatch(
+                        ListUserProgramsAction(
+                          client: getCustomClient(
+                            context: context,
+                            graphQlClient: graphQlClient,
+                          ),
                         ),
-                      ),
-                    );
-                  }
-                }
+                      );
+                    },
+                    builder: (BuildContext context, AppStateViewModel vm) {
+                      final ProgramState? programState =
+                          vm.appState.onboardingState?.programState;
+                      final List<Program?>? programs = programState?.programs;
+                      final List<Widget> programsWidgetList = <Widget>[];
 
-                if (vm.wait!.isWaitingFor(fetchProgramsFlag)) {
-                  return Container(
-                    height: 300,
-                    padding: const EdgeInsets.all(20),
-                    child: const PlatformLoader(),
-                  );
-                } else {
-                  return Column(
-                    children: <Widget>[
-                      Center(
-                        child: SvgPicture.asset(programSelectionImage),
-                      ),
-                      smallVerticalSizedBox,
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          if (vm.wait!.isWaitingFor(setCurrentProgramFlag))
+                      if (programs != null && programs.isNotEmpty) {
+                        for (final Program? program in programs) {
+                          programsWidgetList.add(
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10.0),
+                              child: ProgramCardWidget(
+                                programName: program?.name ?? '',
+                                organizationName:
+                                    program?.organization?.name ?? '',
+                                buttonText: continueString,
+                                buttonWidget: vm.wait!
+                                        .isWaitingFor(setCurrentProgramFlag)
+                                    ? const PlatformLoader(color: whiteColor)
+                                    : null,
+                                onButtonCallback: () async {
+                                  await StoreProvider.dispatch(
+                                    context,
+                                    SetCurrentProgramAction(
+                                      programId: program?.id ?? '',
+                                      client: getCustomClient(
+                                        context: context,
+                                        graphQlClient: graphQlClient,
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          );
+                        }
+                      }
+
+                      if (vm.wait!.isWaitingFor(fetchProgramsFlag)) {
+                        return Container(
+                          height: 300,
+                          padding: const EdgeInsets.all(20),
+                          child: const PlatformLoader(),
+                        );
+                      } else {
+                        return Column(
+                          children: <Widget>[
+                            Center(
+                              child: SvgPicture.asset(programSelectionImage),
+                            ),
+                            smallVerticalSizedBox,
                             Column(
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
-                                Text(
-                                  switchingYourProgram,
-                                  style: boldSize18Text(),
-                                  textAlign: TextAlign.center,
-                                ),
-                                smallVerticalSizedBox,
-                                const SizedBox(
-                                  height: 300,
-                                  child: Center(
-                                    child: PlatformLoader(),
-                                  ),
-                                )
+                                if (vm.wait!
+                                    .isWaitingFor(setCurrentProgramFlag))
+                                  Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      Text(
+                                        switchingYourProgram,
+                                        style: boldSize18Text(),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      smallVerticalSizedBox,
+                                      const SizedBox(
+                                        height: 300,
+                                        child: Center(
+                                          child: PlatformLoader(),
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                else
+                                  Column(
+                                    children: <Widget>[
+                                      Text(
+                                        selectProgram,
+                                        style: boldSize20Text(
+                                          AppColors.primaryColor,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      smallVerticalSizedBox,
+                                      ...programsWidgetList,
+                                    ],
+                                  )
                               ],
-                            )
-                          else
-                            Column(
-                              children: <Widget>[
-                                Text(
-                                  selectProgram,
-                                  style: boldSize20Text(AppColors.primaryColor),
-                                  textAlign: TextAlign.center,
-                                ),
-                                smallVerticalSizedBox,
-                                ...programsWidgetList,
-                              ],
-                            )
-                        ],
-                      ),
-                    ],
-                  );
-                }
-              },
-            ),
+                            ),
+                          ],
+                        );
+                      }
+                    },
+                  ),
+                ),
+              ),
+              const LogoutButton(key: logoutButtonKey)
+            ],
           ),
         ),
       ),

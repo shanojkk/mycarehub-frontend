@@ -1,10 +1,13 @@
 import 'dart:convert';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:http/http.dart';
 import 'package:pro_health_360/application/redux/actions/update_user_profile_action.dart';
 import 'package:pro_health_360/domain/core/entities/core/user.dart';
 import 'package:pro_health_360/domain/core/entities/core/user_profile.dart';
 import 'package:pro_health_360/domain/core/entities/login/phone_login_response.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
+import 'package:pro_health_360/presentation/onboarding/login/pages/login_page.dart';
 import 'package:pro_health_360/presentation/onboarding/program_selection/program_selection_page.dart';
 import 'package:pro_health_360/presentation/onboarding/program_selection/widgets/program_card_widget.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
@@ -22,8 +25,10 @@ void main() {
   group('Program Selection Page', () {
     late Store<AppState> store;
 
-    setUp(() {
+    setUp(() async {
       store = Store<AppState>(initialState: AppState.initial());
+      setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
     });
     final StoreTester<AppState> storeTester =
         StoreTester<AppState>(initialState: AppState.initial());
@@ -156,6 +161,24 @@ void main() {
 
       await tester.pumpAndSettle();
       expect(find.byType(ProgramCardWidget), findsOneWidget);
+    });
+
+    testWidgets('logout works correctly', (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: storeTester.store,
+        client: mockCustomGraphQlClient,
+        widget: ProgramSelectionPage(graphQlClient: mockCustomGraphQlClient),
+      );
+
+      await tester.pumpAndSettle();
+      expect(find.byType(ProgramCardWidget), findsOneWidget);
+
+      final Finder logoutButtonFinder = find.byKey(logoutButtonKey);
+      await tester.tap(logoutButtonFinder.first);
+
+      await tester.pumpAndSettle();
+      expect(find.byType(LoginPage), findsOneWidget);
     });
 
     testWidgets('renders loader correctly', (WidgetTester tester) async {

@@ -123,6 +123,80 @@ To run integration tests, ensure that you have an emulator running. See instruct
 
 1. Then run `flutter drive --target=test_driver/app.dart`
 
+## Pull request commit messages convention
+
+Our convention for a good commit message consists of a **header**, a **body** and a **footer**.
+
+### Message header
+
+The message header is a single line that contains short and clear description of the change.
+
+The following are **message header** examples that describe the kind of change that a commit is providing.
+
+- **feat** (feature)
+- **fix** (bug fix)
+- **docs** (documentation)
+- **style** (formatting, missing semi colons, …)
+- **refactor**
+- **test** (when adding missing tests)
+- **chore** (maintain)
+
+#### Header subject
+
+This is a very short description of the change.
+
+- use imperative, present tense: “change” not “changed” nor “changes”
+- don't capitalize first letter
+- no dot (.) at the end
+
+#### Example of a good commit header
+
+```git
+docs: bewell commit message convention
+```
+
+### Message body
+
+Separated with the **Message Header** by a line break, the message body contains paragraphs of changes. Follow below conventions.
+
+- use imperative, present tense: “change” not “changed” nor “changes”
+- includes motivation for the change and contrasts with previous behavior
+- don't capitalize first letter
+- no dot (.) at the end
+
+### Message footer
+
+The footer should contain any information about Breaking Changes which should start with the word BREAKING CHANGE: with a space or two newlines. The rest of the commit message is then the description of the change, justification and migration notes. It is also the place to reference GitLab issues that this commit Closes.
+
+#### Example of a good commit footer
+
+```git
+BREAKING CHANGE: isolate scope bindings definition has changed and
+    the inject option for the directive controller injection was removed.
+
+Closes #392
+```
+
+#### Example of a good commit message
+
+```git
+docs: add bewell convention to readme
+
+Couple of typos fixed:
+- indentation
+- syntax highlighting
+- start periodic checking
+- missing brace
+
+Closes #03
+```
+
+### NOTE
+
+1. The **commit message header** can be used in solitary with a clear subject on issues with elementary changes.
+2. To close an issue automatically include the footer with a reference to the GitLab issue as demonstrated above.
+
+
 ### Environment variables
 
 In order for you to run the application locally on your machine, you will need the following environment variables

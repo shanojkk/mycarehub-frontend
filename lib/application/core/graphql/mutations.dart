@@ -119,25 +119,6 @@ mutation sendFeedback($input: FeedbackResponseInput!) {
 }
 ''';
 
-const String rejectInvitationMutation = r'''
-mutation rejectInvitation($memberID: String!, $communityID: String!){
-  rejectInvitation(memberID: $memberID, communityID: $communityID)
-}
-''';
-
-const String acceptInvitationMutation = r'''
-mutation acceptInvitation($memberID: String!, $communityID: String!){
-  acceptInvitation(memberID: $memberID, communityID: $communityID)
-}
-''';
-
-const String addMembersToCommunityMutation = r'''
-mutation addMembersToCommunity($memberIDs: [String!]!, $communityID: String!){
-  addMembersToCommunity(
-    memberIDs: $memberIDs, communityID: $communityID)
-}
-''';
-
 const String optOutMutation = r'''
 mutation optOut($phoneNumber: String!, $flavour: Flavour!) {
   optOut(phoneNumber: $phoneNumber, flavour: $flavour)
@@ -171,35 +152,6 @@ mutation setPushToken($token: String!){
 }
 ''';
 
-const String removeFromGroupMutation = r'''
-mutation removeMembersFromCommunity($communityID: String!, $memberIDs: [String!]!){
-  removeMembersFromCommunity(communityID: $communityID, memberIDs: $memberIDs)
-}
-''';
-
-const String promoteToModeratorMutation = r'''
-mutation addModerators($memberIDs: [String!]!, $communityID: String!){
-  addModerators(memberIDs: $memberIDs, communityID: $communityID)
-}
-''';
-
-const String demoteModeratorMutation = r'''
-mutation demoteModerators($memberIDs: [String!]!, $communityID: String!){
-  demoteModerators(memberIDs: $memberIDs, communityID: $communityID)
-}
-''';
-
-const String banUserMutation = r'''
-mutation banUser($memberID: String!, $bannedBy: String!, $communityID: String!){
-  banUser(memberID: $memberID, bannedBy: $bannedBy, communityID: $communityID)
-}
-''';
-
-const String unBanUserMutation = r'''
-mutation UnBanUser($memberID: String!, $communityID: String!){
-  unBanUser(memberID: $memberID, communityID: $communityID)
-}
-''';
 const String readNotificationsMutation = r'''
 mutation readNotifications($ids: [ID!]!){
   readNotifications(ids: $ids)

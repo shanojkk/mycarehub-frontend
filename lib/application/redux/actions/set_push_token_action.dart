@@ -8,17 +8,14 @@ import 'package:pro_health_360/application/redux/actions/update_credentials_acti
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/sentry_hints.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class SetPushToken extends ReduxAction<AppState> {
   SetPushToken({
     required this.client,
-    required this.streamClient,
     required this.token,
   });
 
   final IGraphQlClient client;
-  final StreamChatClient streamClient;
   final String token;
 
   @override
@@ -26,8 +23,6 @@ class SetPushToken extends ReduxAction<AppState> {
     if (state.credentials?.isSignedIn ?? false) {
       final String tokenFromState = state.credentials?.pushToken ?? UNKNOWN;
       if (tokenFromState.compareTo(token) == 0) return null;
-
-      await streamClient.addDevice(token, PushProvider.firebase);
 
       final Map<String, dynamic> variables = <String, dynamic>{'token': token};
       final Response response =

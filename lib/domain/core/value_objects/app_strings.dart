@@ -779,23 +779,6 @@ const String flaggedMessagesDescription =
     'Here are messages that have been marked as inappropriate or offensive by'
     ' this group’s members';
 
-String userBannedMessage({
-  bool isBanned = false,
-  String? userName,
-  String? communityName,
-}) {
-  if (userName != null &&
-      userName.isNotEmpty &&
-      communityName != null &&
-      communityName.isNotEmpty) {
-    return 'You have ${isBanned ? 'unbanned' : 'banned'} $userName from $communityName';
-  } else if (userName != null && userName.isNotEmpty) {
-    return 'You have ${isBanned ? 'unbanned' : 'banned'} $userName';
-  } else {
-    return 'User ${isBanned ? 'unbanned' : 'banned'} successfully';
-  }
-}
-
 const String groupMembersText = 'Group Members';
 const String groupInformationText = 'Group Information';
 const String clientTypesText = 'Client types';

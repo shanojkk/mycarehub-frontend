@@ -2,10 +2,8 @@
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:pro_health_360/application/redux/states/communities/channel_members_state.dart';
 import 'package:pro_health_360/application/redux/states/screening_tools_state.dart';
 import 'package:pro_health_360/domain/core/entities/appointments/appointments_state.dart';
-import 'package:pro_health_360/domain/core/entities/core/groups_state.dart';
 import 'package:pro_health_360/domain/core/entities/surveys/survey.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 
@@ -23,8 +21,6 @@ class MiscState with _$MiscState {
     String? maxTryTime,
     bool? pinVerified,
     bool? resumeTimer,
-    GroupState? groupState,
-    ChannelMembersState? channelMembersState,
     ScreeningToolsState? screeningToolsState,
     @JsonKey(name: 'fetchClientAppointments')
         AppointmentState? appointmentState,
@@ -49,8 +45,6 @@ class MiscState with _$MiscState {
         maxTryTime: UNKNOWN,
         pinVerified: false,
         resumeTimer: false,
-        groupState: GroupState.initial(),
-        channelMembersState: ChannelMembersState(),
         appointmentState: AppointmentState.initial(),
         screeningToolsState: ScreeningToolsState.initial(),
         inactiveTime: UNKNOWN,

@@ -5,7 +5,6 @@ import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/view_models/connectivity_view_model.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
-import 'package:pro_health_360/presentation/communities/suggested_groups/suggested_groups_section_widget.dart';
 import 'package:pro_health_360/presentation/content/widgets/recent_content_widget.dart';
 import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:pro_health_360/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
@@ -40,8 +39,6 @@ class HomePage extends StatelessWidget {
                   const ScreeningToolsCarousel(),
                   smallVerticalSizedBox,
                   const RecentContentWidget(),
-                  smallVerticalSizedBox,
-                  const SuggestedGroupsSection(),
                   smallVerticalSizedBox,
                   const SurveyCarousel(),
                   mediumVerticalSizedBox,

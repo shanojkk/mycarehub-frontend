@@ -32,10 +32,6 @@ _$_ClientState _$$_ClientStateFromJson(Map<String, dynamic> json) =>
           ? null
           : HealthDiaryState.fromJson(
               json['healthDiaryState'] as Map<String, dynamic>),
-      communitiesState: json['communitiesState'] == null
-          ? null
-          : CommunitiesState.fromJson(
-              json['communitiesState'] as Map<String, dynamic>),
       pastAppointments: (json['pastAppointments'] as List<dynamic>?)
           ?.map((e) => Appointment.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -90,7 +86,6 @@ Map<String, dynamic> _$$_ClientStateToJson(_$_ClientState instance) =>
       'permissions': instance.permissions,
       'communityToken': instance.communityToken,
       'healthDiaryState': instance.healthDiaryState,
-      'communitiesState': instance.communitiesState,
       'pastAppointments': instance.pastAppointments,
       'upcomingAppointments': instance.upcomingAppointments,
       'healthTimelineState': instance.healthTimelineState,

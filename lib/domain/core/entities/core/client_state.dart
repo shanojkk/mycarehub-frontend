@@ -5,7 +5,6 @@ import 'package:pro_health_360/domain/core/entities/core/client_profile.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:pro_health_360/application/redux/states/communities_state.dart';
 import 'package:pro_health_360/domain/core/entities/appointments/appointment.dart';
 // Project imports:
 import 'package:pro_health_360/domain/core/entities/core/address.dart';
@@ -39,9 +38,6 @@ class ClientState with _$ClientState {
 
     /// The client's health diary state
     HealthDiaryState? healthDiaryState,
-
-    // communities state
-    CommunitiesState? communitiesState,
 
     // Past appointments
     List<Appointment>? pastAppointments,
@@ -82,7 +78,6 @@ class ClientState with _$ClientState {
         lastMoodRecordedDate: UNKNOWN,
         isSignedIn: false,
         healthDiaryState: HealthDiaryState.initial(),
-        communitiesState: CommunitiesState.initial(),
         pastAppointments: <Appointment>[],
         upcomingAppointments: <Appointment>[],
         healthTimelineState: HealthTimelineState.initial(),

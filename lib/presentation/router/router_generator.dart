@@ -13,7 +13,6 @@ import 'package:pro_health_360/presentation/assessment/widgets/successful_assess
 import 'package:pro_health_360/presentation/caregiver/pages/client_caregiver_selection_page.dart';
 import 'package:pro_health_360/presentation/caregiver/pages/client_selection_page.dart';
 import 'package:pro_health_360/presentation/caregiver/pages/facility_selection_page.dart';
-import 'package:pro_health_360/presentation/communities/community_list_page.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/accept_group_invites_page.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/invited_groups_page.dart';
 import 'package:pro_health_360/presentation/content/pages/content_details_page.dart';
@@ -169,12 +168,6 @@ class RouteGenerator {
         return MaterialPageRoute<AnswerSecurityQuestionPage>(
           builder: (_) => const AnswerSecurityQuestionPage(),
           settings: const RouteSettings(name: 'Answer security questions page'),
-        );
-
-      case AppRoutes.communityListPage:
-        return MaterialPageRoute<CommunityListViewPage>(
-          builder: (_) => const CommunityListViewPage(),
-          settings: const RouteSettings(name: 'Communities list page'),
         );
 
       case AppRoutes.consent:

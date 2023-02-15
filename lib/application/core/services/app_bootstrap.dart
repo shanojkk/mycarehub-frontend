@@ -11,8 +11,6 @@ import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:sghi_core/app_wrapper/enums.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 import 'package:pro_health_360/application/core/services/analytics_service.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_setup_data.dart';
@@ -95,14 +93,6 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
 
   final AppSetupData appSetupData = getAppSetupData(appContexts.last);
 
-  final StreamChatClient streamClient = StreamChatClient(
-    appSetupData.streamAPIKey,
-    logLevel: Level.ALL,
-  );
-  final SharedPreferences sharedPreferences =
-      await SharedPreferences.getInstance();
-  await sharedPreferences.setString('streamApiKey', appSetupData.streamAPIKey);
-
   await Firebase.initializeApp();
   final String? fcmToken = await FirebaseMessaging.instance.getToken();
 
@@ -142,7 +132,6 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
         },
         appRunner: () => runApp(
           MyAppWidget(
-            streamClient: streamClient,
             store: store,
             navigatorObserver: navigatorObserver,
             navigatorKey: appGlobalNavigatorKey,

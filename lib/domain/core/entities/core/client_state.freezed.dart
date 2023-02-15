@@ -44,8 +44,6 @@ mixin _$ClientState {
 
   /// The client's health diary state
   HealthDiaryState? get healthDiaryState =>
-      throw _privateConstructorUsedError; // communities state
-  CommunitiesState? get communitiesState =>
       throw _privateConstructorUsedError; // Past appointments
   List<Appointment>? get pastAppointments =>
       throw _privateConstructorUsedError; // Past appointments
@@ -92,7 +90,6 @@ abstract class $ClientStateCopyWith<$Res> {
       @JsonKey(name: 'permissions') List<AuthorityPermission>? permissions,
       @JsonKey(name: 'communityToken') String? communityToken,
       HealthDiaryState? healthDiaryState,
-      CommunitiesState? communitiesState,
       List<Appointment>? pastAppointments,
       List<Appointment>? upcomingAppointments,
       HealthTimelineState? healthTimelineState,
@@ -107,7 +104,6 @@ abstract class $ClientStateCopyWith<$Res> {
 
   $ClientProfileCopyWith<$Res>? get clientProfile;
   $HealthDiaryStateCopyWith<$Res>? get healthDiaryState;
-  $CommunitiesStateCopyWith<$Res>? get communitiesState;
   $HealthTimelineStateCopyWith<$Res>? get healthTimelineState;
   $MedicalDataStateCopyWith<$Res>? get medicalDataState;
   $ViralLoadEdgesCopyWith<$Res>? get viralLoadData;
@@ -140,7 +136,6 @@ class _$ClientStateCopyWithImpl<$Res, $Val extends ClientState>
     Object? permissions = freezed,
     Object? communityToken = freezed,
     Object? healthDiaryState = freezed,
-    Object? communitiesState = freezed,
     Object? pastAppointments = freezed,
     Object? upcomingAppointments = freezed,
     Object? healthTimelineState = freezed,
@@ -194,10 +189,6 @@ class _$ClientStateCopyWithImpl<$Res, $Val extends ClientState>
           ? _value.healthDiaryState
           : healthDiaryState // ignore: cast_nullable_to_non_nullable
               as HealthDiaryState?,
-      communitiesState: freezed == communitiesState
-          ? _value.communitiesState
-          : communitiesState // ignore: cast_nullable_to_non_nullable
-              as CommunitiesState?,
       pastAppointments: freezed == pastAppointments
           ? _value.pastAppointments
           : pastAppointments // ignore: cast_nullable_to_non_nullable
@@ -266,18 +257,6 @@ class _$ClientStateCopyWithImpl<$Res, $Val extends ClientState>
 
     return $HealthDiaryStateCopyWith<$Res>(_value.healthDiaryState!, (value) {
       return _then(_value.copyWith(healthDiaryState: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $CommunitiesStateCopyWith<$Res>? get communitiesState {
-    if (_value.communitiesState == null) {
-      return null;
-    }
-
-    return $CommunitiesStateCopyWith<$Res>(_value.communitiesState!, (value) {
-      return _then(_value.copyWith(communitiesState: value) as $Val);
     });
   }
 
@@ -388,7 +367,6 @@ abstract class _$$_ClientStateCopyWith<$Res>
       @JsonKey(name: 'permissions') List<AuthorityPermission>? permissions,
       @JsonKey(name: 'communityToken') String? communityToken,
       HealthDiaryState? healthDiaryState,
-      CommunitiesState? communitiesState,
       List<Appointment>? pastAppointments,
       List<Appointment>? upcomingAppointments,
       HealthTimelineState? healthTimelineState,
@@ -405,8 +383,6 @@ abstract class _$$_ClientStateCopyWith<$Res>
   $ClientProfileCopyWith<$Res>? get clientProfile;
   @override
   $HealthDiaryStateCopyWith<$Res>? get healthDiaryState;
-  @override
-  $CommunitiesStateCopyWith<$Res>? get communitiesState;
   @override
   $HealthTimelineStateCopyWith<$Res>? get healthTimelineState;
   @override
@@ -444,7 +420,6 @@ class __$$_ClientStateCopyWithImpl<$Res>
     Object? permissions = freezed,
     Object? communityToken = freezed,
     Object? healthDiaryState = freezed,
-    Object? communitiesState = freezed,
     Object? pastAppointments = freezed,
     Object? upcomingAppointments = freezed,
     Object? healthTimelineState = freezed,
@@ -498,10 +473,6 @@ class __$$_ClientStateCopyWithImpl<$Res>
           ? _value.healthDiaryState
           : healthDiaryState // ignore: cast_nullable_to_non_nullable
               as HealthDiaryState?,
-      communitiesState: freezed == communitiesState
-          ? _value.communitiesState
-          : communitiesState // ignore: cast_nullable_to_non_nullable
-              as CommunitiesState?,
       pastAppointments: freezed == pastAppointments
           ? _value._pastAppointments
           : pastAppointments // ignore: cast_nullable_to_non_nullable
@@ -573,7 +544,6 @@ class _$_ClientState implements _ClientState {
       @JsonKey(name: 'communityToken')
           this.communityToken,
       this.healthDiaryState,
-      this.communitiesState,
       final List<Appointment>? pastAppointments,
       final List<Appointment>? upcomingAppointments,
       this.healthTimelineState,
@@ -656,9 +626,6 @@ class _$_ClientState implements _ClientState {
   /// The client's health diary state
   @override
   final HealthDiaryState? healthDiaryState;
-// communities state
-  @override
-  final CommunitiesState? communitiesState;
 // Past appointments
   final List<Appointment>? _pastAppointments;
 // Past appointments
@@ -716,7 +683,7 @@ class _$_ClientState implements _ClientState {
 
   @override
   String toString() {
-    return 'ClientState(clientProfile: $clientProfile, addresses: $addresses, facilityID: $facilityID, relatedPersons: $relatedPersons, lastMoodRecordedDate: $lastMoodRecordedDate, isSignedIn: $isSignedIn, roles: $roles, permissions: $permissions, communityToken: $communityToken, healthDiaryState: $healthDiaryState, communitiesState: $communitiesState, pastAppointments: $pastAppointments, upcomingAppointments: $upcomingAppointments, healthTimelineState: $healthTimelineState, medicalDataState: $medicalDataState, viralLoadData: $viralLoadData, nextRefillData: $nextRefillData, caregiverInformation: $caregiverInformation, hasCareGiverInfo: $hasCareGiverInfo, notifications: $notifications, notificationFilterState: $notificationFilterState, facilityState: $facilityState)';
+    return 'ClientState(clientProfile: $clientProfile, addresses: $addresses, facilityID: $facilityID, relatedPersons: $relatedPersons, lastMoodRecordedDate: $lastMoodRecordedDate, isSignedIn: $isSignedIn, roles: $roles, permissions: $permissions, communityToken: $communityToken, healthDiaryState: $healthDiaryState, pastAppointments: $pastAppointments, upcomingAppointments: $upcomingAppointments, healthTimelineState: $healthTimelineState, medicalDataState: $medicalDataState, viralLoadData: $viralLoadData, nextRefillData: $nextRefillData, caregiverInformation: $caregiverInformation, hasCareGiverInfo: $hasCareGiverInfo, notifications: $notifications, notificationFilterState: $notificationFilterState, facilityState: $facilityState)';
   }
 
   @override
@@ -743,8 +710,6 @@ class _$_ClientState implements _ClientState {
                 other.communityToken == communityToken) &&
             (identical(other.healthDiaryState, healthDiaryState) ||
                 other.healthDiaryState == healthDiaryState) &&
-            (identical(other.communitiesState, communitiesState) ||
-                other.communitiesState == communitiesState) &&
             const DeepCollectionEquality()
                 .equals(other._pastAppointments, _pastAppointments) &&
             const DeepCollectionEquality()
@@ -784,7 +749,6 @@ class _$_ClientState implements _ClientState {
         const DeepCollectionEquality().hash(_permissions),
         communityToken,
         healthDiaryState,
-        communitiesState,
         const DeepCollectionEquality().hash(_pastAppointments),
         const DeepCollectionEquality().hash(_upcomingAppointments),
         healthTimelineState,
@@ -833,7 +797,6 @@ abstract class _ClientState implements ClientState {
       @JsonKey(name: 'communityToken')
           final String? communityToken,
       final HealthDiaryState? healthDiaryState,
-      final CommunitiesState? communitiesState,
       final List<Appointment>? pastAppointments,
       final List<Appointment>? upcomingAppointments,
       final HealthTimelineState? healthTimelineState,
@@ -882,8 +845,6 @@ abstract class _ClientState implements ClientState {
 
   /// The client's health diary state
   HealthDiaryState? get healthDiaryState;
-  @override // communities state
-  CommunitiesState? get communitiesState;
   @override // Past appointments
   List<Appointment>? get pastAppointments;
   @override // Past appointments

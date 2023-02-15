@@ -1,18 +1,12 @@
 import 'dart:convert';
 
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
-import 'package:overlay_support/overlay_support.dart';
 import 'package:pro_health_360/application/core/services/input_validators.dart';
 import 'package:pro_health_360/domain/core/entities/core/client_profile.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_setup_data.dart';
-import 'package:pro_health_360/application/core/services/notifications_utils.dart';
 import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/auth_credentials.dart';
@@ -24,13 +18,7 @@ import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:sghi_core/app_wrapper/enums.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
-import 'utils_test.mocks.dart';
 
-import '../../mocks.dart';
-
-@GenerateMocks(<Type>[stream.StreamChatClient])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
@@ -120,122 +108,6 @@ void main() {
         ),
         'Please share your thoughts',
       );
-    });
-  });
-
-  test('userBannedMessage should return the correct message', () {
-    expect(userBannedMessage(), 'User banned successfully');
-    expect(
-      userBannedMessage(userName: 'test', communityName: 'test'),
-      'You have banned test from test',
-    );
-    expect(userBannedMessage(userName: 'test'), 'You have banned test');
-    expect(
-      userBannedMessage(
-        isBanned: true,
-      ),
-      'User unbanned successfully',
-    );
-    expect(
-      userBannedMessage(
-        userName: 'test',
-        communityName: 'test',
-        isBanned: true,
-      ),
-      'You have unbanned test from test',
-    );
-    expect(
-      userBannedMessage(
-        userName: 'test',
-        isBanned: true,
-      ),
-      'You have unbanned test',
-    );
-  });
-
-  group('backgroundMessageHandler', () {
-    setupFirebaseMessagingMocks();
-
-    testWidgets('works correctly', (WidgetTester tester) async {
-      final Map<String, Object> values = <String, Object>{
-        'streamToken': 'test-stream-token',
-        'clientId': 'test-client-id',
-      };
-      SharedPreferences.setMockInitialValues(values);
-
-      final MockStreamChatClient mockStreamChatClient = MockStreamChatClient();
-      when(
-        mockStreamChatClient.connectUser(
-          stream.User(id: 'test-client-id'),
-          'test-stream-token',
-          connectWebSocket: false,
-        ),
-      ).thenAnswer((_) {
-        return Future<stream.OwnUser>.value(
-          stream.OwnUser.fromJson(const <String, dynamic>{
-            'id': 'test',
-            'name': 'test user',
-            'avatar': 'test',
-            'extraData': <String, dynamic>{}
-          }),
-        );
-      });
-
-      when(mockStreamChatClient.getMessage(any)).thenAnswer(
-        (_) => Future<stream.GetMessageResponse>.value(
-          stream.GetMessageResponse.fromJson(<String, dynamic>{
-            'channel': <String, dynamic>{
-              'id': 'channel_id',
-              'type': 'messaging',
-              'extraData': <String, dynamic>{'Name': 'test group'},
-            },
-            'message': <String, dynamic>{
-              'id': 'test',
-              'text': 'test',
-              'user': <String, dynamic>{'id': 'test', 'name': 'test user'}
-            }
-          }),
-        ),
-      );
-
-      await tester.pumpWidget(
-        OverlaySupport(
-          child: MaterialApp(
-            home: Scaffold(
-              body: Builder(
-                builder: (BuildContext context) {
-                  return Center(
-                    child: MaterialButton(
-                      onPressed: () => backgroundMessageHandler(
-                        RemoteMessage.fromMap(<String, dynamic>{
-                          'data': <String, dynamic>{
-                            'id': 'test',
-                            'type': 'message.new'
-                          }
-                        }),
-                        testChatClient: mockStreamChatClient,
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ),
-        ),
-      );
-      await tester.pumpAndSettle();
-
-      final Finder button = find.byType(MaterialButton);
-      await tester.tap(button);
-      await tester.pump(const Duration(seconds: 4));
-
-      verify(
-        mockStreamChatClient.connectUser(
-          stream.User(id: 'test-client-id'),
-          'test-stream-token',
-          connectWebSocket: false,
-        ),
-      ).called(1);
     });
   });
 

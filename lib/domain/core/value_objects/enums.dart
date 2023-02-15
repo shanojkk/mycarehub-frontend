@@ -84,13 +84,6 @@ enum ClientType {
   UNKNOWN
 }
 
-/// Cleans up the client types by removing underscores
-extension ClientTypeEx on ClientType {
-  String get name {
-    return describeEnum(this).replaceAll('_', ' ');
-  }
-}
-
 /// The type of the address being used
 enum AddressType { POSTAL, PHYSICAL, BOTH, UNKNOWN }
 

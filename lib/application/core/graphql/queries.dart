@@ -281,17 +281,6 @@ query listPendingInvites($memberID: String!, $input: QueryOption){
 }
 ''';
 
-const String recommendedCommunitiesQuery = r'''
-query recommendedCommunities($clientID: String!, $limit: Int!) {
-  recommendedCommunities(clientID: $clientID, limit: $limit) {
-    id
-    name
-    memberCount
-    description
-  }
-}
-''';
-
 const String listAppointmentsQuery = r'''
 query listAppointments(
   $clientID: ID!
@@ -334,29 +323,6 @@ query patientTimeline($input: HealthTimelineInput!) {
   patientHealthTimeline(input: $input) {
     totalCount
     timeline
-  }
-}
-''';
-
-const String listCommunityMembersQuery = r'''
-query listCommunityMembers($communityID: ID!, $communityMembersFilter: QueryOption!, $listCommunitiesFilter: QueryOption!){
-	listCommunityMembers(communityID: $communityID, input: $communityMembersFilter) {
-      user{
-        id
-        userID
-        username
-        role
-        extraData
-      }
-      isModerator
-  }
-  listCommunities(input: $listCommunitiesFilter) {
-    ageRange {
-      lowerBound
-      upperBound
-    }
-    gender
-    clientType
   }
 }
 ''';
@@ -491,29 +457,6 @@ query getUserSurveyForms($userID: String!) {
     projectID,
     linkID,
     formID,
-  }
-}
-''';
-
-const String listFlaggedMessagesQuery = r'''
-query listFlaggedMessages($communityCID: String,$memberIDs: [String]){
-  listFlaggedMessages(communityCID: $communityCID,memberIDs: $memberIDs){
-    message{
-      id
-      text
-      created_at
-      user{
-        id
-        userID
-        name
-        username
-      }
-       attachments{
-        type
-        title
-        image_url
-      }
-    }
   }
 }
 ''';

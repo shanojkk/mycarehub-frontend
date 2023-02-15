@@ -48,7 +48,6 @@ dependencies:
   shared_preferences: ^2.0.15
   sms_autofill: ^2.2.0
   sqflite: ^2.2.0+3
-  stream_chat_flutter: ^5.1.0
   unicons: ^2.1.0
   url_launcher: ^6.1.6
   webview_flutter: ^3.0.4

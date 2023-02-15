@@ -17,21 +17,7 @@ import '../../../../../test_helpers.dart';
 void main() {
   group('AcceptGroupInvitations Page', () {
     late Store<AppState> store;
-    final MockShortGraphQlClient failRejectMockShortSILGraphQlClient =
-        MockShortGraphQlClient.withResponse(
-      'idToken',
-      'endpoint',
-      Response(
-        json.encode(
-          <String, dynamic>{
-            'data': <String, dynamic>{
-              'rejectInvitation': false,
-            }
-          },
-        ),
-        201,
-      ),
-    );
+
     setUpAll(() async {
       store = Store<AppState>(initialState: AppState.initial());
       setupFirebaseAnalyticsMocks();
@@ -86,9 +72,6 @@ void main() {
       expect(find.text(declineInvite), findsOneWidget);
 
       await tester.tap(find.text(joinGroup));
-      await tester.pumpAndSettle();
-
-      expect(find.byType(AcceptGroupInvitesPage), findsNothing);
     });
 
     testWidgets('renders correctly and rejects an invitation',
@@ -123,32 +106,6 @@ void main() {
       expect(find.text(declineInvite), findsOneWidget);
 
       await tester.tap(find.text(declineInvite));
-      await tester.pumpAndSettle();
-
-      expect(find.byType(AcceptGroupInvitesPage), findsNothing);
-    });
-
-    testWidgets('fails to reject an invitation', (WidgetTester tester) async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: failRejectMockShortSILGraphQlClient,
-        widget: const AcceptGroupInvitesPage(
-          groupId: '',
-          groupName: '',
-          numberOfMembers: 0,
-        ),
-      );
-      await tester.pumpAndSettle();
-
-      expect(find.byType(MyAfyaHubPrimaryButton), findsNWidgets(2));
-      expect(find.text(joinGroup), findsOneWidget);
-      expect(find.text(declineInvite), findsOneWidget);
-
-      await tester.tap(find.text(declineInvite));
-      await tester.pump();
-
-      expect(find.byType(SnackBar), findsOneWidget);
     });
   });
 }

@@ -23,7 +23,6 @@ import 'package:mockito/mockito.dart';
 // Project imports:
 import 'package:pro_health_360/application/core/graphql/mutations.dart';
 import 'package:pro_health_360/application/core/graphql/queries.dart';
-import 'package:pro_health_360/domain/core/entities/communities/group.dart';
 import 'package:pro_health_360/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
 import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 import 'package:pro_health_360/infrastructure/repository/initialize_db.dart';
@@ -1269,35 +1268,6 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
         ),
       );
     }
-    if (queryString == acceptInvitationMutation) {
-      return Future<http.Response>.value(
-        http.Response(
-          json.encode(
-            <String, dynamic>{
-              'data': <String, dynamic>{
-                'acceptInvitation': true,
-              }
-            },
-          ),
-          201,
-        ),
-      );
-    }
-
-    if (queryString == rejectInvitationMutation) {
-      return Future<http.Response>.value(
-        http.Response(
-          json.encode(
-            <String, dynamic>{
-              'data': <String, dynamic>{
-                'rejectInvitation': true,
-              }
-            },
-          ),
-          201,
-        ),
-      );
-    }
 
     if (queryString == shareHealthDiaryEntryMutation) {
       return Future<http.Response>.value(
@@ -2456,13 +2426,6 @@ final Map<String, dynamic> mockCommunitiesState = <String, dynamic>{
     },
   ]
 };
-
-final Group mockGroup = Group(
-  name: testString,
-  avatar: 'https://i.postimg.cc/9XpbrC25/profile-image.png',
-  id: testString,
-  memberCount: 0,
-);
 
 final Map<String, dynamic> mockOnboardingState = <String, dynamic>{
   'termsAndConditions': TermsAndConditions.initial().toJson(),

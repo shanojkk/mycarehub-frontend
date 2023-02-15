@@ -1,9 +1,6 @@
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
-import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
-import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:pro_health_360/application/redux/actions/communities/accept_decline_communities_invite_action.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
@@ -66,49 +63,6 @@ class _AcceptGroupInvitesPageState extends State<AcceptGroupInvitesPage> {
                           setState(() {
                             loading = true;
                           });
-                          StoreProvider.dispatch(
-                            context,
-                            AcceptDeclineCommunitiesInviteAction(
-                              hasAcceptedInvite: true,
-                              communityID: widget.groupId,
-                              client: AppWrapperBase.of(context)!.graphQLClient,
-                              onDeclineSuccess: () async {
-                                ScaffoldMessenger.of(context)
-                                  ..hideCurrentSnackBar()
-                                  ..showSnackBar(
-                                    const SnackBar(
-                                      content:
-                                          Text(communitiesRejectionSuccessful),
-                                    ),
-                                  );
-
-                                Navigator.of(context)
-                                    .pushNamed(AppRoutes.userProfilePage);
-                              },
-                              onAcceptSuccess: () {
-                                Navigator.of(context)
-                                    .pushNamed(widget.acceptInviteRoute);
-                                ScaffoldMessenger.of(context)
-                                  ..hideCurrentSnackBar()
-                                  ..showSnackBar(
-                                    const SnackBar(
-                                      content:
-                                          Text(invitationAcceptedSuccessfully),
-                                    ),
-                                  );
-                              },
-                              onError: () {
-                                Navigator.of(context).pop();
-                                ScaffoldMessenger.of(context)
-                                  ..hideCurrentSnackBar()
-                                  ..showSnackBar(
-                                    const SnackBar(
-                                      content: Text(genericErrorOccurred),
-                                    ),
-                                  );
-                              },
-                            ),
-                          );
                         },
                       ),
               ),
@@ -126,35 +80,6 @@ class _AcceptGroupInvitesPageState extends State<AcceptGroupInvitesPage> {
                       setState(() {
                         loading = true;
                       });
-                      await StoreProvider.dispatch(
-                        context,
-                        AcceptDeclineCommunitiesInviteAction(
-                          hasAcceptedInvite: false,
-                          communityID: widget.groupId,
-                          client: AppWrapperBase.of(context)!.graphQLClient,
-                          onDeclineSuccess: () async {
-                            ScaffoldMessenger.of(context)
-                              ..hideCurrentSnackBar()
-                              ..showSnackBar(
-                                const SnackBar(
-                                  content: Text(communitiesRejectionSuccessful),
-                                ),
-                              );
-                            Navigator.of(context)
-                                .pushNamed(AppRoutes.userProfilePage);
-                          },
-                          onError: () {
-                            Navigator.of(context).pop();
-                            ScaffoldMessenger.of(context)
-                              ..hideCurrentSnackBar()
-                              ..showSnackBar(
-                                const SnackBar(
-                                  content: Text(genericErrorOccurred),
-                                ),
-                              );
-                          },
-                        ),
-                      );
                     },
                   ),
                 ),

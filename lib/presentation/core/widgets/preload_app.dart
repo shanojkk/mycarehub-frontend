@@ -7,25 +7,18 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:pro_health_360/application/redux/actions/update_misc_state_action.dart';
-import 'package:pro_health_360/domain/core/entities/core/client_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/global_keys.dart';
 import 'package:rxdart/src/streams/merge.dart';
 import 'package:sghi_core/app_wrapper/enums.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 
-import 'package:pro_health_360/application/communities/stream_token_provider.dart';
 import 'package:pro_health_360/application/core/services/custom_client.dart';
 import 'package:pro_health_360/application/core/services/localization.dart';
 import 'package:pro_health_360/application/core/services/utils.dart';
-import 'package:pro_health_360/application/redux/actions/communities/connect_get_stream_user_action.dart';
 import 'package:pro_health_360/application/redux/actions/onboarding/check_token_action.dart';
 import 'package:pro_health_360/application/redux/actions/set_push_token_action.dart';
 import 'package:pro_health_360/application/redux/actions/update_connectivity_action.dart';
-import 'package:pro_health_360/application/redux/actions/update_user_profile_action.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/view_models/onboarding/initial_route_view_model.dart';
-import 'package:pro_health_360/domain/core/entities/core/user.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_name_constants.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/infrastructure/connectivity/connectivity_interface.dart';
@@ -42,7 +35,6 @@ class PreLoadApp extends StatefulWidget {
     required this.appNavigatorObservers,
     required this.entryPointContext,
     required this.appStore,
-    required this.client,
     this.fcmToken,
   });
 
@@ -50,7 +42,6 @@ class PreLoadApp extends StatefulWidget {
   final GlobalKey<NavigatorState> appNavigatorKey;
   final List<NavigatorObserver> appNavigatorObservers;
   final Store<AppState> appStore;
-  final stream.StreamChatClient client;
   final BuildContext entryPointContext;
   final String? fcmToken;
   final List<AppContext> thisAppContexts;
@@ -125,43 +116,11 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
         ),
       );
 
-      final ClientState? clientState =
-          StoreProvider.state<AppState>(context)?.clientState;
-      final User? user = clientState?.clientProfile?.user;
-
-      if (clientState?.clientProfile?.id != null &&
-          clientState!.clientProfile!.id!.isNotEmpty &&
-          clientState.clientProfile!.id! != UNKNOWN) {
-        StoreProvider.dispatch(
-          context,
-          ConnectGetStreamUserAction(
-            client: AppWrapperBase.of(context)!.graphQLClient as CustomClient,
-            streamClient: widget.client,
-            streamTokenProvider: StreamTokenProvider(
-              client: AppWrapperBase.of(context)!.graphQLClient as CustomClient,
-              endpoint: AppWrapperBase.of(context)!
-                  .customContext!
-                  .refreshStreamTokenEndpoint,
-              saveToken: (String newToken) async {
-                final SharedPreferences prefs =
-                    await SharedPreferences.getInstance();
-                prefs.setString('streamToken', newToken);
-                StoreProvider.dispatch(
-                  context,
-                  UpdateUserAction(user: user?.copyWith(streamToken: newToken)),
-                );
-              },
-            ),
-          ),
-        );
-      }
-
       StoreProvider.dispatch(
         context,
         SetPushToken(
           token: widget.fcmToken ?? '',
           client: AppWrapperBase.of(context)!.graphQLClient,
-          streamClient: widget.client,
         ),
       );
 
@@ -171,16 +130,12 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
           SetPushToken(
             client: AppWrapperBase.of(context)!.graphQLClient,
             token: newToken,
-            streamClient: widget.client,
           ),
         );
       });
 
       FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-        handleNotification(
-          message,
-          widget.client,
-        );
+        // Handle notification here
       });
     });
   }
@@ -241,10 +196,7 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
                     );
                   });
               return UserExceptionDialog<AppState>(
-                child: stream.StreamChat(
-                  client: widget.client,
-                  child: childWidget,
-                ),
+                child: childWidget!,
               );
             },
           ),

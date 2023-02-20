@@ -678,9 +678,12 @@ Future<void> launchEmailUrl(String email) async {
 }
 
 String? usernameValidator(String? value) {
+  final RegExp userNameRegex = RegExp(r'^[0-9a-zA-Z_]{1,30}$');
   if (value?.trim().isEmpty ?? true) {
     return 'Please enter a Username';
-  }
+  }else if (!userNameRegex.hasMatch(value!)) {
+      return errorNicknameInputString;
+    }
   return null;
 }
 

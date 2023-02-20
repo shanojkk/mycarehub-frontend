@@ -150,7 +150,7 @@ class _LoginPageState extends State<LoginPage> {
                             borderColor: Colors.grey[200],
                             hintText: enterYourUserName,
                             validator: usernameValidator,
-                            autovalidateMode: AutovalidateMode.disabled,
+                            autovalidateMode: AutovalidateMode.onUserInteraction,
                             onChanged: (String val) {
                               final bool? invalidCredentials =
                                   vm.invalidCredentials;

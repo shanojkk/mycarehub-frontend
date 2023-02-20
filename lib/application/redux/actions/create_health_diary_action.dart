@@ -52,12 +52,12 @@ class CreateHealthDiaryAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState> reduce() async {
-    final String? userID = state.clientState?.clientProfile?.id;
+    final String? clientID = state.clientState?.clientProfile?.id;
     final bool shouldShareHealthRecord =
         state.clientState?.healthDiaryState?.shouldShareHealthRecord ?? false;
 
     final Map<String, dynamic> variables = <String, dynamic>{
-      'clientID': userID,
+      'clientID': clientID,
       'note': note,
       'mood': mood,
       'reportToStaff': shouldShareHealthRecord

@@ -491,7 +491,7 @@ query getFAQs($flavour: Flavour!){
       }
       documents {
         id
-        Document {
+        document {
           id
           title
           meta {

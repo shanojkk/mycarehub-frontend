@@ -1595,7 +1595,7 @@ packages:
     source: hosted
     version: "5.1.0"
   stream_chat_flutter:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: stream_chat_flutter
       url: "https://pub.dartlang.org"

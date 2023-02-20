@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:pro_health_360/presentation/conversations/communities_list_page.dart';
 import 'package:pro_health_360/presentation/onboarding/program_selection/program_selection_page.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
@@ -520,6 +521,12 @@ class RouteGenerator {
         return MaterialPageRoute<ProgramSelectionPage>(
           builder: (_) => const ProgramSelectionPage(),
           settings: const RouteSettings(name: 'Program selection page'),
+        );
+
+      case AppRoutes.communityListPage:
+        return MaterialPageRoute<CommunitiesListPage>(
+          builder: (_) => const CommunitiesListPage(),
+          settings: const RouteSettings(name: 'Communities list page'),
         );
 
       default:

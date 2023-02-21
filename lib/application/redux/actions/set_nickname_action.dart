@@ -14,7 +14,6 @@ import 'package:pro_health_360/application/core/graphql/mutations.dart';
 import 'package:pro_health_360/application/core/services/analytics_service.dart';
 import 'package:pro_health_360/application/core/services/onboarding_utils.dart';
 import 'package:pro_health_360/application/core/services/utils.dart';
-import 'package:pro_health_360/application/redux/actions/complete_onboarding_tour_action.dart';
 import 'package:pro_health_360/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:pro_health_360/application/redux/actions/update_user_profile_action.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
@@ -104,11 +103,7 @@ class SetNicknameAction extends ReduxAction<AppState> {
       if (data?['setNickName'] == true) {
         dispatch(UpdateOnboardingStateAction(hasSetNickName: true));
         dispatch(UpdateUserProfileAction(nickName: nickname));
-        dispatch(
-          UpdateUserProfileAction(
-            hasSetNickname: true,
-          ),
-        );
+        dispatch(UpdateUserProfileAction(hasSetNickname: true));
 
         final OnboardingPathInfo path = onboardingPath(appState: state);
         final CurrentOnboardingStage? onboardingStage =
@@ -116,7 +111,6 @@ class SetNicknameAction extends ReduxAction<AppState> {
 
         onSuccess?.call();
 
-        dispatch(CompleteOnboardingTourAction(client: client, userID: userID));
         await AnalyticsService().logEvent(
           name: completeOnboardingEvent,
           eventType: AnalyticsEventType.ONBOARDING,

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:convert';
 
 // Package imports:
+import 'package:pro_health_360/application/redux/actions/complete_onboarding_tour_action.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 import 'package:async_redux/async_redux.dart';
@@ -108,8 +109,6 @@ class CreatePINAction extends ReduxAction<AppState> {
 
       final Map<String, dynamic> body = client.toMap(result);
 
-      client.close();
-
       final Map<String, dynamic> responseMap =
           json.decode(result.body) as Map<String, dynamic>;
 
@@ -141,11 +140,7 @@ class CreatePINAction extends ReduxAction<AppState> {
           ),
         );
 
-        dispatch(
-          UpdateOnboardingStateAction(
-            hasSetPin: true,
-          ),
-        );
+        dispatch(UpdateOnboardingStateAction(hasSetPin: true));
         dispatch(
           UpdateUserProfileAction(
             hasSetPin: true,
@@ -153,6 +148,7 @@ class CreatePINAction extends ReduxAction<AppState> {
             pinUpdateRequired: false,
           ),
         );
+        dispatch(CompleteOnboardingTourAction(client: client, userID: userID));
 
         final OnboardingPathInfo navConfig = onboardingPath(appState: state);
 

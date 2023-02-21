@@ -1,4 +1,3 @@
-// Dart imports:
 import 'dart:async';
 
 // Package imports:
@@ -82,11 +81,7 @@ class RecordSecurityQuestionResponsesAction extends ReduxAction<AppState> {
 
     if (responseMap.recordSecurityQuestionResponses.isNotEmpty) {
       dispatch(UpdateOnboardingStateAction(hasSetSecurityQuestions: true));
-      dispatch(
-        UpdateUserProfileAction(
-          hasSetSecurityQuestions: true,
-        ),
-      );
+      dispatch(UpdateUserProfileAction(hasSetSecurityQuestions: true));
 
       final String route = onboardingPath(appState: state).nextRoute;
 

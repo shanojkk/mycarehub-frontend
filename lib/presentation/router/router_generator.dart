@@ -336,7 +336,7 @@ class RouteGenerator {
               name: viewContentEvent,
               eventType: AnalyticsEventType.CONTENT_INTERACTION,
               parameters: <String, dynamic>{
-                'contentID': payload.content.contentID,
+                'contentID': payload.content.contentID ?? '',
               },
             ).then((_) => null);
 

@@ -114,6 +114,7 @@ class MockStateDB extends Mock implements Database {
     throw UnimplementedError();
   }
 
+  @override
   Future<int> getVersion() {
     throw UnimplementedError();
   }
@@ -181,6 +182,7 @@ class MockStateDB extends Mock implements Database {
     throw UnimplementedError();
   }
 
+  @override
   Future<void> setVersion(int version) {
     throw UnimplementedError();
   }

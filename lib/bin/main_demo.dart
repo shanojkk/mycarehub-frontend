@@ -4,5 +4,5 @@ import 'package:pro_health_360/domain/core/value_objects/app_context_constants.d
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  appBootStrap(externalAppContexts);
+  appBootStrap(testAppContexts);
 }

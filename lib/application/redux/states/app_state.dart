@@ -1,6 +1,7 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:pro_health_360/application/redux/states/chat_state.dart';
 
 // Project imports:
 import 'package:pro_health_360/application/redux/states/connectivity_state.dart';
@@ -30,6 +31,7 @@ class AppState with _$AppState {
     CaregiverState? caregiverState,
     ConnectivityState? connectivityState,
     ContentState? contentState,
+    ChatState? chatState,
     @JsonKey(ignore: true) Wait? wait,
   }) = _AppState;
 
@@ -46,6 +48,7 @@ class AppState with _$AppState {
         bottomNavigationState: BottomNavigationState.initial(),
         connectivityState: ConnectivityState.initial(),
         contentState: ContentState.initial(),
+        chatState: ChatState.initial(),
         wait: Wait(),
       );
 }

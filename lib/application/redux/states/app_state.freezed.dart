@@ -31,6 +31,7 @@ mixin _$AppState {
   ConnectivityState? get connectivityState =>
       throw _privateConstructorUsedError;
   ContentState? get contentState => throw _privateConstructorUsedError;
+  ChatState? get chatState => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   Wait? get wait => throw _privateConstructorUsedError;
 
@@ -55,6 +56,7 @@ abstract class $AppStateCopyWith<$Res> {
       CaregiverState? caregiverState,
       ConnectivityState? connectivityState,
       ContentState? contentState,
+      ChatState? chatState,
       @JsonKey(ignore: true) Wait? wait});
 
   $AuthCredentialsCopyWith<$Res>? get credentials;
@@ -66,6 +68,7 @@ abstract class $AppStateCopyWith<$Res> {
   $CaregiverStateCopyWith<$Res>? get caregiverState;
   $ConnectivityStateCopyWith<$Res>? get connectivityState;
   $ContentStateCopyWith<$Res>? get contentState;
+  $ChatStateCopyWith<$Res>? get chatState;
 }
 
 /// @nodoc
@@ -90,6 +93,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? caregiverState = freezed,
     Object? connectivityState = freezed,
     Object? contentState = freezed,
+    Object? chatState = freezed,
     Object? wait = freezed,
   }) {
     return _then(_value.copyWith(
@@ -129,6 +133,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.contentState
           : contentState // ignore: cast_nullable_to_non_nullable
               as ContentState?,
+      chatState: freezed == chatState
+          ? _value.chatState
+          : chatState // ignore: cast_nullable_to_non_nullable
+              as ChatState?,
       wait: freezed == wait
           ? _value.wait
           : wait // ignore: cast_nullable_to_non_nullable
@@ -244,6 +252,18 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
       return _then(_value.copyWith(contentState: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatStateCopyWith<$Res>? get chatState {
+    if (_value.chatState == null) {
+      return null;
+    }
+
+    return $ChatStateCopyWith<$Res>(_value.chatState!, (value) {
+      return _then(_value.copyWith(chatState: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -263,6 +283,7 @@ abstract class _$$_AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
       CaregiverState? caregiverState,
       ConnectivityState? connectivityState,
       ContentState? contentState,
+      ChatState? chatState,
       @JsonKey(ignore: true) Wait? wait});
 
   @override
@@ -283,6 +304,8 @@ abstract class _$$_AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
   $ConnectivityStateCopyWith<$Res>? get connectivityState;
   @override
   $ContentStateCopyWith<$Res>? get contentState;
+  @override
+  $ChatStateCopyWith<$Res>? get chatState;
 }
 
 /// @nodoc
@@ -305,6 +328,7 @@ class __$$_AppStateCopyWithImpl<$Res>
     Object? caregiverState = freezed,
     Object? connectivityState = freezed,
     Object? contentState = freezed,
+    Object? chatState = freezed,
     Object? wait = freezed,
   }) {
     return _then(_$_AppState(
@@ -344,6 +368,10 @@ class __$$_AppStateCopyWithImpl<$Res>
           ? _value.contentState
           : contentState // ignore: cast_nullable_to_non_nullable
               as ContentState?,
+      chatState: freezed == chatState
+          ? _value.chatState
+          : chatState // ignore: cast_nullable_to_non_nullable
+              as ChatState?,
       wait: freezed == wait
           ? _value.wait
           : wait // ignore: cast_nullable_to_non_nullable
@@ -365,6 +393,7 @@ class _$_AppState implements _AppState {
       this.caregiverState,
       this.connectivityState,
       this.contentState,
+      this.chatState,
       @JsonKey(ignore: true) this.wait});
 
   factory _$_AppState.fromJson(Map<String, dynamic> json) =>
@@ -389,12 +418,14 @@ class _$_AppState implements _AppState {
   @override
   final ContentState? contentState;
   @override
+  final ChatState? chatState;
+  @override
   @JsonKey(ignore: true)
   final Wait? wait;
 
   @override
   String toString() {
-    return 'AppState(credentials: $credentials, onboardingState: $onboardingState, homeState: $homeState, bottomNavigationState: $bottomNavigationState, miscState: $miscState, clientState: $clientState, caregiverState: $caregiverState, connectivityState: $connectivityState, contentState: $contentState, wait: $wait)';
+    return 'AppState(credentials: $credentials, onboardingState: $onboardingState, homeState: $homeState, bottomNavigationState: $bottomNavigationState, miscState: $miscState, clientState: $clientState, caregiverState: $caregiverState, connectivityState: $connectivityState, contentState: $contentState, chatState: $chatState, wait: $wait)';
   }
 
   @override
@@ -420,6 +451,8 @@ class _$_AppState implements _AppState {
                 other.connectivityState == connectivityState) &&
             (identical(other.contentState, contentState) ||
                 other.contentState == contentState) &&
+            (identical(other.chatState, chatState) ||
+                other.chatState == chatState) &&
             (identical(other.wait, wait) || other.wait == wait));
   }
 
@@ -436,6 +469,7 @@ class _$_AppState implements _AppState {
       caregiverState,
       connectivityState,
       contentState,
+      chatState,
       wait);
 
   @JsonKey(ignore: true)
@@ -463,6 +497,7 @@ abstract class _AppState implements AppState {
       final CaregiverState? caregiverState,
       final ConnectivityState? connectivityState,
       final ContentState? contentState,
+      final ChatState? chatState,
       @JsonKey(ignore: true) final Wait? wait}) = _$_AppState;
 
   factory _AppState.fromJson(Map<String, dynamic> json) = _$_AppState.fromJson;
@@ -485,6 +520,8 @@ abstract class _AppState implements AppState {
   ConnectivityState? get connectivityState;
   @override
   ContentState? get contentState;
+  @override
+  ChatState? get chatState;
   @override
   @JsonKey(ignore: true)
   Wait? get wait;

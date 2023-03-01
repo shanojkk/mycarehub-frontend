@@ -39,6 +39,9 @@ _$_AppState _$$_AppStateFromJson(Map<String, dynamic> json) => _$_AppState(
       contentState: json['contentState'] == null
           ? null
           : ContentState.fromJson(json['contentState'] as Map<String, dynamic>),
+      chatState: json['chatState'] == null
+          ? null
+          : ChatState.fromJson(json['chatState'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_AppStateToJson(_$_AppState instance) =>
@@ -52,4 +55,5 @@ Map<String, dynamic> _$$_AppStateToJson(_$_AppState instance) =>
       'caregiverState': instance.caregiverState,
       'connectivityState': instance.connectivityState,
       'contentState': instance.contentState,
+      'chatState': instance.chatState,
     };

@@ -83,6 +83,7 @@ void main() {
       buildWhenMock('contentState', 10);
       buildWhenMock('miscState', 10);
       buildWhenMock('caregiverState', 10);
+      buildWhenMock('chatState', 10);
 
       expect(await db.isDatabaseEmpty(), false);
     });
@@ -96,6 +97,7 @@ void main() {
       buildWhenMock('contentState', 0);
       buildWhenMock('miscState', 0);
       buildWhenMock('caregiverState', 0);
+      buildWhenMock('chatState', 0);
 
       expect(await db.isDatabaseEmpty(), true);
     });

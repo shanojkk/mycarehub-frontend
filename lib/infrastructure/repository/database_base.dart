@@ -33,6 +33,7 @@ enum Tables {
   connectivityState,
   contentState,
   caregiverState,
+  chatState,
   unknown,
 }
 
@@ -57,6 +58,8 @@ extension TablesEx on Tables {
         return 'contentState';
       case Tables.caregiverState:
         return 'caregiverState';
+      case Tables.chatState:
+        return 'chatState';
       default:
         return 'unknown';
     }

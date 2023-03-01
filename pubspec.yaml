@@ -43,7 +43,7 @@ dependencies:
   quiver: ^3.1.0
   rxdart: ^0.27.7
   sentry_flutter: ^6.15.1
-  sghi_core: ^0.2.15
+  sghi_core: ^0.2.19
   share_plus: ^4.5.0
   shared_preferences: ^2.0.15
   sms_autofill: ^2.2.0

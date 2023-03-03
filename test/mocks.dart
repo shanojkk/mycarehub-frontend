@@ -3,8 +3,10 @@
 
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 // Package imports:
+import 'package:flutter/services.dart';
 import 'package:pro_health_360/application/core/services/custom_client.dart';
 import 'package:pro_health_360/domain/core/entities/core/auth_credentials.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart' as core;
@@ -14,7 +16,7 @@ import 'package:firebase_core_platform_interface/firebase_core_platform_interfac
 import 'package:firebase_messaging_platform_interface/firebase_messaging_platform_interface.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter/src/services/message_codec.dart';
+import 'package:sghi_core/communities/core/endpoints.dart';
 import 'package:sghi_core/flutter_graphql_client/flutter_graphql_client.dart';
 import 'package:sghi_core/flutter_graphql_client/i_flutter_graphql_client.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -327,7 +329,7 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
     required String endpoint,
     required String method,
     Map<String, dynamic>? variables,
-  }) {
+  }) async {
     if (endpoint.contains('login_by_phone')) {
       return Future<http.Response>.value(
         http.Response(
@@ -452,14 +454,121 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       );
     }
 
-    if (endpoint.contains('refresh_getstream_token')) {
+    if (endpoint.contains(syncEndpoint)) {
       return Future<http.Response>.value(
         http.Response(
-          json.encode(
-            <String, dynamic>{
-              'idToken': 'some-id-token',
-            },
-          ),
+          json.encode(syncResponseMock),
+          201,
+        ),
+      );
+    }
+
+    if (endpoint.contains('joined_members')) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(joinedMembersResponseMock),
+          201,
+        ),
+      );
+    }
+
+    if (endpoint.contains('/send/m.room.message/')) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'event_id': '16741180035XJnPW:chat.savannahghi.org',
+          }),
+          201,
+        ),
+      );
+    }
+
+    if (endpoint.contains('m.room.power_levels')) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(powerLevelsResponseMock),
+          201,
+        ),
+      );
+    }
+
+    if (endpoint.contains('/invite')) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{}),
+          201,
+        ),
+      );
+    }
+
+    if (endpoint.contains('/join')) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'room_id': '!NvYSqaASzlfRpFCMtr:chat.savannahghi.org',
+          }),
+          201,
+        ),
+      );
+    }
+
+    if (endpoint.contains('/leave')) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{}),
+          201,
+        ),
+      );
+    }
+
+    if (endpoint.contains('/kick')) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{}),
+          201,
+        ),
+      );
+    }
+
+    if (endpoint.contains('/redact')) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'event_id': '16741180035XJnPW:chat.savannahghi.org',
+          }),
+          201,
+        ),
+      );
+    }
+
+    if (endpoint.contains('/createRoom')) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'room_id': '!NvYSqaASzlfRpFCMtr:chat.savannahghi.org',
+          }),
+          201,
+        ),
+      );
+    }
+
+    if (endpoint.contains('/media/v3/download/')) {
+      final String dir = Directory.current.path;
+      final String imgPath = '$dir/test/tests_resources/test_file.png';
+      final ByteData imgData = await rootBundle.load(imgPath);
+      final Uint8List uint8list = imgData.buffer.asUint8List();
+
+      return Future<http.Response>.value(
+        http.Response(json.encode(uint8list), 201),
+      );
+    }
+
+    if (endpoint.contains(searchMembersEndpoint)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'results': <Map<String, dynamic>>[loginResponseMock],
+          }),
           201,
         ),
       );
@@ -2302,6 +2411,8 @@ final Map<String, dynamic> messageEventMock = <String, dynamic>{
   'unsigned': <String, dynamic>{'age': 5484013963}
 };
 
+final String dir = Directory.current.path;
+
 final Map<String, dynamic> imageEventMock = <String, dynamic>{
   'type': 'm.room.message',
   'sender': '@salaton:chat.savannahghi.org',
@@ -2318,10 +2429,10 @@ final Map<String, dynamic> imageEventMock = <String, dynamic>{
       },
       'w': 2160,
       'h': 2700,
-      'thumbnail_url': 'mxc://chat.savannahghi.org/MWMdQGyKaGYoMyyYqmAWJmUD'
+      'thumbnail_url': '$dir/test/tests_resources/test_file.png'
     },
     'msgtype': 'm.image',
-    'url': 'mxc://chat.savannahghi.org/QGbTTboXbTDoSCMKavVSDfEb'
+    'url': '$dir/test/tests_resources/test_file.png'
   },
   'origin_server_ts': 1674203101433,
   'unsigned': <String, dynamic>{'age': 247014244},

@@ -1018,3 +1018,23 @@ const String switchingYourFacility = 'Switching your facility';
 const String userNameString = 'Username';
 const String switchingYourProgram = 'Switching your program';
 const String selectProgram = 'Please choose your program';
+// communities
+const String createARoom = 'Create a room';
+const String createRoom = 'Create room';
+const String enterRoomDetails = 'Welcome, enter your room details below';
+const String name = 'Name';
+const String enterName = 'Enter name';
+const String topic = 'Topic';
+const String enterTopic = 'Enter topic';
+const String leaveRoom = 'Leave room';
+const String searchMembersDescription =
+    'Search for members to invite to the group';
+const String searchUsers = 'Search users';
+const String noMembers = 'No members';
+const String optionsWillBeAvailable =
+    'Options for this media item will be available soon';
+const String messageOptions = 'Message options';
+const String replyInThread = 'Reply in thread';
+const String deleteMessage = 'Delete message';
+const String invitedString = 'You were invited. Tap for more info';
+String groupMembersCount(String groupMembers) => '$groupMembers members';

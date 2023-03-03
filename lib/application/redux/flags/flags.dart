@@ -139,3 +139,34 @@ const String fetchManagedClientsFlag = 'fetch_managed_clients_flag';
 const String setDefaultFacilityFlag = 'set_default_facility_flag';
 const String fetchProgramsFlag = '/fetchProgramsFlag';
 const String setCurrentProgramFlag = '/setCurrentProgramFlag';
+
+//communities
+const String signInFlag = 'signInFlag';
+
+const String communitiesSignOutFlag = 'communitiesSignOutFlag';
+
+const String createRoomFlag = 'createRoomFlag';
+
+const String fetchRoomInfoFlag = 'fetchRoomInfoFlag';
+
+const String searchRoomMembersFlag = 'searchRoomMembersFlag';
+
+const String inviteMembersFlag = 'inviteMembersFlag';
+
+const String listRoomsFlag = 'listRoomsFlag';
+
+const String fetchMessagesFlag = 'fetchMessagesFlag';
+
+const String sendMessageFlag = 'sendMessageFlag';
+
+const String fetchRoomMembersFlag = 'fetchRoomMembersFlag';
+
+const String deleteMessageFlag = 'deleteMessageFlag';
+
+const String syncingEventsFlag = 'syncingEventsFlag';
+
+const String startingSyncObserverFlag = 'startingSyncObserverFlag';
+
+const String joinRoomFlag = 'joinRoomFlag';
+
+const String leaveRoomFlag = 'leaveRoomFlag';

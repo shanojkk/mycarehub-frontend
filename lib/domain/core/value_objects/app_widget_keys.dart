@@ -293,3 +293,43 @@ const Key allHealthDiariesKey = Key('all_health_diaries_key');
 const Key acceptButtonKey = Key('accept_button_key');
 const Key doNotAcceptButtonKey = Key('do_not_accept_button_key');
 const Key removeCaregiverButtonKey = Key('remove_caregiver_button_key');
+
+// communities
+const Key topicInputKey = Key('topicInputKey');
+
+const Key createRoomKey = Key('createRoomKey');
+
+// Invite users page
+const Key searchMembersInputKey = Key('searchMembersInputKey');
+
+const Key navToCreateRoomKey = Key('navToCreateRoomKey');
+
+const Key logoutKey = Key('logoutKey');
+
+const Key promoteToModKey = Key('promoteToModKey');
+
+const Key removeFromGroupKey = Key('removeFromGroupKey');
+
+const Key banUserKey = Key('banUserKey');
+
+const Key emptyChatsNewRoomKey = Key('emptyChatsNewRoomKey');
+
+const Key leaveRoomKey = Key('leaveRoomKey');
+
+const Key inviteUsersKey = Key('inviteUsersKey');
+
+const Key acceptInviteKey = Key('acceptInviteKey');
+
+const Key declineInviteKey = Key('declineInviteKey');
+
+const Key messageOptionsKey = Key('messageOptionsKey');
+
+const Key replyMessageKey = Key('replyMessageKey');
+
+const Key deleteMessageKey = Key('deleteMessageKey');
+
+const Key navigateToGroupInfoPageKey = Key('navigateToGroupInfoPageKey');
+
+const Key messageInputKey = Key('messageInputKey');
+
+const Key sendMessageIconKey = Key('sendMessageIconKey');

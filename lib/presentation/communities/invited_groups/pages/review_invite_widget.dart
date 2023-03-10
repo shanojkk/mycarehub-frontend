@@ -7,7 +7,7 @@ import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/view_models/communities/communities_view_model.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_list_page.dart';
+import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 
 import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
@@ -87,15 +87,10 @@ class ReviewInviteWidget extends StatelessWidget {
                       JoinRoomAction(
                         roomID: room.roomID!,
                         onSuccess: () {
-                          /// Do something nice here
-                          Navigator.of(context).push(
-                            MaterialPageRoute<bool>(
-                              builder: (BuildContext context) =>
-                                  const RoomListPage(),
-                            ),
-                          );
+                          Navigator.of(context)
+                              .pushNamed(AppRoutes.roomListPageRoute);
                         },
-                        client: AppWrapperBase.of(context)!.graphQLClient,
+                        client: AppWrapperBase.of(context)!.communitiesClient!,
                       ),
                     );
                   },

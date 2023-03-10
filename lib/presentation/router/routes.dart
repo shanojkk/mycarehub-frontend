@@ -42,9 +42,6 @@ class AppRoutes {
   // Appointments page
   static const String appointmentsPage = '/appointmentsPage';
 
-  // community
-  static const String communityListPage = '/communityListView';
-
   // Answer Security Question
   static const String answerSecurityQuestionPage =
       '/answerSecurityQuestionPage';
@@ -143,6 +140,11 @@ class AppRoutes {
       '/facilitySelectionPageRoute';
 
   static const String programSelectionPageRoute = '/programSelectionPageRoute';
+  static const String inviteUsersPageRoute = '/inviteUsersPageRoute';
+  static const String roomListPageRoute = '/roomListPageRoute';
+  static const String roomPageRoute = '/roomPageRoute';
+  static const String createRoomPageRoute = '/createRoomPageRoute';
+  static const String roomInfoPageRoute = '/roomInfoPageRoute';
 }
 
 List<String> unProtectedRoutes = <String>[AppRoutes.phoneLogin];

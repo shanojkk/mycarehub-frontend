@@ -1,6 +1,7 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:pro_health_360/application/redux/actions/communities/communities_logout_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/states/sync_response_state.dart';
@@ -63,6 +64,7 @@ void main() {
 
       await tester.tap(find.byKey(acceptInviteKey));
       await tester.pumpAndSettle();
+      store.dispatch(CommunitiesLogoutAction());
 
       expect(find.byType(RoomListPage), findsOneWidget);
     });

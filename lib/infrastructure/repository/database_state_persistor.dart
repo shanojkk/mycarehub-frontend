@@ -161,7 +161,7 @@ class MyAfyaHubStateDatabase implements PersistorPrinterDecorator<AppState> {
 
     // save chat state
     await database.saveState(
-      data: newState.caregiverState!.toJson(),
+      data: newState.chatState!.toJson(),
       table: Tables.chatState,
     );
   }

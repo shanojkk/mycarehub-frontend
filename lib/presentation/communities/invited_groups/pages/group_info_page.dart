@@ -2,18 +2,19 @@
 
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:pro_health_360/presentation/communities/widgets/confirm_leave_room_dialog.dart';
+import 'package:pro_health_360/presentation/router/routes.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
+
 import 'package:pro_health_360/application/core/services/communities_utils.dart';
 import 'package:pro_health_360/application/redux/actions/communities/fetch_room_members_action.dart';
-import 'package:pro_health_360/application/redux/actions/communities/leave_room_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/view_models/communities/communities_view_model.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/invite_users_page.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_list_page.dart';
 import 'package:pro_health_360/presentation/communities/widgets/user_list_item.dart';
-import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
+import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.dart';
 
 import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 import 'package:sghi_core/communities/models/room.dart';
@@ -29,12 +30,9 @@ class RoomInfoPage extends StatelessWidget {
     final String roomInitials = getInitials(room.name ?? 'No room name');
 
     return Scaffold(
-      appBar: AppBar(
-        title: Container(
-          padding: const EdgeInsets.all(10),
-          width: MediaQuery.of(context).size.width,
-          child: Center(child: Text('${room.name ?? ''} info')),
-        ),
+      appBar: CustomAppBar(
+        title: '${room.name ?? ''} info',
+        trailingWidget: const SizedBox(),
       ),
       body: ListView(
         padding: const EdgeInsets.all(20),
@@ -107,15 +105,8 @@ class RoomInfoPage extends StatelessWidget {
             child: TextButton(
               key: inviteUsersKey,
               onPressed: () async {
-                // Search for a user and add them
-                // navigate to rooms page
-                Navigator.of(context).push(
-                  MaterialPageRoute<bool>(
-                    builder: (BuildContext context) => InviteUsersPage(
-                      room: room,
-                    ),
-                  ),
-                );
+                Navigator.of(context)
+                    .pushNamed(AppRoutes.inviteUsersPageRoute, arguments: room);
               },
               child: const Padding(
                 padding: EdgeInsets.all(8.0),
@@ -128,7 +119,7 @@ class RoomInfoPage extends StatelessWidget {
               store.dispatch(
                 FetchRoomMembersAction(
                   roomID: room.roomID!,
-                  client: AppWrapperBase.of(context)!.graphQLClient,
+                  client: AppWrapperBase.of(context)!.communitiesClient!,
                 ),
               );
             },
@@ -168,21 +159,12 @@ class RoomInfoPage extends StatelessWidget {
               }
               return TextButton(
                 key: leaveRoomKey,
-                onPressed: () async {
-                  StoreProvider.dispatch<AppState>(
-                    context,
-                    LeaveRoomAction(
-                      roomID: room.roomID!,
-                      onSuccess: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute<dynamic>(
-                            builder: (BuildContext context) =>
-                                const RoomListPage(),
-                          ),
-                        );
-                      },
-                      client: AppWrapperBase.of(context)!.graphQLClient,
-                    ),
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return ConfirmLeaveRoomDialog(room: room);
+                    },
                   );
                 },
                 child: const Padding(

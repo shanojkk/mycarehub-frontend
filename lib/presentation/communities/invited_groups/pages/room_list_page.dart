@@ -1,111 +1,43 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:pro_health_360/application/core/services/communities_utils.dart';
-
-import 'package:pro_health_360/application/redux/actions/communities/communities_logout_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/view_models/communities/communities_view_model.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/create_room_page.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_list_item_widget.dart';
-import 'package:pro_health_360/presentation/onboarding/login/pages/login_page.dart';
+import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.dart';
+import 'package:pro_health_360/presentation/home/widgets/bottom_nav_bar.dart';
+import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:sghi_core/communities/models/room.dart';
+import 'package:sghi_core/shared_themes/spaces.dart';
 
-class RoomListPage extends StatefulWidget {
+class RoomListPage extends StatelessWidget {
   const RoomListPage({super.key});
 
   @override
-  State<RoomListPage> createState() => _RoomListPageState();
-}
-
-class _RoomListPageState extends State<RoomListPage> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Conversations'),
-        leading: StoreConnector<AppState, RoomListViewModel>(
-          converter: (Store<AppState> store) =>
-              RoomListViewModel.fromStore(store),
-          builder: (BuildContext context, RoomListViewModel vm) {
-            if (vm.wait?.isWaitingFor(communitiesSignOutFlag) ?? false) {
-              return const SizedBox(
-                child: CircularProgressIndicator(),
-              );
-            }
-            return IconButton(
-              key: logoutKey,
-              onPressed: () {
-                StoreProvider.dispatch<AppState>(
-                  context,
-                  CommunitiesLogoutAction(
-                    onSuccess: () => Navigator.of(context).push(
-                      MaterialPageRoute<bool>(
-                        builder: (BuildContext context) => const LoginPage(),
-                      ),
-                    ),
-                  ),
-                );
-              },
-              icon: const Icon(Icons.logout),
-            );
-          },
-        ),
-      ),
+      appBar: const CustomAppBar(title: 'Conversations'),
+      bottomNavigationBar: const BottomNavBar(bottomNavIndex: 2),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                StoreConnector<AppState, RoomListViewModel>(
-                  converter: (Store<AppState> store) {
-                    return RoomListViewModel.fromStore(store);
-                  },
-                  builder: (BuildContext context, RoomListViewModel vm) {
-                    final String userName = formatUsername(vm.displayName);
-                    return Text(
-                      'Welcome $userName',
-                      style: const TextStyle(
-                        fontSize: 18,
-                        color: Colors.purple,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    );
-                  },
-                ),
-                Center(
-                  child: TextButton(
-                    key: navToCreateRoomKey,
-                    onPressed: () async {
-                      Navigator.of(context).push(
-                        MaterialPageRoute<bool>(
-                          builder: (_) => const CreateRoomPage(),
-                        ),
-                      );
-                    },
-                    child: const Text('Create a room'),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 10),
             Flexible(
               child: StoreConnector<AppState, RoomListViewModel>(
                 converter: (Store<AppState> store) {
                   return RoomListViewModel.fromStore(store);
                 },
+                onInit: (Store<AppState> store) {},
                 builder: (BuildContext context, RoomListViewModel vm) {
                   if (vm.wait?.isWaitingFor(syncingEventsFlag) ?? false) {
                     return Center(
                       child: Column(
-                        children: const <Widget>[
-                          Text('Fetching your messages...'),
-                          SizedBox(height: 20),
-                          CircularProgressIndicator(),
+                        children: <Widget>[
+                          const Text('Fetching your messages...'),
+                          mediumVerticalSizedBox,
+                          const CircularProgressIndicator(),
                         ],
                       ),
                     );
@@ -137,11 +69,8 @@ class _RoomListPageState extends State<RoomListPage> {
                             child: TextButton(
                               key: emptyChatsNewRoomKey,
                               onPressed: () async {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute<bool>(
-                                    builder: (_) => const CreateRoomPage(),
-                                  ),
-                                );
+                                Navigator.of(context)
+                                    .pushNamed(AppRoutes.createRoomPageRoute);
                               },
                               child: const Text('Create a room'),
                             ),

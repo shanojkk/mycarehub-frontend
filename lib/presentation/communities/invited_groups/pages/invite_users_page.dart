@@ -8,6 +8,7 @@ import 'package:pro_health_360/application/redux/view_models/communities/communi
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/presentation/communities/widgets/user_list_item.dart';
+import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.dart';
 
 import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 import 'package:sghi_core/communities/models/room.dart';
@@ -23,12 +24,9 @@ class InviteUsersPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Container(
-          padding: const EdgeInsets.all(10),
-          width: MediaQuery.of(context).size.width,
-          child: const Center(child: Text(inviteMembers)),
-        ),
+      appBar: const CustomAppBar(
+        title: inviteMembers,
+        trailingWidget: SizedBox(),
       ),
       body: ListView(
         padding: const EdgeInsets.all(20),
@@ -71,7 +69,7 @@ class InviteUsersPage extends StatelessWidget {
                   context,
                   SearchMembersAction(
                     searchParam: value,
-                    client: AppWrapperBase.of(context)!.graphQLClient,
+                    client: AppWrapperBase.of(context)!.communitiesClient!,
                   ),
                 );
               }
@@ -114,7 +112,8 @@ class InviteUsersPage extends StatelessWidget {
                         InviteUserAction(
                           roomID: room.roomID!,
                           userID: currentUser.userID!,
-                          client: AppWrapperBase.of(context)!.graphQLClient,
+                          client:
+                              AppWrapperBase.of(context)!.communitiesClient!,
                           onSuccess: () {
                             ScaffoldMessenger.of(context)
                               ..hideCurrentSnackBar()

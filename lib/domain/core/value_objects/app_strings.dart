@@ -1038,3 +1038,4 @@ const String replyInThread = 'Reply in thread';
 const String deleteMessage = 'Delete message';
 const String invitedString = 'You were invited. Tap for more info';
 String groupMembersCount(String groupMembers) => '$groupMembers members';
+const String leaveRoomDescription = 'Are you sure you want to leave the room?';

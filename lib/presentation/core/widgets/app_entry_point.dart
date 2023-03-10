@@ -45,11 +45,20 @@ class AppEntryPoint extends StatelessWidget {
               appSetupData.customContext?.refreshTokenEndpoint ?? '';
           final String userID = vm.userId ?? '';
 
+          final String communitiesAccessToken = vm.communitiesAccessToken ?? '';
+
           return AppWrapper(
             appName: appName,
             appContexts: appSetupData.appContexts,
             graphQLClient: CustomClient(
               idToken,
+              graphqlEndpoint,
+              context: context,
+              refreshTokenEndpoint: refreshTokenEndpoint,
+              userID: userID,
+            ),
+            communitiesClient: CustomClient(
+              communitiesAccessToken,
               graphqlEndpoint,
               context: context,
               refreshTokenEndpoint: refreshTokenEndpoint,
@@ -78,6 +87,7 @@ class AppEntryPointViewModelFactory extends VmFactory<AppState, AppEntryPoint> {
     return AppEntryPointViewModel(
       idToken: state.credentials?.idToken,
       userId: state.clientState?.clientProfile?.user?.userId,
+      communitiesAccessToken: state.chatState?.userProfile?.accessToken,
     );
   }
 }
@@ -86,8 +96,10 @@ class AppEntryPointViewModel extends Vm {
   AppEntryPointViewModel({
     required this.idToken,
     required this.userId,
-  }) : super(equals: <Object?>[idToken, userId]);
+    required this.communitiesAccessToken,
+  }) : super(equals: <Object?>[idToken, userId, communitiesAccessToken]);
 
   final String? idToken;
   final String? userId;
+  final String? communitiesAccessToken;
 }

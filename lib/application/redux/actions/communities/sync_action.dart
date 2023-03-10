@@ -1,5 +1,4 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter/foundation.dart';
 import 'package:pro_health_360/application/core/services/communities_utils.dart';
 import 'package:pro_health_360/application/redux/actions/communities/update_chat_state_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
@@ -43,9 +42,7 @@ class SyncAction extends ReduxAction<AppState> {
 
     final bool isFullSync = syncParams?.forceFull ?? false;
 
-    /// Long poll the sync api
-    final SyncResponse response = await compute(
-      synchronizeEvents,
+    final SyncResponse response = await synchronizeEvents(
       SyncParams(
         accessToken: accessToken,
         fullState: syncParams?.fullState,

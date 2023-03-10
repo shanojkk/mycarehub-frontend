@@ -21,7 +21,7 @@ class SignInAction extends ReduxAction<AppState> {
   final String? username;
   final String? password;
   final Function()? onSuccess;
-  final IGraphQlClient client;
+  final IGraphQlClient? client;
 
   @override
   void after() {
@@ -38,7 +38,7 @@ class SignInAction extends ReduxAction<AppState> {
   @override
   Future<AppState?> reduce() async {
     final User userProfile = await ChatAPI.signIn(
-      client: client,
+      client: client!,
       username: username,
       password: password,
     );
@@ -55,12 +55,12 @@ class SignInAction extends ReduxAction<AppState> {
           fullState: true,
           fullSync: true,
           forceFull: true,
-          client: client,
+          client: client!,
         ),
       ),
     );
 
-    dispatch(StartSyncObserverAction(client: client));
+    dispatch(StartSyncObserverAction(client: client!));
 
     onSuccess?.call();
 

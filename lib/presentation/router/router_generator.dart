@@ -1,5 +1,9 @@
 // Flutter imports:
-import 'package:pro_health_360/presentation/conversations/communities_list_page.dart';
+import 'package:pro_health_360/presentation/communities/invited_groups/pages/create_room_page.dart';
+import 'package:pro_health_360/presentation/communities/invited_groups/pages/group_info_page.dart';
+import 'package:pro_health_360/presentation/communities/invited_groups/pages/invite_users_page.dart';
+import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_list_page.dart';
+import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_page.dart';
 import 'package:pro_health_360/presentation/onboarding/program_selection/program_selection_page.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
@@ -61,6 +65,7 @@ import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:pro_health_360/presentation/surveys/custom_webview_page.dart';
 import 'package:pro_health_360/presentation/surveys/surveys_page.dart';
 import 'package:pro_health_360/presentation/violence_assessment/pages/violence_assessment_page.dart';
+import 'package:sghi_core/communities/models/room.dart';
 
 /// The router generator for the app. The arrangement in this config must match that
 /// in the routes.dart file
@@ -523,10 +528,39 @@ class RouteGenerator {
           settings: const RouteSettings(name: 'Program selection page'),
         );
 
-      case AppRoutes.communityListPage:
-        return MaterialPageRoute<CommunitiesListPage>(
-          builder: (_) => const CommunitiesListPage(),
-          settings: const RouteSettings(name: 'Communities list page'),
+      case AppRoutes.inviteUsersPageRoute:
+        final dynamic roomArgs = args;
+        return MaterialPageRoute<InviteUsersPage>(
+          builder: (_) => InviteUsersPage(room: roomArgs as Room),
+          settings: const RouteSettings(name: 'Invite users page'),
+        );
+
+      case AppRoutes.roomListPageRoute:
+        return MaterialPageRoute<RoomListPage>(
+          builder: (_) => const RoomListPage(),
+          settings: const RouteSettings(name: 'Room list page'),
+        );
+
+      case AppRoutes.roomPageRoute:
+        final dynamic roomArgs = args;
+
+        return MaterialPageRoute<RoomPage>(
+          builder: (_) => RoomPage(room: roomArgs as Room),
+          settings: const RouteSettings(name: 'Room page route'),
+        );
+
+      case AppRoutes.createRoomPageRoute:
+        return MaterialPageRoute<CreateRoomPage>(
+          builder: (_) => const CreateRoomPage(),
+          settings: const RouteSettings(name: 'Create room page'),
+        );
+
+      case AppRoutes.roomInfoPageRoute:
+        final dynamic roomArgs = args;
+
+        return MaterialPageRoute<RoomInfoPage>(
+          builder: (_) => RoomInfoPage(room: roomArgs as Room),
+          settings: const RouteSettings(name: 'Room info page'),
         );
 
       default:

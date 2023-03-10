@@ -1,5 +1,6 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:pro_health_360/application/redux/actions/communities/communities_logout_action.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/group_info_page.dart';
@@ -54,6 +55,12 @@ void main() {
       expect(find.byKey(leaveRoomKey), findsOneWidget);
       await tester.tap(find.byKey(leaveRoomKey));
       await tester.pumpAndSettle();
+
+      expect(find.byKey(confirmLeaveRoomKey), findsOneWidget);
+      await tester.tap(find.byKey(confirmLeaveRoomKey));
+      await tester.pumpAndSettle();
+
+      store.dispatch(CommunitiesLogoutAction());
 
       expect(find.byType(RoomListPage), findsOneWidget);
     });

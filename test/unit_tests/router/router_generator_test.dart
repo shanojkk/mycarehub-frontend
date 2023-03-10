@@ -1,7 +1,11 @@
 // Flutter imports:
 
 // Package imports:
-import 'package:pro_health_360/presentation/conversations/communities_list_page.dart';
+import 'package:pro_health_360/presentation/communities/invited_groups/pages/create_room_page.dart';
+import 'package:pro_health_360/presentation/communities/invited_groups/pages/group_info_page.dart';
+import 'package:pro_health_360/presentation/communities/invited_groups/pages/invite_users_page.dart';
+import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_list_page.dart';
+import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_page.dart';
 import 'package:pro_health_360/presentation/onboarding/program_selection/program_selection_page.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
@@ -63,6 +67,7 @@ import 'package:pro_health_360/presentation/router/router_generator.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:pro_health_360/presentation/surveys/surveys_page.dart';
 import 'package:pro_health_360/presentation/violence_assessment/pages/violence_assessment_page.dart';
+import 'package:sghi_core/communities/models/room.dart';
 
 import '../../mocks.dart';
 
@@ -703,14 +708,64 @@ void main() {
     expect(route?.builder(context), isA<ProgramSelectionPage>());
   });
 
-  test('Test router returns Communities list page', () {
+  test('Test router returns Invite users page', () {
+    final RouteSettings settings = RouteSettings(
+      name: AppRoutes.inviteUsersPageRoute,
+      arguments: Room.initial(),
+    );
+
+    final MaterialPageRoute<InviteUsersPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<InviteUsersPage>?;
+
+    expect(route, isA<MaterialPageRoute<InviteUsersPage>>());
+    expect(route?.builder(context), isA<InviteUsersPage>());
+  });
+
+  test('Test router returns Room list page', () {
     const RouteSettings settings =
-        RouteSettings(name: AppRoutes.communityListPage);
+        RouteSettings(name: AppRoutes.roomListPageRoute);
 
-    final MaterialPageRoute<CommunitiesListPage>? route =
-        routeGenerator(settings) as MaterialPageRoute<CommunitiesListPage>?;
+    final MaterialPageRoute<RoomListPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<RoomListPage>?;
 
-    expect(route, isA<MaterialPageRoute<CommunitiesListPage>>());
-    expect(route?.builder(context), isA<CommunitiesListPage>());
+    expect(route, isA<MaterialPageRoute<RoomListPage>>());
+    expect(route?.builder(context), isA<RoomListPage>());
+  });
+
+  test('Test router returns Room page', () {
+    final RouteSettings settings = RouteSettings(
+      name: AppRoutes.roomPageRoute,
+      arguments: Room.initial(),
+    );
+
+    final MaterialPageRoute<RoomPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<RoomPage>?;
+
+    expect(route, isA<MaterialPageRoute<RoomPage>>());
+    expect(route?.builder(context), isA<RoomPage>());
+  });
+
+  test('Test router returns create room page', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.createRoomPageRoute);
+
+    final MaterialPageRoute<CreateRoomPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<CreateRoomPage>?;
+
+    expect(route, isA<MaterialPageRoute<CreateRoomPage>>());
+    expect(route?.builder(context), isA<CreateRoomPage>());
+  });
+
+  test('Test router returns Room info page', () {
+    final RouteSettings settings = RouteSettings(
+      name: AppRoutes.roomInfoPageRoute,
+      arguments: Room.initial(),
+    );
+
+    final MaterialPageRoute<RoomInfoPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<RoomInfoPage>?;
+
+    expect(route, isA<MaterialPageRoute<RoomInfoPage>>());
+    expect(route?.builder(context), isA<RoomInfoPage>());
   });
 }

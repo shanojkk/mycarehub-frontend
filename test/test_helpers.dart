@@ -48,6 +48,7 @@ Future<void> buildTestWidget({
         appContexts: testAppContexts,
         graphQLClient: client,
         baseContext: devAppSetupData.customContext,
+        communitiesClient: client,
         child: MaterialApp(
           localizationsDelegates: localizationDelegates,
           supportedLocales: locales,

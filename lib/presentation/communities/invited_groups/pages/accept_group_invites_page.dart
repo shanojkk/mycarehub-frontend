@@ -12,7 +12,7 @@ class AcceptGroupInvitesPage extends StatefulWidget {
     required this.groupId,
     required this.groupName,
     required this.numberOfMembers,
-    this.acceptInviteRoute = AppRoutes.communityListPage,
+    this.acceptInviteRoute = AppRoutes.roomListPageRoute,
   });
   final String groupName;
   final String groupId;

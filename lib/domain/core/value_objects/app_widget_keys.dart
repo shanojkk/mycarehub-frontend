@@ -333,3 +333,5 @@ const Key navigateToGroupInfoPageKey = Key('navigateToGroupInfoPageKey');
 const Key messageInputKey = Key('messageInputKey');
 
 const Key sendMessageIconKey = Key('sendMessageIconKey');
+
+const Key confirmLeaveRoomKey = Key('confirmLeaveRoomKey');

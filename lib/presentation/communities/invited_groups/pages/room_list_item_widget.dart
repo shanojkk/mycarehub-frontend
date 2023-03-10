@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pro_health_360/application/core/services/communities_utils.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_page.dart';
+import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:sghi_core/communities/models/room.dart';
 
 class RoomListItemWidget extends StatelessWidget {
@@ -23,11 +23,8 @@ class RoomListItemWidget extends StatelessWidget {
     return InkWell(
       key: Key(groupName),
       onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute<RoomPage>(
-            builder: (BuildContext context) => RoomPage(room: currentRoom),
-          ),
-        );
+        Navigator.of(context)
+            .pushNamed(AppRoutes.roomPageRoute, arguments: currentRoom);
       },
       borderRadius: BorderRadius.circular(8),
       highlightColor: Colors.purple.withOpacity(0.3),

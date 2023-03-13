@@ -147,14 +147,14 @@ query getHealthDiaryEntries($clientID: String!, $moodType: Mood,$shared: Boolean
 }
 ''';
 const String checkIfUserHasLikedContentQuery = r'''
-query checkIfUserHasLikedContent($userID: String!, $contentID: Int!){
-  checkIfUserHasLikedContent(userID: $userID, contentID: $contentID)
+query checkIfUserHasLikedContent($clientID: String!, $contentID: Int!){
+  checkIfUserHasLikedContent(clientID: $clientID, contentID: $contentID)
 }
 ''';
 
 const String checkIfUserBookmarkedContentQuery = r'''
-query checkIfUserBookmarkedContent($userID: String!, $contentID: Int!) {
-  checkIfUserBookmarkedContent(userID: $userID, contentID: $contentID)
+query checkIfUserBookmarkedContent($clientID: String!, $contentID: Int!) {
+  checkIfUserBookmarkedContent(clientID: $clientID, contentID: $contentID)
 }
 ''';
 

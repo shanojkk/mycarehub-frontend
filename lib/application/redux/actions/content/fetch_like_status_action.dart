@@ -44,7 +44,7 @@ class FetchLikeStatusAction extends ReduxAction<AppState> {
   @override
   Future<AppState?> reduce() async {
     final Map<String, dynamic> variables = <String, dynamic>{
-      'userID': state.clientState!.clientProfile!.user!.userId,
+      'clientID': state.clientState!.clientProfile!.id,
       'contentID': contentID
     };
 

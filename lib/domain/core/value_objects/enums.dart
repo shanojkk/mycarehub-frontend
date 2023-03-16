@@ -224,3 +224,14 @@ extension AppEnvironmentEx on AppEnvironment {
     return describeEnum(this).toUpperCase();
   }
 }
+
+enum QuestionType { OPEN_ENDED, CLOSE_ENDED }
+
+enum QuestionResponseValueType {
+  STRING,
+  NUMBER,
+  BOOLEAN,
+  TIME,
+  DATE,
+  DATE_TIME,
+}

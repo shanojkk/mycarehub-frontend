@@ -56,8 +56,6 @@ class ShareContentAction extends ReduxAction<AppState> {
 
     final Map<String, dynamic> body = client.toMap(result);
 
-    client.close();
-
     final Map<String, dynamic> responseMap =
         json.decode(result.body) as Map<String, dynamic>;
 

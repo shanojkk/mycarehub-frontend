@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
+import 'package:pro_health_360/presentation/assessment/widgets/successful_assessment_submission_page.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -8,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/presentation/assessment/pages/contraceptive_assessment_page.dart';
-import 'package:pro_health_360/presentation/assessment/widgets/successful_assessment_submission_page.dart';
 import 'package:pro_health_360/presentation/health_diary/widgets/mood_selection/mood_symptom_widget.dart';
 import 'package:pro_health_360/presentation/violence_assessment/widgets/screening_tools_question_widget.dart';
 
@@ -18,6 +18,12 @@ import '../../../../test_helpers.dart';
 void main() {
   group('ContraceptiveAssessmentPage', () {
     late Store<AppState> store;
+    final MockShortGraphQlClient mockShortSILGraphQlClient =
+        MockShortGraphQlClient.withResponse(
+      'idToken',
+      'endpoint',
+      Response(json.encode(contraceptivesMock), 200),
+    );
 
     setUp(() async {
       setupFirebaseAnalyticsMocks();
@@ -29,7 +35,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: MockGraphQlClient(),
+        client: mockShortSILGraphQlClient,
         widget: const ContraceptiveAssessmentPage(),
       );
 
@@ -40,7 +46,6 @@ void main() {
         find.byType(ScreeningToolQuestionWidget, skipOffstage: false),
         findsOneWidget,
       );
-
       await tester.tap(find.byType(CustomChipWidget).first);
       await tester.ensureVisible(submitButtonFinder);
       await tester.tap(submitButtonFinder);
@@ -62,7 +67,7 @@ void main() {
                 'getScreeningToolQuestions': <dynamic>[]
               }
             }),
-            200,
+            400,
           ),
         ),
         widget: const ContraceptiveAssessmentPage(),
@@ -79,7 +84,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: MockGraphQlClient(),
+        client: mockShortSILGraphQlClient,
         widget: const ContraceptiveAssessmentPage(),
       );
 

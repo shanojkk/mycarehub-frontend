@@ -57,7 +57,6 @@ class CompleteOnboardingTourAction extends ReduxAction<AppState> {
       completeOnboardingTourMutation,
       variables,
     );
-    client.close();
 
     final Map<String, dynamic> body = client.toMap(result);
 

@@ -5,6 +5,8 @@ import 'package:pro_health_360/application/redux/states/contraceptive_state.dart
 import 'package:pro_health_360/application/redux/states/tb_state.dart';
 import 'package:pro_health_360/application/redux/states/violence_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/available_screening_tools.dart';
+import 'package:pro_health_360/domain/core/entities/core/screening_tool.dart';
+import 'package:pro_health_360/domain/core/entities/core/screening_tool_answers_list.dart';
 
 class ScreeningToolsViewModel extends Vm {
   ScreeningToolsViewModel({
@@ -13,6 +15,8 @@ class ScreeningToolsViewModel extends Vm {
     required this.tBState,
     required this.alcoholSubstanceUseState,
     required this.availableScreeningTools,
+    required this.selectedTool,
+    required this.responses,
     this.wait,
   }) : super(
           equals: <Object?>[
@@ -22,6 +26,8 @@ class ScreeningToolsViewModel extends Vm {
             tBState,
             alcoholSubstanceUseState,
             availableScreeningTools,
+            selectedTool,
+            responses,
           ],
         );
 
@@ -35,6 +41,8 @@ class ScreeningToolsViewModel extends Vm {
           store.state.miscState?.screeningToolsState?.alcoholSubstanceUseState,
       availableScreeningTools:
           store.state.miscState?.screeningToolsState?.availableScreeningTools,
+      selectedTool: store.state.miscState?.screeningToolsState?.selectedTool,
+      responses: store.state.miscState?.screeningToolsState?.responses,
       wait: store.state.wait,
     );
   }
@@ -45,4 +53,6 @@ class ScreeningToolsViewModel extends Vm {
   final ViolenceState? violenceState;
   final AvailableScreeningTools? availableScreeningTools;
   final Wait? wait;
+  final ScreeningTool? selectedTool;
+  final ScreeningToolAnswersList? responses;
 }

@@ -1,181 +1,101 @@
 import 'package:flutter/material.dart';
+import 'package:pro_health_360/domain/core/entities/core/question_choice.dart';
+import 'package:pro_health_360/domain/core/entities/core/screening_tool.dart';
+import 'package:pro_health_360/domain/core/entities/core/screening_tool_answer.dart';
+import 'package:pro_health_360/domain/core/entities/core/screening_tool_answers_list.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:pro_health_360/application/redux/actions/screening_tools/update_screening_tools_state_action.dart';
-import 'package:pro_health_360/application/redux/states/alcohol_substance_use_state.dart';
-import 'package:pro_health_360/application/redux/states/contraceptive_state.dart';
-import 'package:pro_health_360/application/redux/states/tb_state.dart';
-import 'package:pro_health_360/application/redux/states/violence_state.dart';
-import 'package:pro_health_360/domain/core/entities/core/screening_question.dart';
-import 'package:pro_health_360/domain/core/entities/core/screening_questions_list.dart';
-import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/health_diary/widgets/mood_selection/mood_symptom_widget.dart';
 
 class ScreeningToolQuestionWidget extends StatefulWidget {
   const ScreeningToolQuestionWidget({
-    required this.screeningToolsQuestions,
-    required this.screeningToolsType,
+    required this.screeningTool,
   });
 
-  final List<ScreeningQuestion> screeningToolsQuestions;
-  final ScreeningToolsType screeningToolsType;
+  final ScreeningTool screeningTool;
 
   @override
   State<ScreeningToolQuestionWidget> createState() =>
       _ScreeningToolQuestionWidgetState();
 }
 
-// update the respective state
-void updateScreeningToolsQuestions({
-  required ScreeningToolsType toolsType,
-  required BuildContext context,
-  required List<ScreeningQuestion> questions,
-}) {
-  switch (toolsType) {
-    case ScreeningToolsType.VIOLENCE_ASSESSMENT:
-      StoreProvider.dispatch(
-        context,
-        UpdateScreeningToolsState(
-          violenceState: ViolenceState(
-            screeningQuestions:
-                ScreeningQuestionsList(screeningQuestionsList: questions),
-          ),
-        ),
-      );
-      break;
-
-    case ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT:
-      StoreProvider.dispatch(
-        context,
-        UpdateScreeningToolsState(
-          contraceptiveState: ContraceptiveState(
-            screeningQuestions:
-                ScreeningQuestionsList(screeningQuestionsList: questions),
-          ),
-        ),
-      );
-      break;
-
-    case ScreeningToolsType.TB_ASSESSMENT:
-      StoreProvider.dispatch(
-        context,
-        UpdateScreeningToolsState(
-          tbState: TBState(
-            screeningQuestions:
-                ScreeningQuestionsList(screeningQuestionsList: questions),
-          ),
-        ),
-      );
-      break;
-    default:
-      StoreProvider.dispatch(
-        context,
-        UpdateScreeningToolsState(
-          alcoholSubstanceUseState: AlcoholSubstanceUseState(
-            screeningQuestions:
-                ScreeningQuestionsList(screeningQuestionsList: questions),
-          ),
-        ),
-      );
-      break;
-  }
-}
-
 class _ScreeningToolQuestionWidgetState
     extends State<ScreeningToolQuestionWidget> {
+  final Map<String, String> answers = <String, String>{};
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: widget.screeningToolsQuestions.length,
+      itemCount: widget.screeningTool.questionnaire?.screeningQuestions?.length,
       itemBuilder: (BuildContext context, int index) {
         // choices
-        final Map<String, dynamic> choices =
-            widget.screeningToolsQuestions[index].responseChoices!;
+        final List<QuestionChoice?>? choices = widget
+            .screeningTool.questionnaire?.screeningQuestions?[index]?.choices;
 
         // sequence number
-        final int sequenceNumber =
-            widget.screeningToolsQuestions[index].sequence!;
+        final int sequenceNumber = widget.screeningTool.questionnaire
+                ?.screeningQuestions?[index]?.sequence ??
+            0;
 
         final List<CustomChipWidget> symptomWidgets = <CustomChipWidget>[];
 
         // question text
         final String questionText =
-            '${sequenceNumber + 1}. ${widget.screeningToolsQuestions[index].questionText!} ';
+            '$sequenceNumber. ${widget.screeningTool.questionnaire?.screeningQuestions?[index]?.questionText!} ';
 
-        // if question has an answer
-        final bool hasAnswer =
-            widget.screeningToolsQuestions[index].answer == null ? false : true;
+        // question id
+        final String questionId =
+            '${widget.screeningTool.questionnaire?.screeningQuestions?[index]?.id!} ';
 
-        // create symptomWidget for each of the choices
-        choices.forEach((String key, dynamic value) {
-          symptomWidgets.add(
-            CustomChipWidget(
-              title: value as String,
-              isSelected: hasAnswer &&
-                  key == widget.screeningToolsQuestions[index].answer,
-              gestureKey: Key('$sequenceNumber$key'),
-              onTap: () {
-                setState(() {});
-                final List<ScreeningQuestion> questions =
-                    widget.screeningToolsQuestions;
-                // create a new question with the initial values and add answer to it
-                final ScreeningQuestion question =
-                    widget.screeningToolsQuestions
-                        .firstWhere(
-                          (ScreeningQuestion screeningQuestion) =>
-                              screeningQuestion.id ==
-                              widget.screeningToolsQuestions[index].id,
-                        )
-                        .copyWith(answer: key);
-                // replace the newly formed question in the list
-                questions.replaceRange(
-                  index,
-                  index + 1,
-                  <ScreeningQuestion>[question],
-                );
-                // update the respective state
-                updateScreeningToolsQuestions(
-                  context: context,
-                  toolsType: widget.screeningToolsType,
-                  questions: questions,
-                );
-              },
-            ),
-          );
-        });
+        if (choices?.isNotEmpty ?? false) {
+          for (final QuestionChoice? choice in choices!) {
+            final bool isSelected = answers[questionId] == choice?.choice;
+
+            symptomWidgets.add(
+              CustomChipWidget(
+                title: choice?.value ?? '',
+                gestureKey: Key('$sequenceNumber${choice?.value}'),
+                isSelected: isSelected,
+                onTap: () {
+                  answers.addAll(
+                    <String, String>{questionId: '${choice?.choice}'},
+                  );
+                  final List<ScreeningToolAnswer> screeningAnswers =
+                      <ScreeningToolAnswer>[];
+                  answers.forEach((String key, String value) {
+                    screeningAnswers.add(
+                      ScreeningToolAnswer(questionId: key, response: value),
+                    );
+                  });
+                  StoreProvider.dispatch(
+                    context,
+                    UpdateScreeningToolsState(
+                      responses: ScreeningToolAnswersList(
+                        answersList: screeningAnswers,
+                      ),
+                    ),
+                  );
+                  setState(() {});
+                },
+              ),
+            );
+          }
+        }
+
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            // if question contains a heading
-            if (widget.screeningToolsQuestions[index].meta != null)
-              Column(
-                children: <Widget>[
-                  smallVerticalSizedBox,
-                  Text(
-                    widget.screeningToolsQuestions[index].meta!['violence_type']
-                        as String,
-                    style: veryBoldSize17Text(
-                      AppColors.greyTextColor,
-                    ),
-                  ),
-                ],
-              ),
             smallVerticalSizedBox,
             Text(
               questionText,
-              style: normalSize14Text(
-                AppColors.greyTextColor,
-              ),
+              style: normalSize14Text(AppColors.greyTextColor),
             ),
             smallVerticalSizedBox,
-            Wrap(
-              spacing: 12.0,
-              runSpacing: 12.0,
-              children: symptomWidgets,
-            ),
+            Wrap(spacing: 12.0, runSpacing: 12.0, children: symptomWidgets),
             smallVerticalSizedBox,
           ],
         );

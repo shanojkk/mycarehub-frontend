@@ -303,17 +303,39 @@ query listAppointments(
 ''';
 
 const String getScreeningToolsQuestionsQuery = r'''
-query getScreeningToolQuestions($toolType: String!){
-  getScreeningToolQuestions(toolType: $toolType){
-    id,
-    question,
-    toolType,
-    responseType,
-    responseChoices,
-    responseCategory,
-    sequence,
-    active,
-    meta
+query getScreeningToolByID($id :ID!) {
+  getScreeningToolByID(
+    id: $id
+  ) {
+   	id
+    active
+    questionnaireID
+    threshold
+    questionnaire {
+      id
+      active
+      name
+      description
+      questions {
+        id
+        active
+        questionnaireID
+        text
+        questionType
+        responseValueType
+        required
+        selectMultiple
+        sequence
+        choices{
+          id
+          active
+          questionID
+          choice
+          value
+          score
+        }
+      }
+    }
   }
 }
 ''';
@@ -384,11 +406,23 @@ query SearchObservations($params: Map!) {
 ''';
 
 const String getAvailableScreeningToolQuery = r'''
-query getAvailableScreeningToolQuestions($clientID: String!){
-  getAvailableScreeningToolQuestions(clientID: $clientID){
-    toolType
+query getAvailableScreeningTools ($clientID: String!, $facilityID: String!){
+  getAvailableScreeningTools(
+    clientID: $clientID
+  	facilityID: $facilityID
+  ) {
+   	id
+    questionnaireID
+    threshold
+    questionnaire {
+      id
+      active
+      name
+      description
+    }
   }
 }
+
 ''';
 
 const String nextRefillQuery = r'''

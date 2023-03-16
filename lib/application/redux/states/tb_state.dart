@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:pro_health_360/domain/core/entities/core/screening_questions_list.dart';
+import 'package:pro_health_360/domain/core/entities/core/screening_tool.dart';
 
 part 'tb_state.g.dart';
 part 'tb_state.freezed.dart';
@@ -7,8 +7,7 @@ part 'tb_state.freezed.dart';
 @freezed
 class TBState with _$TBState {
   factory TBState({
-    @JsonKey(name: 'getScreeningToolQuestions')
-        ScreeningQuestionsList? screeningQuestions,
+    ScreeningTool? screeningTool,
     bool? errorFetchingQuestions,
     bool? timeoutFetchingQuestions,
     bool? errorAnsweringQuestions,
@@ -18,7 +17,7 @@ class TBState with _$TBState {
       _$TBStateFromJson(json);
 
   factory TBState.initial() => TBState(
-        screeningQuestions: ScreeningQuestionsList.initial(),
+        screeningTool: ScreeningTool.initial(),
         errorFetchingQuestions: false,
         timeoutFetchingQuestions: false,
         errorAnsweringQuestions: false,

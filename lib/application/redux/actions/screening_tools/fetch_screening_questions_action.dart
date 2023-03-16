@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:pro_health_360/domain/core/entities/core/screening_tool.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:sghi_core/flutter_graphql_client/i_flutter_graphql_client.dart';
@@ -14,17 +15,17 @@ import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/states/contraceptive_state.dart';
 import 'package:pro_health_360/application/redux/states/tb_state.dart';
 import 'package:pro_health_360/application/redux/states/violence_state.dart';
-import 'package:pro_health_360/domain/core/entities/core/screening_questions_list.dart';
-import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 
 class FetchScreeningToolsQuestionsAction extends ReduxAction<AppState> {
   FetchScreeningToolsQuestionsAction({
-    required this.screeningToolsType,
+    required this.screeningToolId,
     required this.client,
+    required this.screeningToolName,
   });
 
   final IGraphQlClient client;
-  final ScreeningToolsType screeningToolsType;
+  final String screeningToolId;
+  final String screeningToolName;
 
   @override
   void after() {
@@ -38,77 +39,20 @@ class FetchScreeningToolsQuestionsAction extends ReduxAction<AppState> {
     super.before();
   }
 
-  ReduxAction<AppState> updateErrorScreeningToolsQuestions({
-    required ScreeningToolsType type,
-  }) {
-    switch (type) {
-      case ScreeningToolsType.VIOLENCE_ASSESSMENT:
-        return UpdateScreeningToolsState(
-          violenceState: ViolenceState(errorFetchingQuestions: true),
-        );
-      case ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT:
-        return UpdateScreeningToolsState(
-          contraceptiveState: ContraceptiveState(errorFetchingQuestions: true),
-        );
-
-      case ScreeningToolsType.TB_ASSESSMENT:
-        return UpdateScreeningToolsState(
-          tbState: TBState(errorFetchingQuestions: true),
-        );
-      default:
-        return UpdateScreeningToolsState(
-          alcoholSubstanceUseState:
-              AlcoholSubstanceUseState(errorFetchingQuestions: true),
-        );
-    }
-  }
-
-  ReduxAction<AppState> updateScreeningToolsQuestions({
-    required ScreeningToolsType type,
-    required ScreeningQuestionsList screeningQuestionsList,
-  }) {
-    switch (type) {
-      case ScreeningToolsType.VIOLENCE_ASSESSMENT:
-        return UpdateScreeningToolsState(
-          violenceState: ViolenceState(
-            screeningQuestions: screeningQuestionsList,
-          ),
-        );
-      case ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT:
-        return UpdateScreeningToolsState(
-          contraceptiveState: ContraceptiveState(
-            screeningQuestions: screeningQuestionsList,
-          ),
-        );
-
-      case ScreeningToolsType.TB_ASSESSMENT:
-        return UpdateScreeningToolsState(
-          tbState: TBState(
-            screeningQuestions: screeningQuestionsList,
-          ),
-        );
-      default:
-        return UpdateScreeningToolsState(
-          alcoholSubstanceUseState: AlcoholSubstanceUseState(
-            screeningQuestions: screeningQuestionsList,
-          ),
-        );
-    }
-  }
-
   @override
   Future<AppState?> reduce() async {
     final Map<String, dynamic> variables = <String, dynamic>{
-      'toolType': screeningToolsType.name
+      'id': screeningToolId
     };
-    final Response response =
-        await client.query(getScreeningToolsQuestionsQuery, variables);
+    final Response response = await client.query(
+      getScreeningToolsQuestionsQuery,
+      variables,
+    );
 
     final ProcessedResponse processedResponse = processHttpResponse(response);
 
     if (processedResponse.ok) {
       final Map<String, dynamic> body = client.toMap(response);
-      client.close();
 
       final String? errors = client.parseError(body);
 
@@ -119,29 +63,86 @@ class FetchScreeningToolsQuestionsAction extends ReduxAction<AppState> {
 
       final Map<String, dynamic>? data = body['data'] as Map<String, dynamic>?;
 
-      if (data != null &&
-          data['getScreeningToolQuestions'] != null &&
-          (data['getScreeningToolQuestions'] as List<dynamic>).isNotEmpty) {
-        final ScreeningQuestionsList screeningQuestionsList =
-            ScreeningQuestionsList.fromJson(
-          body['data'] as Map<String, dynamic>,
+      if ((data?['getScreeningToolByID'] as Map<String, dynamic>).isNotEmpty) {
+        final ScreeningTool screeningTool = ScreeningTool.fromJson(
+          data!['getScreeningToolByID'] as Map<String, dynamic>,
         );
 
-        if (screeningQuestionsList.screeningQuestionsList?.isNotEmpty ??
+        if (screeningTool.questionnaire?.screeningQuestions?.isNotEmpty ??
             false) {
           dispatch(
             updateScreeningToolsQuestions(
-              screeningQuestionsList: screeningQuestionsList,
-              type: screeningToolsType,
+              screeningTool: screeningTool,
+              toolName: screeningTool.questionnaire?.name ?? '',
             ),
           );
         }
       }
     } else {
-      dispatch(updateErrorScreeningToolsQuestions(type: screeningToolsType));
+      dispatch(
+        updateErrorScreeningToolsQuestions(toolName: screeningToolName),
+      );
       throw UserException(processedResponse.message);
     }
 
     return null;
+  }
+
+  ReduxAction<AppState> updateErrorScreeningToolsQuestions({
+    required String toolName,
+  }) {
+    switch (toolName) {
+      case 'Violence Assessment':
+        return UpdateScreeningToolsState(
+          violenceState: ViolenceState(errorFetchingQuestions: true),
+        );
+
+      case 'TB Assessment':
+        return UpdateScreeningToolsState(
+          tbState: TBState(errorFetchingQuestions: true),
+        );
+      case 'Alcohol and Substance Assessment':
+        return UpdateScreeningToolsState(
+          alcoholSubstanceUseState:
+              AlcoholSubstanceUseState(errorFetchingQuestions: true),
+        );
+      default:
+        return UpdateScreeningToolsState(
+          contraceptiveState: ContraceptiveState(errorFetchingQuestions: true),
+        );
+    }
+  }
+
+  ReduxAction<AppState> updateScreeningToolsQuestions({
+    required String toolName,
+    required ScreeningTool screeningTool,
+  }) {
+    switch (toolName) {
+      case 'Violence Assessment':
+        return UpdateScreeningToolsState(
+          violenceState: ViolenceState(
+            screeningTool: screeningTool,
+          ),
+        );
+
+      case 'TB Assessment':
+        return UpdateScreeningToolsState(
+          tbState: TBState(
+            screeningTool: screeningTool,
+          ),
+        );
+      case 'Alcohol and Substance Assessment':
+        return UpdateScreeningToolsState(
+          alcoholSubstanceUseState: AlcoholSubstanceUseState(
+            screeningTool: screeningTool,
+          ),
+        );
+      default:
+        return UpdateScreeningToolsState(
+          contraceptiveState: ContraceptiveState(
+            screeningTool: screeningTool,
+          ),
+        );
+    }
   }
 }

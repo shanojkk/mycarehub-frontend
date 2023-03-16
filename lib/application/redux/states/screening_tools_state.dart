@@ -4,6 +4,8 @@ import 'package:pro_health_360/application/redux/states/contraceptive_state.dart
 import 'package:pro_health_360/application/redux/states/tb_state.dart';
 import 'package:pro_health_360/application/redux/states/violence_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/available_screening_tools.dart';
+import 'package:pro_health_360/domain/core/entities/core/screening_tool.dart';
+import 'package:pro_health_360/domain/core/entities/core/screening_tool_answers_list.dart';
 
 part 'screening_tools_state.g.dart';
 part 'screening_tools_state.freezed.dart';
@@ -16,6 +18,8 @@ class ScreeningToolsState with _$ScreeningToolsState {
     TBState? tbState,
     AlcoholSubstanceUseState? alcoholSubstanceUseState,
     AvailableScreeningTools? availableScreeningTools,
+    ScreeningTool? selectedTool,
+    ScreeningToolAnswersList? responses,
   }) = _ScreeningToolsState;
 
   factory ScreeningToolsState.fromJson(Map<String, dynamic> json) =>
@@ -27,5 +31,6 @@ class ScreeningToolsState with _$ScreeningToolsState {
         tbState: TBState.initial(),
         alcoholSubstanceUseState: AlcoholSubstanceUseState.initial(),
         availableScreeningTools: AvailableScreeningTools.initial(),
+        responses: ScreeningToolAnswersList.initial(),
       );
 }

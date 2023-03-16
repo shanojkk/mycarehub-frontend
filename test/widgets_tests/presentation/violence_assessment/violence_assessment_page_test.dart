@@ -44,6 +44,7 @@ void main() {
       await tester.tap(submitButtonFinder);
 
       await tester.pumpAndSettle();
+
       expect(find.byType(SuccessfulAssessmentSubmissionPage), findsOneWidget);
     });
 
@@ -60,7 +61,7 @@ void main() {
                 'getScreeningToolQuestions': <dynamic>[]
               }
             }),
-            200,
+            400,
           ),
         ),
         widget: const ViolenceAssessmentPage(),

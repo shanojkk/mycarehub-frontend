@@ -6,6 +6,8 @@ import 'package:pro_health_360/application/redux/states/screening_tools_state.da
 import 'package:pro_health_360/application/redux/states/tb_state.dart';
 import 'package:pro_health_360/application/redux/states/violence_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/available_screening_tools.dart';
+import 'package:pro_health_360/domain/core/entities/core/screening_tool.dart';
+import 'package:pro_health_360/domain/core/entities/core/screening_tool_answers_list.dart';
 
 class UpdateScreeningToolsState extends ReduxAction<AppState> {
   UpdateScreeningToolsState({
@@ -14,6 +16,8 @@ class UpdateScreeningToolsState extends ReduxAction<AppState> {
     this.tbState,
     this.alcoholSubstanceUseState,
     this.availableScreeningTools,
+    this.selectedTool,
+    this.responses,
   });
 
   final AlcoholSubstanceUseState? alcoholSubstanceUseState;
@@ -21,6 +25,8 @@ class UpdateScreeningToolsState extends ReduxAction<AppState> {
   final ContraceptiveState? contraceptiveState;
   final TBState? tbState;
   final ViolenceState? violenceState;
+  final ScreeningTool? selectedTool;
+  final ScreeningToolAnswersList? responses;
 
   @override
   AppState reduce() {
@@ -34,12 +40,14 @@ class UpdateScreeningToolsState extends ReduxAction<AppState> {
       tbState: tbState ?? state.miscState?.screeningToolsState?.tbState,
       availableScreeningTools: availableScreeningTools ??
           state.miscState?.screeningToolsState?.availableScreeningTools,
+      selectedTool:
+          selectedTool ?? state.miscState?.screeningToolsState?.selectedTool,
+      responses: responses ?? state.miscState?.screeningToolsState?.responses,
     );
 
     final AppState newState = state.copyWith(
-      miscState: state.miscState?.copyWith(
-        screeningToolsState: newScreeningToolsState,
-      ),
+      miscState: state.miscState
+          ?.copyWith(screeningToolsState: newScreeningToolsState),
     );
     return newState;
   }

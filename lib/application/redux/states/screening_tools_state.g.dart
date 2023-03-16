@@ -28,6 +28,14 @@ _$_ScreeningToolsState _$$_ScreeningToolsStateFromJson(
           ? null
           : AvailableScreeningTools.fromJson(
               json['availableScreeningTools'] as Map<String, dynamic>),
+      selectedTool: json['selectedTool'] == null
+          ? null
+          : ScreeningTool.fromJson(
+              json['selectedTool'] as Map<String, dynamic>),
+      responses: json['responses'] == null
+          ? null
+          : ScreeningToolAnswersList.fromJson(
+              json['responses'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_ScreeningToolsStateToJson(
@@ -38,4 +46,6 @@ Map<String, dynamic> _$$_ScreeningToolsStateToJson(
       'tbState': instance.tbState,
       'alcoholSubstanceUseState': instance.alcoholSubstanceUseState,
       'availableScreeningTools': instance.availableScreeningTools,
+      'selectedTool': instance.selectedTool,
+      'responses': instance.responses,
     };

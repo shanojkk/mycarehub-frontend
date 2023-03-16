@@ -1,9 +1,9 @@
+import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:pro_health_360/application/core/services/analytics_service.dart';
-import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/actions/screening_tools/answer_screening_tools_action.dart';
 import 'package:pro_health_360/application/redux/actions/screening_tools/fetch_screening_questions_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
@@ -29,18 +29,6 @@ class ContraceptiveAssessmentPage extends StatefulWidget {
 
 class _ContraceptiveAssessmentPageState
     extends State<ContraceptiveAssessmentPage> {
-  @override
-  void didChangeDependencies() {
-    StoreProvider.dispatch(
-      context,
-      FetchScreeningToolsQuestionsAction(
-        screeningToolsType: ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT,
-        client: AppWrapperBase.of(context)!.graphQLClient,
-      ),
-    );
-    super.didChangeDependencies();
-  }
-
   Future<bool> onWillPop() async {
     // log abandoning assessment tool
     await AnalyticsService().logEvent(
@@ -60,6 +48,19 @@ class _ContraceptiveAssessmentPageState
       converter: (Store<AppState> store) {
         return ScreeningToolsViewModel.fromStore(store);
       },
+      onInit: (Store<AppState> store) {
+        store.dispatch(
+          FetchScreeningToolsQuestionsAction(
+            screeningToolId:
+                store.state.miscState?.screeningToolsState?.selectedTool?.id ??
+                    '',
+            screeningToolName: store.state.miscState?.screeningToolsState
+                    ?.selectedTool?.questionnaire?.name ??
+                '',
+            client: AppWrapperBase.of(context)!.graphQLClient,
+          ),
+        );
+      },
       builder: (BuildContext context, ScreeningToolsViewModel vm) {
         return Scaffold(
           appBar: CustomAppBar(
@@ -75,8 +76,8 @@ class _ContraceptiveAssessmentPageState
                     padding: const EdgeInsets.all(20),
                     child: const PlatformLoader(),
                   )
-                : vm.contraceptiveState?.screeningQuestions
-                            ?.screeningQuestionsList?.isEmpty ??
+                : vm.contraceptiveState?.screeningTool?.questionnaire
+                            ?.screeningQuestions?.isEmpty ??
                         true
                     ? Container()
                     : SingleChildScrollView(
@@ -111,12 +112,8 @@ class _ContraceptiveAssessmentPageState
                               size15VerticalSizedBox,
                               // questions
                               ScreeningToolQuestionWidget(
-                                screeningToolsQuestions: vm
-                                    .contraceptiveState!
-                                    .screeningQuestions!
-                                    .screeningQuestionsList!,
-                                screeningToolsType:
-                                    ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT,
+                                screeningTool:
+                                    vm.contraceptiveState!.screeningTool!,
                               ),
                               const ContraceptivesInformation(),
                               size40VerticalSizedBox,
@@ -137,18 +134,18 @@ class _ContraceptiveAssessmentPageState
                   child: MyAfyaHubPrimaryButton(
                     buttonKey: contraceptiveAssessmentFeedbackButtonKey,
                     onPressed: () {
-                      bool areAllQuestionsAnswered = false;
-                      setState(() {
-                        areAllQuestionsAnswered = allQuestionsAnswered(
-                          vm.contraceptiveState?.screeningQuestions
-                              ?.screeningQuestionsList,
-                        );
-                      });
-                      if (areAllQuestionsAnswered) {
+                      if (checkAllQuestionsAnswered(
+                        context: context,
+                        numberOfQuestions: vm.contraceptiveState?.screeningTool
+                                ?.questionnaire?.screeningQuestions?.length ??
+                            0,
+                      )) {
                         StoreProvider.dispatch(
                           context,
                           AnswerScreeningToolsAction(
                             client: AppWrapperBase.of(context)!.graphQLClient,
+                            screeningToolId: vm.selectedTool?.id ?? '',
+                            responses: vm.responses!,
                             screeningToolsType:
                                 ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT,
                           ),

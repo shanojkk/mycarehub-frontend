@@ -1,9 +1,7 @@
 import 'dart:async';
 
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
-import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter/material.dart';
 import 'package:sghi_core/flutter_graphql_client/i_flutter_graphql_client.dart';
 import 'package:http/http.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -14,13 +12,11 @@ import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/available_screening_tools.dart';
 import 'package:pro_health_360/domain/core/entities/core/screening_tool.dart';
-import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
-import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 
 class FetchAvailableScreeningToolsAction extends ReduxAction<AppState> {
-  FetchAvailableScreeningToolsAction({required this.context});
+  FetchAvailableScreeningToolsAction({required this.client});
 
-  final BuildContext context;
+  final IGraphQlClient client;
 
   @override
   void after() {
@@ -38,8 +34,8 @@ class FetchAvailableScreeningToolsAction extends ReduxAction<AppState> {
   Future<AppState?> reduce() async {
     final Map<String, dynamic> variables = <String, dynamic>{
       'clientID': state.clientState!.clientProfile!.id,
+      'facilityID': state.clientState!.clientProfile?.defaultFacility?.id
     };
-    final IGraphQlClient client = AppWrapperBase.of(context)!.graphQLClient;
 
     final Response response =
         await client.query(getAvailableScreeningToolQuery, variables);
@@ -52,9 +48,7 @@ class FetchAvailableScreeningToolsAction extends ReduxAction<AppState> {
       final String? errors = client.parseError(body);
 
       if (errors != null) {
-        Sentry.captureException(
-          UserException(errors),
-        );
+        Sentry.captureException(UserException(errors));
 
         throw UserException(
           getErrorMessage('fetching available screening tools'),
@@ -64,25 +58,15 @@ class FetchAvailableScreeningToolsAction extends ReduxAction<AppState> {
       final Map<String, dynamic>? data = body['data'] as Map<String, dynamic>?;
 
       final List<dynamic>? availableScreeningTools =
-          data?['getAvailableScreeningToolQuestions'] as List<dynamic>?;
+          data?['getAvailableScreeningTools'] as List<dynamic>?;
 
       final List<ScreeningTool> screeningToolsList = <ScreeningTool>[];
 
       if (availableScreeningTools != null &&
           availableScreeningTools.isNotEmpty) {
         for (final dynamic screeningTool in availableScreeningTools) {
-          final Map<String, dynamic>? tool =
-              screeningTool as Map<String, dynamic>?;
-
-          final ScreeningToolsType toolType =
-              screeningToolsTypeFromString(tool?['toolType'] as String);
-
           screeningToolsList.add(
-            ScreeningTool(
-              title: getScreeningToolTitle(toolType),
-              description: getScreeningToolDescription(toolType),
-              toolType: toolType,
-            ),
+            ScreeningTool.fromJson(screeningTool as Map<String, dynamic>),
           );
         }
 
@@ -107,58 +91,5 @@ class FetchAvailableScreeningToolsAction extends ReduxAction<AppState> {
     }
 
     return null;
-  }
-
-  String getScreeningToolTitle(ScreeningToolsType toolsType) {
-    switch (toolsType) {
-      case ScreeningToolsType.VIOLENCE_ASSESSMENT:
-        return violenceTitle;
-
-      case ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT:
-        return contraceptiveTitle;
-
-      case ScreeningToolsType.TB_ASSESSMENT:
-        return tuberculosisTitle;
-
-      default:
-        return alcoholSubstanceUseTitle;
-    }
-  }
-
-  String getScreeningToolDescription(ScreeningToolsType toolsType) {
-    switch (toolsType) {
-      case ScreeningToolsType.VIOLENCE_ASSESSMENT:
-        return violenceDescription;
-
-      case ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT:
-        return contraceptiveDescription;
-
-      case ScreeningToolsType.TB_ASSESSMENT:
-        return tuberculosisDescription;
-
-      default:
-        return alcoholSubstanceUseTitle;
-    }
-  }
-
-  ScreeningToolsType screeningToolsTypeFromString(String toolType) {
-    switch (toolType) {
-      case 'VIOLENCE_ASSESSMENT':
-        return ScreeningToolsType.VIOLENCE_ASSESSMENT;
-      case 'CONTRACEPTIVE_ASSESSMENT':
-        return ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT;
-      case 'TB_ASSESSMENT':
-        return ScreeningToolsType.TB_ASSESSMENT;
-      default:
-        return ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT;
-    }
-  }
-
-  @override
-  Object wrapError(dynamic error) async {
-    if (error.runtimeType == UserException) {
-      return error;
-    }
-    return error;
   }
 }

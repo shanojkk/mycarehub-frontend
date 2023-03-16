@@ -60,7 +60,6 @@ class FetchAppointmentsAction extends ReduxAction<AppState> {
       listAppointmentsQuery,
       variables,
     );
-    client.close();
 
     final Map<String, dynamic> payLoad = client.toMap(response);
     final String? error = parseError(payLoad);

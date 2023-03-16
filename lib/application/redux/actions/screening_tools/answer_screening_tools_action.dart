@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:pro_health_360/domain/core/entities/core/screening_tool_answers_list.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:sghi_core/flutter_graphql_client/i_flutter_graphql_client.dart';
@@ -16,17 +17,20 @@ import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/states/contraceptive_state.dart';
 import 'package:pro_health_360/application/redux/states/tb_state.dart';
 import 'package:pro_health_360/application/redux/states/violence_state.dart';
-import 'package:pro_health_360/domain/core/entities/core/screening_question.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 
 class AnswerScreeningToolsAction extends ReduxAction<AppState> {
   AnswerScreeningToolsAction({
-    required this.screeningToolsType,
     required this.client,
+    required this.responses,
+    required this.screeningToolId,
+    required this.screeningToolsType,
   });
 
   final IGraphQlClient client;
+  final String screeningToolId;
+  final ScreeningToolAnswersList responses;
   final ScreeningToolsType screeningToolsType;
 
   @override
@@ -43,17 +47,23 @@ class AnswerScreeningToolsAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final Map<String, dynamic> map = getAnswersVariables(screeningToolsType);
+    final Map<String, dynamic> responsesMap = responses.toJson();
+    final Map<String, dynamic> variables = <String, dynamic>{
+      'input': <String, dynamic>{
+        'clientID': state.clientState?.clientProfile?.id,
+        'screeningToolID': screeningToolId,
+        ...responsesMap
+      }
+    };
     final Response response = await client.query(
       answerScreeningToolQuestionMutation,
-      map,
+      variables,
     );
 
     final ProcessedResponse processedResponse = processHttpResponse(response);
 
     if (processedResponse.ok) {
       final Map<String, dynamic> body = client.toMap(response);
-      client.close();
 
       final String? errors = client.parseError(body);
 
@@ -69,16 +79,13 @@ class AnswerScreeningToolsAction extends ReduxAction<AppState> {
 
       final Map<String, dynamic>? data = body['data'] as Map<String, dynamic>?;
 
-      if (data != null &&
-          data['answerScreeningToolQuestion'] != null &&
-          data['answerScreeningToolQuestion'] is bool &&
-          data['answerScreeningToolQuestion'] == true) {
+      if (data?['respondToScreeningTool'] == true) {
         // log event
         await AnalyticsService().logEvent(
           name: successfulToolAssessmentEvent,
           eventType: AnalyticsEventType.INTERACTION,
           parameters: <String, dynamic>{
-            'screeningToolType': screeningToolsType.name,
+            'screeningToolType': 'screeningToolsType',
           },
         );
 
@@ -88,92 +95,13 @@ class AnswerScreeningToolsAction extends ReduxAction<AppState> {
           ),
         );
       } else {
-        dispatch(
-          updateErrorAnsweringQuestions(type: screeningToolsType),
-        );
+        dispatch(updateErrorAnsweringQuestions(type: screeningToolsType));
       }
     } else {
       throw UserException(processedResponse.message);
     }
 
     return null;
-  }
-
-  Map<String, dynamic> getAnswersVariables(ScreeningToolsType type) {
-    final Map<String, dynamic> variables = <String, dynamic>{
-      'screeningToolResponses': <dynamic>[],
-    };
-    switch (type) {
-      case ScreeningToolsType.VIOLENCE_ASSESSMENT:
-        for (final ScreeningQuestion question in state
-            .miscState!
-            .screeningToolsState!
-            .violenceState!
-            .screeningQuestions!
-            .screeningQuestionsList!) {
-          if (question.answer != null) {
-            (variables['screeningToolResponses'] as List<dynamic>).add(
-              <String, dynamic>{
-                'clientID': state.clientState!.clientProfile!.id,
-                'questionID': question.id,
-                'response': question.answer
-              },
-            );
-          }
-        }
-        return variables;
-
-      case ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT:
-        for (final ScreeningQuestion question in state
-            .miscState!
-            .screeningToolsState!
-            .contraceptiveState!
-            .screeningQuestions!
-            .screeningQuestionsList!) {
-          (variables['screeningToolResponses'] as List<dynamic>).add(
-            <String, dynamic>{
-              'clientID': state.clientState!.clientProfile!.id,
-              'questionID': question.id,
-              'response': question.answer
-            },
-          );
-        }
-        return variables;
-
-      case ScreeningToolsType.TB_ASSESSMENT:
-        for (final ScreeningQuestion question in state
-            .miscState!
-            .screeningToolsState!
-            .tbState!
-            .screeningQuestions!
-            .screeningQuestionsList!) {
-          (variables['screeningToolResponses'] as List<dynamic>).add(
-            <String, dynamic>{
-              'clientID': state.clientState!.clientProfile!.id,
-              'questionID': question.id,
-              'response': question.answer
-            },
-          );
-        }
-        return variables;
-
-      default:
-        for (final ScreeningQuestion question in state
-            .miscState!
-            .screeningToolsState!
-            .alcoholSubstanceUseState!
-            .screeningQuestions!
-            .screeningQuestionsList!) {
-          (variables['screeningToolResponses'] as List<dynamic>).add(
-            <String, dynamic>{
-              'clientID': state.clientState!.clientProfile!.id,
-              'questionID': question.id,
-              'response': question.answer
-            },
-          );
-        }
-        return variables;
-    }
   }
 
   ReduxAction<AppState> updateErrorAnsweringQuestions({

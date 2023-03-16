@@ -59,8 +59,6 @@ class UpdateContentLikeStatusAction extends ReduxAction<AppState> {
 
     final Map<String, dynamic> body = client.toMap(result);
 
-    client.close();
-
     final String? errors = client.parseError(body);
     if (errors != null) {
       if (errors.contains('Network connection unreliable')) {

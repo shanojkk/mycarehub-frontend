@@ -3,6 +3,7 @@ import 'dart:async';
 
 // Package imports:
 import 'package:pro_health_360/application/core/services/custom_client.dart';
+import 'package:pro_health_360/application/redux/states/screening_tools_state.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 // Flutter imports:
@@ -20,7 +21,6 @@ import 'package:pro_health_360/application/redux/actions/update_content_like_sta
 import 'package:pro_health_360/application/redux/actions/update_pin_input_details_action.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/view_models/content/content_view_model.dart';
-import 'package:pro_health_360/domain/core/entities/core/screening_question.dart';
 import 'package:pro_health_360/domain/core/entities/core/user.dart';
 import 'package:pro_health_360/domain/core/entities/health_diary/mood_item_data.dart';
 import 'package:pro_health_360/domain/core/entities/profile/caregiver_information.dart';
@@ -603,17 +603,6 @@ void showTextSnackbar(
     );
 }
 
-/// Checks whether all questions have been answered in screening tools
-bool allQuestionsAnswered(List<ScreeningQuestion>? questions) {
-  if (questions != null) {
-    for (final ScreeningQuestion question in questions) {
-      if (question.answer == null) return false;
-    }
-    return true;
-  }
-  return false;
-}
-
 NotificationActionInfo getNotificationInfo(NotificationType notificationType) {
   switch (notificationType) {
     case NotificationType.COMMUNITIES:
@@ -681,9 +670,9 @@ String? usernameValidator(String? value) {
   final RegExp userNameRegex = RegExp(r'^[0-9a-zA-Z_]{1,30}$');
   if (value?.trim().isEmpty ?? true) {
     return 'Please enter a Username';
-  }else if (!userNameRegex.hasMatch(value!)) {
-      return errorNicknameInputString;
-    }
+  } else if (!userNameRegex.hasMatch(value!)) {
+    return errorNicknameInputString;
+  }
   return null;
 }
 
@@ -718,4 +707,20 @@ IGraphQlClient getCustomClient({
     refreshTokenEndpoint: refreshTokenEndpoint,
     userID: userID,
   );
+}
+
+// Checks whether all screening tool questions have been answered
+// returns true if all questions have been answered and false otherwise
+bool checkAllQuestionsAnswered({
+  required BuildContext context,
+  required int numberOfQuestions,
+}) {
+  final ScreeningToolsState? screeningToolsState =
+      StoreProvider.state<AppState>(context)?.miscState?.screeningToolsState;
+  if (screeningToolsState?.responses?.answersList?.length ==
+      numberOfQuestions) {
+    return true;
+  } else {
+    return false;
+  }
 }

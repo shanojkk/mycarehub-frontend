@@ -20,9 +20,7 @@ ContraceptiveState _$ContraceptiveStateFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ContraceptiveState {
-  @JsonKey(name: 'getScreeningToolQuestions')
-  ScreeningQuestionsList? get screeningQuestions =>
-      throw _privateConstructorUsedError;
+  ScreeningTool? get screeningTool => throw _privateConstructorUsedError;
   bool? get errorFetchingQuestions => throw _privateConstructorUsedError;
   bool? get errorAnsweringQuestions => throw _privateConstructorUsedError;
   bool? get timeoutFetchingQuestions => throw _privateConstructorUsedError;
@@ -40,13 +38,12 @@ abstract class $ContraceptiveStateCopyWith<$Res> {
       _$ContraceptiveStateCopyWithImpl<$Res, ContraceptiveState>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'getScreeningToolQuestions')
-          ScreeningQuestionsList? screeningQuestions,
+      {ScreeningTool? screeningTool,
       bool? errorFetchingQuestions,
       bool? errorAnsweringQuestions,
       bool? timeoutFetchingQuestions});
 
-  $ScreeningQuestionsListCopyWith<$Res>? get screeningQuestions;
+  $ScreeningToolCopyWith<$Res>? get screeningTool;
 }
 
 /// @nodoc
@@ -62,16 +59,16 @@ class _$ContraceptiveStateCopyWithImpl<$Res, $Val extends ContraceptiveState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? screeningQuestions = freezed,
+    Object? screeningTool = freezed,
     Object? errorFetchingQuestions = freezed,
     Object? errorAnsweringQuestions = freezed,
     Object? timeoutFetchingQuestions = freezed,
   }) {
     return _then(_value.copyWith(
-      screeningQuestions: freezed == screeningQuestions
-          ? _value.screeningQuestions
-          : screeningQuestions // ignore: cast_nullable_to_non_nullable
-              as ScreeningQuestionsList?,
+      screeningTool: freezed == screeningTool
+          ? _value.screeningTool
+          : screeningTool // ignore: cast_nullable_to_non_nullable
+              as ScreeningTool?,
       errorFetchingQuestions: freezed == errorFetchingQuestions
           ? _value.errorFetchingQuestions
           : errorFetchingQuestions // ignore: cast_nullable_to_non_nullable
@@ -89,14 +86,13 @@ class _$ContraceptiveStateCopyWithImpl<$Res, $Val extends ContraceptiveState>
 
   @override
   @pragma('vm:prefer-inline')
-  $ScreeningQuestionsListCopyWith<$Res>? get screeningQuestions {
-    if (_value.screeningQuestions == null) {
+  $ScreeningToolCopyWith<$Res>? get screeningTool {
+    if (_value.screeningTool == null) {
       return null;
     }
 
-    return $ScreeningQuestionsListCopyWith<$Res>(_value.screeningQuestions!,
-        (value) {
-      return _then(_value.copyWith(screeningQuestions: value) as $Val);
+    return $ScreeningToolCopyWith<$Res>(_value.screeningTool!, (value) {
+      return _then(_value.copyWith(screeningTool: value) as $Val);
     });
   }
 }
@@ -110,14 +106,13 @@ abstract class _$$_ContraceptiveStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'getScreeningToolQuestions')
-          ScreeningQuestionsList? screeningQuestions,
+      {ScreeningTool? screeningTool,
       bool? errorFetchingQuestions,
       bool? errorAnsweringQuestions,
       bool? timeoutFetchingQuestions});
 
   @override
-  $ScreeningQuestionsListCopyWith<$Res>? get screeningQuestions;
+  $ScreeningToolCopyWith<$Res>? get screeningTool;
 }
 
 /// @nodoc
@@ -131,16 +126,16 @@ class __$$_ContraceptiveStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? screeningQuestions = freezed,
+    Object? screeningTool = freezed,
     Object? errorFetchingQuestions = freezed,
     Object? errorAnsweringQuestions = freezed,
     Object? timeoutFetchingQuestions = freezed,
   }) {
     return _then(_$_ContraceptiveState(
-      screeningQuestions: freezed == screeningQuestions
-          ? _value.screeningQuestions
-          : screeningQuestions // ignore: cast_nullable_to_non_nullable
-              as ScreeningQuestionsList?,
+      screeningTool: freezed == screeningTool
+          ? _value.screeningTool
+          : screeningTool // ignore: cast_nullable_to_non_nullable
+              as ScreeningTool?,
       errorFetchingQuestions: freezed == errorFetchingQuestions
           ? _value.errorFetchingQuestions
           : errorFetchingQuestions // ignore: cast_nullable_to_non_nullable
@@ -161,7 +156,7 @@ class __$$_ContraceptiveStateCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ContraceptiveState implements _ContraceptiveState {
   _$_ContraceptiveState(
-      {@JsonKey(name: 'getScreeningToolQuestions') this.screeningQuestions,
+      {this.screeningTool,
       this.errorFetchingQuestions,
       this.errorAnsweringQuestions,
       this.timeoutFetchingQuestions});
@@ -170,8 +165,7 @@ class _$_ContraceptiveState implements _ContraceptiveState {
       _$$_ContraceptiveStateFromJson(json);
 
   @override
-  @JsonKey(name: 'getScreeningToolQuestions')
-  final ScreeningQuestionsList? screeningQuestions;
+  final ScreeningTool? screeningTool;
   @override
   final bool? errorFetchingQuestions;
   @override
@@ -181,7 +175,7 @@ class _$_ContraceptiveState implements _ContraceptiveState {
 
   @override
   String toString() {
-    return 'ContraceptiveState(screeningQuestions: $screeningQuestions, errorFetchingQuestions: $errorFetchingQuestions, errorAnsweringQuestions: $errorAnsweringQuestions, timeoutFetchingQuestions: $timeoutFetchingQuestions)';
+    return 'ContraceptiveState(screeningTool: $screeningTool, errorFetchingQuestions: $errorFetchingQuestions, errorAnsweringQuestions: $errorAnsweringQuestions, timeoutFetchingQuestions: $timeoutFetchingQuestions)';
   }
 
   @override
@@ -189,8 +183,8 @@ class _$_ContraceptiveState implements _ContraceptiveState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ContraceptiveState &&
-            (identical(other.screeningQuestions, screeningQuestions) ||
-                other.screeningQuestions == screeningQuestions) &&
+            (identical(other.screeningTool, screeningTool) ||
+                other.screeningTool == screeningTool) &&
             (identical(other.errorFetchingQuestions, errorFetchingQuestions) ||
                 other.errorFetchingQuestions == errorFetchingQuestions) &&
             (identical(
@@ -205,7 +199,7 @@ class _$_ContraceptiveState implements _ContraceptiveState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      screeningQuestions,
+      screeningTool,
       errorFetchingQuestions,
       errorAnsweringQuestions,
       timeoutFetchingQuestions);
@@ -227,8 +221,7 @@ class _$_ContraceptiveState implements _ContraceptiveState {
 
 abstract class _ContraceptiveState implements ContraceptiveState {
   factory _ContraceptiveState(
-      {@JsonKey(name: 'getScreeningToolQuestions')
-          final ScreeningQuestionsList? screeningQuestions,
+      {final ScreeningTool? screeningTool,
       final bool? errorFetchingQuestions,
       final bool? errorAnsweringQuestions,
       final bool? timeoutFetchingQuestions}) = _$_ContraceptiveState;
@@ -237,8 +230,7 @@ abstract class _ContraceptiveState implements ContraceptiveState {
       _$_ContraceptiveState.fromJson;
 
   @override
-  @JsonKey(name: 'getScreeningToolQuestions')
-  ScreeningQuestionsList? get screeningQuestions;
+  ScreeningTool? get screeningTool;
   @override
   bool? get errorFetchingQuestions;
   @override

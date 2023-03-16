@@ -44,7 +44,6 @@ class OptOutAction extends ReduxAction<AppState> {
       optOutMutation,
       variables,
     );
-    client.close();
 
     final Map<String, dynamic> payLoad = client.toMap(response);
     final String? errors = client.parseError(payLoad);

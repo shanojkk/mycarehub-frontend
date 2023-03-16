@@ -22,19 +22,25 @@ ScreeningQuestion _$ScreeningQuestionFromJson(Map<String, dynamic> json) {
 mixin _$ScreeningQuestion {
   @JsonKey(name: 'id')
   String? get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'question')
+  @JsonKey(name: 'active')
+  bool? get active => throw _privateConstructorUsedError;
+  @JsonKey(name: 'questionnaireID')
+  String? get questionnaireId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'text')
   String? get questionText => throw _privateConstructorUsedError;
-  @JsonKey(name: 'answer')
-  String? get answer => throw _privateConstructorUsedError;
-  @JsonKey(name: 'toolType')
-  String? get toolType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'questionType')
+  QuestionType? get questionType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'responseValueType')
+  QuestionResponseValueType? get responseValueType =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'required')
+  bool? get required => throw _privateConstructorUsedError;
+  @JsonKey(name: 'selectMultiple')
+  bool? get selectMultiple => throw _privateConstructorUsedError;
   @JsonKey(name: 'sequence')
   int? get sequence => throw _privateConstructorUsedError;
-  @JsonKey(name: 'responseChoices')
-  Map<String, dynamic>? get responseChoices =>
-      throw _privateConstructorUsedError;
-  @JsonKey(name: 'meta')
-  Map<String, dynamic>? get meta => throw _privateConstructorUsedError;
+  @JsonKey(name: 'choices')
+  List<QuestionChoice?>? get choices => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,13 +55,26 @@ abstract class $ScreeningQuestionCopyWith<$Res> {
       _$ScreeningQuestionCopyWithImpl<$Res, ScreeningQuestion>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'question') String? questionText,
-      @JsonKey(name: 'answer') String? answer,
-      @JsonKey(name: 'toolType') String? toolType,
-      @JsonKey(name: 'sequence') int? sequence,
-      @JsonKey(name: 'responseChoices') Map<String, dynamic>? responseChoices,
-      @JsonKey(name: 'meta') Map<String, dynamic>? meta});
+      {@JsonKey(name: 'id')
+          String? id,
+      @JsonKey(name: 'active')
+          bool? active,
+      @JsonKey(name: 'questionnaireID')
+          String? questionnaireId,
+      @JsonKey(name: 'text')
+          String? questionText,
+      @JsonKey(name: 'questionType')
+          QuestionType? questionType,
+      @JsonKey(name: 'responseValueType')
+          QuestionResponseValueType? responseValueType,
+      @JsonKey(name: 'required')
+          bool? required,
+      @JsonKey(name: 'selectMultiple')
+          bool? selectMultiple,
+      @JsonKey(name: 'sequence')
+          int? sequence,
+      @JsonKey(name: 'choices')
+          List<QuestionChoice?>? choices});
 }
 
 /// @nodoc
@@ -72,42 +91,57 @@ class _$ScreeningQuestionCopyWithImpl<$Res, $Val extends ScreeningQuestion>
   @override
   $Res call({
     Object? id = freezed,
+    Object? active = freezed,
+    Object? questionnaireId = freezed,
     Object? questionText = freezed,
-    Object? answer = freezed,
-    Object? toolType = freezed,
+    Object? questionType = freezed,
+    Object? responseValueType = freezed,
+    Object? required = freezed,
+    Object? selectMultiple = freezed,
     Object? sequence = freezed,
-    Object? responseChoices = freezed,
-    Object? meta = freezed,
+    Object? choices = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      active: freezed == active
+          ? _value.active
+          : active // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      questionnaireId: freezed == questionnaireId
+          ? _value.questionnaireId
+          : questionnaireId // ignore: cast_nullable_to_non_nullable
+              as String?,
       questionText: freezed == questionText
           ? _value.questionText
           : questionText // ignore: cast_nullable_to_non_nullable
               as String?,
-      answer: freezed == answer
-          ? _value.answer
-          : answer // ignore: cast_nullable_to_non_nullable
-              as String?,
-      toolType: freezed == toolType
-          ? _value.toolType
-          : toolType // ignore: cast_nullable_to_non_nullable
-              as String?,
+      questionType: freezed == questionType
+          ? _value.questionType
+          : questionType // ignore: cast_nullable_to_non_nullable
+              as QuestionType?,
+      responseValueType: freezed == responseValueType
+          ? _value.responseValueType
+          : responseValueType // ignore: cast_nullable_to_non_nullable
+              as QuestionResponseValueType?,
+      required: freezed == required
+          ? _value.required
+          : required // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      selectMultiple: freezed == selectMultiple
+          ? _value.selectMultiple
+          : selectMultiple // ignore: cast_nullable_to_non_nullable
+              as bool?,
       sequence: freezed == sequence
           ? _value.sequence
           : sequence // ignore: cast_nullable_to_non_nullable
               as int?,
-      responseChoices: freezed == responseChoices
-          ? _value.responseChoices
-          : responseChoices // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>?,
-      meta: freezed == meta
-          ? _value.meta
-          : meta // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>?,
+      choices: freezed == choices
+          ? _value.choices
+          : choices // ignore: cast_nullable_to_non_nullable
+              as List<QuestionChoice?>?,
     ) as $Val);
   }
 }
@@ -121,13 +155,26 @@ abstract class _$$_ScreeningQuestionCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'question') String? questionText,
-      @JsonKey(name: 'answer') String? answer,
-      @JsonKey(name: 'toolType') String? toolType,
-      @JsonKey(name: 'sequence') int? sequence,
-      @JsonKey(name: 'responseChoices') Map<String, dynamic>? responseChoices,
-      @JsonKey(name: 'meta') Map<String, dynamic>? meta});
+      {@JsonKey(name: 'id')
+          String? id,
+      @JsonKey(name: 'active')
+          bool? active,
+      @JsonKey(name: 'questionnaireID')
+          String? questionnaireId,
+      @JsonKey(name: 'text')
+          String? questionText,
+      @JsonKey(name: 'questionType')
+          QuestionType? questionType,
+      @JsonKey(name: 'responseValueType')
+          QuestionResponseValueType? responseValueType,
+      @JsonKey(name: 'required')
+          bool? required,
+      @JsonKey(name: 'selectMultiple')
+          bool? selectMultiple,
+      @JsonKey(name: 'sequence')
+          int? sequence,
+      @JsonKey(name: 'choices')
+          List<QuestionChoice?>? choices});
 }
 
 /// @nodoc
@@ -142,42 +189,57 @@ class __$$_ScreeningQuestionCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? active = freezed,
+    Object? questionnaireId = freezed,
     Object? questionText = freezed,
-    Object? answer = freezed,
-    Object? toolType = freezed,
+    Object? questionType = freezed,
+    Object? responseValueType = freezed,
+    Object? required = freezed,
+    Object? selectMultiple = freezed,
     Object? sequence = freezed,
-    Object? responseChoices = freezed,
-    Object? meta = freezed,
+    Object? choices = freezed,
   }) {
     return _then(_$_ScreeningQuestion(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      active: freezed == active
+          ? _value.active
+          : active // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      questionnaireId: freezed == questionnaireId
+          ? _value.questionnaireId
+          : questionnaireId // ignore: cast_nullable_to_non_nullable
+              as String?,
       questionText: freezed == questionText
           ? _value.questionText
           : questionText // ignore: cast_nullable_to_non_nullable
               as String?,
-      answer: freezed == answer
-          ? _value.answer
-          : answer // ignore: cast_nullable_to_non_nullable
-              as String?,
-      toolType: freezed == toolType
-          ? _value.toolType
-          : toolType // ignore: cast_nullable_to_non_nullable
-              as String?,
+      questionType: freezed == questionType
+          ? _value.questionType
+          : questionType // ignore: cast_nullable_to_non_nullable
+              as QuestionType?,
+      responseValueType: freezed == responseValueType
+          ? _value.responseValueType
+          : responseValueType // ignore: cast_nullable_to_non_nullable
+              as QuestionResponseValueType?,
+      required: freezed == required
+          ? _value.required
+          : required // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      selectMultiple: freezed == selectMultiple
+          ? _value.selectMultiple
+          : selectMultiple // ignore: cast_nullable_to_non_nullable
+              as bool?,
       sequence: freezed == sequence
           ? _value.sequence
           : sequence // ignore: cast_nullable_to_non_nullable
               as int?,
-      responseChoices: freezed == responseChoices
-          ? _value._responseChoices
-          : responseChoices // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>?,
-      meta: freezed == meta
-          ? _value._meta
-          : meta // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>?,
+      choices: freezed == choices
+          ? _value._choices
+          : choices // ignore: cast_nullable_to_non_nullable
+              as List<QuestionChoice?>?,
     ));
   }
 }
@@ -186,22 +248,17 @@ class __$$_ScreeningQuestionCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ScreeningQuestion implements _ScreeningQuestion {
   _$_ScreeningQuestion(
-      {@JsonKey(name: 'id')
-          this.id,
-      @JsonKey(name: 'question')
-          this.questionText,
-      @JsonKey(name: 'answer')
-          this.answer,
-      @JsonKey(name: 'toolType')
-          this.toolType,
-      @JsonKey(name: 'sequence')
-          this.sequence,
-      @JsonKey(name: 'responseChoices')
-          final Map<String, dynamic>? responseChoices,
-      @JsonKey(name: 'meta')
-          final Map<String, dynamic>? meta})
-      : _responseChoices = responseChoices,
-        _meta = meta;
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'active') this.active,
+      @JsonKey(name: 'questionnaireID') this.questionnaireId,
+      @JsonKey(name: 'text') this.questionText,
+      @JsonKey(name: 'questionType') this.questionType,
+      @JsonKey(name: 'responseValueType') this.responseValueType,
+      @JsonKey(name: 'required') this.required,
+      @JsonKey(name: 'selectMultiple') this.selectMultiple,
+      @JsonKey(name: 'sequence') this.sequence,
+      @JsonKey(name: 'choices') final List<QuestionChoice?>? choices})
+      : _choices = choices;
 
   factory _$_ScreeningQuestion.fromJson(Map<String, dynamic> json) =>
       _$$_ScreeningQuestionFromJson(json);
@@ -210,40 +267,42 @@ class _$_ScreeningQuestion implements _ScreeningQuestion {
   @JsonKey(name: 'id')
   final String? id;
   @override
-  @JsonKey(name: 'question')
+  @JsonKey(name: 'active')
+  final bool? active;
+  @override
+  @JsonKey(name: 'questionnaireID')
+  final String? questionnaireId;
+  @override
+  @JsonKey(name: 'text')
   final String? questionText;
   @override
-  @JsonKey(name: 'answer')
-  final String? answer;
+  @JsonKey(name: 'questionType')
+  final QuestionType? questionType;
   @override
-  @JsonKey(name: 'toolType')
-  final String? toolType;
+  @JsonKey(name: 'responseValueType')
+  final QuestionResponseValueType? responseValueType;
+  @override
+  @JsonKey(name: 'required')
+  final bool? required;
+  @override
+  @JsonKey(name: 'selectMultiple')
+  final bool? selectMultiple;
   @override
   @JsonKey(name: 'sequence')
   final int? sequence;
-  final Map<String, dynamic>? _responseChoices;
+  final List<QuestionChoice?>? _choices;
   @override
-  @JsonKey(name: 'responseChoices')
-  Map<String, dynamic>? get responseChoices {
-    final value = _responseChoices;
+  @JsonKey(name: 'choices')
+  List<QuestionChoice?>? get choices {
+    final value = _choices;
     if (value == null) return null;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(value);
-  }
-
-  final Map<String, dynamic>? _meta;
-  @override
-  @JsonKey(name: 'meta')
-  Map<String, dynamic>? get meta {
-    final value = _meta;
-    if (value == null) return null;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(value);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'ScreeningQuestion(id: $id, questionText: $questionText, answer: $answer, toolType: $toolType, sequence: $sequence, responseChoices: $responseChoices, meta: $meta)';
+    return 'ScreeningQuestion(id: $id, active: $active, questionnaireId: $questionnaireId, questionText: $questionText, questionType: $questionType, responseValueType: $responseValueType, required: $required, selectMultiple: $selectMultiple, sequence: $sequence, choices: $choices)';
   }
 
   @override
@@ -252,16 +311,22 @@ class _$_ScreeningQuestion implements _ScreeningQuestion {
         (other.runtimeType == runtimeType &&
             other is _$_ScreeningQuestion &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.active, active) || other.active == active) &&
+            (identical(other.questionnaireId, questionnaireId) ||
+                other.questionnaireId == questionnaireId) &&
             (identical(other.questionText, questionText) ||
                 other.questionText == questionText) &&
-            (identical(other.answer, answer) || other.answer == answer) &&
-            (identical(other.toolType, toolType) ||
-                other.toolType == toolType) &&
+            (identical(other.questionType, questionType) ||
+                other.questionType == questionType) &&
+            (identical(other.responseValueType, responseValueType) ||
+                other.responseValueType == responseValueType) &&
+            (identical(other.required, required) ||
+                other.required == required) &&
+            (identical(other.selectMultiple, selectMultiple) ||
+                other.selectMultiple == selectMultiple) &&
             (identical(other.sequence, sequence) ||
                 other.sequence == sequence) &&
-            const DeepCollectionEquality()
-                .equals(other._responseChoices, _responseChoices) &&
-            const DeepCollectionEquality().equals(other._meta, _meta));
+            const DeepCollectionEquality().equals(other._choices, _choices));
   }
 
   @JsonKey(ignore: true)
@@ -269,12 +334,15 @@ class _$_ScreeningQuestion implements _ScreeningQuestion {
   int get hashCode => Object.hash(
       runtimeType,
       id,
+      active,
+      questionnaireId,
       questionText,
-      answer,
-      toolType,
+      questionType,
+      responseValueType,
+      required,
+      selectMultiple,
       sequence,
-      const DeepCollectionEquality().hash(_responseChoices),
-      const DeepCollectionEquality().hash(_meta));
+      const DeepCollectionEquality().hash(_choices));
 
   @JsonKey(ignore: true)
   @override
@@ -295,18 +363,24 @@ abstract class _ScreeningQuestion implements ScreeningQuestion {
   factory _ScreeningQuestion(
       {@JsonKey(name: 'id')
           final String? id,
-      @JsonKey(name: 'question')
+      @JsonKey(name: 'active')
+          final bool? active,
+      @JsonKey(name: 'questionnaireID')
+          final String? questionnaireId,
+      @JsonKey(name: 'text')
           final String? questionText,
-      @JsonKey(name: 'answer')
-          final String? answer,
-      @JsonKey(name: 'toolType')
-          final String? toolType,
+      @JsonKey(name: 'questionType')
+          final QuestionType? questionType,
+      @JsonKey(name: 'responseValueType')
+          final QuestionResponseValueType? responseValueType,
+      @JsonKey(name: 'required')
+          final bool? required,
+      @JsonKey(name: 'selectMultiple')
+          final bool? selectMultiple,
       @JsonKey(name: 'sequence')
           final int? sequence,
-      @JsonKey(name: 'responseChoices')
-          final Map<String, dynamic>? responseChoices,
-      @JsonKey(name: 'meta')
-          final Map<String, dynamic>? meta}) = _$_ScreeningQuestion;
+      @JsonKey(name: 'choices')
+          final List<QuestionChoice?>? choices}) = _$_ScreeningQuestion;
 
   factory _ScreeningQuestion.fromJson(Map<String, dynamic> json) =
       _$_ScreeningQuestion.fromJson;
@@ -315,23 +389,32 @@ abstract class _ScreeningQuestion implements ScreeningQuestion {
   @JsonKey(name: 'id')
   String? get id;
   @override
-  @JsonKey(name: 'question')
+  @JsonKey(name: 'active')
+  bool? get active;
+  @override
+  @JsonKey(name: 'questionnaireID')
+  String? get questionnaireId;
+  @override
+  @JsonKey(name: 'text')
   String? get questionText;
   @override
-  @JsonKey(name: 'answer')
-  String? get answer;
+  @JsonKey(name: 'questionType')
+  QuestionType? get questionType;
   @override
-  @JsonKey(name: 'toolType')
-  String? get toolType;
+  @JsonKey(name: 'responseValueType')
+  QuestionResponseValueType? get responseValueType;
+  @override
+  @JsonKey(name: 'required')
+  bool? get required;
+  @override
+  @JsonKey(name: 'selectMultiple')
+  bool? get selectMultiple;
   @override
   @JsonKey(name: 'sequence')
   int? get sequence;
   @override
-  @JsonKey(name: 'responseChoices')
-  Map<String, dynamic>? get responseChoices;
-  @override
-  @JsonKey(name: 'meta')
-  Map<String, dynamic>? get meta;
+  @JsonKey(name: 'choices')
+  List<QuestionChoice?>? get choices;
   @override
   @JsonKey(ignore: true)
   _$$_ScreeningQuestionCopyWith<_$_ScreeningQuestion> get copyWith =>

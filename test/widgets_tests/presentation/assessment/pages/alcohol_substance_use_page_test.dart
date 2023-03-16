@@ -21,6 +21,12 @@ void main() {
 
   group('AlcoholSubstanceUsePage', () {
     late Store<AppState> store;
+    final MockShortGraphQlClient mockShortSILGraphQlClient =
+        MockShortGraphQlClient.withResponse(
+      'idToken',
+      'endpoint',
+      Response(json.encode(alcoholMock), 200),
+    );
 
     setUp(() async {
       await Firebase.initializeApp();
@@ -31,7 +37,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: MockGraphQlClient(),
+        client: mockShortSILGraphQlClient,
         widget: const AlcoholSubstanceUsePage(),
       );
       await tester.pumpAndSettle();
@@ -65,7 +71,7 @@ void main() {
                 'getScreeningToolQuestions': <dynamic>[]
               }
             }),
-            200,
+            400,
           ),
         ),
         widget: const AlcoholSubstanceUsePage(),
@@ -82,7 +88,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: MockGraphQlClient(),
+        client: mockShortSILGraphQlClient,
         widget: const AlcoholSubstanceUsePage(),
       );
       await tester.pumpAndSettle();

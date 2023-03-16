@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:pro_health_360/application/redux/actions/screening_tools/update_screening_tools_state_action.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
@@ -20,39 +21,40 @@ import 'package:pro_health_360/presentation/router/routes.dart';
 
 // Project imports:
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 
 class ScreeningToolsCarousel extends StatelessWidget {
   const ScreeningToolsCarousel();
 
-  String getNextNavigationRoute(ScreeningToolsType toolsType) {
-    switch (toolsType) {
-      case ScreeningToolsType.VIOLENCE_ASSESSMENT:
-        return AppRoutes.violenceAssessmentPage;
-
-      case ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT:
-        return AppRoutes.contraceptiveAssessmentPage;
-
-      case ScreeningToolsType.TB_ASSESSMENT:
+  String getNextNavigationRoute(String toolName) {
+    switch (toolName) {
+      case 'TB Assessment':
         return AppRoutes.tuberculosisAssessmentPage;
 
-      default:
+      case 'Violence Assessment':
+        return AppRoutes.violenceAssessmentPage;
+
+      case 'Alcohol and Substance Assessment':
         return AppRoutes.alcoholSubstanceUsePage;
+
+      default:
+        return AppRoutes.contraceptiveAssessmentPage;
     }
   }
 
-  Key getSCreeningToolsBeginKey(ScreeningToolsType toolsType) {
-    switch (toolsType) {
-      case ScreeningToolsType.VIOLENCE_ASSESSMENT:
+  Key getScreeningToolsButtonKey(String toolName) {
+    switch (toolName) {
+      case 'Violence Assessment':
         return violenceKey;
 
-      case ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT:
-        return contraceptiveKey;
+      case 'Alcohol and Substance Assessment':
+        return alcoholUseKey;
 
-      case ScreeningToolsType.TB_ASSESSMENT:
+      case 'TB Assessment':
         return tuberculosisKey;
 
       default:
-        return alcoholUseKey;
+        return contraceptiveKey;
     }
   }
 
@@ -65,7 +67,7 @@ class ScreeningToolsCarousel extends StatelessWidget {
       onInit: (Store<AppState> store) async {
         store.dispatch(
           FetchAvailableScreeningToolsAction(
-            context: context,
+            client: AppWrapperBase.of(context)!.graphQLClient,
           ),
         );
       },
@@ -116,7 +118,6 @@ class ScreeningToolsCarousel extends StatelessWidget {
                           height: 170,
                           child: ListView.builder(
                             shrinkWrap: true,
-                            cacheExtent: 4,
                             scrollDirection: Axis.horizontal,
                             itemCount: itemCount,
                             itemBuilder: (BuildContext context, int index) {
@@ -124,28 +125,37 @@ class ScreeningToolsCarousel extends StatelessWidget {
                                   .availableScreeningTools!
                                   .availableScreeningTools![index];
 
-                              final ScreeningToolsType toolsType =
-                                  screeningTool.toolType!;
-
                               return HomePageCarouselItem(
                                 type: HomePageCarouselItemType.SCREENING_TOOL,
-                                title: screeningTool.title!,
-                                description: screeningTool.description!,
+                                title: screeningTool.questionnaire!.name!,
+                                description:
+                                    screeningTool.questionnaire!.description!,
                                 onTap: () async {
+                                  StoreProvider.dispatch(
+                                    context,
+                                    UpdateScreeningToolsState(
+                                      selectedTool: screeningTool,
+                                    ),
+                                  );
+                                  Navigator.of(context).pushNamed(
+                                    getNextNavigationRoute(
+                                      screeningTool.questionnaire?.name ?? '',
+                                    ),
+                                  );
                                   AnalyticsService().logEvent(
                                     name: viewScreeningToolEvent,
                                     eventType: AnalyticsEventType.NAVIGATION,
                                     parameters: <String, String>{
-                                      'screeningToolType': toolsType.name
+                                      'screeningToolType':
+                                          screeningTool.questionnaire?.name ??
+                                              ''
                                     },
-                                  );
-                                  Navigator.of(context).pushNamed(
-                                    getNextNavigationRoute(toolsType),
                                   );
                                 },
                                 buttonTitle: beginString,
-                                beginButtonKey:
-                                    getSCreeningToolsBeginKey(toolsType),
+                                beginButtonKey: getScreeningToolsButtonKey(
+                                  screeningTool.questionnaire?.name ?? '',
+                                ),
                               );
                             },
                           ),

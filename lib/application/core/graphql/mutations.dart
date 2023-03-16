@@ -126,8 +126,8 @@ mutation optOut($phoneNumber: String!, $flavour: Flavour!) {
 ''';
 
 const String answerScreeningToolQuestionMutation = r'''
-mutation answerScreeningToolQuestion($screeningToolResponses: [ScreeningToolQuestionResponseInput!]!){
-  answerScreeningToolQuestion(screeningToolResponses: $screeningToolResponses)
+mutation respondToScreeningTool($input: QuestionnaireScreeningToolResponseInput!) {
+  respondToScreeningTool(input: $input)
 }
 ''';
 

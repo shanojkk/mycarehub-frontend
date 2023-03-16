@@ -59,29 +59,7 @@ void main() {
             MockShortGraphQlClient.withResponse(
           'idToken',
           'endpoint',
-          Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{
-                'getAvailableScreeningToolQuestions': <dynamic>[
-                  <String, dynamic>{'toolType': 'CONTRACEPTIVE_ASSESSMENT'},
-                ],
-                'getScreeningToolQuestions': <dynamic>[
-                  <String, dynamic>{
-                    'id': 'some_id',
-                    'question': 'some question here',
-                    'toolType': 'CONTRACEPTIVE_ASSESSMENT',
-                    'responseType': 'INTEGER',
-                    'responseChoices': <String, dynamic>{'0': 'Yes', '1': 'No'},
-                    'responseCategory': 'SINGLE_CHOICE',
-                    'sequence': 0,
-                    'active': true,
-                    'meta': <String, dynamic>{'violence_type': 'EMOTIONAL'}
-                  },
-                ]
-              }
-            }),
-            200,
-          ),
+          Response(json.encode(contraceptivesMock), 200),
         );
         await buildTestWidget(
           tester: tester,
@@ -112,29 +90,7 @@ void main() {
             MockShortGraphQlClient.withResponse(
           'idToken',
           'endpoint',
-          Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{
-                'getAvailableScreeningToolQuestions': <dynamic>[
-                  <String, dynamic>{'toolType': 'TB_ASSESSMENT'},
-                ],
-                'getScreeningToolQuestions': <dynamic>[
-                  <String, dynamic>{
-                    'id': 'some_id',
-                    'question': 'some question here',
-                    'toolType': 'TB_ASSESSMENT',
-                    'responseType': 'INTEGER',
-                    'responseChoices': <String, dynamic>{'0': 'Yes', '1': 'No'},
-                    'responseCategory': 'SINGLE_CHOICE',
-                    'sequence': 0,
-                    'active': true,
-                    'meta': <String, dynamic>{'violence_type': 'EMOTIONAL'}
-                  },
-                ]
-              }
-            }),
-            200,
-          ),
+          Response(json.encode(tbMock), 200),
         );
         await buildTestWidget(
           tester: tester,
@@ -165,29 +121,7 @@ void main() {
             MockShortGraphQlClient.withResponse(
           'idToken',
           'endpoint',
-          Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{
-                'getAvailableScreeningToolQuestions': <dynamic>[
-                  <String, dynamic>{'toolType': 'ALCOHOL_SUBSTANCE_ASSESSMENT'}
-                ],
-                'getScreeningToolQuestions': <dynamic>[
-                  <String, dynamic>{
-                    'id': 'some_id',
-                    'question': 'some question here',
-                    'toolType': 'ALCOHOL_SUBSTANCE_ASSESSMENT',
-                    'responseType': 'INTEGER',
-                    'responseChoices': <String, dynamic>{'0': 'Yes', '1': 'No'},
-                    'responseCategory': 'SINGLE_CHOICE',
-                    'sequence': 0,
-                    'active': true,
-                    'meta': <String, dynamic>{'violence_type': 'EMOTIONAL'}
-                  },
-                ]
-              }
-            }),
-            200,
-          ),
+          Response(json.encode(alcoholMock), 200),
         );
         await buildTestWidget(
           tester: tester,

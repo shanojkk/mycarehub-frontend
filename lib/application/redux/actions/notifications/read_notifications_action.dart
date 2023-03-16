@@ -38,7 +38,6 @@ class ReadNotificationsAction extends ReduxAction<AppState> {
     );
 
     final ProcessedResponse processedResponse = processHttpResponse(result);
-    client.close();
 
     if (processedResponse.ok) {
       final Map<String, dynamic> body = client.toMap(result);

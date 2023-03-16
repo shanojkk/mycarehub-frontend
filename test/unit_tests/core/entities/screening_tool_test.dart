@@ -3,9 +3,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:pro_health_360/domain/core/entities/core/screening_tool.dart';
 
 void main() {
-  test('initial values', () {
+  test('Screening tool values', () {
     final ScreeningTool tool = ScreeningTool.initial();
-    expect(tool.title, UNKNOWN);
-    expect(tool.description, UNKNOWN);
+    expect(tool.id, UNKNOWN);
+    expect(tool.questionnaireId, UNKNOWN);
   });
 }

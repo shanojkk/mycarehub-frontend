@@ -9,22 +9,49 @@ part of 'screening_question.dart';
 _$_ScreeningQuestion _$$_ScreeningQuestionFromJson(Map<String, dynamic> json) =>
     _$_ScreeningQuestion(
       id: json['id'] as String?,
-      questionText: json['question'] as String?,
-      answer: json['answer'] as String?,
-      toolType: json['toolType'] as String?,
+      active: json['active'] as bool?,
+      questionnaireId: json['questionnaireID'] as String?,
+      questionText: json['text'] as String?,
+      questionType:
+          $enumDecodeNullable(_$QuestionTypeEnumMap, json['questionType']),
+      responseValueType: $enumDecodeNullable(
+          _$QuestionResponseValueTypeEnumMap, json['responseValueType']),
+      required: json['required'] as bool?,
+      selectMultiple: json['selectMultiple'] as bool?,
       sequence: json['sequence'] as int?,
-      responseChoices: json['responseChoices'] as Map<String, dynamic>?,
-      meta: json['meta'] as Map<String, dynamic>?,
+      choices: (json['choices'] as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : QuestionChoice.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_ScreeningQuestionToJson(
         _$_ScreeningQuestion instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'question': instance.questionText,
-      'answer': instance.answer,
-      'toolType': instance.toolType,
+      'active': instance.active,
+      'questionnaireID': instance.questionnaireId,
+      'text': instance.questionText,
+      'questionType': _$QuestionTypeEnumMap[instance.questionType],
+      'responseValueType':
+          _$QuestionResponseValueTypeEnumMap[instance.responseValueType],
+      'required': instance.required,
+      'selectMultiple': instance.selectMultiple,
       'sequence': instance.sequence,
-      'responseChoices': instance.responseChoices,
-      'meta': instance.meta,
+      'choices': instance.choices,
     };
+
+const _$QuestionTypeEnumMap = {
+  QuestionType.OPEN_ENDED: 'OPEN_ENDED',
+  QuestionType.CLOSE_ENDED: 'CLOSE_ENDED',
+};
+
+const _$QuestionResponseValueTypeEnumMap = {
+  QuestionResponseValueType.STRING: 'STRING',
+  QuestionResponseValueType.NUMBER: 'NUMBER',
+  QuestionResponseValueType.BOOLEAN: 'BOOLEAN',
+  QuestionResponseValueType.TIME: 'TIME',
+  QuestionResponseValueType.DATE: 'DATE',
+  QuestionResponseValueType.DATE_TIME: 'DATE_TIME',
+};

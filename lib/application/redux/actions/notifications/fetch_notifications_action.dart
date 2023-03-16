@@ -62,7 +62,6 @@ class FetchNotificationsAction extends ReduxAction<AppState> {
 
     if (processedResponse.ok) {
       final Map<String, dynamic> body = client.toMap(response);
-      client.close();
 
       final String? errors = client.parseError(body);
 

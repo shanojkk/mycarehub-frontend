@@ -58,7 +58,6 @@ class RescheduleAppointmentAction extends ReduxAction<AppState> {
       rescheduleAppointmentMutation,
       variables,
     );
-    client.close();
 
     final Map<String, dynamic> payLoad = client.toMap(response);
     final String? error = parseError(payLoad);

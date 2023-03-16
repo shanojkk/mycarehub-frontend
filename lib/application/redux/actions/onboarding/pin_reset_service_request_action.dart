@@ -54,7 +54,7 @@ class PINResetServiceRequestAction extends ReduxAction<AppState> {
       method: httpPOST,
       variables: variables,
     );
-    client.close();
+
     final Map<String, dynamic> payLoad = client.toMap(response);
     final ProcessedResponse processedResponse = processHttpResponse(response);
     if (processedResponse.ok) {

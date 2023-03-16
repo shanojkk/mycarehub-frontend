@@ -1,9 +1,9 @@
+import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:pro_health_360/application/core/services/analytics_service.dart';
-import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/actions/screening_tools/answer_screening_tools_action.dart';
 import 'package:pro_health_360/application/redux/actions/screening_tools/fetch_screening_questions_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
@@ -28,18 +28,6 @@ class TuberculosisAssessmentPage extends StatefulWidget {
 
 class _TuberculosisAssessmentPageState
     extends State<TuberculosisAssessmentPage> {
-  @override
-  void didChangeDependencies() {
-    StoreProvider.dispatch(
-      context,
-      FetchScreeningToolsQuestionsAction(
-        screeningToolsType: ScreeningToolsType.TB_ASSESSMENT,
-        client: AppWrapperBase.of(context)!.graphQLClient,
-      ),
-    );
-    super.didChangeDependencies();
-  }
-
   Future<bool> onWillPop() async {
     // log abandoning assessment tool
     await AnalyticsService().logEvent(
@@ -59,6 +47,21 @@ class _TuberculosisAssessmentPageState
       converter: (Store<AppState> store) {
         return ScreeningToolsViewModel.fromStore(store);
       },
+      onInit: (Store<AppState> store) async {
+        await store.dispatch(
+          FetchScreeningToolsQuestionsAction(
+            screeningToolId:
+                store.state.miscState?.screeningToolsState?.selectedTool?.id ??
+                    '',
+            screeningToolName: store.state.miscState?.screeningToolsState
+                    ?.selectedTool?.questionnaire?.name ??
+                '',
+            client: AppWrapperBase.of(context)!.graphQLClient,
+          ),
+        );
+
+        setState(() {});
+      },
       builder: (BuildContext context, ScreeningToolsViewModel vm) {
         return Scaffold(
           appBar: CustomAppBar(
@@ -74,7 +77,7 @@ class _TuberculosisAssessmentPageState
                     padding: const EdgeInsets.all(20),
                     child: const PlatformLoader(),
                   )
-                : vm.tBState?.screeningQuestions?.screeningQuestionsList
+                : vm.tBState?.screeningTool?.questionnaire?.screeningQuestions
                             ?.isEmpty ??
                         true
                     ? Container()
@@ -101,12 +104,7 @@ class _TuberculosisAssessmentPageState
                               mediumVerticalSizedBox,
                               // questions
                               ScreeningToolQuestionWidget(
-                                screeningToolsQuestions: vm
-                                    .tBState!
-                                    .screeningQuestions!
-                                    .screeningQuestionsList!,
-                                screeningToolsType:
-                                    ScreeningToolsType.TB_ASSESSMENT,
+                                screeningTool: vm.tBState!.screeningTool!,
                               ),
                               size40VerticalSizedBox,
                               const SizedBox(height: 80),
@@ -126,19 +124,18 @@ class _TuberculosisAssessmentPageState
                   child: MyAfyaHubPrimaryButton(
                     buttonKey: tuberculosisAssessmentFeedbackButtonKey,
                     onPressed: () {
-                      bool areAllQuestionsAnswered = false;
-                      setState(() {
-                        areAllQuestionsAnswered = allQuestionsAnswered(
-                          vm.tBState?.screeningQuestions
-                              ?.screeningQuestionsList,
-                        );
-                      });
-
-                      if (areAllQuestionsAnswered) {
+                      if (checkAllQuestionsAnswered(
+                        context: context,
+                        numberOfQuestions: vm.tBState?.screeningTool
+                                ?.questionnaire?.screeningQuestions?.length ??
+                            0,
+                      )) {
                         StoreProvider.dispatch(
                           context,
                           AnswerScreeningToolsAction(
                             client: AppWrapperBase.of(context)!.graphQLClient,
+                            screeningToolId: vm.selectedTool?.id ?? '',
+                            responses: vm.responses!,
                             screeningToolsType:
                                 ScreeningToolsType.TB_ASSESSMENT,
                           ),

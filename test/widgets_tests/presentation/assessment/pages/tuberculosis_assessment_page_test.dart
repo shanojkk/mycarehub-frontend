@@ -21,6 +21,12 @@ import '../../../../test_helpers.dart';
 void main() {
   group('TuberculosisAssessmentPage', () {
     late Store<AppState> store;
+    final MockShortGraphQlClient mockShortSILGraphQlClient =
+        MockShortGraphQlClient.withResponse(
+      'idToken',
+      'endpoint',
+      Response(json.encode(tbMock), 200),
+    );
 
     setUp(() async {
       setupFirebaseAnalyticsMocks();
@@ -32,7 +38,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: MockGraphQlClient(),
+        client: mockShortSILGraphQlClient,
         widget: const TuberculosisAssessmentPage(),
       );
 
@@ -64,7 +70,7 @@ void main() {
                 'getScreeningToolQuestions': <dynamic>[]
               }
             }),
-            200,
+            400,
           ),
         ),
         widget: const TuberculosisAssessmentPage(),
@@ -81,7 +87,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: MockGraphQlClient(),
+        client: mockShortSILGraphQlClient,
         widget: const TuberculosisAssessmentPage(),
       );
 

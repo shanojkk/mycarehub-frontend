@@ -77,7 +77,7 @@ class SetNicknameAction extends ReduxAction<AppState> {
 
     if (processed.ok) {
       final Map<String, dynamic> body = client.toMap(result);
-      client.close();
+
       final String? errors = client.parseError(body);
 
       if (errors != null) {

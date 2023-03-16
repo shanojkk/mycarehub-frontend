@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:pro_health_360/domain/core/entities/core/screening_questions_list.dart';
+import 'package:pro_health_360/domain/core/entities/core/screening_tool.dart';
 
 part 'contraceptive_state.g.dart';
 part 'contraceptive_state.freezed.dart';
@@ -7,8 +7,7 @@ part 'contraceptive_state.freezed.dart';
 @freezed
 class ContraceptiveState with _$ContraceptiveState {
   factory ContraceptiveState({
-    @JsonKey(name: 'getScreeningToolQuestions')
-        ScreeningQuestionsList? screeningQuestions,
+    ScreeningTool? screeningTool,
     bool? errorFetchingQuestions,
     bool? errorAnsweringQuestions,
     bool? timeoutFetchingQuestions,
@@ -18,7 +17,7 @@ class ContraceptiveState with _$ContraceptiveState {
       _$ContraceptiveStateFromJson(json);
 
   factory ContraceptiveState.initial() => ContraceptiveState(
-        screeningQuestions: ScreeningQuestionsList.initial(),
+        screeningTool: ScreeningTool.initial(),
         errorFetchingQuestions: false,
         timeoutFetchingQuestions: false,
         errorAnsweringQuestions: false,

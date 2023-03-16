@@ -1,11 +1,11 @@
+import 'package:pro_health_360/application/core/services/utils.dart';
+import 'package:pro_health_360/application/redux/actions/screening_tools/answer_screening_tools_action.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 
 import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:pro_health_360/application/core/services/analytics_service.dart';
-import 'package:pro_health_360/application/core/services/utils.dart';
-import 'package:pro_health_360/application/redux/actions/screening_tools/answer_screening_tools_action.dart';
 import 'package:pro_health_360/application/redux/actions/screening_tools/fetch_screening_questions_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
@@ -29,19 +29,8 @@ class AlcoholSubstanceUsePage extends StatefulWidget {
 }
 
 class _AlcoholSubstanceUsePageState extends State<AlcoholSubstanceUsePage> {
-  @override
-  void didChangeDependencies() {
-    StoreProvider.dispatch(
-      context,
-      FetchScreeningToolsQuestionsAction(
-        screeningToolsType: ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT,
-        client: AppWrapperBase.of(context)!.graphQLClient,
-      ),
-    );
-    super.didChangeDependencies();
-  }
-
   Future<bool> onWillPop() async {
+    Navigator.of(context).pop();
     // log abandoning assessment tool
     await AnalyticsService().logEvent(
       name: abandonScreeningToolEvent,
@@ -51,7 +40,6 @@ class _AlcoholSubstanceUsePageState extends State<AlcoholSubstanceUsePage> {
             ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT.name
       },
     );
-    Navigator.of(context).pop();
     return true;
   }
 
@@ -60,6 +48,19 @@ class _AlcoholSubstanceUsePageState extends State<AlcoholSubstanceUsePage> {
     return StoreConnector<AppState, ScreeningToolsViewModel>(
       converter: (Store<AppState> store) {
         return ScreeningToolsViewModel.fromStore(store);
+      },
+      onInit: (Store<AppState> store) {
+        store.dispatch(
+          FetchScreeningToolsQuestionsAction(
+            screeningToolId:
+                store.state.miscState?.screeningToolsState?.selectedTool?.id ??
+                    '',
+            screeningToolName: store.state.miscState?.screeningToolsState
+                    ?.selectedTool?.questionnaire?.name ??
+                '',
+            client: AppWrapperBase.of(context)!.graphQLClient,
+          ),
+        );
       },
       builder: (BuildContext context, ScreeningToolsViewModel vm) {
         return Scaffold(
@@ -76,8 +77,8 @@ class _AlcoholSubstanceUsePageState extends State<AlcoholSubstanceUsePage> {
                     padding: const EdgeInsets.all(20),
                     child: const PlatformLoader(),
                   )
-                : vm.alcoholSubstanceUseState?.screeningQuestions
-                            ?.screeningQuestionsList?.isEmpty ??
+                : vm.alcoholSubstanceUseState?.screeningTool?.questionnaire
+                            ?.screeningQuestions?.isEmpty ??
                         true
                     ? Container()
                     : SingleChildScrollView(
@@ -96,12 +97,8 @@ class _AlcoholSubstanceUsePageState extends State<AlcoholSubstanceUsePage> {
                               mediumVerticalSizedBox,
                               // questions
                               ScreeningToolQuestionWidget(
-                                screeningToolsQuestions: vm
-                                    .alcoholSubstanceUseState!
-                                    .screeningQuestions!
-                                    .screeningQuestionsList!,
-                                screeningToolsType: ScreeningToolsType
-                                    .ALCOHOL_SUBSTANCE_ASSESSMENT,
+                                screeningTool:
+                                    vm.alcoholSubstanceUseState!.screeningTool!,
                               ),
                               const AlcoholAssessmentInformation(),
                               size40VerticalSizedBox,
@@ -122,20 +119,22 @@ class _AlcoholSubstanceUsePageState extends State<AlcoholSubstanceUsePage> {
                   child: MyAfyaHubPrimaryButton(
                     buttonKey: alcoholSubstanceFeedbackButtonKey,
                     onPressed: () {
-                      bool areAllQuestionsAnswered = false;
-                      setState(
-                        () {
-                          areAllQuestionsAnswered = allQuestionsAnswered(
-                            vm.alcoholSubstanceUseState?.screeningQuestions
-                                ?.screeningQuestionsList,
-                          );
-                        },
-                      );
-                      if (areAllQuestionsAnswered) {
+                      if (checkAllQuestionsAnswered(
+                        context: context,
+                        numberOfQuestions: vm
+                                .alcoholSubstanceUseState
+                                ?.screeningTool
+                                ?.questionnaire
+                                ?.screeningQuestions
+                                ?.length ??
+                            0,
+                      )) {
                         StoreProvider.dispatch(
                           context,
                           AnswerScreeningToolsAction(
                             client: AppWrapperBase.of(context)!.graphQLClient,
+                            screeningToolId: vm.selectedTool?.id ?? '',
+                            responses: vm.responses!,
                             screeningToolsType:
                                 ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT,
                           ),

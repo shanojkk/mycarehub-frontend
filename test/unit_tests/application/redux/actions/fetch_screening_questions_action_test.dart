@@ -8,13 +8,16 @@ import 'package:pro_health_360/application/redux/actions/screening_tools/fetch_s
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/states/connectivity_state.dart';
-import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 
 import '../../../../mocks.dart';
 
 void main() {
   group('FetchViolenceScreeningQuestionsAction', () {
     late StoreTester<AppState> storeTester;
+    const String tbToolName = 'TB Assessment';
+    const String violenceToolName = 'Violence Assessment';
+    const String alcoholToolName = 'Alcohol and Substance Assessment';
+    const String contraceptiveToolName = 'Contraceptive Assessment';
 
     setUp(() {
       storeTester = StoreTester<AppState>(
@@ -28,7 +31,8 @@ void main() {
       storeTester.dispatch(
         FetchScreeningToolsQuestionsAction(
           client: MockGraphQlClient(),
-          screeningToolsType: ScreeningToolsType.VIOLENCE_ASSESSMENT,
+          screeningToolId: 'some-id',
+          screeningToolName: tbToolName,
         ),
       );
 
@@ -45,7 +49,8 @@ void main() {
       storeTester.dispatch(
         FetchScreeningToolsQuestionsAction(
           client: MockGraphQlClient(),
-          screeningToolsType: ScreeningToolsType.VIOLENCE_ASSESSMENT,
+          screeningToolId: 'some-id',
+          screeningToolName: violenceToolName,
         ),
       );
 
@@ -66,7 +71,8 @@ void main() {
       storeTester.dispatch(
         FetchScreeningToolsQuestionsAction(
           client: MockGraphQlClient(),
-          screeningToolsType: ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT,
+          screeningToolId: 'some-id',
+          screeningToolName: contraceptiveToolName,
         ),
       );
 
@@ -86,7 +92,8 @@ void main() {
       storeTester.dispatch(
         FetchScreeningToolsQuestionsAction(
           client: MockGraphQlClient(),
-          screeningToolsType: ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT,
+          screeningToolId: 'some-id',
+          screeningToolName: alcoholToolName,
         ),
       );
 
@@ -106,7 +113,8 @@ void main() {
       storeTester.dispatch(
         FetchScreeningToolsQuestionsAction(
           client: MockGraphQlClient(),
-          screeningToolsType: ScreeningToolsType.TB_ASSESSMENT,
+          screeningToolId: 'some-id',
+          screeningToolName: tbToolName,
         ),
       );
 
@@ -132,13 +140,14 @@ void main() {
             Response(
               jsonEncode(<String, dynamic>{
                 'data': <String, dynamic>{
-                  'getScreeningToolQuestions': <dynamic>[]
+                  'getScreeningToolByID': <String, dynamic>{}
                 }
               }),
               200,
             ),
           ),
-          screeningToolsType: ScreeningToolsType.VIOLENCE_ASSESSMENT,
+          screeningToolId: 'some-id',
+          screeningToolName: violenceToolName,
         ),
       );
 
@@ -164,13 +173,14 @@ void main() {
             Response(
               jsonEncode(<String, dynamic>{
                 'data': <String, dynamic>{
-                  'getScreeningToolQuestions': <dynamic>[]
+                  'getScreeningToolByID': <String, dynamic>{}
                 }
               }),
               200,
             ),
           ),
-          screeningToolsType: ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT,
+          screeningToolId: 'some-id',
+          screeningToolName: contraceptiveToolName,
         ),
       );
 
@@ -195,13 +205,14 @@ void main() {
             Response(
               jsonEncode(<String, dynamic>{
                 'data': <String, dynamic>{
-                  'getScreeningToolQuestions': <dynamic>[]
+                  'getScreeningToolByID': <String, dynamic>{}
                 }
               }),
               200,
             ),
           ),
-          screeningToolsType: ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT,
+          screeningToolId: 'some-id',
+          screeningToolName: alcoholToolName,
         ),
       );
 
@@ -226,13 +237,14 @@ void main() {
             Response(
               jsonEncode(<String, dynamic>{
                 'data': <String, dynamic>{
-                  'getScreeningToolQuestions': <dynamic>[]
+                  'getScreeningToolByID': <String, dynamic>{}
                 }
               }),
               200,
             ),
           ),
-          screeningToolsType: ScreeningToolsType.TB_ASSESSMENT,
+          screeningToolId: 'some-id',
+          screeningToolName: tbToolName,
         ),
       );
 
@@ -261,7 +273,8 @@ void main() {
               500,
             ),
           ),
-          screeningToolsType: ScreeningToolsType.VIOLENCE_ASSESSMENT,
+          screeningToolId: 'some-id',
+          screeningToolName: violenceToolName,
         ),
       );
 
@@ -286,7 +299,8 @@ void main() {
               500,
             ),
           ),
-          screeningToolsType: ScreeningToolsType.TB_ASSESSMENT,
+          screeningToolId: 'some-id',
+          screeningToolName: tbToolName,
         ),
       );
 
@@ -312,7 +326,8 @@ void main() {
               500,
             ),
           ),
-          screeningToolsType: ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT,
+          screeningToolId: 'some-id',
+          screeningToolName: contraceptiveToolName,
         ),
       );
 
@@ -337,7 +352,8 @@ void main() {
               500,
             ),
           ),
-          screeningToolsType: ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT,
+          screeningToolId: 'some-id',
+          screeningToolName: alcoholToolName,
         ),
       );
 
@@ -351,7 +367,8 @@ void main() {
       );
     });
 
-    test('should throw error for violence if api reponse is not 200', () async {
+    test('should throw error for violence if api response is not 200',
+        () async {
       storeTester.dispatch(
         FetchScreeningToolsQuestionsAction(
           client: MockShortGraphQlClient.withResponse(
@@ -362,7 +379,8 @@ void main() {
               500,
             ),
           ),
-          screeningToolsType: ScreeningToolsType.VIOLENCE_ASSESSMENT,
+          screeningToolId: 'some-id',
+          screeningToolName: violenceToolName,
         ),
       );
 
@@ -387,7 +405,8 @@ void main() {
               200,
             ),
           ),
-          screeningToolsType: ScreeningToolsType.VIOLENCE_ASSESSMENT,
+          screeningToolId: 'some-id',
+          screeningToolName: violenceToolName,
         ),
       );
 

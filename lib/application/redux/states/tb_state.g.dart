@@ -7,10 +7,10 @@ part of 'tb_state.dart';
 // **************************************************************************
 
 _$_TBState _$$_TBStateFromJson(Map<String, dynamic> json) => _$_TBState(
-      screeningQuestions: json['getScreeningToolQuestions'] == null
+      screeningTool: json['screeningTool'] == null
           ? null
-          : ScreeningQuestionsList.fromJson(
-              json['getScreeningToolQuestions'] as Map<String, dynamic>),
+          : ScreeningTool.fromJson(
+              json['screeningTool'] as Map<String, dynamic>),
       errorFetchingQuestions: json['errorFetchingQuestions'] as bool?,
       timeoutFetchingQuestions: json['timeoutFetchingQuestions'] as bool?,
       errorAnsweringQuestions: json['errorAnsweringQuestions'] as bool?,
@@ -18,7 +18,7 @@ _$_TBState _$$_TBStateFromJson(Map<String, dynamic> json) => _$_TBState(
 
 Map<String, dynamic> _$$_TBStateToJson(_$_TBState instance) =>
     <String, dynamic>{
-      'getScreeningToolQuestions': instance.screeningQuestions,
+      'screeningTool': instance.screeningTool,
       'errorFetchingQuestions': instance.errorFetchingQuestions,
       'timeoutFetchingQuestions': instance.timeoutFetchingQuestions,
       'errorAnsweringQuestions': instance.errorAnsweringQuestions,

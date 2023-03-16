@@ -116,7 +116,6 @@ class MockStateDB extends Mock implements Database {
     throw UnimplementedError();
   }
 
-  @override
   Future<int> getVersion() {
     throw UnimplementedError();
   }
@@ -184,7 +183,6 @@ class MockStateDB extends Mock implements Database {
     throw UnimplementedError();
   }
 
-  @override
   Future<void> setVersion(int version) {
     throw UnimplementedError();
   }
@@ -1188,26 +1186,7 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
     }
     if (queryString == getScreeningToolsQuestionsQuery) {
       return Future<http.Response>.value(
-        http.Response(
-          json.encode(<String, dynamic>{
-            'data': <String, dynamic>{
-              'getScreeningToolQuestions': <dynamic>[
-                <String, dynamic>{
-                  'id': 'some_id',
-                  'question': 'some question here',
-                  'toolType': 'VIOLENCE_ASSESSMENT',
-                  'responseType': 'INTEGER',
-                  'responseChoices': <String, dynamic>{'0': 'Yes', '1': 'No'},
-                  'responseCategory': 'SINGLE_CHOICE',
-                  'sequence': 0,
-                  'active': true,
-                  'meta': <String, dynamic>{'violence_type': 'EMOTIONAL'}
-                },
-              ]
-            }
-          }),
-          200,
-        ),
+        http.Response(json.encode(screeningQuestionsMock), 200),
       );
     }
     if (queryString == answerScreeningToolQuestionMutation) {
@@ -1215,7 +1194,7 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
         http.Response(
           json.encode(
             <String, dynamic>{
-              'data': <String, dynamic>{'answerScreeningToolQuestion': true}
+              'data': <String, dynamic>{'respondToScreeningTool': true}
             },
           ),
           200,
@@ -1309,16 +1288,7 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
     }
     if (queryString == getAvailableScreeningToolQuery) {
       return Future<http.Response>.value(
-        http.Response(
-          json.encode(<String, dynamic>{
-            'data': <String, dynamic>{
-              'getAvailableScreeningToolQuestions': <dynamic>[
-                <String, dynamic>{'toolType': 'VIOLENCE_ASSESSMENT'},
-              ]
-            }
-          }),
-          200,
-        ),
+        http.Response(json.encode(availableScreeningToolsMock), 200),
       );
     }
     if (queryString == getUserSurveyFormsQuery) {
@@ -2332,6 +2302,259 @@ final Map<String, dynamic> roomMock = <String, dynamic>{
   'summary': <String, dynamic>{
     'm.joined_member_count': 3,
     'm.invited_member_count': 0
+  },
+};
+
+final Map<String, dynamic> screeningQuestionsMock = <String, dynamic>{
+  'data': <String, dynamic>{
+    'getScreeningToolByID': <String, dynamic>{
+      'id': 'some-id',
+      'active': true,
+      'questionnaireID': 'another-id',
+      'threshold': 3,
+      'clientTypes': <dynamic>['PMTCT'],
+      'genders': <dynamic>['male', 'female', 'other'],
+      'ageRange': <String, dynamic>{'lowerBound': 14, 'upperBound': 25},
+      'questionnaire': <String, dynamic>{
+        'id': 'random-id',
+        'active': true,
+        'name': 'Violence Assessment',
+        'description': 'TB assessment screening',
+        'questions': <dynamic>[
+          <String, dynamic>{
+            'id': 'another-id',
+            'active': true,
+            'questionnaireID': 'testing-id',
+            'text': 'Have you experienced a cough for any duration?',
+            'questionType': 'CLOSE_ENDED',
+            'responseValueType': 'STRING',
+            'required': true,
+            'selectMultiple': false,
+            'sequence': 1,
+            'choices': <dynamic>[
+              <String, dynamic>{
+                'id': 'test-id',
+                'active': true,
+                'questionID': 'another-id',
+                'choice': '0',
+                'value': 'Yes',
+                'score': 1
+              },
+              <String, dynamic>{
+                'id': 'random-id',
+                'active': true,
+                'questionID': 'another-id',
+                'choice': '1',
+                'value': 'No',
+                'score': 0
+              }
+            ]
+          },
+        ]
+      }
+    }
+  }
+};
+
+final Map<String, dynamic> availableScreeningToolsMock = <String, dynamic>{
+  'data': <String, dynamic>{
+    'getAvailableScreeningTools': <dynamic>[
+      <String, dynamic>{
+        'id': 'tool-id',
+        'active': true,
+        'questionnaireID': 'questionnaire-id',
+        'threshold': 3,
+        'clientTypes': <dynamic>['PMTCT'],
+        'genders': <dynamic>['male'],
+        'ageRange': <String, dynamic>{'lowerBound': 14, 'upperBound': 25},
+        'questionnaire': <String, dynamic>{
+          'id': 'questionnaire-id',
+          'active': true,
+          'name': 'Violence Assessment',
+          'description': 'Violence Assessment DESCRIPTION',
+          'questions': <dynamic>[]
+        }
+      },
+    ]
+  }
+};
+final Map<String, dynamic> tbMock = <String, dynamic>{
+  'data': <String, dynamic>{
+    'respondToScreeningTool': true,
+    'getScreeningToolByID': <String, dynamic>{
+      'id': 'some-id',
+      'questionnaireID': 'some-other-id',
+      'questionnaire': <String, dynamic>{
+        'id': 'some-other-id',
+        'name': 'TB Assessment',
+        'description': 'TB assessment screening',
+        'clientTypes': <dynamic>['DREAMS'],
+        'questions': <dynamic>[
+          <String, dynamic>{
+            'id': 'another-id',
+            'questionnaireID': 'some-other-id',
+            'text': 'Have you experienced a cough for any duration?',
+            'questionType': 'CLOSE_ENDED',
+            'responseValueType': 'STRING',
+            'sequence': 1,
+            'choices': <dynamic>[
+              <String, dynamic>{
+                'id': 'id',
+                'questionID': 'another-id',
+                'choice': '0',
+                'value': 'Yes',
+                'score': 1
+              },
+              <String, dynamic>{
+                'id': 'random-id',
+                'questionID': 'another-id',
+                'choice': '1',
+                'value': 'No',
+                'score': 0
+              }
+            ]
+          },
+        ]
+      }
+    },
+    'getAvailableScreeningTools': <dynamic>[
+      <String, dynamic>{
+        'id': 'tool-id',
+        'active': true,
+        'questionnaireID': 'questionnaire-id',
+        'threshold': 3,
+        'clientTypes': <dynamic>['PMTCT'],
+        'genders': <dynamic>['male'],
+        'ageRange': <String, dynamic>{'lowerBound': 14, 'upperBound': 25},
+        'questionnaire': <String, dynamic>{
+          'id': 'questionnaire-id',
+          'active': true,
+          'name': 'TB Assessment',
+          'description': 'TB Assessment DESCRIPTION',
+          'questions': <dynamic>[]
+        }
+      },
+    ]
+  },
+};
+
+final Map<String, dynamic> alcoholMock = <String, dynamic>{
+  'data': <String, dynamic>{
+    'respondToScreeningTool': true,
+    'getScreeningToolByID': <String, dynamic>{
+      'id': 'some-id',
+      'questionnaireID': 'some-other-id',
+      'questionnaire': <String, dynamic>{
+        'id': 'some-other-id',
+        'name': 'Alcohol and Substance Assessment',
+        'description': 'Alcohol and Substance Assessment screening',
+        'clientTypes': <dynamic>['DREAMS'],
+        'questions': <dynamic>[
+          <String, dynamic>{
+            'id': 'another-id',
+            'questionnaireID': 'some-other-id',
+            'text': 'Have you experienced a cough for any duration?',
+            'questionType': 'CLOSE_ENDED',
+            'responseValueType': 'STRING',
+            'sequence': 1,
+            'choices': <dynamic>[
+              <String, dynamic>{
+                'id': 'id',
+                'questionID': 'another-id',
+                'choice': '0',
+                'value': 'Yes',
+                'score': 1
+              },
+              <String, dynamic>{
+                'id': 'random-id',
+                'questionID': 'another-id',
+                'choice': '1',
+                'value': 'No',
+                'score': 0
+              }
+            ]
+          },
+        ]
+      }
+    },
+    'getAvailableScreeningTools': <dynamic>[
+      <String, dynamic>{
+        'id': 'tool-id',
+        'active': true,
+        'questionnaireID': 'questionnaire-id',
+        'threshold': 3,
+        'clientTypes': <dynamic>['PMTCT'],
+        'genders': <dynamic>['male'],
+        'ageRange': <String, dynamic>{'lowerBound': 14, 'upperBound': 25},
+        'questionnaire': <String, dynamic>{
+          'id': 'questionnaire-id',
+          'active': true,
+          'name': 'Alcohol and Substance Assessment',
+          'description': 'Alcohol and Substance Assessment DESCRIPTION',
+          'questions': <dynamic>[]
+        }
+      },
+    ]
+  },
+};
+
+final Map<String, dynamic> contraceptivesMock = <String, dynamic>{
+  'data': <String, dynamic>{
+    'respondToScreeningTool': true,
+    'getScreeningToolByID': <String, dynamic>{
+      'id': 'some-id',
+      'questionnaireID': 'some-other-id',
+      'questionnaire': <String, dynamic>{
+        'id': 'some-other-id',
+        'name': 'Contraceptives Assessment',
+        'description': 'Contraceptives Assessment screening',
+        'clientTypes': <dynamic>['DREAMS'],
+        'questions': <dynamic>[
+          <String, dynamic>{
+            'id': 'another-id',
+            'questionnaireID': 'some-other-id',
+            'text': 'Have you experienced a cough for any duration?',
+            'questionType': 'CLOSE_ENDED',
+            'responseValueType': 'STRING',
+            'sequence': 1,
+            'choices': <dynamic>[
+              <String, dynamic>{
+                'id': 'id',
+                'questionID': 'another-id',
+                'choice': '0',
+                'value': 'Yes',
+                'score': 1
+              },
+              <String, dynamic>{
+                'id': 'random-id',
+                'questionID': 'another-id',
+                'choice': '1',
+                'value': 'No',
+                'score': 0
+              }
+            ]
+          },
+        ]
+      }
+    },
+    'getAvailableScreeningTools': <dynamic>[
+      <String, dynamic>{
+        'id': 'tool-id',
+        'active': true,
+        'questionnaireID': 'questionnaire-id',
+        'threshold': 3,
+        'clientTypes': <dynamic>['PMTCT'],
+        'genders': <dynamic>['male'],
+        'ageRange': <String, dynamic>{'lowerBound': 14, 'upperBound': 25},
+        'questionnaire': <String, dynamic>{
+          'id': 'questionnaire-id',
+          'active': true,
+          'name': 'Contraceptives Assessment',
+          'description': 'Contraceptives Assessment DESCRIPTION',
+          'questions': <dynamic>[]
+        }
+      },
+    ]
   },
 };
 

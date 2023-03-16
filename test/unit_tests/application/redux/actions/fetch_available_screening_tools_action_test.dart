@@ -1,98 +1,72 @@
 import 'dart:convert';
 
+import 'package:pro_health_360/application/redux/actions/screening_tools/fetch_available_screening_tools_action.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:pro_health_360/application/redux/actions/screening_tools/fetch_available_screening_tools_action.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/application/redux/states/connectivity_state.dart';
 
 import '../../../../mocks.dart';
-import '../../../../test_helpers.dart';
 
 void main() {
   group('FetchAvailableScreeningToolsAction', () {
-    late Store<AppState> store;
+    late StoreTester<AppState> storeTester;
 
     setUp(() {
-      store = Store<AppState>(initialState: AppState.initial());
+      storeTester = StoreTester<AppState>(
+        initialState: AppState.initial()
+            .copyWith(connectivityState: ConnectivityState(isConnected: true)),
+        testInfoPrinter: (TestInfo<dynamic> testInfo) {},
+      );
     });
 
-    testWidgets('should throw error if api call is not 200',
-        (WidgetTester tester) async {
-      final MockShortGraphQlClient mockShortSILGraphQlClient =
-          MockShortGraphQlClient.withResponse(
-        '',
-        '',
-        Response(
-          jsonEncode(<String, String>{'error': 'error occurred'}),
-          500,
+    test('should dispatch error if response body is null', () async {
+      storeTester.dispatch(
+        FetchAvailableScreeningToolsAction(
+          client: MockShortGraphQlClient.withResponse(
+            '',
+            '',
+            Response(
+              jsonEncode(<String, dynamic>{'error': 'an error occurred'}),
+              200,
+            ),
+          ),
         ),
       );
-      late dynamic err;
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: mockShortSILGraphQlClient,
-        widget: Builder(
-          builder: (BuildContext context) {
-            return MyAfyaHubPrimaryButton(
-              onPressed: () async {
-                try {
-                  await store.dispatch(
-                    FetchAvailableScreeningToolsAction(context: context),
-                  );
-                } catch (e) {
-                  err = e;
-                }
-              },
-            );
-          },
-        ),
+
+      final TestInfo<AppState> info =
+          await storeTester.waitUntil(FetchAvailableScreeningToolsAction);
+
+      expect(
+        (info.error! as UserException).msg,
+        getErrorMessage('fetching available screening tools'),
       );
-      await tester.pump();
-      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
-      await tester.pumpAndSettle();
-      expect(err, isA<Future<dynamic>>());
     });
 
-    testWidgets('should throw error if an error occurs',
-        (WidgetTester tester) async {
-      final MockShortGraphQlClient mockShortSILGraphQlClient =
-          MockShortGraphQlClient.withResponse(
-        '',
-        '',
-        Response(
-          jsonEncode(<String, String>{'error': 'error occurred'}),
-          200,
+    test('should dispatch error if response code is not 200', () async {
+      storeTester.dispatch(
+        FetchAvailableScreeningToolsAction(
+          client: MockShortGraphQlClient.withResponse(
+            '',
+            '',
+            Response(
+              jsonEncode(<String, dynamic>{'error': 'an error occurred'}),
+              500,
+            ),
+          ),
         ),
       );
-      late dynamic err;
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: mockShortSILGraphQlClient,
-        widget: Builder(
-          builder: (BuildContext context) {
-            return MyAfyaHubPrimaryButton(
-              onPressed: () async {
-                try {
-                  await store.dispatch(
-                    FetchAvailableScreeningToolsAction(context: context),
-                  );
-                } catch (e) {
-                  err = e;
-                }
-              },
-            );
-          },
-        ),
+
+      final TestInfo<AppState> info =
+          await storeTester.waitUntil(FetchAvailableScreeningToolsAction);
+
+      expect(
+        (info.error! as UserException).msg,
+        'Sorry, an unknown error occurred, please try again or get help from our '
+        'help center.',
       );
-      await tester.pump();
-      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
-      await tester.pumpAndSettle();
-      expect(err, isA<Future<dynamic>>());
     });
   });
 }

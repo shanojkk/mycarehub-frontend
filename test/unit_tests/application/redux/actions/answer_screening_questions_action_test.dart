@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:pro_health_360/domain/core/entities/core/screening_tool_answers_list.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -39,6 +40,8 @@ void main() {
               200,
             ),
           ),
+          responses: ScreeningToolAnswersList.initial(),
+          screeningToolId: '',
           screeningToolsType: ScreeningToolsType.VIOLENCE_ASSESSMENT,
         ),
       );
@@ -64,6 +67,9 @@ void main() {
     test('should dispatch error if body is null for contraceptives', () async {
       storeTester.dispatch(
         AnswerScreeningToolsAction(
+          responses: ScreeningToolAnswersList.initial(),
+          screeningToolsType: ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT,
+          screeningToolId: '',
           client: MockShortGraphQlClient.withResponse(
             '',
             '',
@@ -76,7 +82,6 @@ void main() {
               200,
             ),
           ),
-          screeningToolsType: ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT,
         ),
       );
 
@@ -100,6 +105,7 @@ void main() {
     test('should dispatch error if body is null for alcohol', () async {
       storeTester.dispatch(
         AnswerScreeningToolsAction(
+          screeningToolsType: ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT,
           client: MockShortGraphQlClient.withResponse(
             '',
             '',
@@ -112,7 +118,8 @@ void main() {
               200,
             ),
           ),
-          screeningToolsType: ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT,
+          responses: ScreeningToolAnswersList.initial(),
+          screeningToolId: '',
         ),
       );
 
@@ -136,6 +143,7 @@ void main() {
     test('should dispatch error if body is null for tb', () async {
       storeTester.dispatch(
         AnswerScreeningToolsAction(
+          screeningToolsType: ScreeningToolsType.TB_ASSESSMENT,
           client: MockShortGraphQlClient.withResponse(
             '',
             '',
@@ -148,7 +156,8 @@ void main() {
               200,
             ),
           ),
-          screeningToolsType: ScreeningToolsType.TB_ASSESSMENT,
+          responses: ScreeningToolAnswersList.initial(),
+          screeningToolId: '',
         ),
       );
 
@@ -173,6 +182,7 @@ void main() {
     test('should throw error if api call is not 200', () async {
       storeTester.dispatch(
         AnswerScreeningToolsAction(
+          screeningToolsType: ScreeningToolsType.VIOLENCE_ASSESSMENT,
           client: MockShortGraphQlClient.withResponse(
             '',
             '',
@@ -181,7 +191,8 @@ void main() {
               500,
             ),
           ),
-          screeningToolsType: ScreeningToolsType.VIOLENCE_ASSESSMENT,
+          responses: ScreeningToolAnswersList.initial(),
+          screeningToolId: '',
         ),
       );
 
@@ -198,6 +209,7 @@ void main() {
     test('should throw error if response has error', () async {
       storeTester.dispatch(
         AnswerScreeningToolsAction(
+          screeningToolsType: ScreeningToolsType.VIOLENCE_ASSESSMENT,
           client: MockShortGraphQlClient.withResponse(
             '',
             '',
@@ -206,7 +218,8 @@ void main() {
               200,
             ),
           ),
-          screeningToolsType: ScreeningToolsType.VIOLENCE_ASSESSMENT,
+          responses: ScreeningToolAnswersList.initial(),
+          screeningToolId: '',
         ),
       );
 

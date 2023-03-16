@@ -20,12 +20,16 @@ ScreeningTool _$ScreeningToolFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ScreeningTool {
-  @JsonKey(name: 'title')
-  String? get title => throw _privateConstructorUsedError;
-  @JsonKey(name: 'description')
-  String? get description => throw _privateConstructorUsedError;
-  @JsonKey(name: 'toolType')
-  ScreeningToolsType? get toolType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'id')
+  String? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'active')
+  bool? get active => throw _privateConstructorUsedError;
+  @JsonKey(name: 'questionnaireID')
+  String? get questionnaireId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'threshold')
+  int? get threshold => throw _privateConstructorUsedError;
+  @JsonKey(name: 'questionnaire')
+  Questionnaire? get questionnaire => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,9 +44,13 @@ abstract class $ScreeningToolCopyWith<$Res> {
       _$ScreeningToolCopyWithImpl<$Res, ScreeningTool>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'toolType') ScreeningToolsType? toolType});
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'active') bool? active,
+      @JsonKey(name: 'questionnaireID') String? questionnaireId,
+      @JsonKey(name: 'threshold') int? threshold,
+      @JsonKey(name: 'questionnaire') Questionnaire? questionnaire});
+
+  $QuestionnaireCopyWith<$Res>? get questionnaire;
 }
 
 /// @nodoc
@@ -58,24 +66,46 @@ class _$ScreeningToolCopyWithImpl<$Res, $Val extends ScreeningTool>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? title = freezed,
-    Object? description = freezed,
-    Object? toolType = freezed,
+    Object? id = freezed,
+    Object? active = freezed,
+    Object? questionnaireId = freezed,
+    Object? threshold = freezed,
+    Object? questionnaire = freezed,
   }) {
     return _then(_value.copyWith(
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
+      active: freezed == active
+          ? _value.active
+          : active // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      questionnaireId: freezed == questionnaireId
+          ? _value.questionnaireId
+          : questionnaireId // ignore: cast_nullable_to_non_nullable
               as String?,
-      toolType: freezed == toolType
-          ? _value.toolType
-          : toolType // ignore: cast_nullable_to_non_nullable
-              as ScreeningToolsType?,
+      threshold: freezed == threshold
+          ? _value.threshold
+          : threshold // ignore: cast_nullable_to_non_nullable
+              as int?,
+      questionnaire: freezed == questionnaire
+          ? _value.questionnaire
+          : questionnaire // ignore: cast_nullable_to_non_nullable
+              as Questionnaire?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $QuestionnaireCopyWith<$Res>? get questionnaire {
+    if (_value.questionnaire == null) {
+      return null;
+    }
+
+    return $QuestionnaireCopyWith<$Res>(_value.questionnaire!, (value) {
+      return _then(_value.copyWith(questionnaire: value) as $Val);
+    });
   }
 }
 
@@ -88,9 +118,14 @@ abstract class _$$_ScreeningToolCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'toolType') ScreeningToolsType? toolType});
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'active') bool? active,
+      @JsonKey(name: 'questionnaireID') String? questionnaireId,
+      @JsonKey(name: 'threshold') int? threshold,
+      @JsonKey(name: 'questionnaire') Questionnaire? questionnaire});
+
+  @override
+  $QuestionnaireCopyWith<$Res>? get questionnaire;
 }
 
 /// @nodoc
@@ -104,23 +139,33 @@ class __$$_ScreeningToolCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? title = freezed,
-    Object? description = freezed,
-    Object? toolType = freezed,
+    Object? id = freezed,
+    Object? active = freezed,
+    Object? questionnaireId = freezed,
+    Object? threshold = freezed,
+    Object? questionnaire = freezed,
   }) {
     return _then(_$_ScreeningTool(
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
+      active: freezed == active
+          ? _value.active
+          : active // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      questionnaireId: freezed == questionnaireId
+          ? _value.questionnaireId
+          : questionnaireId // ignore: cast_nullable_to_non_nullable
               as String?,
-      toolType: freezed == toolType
-          ? _value.toolType
-          : toolType // ignore: cast_nullable_to_non_nullable
-              as ScreeningToolsType?,
+      threshold: freezed == threshold
+          ? _value.threshold
+          : threshold // ignore: cast_nullable_to_non_nullable
+              as int?,
+      questionnaire: freezed == questionnaire
+          ? _value.questionnaire
+          : questionnaire // ignore: cast_nullable_to_non_nullable
+              as Questionnaire?,
     ));
   }
 }
@@ -129,26 +174,34 @@ class __$$_ScreeningToolCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ScreeningTool implements _ScreeningTool {
   _$_ScreeningTool(
-      {@JsonKey(name: 'title') this.title,
-      @JsonKey(name: 'description') this.description,
-      @JsonKey(name: 'toolType') this.toolType});
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'active') this.active,
+      @JsonKey(name: 'questionnaireID') this.questionnaireId,
+      @JsonKey(name: 'threshold') this.threshold,
+      @JsonKey(name: 'questionnaire') this.questionnaire});
 
   factory _$_ScreeningTool.fromJson(Map<String, dynamic> json) =>
       _$$_ScreeningToolFromJson(json);
 
   @override
-  @JsonKey(name: 'title')
-  final String? title;
+  @JsonKey(name: 'id')
+  final String? id;
   @override
-  @JsonKey(name: 'description')
-  final String? description;
+  @JsonKey(name: 'active')
+  final bool? active;
   @override
-  @JsonKey(name: 'toolType')
-  final ScreeningToolsType? toolType;
+  @JsonKey(name: 'questionnaireID')
+  final String? questionnaireId;
+  @override
+  @JsonKey(name: 'threshold')
+  final int? threshold;
+  @override
+  @JsonKey(name: 'questionnaire')
+  final Questionnaire? questionnaire;
 
   @override
   String toString() {
-    return 'ScreeningTool(title: $title, description: $description, toolType: $toolType)';
+    return 'ScreeningTool(id: $id, active: $active, questionnaireId: $questionnaireId, threshold: $threshold, questionnaire: $questionnaire)';
   }
 
   @override
@@ -156,16 +209,20 @@ class _$_ScreeningTool implements _ScreeningTool {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ScreeningTool &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.toolType, toolType) ||
-                other.toolType == toolType));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.active, active) || other.active == active) &&
+            (identical(other.questionnaireId, questionnaireId) ||
+                other.questionnaireId == questionnaireId) &&
+            (identical(other.threshold, threshold) ||
+                other.threshold == threshold) &&
+            (identical(other.questionnaire, questionnaire) ||
+                other.questionnaire == questionnaire));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, title, description, toolType);
+  int get hashCode => Object.hash(
+      runtimeType, id, active, questionnaireId, threshold, questionnaire);
 
   @JsonKey(ignore: true)
   @override
@@ -183,23 +240,31 @@ class _$_ScreeningTool implements _ScreeningTool {
 
 abstract class _ScreeningTool implements ScreeningTool {
   factory _ScreeningTool(
-          {@JsonKey(name: 'title') final String? title,
-          @JsonKey(name: 'description') final String? description,
-          @JsonKey(name: 'toolType') final ScreeningToolsType? toolType}) =
+          {@JsonKey(name: 'id') final String? id,
+          @JsonKey(name: 'active') final bool? active,
+          @JsonKey(name: 'questionnaireID') final String? questionnaireId,
+          @JsonKey(name: 'threshold') final int? threshold,
+          @JsonKey(name: 'questionnaire') final Questionnaire? questionnaire}) =
       _$_ScreeningTool;
 
   factory _ScreeningTool.fromJson(Map<String, dynamic> json) =
       _$_ScreeningTool.fromJson;
 
   @override
-  @JsonKey(name: 'title')
-  String? get title;
+  @JsonKey(name: 'id')
+  String? get id;
   @override
-  @JsonKey(name: 'description')
-  String? get description;
+  @JsonKey(name: 'active')
+  bool? get active;
   @override
-  @JsonKey(name: 'toolType')
-  ScreeningToolsType? get toolType;
+  @JsonKey(name: 'questionnaireID')
+  String? get questionnaireId;
+  @override
+  @JsonKey(name: 'threshold')
+  int? get threshold;
+  @override
+  @JsonKey(name: 'questionnaire')
+  Questionnaire? get questionnaire;
   @override
   @JsonKey(ignore: true)
   _$$_ScreeningToolCopyWith<_$_ScreeningTool> get copyWith =>

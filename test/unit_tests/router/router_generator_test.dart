@@ -1,7 +1,4 @@
-// Flutter imports:
-
 // Package imports:
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/create_room_page.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/group_info_page.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/invite_users_page.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_list_page.dart';
@@ -744,18 +741,6 @@ void main() {
     expect(route, isA<MaterialPageRoute<RoomPage>>());
     expect(route?.builder(context), isA<RoomPage>());
   });
-
-  test('Test router returns create room page', () {
-    const RouteSettings settings =
-        RouteSettings(name: AppRoutes.createRoomPageRoute);
-
-    final MaterialPageRoute<CreateRoomPage>? route =
-        routeGenerator(settings) as MaterialPageRoute<CreateRoomPage>?;
-
-    expect(route, isA<MaterialPageRoute<CreateRoomPage>>());
-    expect(route?.builder(context), isA<CreateRoomPage>());
-  });
-
   test('Test router returns Room info page', () {
     final RouteSettings settings = RouteSettings(
       name: AppRoutes.roomInfoPageRoute,

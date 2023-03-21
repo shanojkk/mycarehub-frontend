@@ -297,12 +297,8 @@ const Key removeCaregiverButtonKey = Key('remove_caregiver_button_key');
 // communities
 const Key topicInputKey = Key('topicInputKey');
 
-const Key createRoomKey = Key('createRoomKey');
-
 // Invite users page
 const Key searchMembersInputKey = Key('searchMembersInputKey');
-
-const Key navToCreateRoomKey = Key('navToCreateRoomKey');
 
 const Key logoutKey = Key('logoutKey');
 

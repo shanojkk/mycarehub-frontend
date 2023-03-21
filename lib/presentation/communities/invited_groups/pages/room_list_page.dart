@@ -3,13 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/view_models/communities/communities_view_model.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
+import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_list_item_widget.dart';
+import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:pro_health_360/presentation/home/widgets/bottom_nav_bar.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:sghi_core/communities/models/room.dart';
-import 'package:sghi_core/shared_themes/spaces.dart';
 
 class RoomListPage extends StatelessWidget {
   const RoomListPage({super.key});
@@ -55,27 +58,22 @@ class RoomListPage extends StatelessWidget {
                   ];
 
                   if (allRooms.isEmpty) {
-                    return Center(
-                      child: Column(
-                        children: <Widget>[
-                          const Text(
-                            'Sorry, You have no rooms yet. No worries though, '
-                            'tap the button below to'
-                            ' create your first group',
-                            textAlign: TextAlign.center,
+                    return GenericErrorWidget(
+                      actionText: viewInvites,
+                      actionKey: emptyChatsNewRoomKey,
+                      headerIconSvgUrl: noChatImage,
+                      messageTitle: noConversationsAvailable,
+                      messageBody: <TextSpan>[
+                        TextSpan(
+                          text: noConversationsDescription,
+                          style: normalSize16Text(
+                            AppColors.greyTextColor,
                           ),
-                          const SizedBox(height: 10),
-                          Center(
-                            child: TextButton(
-                              key: emptyChatsNewRoomKey,
-                              onPressed: () async {
-                                Navigator.of(context)
-                                    .pushNamed(AppRoutes.createRoomPageRoute);
-                              },
-                              child: const Text('Create a room'),
-                            ),
-                          ),
-                        ],
+                        ),
+                      ],
+                      recoverCallback: () => Navigator.pushNamed(
+                        context,
+                        AppRoutes.groupInvitesPage,
                       ),
                     );
                   }

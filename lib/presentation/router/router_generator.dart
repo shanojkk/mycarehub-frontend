@@ -1,5 +1,4 @@
 // Flutter imports:
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/create_room_page.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/group_info_page.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/invite_users_page.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_list_page.dart';
@@ -547,12 +546,6 @@ class RouteGenerator {
         return MaterialPageRoute<RoomPage>(
           builder: (_) => RoomPage(room: roomArgs as Room),
           settings: const RouteSettings(name: 'Room page route'),
-        );
-
-      case AppRoutes.createRoomPageRoute:
-        return MaterialPageRoute<CreateRoomPage>(
-          builder: (_) => const CreateRoomPage(),
-          settings: const RouteSettings(name: 'Create room page'),
         );
 
       case AppRoutes.roomInfoPageRoute:

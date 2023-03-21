@@ -143,7 +143,6 @@ class AppRoutes {
   static const String inviteUsersPageRoute = '/inviteUsersPageRoute';
   static const String roomListPageRoute = '/roomListPageRoute';
   static const String roomPageRoute = '/roomPageRoute';
-  static const String createRoomPageRoute = '/createRoomPageRoute';
   static const String roomInfoPageRoute = '/roomInfoPageRoute';
 }
 

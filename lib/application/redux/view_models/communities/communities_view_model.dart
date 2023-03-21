@@ -124,16 +124,3 @@ class MessageOptionsViewModel extends Vm {
 
   final bool isDeletingMessage;
 }
-
-class CreateRoomViewModel extends Vm {
-  CreateRoomViewModel({required this.isCreatingRoom})
-      : super(equals: <Object?>[isCreatingRoom]);
-
-  factory CreateRoomViewModel.fromStore(Store<AppState> store) {
-    return CreateRoomViewModel(
-      isCreatingRoom: store.state.wait?.isWaitingFor(createRoomFlag) ?? false,
-    );
-  }
-
-  final bool isCreatingRoom;
-}

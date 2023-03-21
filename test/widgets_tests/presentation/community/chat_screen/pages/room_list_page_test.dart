@@ -4,7 +4,7 @@ import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/states/sync_response_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/create_room_page.dart';
+import 'package:pro_health_360/presentation/communities/invited_groups/pages/invited_groups_page.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_list_page.dart';
 import 'package:sghi_core/communities/models/user.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_page.dart';
@@ -67,7 +67,7 @@ void main() {
 
     testWidgets(
         'should show empty state when there are no rooms and navigate to '
-        'create room page and back', (WidgetTester tester) async {
+        'group invites page', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
         store: store,
@@ -78,7 +78,7 @@ void main() {
       await tester.tap(find.byKey(emptyChatsNewRoomKey));
       await tester.pumpAndSettle();
 
-      expect(find.byType(CreateRoomPage), findsOneWidget);
+      expect(find.byType(InvitedGroupsPage), findsOneWidget);
     });
   });
 }

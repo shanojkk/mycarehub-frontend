@@ -145,8 +145,6 @@ const String signInFlag = 'signInFlag';
 
 const String communitiesSignOutFlag = 'communitiesSignOutFlag';
 
-const String createRoomFlag = 'createRoomFlag';
-
 const String fetchRoomInfoFlag = 'fetchRoomInfoFlag';
 
 const String searchRoomMembersFlag = 'searchRoomMembersFlag';

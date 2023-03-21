@@ -543,17 +543,6 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       );
     }
 
-    if (endpoint.contains('/createRoom')) {
-      return Future<http.Response>.value(
-        http.Response(
-          json.encode(<String, dynamic>{
-            'room_id': '!NvYSqaASzlfRpFCMtr:chat.savannahghi.org',
-          }),
-          201,
-        ),
-      );
-    }
-
     if (endpoint.contains('/media/v3/download/')) {
       final String dir = Directory.current.path;
       final String imgPath = '$dir/test/tests_resources/test_file.png';

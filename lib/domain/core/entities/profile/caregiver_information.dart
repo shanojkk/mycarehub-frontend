@@ -23,7 +23,7 @@ class CaregiverInformation with _$CaregiverInformation {
         firstName: UNKNOWN,
         lastName: UNKNOWN,
         phoneNumber: UNKNOWN,
-        caregiverType: CaregiverType.HEALTHCARE_PROFESSIONAL,
+        caregiverType: CaregiverType.HEALTH_PROFESSIONAL,
         clientID: UNKNOWN,
       );
 }
@@ -31,7 +31,7 @@ class CaregiverInformation with _$CaregiverInformation {
 /// Formats the caregiver type
 CaregiverType caregiverTypeFromJson(String? caregiverTypeString) {
   if (caregiverTypeString == null || caregiverTypeString.isEmpty) {
-    return CaregiverType.HEALTHCARE_PROFESSIONAL;
+    return CaregiverType.HEALTH_PROFESSIONAL;
   }
 
   switch (caregiverTypeString.toUpperCase()) {
@@ -42,7 +42,7 @@ CaregiverType caregiverTypeFromJson(String? caregiverTypeString) {
     case 'SIBLING':
       return CaregiverType.SIBLING;
     default:
-      return CaregiverType.HEALTHCARE_PROFESSIONAL;
+      return CaregiverType.HEALTH_PROFESSIONAL;
   }
 }
 

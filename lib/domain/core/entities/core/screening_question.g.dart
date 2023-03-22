@@ -10,7 +10,6 @@ _$_ScreeningQuestion _$$_ScreeningQuestionFromJson(Map<String, dynamic> json) =>
     _$_ScreeningQuestion(
       id: json['id'] as String?,
       active: json['active'] as bool?,
-      questionnaireId: json['questionnaireID'] as String?,
       questionText: json['text'] as String?,
       questionType:
           $enumDecodeNullable(_$QuestionTypeEnumMap, json['questionType']),
@@ -31,7 +30,6 @@ Map<String, dynamic> _$$_ScreeningQuestionToJson(
     <String, dynamic>{
       'id': instance.id,
       'active': instance.active,
-      'questionnaireID': instance.questionnaireId,
       'text': instance.questionText,
       'questionType': _$QuestionTypeEnumMap[instance.questionType],
       'responseValueType':

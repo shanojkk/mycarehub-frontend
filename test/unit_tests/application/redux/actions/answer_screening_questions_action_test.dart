@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:firebase_core/firebase_core.dart';
+import 'package:pro_health_360/domain/core/entities/core/screening_tool_answer.dart';
 import 'package:pro_health_360/domain/core/entities/core/screening_tool_answers_list.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
@@ -17,11 +19,52 @@ void main() {
   group('AnswerScreeningToolsAction', () {
     late StoreTester<AppState> storeTester;
 
-    setUp(() {
+    setUp(() async {
       storeTester = StoreTester<AppState>(
         initialState: AppState.initial()
             .copyWith(connectivityState: ConnectivityState(isConnected: true)),
         testInfoPrinter: (TestInfo<dynamic> testInfo) {},
+      );
+      setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
+    });
+
+    test('should execute correctly', () async {
+      storeTester.dispatch(
+        AnswerScreeningToolsAction(
+          client: MockShortGraphQlClient.withResponse(
+            '',
+            '',
+            Response(
+              jsonEncode(<String, dynamic>{
+                'data': <String, dynamic>{'respondToScreeningTool': true}
+              }),
+              200,
+            ),
+          ),
+          responses: ScreeningToolAnswersList(
+            answersList: <ScreeningToolAnswer?>[ScreeningToolAnswer.initial()],
+          ),
+          screeningToolId: 'some-id',
+          screeningToolsType: ScreeningToolsType.VIOLENCE_ASSESSMENT,
+        ),
+      );
+
+      final TestInfo<AppState> info =
+          await storeTester.waitUntil(AnswerScreeningToolsAction);
+
+      expect(
+        info.state.wait!.isWaitingFor(answerScreeningQuestionsFlag),
+        false,
+      );
+      expect(
+        info.state.miscState?.screeningToolsState?.violenceState,
+        isNotNull,
+      );
+      expect(
+        info.state.miscState?.screeningToolsState?.violenceState
+            ?.errorAnsweringQuestions,
+        false,
       );
     });
 

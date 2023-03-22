@@ -49,7 +49,7 @@ class _ScreeningToolQuestionWidgetState
 
         // question id
         final String questionId =
-            '${widget.screeningTool.questionnaire?.screeningQuestions?[index]?.id!} ';
+            '${widget.screeningTool.questionnaire?.screeningQuestions?[index]?.id!}';
 
         if (choices?.isNotEmpty ?? false) {
           for (final QuestionChoice? choice in choices!) {

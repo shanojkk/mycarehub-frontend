@@ -319,7 +319,6 @@ query getScreeningToolByID($id :ID!) {
       questions {
         id
         active
-        questionnaireID
         text
         questionType
         responseValueType

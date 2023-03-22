@@ -24,8 +24,6 @@ mixin _$ScreeningQuestion {
   String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'active')
   bool? get active => throw _privateConstructorUsedError;
-  @JsonKey(name: 'questionnaireID')
-  String? get questionnaireId => throw _privateConstructorUsedError;
   @JsonKey(name: 'text')
   String? get questionText => throw _privateConstructorUsedError;
   @JsonKey(name: 'questionType')
@@ -59,8 +57,6 @@ abstract class $ScreeningQuestionCopyWith<$Res> {
           String? id,
       @JsonKey(name: 'active')
           bool? active,
-      @JsonKey(name: 'questionnaireID')
-          String? questionnaireId,
       @JsonKey(name: 'text')
           String? questionText,
       @JsonKey(name: 'questionType')
@@ -92,7 +88,6 @@ class _$ScreeningQuestionCopyWithImpl<$Res, $Val extends ScreeningQuestion>
   $Res call({
     Object? id = freezed,
     Object? active = freezed,
-    Object? questionnaireId = freezed,
     Object? questionText = freezed,
     Object? questionType = freezed,
     Object? responseValueType = freezed,
@@ -110,10 +105,6 @@ class _$ScreeningQuestionCopyWithImpl<$Res, $Val extends ScreeningQuestion>
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
               as bool?,
-      questionnaireId: freezed == questionnaireId
-          ? _value.questionnaireId
-          : questionnaireId // ignore: cast_nullable_to_non_nullable
-              as String?,
       questionText: freezed == questionText
           ? _value.questionText
           : questionText // ignore: cast_nullable_to_non_nullable
@@ -159,8 +150,6 @@ abstract class _$$_ScreeningQuestionCopyWith<$Res>
           String? id,
       @JsonKey(name: 'active')
           bool? active,
-      @JsonKey(name: 'questionnaireID')
-          String? questionnaireId,
       @JsonKey(name: 'text')
           String? questionText,
       @JsonKey(name: 'questionType')
@@ -190,7 +179,6 @@ class __$$_ScreeningQuestionCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? active = freezed,
-    Object? questionnaireId = freezed,
     Object? questionText = freezed,
     Object? questionType = freezed,
     Object? responseValueType = freezed,
@@ -208,10 +196,6 @@ class __$$_ScreeningQuestionCopyWithImpl<$Res>
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
               as bool?,
-      questionnaireId: freezed == questionnaireId
-          ? _value.questionnaireId
-          : questionnaireId // ignore: cast_nullable_to_non_nullable
-              as String?,
       questionText: freezed == questionText
           ? _value.questionText
           : questionText // ignore: cast_nullable_to_non_nullable
@@ -250,7 +234,6 @@ class _$_ScreeningQuestion implements _ScreeningQuestion {
   _$_ScreeningQuestion(
       {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'active') this.active,
-      @JsonKey(name: 'questionnaireID') this.questionnaireId,
       @JsonKey(name: 'text') this.questionText,
       @JsonKey(name: 'questionType') this.questionType,
       @JsonKey(name: 'responseValueType') this.responseValueType,
@@ -269,9 +252,6 @@ class _$_ScreeningQuestion implements _ScreeningQuestion {
   @override
   @JsonKey(name: 'active')
   final bool? active;
-  @override
-  @JsonKey(name: 'questionnaireID')
-  final String? questionnaireId;
   @override
   @JsonKey(name: 'text')
   final String? questionText;
@@ -302,7 +282,7 @@ class _$_ScreeningQuestion implements _ScreeningQuestion {
 
   @override
   String toString() {
-    return 'ScreeningQuestion(id: $id, active: $active, questionnaireId: $questionnaireId, questionText: $questionText, questionType: $questionType, responseValueType: $responseValueType, required: $required, selectMultiple: $selectMultiple, sequence: $sequence, choices: $choices)';
+    return 'ScreeningQuestion(id: $id, active: $active, questionText: $questionText, questionType: $questionType, responseValueType: $responseValueType, required: $required, selectMultiple: $selectMultiple, sequence: $sequence, choices: $choices)';
   }
 
   @override
@@ -312,8 +292,6 @@ class _$_ScreeningQuestion implements _ScreeningQuestion {
             other is _$_ScreeningQuestion &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.active, active) || other.active == active) &&
-            (identical(other.questionnaireId, questionnaireId) ||
-                other.questionnaireId == questionnaireId) &&
             (identical(other.questionText, questionText) ||
                 other.questionText == questionText) &&
             (identical(other.questionType, questionType) ||
@@ -335,7 +313,6 @@ class _$_ScreeningQuestion implements _ScreeningQuestion {
       runtimeType,
       id,
       active,
-      questionnaireId,
       questionText,
       questionType,
       responseValueType,
@@ -365,8 +342,6 @@ abstract class _ScreeningQuestion implements ScreeningQuestion {
           final String? id,
       @JsonKey(name: 'active')
           final bool? active,
-      @JsonKey(name: 'questionnaireID')
-          final String? questionnaireId,
       @JsonKey(name: 'text')
           final String? questionText,
       @JsonKey(name: 'questionType')
@@ -391,9 +366,6 @@ abstract class _ScreeningQuestion implements ScreeningQuestion {
   @override
   @JsonKey(name: 'active')
   bool? get active;
-  @override
-  @JsonKey(name: 'questionnaireID')
-  String? get questionnaireId;
   @override
   @JsonKey(name: 'text')
   String? get questionText;

@@ -11,7 +11,6 @@ class ScreeningQuestion with _$ScreeningQuestion {
   factory ScreeningQuestion({
     @JsonKey(name: 'id') String? id,
     @JsonKey(name: 'active') bool? active,
-    @JsonKey(name: 'questionnaireID') String? questionnaireId,
     @JsonKey(name: 'text') String? questionText,
     @JsonKey(name: 'questionType') QuestionType? questionType,
     @JsonKey(name: 'responseValueType')
@@ -28,7 +27,6 @@ class ScreeningQuestion with _$ScreeningQuestion {
   factory ScreeningQuestion.initial() => ScreeningQuestion(
         id: UNKNOWN,
         active: false,
-        questionnaireId: UNKNOWN,
         questionText: UNKNOWN,
         required: false,
         selectMultiple: false,

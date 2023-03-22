@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:pro_health_360/domain/core/entities/core/screening_tool_answer.dart';
 import 'package:pro_health_360/domain/core/entities/core/screening_tool_answers_list.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
@@ -47,12 +48,15 @@ class AnswerScreeningToolsAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final Map<String, dynamic> responsesMap = responses.toJson();
+    final List<Map<String, dynamic>> responsesList = <Map<String, dynamic>>[];
+    for (final ScreeningToolAnswer? answer in responses.answersList!) {
+      responsesList.add(answer!.toJson());
+    }
     final Map<String, dynamic> variables = <String, dynamic>{
       'input': <String, dynamic>{
         'clientID': state.clientState?.clientProfile?.id,
         'screeningToolID': screeningToolId,
-        ...responsesMap
+        'questionResponses': responsesList,
       }
     };
     final Response response = await client.query(
@@ -68,31 +72,26 @@ class AnswerScreeningToolsAction extends ReduxAction<AppState> {
       final String? errors = client.parseError(body);
 
       if (errors != null) {
-        Sentry.captureException(
-          UserException(errors),
-        );
+        Sentry.captureException(UserException(errors));
 
-        throw UserException(
-          getErrorMessage('posting answers'),
-        );
+        throw UserException(getErrorMessage('posting answers'));
       }
 
       final Map<String, dynamic>? data = body['data'] as Map<String, dynamic>?;
 
       if (data?['respondToScreeningTool'] == true) {
+        dispatch(
+          NavigateAction<AppState>.pushNamed(
+            AppRoutes.successfulAssessmentSubmissionPage,
+          ),
+        );
         // log event
         await AnalyticsService().logEvent(
           name: successfulToolAssessmentEvent,
           eventType: AnalyticsEventType.INTERACTION,
           parameters: <String, dynamic>{
-            'screeningToolType': 'screeningToolsType',
+            'screeningToolType': screeningToolsType.name
           },
-        );
-
-        dispatch(
-          NavigateAction<AppState>.pushNamed(
-            AppRoutes.successfulAssessmentSubmissionPage,
-          ),
         );
       } else {
         dispatch(updateErrorAnsweringQuestions(type: screeningToolsType));

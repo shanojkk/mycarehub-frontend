@@ -85,5 +85,7 @@
 	<false/>
 	<key>io.flutter.embedded_views_preview</key>
 	<true/>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Allow access to your photo gallery to select and upload images to the app</string>
 </dict>
 </plist>

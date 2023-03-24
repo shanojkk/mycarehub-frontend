@@ -19,12 +19,6 @@ _$_ChatState _$$_ChatStateFromJson(Map<String, dynamic> json) => _$_ChatState(
       messages: (json['messages'] as List<dynamic>?)
           ?.map((e) => Message.fromJson(e as Map<String, dynamic>))
           .toList(),
-      images: (json['images'] as List<dynamic>?)
-          ?.map((e) => (e as Map<String, dynamic>?)?.map(
-                (k, e) => MapEntry(
-                    k, const Uint8ListConverter().fromJson(e as List<int>?)),
-              ))
-          .toList(),
       lastSyncTime: json['lastSyncTime'] as String?,
       syncResponse: json['syncResponse'] == null
           ? null
@@ -32,6 +26,7 @@ _$_ChatState _$$_ChatStateFromJson(Map<String, dynamic> json) => _$_ChatState(
       syncState: json['syncState'] == null
           ? null
           : SyncState.fromJson(json['syncState'] as Map<String, dynamic>),
+      selectedRoom: json['selectedRoom'] as String?,
     );
 
 Map<String, dynamic> _$$_ChatStateToJson(_$_ChatState instance) =>
@@ -40,11 +35,8 @@ Map<String, dynamic> _$$_ChatStateToJson(_$_ChatState instance) =>
       'groupInfoMembers': instance.groupInfoMembers,
       'searchMemberResults': instance.searchMemberResults,
       'messages': instance.messages,
-      'images': instance.images
-          ?.map((e) => e?.map(
-              (k, e) => MapEntry(k, const Uint8ListConverter().toJson(e))))
-          .toList(),
       'lastSyncTime': instance.lastSyncTime,
       'syncResponse': instance.syncResponse,
       'syncState': instance.syncState,
+      'selectedRoom': instance.selectedRoom,
     };

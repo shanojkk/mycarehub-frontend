@@ -1,28 +1,36 @@
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:pro_health_360/application/core/services/communities_utils.dart';
+import 'package:pro_health_360/application/redux/actions/communities/set_room_action.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/presentation/communities/widgets/avatar.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:sghi_core/communities/models/room.dart';
+import 'package:sghi_core/communities/models/strings.dart';
 
 class RoomListItemWidget extends StatelessWidget {
-  const RoomListItemWidget({
-    super.key,
-    required this.groupName,
-    required this.currentRoom,
-    required this.isInvite,
-    required this.groupMembers,
-  });
+  const RoomListItemWidget({super.key, required this.currentRoom});
 
-  final String groupName;
   final Room currentRoom;
-  final bool isInvite;
-  final String groupMembers;
 
   @override
   Widget build(BuildContext context) {
+    final String groupName = currentRoom.name ?? 'Empty room';
+
+    final bool isInvite = currentRoom.invite ?? false;
+
+    final String joinedMemberCount =
+        currentRoom.summary?.joinedMembers?.toString() ?? 'no';
+
+    final String? avatarURI = currentRoom.avatarUri;
+
     return InkWell(
-      key: Key(groupName),
+      key: Key(currentRoom.roomID ?? UNKNOWN),
       onTap: () {
+        StoreProvider.dispatch<AppState>(
+          context,
+          SetRoom(roomID: currentRoom.roomID),
+        );
         Navigator.of(context)
             .pushNamed(AppRoutes.roomPageRoute, arguments: currentRoom);
       },
@@ -32,25 +40,7 @@ class RoomListItemWidget extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: Row(
           children: <Widget>[
-            Container(
-              height: 60,
-              width: 60,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.purple.withOpacity(0.2),
-              ),
-              padding: const EdgeInsets.all(15),
-              child: Center(
-                child: Text(
-                  getInitials(groupName).toUpperCase(),
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.purple,
-                  ),
-                ),
-              ),
-            ),
+            Avatar(avatarURI: avatarURI, displayName: groupName),
             const SizedBox(width: 10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,7 +55,9 @@ class RoomListItemWidget extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  isInvite ? invitedString : groupMembersCount(groupMembers),
+                  isInvite
+                      ? invitedString
+                      : groupMembersCount(joinedMemberCount),
                   style: const TextStyle(
                     color: Colors.black45,
                     fontWeight: FontWeight.w500,

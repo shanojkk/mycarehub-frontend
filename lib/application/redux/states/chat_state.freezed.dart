@@ -27,10 +27,7 @@ mixin _$ChatState {
   @JsonKey(name: 'searchMemberResults')
   List<User>? get searchMemberResults => throw _privateConstructorUsedError;
   @JsonKey(name: 'messages')
-  List<Message>? get messages => throw _privateConstructorUsedError;
-  @Uint8ListConverter()
-  @JsonKey(name: 'images')
-  List<Map<String, Uint8List?>?>? get images =>
+  List<Message>? get messages =>
       throw _privateConstructorUsedError; // Final string lastSyncTime for chats
   @JsonKey(name: 'lastSyncTime')
   String? get lastSyncTime =>
@@ -39,7 +36,10 @@ mixin _$ChatState {
   SyncResponse? get syncResponse =>
       throw _privateConstructorUsedError; // Specific for the sync observer settings
   @JsonKey(name: 'syncState')
-  SyncState? get syncState => throw _privateConstructorUsedError;
+  SyncState? get syncState =>
+      throw _privateConstructorUsedError; // The currently selected room
+  @JsonKey(name: 'selectedRoom')
+  String? get selectedRoom => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -53,23 +53,14 @@ abstract class $ChatStateCopyWith<$Res> {
       _$ChatStateCopyWithImpl<$Res, ChatState>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'userProfile')
-          User? userProfile,
-      @JsonKey(name: 'groupInfoMembers')
-          List<RoomUser>? groupInfoMembers,
-      @JsonKey(name: 'searchMemberResults')
-          List<User>? searchMemberResults,
-      @JsonKey(name: 'messages')
-          List<Message>? messages,
-      @Uint8ListConverter()
-      @JsonKey(name: 'images')
-          List<Map<String, Uint8List?>?>? images,
-      @JsonKey(name: 'lastSyncTime')
-          String? lastSyncTime,
-      @JsonKey(name: 'syncResponse')
-          SyncResponse? syncResponse,
-      @JsonKey(name: 'syncState')
-          SyncState? syncState});
+      {@JsonKey(name: 'userProfile') User? userProfile,
+      @JsonKey(name: 'groupInfoMembers') List<RoomUser>? groupInfoMembers,
+      @JsonKey(name: 'searchMemberResults') List<User>? searchMemberResults,
+      @JsonKey(name: 'messages') List<Message>? messages,
+      @JsonKey(name: 'lastSyncTime') String? lastSyncTime,
+      @JsonKey(name: 'syncResponse') SyncResponse? syncResponse,
+      @JsonKey(name: 'syncState') SyncState? syncState,
+      @JsonKey(name: 'selectedRoom') String? selectedRoom});
 
   $UserCopyWith<$Res>? get userProfile;
   $SyncResponseCopyWith<$Res>? get syncResponse;
@@ -93,10 +84,10 @@ class _$ChatStateCopyWithImpl<$Res, $Val extends ChatState>
     Object? groupInfoMembers = freezed,
     Object? searchMemberResults = freezed,
     Object? messages = freezed,
-    Object? images = freezed,
     Object? lastSyncTime = freezed,
     Object? syncResponse = freezed,
     Object? syncState = freezed,
+    Object? selectedRoom = freezed,
   }) {
     return _then(_value.copyWith(
       userProfile: freezed == userProfile
@@ -115,10 +106,6 @@ class _$ChatStateCopyWithImpl<$Res, $Val extends ChatState>
           ? _value.messages
           : messages // ignore: cast_nullable_to_non_nullable
               as List<Message>?,
-      images: freezed == images
-          ? _value.images
-          : images // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, Uint8List?>?>?,
       lastSyncTime: freezed == lastSyncTime
           ? _value.lastSyncTime
           : lastSyncTime // ignore: cast_nullable_to_non_nullable
@@ -131,6 +118,10 @@ class _$ChatStateCopyWithImpl<$Res, $Val extends ChatState>
           ? _value.syncState
           : syncState // ignore: cast_nullable_to_non_nullable
               as SyncState?,
+      selectedRoom: freezed == selectedRoom
+          ? _value.selectedRoom
+          : selectedRoom // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -179,23 +170,14 @@ abstract class _$$_ChatStateCopyWith<$Res> implements $ChatStateCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'userProfile')
-          User? userProfile,
-      @JsonKey(name: 'groupInfoMembers')
-          List<RoomUser>? groupInfoMembers,
-      @JsonKey(name: 'searchMemberResults')
-          List<User>? searchMemberResults,
-      @JsonKey(name: 'messages')
-          List<Message>? messages,
-      @Uint8ListConverter()
-      @JsonKey(name: 'images')
-          List<Map<String, Uint8List?>?>? images,
-      @JsonKey(name: 'lastSyncTime')
-          String? lastSyncTime,
-      @JsonKey(name: 'syncResponse')
-          SyncResponse? syncResponse,
-      @JsonKey(name: 'syncState')
-          SyncState? syncState});
+      {@JsonKey(name: 'userProfile') User? userProfile,
+      @JsonKey(name: 'groupInfoMembers') List<RoomUser>? groupInfoMembers,
+      @JsonKey(name: 'searchMemberResults') List<User>? searchMemberResults,
+      @JsonKey(name: 'messages') List<Message>? messages,
+      @JsonKey(name: 'lastSyncTime') String? lastSyncTime,
+      @JsonKey(name: 'syncResponse') SyncResponse? syncResponse,
+      @JsonKey(name: 'syncState') SyncState? syncState,
+      @JsonKey(name: 'selectedRoom') String? selectedRoom});
 
   @override
   $UserCopyWith<$Res>? get userProfile;
@@ -220,10 +202,10 @@ class __$$_ChatStateCopyWithImpl<$Res>
     Object? groupInfoMembers = freezed,
     Object? searchMemberResults = freezed,
     Object? messages = freezed,
-    Object? images = freezed,
     Object? lastSyncTime = freezed,
     Object? syncResponse = freezed,
     Object? syncState = freezed,
+    Object? selectedRoom = freezed,
   }) {
     return _then(_$_ChatState(
       userProfile: freezed == userProfile
@@ -242,10 +224,6 @@ class __$$_ChatStateCopyWithImpl<$Res>
           ? _value.messages
           : messages // ignore: cast_nullable_to_non_nullable
               as List<Message>?,
-      images: freezed == images
-          ? _value.images
-          : images // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, Uint8List?>?>?,
       lastSyncTime: freezed == lastSyncTime
           ? _value.lastSyncTime
           : lastSyncTime // ignore: cast_nullable_to_non_nullable
@@ -258,6 +236,10 @@ class __$$_ChatStateCopyWithImpl<$Res>
           ? _value.syncState
           : syncState // ignore: cast_nullable_to_non_nullable
               as SyncState?,
+      selectedRoom: freezed == selectedRoom
+          ? _value.selectedRoom
+          : selectedRoom // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -270,10 +252,10 @@ class _$_ChatState with DiagnosticableTreeMixin implements _ChatState {
       @JsonKey(name: 'groupInfoMembers') this.groupInfoMembers,
       @JsonKey(name: 'searchMemberResults') this.searchMemberResults,
       @JsonKey(name: 'messages') this.messages,
-      @Uint8ListConverter() @JsonKey(name: 'images') this.images,
       @JsonKey(name: 'lastSyncTime') this.lastSyncTime,
       @JsonKey(name: 'syncResponse') this.syncResponse,
-      @JsonKey(name: 'syncState') this.syncState});
+      @JsonKey(name: 'syncState') this.syncState,
+      @JsonKey(name: 'selectedRoom') this.selectedRoom});
 
   factory _$_ChatState.fromJson(Map<String, dynamic> json) =>
       _$$_ChatStateFromJson(json);
@@ -290,10 +272,6 @@ class _$_ChatState with DiagnosticableTreeMixin implements _ChatState {
   @override
   @JsonKey(name: 'messages')
   final List<Message>? messages;
-  @override
-  @Uint8ListConverter()
-  @JsonKey(name: 'images')
-  final List<Map<String, Uint8List?>?>? images;
 // Final string lastSyncTime for chats
   @override
   @JsonKey(name: 'lastSyncTime')
@@ -306,10 +284,14 @@ class _$_ChatState with DiagnosticableTreeMixin implements _ChatState {
   @override
   @JsonKey(name: 'syncState')
   final SyncState? syncState;
+// The currently selected room
+  @override
+  @JsonKey(name: 'selectedRoom')
+  final String? selectedRoom;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ChatState(userProfile: $userProfile, groupInfoMembers: $groupInfoMembers, searchMemberResults: $searchMemberResults, messages: $messages, images: $images, lastSyncTime: $lastSyncTime, syncResponse: $syncResponse, syncState: $syncState)';
+    return 'ChatState(userProfile: $userProfile, groupInfoMembers: $groupInfoMembers, searchMemberResults: $searchMemberResults, messages: $messages, lastSyncTime: $lastSyncTime, syncResponse: $syncResponse, syncState: $syncState, selectedRoom: $selectedRoom)';
   }
 
   @override
@@ -321,10 +303,10 @@ class _$_ChatState with DiagnosticableTreeMixin implements _ChatState {
       ..add(DiagnosticsProperty('groupInfoMembers', groupInfoMembers))
       ..add(DiagnosticsProperty('searchMemberResults', searchMemberResults))
       ..add(DiagnosticsProperty('messages', messages))
-      ..add(DiagnosticsProperty('images', images))
       ..add(DiagnosticsProperty('lastSyncTime', lastSyncTime))
       ..add(DiagnosticsProperty('syncResponse', syncResponse))
-      ..add(DiagnosticsProperty('syncState', syncState));
+      ..add(DiagnosticsProperty('syncState', syncState))
+      ..add(DiagnosticsProperty('selectedRoom', selectedRoom));
   }
 
   @override
@@ -339,13 +321,14 @@ class _$_ChatState with DiagnosticableTreeMixin implements _ChatState {
             const DeepCollectionEquality()
                 .equals(other.searchMemberResults, searchMemberResults) &&
             const DeepCollectionEquality().equals(other.messages, messages) &&
-            const DeepCollectionEquality().equals(other.images, images) &&
             (identical(other.lastSyncTime, lastSyncTime) ||
                 other.lastSyncTime == lastSyncTime) &&
             (identical(other.syncResponse, syncResponse) ||
                 other.syncResponse == syncResponse) &&
             (identical(other.syncState, syncState) ||
-                other.syncState == syncState));
+                other.syncState == syncState) &&
+            (identical(other.selectedRoom, selectedRoom) ||
+                other.selectedRoom == selectedRoom));
   }
 
   @JsonKey(ignore: true)
@@ -356,10 +339,10 @@ class _$_ChatState with DiagnosticableTreeMixin implements _ChatState {
       const DeepCollectionEquality().hash(groupInfoMembers),
       const DeepCollectionEquality().hash(searchMemberResults),
       const DeepCollectionEquality().hash(messages),
-      const DeepCollectionEquality().hash(images),
       lastSyncTime,
       syncResponse,
-      syncState);
+      syncState,
+      selectedRoom);
 
   @JsonKey(ignore: true)
   @override
@@ -385,15 +368,14 @@ abstract class _ChatState implements ChatState {
           final List<User>? searchMemberResults,
       @JsonKey(name: 'messages')
           final List<Message>? messages,
-      @Uint8ListConverter()
-      @JsonKey(name: 'images')
-          final List<Map<String, Uint8List?>?>? images,
       @JsonKey(name: 'lastSyncTime')
           final String? lastSyncTime,
       @JsonKey(name: 'syncResponse')
           final SyncResponse? syncResponse,
       @JsonKey(name: 'syncState')
-          final SyncState? syncState}) = _$_ChatState;
+          final SyncState? syncState,
+      @JsonKey(name: 'selectedRoom')
+          final String? selectedRoom}) = _$_ChatState;
 
   factory _ChatState.fromJson(Map<String, dynamic> json) =
       _$_ChatState.fromJson;
@@ -410,10 +392,6 @@ abstract class _ChatState implements ChatState {
   @override
   @JsonKey(name: 'messages')
   List<Message>? get messages;
-  @override
-  @Uint8ListConverter()
-  @JsonKey(name: 'images')
-  List<Map<String, Uint8List?>?>? get images;
   @override // Final string lastSyncTime for chats
   @JsonKey(name: 'lastSyncTime')
   String? get lastSyncTime;
@@ -423,6 +401,9 @@ abstract class _ChatState implements ChatState {
   @override // Specific for the sync observer settings
   @JsonKey(name: 'syncState')
   SyncState? get syncState;
+  @override // The currently selected room
+  @JsonKey(name: 'selectedRoom')
+  String? get selectedRoom;
   @override
   @JsonKey(ignore: true)
   _$$_ChatStateCopyWith<_$_ChatState> get copyWith =>

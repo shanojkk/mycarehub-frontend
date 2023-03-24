@@ -39,7 +39,7 @@ class SyncState with _$SyncState {
 
   factory SyncState.initial() => SyncState(
         syncInterval: 5000,
-        syncPollTimeout: 5000,
+        syncPollTimeout: 30000,
         lastUpdate: 0,
         lastAttempt: 0,
         lastSince: UNKNOWN,

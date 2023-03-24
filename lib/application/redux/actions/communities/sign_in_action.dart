@@ -37,33 +37,39 @@ class SignInAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final User userProfile = await ChatAPI.signIn(
+    final User? userProfile = await ChatAPI.signIn(
       client: client!,
       username: username,
       password: password,
     );
 
-    dispatch(UpdateUserStateAction(isSignedIn: true, userProfile: userProfile));
+    if (userProfile != null) {
+      dispatch(
+        UpdateUserStateAction(isSignedIn: true, userProfile: userProfile),
+      );
 
-    final String accessToken = state.chatState?.userProfile?.accessToken ?? '';
+      final String accessToken =
+          state.chatState?.userProfile?.accessToken ?? '';
 
-    /// Sync with the API first
-    dispatch(
-      SyncAction(
-        syncParams: SyncParams(
-          accessToken: accessToken,
-          fullState: true,
-          fullSync: true,
-          forceFull: true,
-          client: client!,
+      /// Sync with the API first
+      dispatch(
+        SyncAction(
+          syncParams: SyncParams(
+            accessToken: accessToken,
+            fullState: true,
+            fullSync: true,
+            forceFull: true,
+            client: client!,
+          ),
         ),
-      ),
-    );
+      );
 
-    dispatch(StartSyncObserverAction(client: client!));
+      dispatch(StartSyncObserverAction(client: client!));
 
-    onSuccess?.call();
+      onSuccess?.call();
 
-    return state;
+      return state;
+    }
+    return null;
   }
 }

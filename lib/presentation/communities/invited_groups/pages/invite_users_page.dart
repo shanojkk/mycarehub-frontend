@@ -1,13 +1,12 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:pro_health_360/application/redux/actions/communities/invite_users_action.dart';
 import 'package:pro_health_360/application/redux/actions/communities/search_group_members_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/view_models/communities/communities_view_model.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
-import 'package:pro_health_360/presentation/communities/widgets/user_list_item.dart';
+import 'package:pro_health_360/presentation/communities/widgets/invite_user_widget.dart';
 import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.dart';
 
 import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
@@ -101,36 +100,10 @@ class InviteUsersPage extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   final User currentUser = users![index];
 
-                  return UserListItem(
-                    key: Key(currentUser.userID ?? ''),
-                    name: currentUser.displayName ?? 'No Name',
-                    userID: currentUser.userID ?? '',
-                    roomID: '',
-                    onTap: () async {
-                      StoreProvider.dispatch<AppState>(
-                        context,
-                        InviteUserAction(
-                          roomID: room.roomID!,
-                          userID: currentUser.userID!,
-                          client:
-                              AppWrapperBase.of(context)!.communitiesClient!,
-                          onSuccess: () {
-                            ScaffoldMessenger.of(context)
-                              ..hideCurrentSnackBar()
-                              ..showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    '${currentUser.displayName} has been '
-                                    'invited successfully',
-                                  ),
-                                ),
-                              );
-
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                      );
-                    },
+                  return InviteUserWidget(
+                    user: currentUser,
+                    roomID: room.roomID!,
+                    authUserID: vm.authUserID,
                   );
                 },
               );

@@ -1,5 +1,4 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter/services.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
@@ -8,47 +7,64 @@ import 'package:sghi_core/communities/models/user.dart';
 
 class RoomListViewModel extends Vm {
   RoomListViewModel({
-    required this.joinedRooms,
-    this.wait,
-    this.displayName,
-    this.invitedRooms,
+    required this.rooms,
+    required this.syncing,
+    required this.displayName,
   }) : super(
           equals: <Object?>[
-            joinedRooms,
-            wait,
+            syncing,
             displayName,
-            invitedRooms,
-            joinedRooms,
+            rooms,
           ],
         );
 
   factory RoomListViewModel.fromStore(Store<AppState> store) {
+    final List<Room?> allRooms = <Room?>[
+      ...?store.state.chatState?.syncResponse?.rooms?.invitedRooms?.values
+          .toList(),
+      ...?store.state.chatState?.syncResponse?.rooms?.joinedRooms?.values
+          .toList(),
+    ];
+
     return RoomListViewModel(
-      wait: store.state.wait,
+      syncing: store.state.wait?.isWaitingFor(syncingEventsFlag) ?? false,
       displayName: store.state.chatState?.userProfile?.userID,
-      joinedRooms: store.state.chatState?.syncResponse?.rooms?.joinedRooms,
-      invitedRooms: store.state.chatState?.syncResponse?.rooms?.invitedRooms,
+      rooms: allRooms,
     );
   }
 
-  final Map<String, Room>? invitedRooms;
-  final Map<String, Room>? joinedRooms;
-
-  final Wait? wait;
+  final bool syncing;
   final String? displayName;
+  final List<Room?>? rooms;
 }
 
 class RoomInfoViewModel extends Vm {
   RoomInfoViewModel({
     required this.groupInfoMembers,
-    this.wait,
+    required this.fetchingMembers,
     required this.authUserID,
-  }) : super(equals: <Object?>[groupInfoMembers, wait, authUserID]);
+    required this.leavingRoom,
+    required this.promotingToMod,
+    required this.joiningRoom,
+  }) : super(
+          equals: <Object?>[
+            groupInfoMembers,
+            authUserID,
+            leavingRoom,
+            fetchingMembers,
+            promotingToMod,
+            joiningRoom,
+          ],
+        );
 
   factory RoomInfoViewModel.fromStore(Store<AppState> store) {
     final AppState state = store.state;
     return RoomInfoViewModel(
-      wait: state.wait,
+      fetchingMembers:
+          store.state.wait?.isWaitingFor(fetchRoomMembersFlag) ?? false,
+      leavingRoom: store.state.wait?.isWaitingFor(leaveRoomFlag) ?? false,
+      promotingToMod: store.state.wait?.isWaitingFor(promoteToModFlag) ?? false,
+      joiningRoom: store.state.wait?.isWaitingFor(joinRoomFlag) ?? false,
       groupInfoMembers: state.chatState?.groupInfoMembers,
       authUserID: state.chatState?.userProfile?.userID ?? UNKNOWN,
     );
@@ -58,57 +74,58 @@ class RoomInfoViewModel extends Vm {
 
   /// User ID of the currently signed in user
   final String authUserID;
-  final Wait? wait;
+
+  final bool fetchingMembers;
+
+  final bool leavingRoom;
+
+  final bool promotingToMod;
+
+  final bool joiningRoom;
 }
 
 class SearchPageViewModel extends Vm {
-  SearchPageViewModel({required this.searchMemberResults, this.wait})
-      : super(equals: <Object?>[searchMemberResults, wait]);
+  SearchPageViewModel({
+    required this.searchMemberResults,
+    required this.authUserID,
+    this.wait,
+  }) : super(equals: <Object?>[searchMemberResults, wait, authUserID]);
 
   factory SearchPageViewModel.fromStore(Store<AppState> store) {
     return SearchPageViewModel(
       wait: store.state.wait,
       searchMemberResults: store.state.chatState?.searchMemberResults,
+      authUserID: store.state.chatState?.userProfile?.userID ?? UNKNOWN,
     );
   }
 
   final List<User>? searchMemberResults;
+  final String authUserID;
   final Wait? wait;
 }
 
 class RoomPageViewModel extends Vm {
-  RoomPageViewModel({
-    required this.joinedRooms,
-    required this.invitedRooms,
-    this.wait,
-  }) : super(equals: <Object?>[invitedRooms, joinedRooms, wait]);
+  RoomPageViewModel({required this.selectedRoom})
+      : super(equals: <Object?>[selectedRoom]);
 
   factory RoomPageViewModel.fromStore(Store<AppState> store) {
-    return RoomPageViewModel(
-      wait: store.state.wait,
-      invitedRooms: store.state.chatState?.syncResponse?.rooms?.invitedRooms,
-      joinedRooms: store.state.chatState?.syncResponse?.rooms?.joinedRooms,
+    final String? selectedRoomID = store.state.chatState?.selectedRoom;
+
+    final List<Room?> allRooms = <Room?>[
+      ...?store.state.chatState?.syncResponse?.rooms?.invitedRooms?.values
+          .toList(),
+      ...?store.state.chatState?.syncResponse?.rooms?.joinedRooms?.values
+          .toList(),
+    ];
+
+    final Room? selected = allRooms.firstWhere(
+      (Room? r) => r?.roomID == selectedRoomID,
     );
+
+    return RoomPageViewModel(selectedRoom: selected);
   }
 
-  final Wait? wait;
-
-  final Map<String, Room>? invitedRooms;
-  final Map<String, Room>? joinedRooms;
-}
-
-class MediaItemViewModel extends Vm {
-  MediaItemViewModel({required this.images, this.wait})
-      : super(equals: <Object?>[images, wait]);
-
-  factory MediaItemViewModel.fromStore(Store<AppState> store) {
-    return MediaItemViewModel(
-      wait: store.state.wait,
-      images: store.state.chatState?.images,
-    );
-  }
-  final List<Map<String, Uint8List?>?>? images;
-  final Wait? wait;
+  final Room? selectedRoom;
 }
 
 class MessageOptionsViewModel extends Vm {
@@ -123,4 +140,30 @@ class MessageOptionsViewModel extends Vm {
   }
 
   final bool isDeletingMessage;
+}
+
+class ImageUploadViewModel extends Vm {
+  ImageUploadViewModel({required this.uploadingImage})
+      : super(equals: <Object?>[uploadingImage]);
+
+  factory ImageUploadViewModel.fromStore(Store<AppState> store) {
+    return ImageUploadViewModel(
+      uploadingImage: store.state.wait?.isWaitingFor(uploadMediaFlag) ?? false,
+    );
+  }
+
+  final bool uploadingImage;
+}
+
+class MessageInputViewModel extends Vm {
+  MessageInputViewModel({required this.isSending})
+      : super(equals: <Object?>[isSending]);
+
+  factory MessageInputViewModel.fromStore(Store<AppState> store) {
+    return MessageInputViewModel(
+      isSending: store.state.wait?.isWaitingFor(sendMessageFlag) ?? false,
+    );
+  }
+
+  final bool isSending;
 }

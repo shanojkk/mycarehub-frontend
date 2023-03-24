@@ -21,9 +21,10 @@ class CommunitiesLogoutAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
+    state.chatState?.syncState?.syncObserver?.cancel();
+
     onSuccess?.call();
 
-    state.chatState?.syncState?.syncObserver?.cancel();
     return null;
   }
 }

@@ -38,21 +38,18 @@ class JoinRoomAction extends ReduxAction<AppState> {
       // Find the room by its ID in state and modify it
       final Map<String, Room>? invitedRoomsFromState =
           state.chatState?.syncResponse?.rooms?.invitedRooms;
+
       if (invitedRoomsFromState?.containsKey(roomID) ?? false) {
-        final Room? newRoom =
-            invitedRoomsFromState![roomID]?.copyWith.call(invite: false);
+        /// Remove the joined room from state
+        invitedRoomsFromState
+            ?.removeWhere((String key, Room r) => (r.roomID ?? '') == roomID);
 
-        if (newRoom != null) {
-          invitedRoomsFromState.addAll(<String, Room>{roomID: newRoom});
+        final AppState? newState = state.copyWith.chatState?.syncResponse?.rooms
+            ?.call(invitedRooms: invitedRoomsFromState);
 
-          final AppState? newState = state
-              .copyWith.chatState?.syncResponse?.rooms
-              ?.call(invitedRooms: invitedRoomsFromState);
+        if (onSuccess != null) onSuccess?.call();
 
-          if (onSuccess != null) onSuccess?.call();
-
-          return newState;
-        }
+        return newState;
       }
     } else {
       return null;

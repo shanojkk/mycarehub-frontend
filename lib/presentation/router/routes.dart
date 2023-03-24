@@ -144,6 +144,9 @@ class AppRoutes {
   static const String roomListPageRoute = '/roomListPageRoute';
   static const String roomPageRoute = '/roomPageRoute';
   static const String roomInfoPageRoute = '/roomInfoPageRoute';
+  static const String previewUploadMediaRoute = '/previewUploadMediaRoute';
+
+  static const String imagePreviewRoute = '/imagePreviewRoute';
 }
 
 List<String> unProtectedRoutes = <String>[AppRoutes.phoneLogin];

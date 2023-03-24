@@ -1,8 +1,8 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/message_widget.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/normal_message_item.dart';
+import 'package:pro_health_360/presentation/communities/invited_groups/pages/message_item_widget.dart';
+import 'package:pro_health_360/presentation/communities/invited_groups/widgets/text_message_widget.dart';
 import 'package:sghi_core/communities/models/message.dart';
 
 import '../../../../../mocks.dart';
@@ -22,7 +22,7 @@ void main() {
         tester: tester,
         store: store,
         client: MockGraphQlClient(),
-        widget: MessageWidget(
+        widget: MessageItemWidget(
           message: Message.fromJson(redactionEventMock),
           roomID: '!testRoom:chat.savannahghi.org',
         ),
@@ -38,7 +38,7 @@ void main() {
         tester: tester,
         store: store,
         client: MockGraphQlClient(),
-        widget: MessageWidget(
+        widget: MessageItemWidget(
           message: Message.fromJson(memberEventMock),
           roomID: '!testRoom:chat.savannahghi.org',
         ),
@@ -54,7 +54,7 @@ void main() {
         tester: tester,
         store: store,
         client: MockGraphQlClient(),
-        widget: MessageWidget(
+        widget: MessageItemWidget(
           message: Message.fromJson(topicEventMock),
           roomID: '!testRoom:chat.savannahghi.org',
         ),
@@ -73,7 +73,7 @@ void main() {
         tester: tester,
         store: store,
         client: MockGraphQlClient(),
-        widget: MessageWidget(
+        widget: MessageItemWidget(
           message: Message.fromJson(createEventMock),
           roomID: '!testRoom:chat.savannahghi.org',
         ),
@@ -88,14 +88,14 @@ void main() {
         tester: tester,
         store: store,
         client: MockGraphQlClient(),
-        widget: MessageWidget(
+        widget: MessageItemWidget(
           message: Message.fromJson(messageEventMock),
           roomID: '!testRoom:chat.savannahghi.org',
         ),
       );
 
       await tester.pumpAndSettle();
-      expect(find.byType(NormalMessageItem), findsOneWidget);
+      expect(find.byType(TextMessageWidget), findsOneWidget);
       expect(find.text('ala!'), findsOneWidget);
     });
   });

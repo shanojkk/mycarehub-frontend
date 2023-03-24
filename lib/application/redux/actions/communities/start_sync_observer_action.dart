@@ -72,6 +72,12 @@ class StartSyncObserverAction extends ReduxAction<AppState> {
                   Duration(milliseconds: 1000 * backoffFactor),
                 );
 
+        if (kDebugMode) {
+          print(
+            '[syncObserver] backoff at ${DateTime.now().difference(lastAttempt)} of $backoffFactor',
+          );
+        }
+
         if (backoffLimit != 1) {
           return;
         }
@@ -86,7 +92,16 @@ class StartSyncObserverAction extends ReduxAction<AppState> {
       }
 
       /// Synchronize
-      dispatch(SyncAction(syncParams: SyncParams(client: client)));
+      dispatch(
+        SyncAction(
+          syncParams: SyncParams(
+            client: client,
+            since: lastSince,
+            fullState: true,
+            fullSync: true,
+          ),
+        ),
+      );
     }
 
     if (syncObserver == null || !syncObserver.isActive) {
@@ -97,6 +112,6 @@ class StartSyncObserverAction extends ReduxAction<AppState> {
       return newState;
     }
 
-    return state;
+    return null;
   }
 }

@@ -1,6 +1,7 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:pro_health_360/application/redux/flags/flags.dart';
+import 'package:pro_health_360/application/redux/actions/communities/sign_in_action.dart';
+import 'package:pro_health_360/application/redux/actions/communities/sync_action.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/view_models/communities/communities_view_model.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
@@ -12,94 +13,115 @@ import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.
 import 'package:pro_health_360/presentation/home/widgets/bottom_nav_bar.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 import 'package:sghi_core/communities/models/room.dart';
+import 'package:sghi_core/communities/models/sync_params.dart';
 
-class RoomListPage extends StatelessWidget {
+class RoomListPage extends StatefulWidget {
   const RoomListPage({super.key});
+
+  @override
+  State<RoomListPage> createState() => _RoomListPageState();
+}
+
+class _RoomListPageState extends State<RoomListPage> {
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await StoreProvider.dispatch(
+        context,
+        SignInAction(
+          username: 'abiudrn',
+          password: 'abiudrn',
+          client: AppWrapperBase.of(context)!.communitiesClient,
+        ),
+      );
+    });
+
+    super.initState();
+  }
+
+  Future<void> onRefresh(
+    BuildContext context,
+  ) async {
+    StoreProvider.dispatch<AppState>(
+      context,
+      SyncAction(
+        syncParams: SyncParams(
+          fullState: true,
+          fullSync: true,
+          client: AppWrapperBase.of(context)!.communitiesClient!,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(title: 'Conversations'),
       bottomNavigationBar: const BottomNavBar(bottomNavIndex: 2),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Flexible(
-              child: StoreConnector<AppState, RoomListViewModel>(
-                converter: (Store<AppState> store) {
-                  return RoomListViewModel.fromStore(store);
-                },
-                onInit: (Store<AppState> store) {},
-                builder: (BuildContext context, RoomListViewModel vm) {
-                  if (vm.wait?.isWaitingFor(syncingEventsFlag) ?? false) {
-                    return Center(
-                      child: Column(
-                        children: <Widget>[
-                          const Text('Fetching your messages...'),
-                          mediumVerticalSizedBox,
-                          const CircularProgressIndicator(),
-                        ],
-                      ),
-                    );
-                  }
-
-                  final List<Room>? invitedRooms =
-                      vm.invitedRooms?.values.toList();
-
-                  final List<Room>? joinedRooms =
-                      vm.joinedRooms?.values.toList();
-
-                  final List<Room> allRooms = <Room>[
-                    ...?invitedRooms,
-                    ...?joinedRooms
-                  ];
-
-                  if (allRooms.isEmpty) {
-                    return GenericErrorWidget(
-                      actionText: viewInvites,
-                      actionKey: emptyChatsNewRoomKey,
-                      headerIconSvgUrl: noChatImage,
-                      messageTitle: noConversationsAvailable,
-                      messageBody: <TextSpan>[
-                        TextSpan(
-                          text: noConversationsDescription,
-                          style: normalSize16Text(
-                            AppColors.greyTextColor,
-                          ),
+      body: RefreshIndicator(
+        onRefresh: () async => onRefresh(context),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Flexible(
+                child: StoreConnector<AppState, RoomListViewModel>(
+                  converter: (Store<AppState> store) {
+                    return RoomListViewModel.fromStore(store);
+                  },
+                  onInit: (Store<AppState> store) {},
+                  builder: (BuildContext context, RoomListViewModel vm) {
+                    if (vm.syncing) {
+                      return Center(
+                        child: Column(
+                          children: <Widget>[
+                            const Text(syncingString),
+                            mediumVerticalSizedBox,
+                            const CircularProgressIndicator(),
+                          ],
                         ),
-                      ],
-                      recoverCallback: () => Navigator.pushNamed(
-                        context,
-                        AppRoutes.groupInvitesPage,
-                      ),
-                    );
-                  }
-
-                  return ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: allRooms.length,
-                    itemBuilder: (BuildContext context, int i) {
-                      final Room currentRoom = allRooms[i];
-                      final String groupName = currentRoom.name ?? 'No name';
-                      final String groupMembers =
-                          currentRoom.summary?.joinedMembers.toString() ?? 'no';
-                      final bool isInvite = currentRoom.invite ?? false;
-
-                      return RoomListItemWidget(
-                        groupName: groupName,
-                        currentRoom: currentRoom,
-                        isInvite: isInvite,
-                        groupMembers: groupMembers,
                       );
-                    },
-                  );
-                },
+                    }
+
+                    if (vm.rooms?.isEmpty ?? true) {
+                      return GenericErrorWidget(
+                        actionText: viewInvites,
+                        actionKey: emptyChatsNewRoomKey,
+                        headerIconSvgUrl: noChatImage,
+                        messageTitle: noConversationsAvailable,
+                        messageBody: <TextSpan>[
+                          TextSpan(
+                            text: noConversationsDescription,
+                            style: normalSize16Text(
+                              AppColors.greyTextColor,
+                            ),
+                          ),
+                        ],
+                        recoverCallback: () => Navigator.pushNamed(
+                          context,
+                          AppRoutes.groupInvitesPage,
+                        ),
+                      );
+                    }
+
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: vm.rooms?.length ?? 0,
+                      itemBuilder: (BuildContext context, int i) {
+                        final Room? currentRoom = vm.rooms?[i];
+
+                        return RoomListItemWidget(currentRoom: currentRoom!);
+                      },
+                    );
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

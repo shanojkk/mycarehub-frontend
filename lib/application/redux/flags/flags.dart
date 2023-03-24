@@ -168,3 +168,7 @@ const String startingSyncObserverFlag = 'startingSyncObserverFlag';
 const String joinRoomFlag = 'joinRoomFlag';
 
 const String leaveRoomFlag = 'leaveRoomFlag';
+
+const String uploadMediaFlag = 'uploadMediaFlag';
+
+const String promoteToModFlag = 'promoteToModFlag';

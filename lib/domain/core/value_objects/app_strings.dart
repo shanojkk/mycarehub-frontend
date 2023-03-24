@@ -1018,6 +1018,7 @@ const String switchingYourFacility = 'Switching your facility';
 const String userNameString = 'Username';
 const String switchingYourProgram = 'Switching your program';
 const String selectProgram = 'Please choose your program';
+
 // communities
 const String leaveRoom = 'Leave room';
 const String searchMembersDescription =
@@ -1033,3 +1034,7 @@ const String invitedString = 'You were invited. Tap for more info';
 String groupMembersCount(String groupMembers) => '$groupMembers members';
 const String leaveRoomDescription = 'Are you sure you want to leave the room?';
 const String yourInformation = 'Your information';
+const String syncingString = 'Organizing your rooms...';
+const String sendMessageString = 'Send a message...';
+const String sendImageString = 'Send Image';
+const String uploadImageString = 'Upload Image';

@@ -4,8 +4,9 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
-import 'dart:convert' as _i5;
-import 'dart:typed_data' as _i6;
+import 'dart:convert' as _i6;
+import 'dart:io' as _i5;
+import 'dart:typed_data' as _i7;
 
 import 'package:http/http.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
@@ -200,6 +201,32 @@ class MockIGraphQlClient extends _i1.Mock implements _i3.IGraphQlClient {
         )),
       ) as _i4.Future<_i2.Response>);
   @override
+  _i4.Future<_i2.Response> uploadMediaFile({
+    required _i5.File? image,
+    required String? mediaName,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #uploadMediaFile,
+          [],
+          {
+            #image: image,
+            #mediaName: mediaName,
+          },
+        ),
+        returnValue: _i4.Future<_i2.Response>.value(_FakeResponse_1(
+          this,
+          Invocation.method(
+            #uploadMediaFile,
+            [],
+            {
+              #image: image,
+              #mediaName: mediaName,
+            },
+          ),
+        )),
+      ) as _i4.Future<_i2.Response>);
+  @override
   _i4.Future<_i2.StreamedResponse> send(_i2.BaseRequest? request) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -260,7 +287,7 @@ class MockIGraphQlClient extends _i1.Mock implements _i3.IGraphQlClient {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i5.Encoding? encoding,
+    _i6.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -290,7 +317,7 @@ class MockIGraphQlClient extends _i1.Mock implements _i3.IGraphQlClient {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i5.Encoding? encoding,
+    _i6.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -320,7 +347,7 @@ class MockIGraphQlClient extends _i1.Mock implements _i3.IGraphQlClient {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i5.Encoding? encoding,
+    _i6.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -350,7 +377,7 @@ class MockIGraphQlClient extends _i1.Mock implements _i3.IGraphQlClient {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i5.Encoding? encoding,
+    _i6.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -389,7 +416,7 @@ class MockIGraphQlClient extends _i1.Mock implements _i3.IGraphQlClient {
         returnValue: _i4.Future<String>.value(''),
       ) as _i4.Future<String>);
   @override
-  _i4.Future<_i6.Uint8List> readBytes(
+  _i4.Future<_i7.Uint8List> readBytes(
     Uri? url, {
     Map<String, String>? headers,
   }) =>
@@ -399,8 +426,8 @@ class MockIGraphQlClient extends _i1.Mock implements _i3.IGraphQlClient {
           [url],
           {#headers: headers},
         ),
-        returnValue: _i4.Future<_i6.Uint8List>.value(_i6.Uint8List(0)),
-      ) as _i4.Future<_i6.Uint8List>);
+        returnValue: _i4.Future<_i7.Uint8List>.value(_i7.Uint8List(0)),
+      ) as _i4.Future<_i7.Uint8List>);
   @override
   void close() => super.noSuchMethod(
         Invocation.method(

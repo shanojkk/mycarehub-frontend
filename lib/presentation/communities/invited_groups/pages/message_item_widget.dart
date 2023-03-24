@@ -9,8 +9,12 @@ import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:sghi_core/communities/core/enums.dart';
 import 'package:sghi_core/communities/models/message.dart';
 
-class MessageWidget extends StatelessWidget {
-  const MessageWidget({super.key, required this.message, required this.roomID});
+class MessageItemWidget extends StatelessWidget {
+  const MessageItemWidget({
+    super.key,
+    required this.message,
+    required this.roomID,
+  });
 
   final Message message;
   final String roomID;
@@ -22,8 +26,8 @@ class MessageWidget extends StatelessWidget {
             ?.userProfile
             ?.userID ??
         '';
-    final bool isUserSent = message.sender == userID;
     final String timeStamp = formatTimestamp(message.timeStamp);
+    final bool wasSentByUser = message.sender == userID;
 
     Widget getRoomUpdatesWidget(Message? message) {
       final String eventType = message?.eventType ?? UNKNOWN;
@@ -61,7 +65,7 @@ class MessageWidget extends StatelessWidget {
         case EventTypes.message:
           return NormalMessageWidget(
             message: message,
-            isUserSent: isUserSent,
+            wasSentByUser: wasSentByUser,
             roomID: roomID,
           );
 

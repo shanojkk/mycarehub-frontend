@@ -1,14 +1,13 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:pro_health_360/application/core/services/communities_utils.dart';
 import 'package:pro_health_360/application/redux/actions/communities/join_room_action.dart';
-import 'package:pro_health_360/application/redux/flags/flags.dart';
+import 'package:pro_health_360/application/redux/actions/communities/leave_room_action.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/view_models/communities/communities_view_model.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
+import 'package:pro_health_360/presentation/communities/widgets/avatar.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
-import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 
 import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 import 'package:sghi_core/communities/models/room.dart';
@@ -20,8 +19,7 @@ class ReviewInviteWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String roomInitials = getInitials(room.name ?? 'No room name');
-    final String roomName = room.name ?? '';
+    final String roomName = room.name ?? 'Empty room';
 
     return StoreConnector<AppState, RoomInfoViewModel>(
       converter: (Store<AppState> store) => RoomInfoViewModel.fromStore(store),
@@ -30,17 +28,11 @@ class ReviewInviteWidget extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           children: <Widget>[
             const SizedBox(height: 20),
-            Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.purple.withOpacity(0.4),
-              ),
-              padding: const EdgeInsets.all(40),
-              child: Center(
-                child: Text(
-                  roomInitials.toUpperCase(),
-                  style: heavySize20Text(Colors.purple),
-                ),
+            Center(
+              child: Avatar(
+                avatarURI: room.avatarUri,
+                displayName: roomName,
+                aviSize: 100,
               ),
             ),
             const SizedBox(height: 20),
@@ -65,7 +57,7 @@ class ReviewInviteWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 30),
-            if (vm.wait?.isWaitingFor(joinRoomFlag) ?? false)
+            if (vm.joiningRoom)
               const Center(
                 child: Padding(
                   padding: EdgeInsets.all(8.0),
@@ -117,6 +109,17 @@ class ReviewInviteWidget extends StatelessWidget {
                   key: declineInviteKey,
                   onPressed: () async {
                     // Decline invite here
+                    StoreProvider.dispatch<AppState>(
+                      context,
+                      LeaveRoomAction(
+                        roomID: room.roomID!,
+                        onSuccess: () {
+                          Navigator.of(context)
+                              .pushNamed(AppRoutes.roomListPageRoute);
+                        },
+                        client: AppWrapperBase.of(context)!.communitiesClient!,
+                      ),
+                    );
                   },
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),

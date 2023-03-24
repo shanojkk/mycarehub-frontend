@@ -1,5 +1,7 @@
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/foundation.dart';
 import 'package:pro_health_360/application/core/services/communities_utils.dart';
+import 'package:pro_health_360/application/redux/actions/communities/set_backoff_action.dart';
 import 'package:pro_health_360/application/redux/actions/communities/update_chat_state_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
@@ -40,9 +42,10 @@ class SyncAction extends ReduxAction<AppState> {
       since = null;
     }
 
-    final bool isFullSync = syncParams?.forceFull ?? false;
+    final bool isFullSync =
+        (syncParams?.forceFull ?? false) || (syncParams?.fullSync ?? false);
 
-    final SyncResponse response = await synchronizeEvents(
+    final Map<String, dynamic> resp = await synchronizeEvents(
       SyncParams(
         accessToken: accessToken,
         fullState: syncParams?.fullState,
@@ -53,6 +56,15 @@ class SyncAction extends ReduxAction<AppState> {
       ),
     );
 
+    if (resp.containsKey('error')) {
+      final int currentBackoff = state.chatState?.syncState?.backOff ?? 0;
+      final int newBackoff = currentBackoff != 0 ? currentBackoff + 1 : 5;
+
+      dispatch(SetBackoffAction(backoff: newBackoff));
+    }
+
+    final SyncResponse response = SyncResponse.fromJson(resp);
+
     final Map<String, Room>? serverJoinedRooms = response.rooms?.joinedRooms;
     final Map<String, Room>? serverInvitedRooms = response.rooms?.invitedRooms;
 
@@ -60,9 +72,9 @@ class SyncAction extends ReduxAction<AppState> {
     if ((syncParams?.fullSync ?? false) || (syncParams?.forceFull ?? false)) {
       // For full sync
       final Map<String, Room>? parsedJoinedRooms =
-          parseSyncRooms(serverJoinedRooms);
+          enrichRooms(serverJoinedRooms);
       final Map<String, Room>? parsedInvitedRooms =
-          parseSyncRooms(serverInvitedRooms, invite: true);
+          enrichRooms(serverInvitedRooms, invite: true);
 
       final SyncResponse? newSyncData = response.copyWith.rooms?.call(
         joinedRooms: parsedJoinedRooms,
@@ -70,6 +82,10 @@ class SyncAction extends ReduxAction<AppState> {
       );
 
       dispatch(UpdateChatStateAction(syncResponse: newSyncData));
+
+      if (kDebugMode) {
+        print('[SyncAction] *** full sync completed ***');
+      }
 
       return state;
     } else {
@@ -80,12 +96,12 @@ class SyncAction extends ReduxAction<AppState> {
           state.chatState?.syncResponse?.rooms?.invitedRooms;
 
       final Map<String, Room>? updatedJoinedRooms = updateRoomData(
-        serverJoinedRooms,
-        stateJoinedRooms,
+        fromServer: serverJoinedRooms,
+        fromState: stateJoinedRooms,
       );
       final Map<String, Room>? updatedInvitedRooms = updateRoomData(
-        serverInvitedRooms,
-        stateInvitedRooms,
+        fromServer: serverInvitedRooms,
+        fromState: stateInvitedRooms,
         invite: true,
       );
 

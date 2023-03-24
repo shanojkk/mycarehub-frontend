@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   async_redux: ^18.0.2
+  cached_network_image: ^3.0.0
   collection: ^1.16.0
   connectivity_plus: ^2.3.6+1
   debug_logger: ^0.0.23
@@ -31,6 +32,7 @@ dependencies:
   google_fonts: ^3.0.1
   html: ^0.15.0
   http: ^0.13.5
+  image_picker: ^0.8.7
   intl: ^0.17.0
   json_annotation: ^4.7.0
   json_serializable: ^6.5.4
@@ -43,7 +45,10 @@ dependencies:
   quiver: ^3.1.0
   rxdart: ^0.27.7
   sentry_flutter: ^6.15.1
-  sghi_core: ^0.2.23
+  # sghi_core: ^0.2.23
+  sghi_core:
+    path: /home/abiudrn/optimal_health/sghi/libs/sghi_core
+
   share_plus: ^4.5.0
   shared_preferences: ^2.0.15
   sms_autofill: ^2.2.0

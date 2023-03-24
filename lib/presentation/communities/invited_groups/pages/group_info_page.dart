@@ -2,18 +2,16 @@
 
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:pro_health_360/presentation/communities/widgets/avatar.dart';
 import 'package:pro_health_360/presentation/communities/widgets/confirm_leave_room_dialog.dart';
+import 'package:pro_health_360/presentation/communities/widgets/group_user_widget.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
-import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 
-import 'package:pro_health_360/application/core/services/communities_utils.dart';
 import 'package:pro_health_360/application/redux/actions/communities/fetch_room_members_action.dart';
-import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/view_models/communities/communities_view_model.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
-import 'package:pro_health_360/presentation/communities/widgets/user_list_item.dart';
 import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.dart';
 
 import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
@@ -27,8 +25,6 @@ class RoomInfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String roomInitials = getInitials(room.name ?? 'No room name');
-
     return Scaffold(
       appBar: CustomAppBar(
         title: '${room.name ?? ''} info',
@@ -37,17 +33,11 @@ class RoomInfoPage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(20),
         children: <Widget>[
-          Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.purple.withOpacity(0.4),
-            ),
-            padding: const EdgeInsets.all(40),
-            child: Center(
-              child: Text(
-                roomInitials.toUpperCase(),
-                style: heavySize20Text(Colors.purple),
-              ),
+          Center(
+            child: Avatar(
+              avatarURI: room.avatarUri,
+              displayName: room.name,
+              aviSize: 100,
             ),
           ),
           Center(
@@ -127,7 +117,7 @@ class RoomInfoPage extends StatelessWidget {
               return RoomInfoViewModel.fromStore(store);
             },
             builder: (BuildContext context, RoomInfoViewModel vm) {
-              if (vm.wait?.isWaitingFor(fetchRoomMembersFlag) ?? false) {
+              if (vm.fetchingMembers) {
                 return const Center(child: CircularProgressIndicator());
               }
 
@@ -135,16 +125,15 @@ class RoomInfoPage extends StatelessWidget {
 
               return ListView.builder(
                 itemCount: users?.length,
+                physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemBuilder: (BuildContext context, int index) {
                   final RoomUser currentUser = users![index];
 
-                  return UserListItem(
-                    name: currentUser.roomUser?.displayName ?? 'No Name',
-                    userID: currentUser.roomUser?.userID ?? 'No User ID',
-                    isModerator: currentUser.moderator,
-                    isSelf: currentUser.roomUser?.userID == vm.authUserID,
-                    roomID: room.roomID ?? '',
+                  return GroupUserWidget(
+                    user: currentUser,
+                    authUserID: vm.authUserID,
+                    roomID: room.roomID!,
                   );
                 },
               );
@@ -154,7 +143,7 @@ class RoomInfoPage extends StatelessWidget {
             converter: (Store<AppState> store) =>
                 RoomInfoViewModel.fromStore(store),
             builder: (BuildContext context, RoomInfoViewModel vm) {
-              if (vm.wait?.isWaitingFor(leaveRoomFlag) ?? false) {
+              if (vm.leavingRoom) {
                 return const Center(child: CircularProgressIndicator());
               }
               return TextButton(

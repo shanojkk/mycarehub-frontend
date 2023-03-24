@@ -1,6 +1,11 @@
 // Flutter imports:
+
+import 'dart:io';
+
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/group_info_page.dart';
+import 'package:pro_health_360/presentation/communities/invited_groups/pages/image_preview_page.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/invite_users_page.dart';
+import 'package:pro_health_360/presentation/communities/invited_groups/pages/preview_upload_image_page.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_list_page.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_page.dart';
 import 'package:pro_health_360/presentation/onboarding/program_selection/program_selection_page.dart';
@@ -554,6 +559,37 @@ class RouteGenerator {
         return MaterialPageRoute<RoomInfoPage>(
           builder: (_) => RoomInfoPage(room: roomArgs as Room),
           settings: const RouteSettings(name: 'Room info page'),
+        );
+
+      case AppRoutes.previewUploadMediaRoute:
+        final Map<String, dynamic> params = args as Map<String, dynamic>;
+        final String roomID = params['roomID'] as String;
+        final File img = params['img'] as File;
+
+        return MaterialPageRoute<PreviewUploadImage>(
+          builder: (_) => PreviewUploadImage(
+            image: img,
+            roomID: roomID,
+          ),
+          settings: const RouteSettings(name: 'Media upload preview page'),
+        );
+
+      case AppRoutes.imagePreviewRoute:
+        final Map<String, dynamic> params = args as Map<String, dynamic>;
+
+        final String imageURL = params['imageURL'] as String;
+        final bool wasSentByUser = params['wasSentByUser'] as bool;
+        final Widget sender = params['sender'] as Widget;
+        final String timestamp = params['timestamp'] as String;
+
+        return MaterialPageRoute<ImagePreviewPage>(
+          builder: (_) => ImagePreviewPage(
+            url: imageURL,
+            wasSentByUser: wasSentByUser,
+            sender: sender,
+            time: timestamp,
+          ),
+          settings: const RouteSettings(name: 'Image preview page'),
         );
 
       default:

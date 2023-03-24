@@ -26,7 +26,6 @@ void main() {
     });
 
     expect(result2.userProfile?.isSignedIn, true);
-    expect(result2.images?.length, 0);
     expect(result2.lastSyncTime, 'testTime');
     expect(result2.syncResponse?.presence?.events?.length, 1);
   });

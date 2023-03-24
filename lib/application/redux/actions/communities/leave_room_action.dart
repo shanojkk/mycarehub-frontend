@@ -67,12 +67,7 @@ class LeaveRoomAction extends ReduxAction<AppState> {
     /// Run a full sync here
     dispatch(
       SyncAction(
-        syncParams: SyncParams(
-          fullState: true,
-          fullSync: true,
-          forceFull: true,
-          client: client,
-        ),
+        syncParams: SyncParams(fullState: true, fullSync: true, client: client),
       ),
     );
 

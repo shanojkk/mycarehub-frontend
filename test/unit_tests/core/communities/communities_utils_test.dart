@@ -111,10 +111,10 @@ void main() {
 
     test('should update room data', () async {
       final Map<String, Room>? updatedRoomData = updateRoomData(
-        <String, Room>{
+        fromServer: <String, Room>{
           '!testRoom:chat.savannahghi.org': Room.fromJson(roomMock)
         },
-        <String, Room>{
+        fromState: <String, Room>{
           '!testRoom:chat.savannahghi.org':
               Room.fromJson(roomMock).copyWith.call(
                     timeline: RoomTimeline.initial(),
@@ -150,7 +150,7 @@ void main() {
     });
 
     test('should parse sync data for a joined room', () async {
-      final Map<String, Room>? syncedRoomsData = parseSyncRooms(
+      final Map<String, Room>? syncedRoomsData = enrichRooms(
         SyncResponse.fromJson(syncResponseMock).rooms?.joinedRooms,
       );
 
@@ -181,7 +181,7 @@ void main() {
     });
 
     test('should parse sync data for an invited room', () async {
-      final Map<String, Room>? syncedRoomsData = parseSyncRooms(
+      final Map<String, Room>? syncedRoomsData = enrichRooms(
         SyncResponse.fromJson(syncResponseMock).rooms?.joinedRooms,
         invite: true,
       );
@@ -198,7 +198,7 @@ void main() {
     });
 
     test('should parse the room name from the timeline', () async {
-      final Map<String, Room>? syncedRoomsData = parseSyncRooms(
+      final Map<String, Room>? syncedRoomsData = enrichRooms(
         SyncResponse.fromJson(syncResponseMock).rooms?.copyWith.call(
           joinedRooms: <String, Room>{
             '!testRoom:chat.savannahghi.org': Room.initial().copyWith.call(
@@ -226,7 +226,7 @@ void main() {
     });
 
     test('should parse the room name from the state', () async {
-      final Map<String, Room>? syncedRoomsData = parseSyncRooms(
+      final Map<String, Room>? syncedRoomsData = enrichRooms(
         SyncResponse.fromJson(syncResponseMock).rooms?.copyWith.call(
           joinedRooms: <String, Room>{
             '!testRoom:chat.savannahghi.org': Room.initial().copyWith.call(

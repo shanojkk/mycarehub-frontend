@@ -14,6 +14,7 @@ import 'package:pro_health_360/domain/core/entities/profile/edit_information_ite
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/presentation/profile/pages/edit_information_page.dart';
 import 'package:pro_health_360/presentation/profile/widgets/edit_info_button_widget.dart';
+import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 
 void main() {
@@ -29,7 +30,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: MockGraphQlClient(),
         widget: EditInformationButtonWidget(
           editInformationItem: getEditCareGiverInfo(
             caregiverInformation: CaregiverInformation.initial(),
@@ -48,7 +49,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: MockGraphQlClient(),
         widget: EditInformationButtonWidget(
           editInformationItem: getEditCareGiverInfo(
             caregiverInformation: CaregiverInformation.initial(),
@@ -71,7 +72,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: MockGraphQlClient(),
         widget: EditInformationButtonWidget(
           editInformationItem: getEditCareGiverInfo(
             caregiverInformation: CaregiverInformation.initial(),
@@ -100,7 +101,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: MockGraphQlClient(),
         widget: EditInformationButtonWidget(
           submitFunction: (EditInformationItem editInformationItem) {},
           editInformationItem: EditInformationItem(

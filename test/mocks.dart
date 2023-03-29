@@ -251,7 +251,7 @@ class MockCustomGraphQlClient extends IGraphQlClient implements CustomClient {
     required String endpoint,
     required String method,
     Map<String, dynamic>? variables,
-    int? timeout,
+    Duration? timeout,
     Map<String, String>? customHeaders,
   }) {
     return Future<http.Response>.value(response);
@@ -260,9 +260,9 @@ class MockCustomGraphQlClient extends IGraphQlClient implements CustomClient {
   @override
   Future<http.Response> query(
     String queryString,
-    Map<String, dynamic> variables, [
-    ContentType contentType = ContentType.json,
-  ]) {
+    Map<String, dynamic> variables, {
+    Duration? timeout,
+  }) {
     return Future<http.Response>.value(response);
   }
 
@@ -302,7 +302,7 @@ class MockShortGraphQlClient extends IGraphQlClient {
     required String endpoint,
     required String method,
     Map<String, dynamic>? variables,
-    int? timeout,
+    Duration? timeout,
     Map<String, String>? customHeaders,
   }) {
     return Future<http.Response>.value(response);
@@ -311,9 +311,9 @@ class MockShortGraphQlClient extends IGraphQlClient {
   @override
   Future<http.Response> query(
     String queryString,
-    Map<String, dynamic> variables, [
-    ContentType contentType = ContentType.json,
-  ]) {
+    Map<String, dynamic> variables, {
+    Duration? timeout,
+  }) {
     return Future<http.Response>.value(response);
   }
 }
@@ -333,7 +333,7 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
     required String endpoint,
     required String method,
     Map<String, dynamic>? variables,
-    int? timeout,
+    Duration? timeout,
     Map<String, String>? customHeaders,
   }) async {
     if (endpoint.contains('login_by_phone')) {
@@ -616,9 +616,9 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
   @override
   Future<http.Response> query(
     String queryString,
-    Map<String, dynamic> variables, [
-    ContentType contentType = ContentType.json,
-  ]) {
+    Map<String, dynamic> variables, {
+    Duration? timeout,
+  }) {
     if (queryString.contains(patientTimelineQuery)) {
       return Future<http.Response>.value(
         http.Response(

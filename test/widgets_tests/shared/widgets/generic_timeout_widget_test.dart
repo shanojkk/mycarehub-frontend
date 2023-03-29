@@ -10,6 +10,7 @@ import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
+import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 
 void main() {
@@ -25,7 +26,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: MockGraphQlClient(),
         widget: const GenericTimeoutWidget(
           action: 'fetching library',
         ),
@@ -50,7 +51,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: MockGraphQlClient(),
         widget: GenericTimeoutWidget(
           key: const Key('test-generic-timeout-widget-key'),
           action: 'fetching library',
@@ -76,7 +77,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: MockGraphQlClient(),
         widget: Builder(
           builder: (BuildContext context) {
             return const GenericTimeoutWidget(

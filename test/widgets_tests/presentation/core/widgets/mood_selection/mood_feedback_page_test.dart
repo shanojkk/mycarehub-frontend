@@ -47,11 +47,12 @@ void main() {
         201,
       ),
     );
+
     testWidgets('should render correctly', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: MockGraphQlClient(),
         widget: Builder(
           builder: (BuildContext context) {
             return const MoodFeedbackPage(moodType: MoodType.VERY_HAPPY);
@@ -68,7 +69,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: MockGraphQlClient(),
         widget: Builder(
           builder: (BuildContext context) {
             return const MoodFeedbackPage(

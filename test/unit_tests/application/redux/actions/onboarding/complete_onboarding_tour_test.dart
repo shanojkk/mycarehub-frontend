@@ -2,19 +2,14 @@ import 'dart:convert';
 
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:sghi_core/flutter_graphql_client/i_flutter_graphql_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
 import 'package:pro_health_360/application/redux/actions/complete_onboarding_tour_action.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 
 import '../../../../../mocks.dart';
-import 'complete_onboarding_tour_test.mocks.dart';
 
-@GenerateMocks(<Type>[IGraphQlClient])
 void main() {
   group('CompleteOnboardingTourAction', () {
     late StoreTester<AppState> storeTester;
@@ -96,11 +91,14 @@ void main() {
     });
 
     test('should catch unhandled error', () async {
-      final MockIGraphQlClient client = MockIGraphQlClient();
-
-      when(
-        client.query(any, any),
-      ).thenThrow(MyAfyaException(cause: 'cause', message: 'message'));
+      final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
+        '',
+        '',
+        Response(
+          jsonEncode(<String, dynamic>{'error': 'some error'}),
+          400,
+        ),
+      );
 
       storeTester.dispatch(CompleteOnboardingTourAction(client: client));
 

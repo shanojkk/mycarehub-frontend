@@ -33,7 +33,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: MockGraphQlClient(),
         widget: VerifySecurityQuestionsHelpPage(),
       );
       expect(find.byType(MyAfyaHubPrimaryButton), findsNWidgets(2));

@@ -11,6 +11,7 @@ import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/presentation/profile/pages/edit_information_page.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
+import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 
 void main() {
@@ -26,7 +27,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: MockGraphQlClient(),
         widget: Builder(
           builder: (BuildContext context) {
             return RawMaterialButton(

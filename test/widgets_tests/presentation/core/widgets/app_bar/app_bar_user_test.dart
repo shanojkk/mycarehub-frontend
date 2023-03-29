@@ -63,7 +63,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: MockGraphQlClient(),
         widget: Builder(
           builder: (BuildContext context) {
             return const AppbarUser();

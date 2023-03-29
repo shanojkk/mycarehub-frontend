@@ -24,7 +24,7 @@ void main() {
         tester: tester,
         store: store,
         widget: const ForgotPINPage(),
-        client: baseGraphQlClientMock,
+        client: MockGraphQlClient(),
       );
 
       final Finder resetPINButton = find.byKey(resetPINButtonKey);

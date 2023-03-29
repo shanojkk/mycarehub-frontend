@@ -45,10 +45,7 @@ dependencies:
   quiver: ^3.1.0
   rxdart: ^0.27.7
   sentry_flutter: ^6.15.1
-  # sghi_core: ^0.2.23
-  sghi_core:
-    path: /home/abiudrn/optimal_health/sghi/libs/sghi_core
-
+  sghi_core: ^0.2.25
   share_plus: ^4.5.0
   shared_preferences: ^2.0.15
   sms_autofill: ^2.2.0

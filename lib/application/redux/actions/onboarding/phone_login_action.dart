@@ -25,7 +25,6 @@ import 'package:pro_health_360/domain/core/value_objects/app_events.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 /// [PhoneLoginAction] is a Redux Action whose job is to verify a user signed
 /// in using valid credentials that match those stored in the backend
@@ -300,12 +299,5 @@ class PhoneLoginAction extends ReduxAction<AppState> {
     }
 
     return null;
-  }
-
-  @override
-  Object? wrapError(dynamic error) {
-    Sentry.captureException(error, hint: 'Login failed');
-
-    return UserException(getErrorMessage());
   }
 }

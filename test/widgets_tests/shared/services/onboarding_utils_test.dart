@@ -12,6 +12,7 @@ import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'package:pro_health_360/application/core/services/onboarding_utils.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
+import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 
 void main() {
@@ -40,7 +41,7 @@ void main() {
         await buildTestWidget(
           tester: tester,
           store: store,
-          client: baseGraphQlClientMock,
+          client: MockGraphQlClient(),
           widget: Builder(
             builder: (BuildContext context) {
               return MyAfyaHubPrimaryButton(

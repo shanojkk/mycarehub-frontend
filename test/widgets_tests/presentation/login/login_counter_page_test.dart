@@ -7,6 +7,7 @@ import 'package:pro_health_360/presentation/onboarding/forgot_pin/pages/verify_s
 import 'package:pro_health_360/presentation/onboarding/login/pages/login_page.dart';
 import 'package:pro_health_360/presentation/onboarding/login/widgets/login_counter_page.dart';
 
+import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 
 void main() {
@@ -18,7 +19,7 @@ void main() {
     await buildTestWidget(
       tester: tester,
       store: store,
-      client: baseGraphQlClientMock,
+      client: MockGraphQlClient(),
       widget: Builder(
         builder: (BuildContext context) {
           return const Scaffold(
@@ -47,7 +48,7 @@ void main() {
     await buildTestWidget(
       tester: tester,
       store: store,
-      client: baseGraphQlClientMock,
+      client: MockGraphQlClient(),
       widget: Builder(
         builder: (BuildContext context) {
           return const Scaffold(

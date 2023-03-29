@@ -218,7 +218,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: MockGraphQlClient(),
         widget: PINInputPage(),
       );
 
@@ -304,7 +304,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: MockGraphQlClient(),
         widget: PINInputPage(
           connectivityStatus: MobileConnectivityChecker(
             checkInternetCallback: () async => false,
@@ -336,7 +336,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: MockGraphQlClient(),
         widget: PINInputPage(
           connectivityStatus: connectivityStatus,
         ),

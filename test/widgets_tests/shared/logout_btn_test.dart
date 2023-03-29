@@ -33,7 +33,7 @@ void main() {
     await buildTestWidget(
       tester: tester,
       store: store,
-      client: baseGraphQlClientMock,
+      client: MockGraphQlClient(),
       widget: Builder(
         builder: (BuildContext context) {
           return const Scaffold(body: LogoutButton());
@@ -64,7 +64,7 @@ void main() {
     await buildTestWidget(
       tester: tester,
       store: store,
-      client: baseGraphQlClientMock,
+      client: MockGraphQlClient(),
       widget: Builder(
         builder: (BuildContext context) {
           return const Scaffold(body: LogoutButton());

@@ -1389,9 +1389,9 @@ packages:
   sghi_core:
     dependency: "direct main"
     description:
-      path: "/home/abiudrn/optimal_health/sghi/libs/sghi_core"
-      relative: false
-    source: path
+      name: sghi_core
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.2.25"
   share_plus:
     dependency: "direct main"

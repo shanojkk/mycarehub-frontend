@@ -1,21 +1,15 @@
 import 'dart:convert';
 
-import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:sghi_core/flutter_graphql_client/i_flutter_graphql_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
 import 'package:pro_health_360/application/redux/actions/verify_pin_action.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/infrastructure/endpoints.dart';
 
 import '../../../../mocks.dart';
-import 'verify_pin_action_test.mocks.dart';
 
-@GenerateMocks(<Type>[IGraphQlClient])
 void main() {
   group('VerifyPINAction', () {
     late StoreTester<AppState> storeTester;
@@ -77,11 +71,16 @@ void main() {
     });
 
     test('should handle uncaught errors', () async {
-      final MockIGraphQlClient client = MockIGraphQlClient();
-
-      when(
-        client.query(any, any),
-      ).thenThrow(MyAfyaException(cause: 'cause', message: 'message'));
+      final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          jsonEncode(
+            <String, dynamic>{'code': 11, 'error': 'error'},
+          ),
+          400,
+        ),
+      );
 
       storeTester.dispatch(
         VerifyPINAction(

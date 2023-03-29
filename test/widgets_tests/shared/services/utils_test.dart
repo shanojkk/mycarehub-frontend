@@ -11,7 +11,6 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 // Project imports:
 import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/actions/auth_status_action.dart';
@@ -24,17 +23,10 @@ import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:sghi_core/app_wrapper/endpoints.dart';
-import 'package:sghi_core/flutter_graphql_client/flutter_graphql_client.dart';
 
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 
-@GenerateMocks(
-  <Type>[],
-  customMocks: <MockSpec<dynamic>>[
-    MockSpec<GraphQlClient>(as: #BaseGraphQlClient)
-  ],
-)
 void main() {
   FlutterConfig.loadValueForTesting(<String, String>{
     'DEV_SENTRY_DNS': 'test_dev_sentry_dns',
@@ -342,6 +334,8 @@ void main() {
 
   testWidgets('congratulationsPageTitle should return the correct message',
       (WidgetTester tester) async {
+    final MockGraphQlClient client = MockGraphQlClient();
+
     final Store<AppState> store =
         Store<AppState>(initialState: AppState.initial());
 
@@ -350,7 +344,7 @@ void main() {
     await buildTestWidget(
       tester: tester,
       store: store,
-      client: baseGraphQlClientMock,
+      client: client,
       widget: Builder(
         builder: (BuildContext context) {
           return MyAfyaHubPrimaryButton(

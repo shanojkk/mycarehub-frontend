@@ -1,14 +1,10 @@
 import 'dart:convert';
 
-import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:sghi_core/flutter_graphql_client/i_flutter_graphql_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
 import 'package:pro_health_360/application/redux/actions/onboarding/phone_login_action.dart';
 import 'package:pro_health_360/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:pro_health_360/application/redux/actions/update_user_profile_action.dart';
@@ -23,9 +19,7 @@ import 'package:pro_health_360/presentation/onboarding/verify_phone/pages/verify
 import 'package:pro_health_360/presentation/router/routes.dart';
 
 import '../../../../mocks.dart';
-import 'phone_login_action_test.mocks.dart';
 
-@GenerateMocks(<Type>[IGraphQlClient])
 void main() {
   group('PhoneLoginAction', () {
     late StoreTester<AppState> storeTester;
@@ -194,32 +188,6 @@ void main() {
         ),
         false,
       );
-    });
-
-    test('should handle uncaught exception', () async {
-      final MockIGraphQlClient client = MockIGraphQlClient();
-
-      when(
-        client.callRESTAPI(
-          endpoint: kTestLoginByPhoneEndpoint,
-          method: httpPOST,
-          variables: anyNamed('variables'),
-        ),
-      ).thenThrow(MyAfyaException(cause: 'cause', message: 'message'));
-
-      storeTester.dispatch(
-        PhoneLoginAction(
-          httpClient: client,
-          endpoint: kTestLoginByPhoneEndpoint,
-          errorCallback: (_) {},
-        ),
-      );
-
-      final TestInfo<AppState> info = await storeTester.waitUntilErrorGetLast(
-        error: MyAfyaException,
-      );
-
-      expect(info.error, isInstanceOf<MyAfyaException>());
     });
 
     test('should change to new user workflow when pin change is required',

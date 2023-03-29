@@ -31,7 +31,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: MockGraphQlClient(),
         widget: local.NotificationListItem(
           notificationDetails: NotificationDetails(
             body: 'Your Teleconsult with Dr Tibu for 11am has been set. '

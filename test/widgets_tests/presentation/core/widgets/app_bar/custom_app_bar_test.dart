@@ -46,10 +46,12 @@ void main() {
 
     testWidgets('should render correctly with profile initials',
         (WidgetTester tester) async {
+      final MockGraphQlClient client = MockGraphQlClient();
+
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: client,
         widget: Builder(
           builder: (BuildContext context) {
             return CustomAppBar(
@@ -80,10 +82,12 @@ void main() {
 
     testWidgets('should show initials when profile picture is absent',
         (WidgetTester tester) async {
+      final MockGraphQlClient client = MockGraphQlClient();
+
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: client,
         widget: Builder(
           builder: (BuildContext context) {
             return CustomAppBar(
@@ -113,10 +117,12 @@ void main() {
     });
 
     testWidgets('should show profile picture', (WidgetTester tester) async {
+      final MockGraphQlClient client = MockGraphQlClient();
+
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: client,
         widget: Builder(
           builder: (BuildContext context) {
             return CustomAppBar(

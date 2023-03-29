@@ -10,6 +10,7 @@ import 'package:pro_health_360/presentation/communities/widgets/invite_user_widg
 import 'package:sghi_core/communities/models/room.dart';
 import 'package:sghi_core/communities/models/user.dart';
 
+import '../../../../../mock_data.dart';
 import '../../../../../mock_image_http_client.dart';
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';

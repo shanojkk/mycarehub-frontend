@@ -5,7 +5,7 @@ import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 
-import '../../../mocks.dart';
+import '../../../mock_data.dart';
 
 void main() {
   test('UserProfile fromJson', () {

@@ -5,7 +5,7 @@ import 'package:pro_health_360/domain/core/entities/viral_load/viral_load_node.d
 import 'package:pro_health_360/domain/core/entities/viral_load/viral_load_node_data.dart';
 import 'package:pro_health_360/domain/core/entities/viral_load/viral_load_response.dart';
 
-import '../../../../../mocks.dart';
+import '../../../../../mock_data.dart';
 
 void main() {
   group('ViralLoadResponse', () {

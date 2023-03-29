@@ -18,6 +18,7 @@ import 'package:pro_health_360/domain/core/entities/core/auth_credentials.dart';
 import 'package:pro_health_360/infrastructure/endpoints.dart'
     as my_afya_hub_endpoints;
 
+import '../../../mock_data.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 import 'custom_client_test.mocks.dart' as mocks;

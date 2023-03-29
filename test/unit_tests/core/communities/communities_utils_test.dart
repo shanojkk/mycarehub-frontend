@@ -10,6 +10,7 @@ import 'package:sghi_core/communities/core/utils.dart';
 import 'package:sghi_core/communities/models/message.dart';
 import 'package:sghi_core/communities/models/room.dart';
 
+import '../../../mock_data.dart';
 import '../../../mocks.dart';
 
 void main() {

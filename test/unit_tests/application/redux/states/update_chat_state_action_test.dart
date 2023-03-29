@@ -5,7 +5,7 @@ import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:sghi_core/communities/models/room.dart';
 import 'package:sghi_core/communities/models/user.dart';
 
-import '../../../../mocks.dart';
+import '../../../../mock_data.dart';
 
 void main() {
   group('UpdateChatStateAction', () {

@@ -15,6 +15,7 @@ import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.
 import 'package:pro_health_360/presentation/profile/pages/edit_information_page.dart';
 import 'package:pro_health_360/presentation/profile/settings/settings_page.dart';
 import 'package:pro_health_360/presentation/profile/widgets/edit_info_button_widget.dart';
+import '../../../mock_data.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 

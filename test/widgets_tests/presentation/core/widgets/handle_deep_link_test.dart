@@ -24,6 +24,7 @@ import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/entities/login/phone_login_response.dart';
 import 'package:pro_health_360/presentation/core/widgets/handle_deep_link.dart';
 
+import '../../../../mock_data.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 

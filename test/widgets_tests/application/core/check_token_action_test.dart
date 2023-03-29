@@ -10,7 +10,7 @@ import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/auth_credentials.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 
-import '../../../mocks.dart';
+import '../../../mock_data.dart';
 
 void main() {
   group('CheckTokenAction', () {

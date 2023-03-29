@@ -20,6 +20,7 @@ import 'package:pro_health_360/presentation/profile/health_timeline/my_health_ti
 import 'package:pro_health_360/presentation/profile/medical_data/pages/medical_data_page.dart';
 import 'package:pro_health_360/presentation/profile/pages/user_profile_page.dart';
 
+import '../../../mock_data.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 

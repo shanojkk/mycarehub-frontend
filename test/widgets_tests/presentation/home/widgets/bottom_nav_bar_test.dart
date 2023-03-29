@@ -17,6 +17,7 @@ import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/presentation/home/widgets/bottom_nav_bar.dart';
 import 'package:pro_health_360/presentation/onboarding/login/pages/pin_input_page.dart';
 
+import '../../../../mock_data.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 
@@ -84,10 +85,7 @@ void main() {
             json.encode(<String, dynamic>{
               'data': <String, dynamic>{
                 'getContent': <String, dynamic>{
-                  'items': <dynamic>[
-                    mockContent,
-                    mockContent,
-                  ]
+                  'items': <dynamic>[mockContent, mockContent]
                 },
                 'listContentCategories': categoriesMock,
               }

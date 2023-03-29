@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
 import 'package:pro_health_360/domain/core/entities/core/auth_credentials.dart';
-import '../../../mocks.dart';
+import '../../../mock_data.dart';
 
 void main() {
   test('AuthCredentials fromJson', () {
@@ -18,13 +18,7 @@ void main() {
   test('AuthCredentials initial is set', () {
     final AuthCredentials initialAuthCredentials = AuthCredentials.initial();
 
-    expect(
-      initialAuthCredentials.idToken,
-      UNKNOWN,
-    );
-    expect(
-      initialAuthCredentials.expiresIn,
-      UNKNOWN,
-    );
+    expect(initialAuthCredentials.idToken, UNKNOWN);
+    expect(initialAuthCredentials.expiresIn, UNKNOWN);
   });
 }

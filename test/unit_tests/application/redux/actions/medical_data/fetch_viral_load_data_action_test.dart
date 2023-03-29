@@ -8,6 +8,7 @@ import 'package:pro_health_360/application/redux/actions/medical_data/fetch_vira
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/entities/viral_load/viral_load_edges.dart';
 
+import '../../../../../mock_data.dart';
 import '../../../../../mocks.dart';
 
 void main() {

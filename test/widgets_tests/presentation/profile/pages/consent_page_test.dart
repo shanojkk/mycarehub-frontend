@@ -13,6 +13,7 @@ import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/presentation/onboarding/consent_confirmation/consent_confirmation_page.dart';
 import 'package:pro_health_360/presentation/onboarding/terms/terms_and_conditions_page.dart';
 import 'package:pro_health_360/presentation/profile/consent/consent_page.dart';
+import '../../../../mock_data.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 

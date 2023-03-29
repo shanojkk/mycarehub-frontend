@@ -9,6 +9,7 @@ import 'package:pro_health_360/application/redux/actions/health_timeline/update_
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/presentation/profile/health_timeline/my_health_timeline_container.dart';
 
+import '../../../../mock_data.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 

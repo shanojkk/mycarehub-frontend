@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pro_health_360/domain/core/entities/medical_data/next_refill_response.dart';
 
-import '../../../../../mocks.dart';
+import '../../../../../mock_data.dart';
 
 void main() {
   group('NextRefillResponse', () {

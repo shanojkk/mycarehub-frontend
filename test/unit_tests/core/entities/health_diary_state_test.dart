@@ -4,7 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'package:pro_health_360/domain/core/entities/core/health_diary_state.dart';
 import 'package:pro_health_360/domain/core/entities/health_diary/health_diary_entry.dart';
-import '../../../mocks.dart';
+
+import '../../../mock_data.dart';
 
 void main() {
   test('HealthDiaryState should convert to/from JSON', () {

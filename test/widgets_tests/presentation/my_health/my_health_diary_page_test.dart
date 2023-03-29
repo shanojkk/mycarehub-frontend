@@ -17,6 +17,7 @@ import 'package:pro_health_360/presentation/health_diary/pages/empty_health_diar
 import 'package:pro_health_360/presentation/health_diary/pages/my_health_diary_page.dart';
 import 'package:pro_health_360/presentation/health_diary/widgets/mood_selection/mood_symptom_widget.dart';
 import 'package:pro_health_360/presentation/home/pages/home_page.dart';
+import '../../../mock_data.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 

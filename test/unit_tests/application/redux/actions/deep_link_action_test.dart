@@ -13,7 +13,7 @@ import 'package:pro_health_360/domain/core/entities/login/phone_login_response.d
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 
-import '../../../../mocks.dart';
+import '../../../../mock_data.dart';
 
 void main() {
   group('DeepLinkAction', () {

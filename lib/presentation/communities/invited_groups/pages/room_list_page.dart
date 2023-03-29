@@ -41,9 +41,7 @@ class _RoomListPageState extends State<RoomListPage> {
     super.initState();
   }
 
-  Future<void> onRefresh(
-    BuildContext context,
-  ) async {
+  Future<void> onRefresh(BuildContext context) async {
     StoreProvider.dispatch<AppState>(
       context,
       SyncAction(

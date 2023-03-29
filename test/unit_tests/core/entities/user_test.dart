@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'package:pro_health_360/domain/core/entities/core/user.dart';
 
-import '../../../mocks.dart';
+import '../../../mock_data.dart';
 
 void main() {
   test('User fromJson', () {

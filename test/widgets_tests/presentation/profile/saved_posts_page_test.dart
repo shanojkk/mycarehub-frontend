@@ -24,6 +24,7 @@ import 'package:pro_health_360/presentation/core/widgets/generic_timeout_widget.
 import 'package:pro_health_360/presentation/profile/saved_posts/saved_posts_page.dart';
 import 'package:pro_health_360/presentation/profile/saved_posts/widgets/no_saved_content_widget.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
+import '../../../mock_data.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 

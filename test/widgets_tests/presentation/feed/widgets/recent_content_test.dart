@@ -26,6 +26,7 @@ import 'package:pro_health_360/presentation/content/pages/content_details_page.d
 import 'package:pro_health_360/presentation/content/pages/feed_page.dart';
 import 'package:pro_health_360/presentation/content/widgets/recent_content_widget.dart';
 import 'package:pro_health_360/presentation/core/widgets/generic_zero_state_widget.dart';
+import '../../../../mock_data.dart';
 import '../../../../mock_image_http_client.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';

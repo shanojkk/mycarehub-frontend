@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:pro_health_360/application/redux/states/chat_state.dart';
 import 'package:pro_health_360/application/redux/states/sync_state.dart';
 
-import '../../mocks.dart';
+import '../../mock_data.dart';
 
 void main() {
   test('ChatState should convert from/to json', () {

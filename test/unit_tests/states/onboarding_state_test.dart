@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'package:pro_health_360/application/redux/states/onboarding_state.dart';
 import 'package:pro_health_360/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
-import '../../mocks.dart';
+import '../../mock_data.dart';
 
 void main() {
   group('OnboardingState', () {

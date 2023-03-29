@@ -15,6 +15,7 @@ import 'package:pro_health_360/presentation/profile/medical_data/pages/medical_d
 import 'package:pro_health_360/presentation/profile/medical_data/widgets/medical_data_item.dart';
 import 'package:pro_health_360/presentation/profile/medical_data/widgets/medical_data_item_title.dart';
 
+import '../../../../mock_data.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 

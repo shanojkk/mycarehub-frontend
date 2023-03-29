@@ -1,5 +1,6 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:pro_health_360/application/redux/actions/communities/communities_logout_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/states/sync_response_state.dart';
@@ -10,6 +11,7 @@ import 'package:pro_health_360/presentation/communities/invited_groups/pages/roo
 import 'package:sghi_core/communities/models/user.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_page.dart';
 
+import '../../../../../mock_data.dart';
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
 
@@ -31,7 +33,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: MockGraphQlClient(),
+        client: MockCommunitiesClient(),
         widget: const RoomListPage(),
       );
 
@@ -39,6 +41,9 @@ void main() {
       await tester.pump();
 
       expect(find.text(syncingString), findsOneWidget);
+
+      /// Cancel the timer
+      store.dispatch(CommunitiesLogoutAction());
     });
 
     testWidgets('should navigate to the room details page',
@@ -46,7 +51,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: MockGraphQlClient(),
+        client: MockCommunitiesClient(),
         widget: const RoomListPage(),
       );
 
@@ -56,6 +61,9 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(RoomPage), findsOneWidget);
+
+      /// Cancel the timer
+      store.dispatch(CommunitiesLogoutAction());
     });
   });
 
@@ -72,7 +80,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: MockGraphQlClient(),
+        client: MockCommunitiesClient(),
         widget: const RoomListPage(),
       );
 

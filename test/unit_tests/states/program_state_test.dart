@@ -4,7 +4,7 @@ import 'package:pro_health_360/domain/core/entities/login/program.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import '../../mocks.dart';
+import '../../mock_data.dart';
 
 void main() {
   group('ProgramState', () {

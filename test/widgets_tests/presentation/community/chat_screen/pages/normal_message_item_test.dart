@@ -8,6 +8,7 @@ import 'package:pro_health_360/presentation/communities/invited_groups/widgets/t
 import 'package:sghi_core/communities/models/message.dart';
 import 'package:sghi_core/communities/models/user.dart';
 
+import '../../../../../mock_data.dart';
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
 

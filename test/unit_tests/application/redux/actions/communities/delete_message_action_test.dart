@@ -8,6 +8,7 @@ import 'package:pro_health_360/application/redux/actions/communities/update_chat
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/states/connectivity_state.dart';
 
+import '../../../../../mock_data.dart';
 import '../../../../../mocks.dart';
 
 void main() {

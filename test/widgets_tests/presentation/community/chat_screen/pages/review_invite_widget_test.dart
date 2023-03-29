@@ -11,6 +11,7 @@ import 'package:sghi_core/communities/models/room.dart';
 import 'package:sghi_core/communities/models/user.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_list_page.dart';
 
+import '../../../../../mock_data.dart';
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
 
@@ -32,9 +33,7 @@ void main() {
         tester: tester,
         store: store,
         client: MockGraphQlClient(),
-        widget: ReviewInviteWidget(
-          room: Room.fromJson(roomMock),
-        ),
+        widget: ReviewInviteWidget(room: Room.fromJson(roomMock)),
       );
 
       expect(find.text('Join Group'), findsOneWidget);
@@ -67,6 +66,9 @@ void main() {
       store.dispatch(CommunitiesLogoutAction());
 
       expect(find.byType(RoomListPage), findsOneWidget);
+
+      /// Cancel the sync observer
+      store.dispatch(CommunitiesLogoutAction());
     });
 
     testWidgets('should decline an invite', (WidgetTester tester) async {
@@ -74,9 +76,7 @@ void main() {
         tester: tester,
         store: store,
         client: MockGraphQlClient(),
-        widget: ReviewInviteWidget(
-          room: Room.fromJson(roomMock),
-        ),
+        widget: ReviewInviteWidget(room: Room.fromJson(roomMock)),
       );
 
       expect(find.byKey(acceptInviteKey), findsOneWidget);
@@ -85,7 +85,10 @@ void main() {
       await tester.tap(find.byKey(declineInviteKey));
       await tester.pumpAndSettle();
 
-      /// No action is really done on the button so there is nothing to assert
+      expect(find.byType(RoomListPage), findsOneWidget);
+
+      /// Cancel the timer
+      store.dispatch(CommunitiesLogoutAction());
     });
   });
 }

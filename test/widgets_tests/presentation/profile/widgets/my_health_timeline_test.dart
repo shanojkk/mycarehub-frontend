@@ -14,6 +14,7 @@ import 'package:pro_health_360/presentation/profile/health_timeline/my_health_ti
 // Project imports:
 import 'package:pro_health_360/presentation/profile/health_timeline/timeline_indicator.dart';
 
+import '../../../../mock_data.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 

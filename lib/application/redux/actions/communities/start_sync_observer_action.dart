@@ -42,18 +42,14 @@ class StartSyncObserverAction extends ReduxAction<AppState> {
 
       if (accessToken == UNKNOWN) {
         if (kDebugMode) {
-          print(
-            '-----SYNC Observer: Skipping sync. Access token is not available',
-          );
+          print('SYNC Observer: Skipping sync. Access token is not available');
         }
         return;
       }
 
       if (lastSince == UNKNOWN) {
         if (kDebugMode) {
-          print(
-            '-----SYNC Observer: Skipping sync. Last since is not available',
-          );
+          print('SYNC Observer: Skipping sync. Last since is not available');
         }
         return;
       }

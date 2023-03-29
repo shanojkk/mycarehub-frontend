@@ -7,6 +7,7 @@ import 'dart:io';
 
 // Package imports:
 import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pro_health_360/application/core/services/custom_client.dart';
 import 'package:pro_health_360/domain/core/entities/core/auth_credentials.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
@@ -310,6 +311,16 @@ class MockShortGraphQlClient extends IGraphQlClient {
   Future<http.Response> query(
     String queryString,
     Map<String, dynamic> variables, {
+    Duration? timeout,
+  }) {
+    return Future<http.Response>.value(response);
+  }
+
+  @override
+  Future<http.Response> uploadMedia({
+    required String endpoint,
+    required Map<String, String> uploadHeaders,
+    Function(http.StreamedRequest request)? updateSink,
     Duration? timeout,
   }) {
     return Future<http.Response>.value(response);
@@ -1401,7 +1412,6 @@ const Size tabletPortrait = Size(720, 1280);
 const Size tabletLandscape = Size(1280, 720);
 const Size typicalLargePhoneScreenSizePortrait = Size(300, 800);
 
-
 final MockFirebaseMessaging kMockMessagingPlatform = MockFirebaseMessaging();
 
 void setupFirebaseCoreMocks() {
@@ -1746,7 +1756,9 @@ class MockCommunitiesClient extends Mock implements GraphQlClient {
   }) {
     return Future<http.Response>.value(
       http.Response(
-        json.encode('mxc://chat.savannahghi.org/some-media'),
+        json.encode(<String, dynamic>{
+          'content_uri': 'mxc://chat.savannahghi.org/some-media'
+        }),
         200,
       ),
     );
@@ -1759,5 +1771,23 @@ class MockCommunitiesClient extends Mock implements GraphQlClient {
     if (res is Map) return res as Map<String, dynamic>;
     // ignore: avoid_dynamic_calls
     return res[0] as Map<String, dynamic>;
+  }
+}
+
+class ImagePickerMock extends Mock implements ImagePicker {
+  @override
+  Future<PickedFile?> getImage({
+    required ImageSource source,
+    double? maxWidth,
+    double? maxHeight,
+    int? imageQuality,
+    CameraDevice preferredCameraDevice = CameraDevice.rear,
+  }) {
+    final String dir = Directory.current.path;
+    final String imgPath = '$dir/test/tests_resources/test_file.png';
+
+    final PickedFile selectedImage = PickedFile(imgPath);
+
+    return Future<PickedFile>.value(selectedImage);
   }
 }

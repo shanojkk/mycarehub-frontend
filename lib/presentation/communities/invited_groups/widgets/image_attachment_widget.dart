@@ -7,9 +7,14 @@ import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:sghi_core/communities/core/utils.dart';
 
 class ImageAttachmentWidget extends StatelessWidget {
-  const ImageAttachmentWidget({super.key, required this.roomID});
+  const ImageAttachmentWidget({
+    super.key,
+    required this.roomID,
+    required this.picker,
+  });
 
   final String roomID;
+  final ImagePicker picker;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +24,7 @@ class ImageAttachmentWidget extends StatelessWidget {
         key: addAttachmentIconKey,
         icon: const Icon(Icons.attach_file, size: 28),
         onPressed: () async {
-          final File? img = await selectPhoto(picker: ImagePicker());
+          final File? img = await selectPhoto(picker: picker);
 
           if (img != null) {
             Navigator.of(context).pushNamed(

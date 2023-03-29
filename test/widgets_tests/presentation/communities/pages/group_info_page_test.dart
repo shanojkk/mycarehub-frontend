@@ -9,9 +9,9 @@ import 'package:pro_health_360/presentation/communities/invited_groups/pages/roo
 import 'package:sghi_core/communities/models/room.dart';
 import 'package:sghi_core/communities/models/user.dart';
 
-import '../../../../../mock_data.dart';
-import '../../../../../mocks.dart';
-import '../../../../../test_helpers.dart';
+import '../../../../mock_data.dart';
+import '../../../../mocks.dart';
+import '../../../../test_helpers.dart';
 
 void main() {
   group('GroupInfoPage', () {
@@ -30,7 +30,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: MockGraphQlClient(),
+        client: MockCommunitiesClient(),
         widget: RoomInfoPage(
           room: Room.fromJson(roomMock),
         ),
@@ -44,7 +44,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: MockGraphQlClient(),
+        client: MockCommunitiesClient(),
         widget: RoomInfoPage(
           room: Room.fromJson(roomMock),
         ),
@@ -71,7 +71,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: MockGraphQlClient(),
+        client: MockCommunitiesClient(),
         widget: RoomInfoPage(
           room: Room.fromJson(roomMock),
         ),

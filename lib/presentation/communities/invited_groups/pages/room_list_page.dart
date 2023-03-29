@@ -11,7 +11,6 @@ import 'package:pro_health_360/presentation/communities/invited_groups/pages/roo
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:pro_health_360/presentation/home/widgets/bottom_nav_bar.dart';
-import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 import 'package:sghi_core/communities/models/room.dart';
@@ -99,10 +98,7 @@ class _RoomListPageState extends State<RoomListPage> {
                             ),
                           ),
                         ],
-                        recoverCallback: () => Navigator.pushNamed(
-                          context,
-                          AppRoutes.groupInvitesPage,
-                        ),
+                        recoverCallback: () {},
                       );
                     }
 

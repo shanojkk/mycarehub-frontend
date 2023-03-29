@@ -793,6 +793,8 @@ final Map<String, dynamic> syncResponseMock = <String, dynamic>{
   'rooms': <String, dynamic>{
     'join': <String, dynamic>{
       '!testRoom:chat.savannahghi.org': <String, dynamic>{
+        'room_id': '!testRoom:chat.savannahghi.org',
+        'name': 'Test join room',
         'timeline': <String, dynamic>{
           'events': <Map<String, dynamic>>[
             <String, dynamic>{
@@ -833,6 +835,8 @@ final Map<String, dynamic> syncResponseMock = <String, dynamic>{
     },
     'invite': <String, dynamic>{
       '!NvYSqaASzlfRpFCMtr:chat.savannahghi.org': <String, dynamic>{
+        'room_id': '!NvYSqaASzlfRpFCMtr:chat.savannahghi.org',
+        'name': 'Test invite room',
         'invite_state': <String, dynamic>{
           'events': <Map<String, dynamic>>[
             <String, dynamic>{
@@ -2453,3 +2457,5 @@ final Map<String, dynamic> groupStateMock = <String, dynamic>{
     },
   ],
 };
+
+const String testUserID = '@abiudrn:chat.savannahghi.org';

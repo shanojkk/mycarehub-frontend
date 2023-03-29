@@ -337,3 +337,5 @@ const Key changeFacilityKey = Key('change_facility_key');
 const Key addAttachmentIconKey = Key('addAttachmentIconKey');
 
 const Key openUserListOptionDialogKey = Key('openUserListOptionDialog');
+
+const Key previewImageMessageKey = Key('previewImageMessageKey');

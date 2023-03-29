@@ -1,4 +1,5 @@
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pro_health_360/application/redux/actions/communities/communities_logout_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
@@ -6,14 +7,14 @@ import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/states/sync_response_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/invited_groups_page.dart';
+import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_list_item_widget.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_list_page.dart';
 import 'package:sghi_core/communities/models/user.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_page.dart';
 
-import '../../../../../mock_data.dart';
-import '../../../../../mocks.dart';
-import '../../../../../test_helpers.dart';
+import '../../../../mock_data.dart';
+import '../../../../mocks.dart';
+import '../../../../test_helpers.dart';
 
 void main() {
   group('RoomListPage', () {
@@ -57,10 +58,17 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      await tester.tap(find.text('No name').last);
+      expect(find.byType(RoomListItemWidget), findsNWidgets(2));
+      expect(
+        find.byKey(const Key('!testRoom:chat.savannahghi.org')),
+        findsOneWidget,
+      );
+
+      await tester.tap(find.byKey(const Key('!testRoom:chat.savannahghi.org')));
       await tester.pumpAndSettle();
 
       expect(find.byType(RoomPage), findsOneWidget);
+      expect(find.text('The Grand Gaming Squad'), findsOneWidget);
 
       /// Cancel the timer
       store.dispatch(CommunitiesLogoutAction());
@@ -87,7 +95,8 @@ void main() {
       await tester.tap(find.byKey(emptyChatsNewRoomKey));
       await tester.pumpAndSettle();
 
-      expect(find.byType(InvitedGroupsPage), findsOneWidget);
+      /// Cancel the timer
+      store.dispatch(CommunitiesLogoutAction());
     });
   });
 }

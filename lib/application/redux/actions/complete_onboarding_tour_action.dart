@@ -11,7 +11,6 @@ import 'package:sghi_core/flutter_graphql_client/i_flutter_graphql_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 // Project imports:
 import 'package:pro_health_360/application/core/graphql/mutations.dart';
@@ -24,10 +23,7 @@ import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 /// Otherwise delightfully notify user of any Error that might occur during the process
 
 class CompleteOnboardingTourAction extends ReduxAction<AppState> {
-  CompleteOnboardingTourAction({
-    required this.client,
-    this.userID,
-  });
+  CompleteOnboardingTourAction({required this.client, this.userID});
 
   final IGraphQlClient client;
   final String? userID;
@@ -87,15 +83,5 @@ class CompleteOnboardingTourAction extends ReduxAction<AppState> {
     }
 
     return null;
-  }
-
-  @override
-  Object? wrapError(dynamic error) {
-    if (error.runtimeType == UserException) {
-      return error;
-    }
-
-    Sentry.captureException(error);
-    return UserException(getErrorMessage());
   }
 }

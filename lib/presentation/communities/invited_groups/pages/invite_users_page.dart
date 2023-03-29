@@ -24,7 +24,7 @@ class InviteUsersPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(
-        title: inviteMembers,
+        title: inviteMembersText,
         trailingWidget: SizedBox(),
       ),
       body: ListView(

@@ -112,9 +112,7 @@ void main() {
 
     test('should update room data', () async {
       final Map<String, Room>? updatedRoomData = updateRoomData(
-        fromServer: <String, Room>{
-          '!testRoom:chat.savannahghi.org': Room.fromJson(roomMock)
-        },
+        fromServer: SyncResponse.fromJson(syncResponseMock).rooms?.joinedRooms,
         fromState: <String, Room>{
           '!testRoom:chat.savannahghi.org':
               Room.fromJson(roomMock).copyWith.call(

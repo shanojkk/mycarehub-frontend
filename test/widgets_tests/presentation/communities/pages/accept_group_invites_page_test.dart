@@ -11,8 +11,8 @@ import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/accept_group_invites_page.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 
-import '../../../../../mocks.dart';
-import '../../../../../test_helpers.dart';
+import '../../../../mocks.dart';
+import '../../../../test_helpers.dart';
 
 void main() {
   group('AcceptGroupInvitations Page', () {

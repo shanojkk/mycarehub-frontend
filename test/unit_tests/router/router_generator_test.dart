@@ -1,6 +1,10 @@
 // Package imports:
+import 'dart:io';
+
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/group_info_page.dart';
+import 'package:pro_health_360/presentation/communities/invited_groups/pages/image_preview_page.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/invite_users_page.dart';
+import 'package:pro_health_360/presentation/communities/invited_groups/pages/preview_upload_image_page.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_list_page.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_page.dart';
 import 'package:pro_health_360/presentation/onboarding/program_selection/program_selection_page.dart';
@@ -19,7 +23,6 @@ import 'package:pro_health_360/presentation/caregiver/pages/client_caregiver_sel
 import 'package:pro_health_360/presentation/caregiver/pages/client_selection_page.dart';
 import 'package:pro_health_360/presentation/caregiver/pages/facility_selection_page.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/accept_group_invites_page.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/invited_groups_page.dart';
 import 'package:pro_health_360/presentation/content/pages/content_details_page.dart';
 import 'package:pro_health_360/presentation/content/pages/feed_page.dart';
 import 'package:pro_health_360/presentation/content/widgets/document_content_widget.dart';
@@ -517,17 +520,6 @@ void main() {
     expect(route.builder(context), isA<SuccessfulFeedbackSubmissionPage>());
   });
 
-  test('Test router returns group invites page', () {
-    const RouteSettings settings =
-        RouteSettings(name: AppRoutes.groupInvitesPage);
-
-    final MaterialPageRoute<InvitedGroupsPage> route =
-        routeGenerator(settings) as MaterialPageRoute<InvitedGroupsPage>;
-
-    expect(route, isA<MaterialPageRoute<InvitedGroupsPage>>());
-    expect(route.builder(context), isA<InvitedGroupsPage>());
-  });
-
   test('Test router returns accept decline invites page', () {
     const RouteSettings settings = RouteSettings(
       name: AppRoutes.acceptGroupInvitesPage,
@@ -742,6 +734,7 @@ void main() {
     expect(route, isA<MaterialPageRoute<RoomPage>>());
     expect(route?.builder(context), isA<RoomPage>());
   });
+
   test('Test router returns Room info page', () {
     final RouteSettings settings = RouteSettings(
       name: AppRoutes.roomInfoPageRoute,
@@ -753,5 +746,36 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<RoomInfoPage>>());
     expect(route?.builder(context), isA<RoomInfoPage>());
+  });
+
+  test('Test router returns previewUploadMediaRoute page', () {
+    final RouteSettings settings = RouteSettings(
+      name: AppRoutes.previewUploadMediaRoute,
+      arguments: <String, dynamic>{'img': File('text.png'), 'roomID': 'roomID'},
+    );
+
+    final MaterialPageRoute<PreviewUploadImage>? route =
+        routeGenerator(settings) as MaterialPageRoute<PreviewUploadImage>?;
+
+    expect(route, isA<MaterialPageRoute<PreviewUploadImage>>());
+    expect(route?.builder(context), isA<PreviewUploadImage>());
+  });
+
+  test('Test router returns imagePreviewRoute page', () {
+    const RouteSettings settings = RouteSettings(
+      name: AppRoutes.imagePreviewRoute,
+      arguments: <String, dynamic>{
+        'imageURL': 'imageURL',
+        'wasSentByUser': true,
+        'sender': Text('sender'),
+        'timestamp': '1235',
+      },
+    );
+
+    final MaterialPageRoute<ImagePreviewPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<ImagePreviewPage>?;
+
+    expect(route, isA<MaterialPageRoute<ImagePreviewPage>>());
+    expect(route?.builder(context), isA<ImagePreviewPage>());
   });
 }

@@ -120,10 +120,10 @@ class ResumeWithPinAction extends ReduxAction<AppState> {
   @override
   Object? wrapError(dynamic error) {
     if (error.runtimeType == UserException) {
+      Sentry.captureException(error);
       return error;
     }
 
-    Sentry.captureException(error);
-    return UserException(getErrorMessage());
+    return null;
   }
 }

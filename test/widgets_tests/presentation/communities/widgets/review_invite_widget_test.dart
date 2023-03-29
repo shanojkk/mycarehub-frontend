@@ -11,9 +11,9 @@ import 'package:sghi_core/communities/models/room.dart';
 import 'package:sghi_core/communities/models/user.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_list_page.dart';
 
-import '../../../../../mock_data.dart';
-import '../../../../../mocks.dart';
-import '../../../../../test_helpers.dart';
+import '../../../../mock_data.dart';
+import '../../../../mocks.dart';
+import '../../../../test_helpers.dart';
 
 void main() {
   group('Invite review widget', () {

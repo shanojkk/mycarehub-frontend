@@ -1,5 +1,6 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pro_health_360/application/redux/actions/communities/send_message_action.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/view_models/communities/communities_view_model.dart';
@@ -22,7 +23,7 @@ class SendMessageInput extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 20, right: 20),
       child: Row(
         children: <Widget>[
-          ImageAttachmentWidget(roomID: roomID),
+          ImageAttachmentWidget(roomID: roomID, picker: ImagePicker()),
           verySmallHorizontalSizedBox,
           Flexible(
             child: TextField(

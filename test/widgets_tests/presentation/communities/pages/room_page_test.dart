@@ -11,9 +11,9 @@ import 'package:pro_health_360/presentation/communities/invited_groups/widgets/t
 import 'package:sghi_core/communities/models/room.dart';
 import 'package:sghi_core/communities/models/user.dart';
 
-import '../../../../../mock_data.dart';
-import '../../../../../mocks.dart';
-import '../../../../../test_helpers.dart';
+import '../../../../mock_data.dart';
+import '../../../../mocks.dart';
+import '../../../../test_helpers.dart';
 
 void main() {
   group('RoomPage', () {
@@ -24,6 +24,7 @@ void main() {
         initialState: AppState.initial().copyWith.chatState!.call(
               userProfile: User.fromJson(loginResponseMock),
               syncResponse: SyncResponse.fromJson(syncResponseMock),
+              selectedRoom: '!testRoom:chat.savannahghi.org',
             ),
       );
     });
@@ -34,12 +35,11 @@ void main() {
         tester: tester,
         store: store,
         client: MockGraphQlClient(),
-        widget: RoomPage(
-          room: Room.fromJson(roomMock),
-        ),
+        widget: RoomPage(room: Room.fromJson(roomMock)),
       );
 
       await tester.pumpAndSettle();
+
       expect(find.byType(TextMessageWidget), findsOneWidget);
       expect(find.text('ala!'), findsOneWidget);
       expect(find.byType(MessageItemWidget), findsNWidgets(2));
@@ -51,7 +51,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: MockGraphQlClient(),
+        client: MockCommunitiesClient(),
         widget: RoomPage(
           room: Room.fromJson(roomMock),
         ),
@@ -95,23 +95,25 @@ void main() {
         tester: tester,
         store: store,
         client: MockGraphQlClient(),
-        widget: RoomPage(
-          room: Room.fromJson(roomMock),
-        ),
+        widget: RoomPage(room: Room.fromJson(roomMock)),
       );
 
       await tester.pumpAndSettle();
+
       expect(find.byType(TextMessageWidget), findsOneWidget);
       expect(find.text('ala!'), findsOneWidget);
       expect(find.byType(MessageItemWidget), findsNWidgets(2));
 
       final Finder msgInput = find.byKey(messageInputKey);
+      expect(msgInput, findsOneWidget);
+
       await tester.tap(msgInput);
       await tester.enterText(msgInput, 'we mzee');
       await tester.pumpAndSettle();
 
       expect(find.text('we mzee'), findsOneWidget);
 
+      // Send a message while tapping the send icon
       await tester.tap(find.byKey(sendMessageIconKey));
       await tester.pumpAndSettle();
 

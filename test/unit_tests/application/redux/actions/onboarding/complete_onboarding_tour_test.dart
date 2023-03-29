@@ -95,7 +95,9 @@ void main() {
         '',
         '',
         Response(
-          jsonEncode(<String, dynamic>{'error': 'some error'}),
+          jsonEncode(<String, dynamic>{
+            'data': <String, dynamic>{'error': 'some error'}
+          }),
           400,
         ),
       );

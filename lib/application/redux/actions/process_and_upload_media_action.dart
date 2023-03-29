@@ -17,6 +17,7 @@ class ProcessAndUploadMediaAction extends ReduxAction<AppState> {
     required this.roomID,
     this.mediaName = 'media-default',
     this.onSuccess,
+    this.onError,
   });
 
   final File image;
@@ -25,6 +26,7 @@ class ProcessAndUploadMediaAction extends ReduxAction<AppState> {
   final String roomID;
 
   final Function()? onSuccess;
+  final Function()? onError;
 
   @override
   void after() {
@@ -49,16 +51,11 @@ class ProcessAndUploadMediaAction extends ReduxAction<AppState> {
       idToken: accessToken!,
     );
 
-    // final Response response = await communitiesClient.uploadMediaFile(
-    //   image: image,
-    //   mediaName: mediaName ?? UNKNOWN,
-    //   uploadEndpoint: uploadMediaEndpoint,
-    // );
-
     final Map<String, dynamic> data =
         json.decode(response.body) as Map<String, dynamic>;
 
     if (data['errcode'] != null) {
+      this.onError?.call();
       return null;
     }
 

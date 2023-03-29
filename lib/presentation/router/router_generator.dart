@@ -23,7 +23,6 @@ import 'package:pro_health_360/presentation/caregiver/pages/client_caregiver_sel
 import 'package:pro_health_360/presentation/caregiver/pages/client_selection_page.dart';
 import 'package:pro_health_360/presentation/caregiver/pages/facility_selection_page.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/accept_group_invites_page.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/invited_groups_page.dart';
 import 'package:pro_health_360/presentation/content/pages/content_details_page.dart';
 import 'package:pro_health_360/presentation/content/pages/feed_page.dart';
 import 'package:pro_health_360/presentation/content/pages/gallery_images_page.dart';
@@ -405,12 +404,6 @@ class RouteGenerator {
         return MaterialPageRoute<SuccessfulFeedbackSubmissionPage>(
           builder: (_) => const SuccessfulFeedbackSubmissionPage(),
           settings: const RouteSettings(name: 'Successful feedback page'),
-        );
-
-      case AppRoutes.groupInvitesPage:
-        return MaterialPageRoute<InvitedGroupsPage>(
-          builder: (_) => const InvitedGroupsPage(),
-          settings: const RouteSettings(name: 'Invited groups page'),
         );
 
       case AppRoutes.acceptGroupInvitesPage:

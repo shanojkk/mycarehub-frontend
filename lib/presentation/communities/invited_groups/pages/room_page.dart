@@ -6,7 +6,7 @@ import 'package:pro_health_360/application/redux/view_models/communities/communi
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/message_item_widget.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/review_invite_widget.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/widgets/message_input_widget.dart';
+import 'package:pro_health_360/presentation/communities/invited_groups/widgets/send_message_input.dart';
 import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';

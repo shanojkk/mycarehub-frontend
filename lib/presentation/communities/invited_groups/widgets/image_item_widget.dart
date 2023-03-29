@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:sghi_core/shared_themes/spaces.dart';
 
@@ -20,6 +21,7 @@ class ImageItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      key: previewImageMessageKey,
       onTap: () {
         Navigator.of(context).pushNamed(
           AppRoutes.imagePreviewRoute,

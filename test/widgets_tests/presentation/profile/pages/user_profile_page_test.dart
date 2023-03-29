@@ -1,4 +1,7 @@
 // Package imports:
+import 'package:pro_health_360/application/redux/actions/update_program_state_action.dart';
+import 'package:pro_health_360/domain/core/entities/login/program.dart';
+import 'package:pro_health_360/presentation/caregiver/pages/facility_selection_page.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -109,7 +112,9 @@ void main() {
       store.dispatch(
         UpdateClientProfileAction(addresses: <Address>[Address(text: 'home')]),
       );
-
+      store.dispatch(
+        UpdateProgramStateAction(currentProgram: Program(name: 'test program')),
+      );
       await buildTestWidget(
         tester: tester,
         store: store,
@@ -117,7 +122,12 @@ void main() {
         widget: UserProfilePage(),
       );
 
-      expect(find.text('home'), findsOneWidget);
+      expect(find.text(yourInformation), findsOneWidget);
+      expect(find.byKey(changeFacilityKey), findsOneWidget);
+      await tester.tap(find.byKey(changeFacilityKey));
+
+      await tester.pumpAndSettle();
+      expect(find.byType(FacilitySelectionPage), findsOneWidget);
     });
   });
 }

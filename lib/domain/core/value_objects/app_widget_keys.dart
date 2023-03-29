@@ -331,3 +331,4 @@ const Key messageInputKey = Key('messageInputKey');
 const Key sendMessageIconKey = Key('sendMessageIconKey');
 
 const Key confirmLeaveRoomKey = Key('confirmLeaveRoomKey');
+const Key changeFacilityKey = Key('change_facility_key');

@@ -33,7 +33,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                 children: <Widget>[
                   largeVerticalSizedBox,
                   const UserDetailsCard(),
-                  largeVerticalSizedBox,
+                  mediumVerticalSizedBox,
                   ...List<Widget>.generate(
                     userProfileItems.length,
                     (int index) {
@@ -62,7 +62,8 @@ class _UserProfilePageState extends State<UserProfilePage> {
                               ),
                               overflow: TextOverflow.ellipsis,
                             ),
-                            iconBackgroundColor: AppColors.listCardColor,
+                            iconBackgroundColor:
+                                AppColors.primaryColor.withOpacity(0.1),
                             leadingIcon: DecoratedBox(
                               decoration: BoxDecoration(
                                 color: AppColors.listCardColor,

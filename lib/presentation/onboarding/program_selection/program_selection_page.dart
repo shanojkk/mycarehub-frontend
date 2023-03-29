@@ -5,6 +5,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/actions/programs/list_user_programs_action.dart';
 import 'package:pro_health_360/application/redux/actions/programs/set_current_program_action.dart';
+import 'package:pro_health_360/application/redux/actions/update_program_state_action.dart';
 import 'package:pro_health_360/application/redux/states/program_state.dart';
 import 'package:pro_health_360/domain/core/entities/login/program.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
@@ -69,6 +70,12 @@ class ProgramSelectionPage extends StatelessWidget {
                                     ? const PlatformLoader(color: whiteColor)
                                     : null,
                                 onButtonCallback: () async {
+                                  StoreProvider.dispatch(
+                                    context,
+                                    UpdateProgramStateAction(
+                                      currentProgram: program,
+                                    ),
+                                  );
                                   await StoreProvider.dispatch(
                                     context,
                                     SetCurrentProgramAction(

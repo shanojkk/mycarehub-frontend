@@ -41,7 +41,7 @@ class UserDetailsCard extends StatelessWidget {
             '';
 
         return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 30.0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.0),
             color: AppColors.whiteColor,
@@ -71,43 +71,41 @@ class UserDetailsCard extends StatelessWidget {
                         color: AppColors.primaryColor,
                         fontWeight: FontWeight.bold,
                       ),
-                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   mediumHorizontalSizedBox,
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        name,
-                        style: const TextStyle(
-                          color: AppColors.greyTextColor,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          name,
+                          style: const TextStyle(
+                            color: AppColors.greyTextColor,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      verySmallVerticalSizedBox,
-                      Text(
-                        phone,
-                        style: const TextStyle(
-                          color: AppColors.greyTextColor,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
+                        verySmallVerticalSizedBox,
+                        Text(
+                          phone,
+                          style: const TextStyle(
+                            color: AppColors.greyTextColor,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      verySmallVerticalSizedBox,
-                      Text(
-                        hospitalName,
-                        style: const TextStyle(
-                          color: AppColors.greyTextColor,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
+                        verySmallVerticalSizedBox,
+                        Text(
+                          hospitalName,
+                          style: const TextStyle(
+                            color: AppColors.greyTextColor,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ],
               ),

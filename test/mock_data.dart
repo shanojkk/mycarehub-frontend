@@ -898,6 +898,67 @@ final Map<String, dynamic> roomMock = <String, dynamic>{
   },
 };
 
+final Map<String, dynamic> roomMockWithoutTopic = <String, dynamic>{
+  'room_id': '!testRoom:chat.savannahghi.org',
+  'topic': 'test topic',
+  'ephemeral': <String, dynamic>{
+    'events': <dynamic>[
+      <String, dynamic>{
+        'type': 'm.typing',
+        'content': <String, dynamic>{'user_ids': <dynamic>[]}
+      },
+      <String, dynamic>{
+        'type': 'm.receipt',
+        'content': <String, dynamic>{
+          'test1:chat.savannahghi.org': <String, dynamic>{
+            'm.read': <String, dynamic>{
+              '@test:chat.savannahghi.org': <String, dynamic>{
+                'ts': 1674112298765
+              }
+            },
+            'm.read.private': <String, dynamic>{
+              '@test:chat.savannahghi.org': <String, dynamic>{
+                'ts': 1674112298734
+              }
+            }
+          },
+          'test2:chat.savannahghi.org': <String, dynamic>{
+            'm.read': <String, dynamic>{
+              '@test2:chat.savannahghi.org': <String, dynamic>{
+                'ts': 1674116805862
+              }
+            }
+          },
+          'test3:chat.savannahghi.org': <String, dynamic>{
+            'm.read': <String, dynamic>{
+              '@test3:chat.savannahghi.org': <String, dynamic>{
+                'ts': 1674133111678
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  'state': <String, dynamic>{
+    'events': <Map<String, dynamic>>[
+      <String, dynamic>{
+        'type': 'm.room.name',
+        'sender': '@test:chat.savannahghi.org',
+        'content': <String, dynamic>{'name': 'The Grand Gaming Squad'},
+        'state_key': '',
+        'event_id': 'test-event-id:chat.savannahghi.org',
+        'origin_server_ts': 1668712693930,
+        'unsigned': <String, dynamic>{'age': 5737421747}
+      },
+    ],
+  },
+  'summary': <String, dynamic>{
+    'm.joined_member_count': 3,
+    'm.invited_member_count': 0
+  },
+};
+
 final Map<String, dynamic> screeningQuestionsMock = <String, dynamic>{
   'data': <String, dynamic>{
     'getScreeningToolByID': <String, dynamic>{

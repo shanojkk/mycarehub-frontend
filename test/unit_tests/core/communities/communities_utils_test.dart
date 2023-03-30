@@ -110,6 +110,37 @@ void main() {
       );
     });
 
+    test('should update room data when server data is null', () async {
+      final Map<String, Room>? updatedRoomData = updateRoomData(
+        fromServer: <String, Room>{
+          '!testRoom:chat.savannahghi.org': Room.fromJson(roomMockWithoutTopic)
+        },
+        fromState: <String, Room>{
+          '!testRoom:chat.savannahghi.org':
+              Room.fromJson(roomMock).copyWith.call(
+                    timeline: RoomTimeline.initial(),
+                    state: RoomState.initial(),
+                  )
+        },
+      );
+
+      expect(updatedRoomData?.values.first.timeline?.events?.isEmpty, true);
+      expect(updatedRoomData?.values.first.state?.events?.isEmpty, false);
+
+      expect(updatedRoomData?.values.first.timeline?.events?.length, 0);
+      expect(updatedRoomData?.values.first.state?.events?.length, 1);
+
+      expect(
+        updatedRoomData?.values.first.state?.events?.first?.eventType,
+        EventTypes.name,
+      );
+
+      expect(
+        updatedRoomData?.values.first.state?.events?.first?.sender,
+        '@test:chat.savannahghi.org',
+      );
+    });
+
     test('should update room data', () async {
       final Map<String, Room>? updatedRoomData = updateRoomData(
         fromServer: SyncResponse.fromJson(syncResponseMock).rooms?.joinedRooms,

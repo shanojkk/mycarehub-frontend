@@ -137,4 +137,63 @@ void main() {
       });
     });
   });
+
+  test('StartSyncObserverAction should skip sync if access token is UNKNOWN',
+      () async {
+    final StoreTester<AppState> storeTester = StoreTester<AppState>(
+      initialState: AppState.initial().copyWith.chatState!.call(
+            syncState: SyncState.initial().copyWith.call(
+                  syncInterval: 500,
+                  syncObserver: null,
+                ),
+          ),
+      testInfoPrinter: (TestInfo<dynamic> testInfo) {},
+    );
+
+    storeTester.dispatch(StartSyncObserverAction(client: MockGraphQlClient()));
+
+    await Future<dynamic>.delayed(
+      const Duration(milliseconds: 1000),
+      () async {
+        final TestInfo<AppState> testInfo =
+            await storeTester.waitUntil(StartSyncObserverAction);
+
+        expect(testInfo.dispatchCount, 3);
+        expect(
+          testInfo.state.chatState?.syncState?.syncObserver?.isActive,
+          true,
+        );
+      },
+    );
+  });
+
+  test(
+      'StartSyncObserverAction should skip sync if last since token is UNKNOWN',
+      () async {
+    final StoreTester<AppState> storeTester = StoreTester<AppState>(
+      initialState: AppState.initial().copyWith.chatState!.call(
+            userProfile: user.User.fromJson(loginResponseMock),
+            syncState: SyncState.initial().copyWith.call(syncInterval: 500),
+          ),
+      testInfoPrinter: (TestInfo<dynamic> testInfo) {},
+    );
+
+    storeTester.dispatch(StartSyncObserverAction(client: MockGraphQlClient()));
+
+    await Future<dynamic>.delayed(
+      const Duration(milliseconds: 1000),
+      () async {
+        final TestInfo<AppState> testInfo =
+            await storeTester.waitUntil(StartSyncObserverAction);
+
+        expect(testInfo.dispatchCount, 3);
+        expect(
+          testInfo.state.chatState?.syncState?.syncObserver?.isActive,
+          true,
+        );
+
+        storeTester.state.chatState?.syncState?.syncObserver?.cancel();
+      },
+    );
+  });
 }

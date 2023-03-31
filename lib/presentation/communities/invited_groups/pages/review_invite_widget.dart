@@ -19,7 +19,7 @@ class ReviewInviteWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String roomName = room.name ?? 'Empty room';
+    final String roomName = room.name ?? emptyRoomText;
 
     return StoreConnector<AppState, RoomInfoViewModel>(
       converter: (Store<AppState> store) => RoomInfoViewModel.fromStore(store),

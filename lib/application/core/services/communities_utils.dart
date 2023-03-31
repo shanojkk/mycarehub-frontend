@@ -240,7 +240,7 @@ String getInitials(String string) {
 }
 
 String formatUsername(String? name) =>
-    (name?.split(':').first ?? 'No name').split(':').first;
+    (name?.split(':').first ?? noNameText).split(':').first;
 
 String formatTimestamp(int? timestamp) {
   if (timestamp != null) {

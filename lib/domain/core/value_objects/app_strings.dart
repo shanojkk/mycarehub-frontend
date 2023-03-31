@@ -397,7 +397,6 @@ const String emptyConversationTitle =
 const String emptyConversationBody =
     'Relax and enjoy a cup of coffee as we get your conversations up and running.';
 const String noMembersText = 'No members';
-const String moderatorText = 'Moderator';
 
 // Consent page
 const String viewTermsText = 'View terms and conditions';
@@ -768,7 +767,6 @@ const String moderationHelpText =
     'remove or ban them from this group';
 const String messageDeletedText = 'Message deleted successfully';
 const String deleteMessageString = 'Delete';
-const String banUserText = 'Ban user';
 const String flaggedMessagesString = 'Flagged messages';
 const String noFlaggedMessagesTitle = 'No flagged messages';
 const String messagesDisplayedHereText =
@@ -1038,3 +1036,18 @@ const String syncingString = 'Organizing your rooms...';
 const String sendMessageString = 'Send a message...';
 const String sendImageString = 'Send Image';
 const String uploadImageString = 'Upload Image';
+
+const String imageInfoString = 'Image details';
+const String sentBy = 'Sent by: ';
+const String sentOn = 'Sent on: ';
+const String emptyRoomText = 'Empty room';
+const String noNameText = 'No name';
+const String promoteToModText = 'Promote to moderator';
+const String actionsString = 'Actions';
+const String removeFromGroupText = 'Remove from group';
+const String successRemoveFromGroup = 'User removed from group successfully!';
+const String banUserText = 'Ban this user';
+const String moderatorText = 'Moderator';
+String modSuccessMessage(String name) => '$name is now a moderator';
+String inviteSuccessMessage(String name) =>
+    '$name has been invited successfully';

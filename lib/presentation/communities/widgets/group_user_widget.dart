@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pro_health_360/application/redux/actions/communities/kick_user_action.dart';
 import 'package:pro_health_360/application/redux/actions/communities/promote_to_moderator_action.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/presentation/communities/widgets/avatar.dart';
 import 'package:pro_health_360/presentation/communities/widgets/message_option_item_widget.dart';
@@ -28,7 +29,7 @@ class GroupUserWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String name = user.roomUser?.displayName ?? 'No Name';
+    final String name = user.roomUser?.displayName ?? noNameText;
     final String? userID = user.roomUser?.userID;
     final bool isSelf = userID == authUserID;
 
@@ -45,14 +46,14 @@ class GroupUserWidget extends StatelessWidget {
                   shrinkWrap: true,
                   children: <Widget>[
                     const Text(
-                      'Actions',
+                      actionsString,
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
                     ),
                     const SizedBox(height: 10),
                     MessageOptionItem(
                       buttonKey: promoteToModKey,
-                      title: 'Promote to moderator',
+                      title: promoteToModText,
                       onTap: () {
                         StoreProvider.dispatch<AppState>(
                           context,
@@ -64,7 +65,7 @@ class GroupUserWidget extends StatelessWidget {
                             onSuccess: () {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 snackbar(
-                                  content: '$name is now a moderator',
+                                  content: modSuccessMessage(name),
                                 ),
                               );
                               Navigator.of(context).pop();
@@ -77,7 +78,7 @@ class GroupUserWidget extends StatelessWidget {
                     ),
                     MessageOptionItem(
                       buttonKey: removeFromGroupKey,
-                      title: 'Remove from group',
+                      title: removeFromGroupText,
                       onTap: () {
                         StoreProvider.dispatch<AppState>(
                           context,
@@ -91,9 +92,7 @@ class GroupUserWidget extends StatelessWidget {
                                 ..hideCurrentSnackBar()
                                 ..showSnackBar(
                                   const SnackBar(
-                                    content: Text(
-                                      'User removed from group successfully!',
-                                    ),
+                                    content: Text(successRemoveFromGroup),
                                   ),
                                 );
                               Navigator.of(context).pop();
@@ -107,7 +106,7 @@ class GroupUserWidget extends StatelessWidget {
                     ),
                     MessageOptionItem(
                       buttonKey: banUserKey,
-                      title: 'Ban this user',
+                      title: banUserText,
                       onTap: () {},
                       textColor: Colors.redAccent,
                       iconData: Icons.block,
@@ -147,7 +146,7 @@ class GroupUserWidget extends StatelessWidget {
                   borderRadius: const BorderRadius.all(Radius.circular(40)),
                 ),
                 child: const Text(
-                  'Moderator',
+                  moderatorText,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,

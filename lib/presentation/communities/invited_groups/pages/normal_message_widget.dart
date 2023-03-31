@@ -59,13 +59,6 @@ class NormalMessageWidget extends StatelessWidget {
           timestamp: timeStamp,
           imageURL: imgURI,
         );
-
-      // case 'm.video':
-      //   return VideoPlayer(content['url']);
-
-      // case MatrixMessageTypes.file:
-      //   final String fileName = messageContent['filename']?.toString() ?? '';
-      //   return Text('This is a file: $fileName');
       default:
         return const SizedBox();
     }

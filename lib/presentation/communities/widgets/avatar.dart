@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pro_health_360/application/core/services/communities_utils.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:sghi_core/communities/core/chat_api.dart';
 import 'package:sghi_core/communities/models/strings.dart';
 
@@ -58,7 +59,7 @@ class Avatar extends StatelessWidget {
         padding: const EdgeInsets.all(15),
         child: Center(
           child: Text(
-            getInitials(displayName ?? 'No name').toUpperCase(),
+            getInitials(displayName ?? noNameText).toUpperCase(),
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w300,

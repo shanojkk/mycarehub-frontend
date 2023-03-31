@@ -55,7 +55,7 @@ class PromoteToModeratorAction extends ReduxAction<AppState> {
         json.decode(response.body) as Map<String, dynamic>;
 
     if (decodedResponse['errcode'] != null) {
-      // Handle errors here
+      // TODO(abiud):  Handle errors here
       return null;
     }
 

@@ -62,7 +62,7 @@ class SendMessageInput extends StatelessWidget {
                                 if (roomID.isNotEmpty) {
                                   msgCtrl.clear();
                                 } else {
-                                  // Show an error snackbar here
+                                  // TODO(abiud): Show an error snackbar here
                                 }
                               },
                               message: msgCtrl.text,
@@ -96,7 +96,7 @@ class SendMessageInput extends StatelessWidget {
                         if (roomID.isNotEmpty) {
                           msgCtrl.clear();
                         } else {
-                          // Show an error snackbar here
+                          // TODO(abiud): Show an error snackbar here
                         }
                       },
                       message: msgCtrl.text,

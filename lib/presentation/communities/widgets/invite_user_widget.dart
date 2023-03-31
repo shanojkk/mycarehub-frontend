@@ -2,6 +2,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:pro_health_360/application/redux/actions/communities/invite_users_action.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/presentation/communities/widgets/avatar.dart';
 import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 import 'package:sghi_core/communities/models/strings.dart';
@@ -22,7 +23,7 @@ class InviteUserWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String name = user.displayName ?? 'No Name';
+    final String name = user.displayName ?? noNameText;
     final String? userID = user.userID;
     final bool isSelf = userID == authUserID;
 
@@ -40,11 +41,7 @@ class InviteUserWidget extends StatelessWidget {
                 ScaffoldMessenger.of(context)
                   ..hideCurrentSnackBar()
                   ..showSnackBar(
-                    SnackBar(
-                      content: Text(
-                        '$name has been invited successfully',
-                      ),
-                    ),
+                    SnackBar(content: Text(inviteSuccessMessage(name))),
                   );
 
                 Navigator.of(context).pop();

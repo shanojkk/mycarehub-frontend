@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pro_health_360/application/core/services/communities_utils.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/view_models/communities/communities_view_model.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/message_item_widget.dart';
 import 'package:pro_health_360/presentation/communities/invited_groups/pages/review_invite_widget.dart';
@@ -22,7 +23,7 @@ class RoomPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String roomName = room.name ?? 'No name';
+    final String roomName = room.name ?? noNameText;
     final String roomID = room.roomID ?? UNKNOWN;
     final String roomInitials = getInitials(room.name ?? 'No room name');
     final bool isInvite = room.invite ?? false;

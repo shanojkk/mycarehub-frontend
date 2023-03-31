@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:sghi_core/shared_themes/spaces.dart';
 
 class ImagePreviewPage extends StatelessWidget {
@@ -26,7 +27,7 @@ class ImagePreviewPage extends StatelessWidget {
         title: Container(
           padding: const EdgeInsets.all(10),
           width: MediaQuery.of(context).size.width,
-          child: const Center(child: Text('Image info')),
+          child: const Center(child: Text(imageInfoString)),
         ),
       ),
       body: Padding(
@@ -57,14 +58,14 @@ class ImagePreviewPage extends StatelessWidget {
             ),
             mediumVerticalSizedBox,
             const Text(
-              'Image details',
+              imageInfoString,
               style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
             ),
             mediumVerticalSizedBox,
             Row(
               children: <Widget>[
                 const Text(
-                  'Sent by: ',
+                  sentBy,
                   style: TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
                 ),
                 if (!wasSentByUser)
@@ -80,7 +81,7 @@ class ImagePreviewPage extends StatelessWidget {
             Row(
               children: <Widget>[
                 const Text(
-                  'Sent on: ',
+                  sentOn,
                   style: TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
                 ),
                 Text(

@@ -15,7 +15,7 @@ class RoomListItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String groupName = currentRoom.name ?? 'Empty room';
+    final String groupName = currentRoom.name ?? emptyRoomText;
 
     final bool isInvite = currentRoom.invite ?? false;
 

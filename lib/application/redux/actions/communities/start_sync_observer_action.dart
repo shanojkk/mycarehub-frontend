@@ -33,6 +33,7 @@ class StartSyncObserverAction extends ReduxAction<AppState> {
     final int? interval = store.state.chatState?.syncState?.syncInterval;
     final Timer? syncObserver = store.state.chatState?.syncState?.syncObserver;
     final int? backOff = store.state.chatState?.syncState?.backOff;
+    final bool isSyncObserverActive = syncObserver?.isActive ?? false;
 
     Future<void> onSync(Timer timer) async {
       final String accessToken =
@@ -100,12 +101,10 @@ class StartSyncObserverAction extends ReduxAction<AppState> {
       );
     }
 
-    if (syncObserver == null || !syncObserver.isActive) {
-      final AppState? newState = state.copyWith.chatState?.syncState?.call(
+    if (!isSyncObserverActive) {
+      return state.copyWith.chatState?.syncState?.call(
         syncObserver: Timer.periodic(Duration(milliseconds: interval!), onSync),
       );
-
-      return newState;
     }
 
     return null;

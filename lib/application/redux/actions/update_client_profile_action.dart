@@ -12,6 +12,7 @@ import 'package:pro_health_360/domain/core/entities/core/address.dart';
 import 'package:pro_health_360/domain/core/entities/core/client_state.dart';
 import 'package:pro_health_360/domain/core/entities/profile/caregiver_information.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
+import 'package:sghi_core/afya_moja_core/src/domain/core/entities/identifier.dart';
 
 class UpdateClientProfileAction extends ReduxAction<AppState> {
   UpdateClientProfileAction({
@@ -29,7 +30,7 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
     this.chvUserID,
     this.chvUserName,
     this.addresses,
-    this.cccNumber,
+    this.identifiers,
     this.caregiverInformation,
     this.notifications,
     this.hasCaregiverInfo,
@@ -46,7 +47,7 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
   final bool? active;
   final List<Address>? addresses;
   final CaregiverInformation? caregiverInformation;
-  final String? cccNumber;
+  final List<Identifier>? identifiers;
   final String? chvUserID;
   final String? chvUserName;
   final List<ClientType>? clientTypes;
@@ -86,7 +87,8 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
       chvUserID: this.chvUserID ?? state.clientState?.clientProfile?.chvUserID,
       chvUserName:
           this.chvUserName ?? state.clientState?.clientProfile?.chvUserName,
-      cccNumber: this.cccNumber ?? state.clientState?.clientProfile?.cccNumber,
+      identifiers:
+          this.identifiers ?? state.clientState?.clientProfile?.identifiers,
       user: this.user ?? state.clientState?.clientProfile?.user,
       fhirPatientID:
           this.fhirPatientID ?? state.clientState?.clientProfile?.fhirPatientID,

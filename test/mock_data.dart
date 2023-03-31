@@ -9,14 +9,14 @@ final Map<String, dynamic> clientProgramDataMock = <String, dynamic>{
   'data': <String, dynamic>{
     'setClientProgram': <String, dynamic>{
       'clientProfile': <String, dynamic>{
-        'ID': 'some-id',
-        'User': <String, dynamic>{
-          'ID': 'some-id',
-          'Username': 'jr_jr',
-          'Name': 'JR jr JR',
-          'Gender': 'MALE',
-          'Active': true,
-          'Contacts': <String, dynamic>{
+        'id': 'some-id',
+        'user': <String, dynamic>{
+          'id': 'some-id',
+          'username': 'jr_jr',
+          'name': 'JR jr JR',
+          'gender': 'MALE',
+          'active': true,
+          'contacts': <String, dynamic>{
             'id': '',
             'contactType': '',
             'contactValue': '',
@@ -24,15 +24,15 @@ final Map<String, dynamic> clientProgramDataMock = <String, dynamic>{
             'optedIn': false
           }
         },
-        'Active': true,
-        'ClientTypes': <dynamic>['PMTCT', 'OVC', 'OTZ'],
-        'TreatmentEnrollmentDate': '2000-02-20T00:00:00Z',
+        'active': true,
+        'clientTypes': <dynamic>['PMTCT', 'OVC', 'OTZ'],
+        'treatmentEnrollmentDate': '2000-02-20T00:00:00Z',
         'FHIRPatientID': null,
-        'HealthRecordID': null,
-        'TreatmentBuddy': '',
-        'ClientCounselled': true,
-        'DefaultFacility': <String, dynamic>{
-          'ID': '5ec816ea-aa7f-40fc-af0d-5cdb87295f1e',
+        'healthRecordID': null,
+        'treatmentBuddy': '',
+        'clientCounselled': true,
+        'defaultFacility': <String, dynamic>{
+          'id': '5ec816ea-aa7f-40fc-af0d-5cdb87295f1e',
           'name': 'Kerugoya CRH',
           'phone': '+254712345678',
           'active': true,
@@ -40,10 +40,16 @@ final Map<String, dynamic> clientProgramDataMock = <String, dynamic>{
           'description': 'Opens from Monday to Friday from 8:00 to 17:00',
           'fhirOrganisationID': ''
         },
-        'CHVUserID': null,
-        'CHVUserName': '',
-        'CaregiverID': null,
-        'CCCNumber': ''
+        'chvUserID': null,
+        'chvUserName': '',
+        'caregiverID': null,
+        'identifiers': <dynamic>[
+          <String, dynamic>{
+            'id': 'some-id',
+            'type': 'CCC',
+            'value': '712345678'
+          }
+        ],
       },
       'roles': <dynamic>[],
       'permissions': <dynamic>[],
@@ -138,10 +144,17 @@ final Map<String, dynamic> caregiverManagedClientsMock = <String, dynamic>{
             'messages': 1
           },
           'clientProfile': <String, dynamic>{
-            'ID': '0some-id',
-            'Username': 'testUserName',
-            'Active': true,
-            'TermsAccepted': true,
+            'id': '0some-id',
+            'username': 'testUserName',
+            'active': true,
+            'termsAccepted': true,
+            'identifiers': <dynamic>[
+              <String, dynamic>{
+                'id': 'some-id',
+                'type': 'CCC',
+                'value': '712345678'
+              }
+            ],
           }
         },
         <String, dynamic>{
@@ -154,10 +167,24 @@ final Map<String, dynamic> caregiverManagedClientsMock = <String, dynamic>{
             'messages': 0
           },
           'clientProfile': <String, dynamic>{
-            'ID': '0some-id',
-            'Username': 'testUserName',
-            'Active': true,
-            'TermsAccepted': true,
+            'id': '0some-id',
+            'username': 'testUserName',
+            'active': true,
+            'termsAccepted': true,
+            'identifiers': <dynamic>[
+              <String, dynamic>{
+                'id': 'some-id',
+                'type': 'CCC',
+                'value': '712345678'
+              }
+            ],
+            'contacts': <String, dynamic>{
+              'id': '',
+              'contactType': '',
+              'contactValue': '',
+              'active': false,
+              'optedIn': false
+            }
           }
         }
       ]
@@ -576,6 +603,9 @@ final Map<String, dynamic> mockLoginResponse = <String, dynamic>{
     },
     'clientProfile': <String, dynamic>{
       'active': true,
+      'identifiers': <dynamic>[
+        <String, dynamic>{'id': 'some-id', 'type': 'CCC', 'value': '712345678'}
+      ],
       'addresses': <Map<String, dynamic>>[
         <String, dynamic>{
           'active': true,
@@ -609,7 +639,7 @@ final Map<String, dynamic> mockLoginResponse = <String, dynamic>{
               'text': 'One Padmore'
             }
           ],
-          'primaryContact': <String, dynamic>{
+          'contacts': <String, dynamic>{
             'active': true,
             'contact': '+254717356476',
             'contactType': 'PHONE',
@@ -1779,7 +1809,7 @@ final Map<String, dynamic> mockUser = <String, dynamic>{
   'languages': <dynamic>['en', 'sw'],
   'suspended': false,
   'avatar': 'https://i.postimg.cc/9XpbrC25/profile-image.png',
-  'primaryContact': <String, dynamic>{
+  'contacts': <String, dynamic>{
     'active': true,
     'contact': '+254717356476',
     'contactType': 'PHONE',
@@ -1815,6 +1845,9 @@ final Map<String, dynamic> mockClientState = <String, dynamic>{
     'relatedPersons': <dynamic>[mockRelatedPerson],
     'treatmentBuddy': null,
     'treatmentEnrollmentDate': '21 Nov 2021',
+    'identifiers': <dynamic>[
+      <String, dynamic>{'id': 'some-id', 'type': 'CCC', 'value': '712345678'}
+    ],
     'user': mockUser
   }
 };

@@ -21,7 +21,9 @@ _$_ClientProfile _$$_ClientProfileFromJson(Map<String, dynamic> json) =>
           : User.fromJson(json['user'] as Map<String, dynamic>),
       chvUserID: json['chvUserID'] as String?,
       chvUserName: json['chvUserName'] as String?,
-      cccNumber: json['cccNumber'] as String?,
+      identifiers: (json['identifiers'] as List<dynamic>?)
+          ?.map((e) => Identifier.fromJson(e as Map<String, dynamic>))
+          .toList(),
       fhirPatientID: json['fhirPatientID'] as String?,
       healthRecordID: json['healthRecordID'] as String?,
       caregiverID: json['caregiverID'] as String?,
@@ -42,7 +44,7 @@ Map<String, dynamic> _$$_ClientProfileToJson(_$_ClientProfile instance) =>
       'user': instance.user,
       'chvUserID': instance.chvUserID,
       'chvUserName': instance.chvUserName,
-      'cccNumber': instance.cccNumber,
+      'identifiers': instance.identifiers,
       'fhirPatientID': instance.fhirPatientID,
       'healthRecordID': instance.healthRecordID,
       'caregiverID': instance.caregiverID,

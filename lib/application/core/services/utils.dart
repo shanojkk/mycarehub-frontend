@@ -4,6 +4,7 @@ import 'dart:async';
 // Package imports:
 import 'package:pro_health_360/application/core/services/custom_client.dart';
 import 'package:pro_health_360/application/redux/states/screening_tools_state.dart';
+import 'package:pro_health_360/domain/core/entities/core/client_profile.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 // Flutter imports:
@@ -32,6 +33,7 @@ import 'package:pro_health_360/domain/core/value_objects/constants.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:sghi_core/afya_moja_core/src/domain/core/entities/identifier.dart';
 import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 import 'package:sghi_core/app_wrapper/enums.dart';
 import 'package:sghi_core/flutter_graphql_client/i_flutter_graphql_client.dart';
@@ -50,6 +52,20 @@ AppSetupData getAppSetupData(AppContext context) {
       return prodAppSetupData;
     default:
       return devAppSetupData;
+  }
+}
+
+/// Returns the clients identifier and CCC Number
+String getClientCCCNumber(ClientProfile? clientProfile) {
+  if (clientProfile?.identifiers?.isEmpty ?? true) {
+    return UNKNOWN;
+  } else {
+    return clientProfile!.identifiers!
+            .firstWhere(
+              (Identifier identifier) => identifier.type == IdentifierType.CCC,
+            )
+            .value ??
+        UNKNOWN;
   }
 }
 

@@ -17,6 +17,8 @@ import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
+import 'package:sghi_core/afya_moja_core/src/domain/core/entities/identifier.dart';
 import 'package:sghi_core/app_wrapper/enums.dart';
 
 void main() {
@@ -25,6 +27,20 @@ void main() {
   group('Utils', () {
     test('should return an unprotected route', () async {
       expect(unProtectedRoutes[0], AppRoutes.phoneLogin);
+    });
+
+    test('should return correct CCC number', () async {
+      final ClientProfile clientProfile = ClientProfile(
+        identifiers: <Identifier>[
+          Identifier(
+            id: 'some-id',
+            type: IdentifierType.CCC,
+            value: '+254712345678',
+          )
+        ],
+      );
+      final String phoneNumber = getClientCCCNumber(clientProfile);
+      expect(phoneNumber, '+254712345678');
     });
 
     test('formatSecurityQuestionDate should return birth date in en_GB format',

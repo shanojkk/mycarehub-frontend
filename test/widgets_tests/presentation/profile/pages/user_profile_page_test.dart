@@ -19,6 +19,7 @@ import 'package:pro_health_360/presentation/profile/hotline/widgets/hotline_widg
 import 'package:pro_health_360/presentation/profile/pages/user_profile_page.dart';
 import 'package:pro_health_360/presentation/profile/personal_information/personal_information_page.dart';
 import 'package:pro_health_360/presentation/profile/widgets/user_details_card_widget.dart';
+import 'package:sghi_core/afya_moja_core/src/domain/core/entities/identifier.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 
@@ -29,7 +30,21 @@ void main() {
     setUp(() {
       store = Store<AppState>(initialState: AppState.initial());
       store.dispatch(
-        UpdateUserProfileAction(firstName: 'Test', lastName: 'Name'),
+        UpdateUserProfileAction(
+          firstName: 'Test',
+          lastName: 'Name',
+        ),
+      );
+      store.dispatch(
+        UpdateClientProfileAction(
+          identifiers: <Identifier>[
+            Identifier(
+              id: 'some-id',
+              type: IdentifierType.CCC,
+              value: '712345678',
+            ),
+          ],
+        ),
       );
     });
 

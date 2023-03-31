@@ -38,8 +38,8 @@ mixin _$ClientProfile {
   String? get chvUserID => throw _privateConstructorUsedError;
   @JsonKey(name: 'chvUserName')
   String? get chvUserName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'cccNumber')
-  String? get cccNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'identifiers')
+  List<Identifier>? get identifiers => throw _privateConstructorUsedError;
   @JsonKey(name: 'fhirPatientID')
   String? get fhirPatientID => throw _privateConstructorUsedError;
   @JsonKey(name: 'healthRecordID')
@@ -71,7 +71,7 @@ abstract class $ClientProfileCopyWith<$Res> {
       @JsonKey(name: 'user') User? user,
       @JsonKey(name: 'chvUserID') String? chvUserID,
       @JsonKey(name: 'chvUserName') String? chvUserName,
-      @JsonKey(name: 'cccNumber') String? cccNumber,
+      @JsonKey(name: 'identifiers') List<Identifier>? identifiers,
       @JsonKey(name: 'fhirPatientID') String? fhirPatientID,
       @JsonKey(name: 'healthRecordID') String? healthRecordID,
       @JsonKey(name: 'caregiverID') String? caregiverID,
@@ -103,7 +103,7 @@ class _$ClientProfileCopyWithImpl<$Res, $Val extends ClientProfile>
     Object? user = freezed,
     Object? chvUserID = freezed,
     Object? chvUserName = freezed,
-    Object? cccNumber = freezed,
+    Object? identifiers = freezed,
     Object? fhirPatientID = freezed,
     Object? healthRecordID = freezed,
     Object? caregiverID = freezed,
@@ -146,10 +146,10 @@ class _$ClientProfileCopyWithImpl<$Res, $Val extends ClientProfile>
           ? _value.chvUserName
           : chvUserName // ignore: cast_nullable_to_non_nullable
               as String?,
-      cccNumber: freezed == cccNumber
-          ? _value.cccNumber
-          : cccNumber // ignore: cast_nullable_to_non_nullable
-              as String?,
+      identifiers: freezed == identifiers
+          ? _value.identifiers
+          : identifiers // ignore: cast_nullable_to_non_nullable
+              as List<Identifier>?,
       fhirPatientID: freezed == fhirPatientID
           ? _value.fhirPatientID
           : fhirPatientID // ignore: cast_nullable_to_non_nullable
@@ -212,7 +212,7 @@ abstract class _$$_ClientProfileCopyWith<$Res>
       @JsonKey(name: 'user') User? user,
       @JsonKey(name: 'chvUserID') String? chvUserID,
       @JsonKey(name: 'chvUserName') String? chvUserName,
-      @JsonKey(name: 'cccNumber') String? cccNumber,
+      @JsonKey(name: 'identifiers') List<Identifier>? identifiers,
       @JsonKey(name: 'fhirPatientID') String? fhirPatientID,
       @JsonKey(name: 'healthRecordID') String? healthRecordID,
       @JsonKey(name: 'caregiverID') String? caregiverID,
@@ -244,7 +244,7 @@ class __$$_ClientProfileCopyWithImpl<$Res>
     Object? user = freezed,
     Object? chvUserID = freezed,
     Object? chvUserName = freezed,
-    Object? cccNumber = freezed,
+    Object? identifiers = freezed,
     Object? fhirPatientID = freezed,
     Object? healthRecordID = freezed,
     Object? caregiverID = freezed,
@@ -287,10 +287,10 @@ class __$$_ClientProfileCopyWithImpl<$Res>
           ? _value.chvUserName
           : chvUserName // ignore: cast_nullable_to_non_nullable
               as String?,
-      cccNumber: freezed == cccNumber
-          ? _value.cccNumber
-          : cccNumber // ignore: cast_nullable_to_non_nullable
-              as String?,
+      identifiers: freezed == identifiers
+          ? _value._identifiers
+          : identifiers // ignore: cast_nullable_to_non_nullable
+              as List<Identifier>?,
       fhirPatientID: freezed == fhirPatientID
           ? _value.fhirPatientID
           : fhirPatientID // ignore: cast_nullable_to_non_nullable
@@ -324,12 +324,13 @@ class _$_ClientProfile implements _ClientProfile {
       @JsonKey(name: 'user') this.user,
       @JsonKey(name: 'chvUserID') this.chvUserID,
       @JsonKey(name: 'chvUserName') this.chvUserName,
-      @JsonKey(name: 'cccNumber') this.cccNumber,
+      @JsonKey(name: 'identifiers') final List<Identifier>? identifiers,
       @JsonKey(name: 'fhirPatientID') this.fhirPatientID,
       @JsonKey(name: 'healthRecordID') this.healthRecordID,
       @JsonKey(name: 'caregiverID') this.caregiverID,
       @JsonKey(name: 'defaultFacility') this.defaultFacility})
-      : _clientTypes = clientTypes;
+      : _clientTypes = clientTypes,
+        _identifiers = identifiers;
 
   factory _$_ClientProfile.fromJson(Map<String, dynamic> json) =>
       _$$_ClientProfileFromJson(json);
@@ -368,9 +369,16 @@ class _$_ClientProfile implements _ClientProfile {
   @override
   @JsonKey(name: 'chvUserName')
   final String? chvUserName;
+  final List<Identifier>? _identifiers;
   @override
-  @JsonKey(name: 'cccNumber')
-  final String? cccNumber;
+  @JsonKey(name: 'identifiers')
+  List<Identifier>? get identifiers {
+    final value = _identifiers;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   @JsonKey(name: 'fhirPatientID')
   final String? fhirPatientID;
@@ -386,7 +394,7 @@ class _$_ClientProfile implements _ClientProfile {
 
   @override
   String toString() {
-    return 'ClientProfile(id: $id, active: $active, counselled: $counselled, clientTypes: $clientTypes, treatmentEnrollmentDate: $treatmentEnrollmentDate, treatmentBuddy: $treatmentBuddy, user: $user, chvUserID: $chvUserID, chvUserName: $chvUserName, cccNumber: $cccNumber, fhirPatientID: $fhirPatientID, healthRecordID: $healthRecordID, caregiverID: $caregiverID, defaultFacility: $defaultFacility)';
+    return 'ClientProfile(id: $id, active: $active, counselled: $counselled, clientTypes: $clientTypes, treatmentEnrollmentDate: $treatmentEnrollmentDate, treatmentBuddy: $treatmentBuddy, user: $user, chvUserID: $chvUserID, chvUserName: $chvUserName, identifiers: $identifiers, fhirPatientID: $fhirPatientID, healthRecordID: $healthRecordID, caregiverID: $caregiverID, defaultFacility: $defaultFacility)';
   }
 
   @override
@@ -410,8 +418,8 @@ class _$_ClientProfile implements _ClientProfile {
                 other.chvUserID == chvUserID) &&
             (identical(other.chvUserName, chvUserName) ||
                 other.chvUserName == chvUserName) &&
-            (identical(other.cccNumber, cccNumber) ||
-                other.cccNumber == cccNumber) &&
+            const DeepCollectionEquality()
+                .equals(other._identifiers, _identifiers) &&
             (identical(other.fhirPatientID, fhirPatientID) ||
                 other.fhirPatientID == fhirPatientID) &&
             (identical(other.healthRecordID, healthRecordID) ||
@@ -435,7 +443,7 @@ class _$_ClientProfile implements _ClientProfile {
       user,
       chvUserID,
       chvUserName,
-      cccNumber,
+      const DeepCollectionEquality().hash(_identifiers),
       fhirPatientID,
       healthRecordID,
       caregiverID,
@@ -475,8 +483,8 @@ abstract class _ClientProfile implements ClientProfile {
           final String? chvUserID,
       @JsonKey(name: 'chvUserName')
           final String? chvUserName,
-      @JsonKey(name: 'cccNumber')
-          final String? cccNumber,
+      @JsonKey(name: 'identifiers')
+          final List<Identifier>? identifiers,
       @JsonKey(name: 'fhirPatientID')
           final String? fhirPatientID,
       @JsonKey(name: 'healthRecordID')
@@ -517,8 +525,8 @@ abstract class _ClientProfile implements ClientProfile {
   @JsonKey(name: 'chvUserName')
   String? get chvUserName;
   @override
-  @JsonKey(name: 'cccNumber')
-  String? get cccNumber;
+  @JsonKey(name: 'identifiers')
+  List<Identifier>? get identifiers;
   @override
   @JsonKey(name: 'fhirPatientID')
   String? get fhirPatientID;

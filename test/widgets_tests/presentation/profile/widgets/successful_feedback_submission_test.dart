@@ -1,4 +1,4 @@
-// Flutter imports:
+import 'package:pro_health_360/application/redux/actions/update_client_profile_action.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -7,6 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/presentation/content/widgets/successful_feedback_submission.dart';
 import 'package:pro_health_360/presentation/profile/pages/user_profile_page.dart';
+import 'package:sghi_core/afya_moja_core/src/domain/core/entities/identifier.dart';
 
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
@@ -18,6 +19,17 @@ void main() {
           Store<AppState>(initialState: AppState.initial());
       setupFirebaseAnalyticsMocks();
       await Firebase.initializeApp();
+      store.dispatch(
+        UpdateClientProfileAction(
+          identifiers: <Identifier>[
+            Identifier(
+              id: 'some-id',
+              type: IdentifierType.CCC,
+              value: '712345678',
+            ),
+          ],
+        ),
+      );
 
       await buildTestWidget(
         tester: tester,

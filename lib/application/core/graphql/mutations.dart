@@ -244,7 +244,11 @@ mutation setClientProgram($programID: ID!) {
       chvUserID
       chvUserName
       caregiverID
-      cccNumber
+      identifiers {
+        id
+        type
+        value
+      }
     }
     roles {
       authorityRoleID

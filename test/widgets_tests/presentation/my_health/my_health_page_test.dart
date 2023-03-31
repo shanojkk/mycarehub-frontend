@@ -4,6 +4,9 @@ import 'dart:convert';
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:pro_health_360/application/redux/actions/update_client_profile_action.dart';
+import 'package:sghi_core/afya_moja_core/src/domain/core/entities/identifier.dart';
+import 'package:sghi_core/afya_moja_core/src/enums.dart';
 import 'package:sghi_core/flutter_graphql_client/i_flutter_graphql_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
@@ -61,6 +64,17 @@ void main() {
     testWidgets('navigates to UserProfilePage ', (WidgetTester tester) async {
       store.dispatch(
         UpdateUserProfileAction(firstName: 'Test', lastName: 'Name'),
+      );
+      store.dispatch(
+        UpdateClientProfileAction(
+          identifiers: <Identifier>[
+            Identifier(
+              id: 'some-id',
+              type: IdentifierType.CCC,
+              value: '712345678',
+            ),
+          ],
+        ),
       );
       await buildTestWidget(
         tester: tester,

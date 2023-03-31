@@ -104,7 +104,7 @@ class SetCurrentProgramAction extends ReduxAction<AppState> {
             counselled: clientState.clientProfile?.counselled,
             chvUserID: clientState.clientProfile?.chvUserID,
             chvUserName: clientState.clientProfile?.chvUserName,
-            cccNumber: clientState.clientProfile?.cccNumber,
+            identifiers: clientState.clientProfile?.identifiers,
             fhirPatientID: clientState.clientProfile?.fhirPatientID,
             healthRecordID: clientState.clientProfile?.healthRecordID,
             defaultFacility: clientState.clientProfile?.defaultFacility,

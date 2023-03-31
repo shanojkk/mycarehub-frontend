@@ -39,7 +39,7 @@ mixin _$User {
   Gender? get gender => throw _privateConstructorUsedError;
   @JsonKey(name: 'active', defaultValue: false)
   bool? get active => throw _privateConstructorUsedError;
-  @JsonKey(name: 'primaryContact')
+  @JsonKey(name: 'contacts')
   Contact? get primaryContact => throw _privateConstructorUsedError;
   @JsonKey(name: 'secondaryContacts')
   List<Contact?>? get secondaryContacts => throw _privateConstructorUsedError;
@@ -104,7 +104,7 @@ abstract class $UserCopyWith<$Res> {
           Gender? gender,
       @JsonKey(name: 'active', defaultValue: false)
           bool? active,
-      @JsonKey(name: 'primaryContact')
+      @JsonKey(name: 'contacts')
           Contact? primaryContact,
       @JsonKey(name: 'secondaryContacts')
           List<Contact?>? secondaryContacts,
@@ -306,7 +306,7 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
           Gender? gender,
       @JsonKey(name: 'active', defaultValue: false)
           bool? active,
-      @JsonKey(name: 'primaryContact')
+      @JsonKey(name: 'contacts')
           Contact? primaryContact,
       @JsonKey(name: 'secondaryContacts')
           List<Contact?>? secondaryContacts,
@@ -490,7 +490,7 @@ class _$_User implements _User {
           this.gender,
       @JsonKey(name: 'active', defaultValue: false)
           this.active,
-      @JsonKey(name: 'primaryContact')
+      @JsonKey(name: 'contacts')
           this.primaryContact,
       @JsonKey(name: 'secondaryContacts')
           final List<Contact?>? secondaryContacts,
@@ -552,7 +552,7 @@ class _$_User implements _User {
   @JsonKey(name: 'active', defaultValue: false)
   final bool? active;
   @override
-  @JsonKey(name: 'primaryContact')
+  @JsonKey(name: 'contacts')
   final Contact? primaryContact;
   final List<Contact?>? _secondaryContacts;
   @override
@@ -732,7 +732,7 @@ abstract class _User implements User {
           final Gender? gender,
       @JsonKey(name: 'active', defaultValue: false)
           final bool? active,
-      @JsonKey(name: 'primaryContact')
+      @JsonKey(name: 'contacts')
           final Contact? primaryContact,
       @JsonKey(name: 'secondaryContacts')
           final List<Contact?>? secondaryContacts,
@@ -790,7 +790,7 @@ abstract class _User implements User {
   @JsonKey(name: 'active', defaultValue: false)
   bool? get active;
   @override
-  @JsonKey(name: 'primaryContact')
+  @JsonKey(name: 'contacts')
   Contact? get primaryContact;
   @override
   @JsonKey(name: 'secondaryContacts')

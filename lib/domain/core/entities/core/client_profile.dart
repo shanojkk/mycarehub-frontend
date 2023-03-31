@@ -7,6 +7,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 // Project imports:
 import 'package:pro_health_360/domain/core/entities/core/user.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
+import 'package:sghi_core/afya_moja_core/src/domain/core/entities/identifier.dart';
 
 part 'client_profile.freezed.dart';
 part 'client_profile.g.dart';
@@ -23,7 +24,7 @@ class ClientProfile with _$ClientProfile {
     @JsonKey(name: 'user') User? user,
     @JsonKey(name: 'chvUserID') String? chvUserID,
     @JsonKey(name: 'chvUserName') String? chvUserName,
-    @JsonKey(name: 'cccNumber') String? cccNumber,
+    @JsonKey(name: 'identifiers') List<Identifier>? identifiers,
     @JsonKey(name: 'fhirPatientID') String? fhirPatientID,
     @JsonKey(name: 'healthRecordID') String? healthRecordID,
     @JsonKey(name: 'caregiverID') String? caregiverID,
@@ -43,7 +44,7 @@ class ClientProfile with _$ClientProfile {
         counselled: false,
         chvUserID: UNKNOWN,
         chvUserName: UNKNOWN,
-        cccNumber: UNKNOWN,
+        identifiers: <Identifier>[],
         fhirPatientID: UNKNOWN,
         healthRecordID: UNKNOWN,
         defaultFacility: Facility.initial(),

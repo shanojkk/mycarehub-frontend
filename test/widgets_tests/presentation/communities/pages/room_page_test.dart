@@ -3,11 +3,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/states/sync_response_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/group_info_page.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/message_item_widget.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/review_invite_widget.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_page.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/widgets/text_message_widget.dart';
+import 'package:pro_health_360/presentation/communities/pages/group_info_page.dart';
+import 'package:pro_health_360/presentation/communities/pages/message_item_widget.dart';
+import 'package:pro_health_360/presentation/communities/widgets/review_invite_widget.dart';
+import 'package:pro_health_360/presentation/communities/pages/room_page.dart';
+import 'package:pro_health_360/presentation/communities/widgets/text_message_widget.dart';
 import 'package:sghi_core/communities/models/room.dart';
 import 'package:sghi_core/communities/models/user.dart';
 

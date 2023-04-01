@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pro_health_360/application/core/services/communities_utils.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/widgets/image_item_widget.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/widgets/text_message_widget.dart';
+import 'package:pro_health_360/presentation/communities/widgets/image_item_widget.dart';
+import 'package:pro_health_360/presentation/communities/widgets/text_message_widget.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:sghi_core/communities/core/chat_api.dart';
 import 'package:sghi_core/communities/core/enums.dart';

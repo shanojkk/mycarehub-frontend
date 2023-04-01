@@ -1,12 +1,12 @@
 // Package imports:
 import 'dart:io';
 
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/group_info_page.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/image_preview_page.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/invite_users_page.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/preview_upload_image_page.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_list_page.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_page.dart';
+import 'package:pro_health_360/presentation/communities/pages/group_info_page.dart';
+import 'package:pro_health_360/presentation/communities/pages/image_preview_page.dart';
+import 'package:pro_health_360/presentation/communities/pages/invite_users_page.dart';
+import 'package:pro_health_360/presentation/communities/pages/preview_upload_image_page.dart';
+import 'package:pro_health_360/presentation/communities/pages/room_list_page.dart';
+import 'package:pro_health_360/presentation/communities/pages/room_page.dart';
 import 'package:pro_health_360/presentation/onboarding/program_selection/program_selection_page.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
@@ -22,7 +22,7 @@ import 'package:pro_health_360/presentation/assessment/widgets/successful_assess
 import 'package:pro_health_360/presentation/caregiver/pages/client_caregiver_selection_page.dart';
 import 'package:pro_health_360/presentation/caregiver/pages/client_selection_page.dart';
 import 'package:pro_health_360/presentation/caregiver/pages/facility_selection_page.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/accept_group_invites_page.dart';
+import 'package:pro_health_360/presentation/communities/pages/accept_group_invites_page.dart';
 import 'package:pro_health_360/presentation/content/pages/content_details_page.dart';
 import 'package:pro_health_360/presentation/content/pages/feed_page.dart';
 import 'package:pro_health_360/presentation/content/widgets/document_content_widget.dart';

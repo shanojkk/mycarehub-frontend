@@ -6,7 +6,7 @@ import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/states/sync_response_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/widgets/send_message_input.dart';
+import 'package:pro_health_360/presentation/communities/widgets/send_message_input.dart';
 import 'package:sghi_core/communities/models/user.dart';
 
 import '../../../../mock_data.dart';

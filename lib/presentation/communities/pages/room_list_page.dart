@@ -7,7 +7,7 @@ import 'package:pro_health_360/application/redux/view_models/communities/communi
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_list_item_widget.dart';
+import 'package:pro_health_360/presentation/communities/widgets/room_list_item_widget.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:pro_health_360/presentation/home/widgets/bottom_nav_bar.dart';

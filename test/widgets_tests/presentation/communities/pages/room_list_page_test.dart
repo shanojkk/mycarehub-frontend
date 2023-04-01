@@ -7,10 +7,10 @@ import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/states/sync_response_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_list_item_widget.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_list_page.dart';
+import 'package:pro_health_360/presentation/communities/widgets/room_list_item_widget.dart';
+import 'package:pro_health_360/presentation/communities/pages/room_list_page.dart';
 import 'package:sghi_core/communities/models/user.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/room_page.dart';
+import 'package:pro_health_360/presentation/communities/pages/room_page.dart';
 
 import '../../../../mock_data.dart';
 import '../../../../mocks.dart';

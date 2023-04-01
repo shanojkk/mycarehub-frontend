@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/widgets/text_message_widget.dart';
+import 'package:pro_health_360/presentation/communities/widgets/text_message_widget.dart';
 
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';

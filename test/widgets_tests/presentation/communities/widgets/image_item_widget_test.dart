@@ -6,8 +6,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/states/sync_response_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/image_preview_page.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/widgets/image_item_widget.dart';
+import 'package:pro_health_360/presentation/communities/pages/image_preview_page.dart';
+import 'package:pro_health_360/presentation/communities/widgets/image_item_widget.dart';
 import 'package:sghi_core/communities/models/message.dart';
 import 'package:sghi_core/communities/models/user.dart';
 

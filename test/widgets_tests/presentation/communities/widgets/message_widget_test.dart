@@ -1,8 +1,8 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/message_item_widget.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/widgets/text_message_widget.dart';
+import 'package:pro_health_360/presentation/communities/pages/message_item_widget.dart';
+import 'package:pro_health_360/presentation/communities/widgets/text_message_widget.dart';
 import 'package:sghi_core/communities/models/message.dart';
 
 import '../../../../mock_data.dart';

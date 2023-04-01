@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pro_health_360/presentation/communities/invited_groups/pages/update_message_widget.dart';
+import 'package:pro_health_360/presentation/communities/widgets/update_message_widget.dart';
 
 void main() {
   group('Update Message Widget', () {

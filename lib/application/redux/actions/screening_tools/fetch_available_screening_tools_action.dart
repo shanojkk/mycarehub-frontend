@@ -32,13 +32,8 @@ class FetchAvailableScreeningToolsAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final Map<String, dynamic> variables = <String, dynamic>{
-      'clientID': state.clientState!.clientProfile!.id,
-      'facilityID': state.clientState!.clientProfile?.defaultFacility?.id
-    };
-
     final Response response =
-        await client.query(getAvailableScreeningToolQuery, variables);
+        await client.query(getAvailableScreeningToolQuery, <String, dynamic>{});
 
     final ProcessedResponse processedResponse = processHttpResponse(response);
 

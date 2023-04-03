@@ -163,7 +163,7 @@ class UserDetailsCard extends StatelessWidget {
               const Divider(),
               smallVerticalSizedBox,
               Text(
-                yourCurrentHospitalDescription('hospitalName'),
+                yourCurrentHospitalDescription(hospitalName),
                 style: normalSize14Text(
                   AppColors.unSelectedReactionIconColor,
                 ),

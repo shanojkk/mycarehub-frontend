@@ -404,12 +404,9 @@ query SearchObservations($params: Map!) {
 }
 ''';
 
-const String getAvailableScreeningToolQuery = r'''
-query getAvailableScreeningTools ($clientID: String!, $facilityID: String!){
-  getAvailableScreeningTools(
-    clientID: $clientID
-  	facilityID: $facilityID
-  ) {
+const String getAvailableScreeningToolQuery = '''
+query getAvailableScreeningTools (){
+  getAvailableScreeningTools() {
    	id
     questionnaireID
     threshold
@@ -421,7 +418,6 @@ query getAvailableScreeningTools ($clientID: String!, $facilityID: String!){
     }
   }
 }
-
 ''';
 
 const String nextRefillQuery = r'''

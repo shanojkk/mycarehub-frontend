@@ -1,7 +1,8 @@
 // Package imports:
 import 'dart:io';
 
-import 'package:pro_health_360/presentation/communities/pages/group_info_page.dart';
+import 'package:pro_health_360/presentation/communities/pages/banned_members_page.dart';
+import 'package:pro_health_360/presentation/communities/pages/room_info_page.dart';
 import 'package:pro_health_360/presentation/communities/pages/image_preview_page.dart';
 import 'package:pro_health_360/presentation/communities/pages/invite_users_page.dart';
 import 'package:pro_health_360/presentation/communities/pages/preview_upload_image_page.dart';
@@ -746,6 +747,19 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<RoomInfoPage>>());
     expect(route?.builder(context), isA<RoomInfoPage>());
+  });
+
+  test('Test router returns banned members page', () {
+    final RouteSettings settings = RouteSettings(
+      name: AppRoutes.bannedMembersRoute,
+      arguments: Room.initial(),
+    );
+
+    final MaterialPageRoute<BannedMembersPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<BannedMembersPage>?;
+
+    expect(route, isA<MaterialPageRoute<BannedMembersPage>>());
+    expect(route?.builder(context), isA<BannedMembersPage>());
   });
 
   test('Test router returns previewUploadMediaRoute page', () {

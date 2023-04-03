@@ -147,6 +147,8 @@ class AppRoutes {
   static const String previewUploadMediaRoute = '/previewUploadMediaRoute';
 
   static const String imagePreviewRoute = '/imagePreviewRoute';
+
+  static const String bannedMembersRoute = '/bannedMembersRoute';
 }
 
 List<String> unProtectedRoutes = <String>[AppRoutes.phoneLogin];

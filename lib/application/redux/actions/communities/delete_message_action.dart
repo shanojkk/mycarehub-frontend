@@ -4,6 +4,8 @@ import 'package:http/http.dart';
 import 'package:pro_health_360/application/core/services/communities_utils.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:sghi_core/afya_moja_core/src/domain/core/entities/processed_response.dart';
+import 'package:sghi_core/afya_moja_core/src/helpers.dart';
 import 'package:sghi_core/communities/core/chat_api.dart';
 import 'package:sghi_core/communities/models/message.dart';
 import 'package:sghi_core/communities/models/room.dart';
@@ -58,44 +60,53 @@ class DeleteMessageAction extends ReduxAction<AppState> {
         userID: userID,
       );
 
-      final Map<String, dynamic> body =
-          json.decode(response.body) as Map<String, dynamic>;
+      final ProcessedResponse processedResponse = processHttpResponse(response);
 
-      if (response.statusCode == 403) {
-        onError?.call(
-          'Sorry, you do not have permissions to delete their message',
-        );
-      }
+      if (processedResponse.ok) {
+        final Response resp = processedResponse.response;
 
-      if (body.containsKey('event_id')) {
-        // Remove the event from state
-        final Map<String, Room>? joinedRooms =
-            state.chatState?.syncResponse?.rooms?.joinedRooms;
-        final List<Message?>? events = joinedRooms![roomID]?.timeline?.events;
+        final Map<String, dynamic> body =
+            json.decode(resp.body) as Map<String, dynamic>;
 
-        events?.removeWhere((Message? m) => m?.eventID == eventID);
+        if (body.containsKey('event_id')) {
+          // Remove the event from state
+          final Map<String, Room>? joinedRooms =
+              state.chatState?.syncResponse?.rooms?.joinedRooms;
+          final List<Message?>? events = joinedRooms![roomID]?.timeline?.events;
 
-        final Room? newRoom =
-            joinedRooms[roomID]?.copyWith.timeline?.call(events: events);
+          events?.removeWhere((Message? m) => m?.eventID == eventID);
 
-        if (newRoom != null) {
-          joinedRooms.addAll(<String, Room>{roomID: newRoom});
+          final Room? newRoom =
+              joinedRooms[roomID]?.copyWith.timeline?.call(events: events);
 
-          final AppState? newState = state
-              .copyWith.chatState?.syncResponse?.rooms
-              ?.call(joinedRooms: joinedRooms);
+          if (newRoom != null) {
+            joinedRooms.addAll(<String, Room>{roomID: newRoom});
 
-          onSuccess?.call(body['event_id']?.toString() ?? '');
+            final AppState? newState = state
+                .copyWith.chatState?.syncResponse?.rooms
+                ?.call(joinedRooms: joinedRooms);
 
-          return newState;
+            onSuccess?.call(body['event_id']?.toString() ?? '');
+
+            return newState;
+          }
+
+          return null;
+        }
+      } else {
+        if (processedResponse.response.statusCode == 403) {
+          onError?.call(
+            'Sorry, you do not have permissions to delete this message',
+          );
+          return null;
         }
 
+        onError?.call(
+          'Sorry, an error occurred while deleting the message',
+        );
         return null;
       }
-
-      return null;
     }
-
     return null;
   }
 }

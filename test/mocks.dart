@@ -1672,6 +1672,12 @@ class MockCommunitiesClient extends Mock implements GraphQlClient {
       );
     }
 
+    if (endpoint.contains('?membership=ban')) {
+      return Future<http.Response>.value(
+        http.Response(json.encode(bannedUserResponseMock), 201),
+      );
+    }
+
     if (endpoint.contains('/join')) {
       return Future<http.Response>.value(
         http.Response(

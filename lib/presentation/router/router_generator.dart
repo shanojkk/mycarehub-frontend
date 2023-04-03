@@ -2,7 +2,8 @@
 
 import 'dart:io';
 
-import 'package:pro_health_360/presentation/communities/pages/group_info_page.dart';
+import 'package:pro_health_360/presentation/communities/pages/banned_members_page.dart';
+import 'package:pro_health_360/presentation/communities/pages/room_info_page.dart';
 import 'package:pro_health_360/presentation/communities/pages/image_preview_page.dart';
 import 'package:pro_health_360/presentation/communities/pages/invite_users_page.dart';
 import 'package:pro_health_360/presentation/communities/pages/preview_upload_image_page.dart';
@@ -583,6 +584,14 @@ class RouteGenerator {
             time: timestamp,
           ),
           settings: const RouteSettings(name: 'Image preview page'),
+        );
+
+      case AppRoutes.bannedMembersRoute:
+        final dynamic roomArgs = args;
+
+        return MaterialPageRoute<BannedMembersPage>(
+          builder: (_) => BannedMembersPage(room: roomArgs as Room),
+          settings: const RouteSettings(name: 'Banned members page'),
         );
 
       default:

@@ -70,7 +70,7 @@ void main() {
         initialState: AppState.initial().copyWith.chatState!.call(
               userProfile: user.User.fromJson(loginResponseMock),
               syncState: SyncState.initial().copyWith.call(
-                    syncInterval: 1,
+                    syncInterval: 1000,
                     backOff: 3,
                   ),
               syncResponse: SyncResponse.fromJson(syncResponseMock),
@@ -83,7 +83,7 @@ void main() {
       );
 
       await Future<dynamic>.delayed(
-        const Duration(milliseconds: 10),
+        const Duration(milliseconds: 1000),
         () async {
           final TestInfo<AppState> testInfo =
               await storeTester.waitUntil(StartSyncObserverAction);

@@ -1051,3 +1051,27 @@ const String moderatorText = 'Moderator';
 String modSuccessMessage(String name) => '$name is now a moderator';
 String inviteSuccessMessage(String name) =>
     '$name has been invited successfully';
+
+const String bannedMembersString = 'Banned members';
+const String tapToViewBannedMembersString = 'Tap to view banned members';
+
+// Banned members
+const String bannedMembersInstructions =
+    'Tap on a member to unban them from this group';
+
+const String noBannedMembers = 'No banned members';
+const String okThanks = 'OK Thanks';
+
+const String noBannedMembersDescription =
+    'There are no banned members for this group';
+
+const String unBanUserSuccess = 'User unbanned successfully!!';
+const String failedToUnban = 'Failed to unban user, please try again later';
+
+const String longPressInstruction =
+    'Long press on a member to promote them to a moderator, '
+    'remove or ban them from this group';
+
+const String leaveGroupPrompt =
+    'You will no longer access this group once you leave it';
+const String successBanText = 'User banned from group successfully!';

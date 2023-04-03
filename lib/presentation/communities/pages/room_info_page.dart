@@ -2,9 +2,12 @@
 
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:pro_health_360/application/redux/actions/communities/leave_room_action.dart';
 import 'package:pro_health_360/presentation/communities/widgets/avatar.dart';
-import 'package:pro_health_360/presentation/communities/widgets/confirm_leave_room_dialog.dart';
+import 'package:pro_health_360/presentation/communities/widgets/confirm_dialog_component.dart';
 import 'package:pro_health_360/presentation/communities/widgets/group_user_widget.dart';
+import 'package:pro_health_360/presentation/communities/widgets/moderation_banner.dart';
+import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 
 import 'package:pro_health_360/application/redux/actions/communities/fetch_room_members_action.dart';
@@ -13,6 +16,7 @@ import 'package:pro_health_360/application/redux/view_models/communities/communi
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 
 import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
 import 'package:sghi_core/communities/models/room.dart';
@@ -43,7 +47,7 @@ class RoomInfoPage extends StatelessWidget {
           Center(
             child: Column(
               children: <Widget>[
-                const SizedBox(height: 10),
+                smallVerticalSizedBox,
                 Text(
                   room.name ?? '',
                   style: const TextStyle(
@@ -51,9 +55,11 @@ class RoomInfoPage extends StatelessWidget {
                     fontWeight: FontWeight.w800,
                   ),
                 ),
-                const SizedBox(height: 10),
+                smallVerticalSizedBox,
                 Text(
-                  '${room.summary?.joinedMembers?.toString() ?? ''} members',
+                  groupMembersCount(
+                    room.summary?.joinedMembers?.toString() ?? '',
+                  ),
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w300,
@@ -72,38 +78,49 @@ class RoomInfoPage extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 30),
-          const Text(
-            'Group members',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w800,
-            ),
+          mediumVerticalSizedBox,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              const Text(
+                groupMembersText,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+              TextButton(
+                key: inviteUsersKey,
+                onPressed: () {
+                  Navigator.of(context).pushNamed(
+                    AppRoutes.inviteUsersPageRoute,
+                    arguments: room,
+                  );
+                },
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(inviteMembersText),
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 10),
+          ModerationBanner(
+            title: bannedMembersString,
+            body: tapToViewBannedMembersString,
+            onTap: () {
+              Navigator.of(context)
+                  .pushNamed(AppRoutes.bannedMembersRoute, arguments: room);
+            },
+          ),
+          mediumVerticalSizedBox,
           const Text(
-            'Long press on a member to promote them to a moderator, '
-            'remove or ban them from this group',
+            longPressInstruction,
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w300,
             ),
           ),
-          const SizedBox(height: 20),
-          Align(
-            alignment: Alignment.centerRight,
-            child: TextButton(
-              key: inviteUsersKey,
-              onPressed: () async {
-                Navigator.of(context)
-                    .pushNamed(AppRoutes.inviteUsersPageRoute, arguments: room);
-              },
-              child: const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(inviteMembersText),
-              ),
-            ),
-          ),
+          mediumVerticalSizedBox,
           StoreConnector<AppState, RoomInfoViewModel>(
             onInit: (Store<AppState> store) {
               store.dispatch(
@@ -139,6 +156,7 @@ class RoomInfoPage extends StatelessWidget {
               );
             },
           ),
+          // Leave room button
           StoreConnector<AppState, RoomInfoViewModel>(
             converter: (Store<AppState> store) =>
                 RoomInfoViewModel.fromStore(store),
@@ -146,19 +164,41 @@ class RoomInfoPage extends StatelessWidget {
               if (vm.leavingRoom) {
                 return const Center(child: CircularProgressIndicator());
               }
-              return TextButton(
-                key: leaveRoomKey,
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return ConfirmLeaveRoomDialog(room: room);
-                    },
-                  );
-                },
-                child: const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(leaveRoom),
+              return SizedBox(
+                height: 48,
+                child: MyAfyaHubPrimaryButton(
+                  buttonKey: leaveRoomKey,
+                  text: leaveRoom,
+                  textColor: AppColors.redColor,
+                  buttonColor: AppColors.redColor.withOpacity(.1),
+                  borderColor: Colors.transparent,
+                  onPressed: () async {
+                    await showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return ConfirmDialogComponent(
+                          onConfirm: () {
+                            StoreProvider.dispatch<AppState>(
+                              context,
+                              LeaveRoomAction(
+                                roomID: room.roomID!,
+                                onSuccess: () {
+                                  Navigator.of(context)
+                                      .pushNamed(AppRoutes.roomListPageRoute);
+                                },
+                                client:
+                                    AppWrapperBase.of(context)!.graphQLClient,
+                              ),
+                            );
+                          },
+                          title: '$leaveRoom?',
+                          description: leaveGroupPrompt,
+                          confirmKey: confirmLeaveRoomKey,
+                          cancelKey: cancelLeaveRoomKey,
+                        );
+                      },
+                    );
+                  },
                 ),
               );
             },

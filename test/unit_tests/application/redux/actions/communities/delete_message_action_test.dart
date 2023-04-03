@@ -24,8 +24,11 @@ void main() {
       );
     });
 
-    test('onError callback is called', () async {
+    test(
+        'should fail to delete a message if someone does not have '
+        'the right permissions', () async {
       bool error = false;
+      String msg = '';
       storeTester.dispatch(
         UpdateChatStateAction(
           userProfile: storeTester.state.chatState?.userProfile
@@ -39,6 +42,7 @@ void main() {
           eventID: 'eventID',
           onError: (String errorMsg) {
             error = true;
+            msg = errorMsg;
           },
           client: MockShortGraphQlClient.withResponse(
             '',
@@ -53,6 +57,41 @@ void main() {
 
       await storeTester.waitUntil(DeleteMessageAction);
       expect(error, true);
+      expect(msg, 'Sorry, you do not have permissions to delete this message');
+    });
+
+    test('should fail to delete a message', () async {
+      bool error = false;
+      String msg = '';
+      storeTester.dispatch(
+        UpdateChatStateAction(
+          userProfile: storeTester.state.chatState?.userProfile
+              ?.copyWith(userID: '@abiudrn:chat.savannahghi.org'),
+        ),
+      );
+      storeTester.dispatch(
+        DeleteMessageAction(
+          roomID: 'roomID',
+          senderID: '@abiudrn:chat.savannahghi.org',
+          eventID: 'eventID',
+          onError: (String errorMsg) {
+            error = true;
+            msg = errorMsg;
+          },
+          client: MockShortGraphQlClient.withResponse(
+            '',
+            '',
+            Response(
+              jsonEncode(powerLevelsResponseMock),
+              400,
+            ),
+          ),
+        ),
+      );
+
+      await storeTester.waitUntil(DeleteMessageAction);
+      expect(error, true);
+      expect(msg, 'Sorry, an error occurred while deleting the message');
     });
   });
 }

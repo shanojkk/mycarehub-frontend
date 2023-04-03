@@ -19,6 +19,9 @@ _$_ChatState _$$_ChatStateFromJson(Map<String, dynamic> json) => _$_ChatState(
       messages: (json['messages'] as List<dynamic>?)
           ?.map((e) => Message.fromJson(e as Map<String, dynamic>))
           .toList(),
+      bannedUserIDs: (json['bannedUserIDs'] as List<dynamic>?)
+          ?.map((e) => e as String?)
+          .toList(),
       lastSyncTime: json['lastSyncTime'] as String?,
       syncResponse: json['syncResponse'] == null
           ? null
@@ -35,6 +38,7 @@ Map<String, dynamic> _$$_ChatStateToJson(_$_ChatState instance) =>
       'groupInfoMembers': instance.groupInfoMembers,
       'searchMemberResults': instance.searchMemberResults,
       'messages': instance.messages,
+      'bannedUserIDs': instance.bannedUserIDs,
       'lastSyncTime': instance.lastSyncTime,
       'syncResponse': instance.syncResponse,
       'syncState': instance.syncState,

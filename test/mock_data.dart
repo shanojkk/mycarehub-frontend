@@ -1309,6 +1309,25 @@ final Map<String, dynamic> messageEventMock = <String, dynamic>{
   'unsigned': <String, dynamic>{'age': 5484013963}
 };
 
+final Map<String, dynamic> bannedUserResponseMock = <String, dynamic>{
+  'chunk': <Map<String, dynamic>>[
+    <String, dynamic>{
+      'type': 'm.room.member',
+      'room_id': '!test:prohealth360.org',
+      'sender': '@prohealth360:prohealth360.org',
+      'content': <String, dynamic>{
+        'reason': 'Inappropriate content',
+        'membership': 'ban'
+      },
+      'state_key': '@abiudrn:prohealth360.org',
+      'origin_server_ts': 1680552333276,
+      'event_id': 'test-event-id',
+      'user_id': '@prohealth360:prohealth360.org',
+      'age': 10064,
+    }
+  ]
+};
+
 final String dir = Directory.current.path;
 
 final Map<String, dynamic> imageEventMock = <String, dynamic>{

@@ -20,6 +20,7 @@ class ChatState with _$ChatState {
     @JsonKey(name: 'groupInfoMembers') List<RoomUser>? groupInfoMembers,
     @JsonKey(name: 'searchMemberResults') List<User>? searchMemberResults,
     @JsonKey(name: 'messages') List<Message>? messages,
+    @JsonKey(name: 'bannedUserIDs') List<String?>? bannedUserIDs,
 
     // Final string lastSyncTime for chats
     @JsonKey(name: 'lastSyncTime') String? lastSyncTime,
@@ -41,6 +42,7 @@ class ChatState with _$ChatState {
         userProfile: User.initial(),
         groupInfoMembers: <RoomUser>[],
         searchMemberResults: <User>[],
+        bannedUserIDs: <String>[],
         messages: <Message>[],
         lastSyncTime: UNKNOWN,
         syncResponse: SyncResponse.initial(),

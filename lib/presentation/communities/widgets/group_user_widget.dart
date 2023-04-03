@@ -1,5 +1,6 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:pro_health_360/application/redux/actions/communities/ban_user_action.dart';
 import 'package:pro_health_360/application/redux/actions/communities/kick_user_action.dart';
 import 'package:pro_health_360/application/redux/actions/communities/promote_to_moderator_action.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
@@ -107,7 +108,24 @@ class GroupUserWidget extends StatelessWidget {
                     MessageOptionItem(
                       buttonKey: banUserKey,
                       title: banUserText,
-                      onTap: () {},
+                      onTap: () {
+                        StoreProvider.dispatch<AppState>(
+                          context,
+                          BanUserAction(
+                            roomID: roomID,
+                            userID: userID ?? UNKNOWN,
+                            client: AppWrapperBase.of(context)!.graphQLClient,
+                            onSuccess: () {
+                              Navigator.of(context).pop();
+                              ScaffoldMessenger.of(context)
+                                ..hideCurrentSnackBar()
+                                ..showSnackBar(
+                                  const SnackBar(content: Text(successBanText)),
+                                );
+                            },
+                          ),
+                        );
+                      },
                       textColor: Colors.redAccent,
                       iconData: Icons.block,
                       iconColor: Colors.redAccent,

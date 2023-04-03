@@ -163,3 +163,21 @@ class MessageInputViewModel extends Vm {
 
   final bool isSending;
 }
+
+class BannedMembersViewModel extends Vm {
+  BannedMembersViewModel({
+    required this.bannedUserIDs,
+    required this.fetchingMembers,
+  }) : super(equals: <Object?>[bannedUserIDs, fetchingMembers]);
+
+  factory BannedMembersViewModel.fromStore(Store<AppState> store) {
+    return BannedMembersViewModel(
+      bannedUserIDs: store.state.chatState?.bannedUserIDs ?? <String>[],
+      fetchingMembers:
+          store.state.wait?.isWaitingFor(fetchBannedMembersFlag) ?? false,
+    );
+  }
+
+  final List<String?>? bannedUserIDs;
+  final bool fetchingMembers;
+}

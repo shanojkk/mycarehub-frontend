@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/states/sync_response_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
-import 'package:pro_health_360/presentation/communities/pages/group_info_page.dart';
+import 'package:pro_health_360/presentation/communities/pages/room_info_page.dart';
 import 'package:pro_health_360/presentation/communities/pages/message_item_widget.dart';
 import 'package:pro_health_360/presentation/communities/widgets/review_invite_widget.dart';
 import 'package:pro_health_360/presentation/communities/pages/room_page.dart';

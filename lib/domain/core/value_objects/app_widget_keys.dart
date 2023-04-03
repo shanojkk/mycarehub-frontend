@@ -339,3 +339,7 @@ const Key addAttachmentIconKey = Key('addAttachmentIconKey');
 const Key openUserListOptionDialogKey = Key('openUserListOptionDialog');
 
 const Key previewImageMessageKey = Key('previewImageMessageKey');
+
+const Key emptyBannedMembersKey = Key('emptyBannedMembersKey');
+
+const Key cancelLeaveRoomKey = Key('cancelLeaveRoomKey');

@@ -38,14 +38,12 @@ class _FeedCategoriesWidgetState extends State<FeedCategoriesWidget> {
     if (widget.listContentCategory?.contentCategories?.isNotEmpty ?? false) {
       contentCategories = <ContentCategory?>[
         ContentCategory(icon: '', id: 0, name: 'all'),
-        ...widget.listContentCategory!.contentCategories!
-            .where(
-              (ContentCategory? element) =>
-                  element!.name!.toLowerCase() != 'welcome' &&
-                  element.name!.toLowerCase() != 'consumer-faqs' &&
-                  element.name!.toLowerCase() != 'pro-faqs',
-            )
-            .toList()
+        ...widget.listContentCategory!.contentCategories!.where(
+          (ContentCategory? element) =>
+              element!.name!.toLowerCase() != 'welcome' &&
+              element.name!.toLowerCase() != 'consumer-faqs' &&
+              element.name!.toLowerCase() != 'pro-faqs',
+        )
       ];
     }
 

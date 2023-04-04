@@ -1,3 +1,4 @@
+import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/foundation.dart';
@@ -85,7 +86,10 @@ class ResumeWithPinAction extends ReduxAction<AppState> {
           }
         }
 
-        Sentry.captureException(error, hint: 'Error while verifying user PIN');
+        reportErrorToSentry(
+          hint: 'Error while verifying user PIN',
+          variables: variables,
+        );
         throw UserException(getErrorMessage());
       }
 
@@ -107,9 +111,9 @@ class ResumeWithPinAction extends ReduxAction<AppState> {
         }
       }
     } else {
-      Sentry.captureException(
-        processedResponse.message,
+      reportErrorToSentry(
         hint: 'Error while verifying user PIN',
+        variables: variables,
       );
       throw UserException(getErrorMessage());
     }

@@ -261,8 +261,6 @@ dynamic reportErrorToSentry({
     'query': query ?? UNKNOWN,
     'variables': variables ?? UNKNOWN,
   });
-
-  Sentry.captureException(stackTrace, stackTrace: stackTrace, hint: hint);
 }
 
 /// Indicates how long a user can retry after exponential backoff

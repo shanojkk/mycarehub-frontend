@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
@@ -85,7 +86,11 @@ class PINResetServiceRequestAction extends ReduxAction<AppState> {
 
     if (error != null) {
       onError?.call();
-      Sentry.captureException(error, hint: 'PIN service request failed');
+      reportErrorToSentry(
+        hint: error,
+        variables: variables,
+        response: response,
+      );
     }
 
     return null;

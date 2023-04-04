@@ -1,3 +1,4 @@
+import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:sghi_core/flutter_graphql_client/i_flutter_graphql_client.dart';
@@ -54,13 +55,11 @@ class FetchHealthTimelineAction extends ReduxAction<AppState> {
       final String? error = httpClient.parseError(mapped);
 
       if (error != null) {
-        Sentry.captureException(
-          MyAfyaException(cause: 'patient timeline', message: error),
-          hint: <String, dynamic>{
-            'query': patientTimelineQuery,
-            'variables': variables,
-            'response': response.body,
-          },
+        reportErrorToSentry(
+          hint: error,
+          query: patientTimelineQuery,
+          variables: variables,
+          response: response,
         );
         throw UserException(getErrorMessage());
       }
@@ -106,13 +105,11 @@ class FetchHealthTimelineAction extends ReduxAction<AppState> {
 
       return appState;
     } else {
-      Sentry.captureException(
-        MyAfyaException(cause: 'patient timeline', message: 'unknown error'),
-        hint: <String, dynamic>{
-          'query': patientTimelineQuery,
-          'variables': variables,
-          'response': response.body,
-        },
+      reportErrorToSentry(
+        hint: 'patient timeline error',
+        query: patientTimelineQuery,
+        variables: variables,
+        response: response,
       );
       throw UserException(getErrorMessage());
     }

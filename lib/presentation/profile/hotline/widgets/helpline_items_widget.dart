@@ -14,50 +14,48 @@ class HelplineItemsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        ...helplines
-            .map(
-              (Helpline line) => Container(
-                padding: const EdgeInsets.all(20),
-                margin: const EdgeInsets.only(bottom: 15),
-                decoration: BoxDecoration(
-                  color: AppColors.primaryColor.withOpacity(0.14),
-                  border: Border.all(color: AppColors.primaryColor, width: 0.5),
-                  borderRadius: BorderRadius.circular(8),
+        ...helplines.map(
+          (Helpline line) => Container(
+            padding: const EdgeInsets.all(20),
+            margin: const EdgeInsets.only(bottom: 15),
+            decoration: BoxDecoration(
+              color: AppColors.primaryColor.withOpacity(0.14),
+              border: Border.all(color: AppColors.primaryColor, width: 0.5),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  line.title,
+                  style: heavySize16Text(AppColors.primaryColor),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      line.title,
-                      style: heavySize16Text(AppColors.primaryColor),
-                    ),
-                    verySmallVerticalSizedBox,
-                    Text(
-                      line.phone,
-                      style: boldSize15Text(AppColors.greyTextColor),
-                    ),
-                    smallVerticalSizedBox,
-                    Text(
-                      line.description,
-                      style: normalSize14Text(AppColors.primaryColor),
-                    ),
-                    size15VerticalSizedBox,
-                    SizedBox(
-                      width: double.infinity,
-                      height: 48,
-                      child: MyAfyaHubPrimaryButton(
-                        onPressed: () {
-                          final Uri uri = Uri(scheme: 'tel', path: line.phone);
-                          launchUrl(uri);
-                        },
-                        text: callString,
-                      ),
-                    ),
-                  ],
+                verySmallVerticalSizedBox,
+                Text(
+                  line.phone,
+                  style: boldSize15Text(AppColors.greyTextColor),
                 ),
-              ),
-            )
-            .toList(),
+                smallVerticalSizedBox,
+                Text(
+                  line.description,
+                  style: normalSize14Text(AppColors.primaryColor),
+                ),
+                size15VerticalSizedBox,
+                SizedBox(
+                  width: double.infinity,
+                  height: 48,
+                  child: MyAfyaHubPrimaryButton(
+                    onPressed: () {
+                      final Uri uri = Uri(scheme: 'tel', path: line.phone);
+                      launchUrl(uri);
+                    },
+                    text: callString,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }

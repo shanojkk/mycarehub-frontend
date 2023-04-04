@@ -20,10 +20,8 @@ class RoomListViewModel extends Vm {
 
   factory RoomListViewModel.fromStore(Store<AppState> store) {
     final List<Room?> allRooms = <Room?>[
-      ...?store.state.chatState?.syncResponse?.rooms?.invitedRooms?.values
-          .toList(),
-      ...?store.state.chatState?.syncResponse?.rooms?.joinedRooms?.values
-          .toList(),
+      ...?store.state.chatState?.syncResponse?.rooms?.invitedRooms?.values,
+      ...?store.state.chatState?.syncResponse?.rooms?.joinedRooms?.values,
     ];
 
     return RoomListViewModel(
@@ -112,10 +110,8 @@ class RoomPageViewModel extends Vm {
     final String? selectedRoomID = store.state.chatState?.selectedRoom;
 
     final List<Room?> allRooms = <Room?>[
-      ...?store.state.chatState?.syncResponse?.rooms?.invitedRooms?.values
-          .toList(),
-      ...?store.state.chatState?.syncResponse?.rooms?.joinedRooms?.values
-          .toList(),
+      ...?store.state.chatState?.syncResponse?.rooms?.invitedRooms?.values,
+      ...?store.state.chatState?.syncResponse?.rooms?.joinedRooms?.values,
     ];
 
     final Room? selected = allRooms.firstWhere(

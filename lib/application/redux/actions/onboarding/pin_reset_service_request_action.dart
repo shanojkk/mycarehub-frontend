@@ -44,10 +44,10 @@ class PINResetServiceRequestAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final String phoneNumber = state.onboardingState?.phoneNumber ?? '';
+    final String userName = state.onboardingState?.userName ?? '';
     final Map<String, dynamic> variables = <String, dynamic>{
       'cccNumber': cccNumber,
-      'phoneNumber': phoneNumber,
+      'username': userName,
       'flavour': Flavour.consumer.name,
     };
     final Response response = await client.callRESTAPI(

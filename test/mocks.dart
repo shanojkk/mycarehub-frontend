@@ -1712,6 +1712,12 @@ class MockCommunitiesClient extends Mock implements GraphQlClient {
       );
     }
 
+    if (endpoint.contains('/report/')) {
+      return Future<http.Response>.value(
+        http.Response(json.encode(<String, dynamic>{}), 201),
+      );
+    }
+
     if (endpoint.contains('/createRoom')) {
       return Future<http.Response>.value(
         http.Response(

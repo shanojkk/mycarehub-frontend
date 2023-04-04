@@ -1075,3 +1075,11 @@ const String longPressInstruction =
 const String leaveGroupPrompt =
     'You will no longer access this group once you leave it';
 const String successBanText = 'User banned from group successfully!';
+
+const String reportMessageText = 'Report Message';
+const String reportMessagePrompt =
+    'Are you sure you want to report this message? A moderator will review '
+    'it and delete it if it is deemed as inappropriate';
+
+const String deleteMessagePrompt =
+    'Are you sure you want to delete this message?';

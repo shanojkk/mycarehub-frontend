@@ -58,7 +58,11 @@ class NormalMessageWidget extends StatelessWidget {
           sender: formattedSenderWidget,
           timestamp: timeStamp,
           imageURL: imgURI,
+          roomID: roomID,
+          eventID: message?.eventID ?? '',
+          senderID: message?.sender ?? '',
         );
+
       default:
         return const SizedBox();
     }

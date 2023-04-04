@@ -4,8 +4,7 @@ class MessageOptionItem extends StatelessWidget {
   const MessageOptionItem({
     required this.title,
     required this.onTap,
-    this.textColor,
-    this.iconColor,
+    this.contentColor,
     this.iconData,
     this.buttonKey,
   });
@@ -14,8 +13,7 @@ class MessageOptionItem extends StatelessWidget {
 
   final String title;
   final Function() onTap;
-  final Color? textColor;
-  final Color? iconColor;
+  final Color? contentColor;
   final IconData? iconData;
 
   @override
@@ -29,15 +27,18 @@ class MessageOptionItem extends StatelessWidget {
           children: <Widget>[
             Visibility(
               visible: iconData != null,
-              child: Icon(iconData, size: 32, color: iconColor),
+              child: Icon(iconData, size: 32, color: contentColor),
             ),
             const SizedBox(width: 10),
             Container(
               padding: const EdgeInsets.symmetric(vertical: 12),
               child: Text(
                 title,
-                style:
-                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w300,
+                  color: contentColor,
+                ),
               ),
             ),
           ],

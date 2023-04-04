@@ -8,6 +8,7 @@ import 'package:pro_health_360/application/redux/states/sync_response_state.dart
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/presentation/communities/pages/image_preview_page.dart';
 import 'package:pro_health_360/presentation/communities/widgets/image_item_widget.dart';
+import 'package:pro_health_360/presentation/communities/widgets/message_option_bottom_sheet.dart';
 import 'package:sghi_core/communities/models/message.dart';
 import 'package:sghi_core/communities/models/user.dart';
 
@@ -32,8 +33,7 @@ void main() {
       HttpOverrides.global = TestHttpOverrides();
     });
 
-    testWidgets('should render correctly and preview an image',
-        (WidgetTester tester) async {
+    testWidgets('should preview an image', (WidgetTester tester) async {
       final Message msg = Message.fromJson(imageEventMock);
       await buildTestWidget(
         tester: tester,
@@ -43,6 +43,9 @@ void main() {
           imageURL: msg.content?.url ?? '',
           sender: const Text('testUser'),
           wasSentByUser: true,
+          roomID: 'test-room-id',
+          eventID: 'test-event-id',
+          senderID: 'test-sender-id',
           timestamp: DateTime.now().millisecondsSinceEpoch.toString(),
         ),
       );
@@ -56,6 +59,35 @@ void main() {
       await tester.pump();
 
       expect(find.byType(ImagePreviewPage), findsOneWidget);
+    });
+
+    testWidgets('should open the message options dialog',
+        (WidgetTester tester) async {
+      final Message msg = Message.fromJson(imageEventMock);
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: MockGraphQlClient(),
+        widget: ImageItemWidget(
+          imageURL: msg.content?.url ?? '',
+          sender: const Text('testUser'),
+          wasSentByUser: true,
+          roomID: 'test-room-id',
+          eventID: 'test-event-id',
+          senderID: 'test-sender-id',
+          timestamp: DateTime.now().millisecondsSinceEpoch.toString(),
+        ),
+      );
+
+      await tester.pump();
+      expect(find.byType(ImageItemWidget), findsOneWidget);
+
+      await tester.longPress(find.byKey(previewImageMessageKey));
+
+      await tester.pump();
+      await tester.pump();
+
+      expect(find.byType(MessageOptionBottomSheet), findsOneWidget);
     });
   });
 }

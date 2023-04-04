@@ -174,3 +174,5 @@ const String uploadMediaFlag = 'uploadMediaFlag';
 const String promoteToModFlag = 'promoteToModFlag';
 
 const String fetchBannedMembersFlag = 'fetchBannedMembersFlag';
+
+const String reportMessageFlag = 'reportMessageFlag';

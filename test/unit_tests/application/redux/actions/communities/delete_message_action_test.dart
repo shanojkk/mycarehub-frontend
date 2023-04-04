@@ -6,7 +6,9 @@ import 'package:http/http.dart';
 import 'package:pro_health_360/application/redux/actions/communities/delete_message_action.dart';
 import 'package:pro_health_360/application/redux/actions/communities/update_chat_state_action.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/application/redux/states/chat_state.dart';
 import 'package:pro_health_360/application/redux/states/connectivity_state.dart';
+import 'package:pro_health_360/application/redux/states/sync_response_state.dart';
 
 import '../../../../../mock_data.dart';
 import '../../../../../mocks.dart';
@@ -19,9 +21,38 @@ void main() {
       storeTester = StoreTester<AppState>(
         initialState: AppState.initial().copyWith(
           connectivityState: ConnectivityState(isConnected: true),
+          chatState: ChatState.initial().copyWith.call(
+                syncResponse: SyncResponse.fromJson(syncResponseMock),
+              ),
         ),
         testInfoPrinter: (TestInfo<dynamic> testInfo) {},
       );
+    });
+
+    test('should delete a message successfully', () async {
+      bool error = false;
+      bool success = false;
+
+      storeTester.dispatch(
+        UpdateChatStateAction(
+          userProfile: storeTester.state.chatState?.userProfile
+              ?.copyWith(userID: '@abiudrn:chat.savannahghi.org'),
+        ),
+      );
+      storeTester.dispatch(
+        DeleteMessageAction(
+          roomID: '!testRoom:chat.savannahghi.org',
+          senderID: '@abiudrn:chat.savannahghi.org',
+          eventID: 'test:chat.savannahghi.org',
+          onError: (String errorMsg) => error = true,
+          onSuccess: () => success = true,
+          client: MockCommunitiesClient(),
+        ),
+      );
+
+      await storeTester.waitUntil(DeleteMessageAction);
+      expect(error, false);
+      expect(success, true);
     });
 
     test(

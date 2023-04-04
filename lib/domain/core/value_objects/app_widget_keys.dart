@@ -320,8 +320,6 @@ const Key declineInviteKey = Key('declineInviteKey');
 
 const Key messageOptionsKey = Key('messageOptionsKey');
 
-const Key replyMessageKey = Key('replyMessageKey');
-
 const Key deleteMessageKey = Key('deleteMessageKey');
 
 const Key navigateToGroupInfoPageKey = Key('navigateToGroupInfoPageKey');
@@ -343,3 +341,5 @@ const Key previewImageMessageKey = Key('previewImageMessageKey');
 const Key emptyBannedMembersKey = Key('emptyBannedMembersKey');
 
 const Key cancelLeaveRoomKey = Key('cancelLeaveRoomKey');
+
+const Key reportMessageKey = Key('reportMessageKey');

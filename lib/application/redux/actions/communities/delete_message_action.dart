@@ -24,7 +24,7 @@ class DeleteMessageAction extends ReduxAction<AppState> {
   final String roomID;
   final String eventID;
   final String senderID;
-  final Function(String eventID)? onSuccess;
+  final Function()? onSuccess;
   final Function(String errorMsg)? onError;
   final IGraphQlClient client;
 
@@ -86,7 +86,7 @@ class DeleteMessageAction extends ReduxAction<AppState> {
                 .copyWith.chatState?.syncResponse?.rooms
                 ?.call(joinedRooms: joinedRooms);
 
-            onSuccess?.call(body['event_id']?.toString() ?? '');
+            onSuccess?.call();
 
             return newState;
           }

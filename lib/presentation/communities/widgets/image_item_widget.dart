@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
+import 'package:pro_health_360/presentation/communities/widgets/message_option_bottom_sheet.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:sghi_core/shared_themes/spaces.dart';
 
@@ -11,12 +12,19 @@ class ImageItemWidget extends StatelessWidget {
     required this.sender,
     required this.timestamp,
     required this.imageURL,
+    required this.roomID,
+    required this.eventID,
+    required this.senderID,
   });
 
   final bool wasSentByUser;
   final Widget sender;
   final String imageURL;
   final String timestamp;
+
+  final String roomID;
+  final String eventID;
+  final String senderID;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +38,19 @@ class ImageItemWidget extends StatelessWidget {
             'wasSentByUser': wasSentByUser,
             'sender': sender,
             'timestamp': timestamp,
+          },
+        );
+      },
+      onLongPress: () async {
+        await showModalBottomSheet(
+          context: context,
+          builder: (BuildContext context) {
+            return MessageOptionBottomSheet(
+              wasSentByUser: wasSentByUser,
+              roomID: roomID,
+              eventID: eventID,
+              senderID: senderID,
+            );
           },
         );
       },

@@ -91,42 +91,8 @@ void main() {
       await tester.longPress(find.byKey(messageOptionsKey));
       await tester.pumpAndSettle();
 
-      expect(find.byKey(replyMessageKey), findsOneWidget);
+      expect(find.byKey(reportMessageKey), findsOneWidget);
       expect(find.byKey(deleteMessageKey), findsOneWidget);
-    });
-
-    testWidgets('should open the message options dialog and delete a message',
-        (WidgetTester tester) async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: MockGraphQlClient(),
-        widget: NormalMessageWidget(
-          message: Message.fromJson(messageEventMock),
-          wasSentByUser: true,
-          roomID: '!testRoom:chat.savannahghi.org',
-        ),
-      );
-
-      await tester.pumpAndSettle();
-      expect(find.byType(TextMessageWidget), findsOneWidget);
-      expect(find.text('ala!'), findsOneWidget);
-
-      await tester.longPress(find.byKey(messageOptionsKey));
-      await tester.pumpAndSettle();
-
-      expect(find.byKey(replyMessageKey), findsOneWidget);
-      expect(find.byKey(deleteMessageKey), findsOneWidget);
-
-      await tester.tap(find.byKey(replyMessageKey));
-      await tester.pumpAndSettle();
-
-      // TODO(abiud): Add assertions after implementation is done
-
-      await tester.tap(find.byKey(deleteMessageKey));
-      await tester.pumpAndSettle();
-
-      // We can't assert this because it pops after completion
     });
   });
 }

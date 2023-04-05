@@ -495,7 +495,7 @@
 				CODE_SIGN_ENTITLEMENTS = Runner/RunnerProfile.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 3C526Y9XH4;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 3C526Y9XH4;
 				ENABLE_BITCODE = NO;
@@ -608,7 +608,7 @@
 				CODE_SIGN_ENTITLEMENTS = Runner/RunnerDebug.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 3C526Y9XH4;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 3C526Y9XH4;
 				ENABLE_BITCODE = NO;
@@ -720,7 +720,7 @@
 				CODE_SIGN_ENTITLEMENTS = Runner/RunnerRelease.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 3C526Y9XH4;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 3C526Y9XH4;
 				ENABLE_BITCODE = NO;
@@ -829,7 +829,7 @@
 				CODE_SIGN_ENTITLEMENTS = Runner/RunnerProfile.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 3C526Y9XH4;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 3C526Y9XH4;
 				ENABLE_BITCODE = NO;
@@ -942,7 +942,7 @@
 				CODE_SIGN_ENTITLEMENTS = Runner/RunnerDebug.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 3C526Y9XH4;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 3C526Y9XH4;
 				ENABLE_BITCODE = NO;
@@ -1054,7 +1054,7 @@
 				CODE_SIGN_ENTITLEMENTS = Runner/RunnerRelease.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 3C526Y9XH4;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 3C526Y9XH4;
 				ENABLE_BITCODE = NO;
@@ -1163,7 +1163,7 @@
 				CODE_SIGN_ENTITLEMENTS = Runner/RunnerProfile.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 3C526Y9XH4;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 3C526Y9XH4;
 				ENABLE_BITCODE = NO;
@@ -1338,7 +1338,7 @@
 				CODE_SIGN_ENTITLEMENTS = Runner/RunnerDebug.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 3C526Y9XH4;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 3C526Y9XH4;
 				ENABLE_BITCODE = NO;
@@ -1389,7 +1389,7 @@
 				CODE_SIGN_ENTITLEMENTS = Runner/RunnerRelease.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 3C526Y9XH4;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 3C526Y9XH4;
 				ENABLE_BITCODE = NO;

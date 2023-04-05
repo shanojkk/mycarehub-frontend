@@ -1,5 +1,7 @@
 // Package imports:
+import 'package:pro_health_360/application/redux/actions/update_facility_state_action.dart';
 import 'package:pro_health_360/application/redux/actions/update_program_state_action.dart';
+import 'package:pro_health_360/domain/core/entities/core/facility.dart';
 import 'package:pro_health_360/domain/core/entities/login/program.dart';
 import 'package:pro_health_360/presentation/caregiver/pages/facility_selection_page.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
@@ -26,6 +28,7 @@ import '../../../../test_helpers.dart';
 void main() {
   group('UserProfilePage', () {
     late Store<AppState> store;
+    final Facility testFacility = Facility.initial();
 
     setUp(() {
       store = Store<AppState>(initialState: AppState.initial());
@@ -129,6 +132,11 @@ void main() {
       );
       store.dispatch(
         UpdateProgramStateAction(currentProgram: Program(name: 'test program')),
+      );
+      store.dispatch(
+        UpdateFacilityStateAction(
+          facilities: <Facility>[testFacility, testFacility],
+        ),
       );
       await buildTestWidget(
         tester: tester,

@@ -39,6 +39,8 @@ class UserDetailsCard extends StatelessWidget {
                 ?.currentProgram
                 ?.name ??
             '';
+        final bool hasMultipleFacilities =
+            (vm.clientState?.facilityState?.facilities?.length ?? 0) > 1;
 
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 30.0),
@@ -160,29 +162,34 @@ class UserDetailsCard extends StatelessWidget {
                 ),
               ),
               smallVerticalSizedBox,
-              const Divider(),
-              smallVerticalSizedBox,
-              Text(
-                yourCurrentHospitalDescription(hospitalName),
-                style: normalSize14Text(
-                  AppColors.unSelectedReactionIconColor,
+              if (hasMultipleFacilities)
+                Column(
+                  children: <Widget>[
+                    SizedBox(
+                      width: double.infinity,
+                      height: 48,
+                      child: MyAfyaHubPrimaryButton(
+                        buttonKey: changeFacilityKey,
+                        onPressed: () {
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                            AppRoutes.facilitySelectionPageRoute,
+                            (Route<dynamic> route) => false,
+                          );
+                        },
+                        text: changeMyFacility,
+                      ),
+                    ),
+                    const Divider(),
+                    smallVerticalSizedBox,
+                    Text(
+                      yourCurrentHospitalDescription(hospitalName),
+                      style: normalSize14Text(
+                        AppColors.unSelectedReactionIconColor,
+                      ),
+                    ),
+                    size15VerticalSizedBox,
+                  ],
                 ),
-              ),
-              size15VerticalSizedBox,
-              SizedBox(
-                width: double.infinity,
-                height: 48,
-                child: MyAfyaHubPrimaryButton(
-                  buttonKey: changeFacilityKey,
-                  onPressed: () {
-                    Navigator.of(context).pushNamedAndRemoveUntil(
-                      AppRoutes.facilitySelectionPageRoute,
-                      (Route<dynamic> route) => false,
-                    );
-                  },
-                  text: changeMyFacility,
-                ),
-              ),
             ],
           ),
         );

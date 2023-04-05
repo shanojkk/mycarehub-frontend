@@ -88,7 +88,6 @@ const String promoteToAdminFlag = 'promote_to_admin_flag';
 const String banUserFlag = 'ban_user_flag';
 const String unBanUserFlag = 'unban_user_flag';
 const String fetchGroupMembersFlag = 'fetch_group_members_flag';
-const String fetchFlaggedMessagesFlag = 'fetch_flagged_messages_flag';
 const String deleteCommunityMessageFlag = 'delete_community_messages_flag';
 
 // resume with pin
@@ -174,5 +173,12 @@ const String uploadMediaFlag = 'uploadMediaFlag';
 const String promoteToModFlag = 'promoteToModFlag';
 
 const String fetchBannedMembersFlag = 'fetchBannedMembersFlag';
+
+const String fetchEventReport = 'fetchEventReport';
+
+const String deleteMessageEventReport = 'deleteMessageEventReport';
+
+
+const String fetchFlaggedMessagesFlag = 'fetchFlaggedMessagesFlag';
 
 const String reportMessageFlag = 'reportMessageFlag';

@@ -1,16 +1,21 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/widgets.dart';
 import 'package:pro_health_360/application/core/services/analytics_service.dart';
+import 'package:pro_health_360/application/redux/actions/communities/communities_logout_action.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_events.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 
 class LogoutAction extends ReduxAction<AppState> {
-  LogoutAction({
-    required this.navigationCallback,
-  });
+  LogoutAction({required this.navigationCallback});
 
   final VoidCallback navigationCallback;
+
+  @override
+  void after() {
+    dispatch(CommunitiesLogoutAction());
+    super.after();
+  }
 
   @override
   Future<AppState> reduce() async {

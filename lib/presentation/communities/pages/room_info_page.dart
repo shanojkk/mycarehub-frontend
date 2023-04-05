@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_dynamic_calls
-
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:pro_health_360/application/redux/actions/communities/leave_room_action.dart';
@@ -121,6 +119,7 @@ class RoomInfoPage extends StatelessWidget {
             ),
           ),
           mediumVerticalSizedBox,
+
           StoreConnector<AppState, RoomInfoViewModel>(
             onInit: (Store<AppState> store) {
               store.dispatch(
@@ -135,7 +134,11 @@ class RoomInfoPage extends StatelessWidget {
             },
             builder: (BuildContext context, RoomInfoViewModel vm) {
               if (vm.fetchingMembers) {
-                return const Center(child: CircularProgressIndicator());
+                return const Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child:
+                      Center(child: CircularProgressIndicator(strokeWidth: 1)),
+                );
               }
 
               final List<RoomUser>? users = vm.groupInfoMembers;
@@ -156,13 +159,25 @@ class RoomInfoPage extends StatelessWidget {
               );
             },
           ),
+          mediumVerticalSizedBox,
+          ModerationBanner(
+            title: flaggedMessagesString,
+            body: tapToViewFlaggedMessagesText,
+            onTap: () {
+              Navigator.of(context)
+                  .pushNamed(AppRoutes.flaggedMessagesRoute, arguments: room);
+            },
+          ),
+          mediumVerticalSizedBox,
           // Leave room button
           StoreConnector<AppState, RoomInfoViewModel>(
             converter: (Store<AppState> store) =>
                 RoomInfoViewModel.fromStore(store),
             builder: (BuildContext context, RoomInfoViewModel vm) {
               if (vm.leavingRoom) {
-                return const Center(child: CircularProgressIndicator());
+                return const Center(
+                  child: CircularProgressIndicator(strokeWidth: 1),
+                );
               }
               return SizedBox(
                 height: 48,

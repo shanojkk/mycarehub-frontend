@@ -26,34 +26,20 @@ void main() {
       );
     });
 
-    testWidgets('should build correctly', (WidgetTester tester) async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: MockCommunitiesClient(),
-        widget: RoomInfoPage(
-          room: Room.fromJson(roomMock),
-        ),
-      );
-
-      expect(find.byType(RoomInfoPage), findsOneWidget);
-      expect(find.text('3 members'), findsOneWidget);
-    });
-
     testWidgets('should leave a room', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
         store: store,
         client: MockCommunitiesClient(),
-        widget: RoomInfoPage(
-          room: Room.fromJson(roomMock),
-        ),
+        widget: RoomInfoPage(room: Room.fromJson(roomMock)),
       );
 
       expect(find.byType(RoomInfoPage), findsOneWidget);
       expect(find.text('3 members'), findsOneWidget);
+      final Finder leaveRoomWidget = find.byKey(leaveRoomKey);
 
-      expect(find.byKey(leaveRoomKey), findsOneWidget);
+      await tester.scrollUntilVisible(leaveRoomWidget, 600);
+      expect(leaveRoomWidget, findsOneWidget);
       await tester.tap(find.byKey(leaveRoomKey));
       await tester.pumpAndSettle();
 
@@ -72,15 +58,17 @@ void main() {
         tester: tester,
         store: store,
         client: MockCommunitiesClient(),
-        widget: RoomInfoPage(
-          room: Room.fromJson(roomMock),
-        ),
+        widget: RoomInfoPage(room: Room.fromJson(roomMock)),
       );
 
       expect(find.byType(RoomInfoPage), findsOneWidget);
       expect(find.text('3 members'), findsOneWidget);
       expect(find.byKey(inviteUsersKey), findsOneWidget);
-      expect(find.byKey(leaveRoomKey), findsOneWidget);
+
+      final Finder leaveRoomWidget = find.byKey(leaveRoomKey);
+
+      await tester.scrollUntilVisible(leaveRoomWidget, 600);
+      expect(leaveRoomWidget, findsOneWidget);
 
       await tester.tap(find.byKey(inviteUsersKey));
       await tester.pumpAndSettle();

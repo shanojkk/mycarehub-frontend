@@ -91,7 +91,9 @@ class InviteUsersPage extends StatelessWidget {
               }
 
               if (vm.wait?.isWaitingFor(searchRoomMembersFlag) ?? false) {
-                return const Center(child: CircularProgressIndicator());
+                return const Center(
+                  child: CircularProgressIndicator(strokeWidth: 1),
+                );
               }
 
               return ListView.builder(

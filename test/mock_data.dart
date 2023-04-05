@@ -5,6 +5,8 @@ import 'package:pro_health_360/domain/core/entities/terms_and_conditions/terms_a
 import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart' as core;
 
+final String dir = Directory.current.path;
+
 final Map<String, dynamic> clientProgramDataMock = <String, dynamic>{
   'data': <String, dynamic>{
     'setClientProgram': <String, dynamic>{
@@ -1328,8 +1330,6 @@ final Map<String, dynamic> bannedUserResponseMock = <String, dynamic>{
   ]
 };
 
-final String dir = Directory.current.path;
-
 final Map<String, dynamic> imageEventMock = <String, dynamic>{
   'type': 'm.room.message',
   'sender': '@salaton:chat.savannahghi.org',
@@ -2572,3 +2572,54 @@ final Map<String, dynamic> groupStateMock = <String, dynamic>{
 };
 
 const String testUserID = '@abiudrn:chat.savannahghi.org';
+
+final Map<String, dynamic> flaggedMessagesMock = <String, dynamic>{
+  'event_reports': <Map<String, dynamic>>[
+    <String, dynamic>{
+      'id': 1,
+      'received_ts': 1680701152291,
+      'room_id': '!test:prohealth360.org',
+      'event_id': 'event-id-1',
+      'user_id': '@abiudrn:prohealth360.org',
+      'score': -100,
+      'reason': 'Inappropriate content',
+      'sender': '@abiudrn:prohealth360.org',
+      'canonical_alias': null,
+      'name': 'Test group'
+    },
+    <String, dynamic>{
+      'id': 2,
+      'received_ts': 1680685298071,
+      'room_id': '!test:prohealth360.org',
+      'event_id': 'event-id-2',
+      'user_id': '@abiudrn:prohealth360.org',
+      'score': -100,
+      'reason': 'Inappropriate content',
+      'sender': '@prohealth360:prohealth360.org',
+      'canonical_alias': null,
+      'name': 'Test group'
+    },
+  ],
+  'total': 2
+};
+
+final Map<String, dynamic> eventReportMock = <String, dynamic>{
+  'id': 5,
+  'received_ts': 1680283555310,
+  'room_id': '!test:prohealth360.org',
+  'event_id': 'test-event-id',
+  'user_id': '@prohealth360:prohealth360.org',
+  'score': -100,
+  'reason': 'Testing',
+  'sender': '@abiudrn:prohealth360.org',
+  'canonical_alias': null,
+  'name': 'Avatar',
+  'event_json': <String, dynamic>{
+    'type': 'm.room.message',
+    'room_id': '!test:prohealth360.org',
+    'sender': '@prohealth360:prohealth360.org',
+    'content': <String, dynamic>{'body': 'hi', 'msgtype': 'm.text'},
+    'origin': 'prohealth360.org',
+    'origin_server_ts': 1680277670633,
+  }
+};

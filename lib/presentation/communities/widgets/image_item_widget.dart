@@ -15,6 +15,7 @@ class ImageItemWidget extends StatelessWidget {
     required this.roomID,
     required this.eventID,
     required this.senderID,
+    this.isFlaggedMessage = false,
   });
 
   final bool wasSentByUser;
@@ -25,6 +26,9 @@ class ImageItemWidget extends StatelessWidget {
   final String roomID;
   final String eventID;
   final String senderID;
+
+  // Whether this message being displayed is a flagged message
+  final bool isFlaggedMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +54,7 @@ class ImageItemWidget extends StatelessWidget {
               roomID: roomID,
               eventID: eventID,
               senderID: senderID,
+              isFlaggedMessage: isFlaggedMessage,
             );
           },
         );
@@ -102,7 +107,8 @@ class ImageItemWidget extends StatelessWidget {
                       return Center(
                         child: Container(
                           padding: const EdgeInsets.all(15),
-                          child: const CircularProgressIndicator(),
+                          child:
+                              const CircularProgressIndicator(strokeWidth: 1),
                         ),
                       );
                     },

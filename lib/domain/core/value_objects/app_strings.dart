@@ -761,14 +761,17 @@ const String unableToRemove = 'was not removed from group due to an error';
 const String errorPromotingAdminText = 'Error promoting user to admin';
 const String errorDemotingAdminText = 'Error demoting user';
 
-const String groupTitle = 'Ruaraka Group';
 const String moderationHelpText =
     'Long press on a member to promote them to a moderator, '
     'remove or ban them from this group';
 const String messageDeletedText = 'Message deleted successfully';
 const String deleteMessageString = 'Delete';
 const String flaggedMessagesString = 'Flagged messages';
+const String flaggedMessageString = 'Flagged message';
 const String noFlaggedMessagesTitle = 'No flagged messages';
+const String noFlaggedMessagesDescription =
+    'There are no flagged messages in this group';
+
 const String messagesDisplayedHereText =
     'When users flag messages, they will be displayed here for your intervention.';
 const String canDeleteOrBanText =
@@ -1083,3 +1086,13 @@ const String reportMessagePrompt =
 
 const String deleteMessagePrompt =
     'Are you sure you want to delete this message?';
+
+const String flaggedMessagesCopy =
+    'Here are reports from users for messages they have deemed inappropriate. '
+    'Tap on the report for more information';
+
+const String removeMessageReport = 'Remove message report';
+
+const String flaggedMessagePreviewCopy = 'Here is a messages that has been '
+    'marked as inappropriate or offensive by a member of this group.\n\n'
+    'Long press on the message for more options';

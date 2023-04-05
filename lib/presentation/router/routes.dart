@@ -149,6 +149,11 @@ class AppRoutes {
   static const String imagePreviewRoute = '/imagePreviewRoute';
 
   static const String bannedMembersRoute = '/bannedMembersRoute';
+
+  static const String flaggedMessagesRoute = '/flaggedMessagesRoute';
+
+  static const String flaggedMessagePreviewRoute =
+      '/flaggedMessagePreviewRoute';
 }
 
 List<String> unProtectedRoutes = <String>[AppRoutes.phoneLogin];

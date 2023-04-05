@@ -61,7 +61,7 @@ class ReviewInviteWidget extends StatelessWidget {
               const Center(
                 child: Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator(strokeWidth: 1),
                 ),
               )
             else ...<Widget>[

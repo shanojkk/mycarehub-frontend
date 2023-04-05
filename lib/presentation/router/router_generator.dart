@@ -2,7 +2,10 @@
 
 import 'dart:io';
 
+import 'package:pro_health_360/application/redux/states/event_report.dart';
 import 'package:pro_health_360/presentation/communities/pages/banned_members_page.dart';
+import 'package:pro_health_360/presentation/communities/pages/flagged_message_preview_page.dart';
+import 'package:pro_health_360/presentation/communities/pages/flagged_messages_page.dart';
 import 'package:pro_health_360/presentation/communities/pages/room_info_page.dart';
 import 'package:pro_health_360/presentation/communities/pages/image_preview_page.dart';
 import 'package:pro_health_360/presentation/communities/pages/invite_users_page.dart';
@@ -592,6 +595,23 @@ class RouteGenerator {
         return MaterialPageRoute<BannedMembersPage>(
           builder: (_) => BannedMembersPage(room: roomArgs as Room),
           settings: const RouteSettings(name: 'Banned members page'),
+        );
+
+      case AppRoutes.flaggedMessagesRoute:
+        final dynamic roomArgs = args;
+
+        return MaterialPageRoute<FlaggedMessagesPage>(
+          builder: (_) => FlaggedMessagesPage(room: roomArgs as Room),
+          settings: const RouteSettings(name: 'Flagged messages page'),
+        );
+
+      case AppRoutes.flaggedMessagePreviewRoute:
+        final dynamic eventReportArgs = args;
+
+        return MaterialPageRoute<FlaggedMessagePreviewPage>(
+          builder: (_) =>
+              FlaggedMessagePreviewPage(event: eventReportArgs as EventReport),
+          settings: const RouteSettings(name: 'Preview flagged message page'),
         );
 
       default:

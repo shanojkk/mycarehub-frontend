@@ -13,11 +13,15 @@ class NormalMessageWidget extends StatelessWidget {
     required this.message,
     required this.wasSentByUser,
     required this.roomID,
+    this.isFlaggedMessage = false,
   });
 
   final Message? message;
   final bool wasSentByUser;
   final String roomID;
+
+  // Whether this message being displayed is a flagged message
+  final bool isFlaggedMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +51,7 @@ class NormalMessageWidget extends StatelessWidget {
           roomID: roomID,
           eventID: message?.eventID ?? '',
           senderID: message?.sender ?? '',
+          isFlaggedMessage: isFlaggedMessage,
         );
 
       case MatrixMessageTypes.image:
@@ -61,6 +66,7 @@ class NormalMessageWidget extends StatelessWidget {
           roomID: roomID,
           eventID: message?.eventID ?? '',
           senderID: message?.sender ?? '',
+          isFlaggedMessage: isFlaggedMessage,
         );
 
       default:

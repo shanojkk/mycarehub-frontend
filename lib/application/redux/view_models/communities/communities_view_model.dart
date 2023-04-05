@@ -1,6 +1,7 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/application/redux/states/event_report.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:sghi_core/communities/models/room.dart';
 import 'package:sghi_core/communities/models/user.dart';
@@ -180,4 +181,41 @@ class BannedMembersViewModel extends Vm {
 
   final List<String?>? bannedUserIDs;
   final bool fetchingMembers;
+}
+
+class FlaggedMessagesViewModel extends Vm {
+  FlaggedMessagesViewModel({
+    required this.flaggedMessageEvents,
+    required this.fetchingMembers,
+  }) : super(equals: <Object?>[flaggedMessageEvents, fetchingMembers]);
+
+  factory FlaggedMessagesViewModel.fromStore(Store<AppState> store) {
+    return FlaggedMessagesViewModel(
+      flaggedMessageEvents:
+          store.state.chatState?.flaggedMessageEvents ?? <EventReport>[],
+      fetchingMembers:
+          store.state.wait?.isWaitingFor(fetchFlaggedMessagesFlag) ?? false,
+    );
+  }
+
+  final List<EventReport?>? flaggedMessageEvents;
+  final bool fetchingMembers;
+}
+
+class FlaggedMessagePreviewViewModel extends Vm {
+  FlaggedMessagePreviewViewModel({
+    required this.selectedFlaggedMessage,
+    required this.fetchingMessageReport,
+  }) : super(equals: <Object?>[selectedFlaggedMessage, fetchingMessageReport]);
+
+  factory FlaggedMessagePreviewViewModel.fromStore(Store<AppState> store) {
+    return FlaggedMessagePreviewViewModel(
+      selectedFlaggedMessage: store.state.chatState?.selectedFlaggedMessage,
+      fetchingMessageReport:
+          store.state.wait?.isWaitingFor(fetchEventReport) ?? false,
+    );
+  }
+
+  final EventReport? selectedFlaggedMessage;
+  final bool fetchingMessageReport;
 }

@@ -14,10 +14,14 @@ class MessageItemWidget extends StatelessWidget {
     super.key,
     required this.message,
     required this.roomID,
+    this.isFlaggedMessage = false,
   });
 
   final Message message;
   final String roomID;
+
+  // Whether this message being displayed is a flagged message
+  final bool isFlaggedMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +71,7 @@ class MessageItemWidget extends StatelessWidget {
             message: message,
             wasSentByUser: wasSentByUser,
             roomID: roomID,
+            isFlaggedMessage: isFlaggedMessage,
           );
 
         default:

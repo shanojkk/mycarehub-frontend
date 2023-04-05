@@ -1,7 +1,10 @@
 // Package imports:
 import 'dart:io';
 
+import 'package:pro_health_360/application/redux/states/event_report.dart';
 import 'package:pro_health_360/presentation/communities/pages/banned_members_page.dart';
+import 'package:pro_health_360/presentation/communities/pages/flagged_message_preview_page.dart';
+import 'package:pro_health_360/presentation/communities/pages/flagged_messages_page.dart';
 import 'package:pro_health_360/presentation/communities/pages/room_info_page.dart';
 import 'package:pro_health_360/presentation/communities/pages/image_preview_page.dart';
 import 'package:pro_health_360/presentation/communities/pages/invite_users_page.dart';
@@ -773,6 +776,33 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<PreviewUploadImage>>());
     expect(route?.builder(context), isA<PreviewUploadImage>());
+  });
+
+  test('Test router returns flaggedMessagesRoute page', () {
+    final RouteSettings settings = RouteSettings(
+      name: AppRoutes.flaggedMessagesRoute,
+      arguments: Room.initial(),
+    );
+
+    final MaterialPageRoute<FlaggedMessagesPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<FlaggedMessagesPage>?;
+
+    expect(route, isA<MaterialPageRoute<FlaggedMessagesPage>>());
+    expect(route?.builder(context), isA<FlaggedMessagesPage>());
+  });
+
+  test('Test router returns flaggedMessagePreviewRoute page', () {
+    final RouteSettings settings = RouteSettings(
+      name: AppRoutes.flaggedMessagePreviewRoute,
+      arguments: EventReport.initial(),
+    );
+
+    final MaterialPageRoute<FlaggedMessagePreviewPage>? route =
+        routeGenerator(settings)
+            as MaterialPageRoute<FlaggedMessagePreviewPage>?;
+
+    expect(route, isA<MaterialPageRoute<FlaggedMessagePreviewPage>>());
+    expect(route?.builder(context), isA<FlaggedMessagePreviewPage>());
   });
 
   test('Test router returns imagePreviewRoute page', () {

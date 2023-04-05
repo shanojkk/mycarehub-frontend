@@ -343,3 +343,7 @@ const Key emptyBannedMembersKey = Key('emptyBannedMembersKey');
 const Key cancelLeaveRoomKey = Key('cancelLeaveRoomKey');
 
 const Key reportMessageKey = Key('reportMessageKey');
+
+const Key deleteMessageReportKey = Key('deleteMessageReportKey');
+
+const Key emptyFlaggedMessagesKey = Key('emptyFlaggedMessagesKey');

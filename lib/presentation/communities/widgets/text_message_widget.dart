@@ -12,6 +12,7 @@ class TextMessageWidget extends StatelessWidget {
     required this.senderID,
     required this.eventID,
     this.messageBody,
+    this.isFlaggedMessage = false,
   });
 
   final bool wasSentByUser;
@@ -23,6 +24,9 @@ class TextMessageWidget extends StatelessWidget {
   final String roomID;
   final String eventID;
   final String senderID;
+
+  // Whether this message being displayed is a flagged message
+  final bool isFlaggedMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +44,7 @@ class TextMessageWidget extends StatelessWidget {
               roomID: roomID,
               eventID: eventID,
               senderID: senderID,
+              isFlaggedMessage: isFlaggedMessage,
             );
           },
         );

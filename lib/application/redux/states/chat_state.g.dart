@@ -16,11 +16,13 @@ _$_ChatState _$$_ChatStateFromJson(Map<String, dynamic> json) => _$_ChatState(
       searchMemberResults: (json['searchMemberResults'] as List<dynamic>?)
           ?.map((e) => User.fromJson(e as Map<String, dynamic>))
           .toList(),
-      messages: (json['messages'] as List<dynamic>?)
-          ?.map((e) => Message.fromJson(e as Map<String, dynamic>))
-          .toList(),
       bannedUserIDs: (json['bannedUserIDs'] as List<dynamic>?)
           ?.map((e) => e as String?)
+          .toList(),
+      flaggedMessageEvents: (json['flagged_message_events'] as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : EventReport.fromJson(e as Map<String, dynamic>))
           .toList(),
       lastSyncTime: json['lastSyncTime'] as String?,
       syncResponse: json['syncResponse'] == null
@@ -30,6 +32,10 @@ _$_ChatState _$$_ChatStateFromJson(Map<String, dynamic> json) => _$_ChatState(
           ? null
           : SyncState.fromJson(json['syncState'] as Map<String, dynamic>),
       selectedRoom: json['selectedRoom'] as String?,
+      selectedFlaggedMessage: json['selected_flagged_message'] == null
+          ? null
+          : EventReport.fromJson(
+              json['selected_flagged_message'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_ChatStateToJson(_$_ChatState instance) =>
@@ -37,10 +43,11 @@ Map<String, dynamic> _$$_ChatStateToJson(_$_ChatState instance) =>
       'userProfile': instance.userProfile,
       'groupInfoMembers': instance.groupInfoMembers,
       'searchMemberResults': instance.searchMemberResults,
-      'messages': instance.messages,
       'bannedUserIDs': instance.bannedUserIDs,
+      'flagged_message_events': instance.flaggedMessageEvents,
       'lastSyncTime': instance.lastSyncTime,
       'syncResponse': instance.syncResponse,
       'syncState': instance.syncState,
       'selectedRoom': instance.selectedRoom,
+      'selected_flagged_message': instance.selectedFlaggedMessage,
     };

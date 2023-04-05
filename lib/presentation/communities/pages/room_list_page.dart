@@ -47,6 +47,7 @@ class _RoomListPageState extends State<RoomListPage> {
         syncParams: SyncParams(
           fullState: true,
           fullSync: true,
+          forceFull: true,
           client: AppWrapperBase.of(context)!.communitiesClient!,
         ),
       ),
@@ -56,7 +57,7 @@ class _RoomListPageState extends State<RoomListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: 'Conversations'),
+      appBar: const CustomAppBar(title: 'Conversations', showBackButton: false),
       bottomNavigationBar: const BottomNavBar(bottomNavIndex: 2),
       body: RefreshIndicator(
         onRefresh: () async => onRefresh(context),
@@ -78,7 +79,7 @@ class _RoomListPageState extends State<RoomListPage> {
                           children: <Widget>[
                             const Text(syncingString),
                             mediumVerticalSizedBox,
-                            const CircularProgressIndicator(),
+                            const CircularProgressIndicator(strokeWidth: 1),
                           ],
                         ),
                       );

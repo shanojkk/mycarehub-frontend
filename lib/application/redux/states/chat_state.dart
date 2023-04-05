@@ -1,13 +1,9 @@
-// Package imports:
-
-// ignore_for_file: depend_on_referenced_packages, invalid_annotation_target
-
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:pro_health_360/application/redux/states/event_report.dart';
 import 'package:pro_health_360/application/redux/states/sync_response_state.dart';
 import 'package:pro_health_360/application/redux/states/sync_state.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
-import 'package:sghi_core/communities/models/message.dart';
 import 'package:sghi_core/communities/models/user.dart';
 
 part 'chat_state.freezed.dart';
@@ -17,10 +13,19 @@ part 'chat_state.g.dart';
 class ChatState with _$ChatState {
   factory ChatState({
     @JsonKey(name: 'userProfile') User? userProfile,
+
+    /// Stores a group's members
     @JsonKey(name: 'groupInfoMembers') List<RoomUser>? groupInfoMembers,
+
+    /// Stores results for searching members
     @JsonKey(name: 'searchMemberResults') List<User>? searchMemberResults,
-    @JsonKey(name: 'messages') List<Message>? messages,
+
+    // A list of banned users
     @JsonKey(name: 'bannedUserIDs') List<String?>? bannedUserIDs,
+
+    /// A list for flagged message events
+    @JsonKey(name: 'flagged_message_events')
+        List<EventReport?>? flaggedMessageEvents,
 
     // Final string lastSyncTime for chats
     @JsonKey(name: 'lastSyncTime') String? lastSyncTime,
@@ -33,6 +38,10 @@ class ChatState with _$ChatState {
 
     // The currently selected room
     @JsonKey(name: 'selectedRoom') String? selectedRoom,
+
+    /// The flagged message being viewed
+    @JsonKey(name: 'selected_flagged_message')
+        EventReport? selectedFlaggedMessage,
   }) = _ChatState;
 
   factory ChatState.fromJson(Map<String, dynamic> json) =>
@@ -43,10 +52,11 @@ class ChatState with _$ChatState {
         groupInfoMembers: <RoomUser>[],
         searchMemberResults: <User>[],
         bannedUserIDs: <String>[],
-        messages: <Message>[],
+        flaggedMessageEvents: <EventReport>[],
         lastSyncTime: UNKNOWN,
         syncResponse: SyncResponse.initial(),
         syncState: SyncState.initial(),
         selectedRoom: UNKNOWN,
+        selectedFlaggedMessage: EventReport.initial(),
       );
 }

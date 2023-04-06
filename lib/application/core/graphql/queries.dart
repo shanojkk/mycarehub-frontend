@@ -444,8 +444,6 @@ query listClientsCaregivers($clientID: String!, $paginationInput: PaginationsInp
       consent{
         consentStatus
       }
-      currentClient
-      currentFacility
     }
   }
 }

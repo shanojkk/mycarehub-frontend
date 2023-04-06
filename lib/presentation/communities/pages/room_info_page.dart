@@ -27,9 +27,10 @@ class RoomInfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String roomName = room.name ?? '';
     return Scaffold(
       appBar: CustomAppBar(
-        title: '${room.name ?? ''} info',
+        title: roomInformationString(roomName),
         trailingWidget: const SizedBox(),
       ),
       body: ListView(
@@ -47,7 +48,7 @@ class RoomInfoPage extends StatelessWidget {
               children: <Widget>[
                 smallVerticalSizedBox,
                 Text(
-                  room.name ?? '',
+                  roomName,
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w800,
@@ -113,10 +114,7 @@ class RoomInfoPage extends StatelessWidget {
           mediumVerticalSizedBox,
           const Text(
             longPressInstruction,
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w300,
-            ),
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
           ),
           mediumVerticalSizedBox,
 

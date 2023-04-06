@@ -12,12 +12,9 @@ class ImagePreviewPage extends StatelessWidget {
     this.wasSentByUser = false,
   });
 
-  final String url;
-
   final Widget sender;
-
   final String time;
-
+  final String url;
   final bool wasSentByUser;
 
   @override
@@ -72,7 +69,7 @@ class ImagePreviewPage extends StatelessWidget {
                   sender
                 else
                   const Text(
-                    'You ',
+                    youText,
                     style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
                   ),
               ],

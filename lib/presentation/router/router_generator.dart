@@ -26,7 +26,6 @@ import 'package:pro_health_360/presentation/assessment/widgets/successful_assess
 import 'package:pro_health_360/presentation/caregiver/pages/client_caregiver_selection_page.dart';
 import 'package:pro_health_360/presentation/caregiver/pages/client_selection_page.dart';
 import 'package:pro_health_360/presentation/caregiver/pages/facility_selection_page.dart';
-import 'package:pro_health_360/presentation/communities/pages/accept_group_invites_page.dart';
 import 'package:pro_health_360/presentation/content/pages/content_details_page.dart';
 import 'package:pro_health_360/presentation/content/pages/feed_page.dart';
 import 'package:pro_health_360/presentation/content/pages/gallery_images_page.dart';
@@ -408,21 +407,6 @@ class RouteGenerator {
         return MaterialPageRoute<SuccessfulFeedbackSubmissionPage>(
           builder: (_) => const SuccessfulFeedbackSubmissionPage(),
           settings: const RouteSettings(name: 'Successful feedback page'),
-        );
-
-      case AppRoutes.acceptGroupInvitesPage:
-        final String groupId =
-            (args as Map<String, dynamic>)['groupId'] as String;
-        final String groupName = args['groupName'] as String;
-        final int numberOfMembers = args['numberOfMembers'] as int;
-
-        return MaterialPageRoute<AcceptGroupInvitesPage>(
-          builder: (_) => AcceptGroupInvitesPage(
-            groupId: groupId,
-            groupName: groupName,
-            numberOfMembers: numberOfMembers,
-          ),
-          settings: const RouteSettings(name: 'Accepted group invites page'),
         );
 
       case AppRoutes.pinRequestSentPage:

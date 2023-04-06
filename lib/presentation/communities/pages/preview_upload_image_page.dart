@@ -16,7 +16,10 @@ class PreviewUploadImage extends StatelessWidget {
     required this.roomID,
   });
 
+  // The image to preview
   final File image;
+
+  // The roomID of the room in which the image is to be uploaded to
   final String roomID;
 
   @override

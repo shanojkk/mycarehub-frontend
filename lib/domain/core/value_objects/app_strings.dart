@@ -496,7 +496,7 @@ const String relationText = 'How are you related';
 const String preferredLanguage = 'Preferred Language';
 const String english = 'English';
 const String preferredClinic = 'Preferred Clinic';
-const String clinic = 'Equity Afia Ruaka';
+const String clinic = 'myCareHub Clinic';
 const String preferredCommunication = 'Preferred way of Communication';
 const String inApp = 'in app';
 
@@ -578,8 +578,6 @@ const String sibling = 'Sibling';
 const String selectYourPreferredLanguage = 'Select your preferred language';
 const String swahili = 'Swahili';
 const String selectYourPreferredClinic = 'Select your preferred Clinic';
-const String equityAfiaUmoja = 'Equity Afia Umoja';
-const String kenyattaHospital = 'Kenyatta National Hospital';
 const String selectYourPreferredCommunication =
     'Select your preferred communication channel';
 const String communicationChannel = 'Communication channel';
@@ -741,13 +739,8 @@ const String defaultStreamUserID = appName;
 const String kindlyLogOutText = 'Kindly log out and back in to continue';
 
 // communities
-const String groupInvitesString = 'Group Invites';
-const String groupsYouHaveBeenInvited = 'Groups you have been invited to';
-String groupInviteDescription(String groupName) =>
-    'You have been invited to join the $groupName group. Tap the options below to accept or decline the group invite';
 const String joinGroup = 'Join Group';
 const String declineInvite = 'Decline Invite';
-const String youHaveNoInvites = 'You have no invites';
 const String noInvitesDescription =
     'There seems to be no group invites for you at the moment. We will notify you the moment you get more invites. Enjoy your day!';
 const String invitationAcceptedSuccessfully =
@@ -1096,3 +1089,14 @@ const String removeMessageReport = 'Remove message report';
 const String flaggedMessagePreviewCopy = 'Here is a messages that has been '
     'marked as inappropriate or offensive by a member of this group.\n\n'
     'Long press on the message for more options';
+
+const String youText = 'You ';
+
+const String deletedMsgText = 'This message was deleted';
+
+String topicSetMsg(String topic) => 'The topic was set to $topic';
+
+String groupCreationMsg(String creator, String timeStamp) =>
+    '$creator created the group on $timeStamp';
+
+String roomInformationString(String roomName) => '$roomName info';

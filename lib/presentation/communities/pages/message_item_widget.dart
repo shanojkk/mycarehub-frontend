@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pro_health_360/application/core/services/communities_utils.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/entities/communities/event_types.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/presentation/communities/widgets/normal_message_widget.dart';
 import 'package:pro_health_360/presentation/communities/widgets/update_message_widget.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
@@ -17,11 +18,14 @@ class MessageItemWidget extends StatelessWidget {
     this.isFlaggedMessage = false,
   });
 
-  final Message message;
-  final String roomID;
-
   // Whether this message being displayed is a flagged message
   final bool isFlaggedMessage;
+
+  // The message to render
+  final Message message;
+
+  // The room to which this message was sent
+  final String roomID;
 
   @override
   Widget build(BuildContext context) {
@@ -52,18 +56,18 @@ class MessageItemWidget extends StatelessWidget {
         case EventTypes.topic:
           final String topic = messageContent?.topic ?? '';
 
-          return UpdateMessageWidget(msg: 'The topic was set to $topic');
+          return UpdateMessageWidget(msg: topicSetMsg(topic));
 
         case EventTypes.creation:
           final String creator = formatUsername(messageContent?.creator);
-          final String msg = '$creator created the group on $timeStamp';
+          final String msg = groupCreationMsg(creator, timeStamp);
 
           return UpdateMessageWidget(msg: msg);
 
         case EventTypes.redaction:
           return const UpdateMessageWidget(
-            msg: 'This message was deleted',
-            icon: Icons.delete,
+            msg: deletedMsgText,
+            icon: Icons.delete_rounded,
           );
 
         case EventTypes.message:

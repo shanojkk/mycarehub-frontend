@@ -17,7 +17,6 @@ class InviteUsersPage extends StatelessWidget {
   InviteUsersPage({super.key, required this.room});
 
   final Room room;
-
   final TextEditingController searchController = TextEditingController();
 
   @override
@@ -77,7 +76,6 @@ class InviteUsersPage extends StatelessWidget {
 
           const SizedBox(height: 20),
 
-          ///
           /// List search results
           StoreConnector<AppState, SearchPageViewModel>(
             converter: (Store<AppState> store) {

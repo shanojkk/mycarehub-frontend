@@ -26,27 +26,6 @@ void main() {
         initialState: AppState.initial(),
       );
     });
-    testWidgets('should render NotificationListItem without actions',
-        (WidgetTester tester) async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: MockGraphQlClient(),
-        widget: local.NotificationListItem(
-          notificationDetails: NotificationDetails(
-            body: 'Your Teleconsult with Dr Tibu for 11am has been set. '
-                'Click this link to join ',
-            createdAt: 'July 12 2021',
-            type: NotificationType.COMMUNITIES,
-          ),
-        ),
-      );
-
-      // verify Notification List Item renders correctly
-      expect(find.byType(local.NotificationListItem), findsOneWidget);
-
-      expect(find.text('Add to Calendar'), findsNothing);
-    });
 
     testWidgets('should render NotificationListItem with actions',
         (WidgetTester tester) async {

@@ -107,10 +107,6 @@ class AppRoutes {
   static const String successfulFeedbackSubmissionPage =
       '/successfulFeedbackSubmissionPage';
 
-  // communities group invites
-  static const String groupInvitesPage = '/groupInvitesPage';
-  static const String acceptGroupInvitesPage = '/acceptGroupInvitesPage';
-
   // resume with pin
   static const String resumeWithPin = '/resumeWithPin';
 

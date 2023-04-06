@@ -20,11 +20,6 @@ const List<ProfileMenuItem> userProfileItems = <ProfileMenuItem>[
     title: 'Surveys',
   ),
   ProfileMenuItem(
-    iconAssetPath: communityIconSvgPath,
-    route: AppRoutes.groupInvitesPage,
-    title: 'Conversations invites',
-  ),
-  ProfileMenuItem(
     iconAssetPath: mySavedIcon,
     route: AppRoutes.savedPosts,
     title: 'My saved content',

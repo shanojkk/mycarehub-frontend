@@ -26,7 +26,6 @@ import 'package:pro_health_360/presentation/assessment/widgets/successful_assess
 import 'package:pro_health_360/presentation/caregiver/pages/client_caregiver_selection_page.dart';
 import 'package:pro_health_360/presentation/caregiver/pages/client_selection_page.dart';
 import 'package:pro_health_360/presentation/caregiver/pages/facility_selection_page.dart';
-import 'package:pro_health_360/presentation/communities/pages/accept_group_invites_page.dart';
 import 'package:pro_health_360/presentation/content/pages/content_details_page.dart';
 import 'package:pro_health_360/presentation/content/pages/feed_page.dart';
 import 'package:pro_health_360/presentation/content/widgets/document_content_widget.dart';
@@ -522,23 +521,6 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<SuccessfulFeedbackSubmissionPage>>());
     expect(route.builder(context), isA<SuccessfulFeedbackSubmissionPage>());
-  });
-
-  test('Test router returns accept decline invites page', () {
-    const RouteSettings settings = RouteSettings(
-      name: AppRoutes.acceptGroupInvitesPage,
-      arguments: <String, dynamic>{
-        'groupId': '',
-        'groupName': '',
-        'numberOfMembers': 0,
-      },
-    );
-
-    final MaterialPageRoute<AcceptGroupInvitesPage> route =
-        routeGenerator(settings) as MaterialPageRoute<AcceptGroupInvitesPage>;
-
-    expect(route, isA<MaterialPageRoute<AcceptGroupInvitesPage>>());
-    expect(route.builder(context), isA<AcceptGroupInvitesPage>());
   });
 
   test('Test router returns pin request sent page', () {

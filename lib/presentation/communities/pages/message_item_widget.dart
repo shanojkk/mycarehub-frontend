@@ -30,9 +30,9 @@ class MessageItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String userID = StoreProvider.state<AppState>(context)
-            ?.chatState
-            ?.userProfile
-            ?.userID ??
+            ?.clientState
+            ?.clientProfile
+            ?.id ??
         '';
     final String timeStamp = formatTimestamp(message.timeStamp);
     final bool wasSentByUser = message.sender == userID;

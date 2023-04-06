@@ -48,8 +48,7 @@ class ReviewInviteWidget extends StatelessWidget {
             const SizedBox(height: 10),
             Center(
               child: Text(
-                'You have been invite to join the $roomName group. Tap the options '
-                'below to accept or decline the group invite',
+                invitedInstructions(roomName),
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w300,

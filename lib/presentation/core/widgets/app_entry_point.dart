@@ -87,7 +87,7 @@ class AppEntryPointViewModelFactory extends VmFactory<AppState, AppEntryPoint> {
     return AppEntryPointViewModel(
       idToken: state.credentials?.idToken,
       userId: state.clientState?.clientProfile?.user?.userId,
-      communitiesAccessToken: state.chatState?.userProfile?.accessToken,
+      communitiesAccessToken: state.clientState?.communityToken,
     );
   }
 }

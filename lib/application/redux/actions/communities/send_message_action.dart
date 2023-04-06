@@ -1,6 +1,8 @@
 import 'package:async_redux/async_redux.dart';
+import 'package:http/http.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:sghi_core/communities/core/chat_api.dart';
 
 import 'package:sghi_core/flutter_graphql_client/i_flutter_graphql_client.dart';
@@ -11,11 +13,14 @@ class SendMessageAction extends ReduxAction<AppState> {
     required this.message,
     required this.client,
     this.onSuccess,
+    this.onError,
   });
 
   final String roomID;
   final String message;
-  final Function(String roomID)? onSuccess;
+  final Function()? onSuccess;
+  final Function()? onError;
+
   final IGraphQlClient client;
 
   @override
@@ -32,21 +37,21 @@ class SendMessageAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final Map<String, dynamic> data = await ChatAPI.sendMessage(
+    final Response response = await ChatAPI.sendMessage(
       client: client,
       roomID: roomID,
       message: message,
     );
 
-    if (client.parseError(data) != null) {
-      // Throw an error here
+    final ProcessedResponse processedResponse = processHttpResponse(response);
+
+    if (processedResponse.ok) {
+      onSuccess?.call();
+
+      return state;
+    } else {
+      onError?.call();
       return null;
     }
-
-    if (data['event_id'] != null) {
-      onSuccess?.call(data['event_id']?.toString() ?? '');
-    }
-
-    return null;
   }
 }

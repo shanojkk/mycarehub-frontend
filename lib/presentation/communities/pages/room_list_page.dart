@@ -30,9 +30,7 @@ class _RoomListPageState extends State<RoomListPage> {
       await StoreProvider.dispatch(
         context,
         SignInAction(
-          username: 'abiudrn',
-          password: 'abiudrn',
-          client: AppWrapperBase.of(context)!.communitiesClient,
+          client: AppWrapperBase.of(context)!.communitiesClient!,
         ),
       );
     });
@@ -57,7 +55,8 @@ class _RoomListPageState extends State<RoomListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: 'Conversations', showBackButton: false),
+      appBar:
+          const CustomAppBar(title: communityPageString, showBackButton: false),
       bottomNavigationBar: const BottomNavBar(bottomNavIndex: 2),
       body: RefreshIndicator(
         onRefresh: () async => onRefresh(context),

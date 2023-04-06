@@ -37,7 +37,7 @@ class StartSyncObserverAction extends ReduxAction<AppState> {
 
     Future<void> onSync(Timer timer) async {
       final String accessToken =
-          store.state.chatState?.userProfile?.accessToken ?? UNKNOWN;
+          store.state.clientState?.communityToken ?? UNKNOWN;
       final String lastSince =
           store.state.chatState?.syncResponse?.nextBatch ?? UNKNOWN;
 
@@ -91,12 +91,7 @@ class StartSyncObserverAction extends ReduxAction<AppState> {
       /// Synchronize
       dispatch(
         SyncAction(
-          syncParams: SyncParams(
-            client: client,
-            since: lastSince,
-            fullState: true,
-            fullSync: true,
-          ),
+          syncParams: SyncParams(client: client, since: lastSince),
         ),
       );
     }

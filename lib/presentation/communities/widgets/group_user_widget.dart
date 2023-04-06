@@ -17,6 +17,8 @@ class GroupUserWidget extends StatelessWidget {
   final RoomUser user;
 
   /// You can't perform moderation actions on yourself
+  ///
+  /// This is used to make sure of that
   final String authUserID;
 
   final String roomID;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pro_health_360/application/core/services/communities_utils.dart';
 import 'package:pro_health_360/application/redux/states/event_report.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/presentation/communities/widgets/avatar.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:sghi_core/communities/models/strings.dart';
@@ -60,7 +61,7 @@ class FlaggedReportListItem extends StatelessWidget {
                       verySmallVerticalSizedBox,
                       // TODO!!(abiud): Fix text overflows here
                       Text(
-                        'Reported by $formattedReporter on $timeStamp',
+                        reportedByString(formattedReporter, timeStamp),
                         style: const TextStyle(
                           color: Colors.black45,
                           fontWeight: FontWeight.w500,

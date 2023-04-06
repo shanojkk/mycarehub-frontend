@@ -8,6 +8,7 @@ import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/presentation/communities/widgets/image_attachment_widget.dart';
 import 'package:sghi_core/app_wrapper/app_wrapper_base.dart';
+import 'package:sghi_core/misc_utilities/misc.dart';
 import 'package:sghi_core/shared_themes/spaces.dart';
 
 class SendMessageInput extends StatelessWidget {
@@ -58,14 +59,17 @@ class SendMessageInput extends StatelessWidget {
                             context,
                             SendMessageAction(
                               roomID: roomID,
-                              onSuccess: (String roomID) {
-                                if (roomID.isNotEmpty) {
-                                  msgCtrl.clear();
-                                } else {
-                                  // TODO(abiud): Show an error snackbar here
-                                }
-                              },
                               message: msgCtrl.text,
+                              onSuccess: () {
+                                msgCtrl.clear();
+                              },
+                              onError: () => ScaffoldMessenger.of(context)
+                                ..hideCurrentSnackBar()
+                                ..showSnackBar(
+                                  snackbar(
+                                    content: const Text(failedToSendMsg),
+                                  ),
+                                ),
                               client: AppWrapperBase.of(context)!
                                   .communitiesClient!,
                             ),
@@ -92,13 +96,14 @@ class SendMessageInput extends StatelessWidget {
                     context,
                     SendMessageAction(
                       roomID: roomID,
-                      onSuccess: (String roomID) {
-                        if (roomID.isNotEmpty) {
-                          msgCtrl.clear();
-                        } else {
-                          // TODO(abiud): Show an error snackbar here
-                        }
+                      onSuccess: () {
+                        msgCtrl.clear();
                       },
+                      onError: () => ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(
+                          snackbar(content: const Text(failedToSendMsg)),
+                        ),
                       message: msgCtrl.text,
                       client: AppWrapperBase.of(context)!.communitiesClient!,
                     ),

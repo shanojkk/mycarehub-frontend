@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
 import 'package:sghi_core/communities/core/chat_api.dart';
 import 'package:sghi_core/flutter_graphql_client/flutter_graphql_client.dart';
 import 'package:sghi_core/flutter_graphql_client/i_flutter_graphql_client.dart';
@@ -26,7 +26,7 @@ class ProcessAndUploadMediaAction extends ReduxAction<AppState> {
   final String roomID;
 
   final Function()? onSuccess;
-  final Function()? onError;
+  final Function(String msg)? onError;
 
   @override
   void after() {
@@ -42,7 +42,7 @@ class ProcessAndUploadMediaAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final String? accessToken = store.state.chatState?.userProfile?.accessToken;
+    final String? accessToken = store.state.clientState?.communityToken;
 
     final Response response = await SimpleCall.uploadMedia(
       graphClient: communitiesClient,
@@ -51,33 +51,36 @@ class ProcessAndUploadMediaAction extends ReduxAction<AppState> {
       idToken: accessToken!,
     );
 
-    final Map<String, dynamic> data =
-        json.decode(response.body) as Map<String, dynamic>;
+    final ProcessedResponse uploadResponse = processHttpResponse(response);
+    if (uploadResponse.ok) {
+      final Map<String, dynamic> data =
+          json.decode(uploadResponse.response.body) as Map<String, dynamic>;
 
-    if (data['errcode'] != null) {
-      this.onError?.call();
-      return null;
-    }
+      final String? mxcUri = data['content_uri'] as String?;
+      if (mxcUri != null) {
+        final Response mediaResult = await ChatAPI.sendMediaMessage(
+          client: communitiesClient,
+          roomID: roomID,
+          messageText: 'A good looking image',
+          imageMXCUrl: mxcUri,
+        );
 
-    final String? mxcUri = data['content_uri'] as String?;
+        final ProcessedResponse mediaResponse =
+            processHttpResponse(mediaResult);
 
-    if (mxcUri != null) {
-      final Map<String, dynamic> mediaResult = await ChatAPI.sendMediaMessage(
-        client: communitiesClient,
-        roomID: roomID,
-        messageText: 'A good looking image',
-        imageMXCUrl: mxcUri,
-      );
-
-      if (mediaResult.containsKey('event_id')) {
-        if (kDebugMode) {
-          print(mediaResult);
+        if (mediaResponse.ok) {
+          onSuccess?.call();
+          return state;
+        } else {
+          onError?.call(
+            'Failed to send your image to the group. Please try again later',
+          );
+          return null;
         }
-        onSuccess?.call();
-        return state;
       }
     } else {
-      throw 'Failed to upload image';
+      this.onError?.call('Failed to upload your image. Please try again later');
+      return null;
     }
 
     return null;

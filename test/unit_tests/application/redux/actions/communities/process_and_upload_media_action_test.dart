@@ -42,7 +42,7 @@ void main() {
 
     test('should fail to process and upload media successfully', () async {
       bool uploaded = false;
-      bool error = false;
+      String errorMsg = '';
 
       final String dir = Directory.current.path;
       final String imgPath = '$dir/test/tests_resources/test_file.png';
@@ -54,16 +54,17 @@ void main() {
           communitiesClient: MockShortGraphQlClient.withResponse(
             '',
             '',
-            Response(jsonEncode(<String, dynamic>{'errcode': false}), 200),
+            Response(jsonEncode(<String, dynamic>{'errcode': false}), 400),
           ),
           roomID: 'test-room-id',
-          onError: () => error = true,
+          onError: (String msg) => errorMsg = msg,
         ),
       );
 
       await storeTester.waitUntil(ProcessAndUploadMediaAction);
       expect(uploaded, isFalse);
-      expect(error, isTrue);
+      expect(errorMsg.isNotEmpty, true);
+      expect(errorMsg, 'Failed to upload your image. Please try again later');
     });
   });
 }

@@ -1100,3 +1100,17 @@ String groupCreationMsg(String creator, String timeStamp) =>
     '$creator created the group on $timeStamp';
 
 String roomInformationString(String roomName) => '$roomName info';
+
+const String noMessagesTitleString = 'No messages';
+
+const String noMessagesDescriptionString =
+    'You\'re all caught up. Check back later for more messages';
+
+String reportedByString(String formattedReporter, String timeStamp) =>
+    'Reported by $formattedReporter on $timeStamp';
+
+String invitedInstructions(String roomName) =>
+    'You have been invite to join the $roomName group. Tap the options '
+    'below to accept or decline the group invite';
+
+const String failedToSendMsg = 'Failed to send message. Please try again later';

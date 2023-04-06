@@ -347,3 +347,5 @@ const Key reportMessageKey = Key('reportMessageKey');
 const Key deleteMessageReportKey = Key('deleteMessageReportKey');
 
 const Key emptyFlaggedMessagesKey = Key('emptyFlaggedMessagesKey');
+
+const Key emptyMessagesKey = Key('emptyMessagesKey');

@@ -33,8 +33,8 @@ class SyncAction extends ReduxAction<AppState> {
   @override
   Future<AppState?> reduce() async {
     // Fetch the access token from state if not present in the params
-    final String accessToken = syncParams?.accessToken ??
-        (state.chatState?.userProfile?.accessToken ?? '');
+    final String accessToken =
+        syncParams?.accessToken ?? (state.clientState?.communityToken ?? '');
 
     String? since = state.chatState?.syncResponse?.nextBatch;
 

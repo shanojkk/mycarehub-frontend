@@ -142,8 +142,6 @@ const String setCurrentProgramFlag = '/setCurrentProgramFlag';
 //communities
 const String signInFlag = 'signInFlag';
 
-const String communitiesSignOutFlag = 'communitiesSignOutFlag';
-
 const String fetchRoomInfoFlag = 'fetchRoomInfoFlag';
 
 const String searchRoomMembersFlag = 'searchRoomMembersFlag';
@@ -177,7 +175,6 @@ const String fetchBannedMembersFlag = 'fetchBannedMembersFlag';
 const String fetchEventReport = 'fetchEventReport';
 
 const String deleteMessageEventReport = 'deleteMessageEventReport';
-
 
 const String fetchFlaggedMessagesFlag = 'fetchFlaggedMessagesFlag';
 

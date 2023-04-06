@@ -5,9 +5,11 @@ import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/view_models/communities/communities_view_model.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
+import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 import 'package:pro_health_360/presentation/communities/pages/message_item_widget.dart';
 import 'package:pro_health_360/presentation/communities/widgets/review_invite_widget.dart';
 import 'package:pro_health_360/presentation/communities/widgets/send_message_input.dart';
+import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 import 'package:sghi_core/afya_moja_core/afya_moja_core.dart';
@@ -76,7 +78,20 @@ class RoomPage extends StatelessWidget {
                     organizeEventTimeline(allMessages);
 
                 if (organizedEvents?.isEmpty ?? true) {
-                  return const Center(child: Text('No messages here'));
+                  return GenericErrorWidget(
+                    actionText: okThanks,
+                    actionKey: emptyMessagesKey,
+                    headerIconSvgUrl: emptyChatsSvg,
+                    messageTitle: noMessagesTitleString,
+                    messageBody: <TextSpan>[
+                      TextSpan(
+                        text: noMessagesDescriptionString,
+                        style: normalSize16Text(AppColors.greyTextColor),
+                      ),
+                    ],
+                    recoverCallback: () {},
+                    showPrimaryButton: false,
+                  );
                 }
 
                 return ListView.builder(

@@ -13,12 +13,13 @@ class LogoutAction extends ReduxAction<AppState> {
 
   @override
   void after() {
-    dispatch(CommunitiesLogoutAction());
     super.after();
   }
 
   @override
   Future<AppState> reduce() async {
+    dispatch(CommunitiesLogoutAction());
+
     this.navigationCallback();
 
     await AnalyticsService().logEvent(
